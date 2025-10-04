@@ -6,7 +6,7 @@ interface TemplateProps {
   themeColor?: string;
 }
 
-export const ModernTemplate = ({ resumeData, themeColor }: TemplateProps) => {
+export const ModernTemplate = ({ resumeData, themeColor = "#7c3aed" }: TemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");
@@ -15,99 +15,53 @@ export const ModernTemplate = ({ resumeData, themeColor }: TemplateProps) => {
   };
 
   return (
-    <div className="w-full h-full bg-white text-gray-900 grid grid-cols-[240px,1fr]" style={{ pageBreakAfter: 'auto' }}>
-      {/* Left Sidebar */}
-      <div className="bg-gradient-to-b from-indigo-600 to-purple-700 text-white p-8" style={{ pageBreakInside: 'avoid' }}>
-        <div className="mb-8">
-          <div className="h-28 w-28 rounded-full bg-white/20 backdrop-blur-sm mx-auto mb-4 flex items-center justify-center">
-            <div className="text-4xl font-bold">
-              {resumeData.personalInfo.fullName.split(' ').map(n => n[0]).join('').toUpperCase() || "YN"}
-            </div>
-          </div>
-        </div>
-
-        {/* Contact */}
-        <div className="mb-8">
-          <h3 className="text-sm font-bold uppercase tracking-wide mb-4 text-white/90">Contact</h3>
-          <div className="space-y-3 text-sm">
+    <div className="w-full min-h-[297mm] bg-white text-gray-900">
+      {/* Header with Angled Design */}
+      <div className="relative bg-white px-12 pt-10 pb-12">
+        <div className="absolute top-0 left-0 w-full h-3" style={{ backgroundColor: themeColor }}></div>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl font-bold mb-2 text-gray-900">
+            {resumeData.personalInfo.fullName || "Your Name"}
+          </h1>
+          {resumeData.personalInfo.title && (
+            <p className="text-xl font-semibold mb-6" style={{ color: themeColor }}>
+              {resumeData.personalInfo.title}
+            </p>
+          )}
+          
+          {/* Contact Info - Horizontal Layout */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-600 border-t border-gray-200 pt-4">
             {resumeData.personalInfo.email && (
-              <div className="flex items-start gap-2">
-                <Mail className="h-4 w-4 mt-0.5 shrink-0" />
-                <span className="break-all overflow-wrap-anywhere">{resumeData.personalInfo.email}</span>
+              <div className="flex items-center gap-1.5">
+                <Mail className="h-3.5 w-3.5" />
+                <span>{resumeData.personalInfo.email}</span>
               </div>
             )}
             {resumeData.personalInfo.phone && (
-              <div className="flex items-start gap-2">
-                <Phone className="h-4 w-4 mt-0.5 shrink-0" />
+              <div className="flex items-center gap-1.5">
+                <Phone className="h-3.5 w-3.5" />
                 <span>{resumeData.personalInfo.phone}</span>
               </div>
             )}
             {resumeData.personalInfo.location && (
-              <div className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+              <div className="flex items-center gap-1.5">
+                <MapPin className="h-3.5 w-3.5" />
                 <span>{resumeData.personalInfo.location}</span>
               </div>
             )}
           </div>
         </div>
-
-        {/* Skills */}
-        {resumeData.skills.length > 0 && (
-          <div className="mb-8">
-            <h3 className="text-sm font-bold uppercase tracking-wide mb-4 text-white/90">Skills</h3>
-            <div className="space-y-2">
-              {resumeData.skills.map((skill, index) => (
-                skill && (
-                  <div key={index} className="bg-white/20 backdrop-blur-sm rounded px-3 py-2 text-sm">
-                    {skill}
-                  </div>
-                )
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Education */}
-        {resumeData.education.length > 0 && (
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-wide mb-4 text-white/90">Education</h3>
-            <div className="space-y-4 text-sm">
-              {resumeData.education.map((edu) => (
-                <div key={edu.id}>
-                  <div className="font-semibold">{edu.degree}</div>
-                  <div className="text-white/80">{edu.school}</div>
-                  <div className="text-white/60 text-xs mt-1">
-                    {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
-      {/* Right Content */}
-      <div className="p-12">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-5xl font-bold text-gray-900 mb-2">
-            {resumeData.personalInfo.fullName || "Your Name"}
-          </h1>
-          {resumeData.personalInfo.title && (
-            <p className="text-2xl text-indigo-600 font-semibold">
-              {resumeData.personalInfo.title}
-            </p>
-          )}
-        </div>
-
+      <div className="max-w-4xl mx-auto px-12 pb-8">
         {/* Summary */}
         {resumeData.personalInfo.summary && (
-          <div className="mb-8" style={{ pageBreakInside: 'avoid' }}>
-            <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2" style={{ pageBreakAfter: 'avoid' }}>
-              <div className="h-1 w-12 bg-indigo-600" />
-              <span>About Me</span>
-            </h2>
-            <p className="text-sm text-gray-700 leading-relaxed">
+          <div className="mb-7">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }}></div>
+              <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Professional Profile</h2>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed pl-5">
               {resumeData.personalInfo.summary}
             </p>
           </div>
@@ -115,30 +69,25 @@ export const ModernTemplate = ({ resumeData, themeColor }: TemplateProps) => {
 
         {/* Experience */}
         {resumeData.experience.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2" style={{ pageBreakAfter: 'avoid' }}>
-              <div className="h-1 w-12 bg-indigo-600" />
-              <span>Experience</span>
-            </h2>
-            <div className="space-y-6">
+          <div className="mb-7">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }}></div>
+              <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Experience</h2>
+            </div>
+            <div className="space-y-5 pl-5">
               {resumeData.experience.map((exp, index) => (
-                <div key={exp.id} className="relative pl-6 border-l-2 border-indigo-200" style={{ pageBreakInside: 'avoid' }}>
-                  <div className="absolute -left-2 top-0 h-4 w-4 rounded-full bg-indigo-600" />
-                  <div className="mb-2">
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {exp.position || "Position Title"}
-                    </h3>
-                    <div className="flex justify-between items-baseline">
-                      <p className="text-base text-indigo-600 font-semibold">
-                        {exp.company || "Company Name"}
-                      </p>
-                      <span className="text-xs text-gray-600">
-                        {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
-                      </span>
+                <div key={exp.id} className="relative">
+                  <div className="flex justify-between items-start mb-1 gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-base font-bold text-gray-900">{exp.position || "Position Title"}</h3>
+                      <p className="text-sm font-semibold text-gray-700">{exp.company || "Company Name"}</p>
                     </div>
+                    <span className="text-xs font-medium px-2 py-1 rounded whitespace-nowrap" style={{ backgroundColor: `${themeColor}15`, color: themeColor }}>
+                      {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
+                    </span>
                   </div>
                   {exp.description && (
-                    <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                       {exp.description}
                     </p>
                   )}
@@ -148,14 +97,65 @@ export const ModernTemplate = ({ resumeData, themeColor }: TemplateProps) => {
           </div>
         )}
 
+        {/* Skills */}
+        {resumeData.skills.length > 0 && (
+          <div className="mb-7">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }}></div>
+              <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Core Competencies</h2>
+            </div>
+            <div className="flex flex-wrap gap-2 pl-5">
+              {resumeData.skills.map((skill, index) => (
+                skill && (
+                  <span
+                    key={index}
+                    className="px-3 py-1.5 text-xs font-medium rounded-full border"
+                    style={{ 
+                      borderColor: `${themeColor}40`,
+                      color: themeColor,
+                      backgroundColor: `${themeColor}08`
+                    }}
+                  >
+                    {skill}
+                  </span>
+                )
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Education */}
+        {resumeData.education.length > 0 && (
+          <div className="mb-7">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }}></div>
+              <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">Education</h2>
+            </div>
+            <div className="space-y-3 pl-5">
+              {resumeData.education.map((edu) => (
+                <div key={edu.id} className="flex justify-between items-start gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-bold text-gray-900">{edu.degree}</h3>
+                    {edu.field && <p className="text-xs text-gray-600">{edu.field}</p>}
+                    <p className="text-sm text-gray-700">{edu.school}</p>
+                  </div>
+                  <span className="text-xs text-gray-500 whitespace-nowrap">
+                    {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Custom Sections */}
         {resumeData.sections.map((section) => (
-          <div key={section.id} className="mb-8" style={{ pageBreakInside: 'avoid' }}>
-            <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2" style={{ pageBreakAfter: 'avoid' }}>
-              <div className="h-1 w-12 bg-indigo-600" />
-              <span>{section.title}</span>
-            </h2>
-            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+          <div key={section.id} className="mb-7">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }}></div>
+              <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wider">{section.title}</h2>
+            </div>
+            <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line pl-5">
               {section.content}
             </p>
           </div>
