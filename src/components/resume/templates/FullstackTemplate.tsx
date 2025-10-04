@@ -15,7 +15,7 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
   return (
     <div className="w-full min-h-[297mm] bg-white font-sans text-gray-900">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-10">
+      <div className="bg-purple-600 text-white px-8 py-10">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl font-bold mb-3 tracking-tight">{resumeData.personalInfo.fullName}</h1>
           <p className="text-2xl font-light mb-6 text-purple-100">{resumeData.personalInfo.title}</p>
@@ -49,7 +49,7 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
         {resumeData.personalInfo.summary && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
-              <div className="w-1.5 h-7 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
+              <div className="w-1.5 h-7 bg-purple-600 rounded-full"></div>
               Professional Summary
             </h2>
             <p className="text-gray-700 leading-relaxed text-justify pl-6">{resumeData.personalInfo.summary}</p>
@@ -60,14 +60,14 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
         {resumeData.skills && resumeData.skills.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
-              <div className="w-1.5 h-7 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
+              <div className="w-1.5 h-7 bg-purple-600 rounded-full"></div>
               Technical Skills
             </h2>
             <div className="grid grid-cols-3 gap-3 pl-6">
               {resumeData.skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-purple-50 to-blue-50 px-4 py-2.5 rounded-lg border-l-4 border-purple-600 text-sm font-semibold text-gray-800 shadow-sm"
+                  className="bg-purple-50 px-4 py-2.5 rounded-lg border-l-4 border-purple-600 text-sm font-semibold text-gray-800 shadow-sm"
                 >
                   {skill}
                 </div>
@@ -80,7 +80,7 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
         {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
-              <div className="w-1.5 h-7 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
+              <div className="w-1.5 h-7 bg-purple-600 rounded-full"></div>
               Professional Experience
             </h2>
             {resumeData.experience.map((exp, index) => (
@@ -104,11 +104,11 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
         {resumeData.education && resumeData.education.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
-              <div className="w-1.5 h-7 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
+              <div className="w-1.5 h-7 bg-purple-600 rounded-full"></div>
               Education
             </h2>
             {resumeData.education.map((edu, index) => (
-              <div key={index} className="mb-4 bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border-l-4 border-purple-600 ml-6">
+              <div key={index} className="mb-4 bg-purple-50 p-4 rounded-lg border-l-4 border-purple-600 ml-6">
                 <div className="flex justify-between items-start gap-4">
                   <div>
                     <h3 className="text-lg font-bold text-gray-900">{edu.degree}</h3>
@@ -129,7 +129,7 @@ export const FullstackTemplate = ({ resumeData }: TemplateProps) => {
           resumeData.sections.map((section, index) => (
             <div key={index} className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 flex items-center gap-3">
-                <div className="w-1.5 h-7 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
+                <div className="w-1.5 h-7 bg-purple-600 rounded-full"></div>
                 {section.title}
               </h2>
               <p className="text-gray-700 leading-relaxed whitespace-pre-wrap pl-6">{section.content}</p>
