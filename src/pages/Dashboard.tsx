@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Star, Zap, Crown, Check, TrendingUp } from "lucide-react";
+import { FileText, Briefcase, Palette, Layout, Sparkles, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 
@@ -7,42 +7,42 @@ const templates = [
   {
     id: "professional",
     name: "Professional",
-    tagline: "For Corporate Excellence",
-    description: "Perfect for traditional industries and corporate positions",
-    icon: FileText,
-    gradient: "from-blue-600 to-cyan-500",
-    stats: { users: "12.5K", rating: "4.9" },
-    features: ["ATS Optimized", "Single Column", "Clean Layout"]
+    subtitle: "The Classic Choice",
+    description: "Traditional format ideal for corporate environments, finance, law, and consulting roles",
+    icon: Briefcase,
+    color: "from-blue-500 to-blue-600",
+    accentColor: "bg-blue-500",
+    highlights: ["Single Column Layout", "Traditional Structure", "ATS-Optimized"]
   },
   {
     id: "modern",
     name: "Modern",
-    tagline: "Creative & Tech-Ready",
-    description: "Stand out in creative and technology fields",
-    icon: Zap,
-    gradient: "from-purple-600 to-pink-500",
-    stats: { users: "9.2K", rating: "4.8" },
-    features: ["Two Column", "Visual Impact", "Modern Design"]
+    subtitle: "Creative Impact",
+    description: "Contemporary design perfect for tech, creative industries, and startup environments",
+    icon: Sparkles,
+    color: "from-purple-500 to-pink-500",
+    accentColor: "bg-purple-500",
+    highlights: ["Two-Column Design", "Visual Hierarchy", "Modern Typography"]
   },
   {
     id: "minimal",
     name: "Minimal",
-    tagline: "Elegance in Simplicity",
-    description: "Less is more - sophisticated and timeless",
-    icon: Star,
-    gradient: "from-emerald-600 to-teal-500",
-    stats: { users: "8.1K", rating: "4.7" },
-    features: ["White Space", "Typography Focus", "Scannable"]
+    subtitle: "Clean & Simple",
+    description: "Sophisticated simplicity that puts focus on your content and achievements",
+    icon: Layout,
+    color: "from-emerald-500 to-teal-500",
+    accentColor: "bg-emerald-500",
+    highlights: ["Generous Whitespace", "Easy to Scan", "Timeless Design"]
   },
   {
     id: "executive",
     name: "Executive",
-    tagline: "Leadership Presence",
-    description: "Command attention for senior-level positions",
-    icon: Crown,
-    gradient: "from-indigo-600 to-violet-500",
-    stats: { users: "6.8K", rating: "5.0" },
-    features: ["Bold Headers", "Premium Feel", "Authority"]
+    subtitle: "Leadership Edition",
+    description: "Bold and commanding template designed for senior positions and C-level roles",
+    icon: Palette,
+    color: "from-indigo-500 to-violet-500",
+    accentColor: "bg-indigo-500",
+    highlights: ["Strong Visual Presence", "Premium Aesthetic", "Executive Style"]
   }
 ];
 
@@ -54,20 +54,14 @@ const Dashboard = () => {
       <Header />
 
       {/* Hero Section */}
-      <div className="border-b border-border bg-gradient-to-b from-muted/30 to-background">
-        <div className="container mx-auto px-6 py-16">
-          <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              <TrendingUp className="h-4 w-4" />
-              <span>4 Professional Templates Available</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Choose Your Perfect
-              <span className="text-primary"> Resume Template</span>
+      <div className="border-b border-border/50 bg-muted/20">
+        <div className="container mx-auto px-6 py-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+              Choose Your Resume Style
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Each template is crafted to help you stand out. Pick the one that matches your 
-              industry and personal style.
+            <p className="text-lg text-muted-foreground">
+              Select a template that best represents your professional identity
             </p>
           </div>
         </div>
@@ -75,109 +69,67 @@ const Dashboard = () => {
 
       {/* Templates Grid */}
       <main className="container mx-auto px-6 py-12">
-        <div className="grid gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {templates.map((template, index) => {
             const Icon = template.icon;
             return (
               <div
                 key={template.id}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:border-primary/50 transition-all duration-500 hover:shadow-premium animate-slide-up"
+                className="group relative rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 overflow-hidden hover:shadow-premium animate-scale-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="grid md:grid-cols-[1fr,2fr] gap-0">
-                  {/* Left: Visual Section */}
-                  <div className={`relative p-8 bg-gradient-to-br ${template.gradient} text-white overflow-hidden`}>
-                    <div className="absolute inset-0 bg-black/10" />
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
-                    
-                    <div className="relative z-10 h-full flex flex-col justify-between min-h-[280px]">
-                      <div className="space-y-4">
-                        <div className="h-16 w-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <Icon className="h-8 w-8" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold mb-1">{template.name}</h3>
-                          <p className="text-white/80 text-sm font-medium">{template.tagline}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-6 pt-6 border-t border-white/20">
-                        <div>
-                          <div className="text-2xl font-bold">{template.stats.users}</div>
-                          <div className="text-xs text-white/70">Users</div>
-                        </div>
-                        <div>
-                          <div className="text-2xl font-bold flex items-center gap-1">
-                            {template.stats.rating}
-                            <Star className="h-4 w-4 fill-current" />
-                          </div>
-                          <div className="text-xs text-white/70">Rating</div>
-                        </div>
-                      </div>
+                {/* Header with gradient */}
+                <div className={`relative p-6 bg-gradient-to-r ${template.color} text-white`}>
+                  <div className="absolute inset-0 bg-black/5" />
+                  <div className="relative flex items-start justify-between">
+                    <div className="space-y-1">
+                      <h3 className="text-2xl font-bold">{template.name}</h3>
+                      <p className="text-white/90 text-sm font-medium">{template.subtitle}</p>
+                    </div>
+                    <div className="h-12 w-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Icon className="h-6 w-6" />
                     </div>
                   </div>
+                </div>
 
-                  {/* Right: Details Section */}
-                  <div className="p-8 flex flex-col justify-between">
-                    <div className="space-y-6">
-                      <div>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          {template.description}
-                        </p>
+                {/* Content */}
+                <div className="p-6 space-y-6">
+                  <p className="text-muted-foreground leading-relaxed">
+                    {template.description}
+                  </p>
+
+                  {/* Highlights */}
+                  <div className="space-y-2">
+                    {template.highlights.map((highlight, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <div className={`h-1.5 w-1.5 rounded-full ${template.accentColor}`} />
+                        <span className="text-sm text-foreground">{highlight}</span>
                       </div>
-
-                      <div className="space-y-3">
-                        <div className="text-sm font-semibold text-foreground">Key Features:</div>
-                        <div className="grid gap-2">
-                          {template.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm">
-                              <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                <Check className="h-3 w-3 text-primary" />
-                              </div>
-                              <span className="text-muted-foreground">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Preview mockup */}
-                      <div className="p-4 rounded-xl bg-muted/50 border border-border space-y-2">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="h-8 w-8 rounded-full bg-primary/20" />
-                          <div className="space-y-1 flex-1">
-                            <div className="h-2 bg-primary/30 rounded w-1/3" />
-                            <div className="h-1.5 bg-muted-foreground/20 rounded w-1/2" />
-                          </div>
-                        </div>
-                        <div className="space-y-1.5">
-                          <div className="h-1.5 bg-muted-foreground/20 rounded w-full" />
-                          <div className="h-1.5 bg-muted-foreground/20 rounded w-5/6" />
-                          <div className="h-1.5 bg-muted-foreground/10 rounded w-4/6" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button
-                      onClick={() => navigate(`/editor/${template.id}`)}
-                      className="w-full mt-6 bg-primary hover:bg-primary-hover group-hover:shadow-lg transition-all"
-                      size="lg"
-                    >
-                      <FileText className="mr-2 h-4 w-4" />
-                      Start with {template.name}
-                    </Button>
+                    ))}
                   </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    onClick={() => navigate(`/editor/${template.id}`)}
+                    className="w-full bg-primary hover:bg-primary-hover group-hover:shadow-md transition-all"
+                    size="lg"
+                  >
+                    Create with {template.name}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="max-w-3xl mx-auto mt-16 text-center space-y-4 p-8 rounded-2xl bg-muted/30 border border-border">
-          <h3 className="text-2xl font-bold">Not sure which to choose?</h3>
-          <p className="text-muted-foreground">
-            Start with any template - you can customize fonts, colors, and layout as you build your resume.
+        {/* Bottom Info */}
+        <div className="max-w-2xl mx-auto mt-16 text-center space-y-3 p-6 rounded-xl bg-muted/30">
+          <FileText className="h-8 w-8 text-primary mx-auto" />
+          <h3 className="text-xl font-semibold">Fully Customizable</h3>
+          <p className="text-muted-foreground text-sm">
+            Don't worry about choosing the perfect template now. You can modify colors, 
+            fonts, sections, and layout at any time while building your resume.
           </p>
         </div>
       </main>
