@@ -364,6 +364,10 @@ const Editor = () => {
   const { templateId } = useParams<{ templateId: string }>();
   const navigate = useNavigate();
   const [resumeData, setResumeData] = useState<ResumeData>(() => getTemplateDefaults(templateId || "professional"));
+  const [themeColor, setThemeColor] = useState<string>(() => {
+    const saved = localStorage.getItem(`theme-${templateId}`);
+    return saved || "#7c3aed"; // default purple
+  });
 
   // Register fonts for PDF generation
   useEffect(() => {
@@ -396,6 +400,13 @@ const Editor = () => {
     }
   }, [resumeData, templateId]);
 
+  // Save theme color to local storage
+  useEffect(() => {
+    if (templateId) {
+      localStorage.setItem(`theme-${templateId}`, themeColor);
+    }
+  }, [themeColor, templateId]);
+
   const handleDownload = async () => {
     try {
       // Select the appropriate PDF template
@@ -411,7 +422,7 @@ const Editor = () => {
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;
 
       // Generate PDF blob
-      const blob = await pdf(<PDFTemplate resumeData={resumeData} />).toBlob();
+      const blob = await pdf(<PDFTemplate resumeData={resumeData} themeColor={themeColor} />).toBlob();
       
       // Create download link
       const url = URL.createObjectURL(blob);
@@ -438,9 +449,37 @@ const Editor = () => {
       <div className="border-b border-border/50 bg-card shadow-sm">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground capitalize">
-              Template: <span className="font-semibold text-foreground">{templateId}</span>
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground capitalize">
+                Template: <span className="font-semibold text-foreground">{templateId}</span>
+              </span>
+              
+              {/* Color Theme Selector */}
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Theme:</span>
+                <div className="flex gap-2">
+                  {[
+                    { name: "Purple", color: "#7c3aed" },
+                    { name: "Blue", color: "#2563eb" },
+                    { name: "Emerald", color: "#059669" },
+                    { name: "Rose", color: "#e11d48" },
+                    { name: "Orange", color: "#ea580c" },
+                    { name: "Teal", color: "#0d9488" },
+                  ].map((theme) => (
+                    <button
+                      key={theme.color}
+                      onClick={() => setThemeColor(theme.color)}
+                      className={`w-7 h-7 rounded-full border-2 transition-all hover:scale-110 ${
+                        themeColor === theme.color ? "border-gray-900 ring-2 ring-offset-2 ring-gray-900" : "border-gray-300"
+                      }`}
+                      style={{ backgroundColor: theme.color }}
+                      title={theme.name}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
             <Button
               onClick={handleDownload}
               className="gap-2 bg-primary hover:bg-primary-hover"
@@ -478,6 +517,7 @@ const Editor = () => {
                 <ResumePreview 
                   resumeData={resumeData}
                   templateId={templateId || "professional"}
+                  themeColor={themeColor}
                 />
               </div>
             </div>

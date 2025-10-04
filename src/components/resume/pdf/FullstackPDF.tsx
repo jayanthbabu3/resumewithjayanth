@@ -175,14 +175,15 @@ const formatDate = (date: string): string => {
 
 interface Props {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
-export const FullstackPDF = ({ resumeData }: Props) => {
+export const FullstackPDF = ({ resumeData, themeColor = "#7c3aed" }: Props) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { backgroundColor: themeColor }]}>
           <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
           <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
           
@@ -242,7 +243,7 @@ export const FullstackPDF = ({ resumeData }: Props) => {
           {resumeData.personalInfo.summary && (
             <View style={styles.section} wrap={false}>
               <View style={styles.sectionTitle}>
-                <View style={styles.titleBar} />
+                <View style={[styles.titleBar, { backgroundColor: themeColor }]} />
                 <Text>Professional Summary</Text>
               </View>
               <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
@@ -253,12 +254,12 @@ export const FullstackPDF = ({ resumeData }: Props) => {
           {resumeData.skills && resumeData.skills.length > 0 && (
             <View style={styles.section} wrap={false}>
               <View style={styles.sectionTitle}>
-                <View style={styles.titleBar} />
+                <View style={[styles.titleBar, { backgroundColor: themeColor }]} />
                 <Text>Technical Skills</Text>
               </View>
               <View style={styles.skillsGrid}>
                 {resumeData.skills.map((skill, index) => (
-                  <Text key={index} style={styles.skillBox}>
+                  <Text key={index} style={[styles.skillBox, { borderLeftColor: themeColor }]}>
                     {skill}
                   </Text>
                 ))}
@@ -270,7 +271,7 @@ export const FullstackPDF = ({ resumeData }: Props) => {
           {resumeData.experience && resumeData.experience.length > 0 && (
             <View style={styles.section}>
               <View style={styles.sectionTitle}>
-                <View style={styles.titleBar} />
+                <View style={[styles.titleBar, { backgroundColor: themeColor }]} />
                 <Text>Professional Experience</Text>
               </View>
               {resumeData.experience.map((exp, index) => (
@@ -278,7 +279,7 @@ export const FullstackPDF = ({ resumeData }: Props) => {
                   <View style={styles.experienceHeader}>
                     <View style={{ flex: 1 }}>
                       <Text style={styles.position}>{exp.position}</Text>
-                      <Text style={styles.company}>{exp.company}</Text>
+                      <Text style={[styles.company, { color: themeColor }]}>{exp.company}</Text>
                     </View>
                     <Text style={styles.dateRange}>
                       {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
@@ -294,16 +295,16 @@ export const FullstackPDF = ({ resumeData }: Props) => {
           {resumeData.education && resumeData.education.length > 0 && (
             <View style={styles.section}>
               <View style={styles.sectionTitle}>
-                <View style={styles.titleBar} />
+                <View style={[styles.titleBar, { backgroundColor: themeColor }]} />
                 <Text>Education</Text>
               </View>
               {resumeData.education.map((edu, index) => (
-                <View key={index} style={styles.educationItem} wrap={false}>
+                <View key={index} style={[styles.educationItem, { borderLeftColor: themeColor }]} wrap={false}>
                   <View style={styles.educationHeader}>
                     <View style={{ flex: 1 }}>
                       <Text style={styles.degree}>{edu.degree}</Text>
                       {edu.field && <Text style={styles.field}>{edu.field}</Text>}
-                      <Text style={styles.school}>{edu.school}</Text>
+                      <Text style={[styles.school, { color: themeColor }]}>{edu.school}</Text>
                     </View>
                     <Text style={styles.dateRange}>
                       {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
@@ -319,7 +320,7 @@ export const FullstackPDF = ({ resumeData }: Props) => {
             resumeData.sections.map((section, index) => (
               <View key={index} style={styles.section} wrap={false}>
                 <View style={styles.sectionTitle}>
-                  <View style={styles.titleBar} />
+                  <View style={[styles.titleBar, { backgroundColor: themeColor }]} />
                   <Text>{section.title}</Text>
                 </View>
                 <Text style={styles.customSectionContent}>{section.content}</Text>

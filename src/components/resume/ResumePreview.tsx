@@ -9,9 +9,10 @@ import { FullstackTemplate } from "./templates/FullstackTemplate";
 interface ResumePreviewProps {
   resumeData: ResumeData;
   templateId: string;
+  themeColor?: string;
 }
 
-export const ResumePreview = ({ resumeData, templateId }: ResumePreviewProps) => {
+export const ResumePreview = ({ resumeData, templateId, themeColor = "#7c3aed" }: ResumePreviewProps) => {
   const templates = {
     professional: ProfessionalTemplate,
     modern: ModernTemplate,
@@ -26,7 +27,7 @@ export const ResumePreview = ({ resumeData, templateId }: ResumePreviewProps) =>
   return (
     <div className="w-full h-full bg-gray-100 p-2 flex justify-center items-start overflow-auto" id="resume-preview">
       <div className="w-[210mm] shadow-2xl bg-white relative">
-        <Template resumeData={resumeData} />
+        <Template resumeData={resumeData} themeColor={themeColor} />
       </div>
     </div>
   );

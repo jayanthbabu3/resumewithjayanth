@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin, Globe, Github, Linkedin } from "lucide-react";
 
 interface TemplateProps {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
 const formatDate = (date: string) => {
@@ -11,7 +12,7 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short" });
 };
 
-export const FrontendTemplate = ({ resumeData }: TemplateProps) => {
+export const FrontendTemplate = ({ resumeData, themeColor }: TemplateProps) => {
   return (
     <div className="w-full min-h-[297mm] bg-white font-sans text-gray-800">
       {/* Header Section with Gradient */}

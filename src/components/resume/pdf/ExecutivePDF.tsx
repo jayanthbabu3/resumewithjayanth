@@ -155,9 +155,10 @@ const formatDate = (date: string) => {
 
 interface Props {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
-export const ExecutivePDF = ({ resumeData }: Props) => (
+export const ExecutivePDF = ({ resumeData, themeColor }: Props) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Header */}

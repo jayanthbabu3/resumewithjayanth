@@ -174,9 +174,10 @@ const formatDate = (date: string): string => {
 
 interface Props {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
-export const FrontendPDF = ({ resumeData }: Props) => {
+export const FrontendPDF = ({ resumeData, themeColor }: Props) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>

@@ -124,9 +124,10 @@ const formatDate = (date: string) => {
 
 interface Props {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
-export const ModernPDF = ({ resumeData }: Props) => {
+export const ModernPDF = ({ resumeData, themeColor }: Props) => {
   const getInitials = () => {
     return resumeData.personalInfo.fullName
       .split(' ')

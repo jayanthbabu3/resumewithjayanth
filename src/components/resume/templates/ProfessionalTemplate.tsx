@@ -3,9 +3,10 @@ import { Mail, Phone, MapPin, Briefcase, GraduationCap } from "lucide-react";
 
 interface TemplateProps {
   resumeData: ResumeData;
+  themeColor?: string;
 }
 
-export const ProfessionalTemplate = ({ resumeData }: TemplateProps) => {
+export const ProfessionalTemplate = ({ resumeData, themeColor }: TemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");
