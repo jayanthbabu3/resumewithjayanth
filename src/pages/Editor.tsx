@@ -11,6 +11,7 @@ import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
 import { ExecutivePDF } from "@/components/resume/pdf/ExecutivePDF";
+import { FrontendPDF } from "@/components/resume/pdf/FrontendPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 export interface ResumeData {
@@ -256,6 +257,54 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           content: "Board Member - Tech Industry Association (2021-Present)\nAdvisor - Multiple Early-Stage Startups"
         }
       ]
+    },
+    frontend: {
+      personalInfo: {
+        fullName: "Jordan Martinez",
+        email: "jordan.martinez@email.com",
+        phone: "+1 (555) 456-7890",
+        location: "Seattle, WA",
+        title: "Frontend Developer",
+        summary: "Creative and detail-oriented frontend developer with 4+ years of experience building beautiful, responsive web applications. Passionate about user experience, modern JavaScript frameworks, and clean code. Thrive in collaborative environments and love bringing designs to life."
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Innovative Web Solutions",
+          position: "Senior Frontend Developer",
+          startDate: "2022-06",
+          endDate: "",
+          current: true,
+          description: "• Developed and maintained high-performance React applications serving 500K+ monthly users\n• Collaborated with UX designers to implement pixel-perfect, responsive interfaces\n• Optimized web vitals resulting in 40% faster load times and improved SEO rankings\n• Mentored junior developers and conducted code reviews\n• Integrated REST and GraphQL APIs with modern state management solutions"
+        },
+        {
+          id: "2",
+          company: "Creative Digital Agency",
+          position: "Frontend Developer",
+          startDate: "2020-08",
+          endDate: "2022-05",
+          current: false,
+          description: "• Built interactive web experiences for clients across various industries\n• Implemented animations and transitions using CSS3 and JavaScript libraries\n• Worked in Agile environment with daily standups and bi-weekly sprints\n• Ensured cross-browser compatibility and mobile responsiveness\n• Contributed to component library used across multiple projects"
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Washington",
+          degree: "Bachelor of Science",
+          field: "Computer Science",
+          startDate: "2016-09",
+          endDate: "2020-05"
+        }
+      ],
+      skills: ["React", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3/Sass", "Tailwind CSS", "Vue.js", "Next.js", "Redux", "Git", "Webpack", "Responsive Design", "REST APIs", "GraphQL"],
+      sections: [
+        {
+          id: "1",
+          title: "Projects",
+          content: "Portfolio Website - Built personal portfolio with React and Framer Motion showcasing interactive animations\nWeather Dashboard - Created real-time weather app using React, TypeScript, and OpenWeather API\nOpen Source - Contributor to popular UI component libraries with 200+ GitHub stars"
+        }
+      ]
     }
   };
 
@@ -306,6 +355,7 @@ const Editor = () => {
         modern: ModernPDF,
         minimal: MinimalPDF,
         executive: ExecutivePDF,
+        frontend: FrontendPDF,
       };
 
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;

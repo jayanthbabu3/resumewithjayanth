@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Briefcase, Palette, Layout, Sparkles, ArrowRight } from "lucide-react";
+import { FileText, Briefcase, Palette, Layout, Sparkles, ArrowRight, Code } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 
@@ -43,6 +43,16 @@ const templates = [
     color: "from-indigo-500 to-violet-500",
     accentColor: "bg-indigo-500",
     highlights: ["Strong Visual Presence", "Premium Aesthetic", "Executive Style"]
+  },
+  {
+    id: "frontend",
+    name: "Frontend Developer",
+    subtitle: "Tech-Focused Premium",
+    description: "Modern, visually striking design tailored for frontend developers and tech professionals",
+    icon: Code,
+    color: "from-blue-600 via-purple-600 to-indigo-700",
+    accentColor: "bg-blue-600",
+    highlights: ["Gradient Header", "Skills Grid Layout", "Premium Modern Design"]
   }
 ];
 
