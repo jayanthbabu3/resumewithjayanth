@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Briefcase, Palette, Layout, Sparkles, ArrowRight, Code, Layers } from "lucide-react";
+import { FileText, Briefcase, Palette, Layout, Sparkles, ArrowRight, Code, Layers, Server } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 
@@ -63,6 +63,16 @@ const templates = [
     color: "from-purple-600 to-purple-700",
     accentColor: "bg-purple-600",
     highlights: ["Single Column Design", "Color Theme Options", "Professional Tech Look"]
+  },
+  {
+    id: "backend",
+    name: "Backend Developer",
+    subtitle: "Server-Side Specialist",
+    description: "Clean technical design focused on backend development, APIs, and system architecture",
+    icon: Server,
+    color: "from-emerald-600 to-green-600",
+    accentColor: "bg-emerald-600",
+    highlights: ["Technical & Clean", "API-Focused Layout", "Backend Optimized"]
   }
 ];
 

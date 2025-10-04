@@ -13,6 +13,7 @@ import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
 import { ExecutivePDF } from "@/components/resume/pdf/ExecutivePDF";
 import { FrontendPDF } from "@/components/resume/pdf/FrontendPDF";
 import { FullstackPDF } from "@/components/resume/pdf/FullstackPDF";
+import { BackendPDF } from "@/components/resume/pdf/BackendPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 export interface ResumeData {
@@ -354,6 +355,54 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           content: "E-Commerce Platform - Built scalable marketplace handling 100K+ daily transactions\nReal-time Chat Application - Developed WebSocket-based chat with 10K concurrent users\nAWS Certified Solutions Architect - Associate Level\nContributed to open-source projects with 1K+ GitHub stars"
         }
       ]
+    },
+    backend: {
+      personalInfo: {
+        fullName: "Michael Chen",
+        email: "michael.chen@email.com",
+        phone: "+1 (555) 234-8901",
+        location: "San Francisco, CA",
+        title: "Backend Developer",
+        summary: "Experienced backend developer with 5+ years building scalable server-side applications and APIs. Expert in Node.js, Python, and database design. Passionate about clean architecture, performance optimization, and delivering reliable systems that power mission-critical applications."
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Tech Solutions Inc",
+          position: "Senior Backend Developer",
+          startDate: "2021-03",
+          endDate: "",
+          current: true,
+          description: "• Designed and implemented RESTful APIs serving 5M+ requests daily with 99.9% uptime\n• Built microservices architecture using Node.js, Express, and PostgreSQL\n• Optimized database queries reducing response times by 60%\n• Implemented caching strategies using Redis improving performance by 40%\n• Led code reviews and mentored junior developers on best practices"
+        },
+        {
+          id: "2",
+          company: "Digital Innovations",
+          position: "Backend Developer",
+          startDate: "2019-06",
+          endDate: "2021-02",
+          current: false,
+          description: "• Developed scalable backend services using Python Django and Flask\n• Integrated third-party APIs including payment gateways and analytics services\n• Implemented JWT-based authentication and role-based access control\n• Created automated testing suites achieving 85% code coverage\n• Participated in agile development with bi-weekly sprint cycles"
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of California, Berkeley",
+          degree: "Bachelor of Science",
+          field: "Computer Science",
+          startDate: "2015-09",
+          endDate: "2019-05"
+        }
+      ],
+      skills: ["Node.js/Express", "Python/Django", "PostgreSQL/MySQL", "MongoDB", "Redis", "Docker", "Kubernetes", "AWS/GCP", "REST APIs", "GraphQL", "Microservices", "Git/CI-CD", "Testing (Jest/Pytest)", "Message Queues (RabbitMQ)"],
+      sections: [
+        {
+          id: "1",
+          title: "Certifications & Projects",
+          content: "AWS Certified Developer - Associate\nAPI Gateway Design - Built high-performance API gateway handling 10M+ daily requests\nDatabase Optimization - Reduced query times by 70% through indexing and optimization\nOpen Source Contributions - Active contributor to Node.js ecosystem projects"
+        }
+      ]
     }
   };
 
@@ -417,6 +466,7 @@ const Editor = () => {
         executive: ExecutivePDF,
         frontend: FrontendPDF,
         fullstack: FullstackPDF,
+        backend: BackendPDF,
       };
 
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;

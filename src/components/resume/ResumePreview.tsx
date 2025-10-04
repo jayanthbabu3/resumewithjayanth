@@ -5,6 +5,7 @@ import { MinimalTemplate } from "./templates/MinimalTemplate";
 import { ExecutiveTemplate } from "./templates/ExecutiveTemplate";
 import { FrontendTemplate } from "./templates/FrontendTemplate";
 import { FullstackTemplate } from "./templates/FullstackTemplate";
+import { BackendTemplate } from "./templates/BackendTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -20,6 +21,7 @@ export const ResumePreview = ({ resumeData, templateId, themeColor = "#7c3aed" }
     executive: ExecutiveTemplate,
     frontend: FrontendTemplate,
     fullstack: FullstackTemplate,
+    backend: BackendTemplate,
   };
 
   const Template = templates[templateId as keyof typeof templates] || ProfessionalTemplate;
