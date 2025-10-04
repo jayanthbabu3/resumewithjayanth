@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 40,
     fontSize: 10,
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
   },
   header: {
     marginBottom: 20,
@@ -15,8 +15,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 5,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -37,8 +36,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 12,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 8,
     textTransform: 'uppercase',
     borderBottom: 1,
@@ -51,14 +49,12 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 11,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 2,
   },
   company: {
     fontSize: 10,
-    fontFamily: 'Inter',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     color: '#333',
     marginBottom: 2,
   },
@@ -77,14 +73,12 @@ const styles = StyleSheet.create({
   },
   degree: {
     fontSize: 11,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 2,
   },
   school: {
     fontSize: 10,
-    fontFamily: 'Inter',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     color: '#333',
   },
   skillsContainer: {

@@ -4,7 +4,7 @@ import type { ResumeData } from "@/pages/Editor";
 const styles = StyleSheet.create({
   page: {
     fontSize: 10,
-    fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
   },
   header: {
     backgroundColor: '#1e293b',
@@ -14,8 +14,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 26,
-    fontFamily: 'Roboto',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 8,
     letterSpacing: 0.5,
   },
@@ -38,8 +37,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 13,
-    fontFamily: 'Roboto',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 10,
     borderLeft: 4,
     borderLeftColor: '#1e293b',
@@ -65,14 +63,12 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 12,
-    fontFamily: 'Roboto',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 3,
   },
   company: {
     fontSize: 11,
-    fontFamily: 'Roboto',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     color: '#475569',
   },
   dateBox: {
@@ -101,14 +97,12 @@ const styles = StyleSheet.create({
   },
   degree: {
     fontSize: 11,
-    fontFamily: 'Roboto',
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 3,
   },
   school: {
     fontSize: 10,
-    fontFamily: 'Roboto',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     color: '#475569',
     marginBottom: 2,
   },
@@ -132,8 +126,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 3,
     fontSize: 9,
-    fontFamily: 'Roboto',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     color: '#1e293b',
     border: 1,
     borderColor: '#e2e8f0',

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 50,
     fontSize: 10,
-    fontFamily: 'Inter',
+    fontFamily: 'Times-Roman',
   },
   header: {
     marginBottom: 20,
@@ -13,8 +13,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 26,
-    fontFamily: 'Inter',
-    fontWeight: 300,
+    fontFamily: 'Times-Roman',
     marginBottom: 8,
     letterSpacing: 1,
   },
@@ -42,8 +41,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 10,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Times-Bold',
     marginBottom: 15,
     textTransform: 'uppercase',
     letterSpacing: 2,
@@ -63,8 +61,7 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 11,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Times-Bold',
     marginBottom: 3,
   },
   company: {
@@ -85,8 +82,7 @@ const styles = StyleSheet.create({
   },
   degree: {
     fontSize: 11,
-    fontFamily: 'Inter',
-    fontWeight: 700,
+    fontFamily: 'Times-Bold',
     marginBottom: 3,
   },
   school: {
