@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 50,
     fontSize: 10,
-    fontFamily: 'Helvetica',
+    fontFamily: 'Lato',
   },
   header: {
     marginBottom: 20,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 26,
-    fontWeight: 'light',
+    fontWeight: 300,
     marginBottom: 8,
     letterSpacing: 1,
   },
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 10,
-    fontWeight: 'bold',
+    fontWeight: 700,
     marginBottom: 15,
     textTransform: 'uppercase',
     letterSpacing: 2,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 11,
-    fontWeight: 'bold',
+    fontWeight: 700,
     marginBottom: 3,
   },
   company: {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   degree: {
     fontSize: 11,
-    fontWeight: 'bold',
+    fontWeight: 700,
     marginBottom: 3,
   },
   school: {

@@ -11,6 +11,7 @@ import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
 import { ExecutivePDF } from "@/components/resume/pdf/ExecutivePDF";
+import { registerPDFFonts } from "@/lib/pdfFonts";
 
 export interface ResumeData {
   personalInfo: {
@@ -265,6 +266,11 @@ const Editor = () => {
   const { templateId } = useParams<{ templateId: string }>();
   const navigate = useNavigate();
   const [resumeData, setResumeData] = useState<ResumeData>(() => getTemplateDefaults(templateId || "professional"));
+
+  // Register fonts for PDF generation
+  useEffect(() => {
+    registerPDFFonts();
+  }, []);
 
   // Load from local storage on mount
   useEffect(() => {
