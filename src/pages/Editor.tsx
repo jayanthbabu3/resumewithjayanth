@@ -6,7 +6,11 @@ import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
 import { Header } from "@/components/Header";
-import html2pdf from "html2pdf.js";
+import { pdf } from "@react-pdf/renderer";
+import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
+import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
+import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
+import { ExecutivePDF } from "@/components/resume/pdf/ExecutivePDF";
 
 export interface ResumeData {
   personalInfo: {
@@ -289,41 +293,34 @@ const Editor = () => {
   }, [resumeData, templateId]);
 
   const handleDownload = async () => {
-    const element = document.getElementById("resume-preview");
-    if (!element) {
-      toast.error("Resume preview not found");
-      return;
-    }
-
-    // Hide preview-only markers during PDF capture
-    const markers = Array.from(document.querySelectorAll<HTMLElement>(".preview-page-marker"));
-    const previousDisplay = markers.map((m) => m.style.display);
-    markers.forEach((m) => (m.style.display = "none"));
-
     try {
-      const opt = {
-        margin: [15, 10, 15, 10] as [number, number, number, number], // top, left, bottom, right margins in mm
-        filename: `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`,
-        image: { type: "jpeg" as const, quality: 1.0 },
-        html2canvas: {
-          scale: 3, // Higher scale for better quality
-          useCORS: true,
-          letterRendering: true,
-          logging: false,
-          dpi: 300,
-        },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" as const },
-        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+      // Select the appropriate PDF template
+      const pdfTemplates = {
+        professional: ProfessionalPDF,
+        modern: ModernPDF,
+        minimal: MinimalPDF,
+        executive: ExecutivePDF,
       };
 
-      await html2pdf().set(opt).from(element).save();
+      const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;
+
+      // Generate PDF blob
+      const blob = await pdf(<PDFTemplate resumeData={resumeData} />).toBlob();
+      
+      // Create download link
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+      link.click();
+      
+      // Cleanup
+      URL.revokeObjectURL(url);
+      
       toast.success("Resume downloaded successfully!");
     } catch (error) {
       console.error("Download error:", error);
       toast.error("Failed to download resume");
-    } finally {
-      // Restore markers after export
-      markers.forEach((m, i) => (m.style.display = previousDisplay[i] ?? ""));
     }
   };
 
