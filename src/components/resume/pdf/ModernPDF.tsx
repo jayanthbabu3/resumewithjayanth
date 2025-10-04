@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     fontSize: 10,
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
   },
   sidebar: {
     width: '35%',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   sidebarTitle: {
     fontSize: 10,
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 10,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 28,
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 5,
   },
   title: {
     fontSize: 16,
     color: '#4f46e5',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 20,
   },
   section: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 14,
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 10,
     color: '#4f46e5',
   },
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
   },
   jobTitle: {
     fontSize: 12,
-    fontWeight: 700,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 3,
   },
   company: {
     fontSize: 11,
     color: '#4f46e5',
-    fontWeight: 600,
+    fontFamily: 'Helvetica-Bold',
     marginBottom: 2,
   },
   date: {
