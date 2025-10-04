@@ -20,8 +20,10 @@ export const ResumePreview = ({ resumeData, templateId }: ResumePreviewProps) =>
   const Template = templates[templateId as keyof typeof templates] || ProfessionalTemplate;
 
   return (
-    <div className="w-full h-full" id="resume-preview">
-      <Template resumeData={resumeData} />
+    <div className="w-full bg-gray-100 p-8 flex justify-center overflow-auto" id="resume-preview">
+      <div className="shadow-2xl">
+        <Template resumeData={resumeData} />
+      </div>
     </div>
   );
 };
