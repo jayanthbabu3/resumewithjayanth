@@ -14,7 +14,7 @@ export const ModernTemplate = ({ resumeData }: TemplateProps) => {
   };
 
   return (
-    <div className="w-full h-full bg-white text-gray-900 grid grid-cols-[280px,1fr]">
+    <div className="w-full h-full bg-white text-gray-900 grid grid-cols-[200px,1fr]">
       {/* Left Sidebar */}
       <div className="bg-gradient-to-b from-indigo-600 to-purple-700 text-white p-8">
         <div className="mb-8">
