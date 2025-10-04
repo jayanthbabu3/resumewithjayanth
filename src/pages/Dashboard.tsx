@@ -8,27 +8,27 @@ const templates = [
     id: "professional",
     name: "Professional",
     subtitle: "The Classic Choice",
-    description: "Traditional format ideal for corporate environments, finance, law, and consulting roles",
+    description: "Traditional single-column format ideal for corporate environments, finance, consulting, and business roles",
     icon: Briefcase,
     color: "from-blue-500 to-blue-600",
     accentColor: "bg-blue-500",
-    highlights: ["Single Column Layout", "Traditional Structure", "ATS-Optimized"]
+    highlights: ["Single Column Layout", "ATS-Optimized", "Clean & Professional"]
   },
   {
     id: "modern",
     name: "Modern",
     subtitle: "Creative Impact",
-    description: "Contemporary design perfect for tech, creative industries, and startup environments",
+    description: "Two-column contemporary design perfect for tech, creative industries, and modern workplaces",
     icon: Sparkles,
     color: "from-purple-500 to-pink-500",
     accentColor: "bg-purple-500",
-    highlights: ["Two-Column Design", "Visual Hierarchy", "Modern Typography"]
+    highlights: ["Two-Column Design", "Sidebar Layout", "Modern Typography"]
   },
   {
     id: "minimal",
     name: "Minimal",
     subtitle: "Clean & Simple",
-    description: "Sophisticated simplicity that puts focus on your content and achievements",
+    description: "Sophisticated simplicity with generous whitespace that emphasizes your achievements",
     icon: Layout,
     color: "from-emerald-500 to-teal-500",
     accentColor: "bg-emerald-500",
@@ -38,31 +38,31 @@ const templates = [
     id: "executive",
     name: "Executive",
     subtitle: "Leadership Edition",
-    description: "Bold and commanding template designed for senior positions and C-level roles",
+    description: "Bold and commanding design crafted for senior positions, C-level roles, and leadership",
     icon: Palette,
-    color: "from-indigo-500 to-violet-500",
-    accentColor: "bg-indigo-500",
+    color: "from-indigo-600 to-violet-600",
+    accentColor: "bg-indigo-600",
     highlights: ["Strong Visual Presence", "Premium Aesthetic", "Executive Style"]
   },
   {
     id: "frontend",
     name: "Frontend Developer",
     subtitle: "Tech-Focused Premium",
-    description: "Modern, visually striking design tailored for frontend developers and tech professionals",
+    description: "Modern tech-focused design with skills grid layout, perfect for frontend developers",
     icon: Code,
-    color: "from-blue-600 via-purple-600 to-indigo-700",
-    accentColor: "bg-blue-600",
-    highlights: ["Gradient Header", "Skills Grid Layout", "Premium Modern Design"]
+    color: "from-indigo-600 to-indigo-700",
+    accentColor: "bg-indigo-600",
+    highlights: ["Skills Grid Display", "Tech-Optimized", "Premium Modern Look"]
   },
   {
     id: "fullstack",
     name: "Full Stack Engineer",
     subtitle: "Complete Tech Profile",
-    description: "Two-column premium layout showcasing both frontend and backend expertise",
+    description: "Purple-themed professional layout showcasing comprehensive technical expertise",
     icon: Layers,
-    color: "from-teal-500 to-slate-800",
-    accentColor: "bg-teal-500",
-    highlights: ["Dark Sidebar Design", "Icon-Based Layout", "Professional Tech Look"]
+    color: "from-purple-600 to-purple-700",
+    accentColor: "bg-purple-600",
+    highlights: ["Single Column Design", "Color Theme Options", "Professional Tech Look"]
   }
 ];
 
