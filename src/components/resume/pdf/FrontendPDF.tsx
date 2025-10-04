@@ -3,7 +3,10 @@ import type { ResumeData } from '@/pages/Editor';
 
 const styles = StyleSheet.create({
   page: {
-    padding: 0,
+    paddingTop: 0,
+    paddingBottom: 40,
+    paddingLeft: 0,
+    paddingRight: 0,
     fontFamily: 'Inter',
     fontSize: 10,
     backgroundColor: '#ffffff',
@@ -11,7 +14,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#2563eb',
     padding: 30,
-    marginBottom: 20,
+    marginBottom: 25,
   },
   name: {
     fontSize: 32,
@@ -45,11 +48,13 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 30,
+    paddingBottom: 20,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: 700,
     color: '#1f2937',
+    marginTop: 8,
     marginBottom: 12,
     paddingBottom: 6,
     borderBottomWidth: 2,
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     borderBottomStyle: 'solid',
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 25,
   },
   summary: {
     fontSize: 10,
@@ -83,8 +88,10 @@ const styles = StyleSheet.create({
     color: '#1e40af',
   },
   experienceItem: {
-    marginBottom: 15,
+    marginBottom: 18,
     paddingLeft: 15,
+    paddingTop: 5,
+    paddingBottom: 5,
     borderLeftWidth: 2,
     borderLeftColor: '#93c5fd',
     borderLeftStyle: 'solid',
@@ -125,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eff6ff',
     padding: 12,
     borderRadius: 6,
-    marginBottom: 10,
+    marginBottom: 12,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#bfdbfe',
@@ -239,7 +246,7 @@ export const FrontendPDF = ({ resumeData }: Props) => {
 
           {/* Skills */}
           {resumeData.skills && resumeData.skills.length > 0 && (
-            <View style={styles.section}>
+            <View style={styles.section} wrap={false}>
               <Text style={styles.sectionTitle}>Technical Skills</Text>
               <View style={styles.skillsGrid}>
                 {resumeData.skills.map((skill, index) => (
@@ -256,7 +263,7 @@ export const FrontendPDF = ({ resumeData }: Props) => {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Professional Experience</Text>
               {resumeData.experience.map((exp, index) => (
-                <View key={index} style={styles.experienceItem}>
+                <View key={index} style={styles.experienceItem} wrap={false}>
                   <View style={styles.experienceHeader}>
                     <View>
                       <Text style={styles.position}>{exp.position}</Text>
@@ -277,7 +284,7 @@ export const FrontendPDF = ({ resumeData }: Props) => {
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Education</Text>
               {resumeData.education.map((edu, index) => (
-                <View key={index} style={styles.educationItem}>
+                <View key={index} style={styles.educationItem} wrap={false}>
                   <View style={styles.educationHeader}>
                     <View>
                       <Text style={styles.degree}>{edu.degree}</Text>
@@ -296,7 +303,7 @@ export const FrontendPDF = ({ resumeData }: Props) => {
           {/* Custom Sections */}
           {resumeData.sections &&
             resumeData.sections.map((section, index) => (
-              <View key={index} style={styles.section}>
+              <View key={index} style={styles.section} wrap={false}>
                 <Text style={styles.sectionTitle}>{section.title}</Text>
                 <Text style={styles.customSectionContent}>{section.content}</Text>
               </View>
