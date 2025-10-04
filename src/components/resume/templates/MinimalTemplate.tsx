@@ -50,7 +50,7 @@ export const MinimalTemplate = ({ resumeData }: TemplateProps) => {
       {/* Summary */}
       {resumeData.personalInfo.summary && (
         <div className="mb-8 max-w-4xl mx-auto">
-          <p className="text-sm text-gray-700 leading-relaxed text-center font-light">
+          <p className="text-sm text-gray-700 leading-relaxed font-light">
             {resumeData.personalInfo.summary}
           </p>
         </div>
@@ -123,7 +123,7 @@ export const MinimalTemplate = ({ resumeData }: TemplateProps) => {
           <h2 className="text-xs font-semibold text-gray-900 mb-4 uppercase tracking-widest text-center">
             Skills
           </h2>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-700 font-light max-w-4xl mx-auto">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-700 font-light max-w-4xl mx-auto">
             {resumeData.skills.map((skill, index) => (
               skill && (
                 <span key={index}>
