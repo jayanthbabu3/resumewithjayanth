@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   header: {
-    backgroundColor: '#2563eb',
+    backgroundColor: '#4f46e5',
     padding: 30,
     marginBottom: 25,
   },
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     paddingBottom: 6,
     borderBottomWidth: 2,
-    borderBottomColor: '#2563eb',
+    borderBottomColor: '#4f46e5',
     borderBottomStyle: 'solid',
   },
   section: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   company: {
     fontSize: 11,
     fontWeight: 600,
-    color: '#2563eb',
+    color: '#4f46e5',
     marginBottom: 5,
   },
   dateRange: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
   school: {
     fontSize: 10,
-    color: '#2563eb',
+    color: '#4f46e5',
     fontWeight: 600,
   },
   customSectionContent: {
