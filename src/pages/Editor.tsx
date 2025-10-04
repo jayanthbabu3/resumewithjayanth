@@ -485,13 +485,13 @@ const Editor = () => {
           {/* Preview Section */}
           <div className="lg:sticky lg:top-24 h-fit">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between pr-2">
                 <h2 className="text-2xl font-bold">Live Preview</h2>
                 
                 {/* Color Theme Selector */}
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground">Theme:</span>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center">
                     {[
                       { name: "Purple", color: "#7c3aed" },
                       { name: "Blue", color: "#2563eb" },
@@ -510,6 +510,17 @@ const Editor = () => {
                         title={theme.name}
                       />
                     ))}
+                    
+                    {/* Custom Color Picker */}
+                    <div className="relative">
+                      <input
+                        type="color"
+                        value={themeColor}
+                        onChange={(e) => setThemeColor(e.target.value)}
+                        className="w-7 h-7 rounded-full border-2 border-gray-300 cursor-pointer"
+                        title="Custom Color"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
