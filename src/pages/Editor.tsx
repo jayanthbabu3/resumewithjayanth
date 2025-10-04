@@ -6,6 +6,7 @@ import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
 import { Header } from "@/components/Header";
+import html2pdf from "html2pdf.js";
 
 export interface ResumeData {
   personalInfo: {
@@ -287,9 +288,32 @@ const Editor = () => {
     }
   }, [resumeData, templateId]);
 
-  const handleDownload = () => {
-    toast.success("Resume downloaded successfully!");
-    // PDF generation would be implemented here
+  const handleDownload = async () => {
+    const element = document.getElementById("resume-preview");
+    if (!element) {
+      toast.error("Resume preview not found");
+      return;
+    }
+
+    try {
+      const opt = {
+        margin: 0,
+        filename: `${resumeData.personalInfo.fullName.replace(/\s+/g, '_')}_Resume.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { 
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+      };
+
+      await html2pdf().set(opt).from(element).save();
+      toast.success("Resume downloaded successfully!");
+    } catch (error) {
+      console.error("Download error:", error);
+      toast.error("Failed to download resume");
+    }
   };
 
   return (
