@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -9,6 +10,9 @@ const Hero = () => {
   return (
     <div className="h-screen flex flex-col bg-gradient-to-br from-background via-muted/30 to-background">
       <Header />
+      <div className="container mx-auto px-6 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Hero Section */}
       <main className="flex-1 flex items-center">
@@ -41,8 +45,8 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
-                size="lg"
-                className="text-base px-8 py-6 bg-primary hover:bg-primary-hover transition-colors shadow-premium group"
+                size="sm"
+                className="text-sm px-4 bg-primary hover:bg-primary-hover transition-colors shadow-premium group"
                 onClick={() => navigate("/dashboard")}
               >
                 <span>Create Your Resume</span>
@@ -56,7 +60,7 @@ const Hero = () => {
             </div>
 
             {/* Feature Cards */}
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 pt-6 max-w-4xl mx-auto">
+            <div id="features" className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 pt-6 max-w-4xl mx-auto">
               <div className="p-5 rounded-xl bg-card border border-border shadow-card hover:shadow-premium transition-shadow">
                 <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                   <FileText className="h-5 w-5 text-primary" />

@@ -137,12 +137,12 @@ export const ProfessionalTemplate = ({ resumeData, themeColor }: TemplateProps) 
           </h2>
           <div className="flex flex-wrap gap-2">
             {resumeData.skills.map((skill, index) => (
-              skill && (
+              skill.name && (
                 <span
-                  key={index}
+                  key={skill.id}
                   className="text-sm text-gray-700 font-medium"
                 >
-                  {skill}{index < resumeData.skills.length - 1 ? " •" : ""}
+                  {skill.name}{index < resumeData.skills.length - 1 ? " •" : ""}
                 </span>
               )
             ))}

@@ -243,8 +243,8 @@ export const MinimalPDF = ({ resumeData, themeColor }: Props) => {
         <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>Skills</Text>
           <View style={styles.skillsContainer}>
-            {resumeData.skills.map((skill, index) => (
-              skill && <Text key={index} style={styles.skill}>{skill}</Text>
+            {resumeData.skills.map((skill) => (
+              skill.name && <Text key={skill.id} style={styles.skill}>{skill.name}</Text>
             ))}
           </View>
         </View>

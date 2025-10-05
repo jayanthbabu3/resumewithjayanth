@@ -59,13 +59,13 @@ export const FullstackTemplate = ({ resumeData, themeColor = "#7c3aed" }: Templa
           <div className="mb-8 pb-6 border-b border-gray-200">
             <h2 className="text-xs font-bold mb-3 uppercase tracking-wider" style={{ color: themeColor }}>Skills</h2>
             <div className="space-y-1.5">
-              {resumeData.skills.map((skill, index) => (
+              {resumeData.skills.map((skill) => (
                 <div
-                  key={index}
+                  key={skill.id}
                   className="text-xs font-medium text-gray-800 py-1.5 px-2.5 bg-white rounded border-l-2"
                   style={{ borderLeftColor: themeColor }}
                 >
-                  {skill}
+                  {skill.name}
                 </div>
               ))}
             </div>

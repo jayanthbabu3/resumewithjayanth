@@ -15,31 +15,47 @@ const formatDate = (date: string) => {
 
 export const SeniorFrontendTemplate = ({ resumeData, themeColor = "#ec4899" }: TemplateProps) => {
   const photo = resumeData.personalInfo.photo;
-  const skillLevels = resumeData.skills.slice(0, 6).map((skill, index) => ({
-    skill,
-    level: Math.max(55, 95 - index * 7),
-  }));
+  const coreSkills = resumeData.skills.filter(
+    skill => skill.category !== "toolbox"
+  );
+  const toolboxSkills = resumeData.skills.filter(
+    skill => skill.category === "toolbox"
+  );
+
+  const coreSource = coreSkills.length ? coreSkills : resumeData.skills;
+  const skillLevels = coreSource.map((skill, index) => {
+    const name = skill.name || `Skill ${index + 1}`;
+    const rawLevel = skill.level ?? Math.max(7 - index, 5);
+    const level = Math.min(100, Math.round((rawLevel / 10) * 100));
+    return { id: skill.id, name, level, index };
+  });
 
   const experience = resumeData.experience;
   const featuredSections = resumeData.sections || [];
 
   return (
     <div className="w-full min-h-[297mm] bg-white text-slate-900 font-sans">
-      <div className="grid lg:grid-cols-[34%,66%] gap-2 px-8 py-8">
+      <div className="grid lg:grid-cols-[34%,66%] gap-4 px-8 py-8">
         {/* Sidebar */}
-        <aside className="space-y-2">
+        <aside className="space-y-1.5">
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-7 text-slate-900 shadow-sm">
             <div className="flex flex-col items-center text-center gap-4">
-              <ProfilePhoto
-                src={photo}
-                sizeClass="h-28 w-28"
-                borderClass="border-4 border-white"
-              />
+              {photo ? (
+                <ProfilePhoto
+                  src={photo}
+                  sizeClass="h-28 w-28"
+                  borderClass="border-4 border-white"
+                />
+              ) : (
+                <div className="h-28 w-28 rounded-full border-4 border-white bg-indigo-100 text-indigo-700 flex items-center justify-center text-3xl font-semibold">
+                  {(resumeData.personalInfo.fullName || "").split(" ").filter(Boolean).map(part => part[0]).join("").slice(0,2).toUpperCase() || "SE"}
+                </div>
+              )}
               <div className="space-y-1">
                 <h1 className="text-[26px] font-semibold tracking-tight leading-tight">
                   {resumeData.personalInfo.fullName}
                 </h1>
-                <p className="text-xs font-medium uppercase tracking-[0.35em] text-slate-500">
+                <p className="text-xs font-medium tracking-[0.25em] text-slate-500">
                   {resumeData.personalInfo.title}
                 </p>
               </div>
@@ -81,10 +97,10 @@ export const SeniorFrontendTemplate = ({ resumeData, themeColor = "#ec4899" }: T
               Core Skills
             </div>
             <div className="space-y-2.5">
-              {skillLevels.map(({ skill, level }) => (
-                <div key={skill} className="space-y-1">
+              {skillLevels.map(({ id, name, level, index }) => (
+                <div key={id || `core-skill-${index}`} className="space-y-1">
                   <div className="flex items-center justify-between text-[11px] text-slate-600">
-                    <span>{skill}</span>
+                    <span>{name}</span>
                     <span>{level}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-slate-200">
@@ -119,7 +135,7 @@ export const SeniorFrontendTemplate = ({ resumeData, themeColor = "#ec4899" }: T
         </aside>
 
         {/* Main Content */}
-        <main className="space-y-4.5">
+        <main className="space-y-2">
           {experience.length > 0 && (
             <section className="rounded-2xl border border-slate-200 bg-white overflow-hidden mb-2">
               <div className="flex items-center justify-between px-5 py-3.5 bg-slate-100">
@@ -151,16 +167,16 @@ export const SeniorFrontendTemplate = ({ resumeData, themeColor = "#ec4899" }: T
             </section>
           )}
 
-          {resumeData.skills.length > 6 && (
+          {toolboxSkills.length > 0 && (
             <section className="rounded-2xl border border-slate-200 bg-white p-4 mb-2">
               <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500 mb-2.5">Toolbox</h2>
               <div className="flex flex-wrap gap-1.5">
-                {resumeData.skills.slice(6).map(skill => (
+                {toolboxSkills.map(skill => (
                   <span
-                    key={skill}
+                    key={skill.id}
                     className="px-2.5 py-[3px] text-[11px] rounded-full border border-slate-200 bg-slate-50 text-slate-700"
                   >
-                    {skill}
+                    {skill.name}
                   </span>
                 ))}
               </div>

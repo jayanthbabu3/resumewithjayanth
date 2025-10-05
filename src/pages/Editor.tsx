@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, LayoutDashboard } from "lucide-react";
 import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { pdf } from "@react-pdf/renderer";
 import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
@@ -47,13 +48,30 @@ export interface ResumeData {
     startDate: string;
     endDate: string;
   }>;
-  skills: string[];
+  skills: Array<{
+    id: string;
+    name: string;
+    level?: number; // 1-10 scale
+    category?: "core" | "toolbox";
+  }>;
   sections: Array<{
     id: string;
     title: string;
     content: string;
   }>;
 }
+
+const buildSkills = (
+  templateId: string,
+  names: string[],
+  levels?: number[]
+): ResumeData["skills"] =>
+  names.map((name, index) => ({
+    id: `${templateId}-skill-${index}`,
+    name,
+    level: levels?.[index] ?? Math.max(1, Math.min(10, 10 - index)),
+    category: index < 6 ? "core" : "toolbox",
+  }));
 
 const getTemplateDefaults = (templateId: string): ResumeData => {
   const templates: Record<string, ResumeData> = {
@@ -105,7 +123,20 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2014-05"
         }
       ],
-      skills: ["Financial Modeling", "Excel & VBA", "SQL", "Tableau", "Budget Planning", "Risk Analysis", "Bloomberg Terminal", "Financial Reporting"],
+      skills: buildSkills(
+        "professional",
+        [
+          "Financial Modeling",
+          "Excel & VBA",
+          "SQL",
+          "Tableau",
+          "Budget Planning",
+          "Risk Analysis",
+          "Bloomberg Terminal",
+          "Financial Reporting",
+        ],
+        [9, 9, 8, 8, 8, 8, 7, 7]
+      ),
       sections: [
         {
           id: "1",
@@ -154,7 +185,22 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2019-05"
         }
       ],
-      skills: ["React", "TypeScript", "Node.js", "Python", "AWS", "Docker", "PostgreSQL", "GraphQL", "Git", "Agile/Scrum"],
+      skills: buildSkills(
+        "modern",
+        [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "Python",
+          "AWS",
+          "Docker",
+          "PostgreSQL",
+          "GraphQL",
+          "Git",
+          "Agile/Scrum",
+        ],
+        [9, 9, 8, 7, 8, 7, 7, 7, 8, 8]
+      ),
       sections: [
         {
           id: "1",
@@ -203,7 +249,20 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2018-05"
         }
       ],
-      skills: ["Figma", "Sketch", "Adobe XD", "User Research", "Prototyping", "Wireframing", "Design Systems", "HTML/CSS"],
+      skills: buildSkills(
+        "minimal",
+        [
+          "Figma",
+          "Sketch",
+          "Adobe XD",
+          "User Research",
+          "Prototyping",
+          "Wireframing",
+          "Design Systems",
+          "HTML/CSS",
+        ],
+        [9, 8, 8, 8, 8, 7, 8, 7]
+      ),
       sections: [
         {
           id: "1",
@@ -260,7 +319,20 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2006-05"
         }
       ],
-      skills: ["Strategic Planning", "Technology Leadership", "Cloud Architecture", "Team Building", "Product Strategy", "Vendor Management", "Board Presentations", "P&L Management"],
+      skills: buildSkills(
+        "executive",
+        [
+          "Strategic Planning",
+          "Technology Leadership",
+          "Cloud Architecture",
+          "Team Building",
+          "Product Strategy",
+          "Vendor Management",
+          "Board Presentations",
+          "P&L Management",
+        ],
+        [9, 9, 8, 8, 9, 7, 8, 8]
+      ),
       sections: [
         {
           id: "1",
@@ -309,7 +381,26 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2020-05"
         }
       ],
-      skills: ["React", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3/Sass", "Tailwind CSS", "Vue.js", "Next.js", "Redux", "Git", "Webpack", "Responsive Design", "REST APIs", "GraphQL"],
+      skills: buildSkills(
+        "frontend",
+        [
+          "React",
+          "TypeScript",
+          "JavaScript (ES6+)",
+          "HTML5",
+          "CSS3/Sass",
+          "Tailwind CSS",
+          "Vue.js",
+          "Next.js",
+          "Redux",
+          "Git",
+          "Webpack",
+          "Responsive Design",
+          "REST APIs",
+          "GraphQL",
+        ],
+        [9, 9, 9, 9, 9, 8, 7, 8, 8, 8, 7, 8, 8, 7]
+      ),
       sections: [
         {
           id: "1",
@@ -358,18 +449,22 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2014-06",
         },
       ],
-      skills: [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "GraphQL",
-        "Tailwind CSS",
-        "Storybook",
-        "Accessibility",
-        "Web Performance",
-        "Data Visualization",
-        "Design Systems",
-      ],
+      skills: buildSkills(
+        "senior-frontend",
+        [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "GraphQL",
+          "Tailwind CSS",
+          "Storybook",
+          "Accessibility",
+          "Web Performance",
+          "Data Visualization",
+          "Design Systems",
+        ],
+        [10, 9, 9, 8, 9, 8, 9, 9, 9, 9]
+      ),
       sections: [
         {
           id: "metrics",
@@ -423,7 +518,24 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2018-05"
         }
       ],
-      skills: ["JavaScript/TypeScript", "React/Next.js", "Node.js/Express", "Python/Django", "PostgreSQL/MongoDB", "Docker/Kubernetes", "AWS/Azure", "GraphQL/REST API", "Redis/RabbitMQ", "Git/CI-CD", "Microservices", "Testing (Jest/Cypress)"],
+      skills: buildSkills(
+        "fullstack",
+        [
+          "JavaScript/TypeScript",
+          "React/Next.js",
+          "Node.js/Express",
+          "Python/Django",
+          "PostgreSQL/MongoDB",
+          "Docker/Kubernetes",
+          "AWS/Azure",
+          "GraphQL/REST API",
+          "Redis/RabbitMQ",
+          "Git/CI-CD",
+          "Microservices",
+          "Testing (Jest/Cypress)",
+        ],
+        [9, 9, 8, 7, 8, 7, 7, 8, 7, 8, 7, 7]
+      ),
       sections: [
         {
           id: "1",
@@ -472,7 +584,26 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2019-05"
         }
       ],
-      skills: ["Node.js/Express", "Python/Django", "PostgreSQL/MySQL", "MongoDB", "Redis", "Docker", "Kubernetes", "AWS/GCP", "REST APIs", "GraphQL", "Microservices", "Git/CI-CD", "Testing (Jest/Pytest)", "Message Queues (RabbitMQ)"],
+      skills: buildSkills(
+        "backend",
+        [
+          "Node.js/Express",
+          "Python/Django",
+          "PostgreSQL/MySQL",
+          "MongoDB",
+          "Redis",
+          "Docker",
+          "Kubernetes",
+          "AWS/GCP",
+          "REST APIs",
+          "GraphQL",
+          "Microservices",
+          "Git/CI-CD",
+          "Testing (Jest/Pytest)",
+          "Message Queues (RabbitMQ)",
+        ],
+        [9, 8, 8, 7, 7, 7, 7, 8, 8, 7, 7, 8, 7, 7]
+      ),
       sections: [
         {
           id: "1",
@@ -547,7 +678,24 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2009-05"
         }
       ],
-      skills: ["Java", "C++", "Python", "Node.js", "MySQL", "PostgreSQL", "System Design", "Cloud Architecture", "Microservices", "CI/CD", "Team Leadership", "Mentoring"],
+      skills: buildSkills(
+        "senior",
+        [
+          "Java",
+          "C++",
+          "Python",
+          "Node.js",
+          "MySQL",
+          "PostgreSQL",
+          "System Design",
+          "Cloud Architecture",
+          "Microservices",
+          "CI/CD",
+          "Team Leadership",
+          "Mentoring",
+        ],
+        [9, 8, 8, 8, 8, 8, 9, 9, 8, 8, 9, 9]
+      ),
       sections: [
         {
           id: "achievements",
@@ -611,7 +759,24 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2024-05"
         }
       ],
-      skills: ["JavaScript", "React.js", "Node.js", "HTML/CSS", "Python", "Java", "SQL", "Git", "REST APIs", "MongoDB", "Data Structures", "Problem Solving"],
+      skills: buildSkills(
+        "graduate",
+        [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "HTML/CSS",
+          "Python",
+          "Java",
+          "SQL",
+          "Git",
+          "REST APIs",
+          "MongoDB",
+          "Data Structures",
+          "Problem Solving",
+        ],
+        [8, 7, 7, 8, 7, 7, 6, 7, 6, 6, 8, 8]
+      ),
       sections: [
         {
           id: "1",
@@ -678,7 +843,23 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           endDate: "2022-04"
         }
       ],
-      skills: ["Digital Marketing", "Market Research", "Content Strategy", "Social Media Marketing", "Google Analytics", "SEO Basics", "MS Office Suite", "Canva", "Email Marketing", "Data Analysis", "Business Communication"],
+      skills: buildSkills(
+        "starter",
+        [
+          "Digital Marketing",
+          "Market Research",
+          "Content Strategy",
+          "Social Media Marketing",
+          "Google Analytics",
+          "SEO Basics",
+          "MS Office Suite",
+          "Canva",
+          "Email Marketing",
+          "Data Analysis",
+          "Business Communication",
+        ],
+        [8, 7, 7, 7, 7, 6, 8, 7, 6, 6, 8]
+      ),
       sections: [
         {
           id: "1",
@@ -700,6 +881,72 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
   };
 
   return templates[templateId] || templates.professional;
+};
+
+const templateMetaMap: Record<string, { name: string; description: string; category: string }> = {
+  professional: {
+    name: "Professional",
+    description: "Traditional single-column layout optimized for corporate roles.",
+    category: "Corporate",
+  },
+  modern: {
+    name: "Modern",
+    description: "Contemporary two-column design for creative and product teams.",
+    category: "Creative",
+  },
+  minimal: {
+    name: "Minimal",
+    description: "Sophisticated whitespace-focused template for easy scanning.",
+    category: "Universal",
+  },
+  executive: {
+    name: "Executive",
+    description: "Bold leadership-focused layout for senior candidates.",
+    category: "Leadership",
+  },
+  frontend: {
+    name: "Frontend Developer",
+    description: "Balanced UI-focused resume with skill grids and project highlights.",
+    category: "Engineering",
+  },
+  fullstack: {
+    name: "Full Stack Engineer",
+    description: "Complete stack coverage with plenty of space for technical impact.",
+    category: "Engineering",
+  },
+  backend: {
+    name: "Backend Developer",
+    description: "API-centric template emphasizing scalability and system design.",
+    category: "Engineering",
+  },
+  graduate: {
+    name: "Graduate",
+    description: "Education-forward layout highlighting projects and internships.",
+    category: "Early Career",
+  },
+  starter: {
+    name: "Starter",
+    description: "Entry-level friendly template with skills and achievements spotlight.",
+    category: "Early Career",
+  },
+  senior: {
+    name: "Senior Software Engineer",
+    description: "Achievement-driven layout tailored for senior ICs and leads.",
+    category: "Engineering",
+  },
+  "senior-frontend": {
+    name: "Senior Frontend Designer",
+    description: "Vibrant two-column experience with data-driven highlights.",
+    category: "Design & Engineering",
+  },
+};
+
+const formatTemplateName = (id?: string) => {
+  if (!id) return "Professional";
+  return id
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
 };
 
 const Editor = () => {
@@ -734,6 +981,37 @@ const Editor = () => {
         const parsed = JSON.parse(savedData) as ResumeData;
         const badSummary = /8\+\s*years|financial analyst/i.test(parsed?.personalInfo?.summary || "");
         const isFresherTemplate = templateId === "starter" || templateId === "graduate";
+
+        if (Array.isArray(parsed.skills)) {
+          const first = parsed.skills[0] as unknown;
+          if (typeof first === "string") {
+            parsed.skills = buildSkills(
+              templateId,
+              (parsed.skills as unknown as string[]).map((skill) => String(skill))
+            );
+          } else {
+            parsed.skills = parsed.skills.map((skill, index) => {
+              const coercedLevel = Math.min(
+                10,
+                Math.max(1, Number(skill.level ?? 10 - index) || 7)
+              );
+
+              const category: "core" | "toolbox" =
+                skill.category === "core" || skill.category === "toolbox"
+                  ? skill.category
+                  : index < 6
+                    ? "core"
+                    : "toolbox";
+
+              return {
+                id: skill.id || `${templateId}-skill-${index}`,
+                name: skill.name,
+                level: coercedLevel,
+                category,
+              };
+            });
+          }
+        }
 
         if (isFresherTemplate && badSummary) {
           const defaults = getTemplateDefaults(templateId);
@@ -805,26 +1083,74 @@ const Editor = () => {
     }
   };
 
+  const templateMeta = templateMetaMap[templateId || ""];
+  const templateDisplayName = templateMeta?.name || formatTemplateName(templateId);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <div className="container mx-auto px-6 pt-4">
+        <Breadcrumbs />
+      </div>
       
       {/* Editor Toolbar */}
-      <div className="border-b border-border/50 bg-card shadow-sm">
-        <div className="container mx-auto px-6 py-3">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground capitalize">
-              Template: <span className="font-semibold text-foreground">{templateId}</span>
-            </span>
-            
-            <Button
-              onClick={handleDownload}
-              className="gap-2 bg-primary hover:bg-primary-hover"
-              size="sm"
-            >
-              <Download className="h-4 w-4" />
-              Download Resume
-            </Button>
+      <div className="border-b border-border/60 bg-card/80 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-start gap-4">
+              <div className="h-12 w-12 rounded-xl border border-border bg-background flex items-center justify-center text-sm font-semibold text-muted-foreground uppercase">
+                {templateDisplayName.slice(0, 2).toUpperCase()}
+              </div>
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h1 className="text-lg font-semibold text-foreground">
+                    {templateDisplayName}
+                  </h1>
+                  {templateMeta?.category && (
+                    <span className="px-2.5 py-1 text-[11px] font-medium rounded-full bg-primary/10 text-primary">
+                      {templateMeta.category}
+                    </span>
+                  )}
+                </div>
+                <p className="text-sm text-muted-foreground max-w-2xl">
+                  {templateMeta?.description || "Customize this template and export when you are ready."}
+                </p>
+                <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <span
+                      className="h-2.5 w-2.5 rounded-full border border-border/60"
+                      style={{ backgroundColor: themeColor }}
+                    />
+                    <span>Theme color preview</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/dashboard")}
+                    className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+                  >
+                    <LayoutDashboard className="h-3.5 w-3.5" />
+                    Change template
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 self-start lg:self-center">
+              <Button
+                onClick={() => navigate("/dashboard")}
+                variant="outline"
+                className="hidden sm:inline-flex"
+              >
+                Change Template
+              </Button>
+              <Button
+                onClick={handleDownload}
+                className="gap-2 bg-primary hover:bg-primary-hover"
+              >
+                <Download className="h-4 w-4" />
+                Download Resume
+              </Button>
+            </div>
           </div>
         </div>
       </div>

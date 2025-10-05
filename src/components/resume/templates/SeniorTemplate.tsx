@@ -159,12 +159,12 @@ export const SeniorTemplate = ({ resumeData, themeColor = "#0f766e" }: TemplateP
               Skills & Tools
             </h3>
             <div className="flex flex-wrap gap-2">
-              {resumeData.skills.map((skill, index) => (
+              {resumeData.skills.map((skill) => (
                 <span
-                  key={`${skill}-${index}`}
+                  key={skill.id}
                   className="text-xs font-medium px-3 py-1 rounded-full bg-white/15 border border-white/20"
                 >
-                  {skill}
+                  {skill.name}
                 </span>
               ))}
             </div>

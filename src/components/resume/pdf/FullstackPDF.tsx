@@ -260,9 +260,9 @@ export const FullstackPDF = ({ resumeData, themeColor = "#7c3aed" }: Props) => {
           {resumeData.skills && resumeData.skills.length > 0 && (
             <View style={styles.sidebarSection}>
               <Text style={[styles.sidebarTitle, { color: themeColor }]}>SKILLS</Text>
-              {resumeData.skills.map((skill, index) => (
-                <Text key={index} style={[styles.skillItem, { borderLeftColor: themeColor }]}>
-                  {skill}
+              {resumeData.skills.map((skill) => (
+                <Text key={skill.id} style={[styles.skillItem, { borderLeftColor: themeColor }]}>
+                  {skill.name}
                 </Text>
               ))}
             </View>

@@ -281,13 +281,13 @@ export const ExecutivePDF = ({ resumeData, themeColor }: Props) => {
         {resumeData.skills.length > 0 && (
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Core Competencies</Text>
-            <View style={styles.skillsGrid}>
-              {resumeData.skills.map((skill, index) => (
-                skill && <Text key={index} style={styles.skillBox}>{skill}</Text>
-              ))}
+              <View style={styles.skillsGrid}>
+                {resumeData.skills.map((skill) => (
+                  skill.name && <Text key={skill.id} style={styles.skillBox}>{skill.name}</Text>
+                ))}
+              </View>
             </View>
-          </View>
-        )}
+          )}
 
         {/* Custom Sections */}
         {resumeData.sections.map((section) => (

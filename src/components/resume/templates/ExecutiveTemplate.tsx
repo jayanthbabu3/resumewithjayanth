@@ -138,13 +138,13 @@ export const ExecutiveTemplate = ({ resumeData, themeColor }: TemplateProps) => 
               Core Competencies
             </h2>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-2 pl-3">
-              {resumeData.skills.map((skill, index) => (
-                skill && (
+              {resumeData.skills.map((skill) => (
+                skill.name && (
                   <div
-                    key={index}
+                    key={skill.id}
                     className="bg-slate-50 px-3 py-2 rounded text-xs font-semibold text-slate-800 text-center border border-slate-200"
                   >
-                    {skill}
+                    {skill.name}
                   </div>
                 )
               ))}

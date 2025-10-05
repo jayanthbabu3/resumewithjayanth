@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FileText, Briefcase, Code, GraduationCap, Calculator, Users, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const professions = [
   {
@@ -125,6 +126,10 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
+      <div className="container mx-auto px-6 pt-4">
+        <Breadcrumbs />
+      </div>
+
       {/* Hero Section */}
       <div className="border-b border-border/50 bg-muted/20">
         <div className="container mx-auto px-6 py-12 md:py-16">
@@ -147,6 +152,7 @@ const Dashboard = () => {
           <Button
             onClick={() => setSelectedProfession(null)}
             variant="outline"
+            size="sm"
             className="mb-8 max-w-6xl mx-auto"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -156,7 +162,7 @@ const Dashboard = () => {
 
         {/* Professions Grid */}
         {!selectedProfession && (
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid gap-6 max-w-6xl mx-auto md:grid-cols-2 xl:grid-cols-3">
             {professions.map((profession, index) => {
               const Icon = profession.icon;
               return (
@@ -167,12 +173,12 @@ const Dashboard = () => {
                   onClick={() => setSelectedProfession(profession.id)}
                 >
                   <CardContent className="p-8">
-                    <div className="flex items-start gap-6">
-                      <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <Icon className="h-7 w-7 text-primary" />
+                    <div className="flex items-start gap-4">
+                      <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <Icon className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1 space-y-2">
-                        <h3 className="text-xl font-semibold">{profession.name}</h3>
+                        <h3 className="text-lg font-semibold">{profession.name}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           {profession.description}
                         </p>
@@ -218,6 +224,7 @@ const Dashboard = () => {
 
                   <Button
                     onClick={() => navigate(`/editor/${template.id}`)}
+                    size="sm"
                     className="w-full group-hover:shadow-md transition-all"
                   >
                     Select Template

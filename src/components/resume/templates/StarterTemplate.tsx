@@ -95,12 +95,12 @@ export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9" }: StarterT
               Skills
             </h2>
             <div className="flex flex-wrap gap-1.5">
-              {resumeData.skills.map((skill, index) => (
+              {resumeData.skills.map((skill) => (
                 <span
-                  key={index}
+                  key={skill.id}
                   className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded"
                 >
-                  {skill}
+                  {skill.name}
                 </span>
               ))}
             </div>

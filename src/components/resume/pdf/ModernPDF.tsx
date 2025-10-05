@@ -320,10 +320,10 @@ export const ModernPDF = ({ resumeData, themeColor = "#7c3aed" }: Props) => {
                 <Text style={styles.sectionTitle}>CORE COMPETENCIES</Text>
               </View>
               <View style={[styles.sectionContent, styles.skillsContainer]}>
-                {resumeData.skills.map((skill, index) => (
-                  skill && (
-                    <Text key={index} style={[styles.skillBadge, { color: themeColor, borderColor: `${themeColor}40` }]}>
-                      {skill}
+                {resumeData.skills.map((skill) => (
+                  skill.name && (
+                    <Text key={skill.id} style={[styles.skillBadge, { color: themeColor, borderColor: `${themeColor}40` }]}>
+                      {skill.name}
                     </Text>
                   )
                 ))}

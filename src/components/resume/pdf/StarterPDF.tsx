@@ -236,9 +236,9 @@ export const StarterPDF = ({ resumeData, themeColor = "#0EA5E9" }: StarterPDFPro
           <View style={styles.section} wrap={false}>
             <Text style={styles.sectionTitle}>Skills</Text>
             <View style={styles.skillsContainer}>
-              {data.skills.map((skill, index) => (
-                <Text key={index} style={styles.skillBadge}>
-                  {skill}
+              {data.skills.map((skill) => (
+                <Text key={skill.id} style={styles.skillBadge}>
+                  {skill.name}
                 </Text>
               ))}
             </View>

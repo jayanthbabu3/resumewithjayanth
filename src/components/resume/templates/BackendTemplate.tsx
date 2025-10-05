@@ -71,7 +71,7 @@ export const BackendTemplate = ({ resumeData, themeColor = "#374151" }: Template
               Technical Skills
             </h2>
             <div className="text-sm text-gray-700 leading-relaxed">
-              {resumeData.skills.join(" • ")}
+              {resumeData.skills.map(skill => skill.name).join(" • ")}
             </div>
           </div>
         )}

@@ -249,7 +249,7 @@ export const BackendPDF = ({ resumeData, themeColor = "#374151" }: Props) => {
             <View style={styles.section} wrap={false}>
               <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
               <Text style={styles.skillsText}>
-                {resumeData.skills.join(' • ')}
+                {resumeData.skills.map((skill) => skill.name).join(' • ')}
               </Text>
             </View>
           )}

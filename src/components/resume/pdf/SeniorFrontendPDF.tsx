@@ -5,148 +5,165 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     fontFamily: 'Inter',
-    fontSize: 10,
+    fontSize: 9,
     color: '#0f172a',
-    backgroundColor: '#ffffff',
-  },
-  sidebar: {
-    width: '34%',
     backgroundColor: '#f3f4f6',
-    paddingVertical: 28,
-    paddingHorizontal: 20,
-    color: '#0f172a',
-    borderRightWidth: 1,
-    borderRightColor: '#e2e8f0',
+    paddingVertical: 24,
+    paddingHorizontal: 22,
+    gap: 8,
   },
-  photoPlaceholder: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    backgroundColor: '#e2e8f0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-    fontSize: 20,
-    fontWeight: 700,
-    color: '#475569',
+  leftColumn: {
+    width: '35%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 1,
   },
-  name: {
-    fontSize: 18,
+  rightColumn: {
+    width: '65%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 1,
+  },
+  card: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    padding: 14,
+  },
+  headerName: {
+    fontSize: 16,
     fontWeight: 700,
+    textAlign: 'center',
     marginBottom: 4,
   },
-  title: {
-    fontSize: 9,
-    letterSpacing: 1.8,
-    textTransform: 'uppercase',
-    color: '#475569',
-    marginBottom: 16,
-  },
-  contactItem: {
-    fontSize: 9,
-    color: '#475569',
-    marginBottom: 4,
-  },
-  sectionHeader: {
-    fontSize: 9,
-    fontWeight: 700,
-    letterSpacing: 1.6,
-    textTransform: 'uppercase',
+  headerTitle: {
+    fontSize: 8,
+    letterSpacing: 1.2,
+    textAlign: 'center',
+    color: '#64748b',
     marginBottom: 10,
-    color: '#0f172a',
   },
-  summary: {
+  photoWrapper: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 3,
+    borderColor: '#ffffff',
+    overflow: 'hidden',
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  initialsCircle: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    backgroundColor: '#e0e7ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 10,
+  },
+  initialsText: {
+    fontSize: 24,
+    fontWeight: 700,
+    color: '#4338ca',
+  },
+  contactBadge: {
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    borderRadius: 10,
+    backgroundColor: '#f8fafc',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    fontSize: 8,
+    color: '#475569',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  sectionTitle: {
     fontSize: 9,
-    color: '#334155',
+    fontWeight: 700,
+    textTransform: 'capitalize', // first letter uppercase
+    letterSpacing: 1.5,
+    color: '#475569',
+    marginBottom: 6,
+  },
+  summaryText: {
+    fontSize: 8,
     lineHeight: 1.4,
-    marginBottom: 12,
+    color: '#475569',
   },
   skillRow: {
-    marginBottom: 10,
+    marginBottom: 6,
   },
   skillLabel: {
     fontSize: 8,
     color: '#475569',
-    marginBottom: 4,
+    marginBottom: 2,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   skillTrack: {
     height: 6,
     borderRadius: 3,
     backgroundColor: '#e2e8f0',
-    overflow: 'hidden',
   },
   skillFill: {
     height: '100%',
     borderRadius: 3,
-    backgroundColor: '#ec4899',
   },
-  highlight: {
+  highlightText: {
     fontSize: 8,
     color: '#475569',
-    marginBottom: 5,
     lineHeight: 1.4,
+    marginBottom: 3,
   },
-  main: {
-    width: '66%',
-    backgroundColor: '#ffffff',
-    paddingVertical: 32,
-    paddingHorizontal: 30,
-    color: '#0f172a',
-  },
-  section: {
-    marginBottom: 18,
-  },
-  sectionTitle: {
-    fontSize: 11,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: 1.2,
-    marginBottom: 12,
-    color: '#ec4899',
-  },
-  timelineItem: {
-    marginBottom: 14,
-    paddingLeft: 10,
-    borderLeftWidth: 2,
-    borderLeftColor: '#ec4899',
-    borderLeftStyle: 'solid',
-  },
-  position: {
-    fontSize: 11,
-    fontWeight: 700,
+  experienceHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
     marginBottom: 2,
   },
-  company: {
-    fontSize: 10,
-    fontWeight: 600,
+  experienceTitle: {
+    fontSize: 11,
+    fontWeight: 700,
+    color: '#0f172a',
+  },
+  companyText: {
+    fontSize: 9,
     color: '#475569',
     marginBottom: 3,
   },
-  date: {
+  dateText: {
     fontSize: 8,
-    color: '#64748b',
-    marginBottom: 6,
+    color: '#6b7280',
   },
-  description: {
+  bulletList: {
+    marginTop: 4,
+    marginLeft: 6,
+  },
+  bulletItem: {
     fontSize: 9,
     lineHeight: 1.4,
     color: '#1f2937',
+    marginBottom: 3,
   },
-  chipGroup: {
+  toolboxChips: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 5,
   },
   chip: {
     fontSize: 8,
-    color: '#0f172a',
     borderWidth: 1,
     borderColor: '#d1d5db',
-    borderStyle: 'solid',
     borderRadius: 12,
     paddingHorizontal: 8,
     paddingVertical: 4,
     backgroundColor: '#f8fafc',
+    color: '#0f172a',
   },
 });
 
@@ -162,6 +179,7 @@ interface Props {
 }
 
 export const SeniorFrontendPDF = ({ resumeData, themeColor = '#ec4899' }: Props) => {
+  const accent = themeColor;
   const photo = resumeData.personalInfo.photo;
   const initials = (resumeData.personalInfo.fullName || '')
     .split(' ')
@@ -171,102 +189,137 @@ export const SeniorFrontendPDF = ({ resumeData, themeColor = '#ec4899' }: Props)
     .slice(0, 2)
     .toUpperCase();
 
-  const skillLevels = resumeData.skills.slice(0, 6).map((skill, index) => ({
-    skill,
-    level: Math.max(50, 95 - index * 7),
-  }));
+  const coreSkills = resumeData.skills.filter(
+    skill => skill.category !== 'toolbox'
+  );
+  const toolboxSkills = resumeData.skills.filter(
+    skill => skill.category === 'toolbox'
+  );
+
+  const coreSource = coreSkills.length ? coreSkills : resumeData.skills;
+  const skillLevels = coreSource.map((skill, index) => {
+    const name = skill.name || `Skill ${index + 1}`;
+    const rawLevel = skill.level ?? Math.max(7 - index, 5);
+    const level = Math.min(100, Math.round((rawLevel / 10) * 100));
+    return { id: skill.id, name, level, index };
+  });
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.sidebar}>
-          {photo ? (
-            <View style={styles.photoPlaceholder}>
-              <Image src={photo} style={{ width: 90, height: 90, borderRadius: 45 }} />
-            </View>
-          ) : (
-            <View style={styles.photoPlaceholder}>
-              <Text>{initials || 'SE'}</Text>
-            </View>
-          )}
-
-          <Text style={styles.name}>{resumeData.personalInfo.fullName || 'Your Name'}</Text>
-          <Text style={styles.title}>{resumeData.personalInfo.title || 'Senior Frontend Engineer'}</Text>
-
-          {resumeData.personalInfo.email && (
-            <Text style={styles.contactItem}>{resumeData.personalInfo.email}</Text>
-          )}
-          {resumeData.personalInfo.phone && (
-            <Text style={styles.contactItem}>{resumeData.personalInfo.phone}</Text>
-          )}
-          {resumeData.personalInfo.location && (
-            <Text style={styles.contactItem}>{resumeData.personalInfo.location}</Text>
-          )}
-
-          {resumeData.personalInfo.summary && (
-            <View style={{ marginTop: 18 }}>
-              <Text style={styles.sectionHeader}>Summary</Text>
-              <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
-            </View>
-          )}
-
-          <View style={{ marginTop: 12 }}>
-            <Text style={styles.sectionHeader}>Core Skills</Text>
-            {skillLevels.map(({ skill, level }) => (
-              <View key={skill} style={styles.skillRow}>
-                <Text style={styles.skillLabel}>{skill} · {level}%</Text>
-                <View style={styles.skillTrack}>
-                  <View style={[styles.skillFill, { width: `${level}%`, backgroundColor: themeColor }]} />
-                </View>
+        <View style={styles.leftColumn}>
+          <View style={[styles.card, { marginBottom: 6 }] }>
+            {photo ? (
+              <View style={styles.photoWrapper}>
+                <Image src={photo} style={{ width: 90, height: 90, borderRadius: 45 }} />
               </View>
-            ))}
+            ) : (
+              <View style={styles.initialsCircle}>
+                <Text style={styles.initialsText}>{initials || 'SE'}</Text>
+              </View>
+            )}
+            <Text style={styles.headerName}>{resumeData.personalInfo.fullName || 'Your Name'}</Text>
+            <Text style={styles.headerTitle}>{(resumeData.personalInfo.title || 'Senior Frontend Engineer')}</Text>
+
+            {resumeData.personalInfo.email && (
+              <Text style={styles.contactBadge}>{resumeData.personalInfo.email}</Text>
+            )}
+            {resumeData.personalInfo.phone && (
+              <Text style={styles.contactBadge}>{resumeData.personalInfo.phone}</Text>
+            )}
+            {resumeData.personalInfo.location && (
+              <Text style={styles.contactBadge}>{resumeData.personalInfo.location}</Text>
+            )}
           </View>
 
-          {resumeData.sections.slice(0, 2).map(section => (
-            <View key={section.id} style={{ marginTop: 14 }}>
-              <Text style={styles.sectionHeader}>{section.title}</Text>
-              <Text style={styles.highlight}>{section.content}</Text>
+          {resumeData.personalInfo.summary && (
+            <View style={[styles.card, { marginBottom: 6 }] }>
+              <Text style={styles.sectionTitle}>Summary</Text>
+              <Text style={styles.summaryText}>{resumeData.personalInfo.summary}</Text>
             </View>
-          ))}
-        </View>
+          )}
 
-        <View style={styles.main}>
-          {resumeData.experience.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Experience</Text>
-              {resumeData.experience.map(exp => (
-                <View key={exp.id} style={styles.timelineItem} wrap={false}>
-                  <Text style={styles.position}>{exp.position || 'Role'}</Text>
-                  <Text style={styles.company}>{exp.company || 'Company'}</Text>
-                  <Text style={styles.date}>
-                    {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
-                  </Text>
-                  {exp.description && <Text style={styles.description}>{exp.description}</Text>}
+          {skillLevels.length > 0 && (
+            <View style={[styles.card, { marginBottom: 6 }]}>
+              <Text style={styles.sectionTitle}>Core Skills</Text>
+              {skillLevels.map(({ id, name, level, index }) => (
+                <View key={id || `${name}-${index}`} style={styles.skillRow}>
+                  <View style={styles.skillLabel}>
+                    <Text>{name}</Text>
+                    <Text>{level}%</Text>
+                  </View>
+                  <View style={styles.skillTrack}>
+                    <View style={[styles.skillFill, { width: `${level}%`, backgroundColor: accent }]} />
+                  </View>
                 </View>
               ))}
             </View>
           )}
 
-          {resumeData.skills.length > 6 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Toolbox</Text>
-              <View style={styles.chipGroup}>
-                {resumeData.skills.slice(6).map(skill => (
-                  <Text key={skill} style={styles.chip}>{skill}</Text>
+          {resumeData.sections.length > 0 && (
+            <View style={[styles.card, { marginBottom: 6 }] }>
+              <Text style={styles.sectionTitle}>Highlights</Text>
+              {resumeData.sections.map(section => (
+                <View key={section.id} style={{ marginBottom: 8 }}>
+                  <Text style={{ fontSize: 9, fontWeight: 600, marginBottom: 2 }}>{section.title}</Text>
+                  <Text style={styles.highlightText}>{section.content}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+        </View>
+
+        <View style={styles.rightColumn}>
+          {resumeData.experience.length > 0 && (
+            <View style={[styles.card, { marginBottom: 6 }] }>
+              <Text style={[styles.sectionTitle, { color: '#0f172a' }]}>Professional Experience</Text>
+              {resumeData.experience.map(exp => (
+                <View key={exp.id} style={{ marginBottom: 10 }} wrap={false}>
+                  <View style={styles.experienceHeader}>
+                    <View>
+                      <Text style={styles.experienceTitle}>{exp.position || 'Role'}</Text>
+                      <Text style={styles.companyText}>{exp.company || 'Company'}</Text>
+                    </View>
+                    <Text style={styles.dateText}>
+                      {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+                    </Text>
+                  </View>
+                  {exp.description && (
+                    <View style={styles.bulletList}>
+                      {exp.description.split('\n').map((line, idx) => (
+                        <Text key={idx} style={styles.bulletItem}>
+                          • {line.replace(/^•\s*/, '')}
+                        </Text>
+                      ))}
+                    </View>
+                  )}
+                </View>
+              ))}
+            </View>
+          )}
+
+          {toolboxSkills.length > 0 && (
+            <View style={[styles.card, { marginBottom: 6 }] }>
+              <Text style={[styles.sectionTitle, { color: '#0f172a' }]}>Toolbox</Text>
+              <View style={styles.toolboxChips}>
+                {toolboxSkills.map(skill => (
+                  <Text key={skill.id} style={styles.chip}>
+                    {skill.name}
+                  </Text>
                 ))}
               </View>
             </View>
           )}
 
           {resumeData.education.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Education</Text>
+            <View style={[styles.card, { marginBottom: 6 }] }>
+              <Text style={[styles.sectionTitle, { color: '#0f172a' }]}>Education</Text>
               {resumeData.education.map(edu => (
-                <View key={edu.id} style={{ marginBottom: 10 }}>
-                  <Text style={styles.position}>{edu.degree || 'Degree'}</Text>
-                  {edu.field && <Text style={styles.company}>{edu.field}</Text>}
-                  <Text style={styles.company}>{edu.school || 'School'}</Text>
-                  <Text style={styles.date}>
+                <View key={edu.id} style={{ marginBottom: 10 }} wrap={false}>
+                  <Text style={styles.experienceTitle}>{edu.degree || 'Degree'}</Text>
+                  {edu.field && <Text style={styles.companyText}>{edu.field}</Text>}
+                  <Text style={styles.companyText}>{edu.school || 'School'}</Text>
+                  <Text style={styles.dateText}>
                     {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
                   </Text>
                 </View>

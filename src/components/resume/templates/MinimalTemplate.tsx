@@ -131,10 +131,10 @@ export const MinimalTemplate = ({ resumeData, themeColor }: TemplateProps) => {
             Skills
           </h2>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-700 font-light max-w-4xl mx-auto">
-            {resumeData.skills.map((skill, index) => (
-              skill && (
-                <span key={index}>
-                  {skill}
+            {resumeData.skills.map((skill) => (
+              skill.name && (
+                <span key={skill.id}>
+                  {skill.name}
                 </span>
               )
             ))}

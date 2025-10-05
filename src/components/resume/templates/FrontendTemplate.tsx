@@ -70,7 +70,7 @@ export const FrontendTemplate = ({ resumeData, themeColor = "#4f46e5" }: Templat
               Technical Skills
             </h2>
             <div className="text-sm text-gray-700 leading-relaxed">
-              {resumeData.skills.join(" • ")}
+              {resumeData.skills.map(skill => skill.name).join(" • ")}
             </div>
           </div>
         )}

@@ -234,9 +234,9 @@ export const ProfessionalPDF = ({ resumeData, themeColor }: Props) => {
           <Text style={styles.sectionTitle}>Skills</Text>
           <View style={styles.skillsContainer}>
             {resumeData.skills.map((skill, index) => (
-              skill && (
-                <Text key={index} style={styles.skill}>
-                  {skill}{index < resumeData.skills.length - 1 ? " •" : ""}
+              skill.name && (
+                <Text key={skill.id} style={styles.skill}>
+                  {skill.name}{index < resumeData.skills.length - 1 ? " •" : ""}
                 </Text>
               )
             ))}

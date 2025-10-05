@@ -349,9 +349,9 @@ export const SeniorPDF = ({ resumeData, themeColor = '#0f766e' }: Props) => {
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarTitle}>Skills & Tools</Text>
               <View style={styles.skillChipContainer}>
-                {resumeData.skills.map((skill, index) => (
-                  <Text key={`${skill}-${index}`} style={styles.skillChip}>
-                    {skill}
+                {resumeData.skills.map((skill) => (
+                  <Text key={skill.id} style={styles.skillChip}>
+                    {skill.name}
                   </Text>
                 ))}
               </View>
