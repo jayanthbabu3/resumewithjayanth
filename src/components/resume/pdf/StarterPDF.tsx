@@ -1,4 +1,4 @@
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet, Image } from "@react-pdf/renderer";
 import type { ResumeData } from "@/pages/Editor";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
@@ -15,6 +15,25 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 16,
     borderBottom: "2px solid #0EA5E9",
+  },
+  headerContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 16,
+  },
+  photoWrapper: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    overflow: "hidden",
+    borderWidth: 2,
+    borderColor: "#e5e7eb",
+  },
+  photo: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
   },
   name: {
     fontSize: 24,
@@ -146,14 +165,24 @@ export const StarterPDF = ({ resumeData, themeColor = "#0EA5E9" }: StarterPDFPro
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   };
+  const photo = data.personalInfo.photo;
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={[styles.header, { borderBottomColor: themeColor }]} wrap={false}>
-          <Text style={styles.name}>{data.personalInfo.fullName}</Text>
-          {data.personalInfo.title && <Text style={styles.title}>{data.personalInfo.title}</Text>}
+          <View style={styles.headerContent}>
+            <View>
+              <Text style={styles.name}>{data.personalInfo.fullName}</Text>
+              {data.personalInfo.title && <Text style={styles.title}>{data.personalInfo.title}</Text>}
+            </View>
+            {photo ? (
+              <View style={styles.photoWrapper}>
+                <Image src={photo} style={styles.photo} />
+              </View>
+            ) : null}
+          </View>
           <View style={styles.contactInfo}>
             {data.personalInfo.email && (
               <View style={styles.contactItem}>

@@ -1,5 +1,6 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin, Code2, Database, Server } from "lucide-react";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -13,10 +14,15 @@ const formatDate = (date: string) => {
 };
 
 export const FullstackTemplate = ({ resumeData, themeColor = "#7c3aed" }: TemplateProps) => {
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <div className="w-full min-h-[297mm] bg-white font-sans text-gray-900 flex">
       {/* Left Sidebar */}
       <div className="w-[35%] bg-gray-50 p-8 border-r border-gray-200">
+        <div className="mb-6 flex justify-center">
+          <ProfilePhoto src={photo} borderClass="border-4 border-white" />
+        </div>
         {/* Header */}
         <div className="mb-8 pb-4" style={{ borderBottom: `2px solid ${themeColor}` }}>
           <h1 className="text-3xl font-bold mb-2 text-gray-900 leading-tight">{resumeData.personalInfo.fullName}</h1>

@@ -1,5 +1,6 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -14,10 +15,15 @@ export const MinimalTemplate = ({ resumeData, themeColor }: TemplateProps) => {
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   };
 
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <div className="w-full h-full bg-white px-16 py-12 text-gray-900" style={{ pageBreakAfter: 'auto' }}>
       {/* Header */}
       <div className="mb-8 text-center max-w-4xl mx-auto" style={{ pageBreakAfter: 'avoid', pageBreakInside: 'avoid' }}>
+        <div className="flex justify-center mb-4">
+          <ProfilePhoto src={photo} borderClass="border-2 border-gray-200" />
+        </div>
         <h1 className="text-4xl font-light text-gray-900 mb-2 tracking-tight">
           {resumeData.personalInfo.fullName || "Your Name"}
         </h1>

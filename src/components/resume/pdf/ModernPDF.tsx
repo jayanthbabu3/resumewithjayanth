@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from "@/pages/Editor";
 
 const styles = StyleSheet.create({
@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     paddingHorizontal: 45,
     position: 'relative',
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 16,
   },
   topBar: {
     height: 10,
@@ -49,6 +55,19 @@ const styles = StyleSheet.create({
     gap: 4,
     fontSize: 8,
     color: '#6b7280',
+  },
+  photoWrapper: {
+    width: 76,
+    height: 76,
+    borderRadius: 38,
+    overflow: 'hidden',
+    borderWidth: 3,
+    borderColor: '#ffffff',
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   content: {
     paddingHorizontal: 45,
@@ -180,16 +199,27 @@ interface Props {
 }
 
 export const ModernPDF = ({ resumeData, themeColor = "#7c3aed" }: Props) => {
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={styles.header}>
           <View style={[styles.topBar, { backgroundColor: themeColor }]} />
-          <Text style={styles.name}>{resumeData.personalInfo.fullName || "Your Name"}</Text>
-          {resumeData.personalInfo.title && (
-            <Text style={[styles.title, { color: themeColor }]}>{resumeData.personalInfo.title}</Text>
-          )}
+          <View style={styles.headerContent}>
+            <View>
+              <Text style={styles.name}>{resumeData.personalInfo.fullName || "Your Name"}</Text>
+              {resumeData.personalInfo.title && (
+                <Text style={[styles.title, { color: themeColor }]}>{resumeData.personalInfo.title}</Text>
+              )}
+            </View>
+            {photo ? (
+              <View style={styles.photoWrapper}>
+                <Image src={photo} style={styles.photo} />
+              </View>
+            ) : null}
+          </View>
           
           {/* Contact Info */}
           <View style={styles.contactContainer}>

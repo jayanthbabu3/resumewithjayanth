@@ -16,6 +16,8 @@ import { FullstackPDF } from "@/components/resume/pdf/FullstackPDF";
 import { BackendPDF } from "@/components/resume/pdf/BackendPDF";
 import { GraduatePDF } from "@/components/resume/pdf/GraduatePDF";
 import { StarterPDF } from "@/components/resume/pdf/StarterPDF";
+import { SeniorPDF } from "@/components/resume/pdf/SeniorPDF";
+import { SeniorFrontendPDF } from "@/components/resume/pdf/SeniorFrontendPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 export interface ResumeData {
@@ -26,6 +28,7 @@ export interface ResumeData {
     location: string;
     title: string;
     summary: string;
+    photo?: string;
   };
   experience: Array<{
     id: string;
@@ -61,7 +64,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 123-4567",
         location: "New York, NY",
         title: "Senior Financial Analyst",
-        summary: "Results-driven financial analyst with 8+ years of experience in corporate finance, financial modeling, and strategic planning. Proven track record of delivering actionable insights that drive business growth and operational efficiency."
+        summary: "Results-driven financial analyst with 8+ years of experience in corporate finance, financial modeling, and strategic planning. Proven track record of delivering actionable insights that drive business growth and operational efficiency.",
+        photo: "",
       },
       experience: [
         {
@@ -117,7 +121,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 987-6543",
         location: "San Francisco, CA",
         title: "Full Stack Developer",
-        summary: "Passionate full-stack developer with 5+ years building scalable web applications. Specialized in React, Node.js, and cloud technologies. Love creating elegant solutions to complex problems and collaborating with creative teams."
+        summary: "Passionate full-stack developer with 5+ years building scalable web applications. Specialized in React, Node.js, and cloud technologies. Love creating elegant solutions to complex problems and collaborating with creative teams.",
+        photo: "",
       },
       experience: [
         {
@@ -165,7 +170,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 234-5678",
         location: "Austin, TX",
         title: "UX Designer",
-        summary: "Creative UX designer with a keen eye for detail and user-centered design principles. 6+ years of experience crafting intuitive digital experiences for web and mobile platforms."
+        summary: "Creative UX designer with a keen eye for detail and user-centered design principles. 6+ years of experience crafting intuitive digital experiences for web and mobile platforms.",
+        photo: "",
       },
       experience: [
         {
@@ -213,7 +219,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 345-6789",
         location: "Chicago, IL",
         title: "Chief Technology Officer",
-        summary: "Visionary technology executive with 15+ years leading digital transformation initiatives. Proven track record of building high-performing engineering teams and delivering innovative solutions that drive business growth and competitive advantage."
+        summary: "Visionary technology executive with 15+ years leading digital transformation initiatives. Proven track record of building high-performing engineering teams and delivering innovative solutions that drive business growth and competitive advantage.",
+        photo: "",
       },
       experience: [
         {
@@ -269,7 +276,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 456-7890",
         location: "Seattle, WA",
         title: "Frontend Developer",
-        summary: "Creative and detail-oriented frontend developer with 4+ years of experience building beautiful, responsive web applications. Passionate about user experience, modern JavaScript frameworks, and clean code. Thrive in collaborative environments and love bringing designs to life."
+        summary: "Creative and detail-oriented frontend developer with 4+ years of experience building beautiful, responsive web applications. Passionate about user experience, modern JavaScript frameworks, and clean code. Thrive in collaborative environments and love bringing designs to life.",
+        photo: "",
       },
       experience: [
         {
@@ -310,6 +318,71 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         }
       ]
     },
+    "senior-frontend": {
+      personalInfo: {
+        fullName: "Taylor Foster",
+        email: "taylor.foster@email.com",
+        phone: "+1 (415) 678-9023",
+        location: "San Francisco, CA",
+        title: "Senior Frontend Engineer",
+        summary: "Award-winning frontend engineer with 9+ years crafting performant, accessible interfaces at scale. Specializes in design systems, data visualization, and cross-team collaboration to ship delightful user experiences.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Figma",
+          position: "Lead Frontend Engineer",
+          startDate: "2021-04",
+          endDate: "",
+          current: true,
+          description: "• Led design system modernization serving 75+ teams and 4 design platforms\n• Delivered real-time multiplayer canvas optimizations reducing paint time by 35%\n• Partnered with Data Viz team to launch analytics dashboard viewed by 1M+ users\n• Mentored 8 engineers, introducing progressive enhancement playbooks",
+        },
+        {
+          id: "2",
+          company: "Spotify",
+          position: "Senior Frontend Engineer",
+          startDate: "2017-08",
+          endDate: "2021-03",
+          current: false,
+          description: "• Owned web playback UI, increasing retention by 12% via personalized layouts\n• Built component performance tooling that cut bundle size by 28%\n• Shipped artist analytics visualizations with interactive charts and stories",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Washington",
+          degree: "Bachelor of Science",
+          field: "Human Centered Design & Engineering",
+          startDate: "2010-09",
+          endDate: "2014-06",
+        },
+      ],
+      skills: [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "GraphQL",
+        "Tailwind CSS",
+        "Storybook",
+        "Accessibility",
+        "Web Performance",
+        "Data Visualization",
+        "Design Systems",
+      ],
+      sections: [
+        {
+          id: "metrics",
+          title: "Key Metrics",
+          content: "Design System Adoption - 85% org coverage\nPage Speed - -42% LCP across core flows\nExperimentation - 18% lift in conversion via UI personalization",
+        },
+        {
+          id: "awards",
+          title: "Highlights",
+          content: "2023 - Webby Awards, Best Web Experience\n2022 - CSS Design Awards, Special Kudos\nTop Speaker - Google Chrome Dev Summit 2021",
+        },
+      ],
+    },
     fullstack: {
       personalInfo: {
         fullName: "David Anderson",
@@ -317,7 +390,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 789-0123",
         location: "Austin, TX",
         title: "Full Stack Engineer",
-        summary: "Versatile full stack engineer with 6+ years of experience building end-to-end web applications. Expert in both frontend and backend technologies, cloud infrastructure, and database design. Passionate about creating scalable solutions and optimizing performance across the entire stack."
+        summary: "Versatile full stack engineer with 6+ years of experience building end-to-end web applications. Expert in both frontend and backend technologies, cloud infrastructure, and database design. Passionate about creating scalable solutions and optimizing performance across the entire stack.",
+        photo: "",
       },
       experience: [
         {
@@ -365,7 +439,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+1 (555) 234-8901",
         location: "San Francisco, CA",
         title: "Backend Developer",
-        summary: "Experienced backend developer with 5+ years building scalable server-side applications and APIs. Expert in Node.js, Python, and database design. Passionate about clean architecture, performance optimization, and delivering reliable systems that power mission-critical applications."
+        summary: "Experienced backend developer with 5+ years building scalable server-side applications and APIs. Expert in Node.js, Python, and database design. Passionate about clean architecture, performance optimization, and delivering reliable systems that power mission-critical applications.",
+        photo: "",
       },
       experience: [
         {
@@ -406,6 +481,96 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         }
       ]
     },
+    senior: {
+      personalInfo: {
+        fullName: "Taylor Foster",
+        email: "taylor.foster@email.com",
+        phone: "+1 (512) 312-7001",
+        location: "Austin, TX",
+        title: "Senior Software Engineer",
+        summary: "Passionate senior software engineer with 10+ years building scalable web applications and backend platforms. Adept at leading cross-functional teams, designing resilient systems, and transforming business requirements into reliable products. Advocate for engineering excellence, measurable impact, and mentorship.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Blackbaud",
+          position: "Lead Software Engineer",
+          startDate: "2021-01",
+          endDate: "",
+          current: true,
+          description: "• Directed end-to-end migration of monolith services to Python 3.8 and Kubernetes\n• Built automated testing suites that removed redundant manual QA and reduced regressions by 40%\n• Delivered analytics dashboards that improved release visibility and decision making for executives\n• Mentored a team of 6 engineers, introducing peer review practices and leveling resources"
+        },
+        {
+          id: "2",
+          company: "Wayfair",
+          position: "Senior Software Engineer",
+          startDate: "2017-02",
+          endDate: "2020-12",
+          current: false,
+          description: "• Productized an automation platform adopted by three enterprise programs, saving $600K annually\n• Re-architected critical data services to cut page latency by 50% and boost conversion\n• Led reliability guild in scaling monitoring and incident response across 30+ microservices"
+        },
+        {
+          id: "3",
+          company: "Target",
+          position: "Software Developer",
+          startDate: "2015-05",
+          endDate: "2017-01",
+          current: false,
+          description: "• Implemented configuration tooling that accelerated performance testing cycles by 35%\n• Delivered in-memory reporting APIs serving 1M+ daily requests with sub-second latency\n• Partnered with product and ops to reduce critical incident response times by 20%"
+        },
+        {
+          id: "4",
+          company: "Redfin",
+          position: "Junior Software Engineer",
+          startDate: "2013-06",
+          endDate: "2015-04",
+          current: false,
+          description: "• Launched customer engagement features that unlocked $18K in new monthly revenue\n• Optimized heavy batch automation reducing processing times from minutes to seconds\n• Spearheaded defect triage that cleared 40% of legacy backlog within two quarters"
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "The University of Arizona",
+          degree: "Executive MBA",
+          field: "Engineering Management",
+          startDate: "2010-08",
+          endDate: "2011-05"
+        },
+        {
+          id: "2",
+          school: "North Carolina Wesleyan College",
+          degree: "Bachelor of Science",
+          field: "Computer Science",
+          startDate: "2006-08",
+          endDate: "2009-05"
+        }
+      ],
+      skills: ["Java", "C++", "Python", "Node.js", "MySQL", "PostgreSQL", "System Design", "Cloud Architecture", "Microservices", "CI/CD", "Team Leadership", "Mentoring"],
+      sections: [
+        {
+          id: "achievements",
+          title: "Achievements",
+          content: "Spearheaded a $12M software platform launch, coordinating engineering, QA, and product\nDelivered 30% query efficiency gains by redesigning MySQL schemas and caching strategy\nLed a year-long multi-team release delivering six coordinated platform modules\nBuilt customer support chatbot that cut contact center handling time by 240%"
+        },
+        {
+          id: "operating-systems",
+          title: "Operating Systems",
+          content: "Unix\nSolaris\nLinux\nWindows"
+        },
+        {
+          id: "strengths",
+          title: "Strengths",
+          content: "Gold Medalist - Recognized for five consecutive years of academic excellence\nCorporate Social Responsibility - Volunteer lead for mentorship and tech education programs"
+        },
+        {
+          id: "references",
+          title: "References",
+          content: "Richard Smith, CEO - Wolf Inc | richard.smith@wolfinC.com | 212-330-1122\nNeil Johnson, CFO - Reilly Group | neil.johnson@reilly.com | 618-233-0090"
+        }
+      ]
+    },
     graduate: {
       personalInfo: {
         fullName: "Arjun Mehta",
@@ -413,7 +578,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+91 98765 43210",
         location: "Pune, India",
         title: "Computer Science Graduate - Full Stack Development",
-        summary: "Motivated Computer Science graduate with strong foundation in software development, data structures, and algorithms. Completed two internships and multiple academic projects in web development. Eager to apply technical skills and learn from experienced engineers in a collaborative development environment."
+        summary: "Motivated Computer Science graduate with strong foundation in software development, data structures, and algorithms. Completed two internships and multiple academic projects in web development. Eager to apply technical skills and learn from experienced engineers in a collaborative development environment.",
+        photo: "",
       },
       experience: [
         {
@@ -471,7 +637,8 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         phone: "+91 98765 12345",
         location: "Hyderabad, India",
         title: "MBA Graduate - Marketing & Business Development",
-        summary: "Results-oriented MBA graduate with practical experience in digital marketing, market research, and brand management through multiple internships. Strong analytical and communication skills with ability to develop data-driven marketing strategies. Seeking opportunities to contribute fresh ideas and grow in a dynamic marketing environment."
+        summary: "Results-oriented MBA graduate with practical experience in digital marketing, market research, and brand management through multiple internships. Strong analytical and communication skills with ability to develop data-driven marketing strategies. Seeking opportunities to contribute fresh ideas and grow in a dynamic marketing environment.",
+        photo: "",
       },
       experience: [
         {
@@ -541,7 +708,14 @@ const Editor = () => {
   const [resumeData, setResumeData] = useState<ResumeData>(() => getTemplateDefaults(templateId || "professional"));
   const [themeColor, setThemeColor] = useState<string>(() => {
     const saved = localStorage.getItem(`theme-${templateId}`);
-    return saved || "#7c3aed"; // default purple
+    if (saved) return saved;
+
+    const defaultThemeColors: Record<string, string> = {
+      senior: "#0f766e",
+      "senior-frontend": "#ec4899",
+    };
+
+    return defaultThemeColors[templateId || ""] || "#7c3aed"; // default purple
   });
 
   // Register fonts for PDF generation
@@ -605,6 +779,8 @@ const Editor = () => {
         backend: BackendPDF,
         graduate: GraduatePDF,
         starter: StarterPDF,
+        senior: SeniorPDF,
+        "senior-frontend": SeniorFrontendPDF,
       };
 
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;

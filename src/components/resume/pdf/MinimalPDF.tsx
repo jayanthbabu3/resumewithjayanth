@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from "@/pages/Editor";
 
 const styles = StyleSheet.create({
@@ -10,6 +10,20 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 20,
     alignItems: 'center',
+  },
+  photoWrapper: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#e5e5e5',
+    marginBottom: 12,
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   name: {
     fontSize: 26,
@@ -122,11 +136,19 @@ interface Props {
   themeColor?: string;
 }
 
-export const MinimalPDF = ({ resumeData, themeColor }: Props) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
+export const MinimalPDF = ({ resumeData, themeColor }: Props) => {
+  const photo = resumeData.personalInfo.photo;
+
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
       {/* Header */}
       <View style={styles.header}>
+        {photo ? (
+          <View style={styles.photoWrapper}>
+            <Image src={photo} style={styles.photo} />
+          </View>
+        ) : null}
         <Text style={styles.name}>{resumeData.personalInfo.fullName || "Your Name"}</Text>
         {resumeData.personalInfo.title && (
           <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
@@ -235,6 +257,7 @@ export const MinimalPDF = ({ resumeData, themeColor }: Props) => (
           <Text style={styles.description}>{section.content}</Text>
         </View>
       ))}
-    </Page>
-  </Document>
-);
+      </Page>
+    </Document>
+  );
+};

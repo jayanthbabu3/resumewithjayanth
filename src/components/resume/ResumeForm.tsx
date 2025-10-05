@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,11 +14,49 @@ interface ResumeFormProps {
 }
 
 export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [photoUrlInput, setPhotoUrlInput] = useState("");
+
+  useEffect(() => {
+    const currentPhoto = resumeData.personalInfo.photo || "";
+    if (!currentPhoto || currentPhoto.startsWith("data")) {
+      setPhotoUrlInput("");
+    } else {
+      setPhotoUrlInput(currentPhoto);
+    }
+  }, [resumeData.personalInfo.photo]);
+
   const updatePersonalInfo = (field: string, value: string) => {
     setResumeData({
       ...resumeData,
       personalInfo: { ...resumeData.personalInfo, [field]: value }
     });
+  };
+
+  const handlePhotoUpload = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const result = event.target?.result;
+      if (typeof result === "string") {
+        updatePersonalInfo("photo", result);
+        setPhotoUrlInput("");
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handlePhotoRemove = () => {
+    updatePersonalInfo("photo", "");
+    setPhotoUrlInput("");
+  };
+
+  const applyPhotoUrl = () => {
+    const trimmed = photoUrlInput.trim();
+    if (trimmed) {
+      updatePersonalInfo("photo", trimmed);
+    } else {
+      handlePhotoRemove();
+    }
   };
 
   const addExperience = () => {
@@ -197,6 +236,76 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               value={resumeData.personalInfo.location}
               onChange={(e) => updatePersonalInfo("location", e.target.value)}
               placeholder="San Francisco, CA"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>Profile Photo</Label>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="h-24 w-24 rounded-full border border-dashed border-muted flex items-center justify-center overflow-hidden bg-muted/40 text-sm text-muted-foreground">
+                {resumeData.personalInfo.photo ? (
+                  <img
+                    src={resumeData.personalInfo.photo}
+                    alt="Profile preview"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span>No photo</span>
+                )}
+              </div>
+              <div className="flex-1 space-y-2">
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    Upload Photo
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={applyPhotoUrl}
+                    disabled={!photoUrlInput.trim()}
+                  >
+                    Use Image URL
+                  </Button>
+                  {resumeData.personalInfo.photo && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={handlePhotoRemove}
+                    >
+                      Remove
+                    </Button>
+                  )}
+                </div>
+                <Input
+                  placeholder="Paste image URL (https://...)"
+                  value={photoUrlInput}
+                  onChange={(e) => setPhotoUrlInput(e.target.value)}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Square images work best. Uploaded photos are stored locally in your browser.
+                </p>
+              </div>
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                if (file) {
+                  handlePhotoUpload(file);
+                }
+                if (event.target) {
+                  event.target.value = "";
+                }
+              }}
             />
           </div>
           <div className="space-y-2">

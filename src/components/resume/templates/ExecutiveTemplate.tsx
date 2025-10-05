@@ -1,5 +1,6 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -14,20 +15,27 @@ export const ExecutiveTemplate = ({ resumeData, themeColor }: TemplateProps) => 
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   };
 
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <div className="w-full h-full bg-white text-gray-900" style={{ pageBreakAfter: 'auto' }}>
       {/* Header Bar */}
       <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white px-12 py-10" style={{ pageBreakAfter: 'avoid', pageBreakInside: 'avoid' }}>
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-2 tracking-tight">
-            {resumeData.personalInfo.fullName || "Your Name"}
-          </h1>
-          {resumeData.personalInfo.title && (
-            <p className="text-xl font-light text-slate-300 mb-5">
-              {resumeData.personalInfo.title}
-            </p>
-          )}
-          <div className="flex flex-wrap gap-6 text-sm text-slate-300">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight">
+                {resumeData.personalInfo.fullName || "Your Name"}
+              </h1>
+              {resumeData.personalInfo.title && (
+                <p className="text-xl font-light text-slate-300 mt-2">
+                  {resumeData.personalInfo.title}
+                </p>
+              )}
+            </div>
+            <ProfilePhoto src={photo} borderClass="border-4 border-white/40" />
+          </div>
+          <div className="mt-6 flex flex-wrap gap-6 text-sm text-slate-300">
             {resumeData.personalInfo.email && (
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />

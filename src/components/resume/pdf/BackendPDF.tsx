@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from '@/pages/Editor';
 
 const styles = StyleSheet.create({
@@ -18,6 +18,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     borderBottomColor: '#111827',
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 16,
   },
   name: {
     fontSize: 28,
@@ -42,6 +48,19 @@ const styles = StyleSheet.create({
     gap: 4,
     fontSize: 8,
     color: '#6b7280',
+  },
+  photoWrapper: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#e5e7eb',
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   content: {
     paddingHorizontal: 45,
@@ -146,14 +165,25 @@ interface Props {
 }
 
 export const BackendPDF = ({ resumeData, themeColor = "#374151" }: Props) => {
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
-          <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
-          
+          <View style={styles.headerContent}>
+            <View>
+              <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
+              <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
+            </View>
+            {photo ? (
+              <View style={styles.photoWrapper}>
+                <Image src={photo} style={styles.photo} />
+              </View>
+            ) : null}
+          </View>
+
           <View style={styles.contactContainer}>
             {resumeData.personalInfo.email && (
               <View style={styles.contactItem}>

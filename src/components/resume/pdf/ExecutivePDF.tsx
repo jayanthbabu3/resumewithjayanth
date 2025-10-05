@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from "@/pages/Editor";
 
 const styles = StyleSheet.create({
@@ -11,6 +11,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     padding: 30,
     marginBottom: 25,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 16,
   },
   name: {
     fontSize: 26,
@@ -34,6 +40,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
+  },
+  photoWrapper: {
+    width: 78,
+    height: 78,
+    borderRadius: 39,
+    overflow: 'hidden',
+    borderWidth: 3,
+    borderColor: '#334155',
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   content: {
     paddingHorizontal: 35,
@@ -158,15 +177,27 @@ interface Props {
   themeColor?: string;
 }
 
-export const ExecutivePDF = ({ resumeData, themeColor }: Props) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
+export const ExecutivePDF = ({ resumeData, themeColor }: Props) => {
+  const photo = resumeData.personalInfo.photo;
+
+  return (
+    <Document>
+      <Page size="A4" style={styles.page}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.name}>{resumeData.personalInfo.fullName || "Your Name"}</Text>
-        {resumeData.personalInfo.title && (
-          <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
-        )}
+        <View style={styles.headerContent}>
+          <View>
+            <Text style={styles.name}>{resumeData.personalInfo.fullName || "Your Name"}</Text>
+            {resumeData.personalInfo.title && (
+              <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
+            )}
+          </View>
+          {photo ? (
+            <View style={styles.photoWrapper}>
+              <Image src={photo} style={styles.photo} />
+            </View>
+          ) : null}
+        </View>
         <View style={styles.contactRow}>
           {resumeData.personalInfo.email && (
             <View style={styles.contactItem}>
@@ -266,6 +297,7 @@ export const ExecutivePDF = ({ resumeData, themeColor }: Props) => (
           </View>
         ))}
       </View>
-    </Page>
-  </Document>
-);
+      </Page>
+    </Document>
+  );
+};

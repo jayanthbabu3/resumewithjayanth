@@ -1,5 +1,6 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin, Globe, Github, Linkedin } from "lucide-react";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -13,15 +14,22 @@ const formatDate = (date: string) => {
 };
 
 export const FrontendTemplate = ({ resumeData, themeColor = "#4f46e5" }: TemplateProps) => {
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <div className="w-full min-h-[297mm] bg-white font-sans text-gray-800">
       {/* Header Section - Minimal with accent color */}
       <div className="px-12 pt-10 pb-8">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-1 tracking-tight text-gray-900">{resumeData.personalInfo.fullName}</h1>
-          <p className="text-lg font-medium mb-4" style={{ color: themeColor }}>{resumeData.personalInfo.title}</p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900">{resumeData.personalInfo.fullName}</h1>
+              <p className="text-lg font-medium" style={{ color: themeColor }}>{resumeData.personalInfo.title}</p>
+            </div>
+            <ProfilePhoto src={photo} borderClass="border-4 border-white" />
+          </div>
           
-          <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+          <div className="mt-4 flex flex-wrap gap-4 text-xs text-gray-600">
             {resumeData.personalInfo.email && (
               <div className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5" />

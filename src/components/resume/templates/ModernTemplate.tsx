@@ -1,5 +1,6 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { ProfilePhoto } from "./ProfilePhoto";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -14,23 +15,30 @@ export const ModernTemplate = ({ resumeData, themeColor = "#7c3aed" }: TemplateP
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   };
 
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <div className="w-full min-h-[297mm] bg-white text-gray-900">
       {/* Header with Angled Design */}
       <div className="relative bg-white px-12 pt-10 pb-12">
         <div className="absolute top-0 left-0 w-full h-3" style={{ backgroundColor: themeColor }}></div>
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold mb-2 text-gray-900">
-            {resumeData.personalInfo.fullName || "Your Name"}
-          </h1>
-          {resumeData.personalInfo.title && (
-            <p className="text-xl font-semibold mb-6" style={{ color: themeColor }}>
-              {resumeData.personalInfo.title}
-            </p>
-          )}
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 className="text-5xl font-bold mb-2 text-gray-900">
+                {resumeData.personalInfo.fullName || "Your Name"}
+              </h1>
+              {resumeData.personalInfo.title && (
+                <p className="text-xl font-semibold" style={{ color: themeColor }}>
+                  {resumeData.personalInfo.title}
+                </p>
+              )}
+            </div>
+            <ProfilePhoto src={photo} borderClass="border-4 border-white/80" />
+          </div>
           
           {/* Contact Info - Horizontal Layout */}
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-600 border-t border-gray-200 pt-4">
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-600 border-t border-gray-200 pt-4">
             {resumeData.personalInfo.email && (
               <div className="flex items-center gap-1.5">
                 <Mail className="h-3.5 w-3.5" />

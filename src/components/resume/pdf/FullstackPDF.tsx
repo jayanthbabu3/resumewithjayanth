@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from '@/pages/Editor';
 
 const styles = StyleSheet.create({
@@ -26,6 +26,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomStyle: 'solid',
     borderBottomColor: '#7c3aed',
+  },
+  photoWrapper: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    overflow: 'hidden',
+    borderWidth: 2,
+    borderColor: '#ffffff',
+    marginBottom: 12,
+  },
+  photo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
   },
   name: {
     fontSize: 20,
@@ -173,11 +187,18 @@ interface Props {
 }
 
 export const FullstackPDF = ({ resumeData, themeColor = "#7c3aed" }: Props) => {
+  const photo = resumeData.personalInfo.photo;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Left Sidebar */}
         <View style={styles.sidebar}>
+          {photo ? (
+            <View style={styles.photoWrapper}>
+              <Image src={photo} style={styles.photo} />
+            </View>
+          ) : null}
           {/* Header */}
           <View style={[styles.sidebarHeader, { borderBottomColor: themeColor }]}>
             <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
