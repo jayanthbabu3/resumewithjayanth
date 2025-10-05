@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { FileText, Briefcase, Code, Palette, Users, ArrowRight, ArrowLeft } from "lucide-react";
+import { FileText, Briefcase, Code, GraduationCap, Calculator, Users, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 
@@ -14,25 +14,32 @@ const professions = [
     templates: ["frontend", "backend", "fullstack"]
   },
   {
-    id: "creative",
-    name: "Creative & Design",
-    description: "Modern layouts for creative professionals",
-    icon: Palette,
-    templates: ["modern", "minimal"]
+    id: "freshers",
+    name: "Freshers & Entry Level",
+    description: "Clean and professional templates for career starters",
+    icon: GraduationCap,
+    templates: ["minimal", "professional"]
   },
   {
-    id: "business",
-    name: "Business & Corporate",
-    description: "Professional formats for business roles",
-    icon: Briefcase,
+    id: "accountants",
+    name: "Accounting & Finance",
+    description: "Professional formats for accounting and finance roles",
+    icon: Calculator,
     templates: ["professional", "minimal"]
   },
   {
-    id: "executive",
-    name: "Leadership & Executive",
-    description: "Premium designs for senior positions",
+    id: "teaching",
+    name: "Teaching & Education",
+    description: "Academic templates for educators and trainers",
     icon: Users,
-    templates: ["executive", "professional"]
+    templates: ["professional", "minimal"]
+  },
+  {
+    id: "all",
+    name: "All Professions",
+    description: "Universal templates suitable for any industry",
+    icon: Briefcase,
+    templates: ["professional", "modern", "minimal", "executive"]
   }
 ];
 
