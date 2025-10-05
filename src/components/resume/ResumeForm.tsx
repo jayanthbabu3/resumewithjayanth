@@ -223,8 +223,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               </CardTitle>
               <CardDescription>Your professional work history</CardDescription>
             </div>
-            <Button onClick={addExperience} size="sm" className="gap-2">
-              <Plus className="h-4 w-4" />
+            <Button onClick={addExperience} size="xs" className="gap-1.5">
+              <Plus className="h-3 w-3" />
               Add Experience
             </Button>
           </div>
@@ -320,8 +320,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               </CardTitle>
               <CardDescription>Your academic background</CardDescription>
             </div>
-            <Button onClick={addEducation} size="sm" className="gap-2">
-              <Plus className="h-4 w-4" />
+            <Button onClick={addEducation} size="xs" className="gap-1.5">
+              <Plus className="h-3 w-3" />
               Add Education
             </Button>
           </div>
@@ -402,8 +402,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               </CardTitle>
               <CardDescription>Your technical and soft skills</CardDescription>
             </div>
-            <Button onClick={addSkill} size="sm" className="gap-2">
-              <Plus className="h-4 w-4" />
+            <Button onClick={addSkill} size="xs" className="gap-1.5">
+              <Plus className="h-3 w-3" />
               Add Skill
             </Button>
           </div>
@@ -441,8 +441,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               <CardTitle className="text-base">Custom Sections</CardTitle>
               <CardDescription>Add additional sections like certifications, projects, etc.</CardDescription>
             </div>
-            <Button onClick={addCustomSection} size="sm" className="gap-2">
-              <Plus className="h-4 w-4" />
+            <Button onClick={addCustomSection} size="xs" className="gap-1.5">
+              <Plus className="h-3 w-3" />
               Add Section
             </Button>
           </div>
