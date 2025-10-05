@@ -18,7 +18,7 @@ const professions = [
     name: "Freshers & Entry Level",
     description: "Clean and professional templates for career starters",
     icon: GraduationCap,
-    templates: ["minimal", "professional"]
+    templates: ["graduate", "starter", "minimal", "professional"]
   },
   {
     id: "accountants",
@@ -85,6 +85,18 @@ const templates = [
     name: "Backend Developer",
     description: "Clean technical design focused on backend development",
     highlights: ["Technical & Clean", "API-Focused", "Backend Optimized"]
+  },
+  {
+    id: "graduate",
+    name: "Graduate",
+    description: "Modern two-column layout emphasizing education and potential",
+    highlights: ["Two-Column", "Education-Focused", "Premium Design"]
+  },
+  {
+    id: "starter",
+    name: "Starter",
+    description: "Clean single-column design perfect for entry-level candidates",
+    highlights: ["Single Column", "Skills Highlight", "Fresh Look"]
   }
 ];
 

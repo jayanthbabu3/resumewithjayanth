@@ -14,6 +14,8 @@ import { ExecutivePDF } from "@/components/resume/pdf/ExecutivePDF";
 import { FrontendPDF } from "@/components/resume/pdf/FrontendPDF";
 import { FullstackPDF } from "@/components/resume/pdf/FullstackPDF";
 import { BackendPDF } from "@/components/resume/pdf/BackendPDF";
+import { GraduatePDF } from "@/components/resume/pdf/GraduatePDF";
+import { StarterPDF } from "@/components/resume/pdf/StarterPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 export interface ResumeData {
@@ -403,6 +405,84 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           content: "AWS Certified Developer - Associate\nAPI Gateway Design - Built high-performance API gateway handling 10M+ daily requests\nDatabase Optimization - Reduced query times by 70% through indexing and optimization\nOpen Source Contributions - Active contributor to Node.js ecosystem projects"
         }
       ]
+    },
+    graduate: {
+      personalInfo: {
+        fullName: "Emily Johnson",
+        email: "emily.johnson@email.com",
+        phone: "+1 (555) 456-7890",
+        location: "Boston, MA",
+        title: "Recent Computer Science Graduate",
+        summary: "Motivated computer science graduate with strong foundation in software development and data structures. Eager to apply academic knowledge and internship experience to contribute to innovative projects. Quick learner with passion for problem-solving and collaborative work."
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Tech Innovations Inc",
+          position: "Software Engineering Intern",
+          startDate: "2024-06",
+          endDate: "2024-08",
+          current: false,
+          description: "• Developed features for web application using React and Node.js\n• Collaborated with senior engineers on code reviews and bug fixes\n• Implemented unit tests achieving 80% code coverage\n• Participated in agile sprint planning and daily standups"
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Boston University",
+          degree: "Bachelor of Science",
+          field: "Computer Science",
+          startDate: "2020-09",
+          endDate: "2024-05"
+        }
+      ],
+      skills: ["Python", "Java", "JavaScript", "React", "SQL", "Git", "HTML/CSS", "Data Structures", "Algorithms", "Team Collaboration"],
+      sections: [
+        {
+          id: "1",
+          title: "Academic Projects",
+          content: "E-Commerce Platform - Built full-stack web app with React and Node.js for course project\nMachine Learning Model - Developed sentiment analysis model using Python and scikit-learn\nMobile Game - Created Android game using Java with 500+ downloads"
+        }
+      ]
+    },
+    starter: {
+      personalInfo: {
+        fullName: "James Smith",
+        email: "james.smith@email.com",
+        phone: "+1 (555) 321-9876",
+        location: "Austin, TX",
+        title: "Entry-Level Marketing Professional",
+        summary: "Enthusiastic marketing graduate with hands-on experience in digital marketing and content creation. Strong communication skills and creative mindset. Passionate about leveraging social media and analytics to drive brand engagement and growth."
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Digital Marketing Agency",
+          position: "Marketing Intern",
+          startDate: "2024-01",
+          endDate: "2024-05",
+          current: false,
+          description: "• Managed social media accounts across Instagram, Twitter, and LinkedIn\n• Created engaging content resulting in 25% increase in follower engagement\n• Assisted in email marketing campaigns with 18% open rate\n• Conducted market research and competitor analysis"
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Texas at Austin",
+          degree: "Bachelor of Business Administration",
+          field: "Marketing",
+          startDate: "2020-09",
+          endDate: "2024-05"
+        }
+      ],
+      skills: ["Social Media Marketing", "Content Creation", "Google Analytics", "SEO Basics", "Email Marketing", "Microsoft Office", "Canva", "Communication", "Team Collaboration", "Time Management"],
+      sections: [
+        {
+          id: "1",
+          title: "Certifications",
+          content: "Google Analytics Certification\nHubSpot Content Marketing Certification\nFacebook Blueprint Certification"
+        }
+      ]
     }
   };
 
@@ -467,6 +547,8 @@ const Editor = () => {
         frontend: FrontendPDF,
         fullstack: FullstackPDF,
         backend: BackendPDF,
+        graduate: GraduatePDF,
+        starter: StarterPDF,
       };
 
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;
