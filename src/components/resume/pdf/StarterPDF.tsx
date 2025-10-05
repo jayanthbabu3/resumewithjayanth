@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     color: "#6B7280",
   },
   contactItem: {
-    marginRight: 4,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
   },
   section: {
     marginBottom: 16,
@@ -153,11 +155,21 @@ export const StarterPDF = ({ resumeData, themeColor = "#0EA5E9" }: StarterPDFPro
           <Text style={styles.name}>{data.personalInfo.fullName}</Text>
           {data.personalInfo.title && <Text style={styles.title}>{data.personalInfo.title}</Text>}
           <View style={styles.contactInfo}>
-            {data.personalInfo.email && <Text style={styles.contactItem}>{data.personalInfo.email}</Text>}
-            {data.personalInfo.phone && <Text style={styles.contactItem}>•</Text>}
-            {data.personalInfo.phone && <Text style={styles.contactItem}>{data.personalInfo.phone}</Text>}
-            {data.personalInfo.location && <Text style={styles.contactItem}>•</Text>}
-            {data.personalInfo.location && <Text style={styles.contactItem}>{data.personalInfo.location}</Text>}
+            {data.personalInfo.email && (
+              <View style={styles.contactItem}>
+                <Text>✉ {data.personalInfo.email}</Text>
+              </View>
+            )}
+            {data.personalInfo.phone && (
+              <View style={styles.contactItem}>
+                <Text>☎ {data.personalInfo.phone}</Text>
+              </View>
+            )}
+            {data.personalInfo.location && (
+              <View style={styles.contactItem}>
+                <Text>📍 {data.personalInfo.location}</Text>
+              </View>
+            )}
           </View>
         </View>
 
@@ -204,10 +216,19 @@ export const StarterPDF = ({ resumeData, themeColor = "#0EA5E9" }: StarterPDFPro
           </View>
         )}
 
-        {/* Experience */}
+        {/* Projects - Prominent for freshers */}
+        {data.sections &&
+          data.sections.map((section, index) => (
+            <View key={index} style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>{section.title}</Text>
+              <Text style={styles.customSection}>{section.content}</Text>
+            </View>
+          ))}
+
+        {/* Experience/Internships */}
         {data.experience && data.experience.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Experience</Text>
+            <Text style={styles.sectionTitle}>Internships & Experience</Text>
             {data.experience.map((exp, index) => (
               <View key={index} style={styles.experienceItem} wrap={false}>
                 <View style={styles.experienceHeader}>
@@ -226,15 +247,6 @@ export const StarterPDF = ({ resumeData, themeColor = "#0EA5E9" }: StarterPDFPro
             ))}
           </View>
         )}
-
-        {/* Custom Sections */}
-        {data.sections &&
-          data.sections.map((section, index) => (
-            <View key={index} style={styles.section} wrap={false}>
-              <Text style={styles.sectionTitle}>{section.title}</Text>
-              <Text style={styles.customSection}>{section.content}</Text>
-            </View>
-          ))}
       </Page>
     </Document>
   );

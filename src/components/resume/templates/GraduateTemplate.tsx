@@ -1,4 +1,5 @@
 import type { ResumeData } from "@/pages/Editor";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 interface GraduateTemplateProps {
   resumeData: ResumeData;
@@ -25,11 +26,24 @@ export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9" }: Graduat
             <p className="text-base text-gray-600 mb-3">{resumeData.personalInfo.title}</p>
           )}
           <div className="flex flex-wrap gap-4 text-xs text-gray-600">
-            {resumeData.personalInfo.email && <span>{resumeData.personalInfo.email}</span>}
-            {resumeData.personalInfo.phone && <span>•</span>}
-            {resumeData.personalInfo.phone && <span>{resumeData.personalInfo.phone}</span>}
-            {resumeData.personalInfo.location && <span>•</span>}
-            {resumeData.personalInfo.location && <span>{resumeData.personalInfo.location}</span>}
+            {resumeData.personalInfo.email && (
+              <span className="flex items-center gap-1.5">
+                <Mail className="h-3 w-3" />
+                {resumeData.personalInfo.email}
+              </span>
+            )}
+            {resumeData.personalInfo.phone && (
+              <span className="flex items-center gap-1.5">
+                <Phone className="h-3 w-3" />
+                {resumeData.personalInfo.phone}
+              </span>
+            )}
+            {resumeData.personalInfo.location && (
+              <span className="flex items-center gap-1.5">
+                <MapPin className="h-3 w-3" />
+                {resumeData.personalInfo.location}
+              </span>
+            )}
           </div>
         </div>
 
@@ -78,7 +92,7 @@ export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9" }: Graduat
             )}
           </div>
 
-          {/* Right Column - Summary & Experience */}
+          {/* Right Column - Summary, Projects & Experience */}
           <div className="col-span-2 space-y-5">
             {/* Professional Summary */}
             {resumeData.personalInfo.summary && (
@@ -90,11 +104,27 @@ export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9" }: Graduat
               </section>
             )}
 
-            {/* Experience */}
+            {/* Projects Section - More Prominent for Freshers */}
+            {resumeData.sections && resumeData.sections.length > 0 && (
+              <>
+                {resumeData.sections.map((section, index) => (
+                  <section key={index} className="space-y-2">
+                    <h2 className="text-sm font-bold uppercase tracking-wide text-gray-900">
+                      {section.title}
+                    </h2>
+                    <div className="text-xs leading-relaxed text-gray-700 whitespace-pre-line">
+                      {section.content}
+                    </div>
+                  </section>
+                ))}
+              </>
+            )}
+
+            {/* Experience/Internships */}
             {resumeData.experience && resumeData.experience.length > 0 && (
               <section className="space-y-3">
                 <h2 className="text-sm font-bold uppercase tracking-wide text-gray-900">
-                  Experience
+                  Internships & Experience
                 </h2>
                 <div className="space-y-4">
                   {resumeData.experience.map((exp, index) => (
@@ -118,19 +148,6 @@ export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9" }: Graduat
                 </div>
               </section>
             )}
-
-            {/* Custom Sections */}
-            {resumeData.sections &&
-              resumeData.sections.map((section, index) => (
-                <section key={index} className="space-y-2">
-                  <h2 className="text-sm font-bold uppercase tracking-wide text-gray-900">
-                    {section.title}
-                  </h2>
-                  <div className="text-xs leading-relaxed text-gray-700 whitespace-pre-line">
-                    {section.content}
-                  </div>
-                </section>
-              ))}
           </div>
         </div>
       </div>
