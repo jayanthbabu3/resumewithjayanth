@@ -659,8 +659,8 @@ const Editor = () => {
           {/* Form Section */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">Edit Your Resume</h2>
-              <p className="text-muted-foreground">
+              <h2 className="text-lg font-bold">Edit Your Resume</h2>
+              <p className="text-sm text-muted-foreground">
                 Fill in your information and watch your resume update in real-time
               </p>
             </div>

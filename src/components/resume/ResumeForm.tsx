@@ -142,8 +142,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
       {/* Personal Information */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-primary" />
+          <CardTitle className="flex items-center gap-2 text-base">
+            <FileText className="h-4 w-4 text-primary" />
             Personal Information
           </CardTitle>
           <CardDescription>Your basic contact details and professional title</CardDescription>
@@ -217,8 +217,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="flex items-center gap-2">
-                <Briefcase className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Briefcase className="h-4 w-4 text-primary" />
                 Work Experience
               </CardTitle>
               <CardDescription>Your professional work history</CardDescription>
@@ -314,8 +314,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center gap-2 text-base">
+                <GraduationCap className="h-4 w-4 text-primary" />
                 Education
               </CardTitle>
               <CardDescription>Your academic background</CardDescription>
@@ -396,8 +396,8 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="flex items-center gap-2">
-                <Code className="h-5 w-5 text-primary" />
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Code className="h-4 w-4 text-primary" />
                 Skills
               </CardTitle>
               <CardDescription>Your technical and soft skills</CardDescription>
@@ -438,7 +438,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle>Custom Sections</CardTitle>
+              <CardTitle className="text-base">Custom Sections</CardTitle>
               <CardDescription>Add additional sections like certifications, projects, etc.</CardDescription>
             </div>
             <Button onClick={addCustomSection} size="sm" className="gap-2">
