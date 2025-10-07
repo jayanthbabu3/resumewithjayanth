@@ -52,11 +52,6 @@ const Hero = () => {
                 <span>Create Your Resume</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Zap className="h-4 w-4 text-primary" />
-                <span>No credit card required • Free to start</span>
-              </div>
             </div>
 
             {/* Feature Cards */}

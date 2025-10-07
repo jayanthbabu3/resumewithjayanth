@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
+import { ChefHat } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +14,6 @@ export const Header = () => {
     () => [
       { label: "Home", to: "/" },
       { label: "Templates", to: "/dashboard?focus=templates&category=software" },
-      { label: "Features", to: "/#features" },
     ],
     []
   );
@@ -25,15 +24,23 @@ export const Header = () => {
         <div className="flex items-center justify-between gap-6">
           <button
             onClick={() => navigate("/")}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-            aria-label="Go to home"
+            className="group flex items-center gap-3 rounded-xl px-2 py-1 transition-transform hover:-translate-y-0.5 hover:opacity-90"
+            aria-label="Resume Cook home"
           >
-            <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center shadow-sm">
-              <FileText className="h-6 w-6 text-primary-foreground" />
+            <div className="relative flex h-11 w-11 items-center justify-center">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-primary/70 opacity-80 blur-sm transition-opacity group-hover:opacity-100" />
+              <div className="relative flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-background via-background/60 to-background/30 shadow-[0_12px_30px_-12px_rgba(124,58,237,0.5)] text-primary">
+                <ChefHat className="h-5 w-5" strokeWidth={1.8} />
+              </div>
             </div>
-            <span className="text-2xl font-bold text-primary tracking-tight">
-              ResumeFlow
-            </span>
+            <div className="flex flex-col text-left leading-none">
+              <span className="text-xl font-semibold tracking-tight text-foreground">
+                Resume<span className="text-primary">Cook</span>
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
+                Craft Your Career
+              </span>
+            </div>
           </button>
 
           <div className="flex items-center gap-3">
