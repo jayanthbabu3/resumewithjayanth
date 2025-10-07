@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download, LayoutDashboard } from "lucide-react";
+import { Download, LayoutDashboard, Gauge, Loader2 } from "lucide-react";
 import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
@@ -20,8 +20,20 @@ import { StarterPDF } from "@/components/resume/pdf/StarterPDF";
 import { SeniorPDF } from "@/components/resume/pdf/SeniorPDF";
 import { SeniorFrontendPDF } from "@/components/resume/pdf/SeniorFrontendPDF";
 import { SeniorBackendPDF } from "@/components/resume/pdf/SeniorBackendPDF";
+import { SoftwarePDF } from "@/components/resume/pdf/SoftwarePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
+import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+
+const gradeMap: Record<AtsReport["grade"], { label: string; tone: string }> = {
+  excellent: { label: "ATS ready", tone: "text-emerald-600" },
+  strong: { label: "Strong match", tone: "text-blue-600" },
+  ok: { label: "Needs refinement", tone: "text-amber-600" },
+  weak: { label: "High risk", tone: "text-rose-600" },
+};
 
 export interface ResumeData {
   personalInfo: {
@@ -477,6 +489,77 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
           id: "awards",
           title: "Highlights",
           content: "2023 - Webby Awards, Best Web Experience\n2022 - CSS Design Awards, Special Kudos\nTop Speaker - Google Chrome Dev Summit 2021",
+        },
+      ],
+    },
+    software: {
+      personalInfo: {
+        fullName: "Taylor Foster",
+        email: "taylor.foster@email.com",
+        phone: "+1 (415) 678-9023",
+        location: "San Francisco, CA",
+        title: "Lead Software Engineer",
+        summary: "Award-winning engineer with 9+ years designing performant, accessible software at scale. Specializes in design systems, data visualization, and cross-functional leadership to ship user-first experiences.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Figma",
+          position: "Lead Frontend Engineer",
+          startDate: "2021-04",
+          endDate: "",
+          current: true,
+          description: "• Led front-of-site modernization across 75+ teams and 4 design surfaces\n• Delivered real-time canvas optimizations reducing paint time by 35%\n• Partnered with data visualization to launch analytics dashboard viewed by 1M+ users\n• Mentored 8 engineers, formalizing progressive enhancement playbooks",
+        },
+        {
+          id: "2",
+          company: "Spotify",
+          position: "Senior Frontend Engineer",
+          startDate: "2017-08",
+          endDate: "2021-03",
+          current: false,
+          description: "• Owned web playback UI, increasing retention by 12% with personalization\n• Built component performance tooling that cut bundle size by 28%\n• Shipped analytics visualizations with interactive charts and stories",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Washington",
+          degree: "Bachelor of Science",
+          field: "Computer Science",
+          startDate: "2010-09",
+          endDate: "2014-06",
+        },
+      ],
+      skills: buildSkills(
+        "software",
+        [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "GraphQL",
+          "Design Systems",
+          "Accessibility",
+          "Web Performance",
+          "Data Visualization",
+          "Tailwind CSS",
+          "Figma",
+          "Cypress",
+          "Git & CI",
+        ],
+        [10, 9, 9, 8, 9, 9, 9, 8, 8, 8, 7, 8]
+      ),
+      sections: [
+        {
+          id: "strengths",
+          title: "Strengths",
+          content: "Accessibility - Creating inclusive digital experiences\nWeb Performance - Optimizing for speed and reliability\nData Visualization - Crafting interactive analytical stories\nDesign Systems - Leading scalable design language initiatives",
+        },
+        {
+          id: "achievements",
+          title: "Key Achievements",
+          content: "2023 Webby Awards – Best Web Experience\n2022 CSS Design Awards – Special Kudos\nTop Speaker – Google Chrome Dev Summit 2021",
         },
       ],
     },
@@ -974,10 +1057,14 @@ const Editor = () => {
       senior: "#0f766e",
       "senior-frontend": "#ec4899",
       "senior-backend": "#2563eb",
+      software: "#2563eb",
     };
 
     return defaultThemeColors[templateId || ""] || "#7c3aed"; // default purple
   });
+  const [atsReport, setAtsReport] = useState<AtsReport | null>(null);
+  const [atsDialogOpen, setAtsDialogOpen] = useState(false);
+  const [atsLoading, setAtsLoading] = useState(false);
 
   // Register fonts for PDF generation
   useEffect(() => {
@@ -1074,6 +1161,7 @@ const Editor = () => {
         senior: SeniorPDF,
         "senior-frontend": SeniorFrontendPDF,
         "senior-backend": SeniorBackendPDF,
+        software: SoftwarePDF,
       };
 
       const PDFTemplate = pdfTemplates[templateId as keyof typeof pdfTemplates] || ProfessionalPDF;
@@ -1097,6 +1185,94 @@ const Editor = () => {
       toast.error("Failed to download resume");
     }
   };
+
+  const runAtsCheck = useCallback(() => {
+    setAtsLoading(true);
+    requestAnimationFrame(() => {
+      const report = analyzeResumeForATS(resumeData, { templateId });
+      setAtsReport(report);
+      setAtsDialogOpen(true);
+      setAtsLoading(false);
+    });
+  }, [resumeData, templateId]);
+
+  const renderScoreRing = useCallback(
+    (score: number) => {
+      const percent = Math.max(0, Math.min(100, (score / 10) * 100));
+      const radius = 16;
+      const circumference = 2 * Math.PI * radius;
+      const dashOffset = circumference * (1 - percent / 100);
+
+      return (
+        <svg viewBox="0 0 36 36" className="h-10 w-10">
+          <circle cx="18" cy="18" r="16" stroke="#e2e8f0" strokeWidth="4" fill="none" />
+          <circle
+            cx="18"
+            cy="18"
+            r="16"
+            stroke={themeColor}
+            strokeWidth="4"
+            fill="none"
+            strokeDasharray={`${circumference} ${circumference}`}
+            strokeDashoffset={dashOffset}
+            strokeLinecap="round"
+            transform="rotate(-90 18 18)"
+          />
+          <text
+            x="18"
+            y="20"
+            textAnchor="middle"
+            fontSize="10"
+            fontFamily="Inter"
+            fontWeight="600"
+            fill="#1f2937"
+          >
+            {percent.toFixed(0)}%
+          </text>
+        </svg>
+      );
+    },
+    [themeColor]
+  );
+
+  const renderMetricRing = useCallback(
+    (ratio: number) => {
+      const percent = Math.max(0, Math.min(100, ratio * 100));
+      const radius = 14;
+      const circumference = 2 * Math.PI * radius;
+      const dashOffset = circumference * (1 - percent / 100);
+
+      return (
+        <svg viewBox="0 0 36 36" className="h-9 w-9">
+          <circle cx="18" cy="18" r="14" stroke="#e2e8f0" strokeWidth="3" fill="none" />
+          <circle
+            cx="18"
+            cy="18"
+            r="14"
+            stroke={themeColor}
+            strokeWidth="3"
+            fill="none"
+            strokeDasharray={`${circumference} ${circumference}`}
+            strokeDashoffset={dashOffset}
+            strokeLinecap="round"
+            transform="rotate(-90 18 18)"
+          />
+          <text
+            x="18"
+            y="20"
+            textAnchor="middle"
+            fontSize="9"
+            fontFamily="Inter"
+            fontWeight="600"
+            fill="#1f2937"
+          >
+            {percent.toFixed(0)}%
+          </text>
+        </svg>
+      );
+    },
+    [themeColor]
+  );
 
   const templateMeta = templateMetaMap[templateId || ""];
   const templateDisplayName = templateMeta?.name || formatTemplateName(templateId);
@@ -1150,21 +1326,141 @@ const Editor = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
-              <Button
-                onClick={() => navigate(`/dashboard?focus=templates&category=${categorySlug}`)}
-                variant="outline"
-              >
-                Change Template
-              </Button>
-              <Button
-                onClick={handleDownload}
-                className="gap-2 bg-primary hover:bg-primary-hover"
-              >
-                <Download className="h-4 w-4" />
-                Download Resume
-              </Button>
-            </div>
+            <Dialog open={atsDialogOpen} onOpenChange={setAtsDialogOpen}>
+              <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
+                {atsReport && (
+                  <button
+                    type="button"
+                    onClick={() => setAtsDialogOpen(true)}
+                    className="group flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2 transition hover:bg-primary/10"
+                  >
+                    {renderScoreRing(atsReport.score)}
+                    <div className="text-left">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground">ATS Score</p>
+                      <p className="text-sm font-semibold text-foreground">
+                        {atsReport.score.toFixed(1)} / {atsReport.maxScore.toFixed(0)}
+                      </p>
+                      <p className={`text-[11px] font-medium ${gradeMap[atsReport.grade].tone}`}>
+                        {gradeMap[atsReport.grade].label}
+                      </p>
+                    </div>
+                  </button>
+                )}
+                <Button
+                  onClick={runAtsCheck}
+                  variant="secondary"
+                  className="gap-2"
+                  disabled={atsLoading}
+                >
+                  {atsLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Gauge className="h-4 w-4" />}
+                  {atsReport ? "Re-run ATS" : "Check ATS Score"}
+                </Button>
+                <Button
+                  onClick={() => navigate(`/dashboard?focus=templates&category=${categorySlug}`)}
+                  variant="outline"
+                >
+                  Change Template
+                </Button>
+                <Button
+                  onClick={handleDownload}
+                  className="gap-2 bg-primary hover:bg-primary-hover"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Resume
+                </Button>
+              </div>
+
+              <DialogContent className="max-w-3xl sm:max-h-[80vh]">
+                {atsReport ? (
+                  <div className="space-y-6 max-h-[65vh] overflow-y-auto pr-1">
+                    <DialogHeader>
+                      <DialogTitle>ATS Readiness Report</DialogTitle>
+                      <DialogDescription>{atsReport.summary}</DialogDescription>
+                    </DialogHeader>
+                    <div className="rounded-xl border border-border/60 bg-muted/10 p-4">
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Overall Score</p>
+                          <p className="text-3xl font-semibold text-foreground">{atsReport.score.toFixed(1)} / {atsReport.maxScore.toFixed(0)}</p>
+                        </div>
+                        <div className="w-full sm:max-w-[180px]">
+                          <Progress
+                            value={(atsReport.score / atsReport.maxScore) * 100}
+                            className="h-2"
+                          />
+                          <p className={`mt-2 text-sm font-medium ${gradeMap[atsReport.grade].tone}`}>
+                            {gradeMap[atsReport.grade].label}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg border border-border/60 bg-white">
+                      <table className="w-full border-collapse text-xs text-muted-foreground">
+                        <thead className="bg-muted/40 text-foreground">
+                          <tr>
+                            <th className="px-4 py-2 text-left text-[11px] uppercase tracking-[0.2em]">Criteria</th>
+                            <th className="px-4 py-2 text-left text-[11px] uppercase tracking-[0.2em]">Score /10</th>
+                            <th className="px-4 py-2 text-left text-[11px] uppercase tracking-[0.2em]">What we checked</th>
+                            <th className="px-4 py-2 text-left text-[11px] uppercase tracking-[0.2em]">Improvement</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {atsReport.metrics.map(metric => (
+                            <tr key={metric.id} className="border-t border-border/50">
+                              <td className="px-4 py-3 font-medium text-foreground">{metric.label}</td>
+                              <td className="px-4 py-3 text-foreground/80">
+                                <div className="flex items-center gap-2">
+                                  <div className="h-9 w-9">{renderMetricRing(metric.ratio)}</div>
+                                  <span className="text-sm font-semibold">{(metric.ratio * 10).toFixed(1)}</span>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3">{metric.detail}</td>
+                              <td className="px-4 py-3 text-foreground">
+                                {metric.recommendation || (metric.passed ? "On track" : "Add more detail here.")}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {atsReport.missingKeywords.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold text-foreground">Suggested Keywords</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {atsReport.missingKeywords.map(keyword => (
+                            <Badge key={keyword} variant="secondary" className="capitalize">
+                              {keyword}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {atsReport.keywordHits.length > 0 && (
+                      <div className="space-y-2">
+                        <h4 className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Recognized Keywords</h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {atsReport.keywordHits.map(keyword => (
+                            <Badge key={keyword} variant="outline" className="capitalize">
+                              {keyword}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <DialogHeader>
+                    <DialogTitle>Run an ATS check</DialogTitle>
+                    <DialogDescription>
+                      Generate an ATS readiness report to see how well this resume will parse in applicant tracking systems.
+                    </DialogDescription>
+                  </DialogHeader>
+                )}
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>

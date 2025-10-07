@@ -48,6 +48,12 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Engineering",
     categorySlug: "software",
   },
+  software: {
+    name: "Lead Software Engineer",
+    description: "Bold two-column layout with impact metrics, achievements, and career highlights.",
+    category: "Engineering",
+    categorySlug: "software",
+  },
   graduate: {
     name: "Graduate",
     description: "Education-forward layout highlighting projects and internships.",

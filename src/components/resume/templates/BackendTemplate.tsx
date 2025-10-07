@@ -15,9 +15,13 @@ const formatDate = (date: string) => {
 
 export const BackendTemplate = ({ resumeData, themeColor = "#374151" }: TemplateProps) => {
   const photo = resumeData.personalInfo.photo;
+  const fontFamily = `"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif`;
 
   return (
-    <div className="w-full min-h-[297mm] bg-white font-sans text-gray-900">
+    <div
+      className="w-full min-h-[297mm] bg-white text-gray-900"
+      style={{ fontFamily }}
+    >
       {/* Header Section - Minimal with subtle accent */}
       <div className="px-12 pt-10 pb-8 border-b-2 border-gray-900">
         <div className="max-w-4xl mx-auto">

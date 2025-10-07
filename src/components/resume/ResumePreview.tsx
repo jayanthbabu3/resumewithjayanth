@@ -11,6 +11,7 @@ import { StarterTemplate } from "./templates/StarterTemplate";
 import { SeniorTemplate } from "./templates/SeniorTemplate";
 import { SeniorFrontendTemplate } from "./templates/SeniorFrontendTemplate";
 import { SeniorBackendTemplate } from "./templates/SeniorBackendTemplate";
+import { SoftwareTemplate } from "./templates/SoftwareTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -32,6 +33,7 @@ export const ResumePreview = ({ resumeData, templateId, themeColor = "#7c3aed" }
     senior: SeniorTemplate,
     "senior-frontend": SeniorFrontendTemplate,
     "senior-backend": SeniorBackendTemplate,
+    software: SoftwareTemplate,
   };
 
   const Template = templates[templateId as keyof typeof templates] || ProfessionalTemplate;

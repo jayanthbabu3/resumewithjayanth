@@ -12,7 +12,7 @@ const professions = [
     name: "Software Development",
     description: "Templates optimized for developers and engineers",
     icon: Code,
-    templates: ["frontend", "backend", "fullstack", "senior", "senior-frontend", "senior-backend"]
+    templates: ["software", "frontend", "backend", "fullstack", "senior", "senior-frontend", "senior-backend"]
   },
   {
     id: "freshers",
@@ -40,7 +40,7 @@ const professions = [
     name: "All Professions",
     description: "Universal templates suitable for any industry",
     icon: Briefcase,
-    templates: ["professional", "modern", "minimal", "executive", "senior", "senior-frontend", "senior-backend"]
+    templates: ["professional", "modern", "minimal", "executive", "software", "senior", "senior-frontend", "senior-backend"]
   }
 ];
 
@@ -98,6 +98,12 @@ const templates = [
     name: "Starter",
     description: "Clean single-column design perfect for entry-level candidates",
     highlights: ["Single Column", "Skills Highlight", "Fresh Look"]
+  },
+  {
+    id: "software",
+    name: "Lead Software Engineer",
+    description: "Striking two-column layout with strengths, achievements, and theme variants",
+    highlights: ["Bold Header", "Impact Metrics", "Theme Variants"]
   },
   {
     id: "senior-frontend",
