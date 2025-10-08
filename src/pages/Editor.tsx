@@ -25,6 +25,7 @@ import { SeniorBackendPDF } from "@/components/resume/pdf/SeniorBackendPDF";
 import { SoftwarePDF } from "@/components/resume/pdf/SoftwarePDF";
 import { PremiumUniversalPDF } from "@/components/resume/pdf/PremiumUniversalPDF";
 import { PremiumProPDF } from "@/components/resume/pdf/PremiumProPDF";
+import { FresherElitePDF } from "@/components/resume/pdf/FresherElitePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1413,6 +1414,80 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         },
       ],
     },
+    "fresher-elite": {
+      personalInfo: {
+        fullName: "Priya Sharma",
+        email: "priya.sharma@email.com",
+        phone: "+91 98765 43210",
+        location: "Mumbai, India",
+        title: "Computer Science Graduate",
+        summary:
+          "Passionate computer science graduate with strong foundation in software development and problem-solving. Experienced in building full-stack web applications and eager to contribute to innovative technology solutions. Quick learner with excellent collaboration skills.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "TechStart Solutions",
+          position: "Software Development Intern",
+          startDate: "2024-01",
+          endDate: "2024-06",
+          current: false,
+          description:
+            "Developed RESTful APIs using Node.js and Express, serving 10,000+ users\nBuilt responsive frontend components with React and TypeScript\nImplemented unit tests achieving 85% code coverage\nCollaborated with team of 5 developers using Agile methodology",
+        },
+        {
+          id: "2",
+          company: "College Tech Club",
+          position: "Technical Lead",
+          startDate: "2023-07",
+          endDate: "2024-05",
+          current: false,
+          description:
+            "Led team of 12 members in organizing coding workshops and hackathons\nMentored 30+ junior students in web development and DSA\nOrganized college tech fest with 500+ participants",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Indian Institute of Technology",
+          degree: "Bachelor of Technology",
+          field: "Computer Science",
+          startDate: "2020-08",
+          endDate: "2024-06",
+        },
+      ],
+      skills: buildSkills(
+        "fresher-elite",
+        [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "Python",
+          "SQL",
+          "Git",
+          "MongoDB",
+          "TypeScript",
+          "HTML/CSS",
+          "REST APIs",
+        ],
+        [9, 9, 8, 8, 8, 9, 7, 8, 9, 8],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Academic Projects",
+          content:
+            "E-Learning Platform (Final Year Project)\nDeveloped full-stack online learning platform with video streaming and live chat\nBuilt with MERN stack, Redis for caching, and AWS S3 for video storage\nImplemented JWT authentication and role-based access control\nAchieved 95% project grade and presented at college symposium\n\nReal-Time Chat Application\nBuilt scalable chat app using Socket.io, React, and Node.js\nImplemented features: group chats, file sharing, message encryption\nDeployed on Heroku with MongoDB Atlas database\n\nAI-Powered Resume Analyzer\nCreated ML model to analyze resumes and provide improvement suggestions\nUsed Python, NLP, and Flask for backend API\nAchieved 88% accuracy in keyword detection",
+        },
+        {
+          id: "2",
+          title: "Achievements",
+          content:
+            "🏆 Winner - Smart India Hackathon 2023 (National Level)\n🏆 1st Place - College Code Sprint 2023\n⭐ LeetCode: Solved 350+ problems, Contest Rating: 1650+\n⭐ CodeChef: 4-star coder (Max Rating: 1820)\n📜 AWS Certified Cloud Practitioner (2024)\n📜 Google Cloud Associate Engineer (2024)\n🎓 Dean's List - All 8 semesters (CGPA: 9.2/10)",
+        },
+      ],
+    },
   };
 
   return templates[templateId] || templates.professional;
@@ -1555,6 +1630,7 @@ const Editor = () => {
         software: SoftwarePDF,
         "premium-universal": PremiumUniversalPDF,
         "premium-pro": PremiumProPDF,
+        "fresher-elite": FresherElitePDF,
       };
 
       const PDFTemplate =

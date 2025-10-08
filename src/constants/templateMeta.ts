@@ -121,6 +121,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal",
     categorySlug: "all",
   },
+  "fresher-elite": {
+    name: "Fresher Elite",
+    description:
+      "Modern premium design with colored header and timeline layout, perfect for fresh graduates.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {

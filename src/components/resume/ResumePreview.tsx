@@ -16,6 +16,7 @@ import { SeniorBackendTemplate } from "./templates/SeniorBackendTemplate";
 import { SoftwareTemplate } from "./templates/SoftwareTemplate";
 import { PremiumUniversalTemplate } from "./templates/PremiumUniversalTemplate";
 import { PremiumProTemplate } from "./templates/PremiumProTemplate";
+import { FresherEliteTemplate } from "./templates/FresherEliteTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -46,6 +47,7 @@ export const ResumePreview = ({
     software: SoftwareTemplate,
     "premium-universal": PremiumUniversalTemplate,
     "premium-pro": PremiumProTemplate,
+    "fresher-elite": FresherEliteTemplate,
   };
 
   const Template =
