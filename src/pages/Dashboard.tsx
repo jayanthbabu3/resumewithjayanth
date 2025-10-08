@@ -47,6 +47,7 @@ const professions = [
       "modern",
       "minimal",
       "executive",
+      "premium-universal",
     ],
   },
 ];
@@ -122,6 +123,13 @@ const templates = [
     description:
       "Modern premium template with gradient design and skill levels for fresh graduates",
     highlights: ["Gradient Design", "Skill Levels", "Modern Layout", "ATS-Optimized"],
+  },
+  {
+    id: "premium-universal",
+    name: "Premium Universal",
+    description:
+      "Elegant and simple ATS-friendly template suitable for all industries and experience levels",
+    highlights: ["ATS-Optimized", "Clean Layout", "Universal Design", "Professional"],
   },
   {
     id: "software",

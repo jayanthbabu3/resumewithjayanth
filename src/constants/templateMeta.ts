@@ -107,6 +107,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Engineering",
     categorySlug: "software",
   },
+  "premium-universal": {
+    name: "Premium Universal",
+    description:
+      "Elegant and simple ATS-friendly template suitable for all industries and experience levels.",
+    category: "Universal",
+    categorySlug: "all",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {

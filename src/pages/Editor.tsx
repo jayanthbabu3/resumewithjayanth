@@ -23,6 +23,7 @@ import { SeniorPDF } from "@/components/resume/pdf/SeniorPDF";
 import { SeniorFrontendPDF } from "@/components/resume/pdf/SeniorFrontendPDF";
 import { SeniorBackendPDF } from "@/components/resume/pdf/SeniorBackendPDF";
 import { SoftwarePDF } from "@/components/resume/pdf/SoftwarePDF";
+import { PremiumUniversalPDF } from "@/components/resume/pdf/PremiumUniversalPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1271,6 +1272,72 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         },
       ],
     },
+    "premium-universal": {
+      personalInfo: {
+        fullName: "Jordan Smith",
+        email: "jordan.smith@email.com",
+        phone: "+1 (555) 789-0123",
+        location: "Denver, CO",
+        title: "Business Analyst",
+        summary:
+          "Detail-oriented business analyst with strong analytical skills and proven track record of translating complex business requirements into actionable insights. Experienced in data analysis, process improvement, and cross-functional collaboration.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Tech Solutions Corp",
+          position: "Business Analyst",
+          startDate: "2021-03",
+          endDate: "",
+          current: true,
+          description:
+            "Analyze business processes and identify areas for improvement\nCollaborate with stakeholders to gather and document requirements\nCreate detailed reports and presentations for senior management\nLead implementation of new CRM system affecting 200+ users",
+        },
+        {
+          id: "2",
+          company: "Consulting Group LLC",
+          position: "Junior Analyst",
+          startDate: "2019-06",
+          endDate: "2021-02",
+          current: false,
+          description:
+            "Conducted market research and competitive analysis\nDeveloped financial models and forecasts\nSupported senior analysts on client projects",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Colorado",
+          degree: "Bachelor of Business Administration",
+          field: "Business Analytics",
+          startDate: "2015-09",
+          endDate: "2019-05",
+        },
+      ],
+      skills: buildSkills(
+        "premium-universal",
+        [
+          "Data Analysis",
+          "SQL",
+          "Excel",
+          "Tableau",
+          "Power BI",
+          "Process Mapping",
+          "Requirements Gathering",
+          "Project Management",
+        ],
+        [8, 8, 9, 7, 7, 8, 8, 7],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Certifications",
+          content:
+            "Certified Business Analysis Professional (CBAP)\nGoogle Data Analytics Professional Certificate",
+        },
+      ],
+    },
   };
 
   return templates[templateId] || templates.professional;
@@ -1411,6 +1478,7 @@ const Editor = () => {
         "senior-frontend": SeniorFrontendPDF,
         "senior-backend": SeniorBackendPDF,
         software: SoftwarePDF,
+        "premium-universal": PremiumUniversalPDF,
       };
 
       const PDFTemplate =
