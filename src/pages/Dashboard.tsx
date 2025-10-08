@@ -39,7 +39,7 @@ const professions = [
   },
   {
     id: "all",
-    name: "All Professions",
+    name: "Universal Professions",
     description: "Professional templates suitable for any industry and role",
     icon: Briefcase,
     templates: [
