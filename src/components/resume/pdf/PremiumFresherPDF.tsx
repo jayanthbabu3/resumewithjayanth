@@ -27,7 +27,7 @@ export const PremiumFresherPDF = ({
       padding: 40,
     },
     header: {
-      marginBottom: 20,
+      marginBottom: 24,
       paddingBottom: 16,
       borderBottomWidth: 2,
       borderBottomColor: themeColor,
@@ -41,7 +41,7 @@ export const PremiumFresherPDF = ({
       flex: 1,
     },
     name: {
-      fontSize: 22,
+      fontSize: 24,
       fontWeight: 700,
       color: themeColor,
       marginBottom: 4,
@@ -54,13 +54,13 @@ export const PremiumFresherPDF = ({
     contactInfo: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 16,
+      gap: 24,
       fontSize: 9,
       color: "#374151",
     },
     photoWrapper: {
-      width: 60,
-      height: 60,
+      width: 64,
+      height: 64,
       borderRadius: 8,
       borderWidth: 2,
       borderColor: themeColor,
@@ -73,17 +73,17 @@ export const PremiumFresherPDF = ({
       objectFit: "cover",
     },
     summarySection: {
-      marginBottom: 20,
+      marginBottom: 24,
     },
     sectionTitle: {
       fontSize: 11,
       fontWeight: 700,
       color: themeColor,
-      marginBottom: 8,
+      marginBottom: 12,
     },
     summaryText: {
       fontSize: 9,
-      lineHeight: 1.5,
+      lineHeight: 1.6,
       color: "#374151",
     },
     mainContent: {
@@ -91,19 +91,24 @@ export const PremiumFresherPDF = ({
       gap: 24,
     },
     leftColumn: {
-      width: "33%",
+      width: "33.333%",
     },
     rightColumn: {
       flex: 1,
     },
     section: {
-      marginBottom: 20,
+      marginBottom: 24,
     },
     educationItem: {
       marginBottom: 16,
       paddingBottom: 16,
       borderBottomWidth: 1,
       borderBottomColor: "#e5e7eb",
+    },
+    educationItemLast: {
+      marginBottom: 16,
+      paddingBottom: 0,
+      borderBottomWidth: 0,
     },
     degree: {
       fontSize: 10,
@@ -135,6 +140,7 @@ export const PremiumFresherPDF = ({
     skillName: {
       fontSize: 9,
       color: "#111827",
+      flex: 1,
     },
     skillLevelContainer: {
       flexDirection: "row",
@@ -142,20 +148,21 @@ export const PremiumFresherPDF = ({
       gap: 8,
     },
     skillBar: {
-      width: 48,
-      height: 4,
+      width: 64,
+      height: 6,
       backgroundColor: "#e5e7eb",
-      borderRadius: 2,
+      borderRadius: 999,
       overflow: "hidden",
     },
     skillBarFill: {
       height: "100%",
       backgroundColor: themeColor,
+      borderRadius: 999,
     },
     skillLevel: {
-      fontSize: 7,
+      fontSize: 8,
       color: "#6b7280",
-      width: 24,
+      width: 32,
     },
     experienceItem: {
       marginBottom: 20,
@@ -165,6 +172,9 @@ export const PremiumFresherPDF = ({
       justifyContent: "space-between",
       alignItems: "flex-start",
       marginBottom: 8,
+    },
+    experienceLeft: {
+      flex: 1,
     },
     position: {
       fontSize: 10,
@@ -183,12 +193,12 @@ export const PremiumFresherPDF = ({
     },
     description: {
       fontSize: 9,
-      lineHeight: 1.5,
+      lineHeight: 1.6,
       color: "#374151",
     },
     sectionContent: {
       fontSize: 9,
-      lineHeight: 1.5,
+      lineHeight: 1.6,
       color: "#374151",
     },
   });
@@ -242,7 +252,10 @@ export const PremiumFresherPDF = ({
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Education</Text>
                 {resumeData.education.map((edu, index) => (
-                  <View key={index} style={styles.educationItem}>
+                  <View 
+                    key={index} 
+                    style={index === resumeData.education.length - 1 ? styles.educationItemLast : styles.educationItem}
+                  >
                     <Text style={styles.degree}>{edu.degree}</Text>
                     {edu.field && <Text style={styles.field}>{edu.field}</Text>}
                     <Text style={styles.school}>{edu.school}</Text>
@@ -289,7 +302,7 @@ export const PremiumFresherPDF = ({
                 {resumeData.experience.map((exp, index) => (
                   <View key={index} style={styles.experienceItem}>
                     <View style={styles.experienceHeader}>
-                      <View>
+                      <View style={styles.experienceLeft}>
                         <Text style={styles.position}>{exp.position}</Text>
                         <Text style={styles.company}>{exp.company}</Text>
                       </View>
