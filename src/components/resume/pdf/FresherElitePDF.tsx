@@ -105,17 +105,17 @@ export const FresherElitePDF = ({
       color: "#ffffff",
     },
     name: {
-      fontSize: 26,
+      fontSize: 24,
       fontWeight: 700,
       color: "#ffffff",
       marginBottom: 6,
     },
     title: {
-      fontSize: 12,
+      fontSize: 11,
       fontWeight: 600,
       color: "#ffffff",
       opacity: 0.95,
-      marginBottom: 14,
+      marginBottom: 12,
     },
     contactInfo: {
       flexDirection: "row",
@@ -131,9 +131,9 @@ export const FresherElitePDF = ({
       fontSize: 9,
     },
     photoWrapper: {
-      width: 88,
-      height: 88,
-      borderRadius: 44,
+      width: 80,
+      height: 80,
+      borderRadius: 40,
       borderWidth: 4,
       borderColor: "#ffffff",
       overflow: "hidden",
@@ -187,7 +187,7 @@ export const FresherElitePDF = ({
       borderRadius: 2,
     },
     sectionTitle: {
-      fontSize: 9,
+      fontSize: 8,
       fontWeight: 700,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -205,7 +205,7 @@ export const FresherElitePDF = ({
       fontSize: 10,
       fontWeight: 700,
       color: "#111827",
-      marginBottom: 3,
+      marginBottom: 4,
     },
     field: {
       fontSize: 8,
@@ -216,7 +216,7 @@ export const FresherElitePDF = ({
       fontSize: 8,
       fontWeight: 600,
       color: themeColor,
-      marginBottom: 3,
+      marginBottom: 4,
     },
     dateText: {
       fontSize: 8,
@@ -238,9 +238,9 @@ export const FresherElitePDF = ({
       gap: 4,
     },
     skillDot: {
-      width: 7,
-      height: 7,
-      borderRadius: 3.5,
+      width: 6,
+      height: 6,
+      borderRadius: 3,
     },
     experienceItem: {
       position: "relative",
@@ -268,7 +268,7 @@ export const FresherElitePDF = ({
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "flex-start",
-      marginBottom: 6,
+      marginBottom: 8,
     },
     experienceLeft: {
       flex: 1,
@@ -279,10 +279,10 @@ export const FresherElitePDF = ({
       color: "#111827",
     },
     company: {
-      fontSize: 9,
+      fontSize: 10,
       fontWeight: 600,
       color: themeColor,
-      marginTop: 3,
+      marginTop: 4,
     },
     dateBadge: {
       fontSize: 8,
@@ -290,7 +290,7 @@ export const FresherElitePDF = ({
       color: themeColor,
       backgroundColor: `${themeColor}15`,
       paddingHorizontal: 10,
-      paddingVertical: 3,
+      paddingVertical: 2,
       borderRadius: 999,
     },
     description: {
