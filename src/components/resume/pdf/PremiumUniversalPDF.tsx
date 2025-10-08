@@ -35,7 +35,8 @@ export const PremiumUniversalPDF = ({
     },
     name: {
       fontSize: 28,
-      fontFamily: "InterBold",
+      fontFamily: "Inter",
+      fontWeight: 700,
       color: themeColor,
       marginBottom: 8,
     },
@@ -54,7 +55,8 @@ export const PremiumUniversalPDF = ({
     },
     sectionTitle: {
       fontSize: 14,
-      fontFamily: "InterBold",
+      fontFamily: "Inter",
+      fontWeight: 700,
       color: themeColor,
       marginBottom: 12,
     },
@@ -74,12 +76,14 @@ export const PremiumUniversalPDF = ({
     },
     positionTitle: {
       fontSize: 12,
-      fontFamily: "InterSemiBold",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
     },
     companyName: {
       fontSize: 11,
-      fontFamily: "InterMedium",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#374151",
       marginTop: 2,
     },
@@ -103,7 +107,8 @@ export const PremiumUniversalPDF = ({
     },
     degree: {
       fontSize: 12,
-      fontFamily: "InterSemiBold",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
     },
     institution: {
@@ -125,7 +130,8 @@ export const PremiumUniversalPDF = ({
       paddingHorizontal: 12,
       paddingVertical: 6,
       fontSize: 9,
-      fontFamily: "InterMedium",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
       borderWidth: 1,
       borderColor: "#d1d5db",
@@ -136,7 +142,8 @@ export const PremiumUniversalPDF = ({
     },
     certificationName: {
       fontSize: 11,
-      fontFamily: "InterSemiBold",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
     },
     certificationDetails: {
@@ -149,7 +156,8 @@ export const PremiumUniversalPDF = ({
     },
     projectName: {
       fontSize: 12,
-      fontFamily: "InterSemiBold",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
     },
     projectDescription: {
@@ -163,12 +171,14 @@ export const PremiumUniversalPDF = ({
     },
     customItemTitle: {
       fontSize: 12,
-      fontFamily: "InterSemiBold",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#111827",
     },
     customItemSubtitle: {
       fontSize: 11,
-      fontFamily: "InterMedium",
+      fontFamily: "Inter",
+      fontWeight: 600,
       color: "#374151",
       marginTop: 2,
     },
