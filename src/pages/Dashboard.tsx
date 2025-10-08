@@ -54,26 +54,26 @@ const professions = [
 const templates = [
   {
     id: "professional",
-    name: "Professional",
+    name: "Classic Professional",
     description:
       "Traditional single-column format ideal for corporate environments",
     highlights: ["Single Column", "ATS-Optimized", "Clean Design"],
   },
   {
     id: "modern",
-    name: "Modern",
+    name: "Contemporary Design",
     description: "Contemporary design perfect for creative industries",
     highlights: ["Two-Column", "Modern Typography", "Creative Layout"],
   },
   {
     id: "minimal",
-    name: "Minimal",
+    name: "Elegant Minimal",
     description: "Sophisticated simplicity with generous whitespace",
     highlights: ["Generous Whitespace", "Easy to Scan", "Timeless"],
   },
   {
     id: "executive",
-    name: "Executive",
+    name: "Executive Leadership",
     description: "Bold design crafted for senior positions and leadership",
     highlights: ["Strong Presence", "Premium Aesthetic", "Leadership Style"],
   },
@@ -98,13 +98,13 @@ const templates = [
   },
   {
     id: "graduate",
-    name: "Graduate",
+    name: "Graduate Excellence",
     description: "Modern two-column layout emphasizing education and potential",
     highlights: ["Two-Column", "Education-Focused", "Premium Design"],
   },
   {
     id: "starter",
-    name: "Starter",
+    name: "Career Starter",
     description:
       "Clean single-column design perfect for entry-level candidates",
     highlights: ["Single Column", "Skills Highlight", "Fresh Look"],
@@ -118,7 +118,7 @@ const templates = [
   },
   {
     id: "premium-fresher",
-    name: "Premium Fresher",
+    name: "Premium Graduate",
     description:
       "Modern premium template with gradient design and skill levels for fresh graduates",
     highlights: ["Gradient Design", "Skill Levels", "Modern Layout", "ATS-Optimized"],
