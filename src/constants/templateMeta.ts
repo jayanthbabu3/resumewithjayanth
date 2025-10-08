@@ -8,13 +8,15 @@ export interface TemplateMeta {
 export const templateMetaMap: Record<string, TemplateMeta> = {
   professional: {
     name: "Professional",
-    description: "Traditional single-column layout optimized for corporate roles.",
+    description:
+      "Traditional single-column layout optimized for corporate roles.",
     category: "Corporate",
     categorySlug: "all",
   },
   modern: {
     name: "Modern",
-    description: "Contemporary two-column design for creative and product teams.",
+    description:
+      "Contemporary two-column design for creative and product teams.",
     category: "Creative",
     categorySlug: "all",
   },
@@ -32,37 +34,50 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
   },
   frontend: {
     name: "Frontend Developer",
-    description: "Balanced UI-focused resume with skill grids and project highlights.",
+    description:
+      "Balanced UI-focused resume with skill grids and project highlights.",
     category: "Engineering",
     categorySlug: "software",
   },
   fullstack: {
     name: "Full Stack Engineer",
-    description: "Complete stack coverage with plenty of space for technical impact.",
+    description:
+      "Complete stack coverage with plenty of space for technical impact.",
     category: "Engineering",
     categorySlug: "software",
   },
   backend: {
     name: "Backend Developer",
-    description: "API-centric template emphasizing scalability and system design.",
+    description:
+      "API-centric template emphasizing scalability and system design.",
     category: "Engineering",
     categorySlug: "software",
   },
   software: {
     name: "Lead Software Engineer",
-    description: "Bold two-column layout with impact metrics, achievements, and career highlights.",
+    description:
+      "Bold two-column layout with impact metrics, achievements, and career highlights.",
     category: "Engineering",
     categorySlug: "software",
   },
   graduate: {
     name: "Graduate",
-    description: "Education-forward layout highlighting projects and internships.",
+    description:
+      "Education-forward layout highlighting projects and internships.",
     category: "Early Career",
     categorySlug: "freshers",
   },
   starter: {
     name: "Starter",
-    description: "Entry-level friendly template with skills and achievements spotlight.",
+    description:
+      "Entry-level friendly template with skills and achievements spotlight.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  fresher: {
+    name: "Fresher Premium",
+    description:
+      "ATS-optimized premium template with elegant design for fresh graduates and entry-level professionals.",
     category: "Early Career",
     categorySlug: "freshers",
   },
@@ -80,7 +95,8 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
   },
   "senior-backend": {
     name: "Senior Backend Engineer",
-    description: "Robust backend-focused resume highlighting scalable architecture, reliability, and leadership impact.",
+    description:
+      "Robust backend-focused resume highlighting scalable architecture, reliability, and leadership impact.",
     category: "Engineering",
     categorySlug: "software",
   },
