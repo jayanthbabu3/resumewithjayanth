@@ -24,6 +24,7 @@ import { SeniorFrontendPDF } from "@/components/resume/pdf/SeniorFrontendPDF";
 import { SeniorBackendPDF } from "@/components/resume/pdf/SeniorBackendPDF";
 import { SoftwarePDF } from "@/components/resume/pdf/SoftwarePDF";
 import { PremiumUniversalPDF } from "@/components/resume/pdf/PremiumUniversalPDF";
+import { PremiumProPDF } from "@/components/resume/pdf/PremiumProPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1338,6 +1339,80 @@ const getTemplateDefaults = (templateId: string): ResumeData => {
         },
       ],
     },
+    "premium-pro": {
+      personalInfo: {
+        fullName: "Alexandra Martinez",
+        email: "alexandra.martinez@email.com",
+        phone: "+1 (555) 890-1234",
+        location: "Boston, MA",
+        title: "Marketing Manager",
+        summary:
+          "Strategic marketing professional with 7+ years of experience driving brand growth and customer engagement. Expertise in digital marketing, campaign management, and data-driven decision making. Proven track record of increasing ROI and building strong customer relationships.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "TechBrand Solutions",
+          position: "Senior Marketing Manager",
+          startDate: "2021-01",
+          endDate: "",
+          current: true,
+          description:
+            "Lead integrated marketing campaigns resulting in 45% increase in qualified leads\nManage $2M annual marketing budget across digital and traditional channels\nDevelop and execute content strategy increasing website traffic by 60%\nCollaborate with sales team to optimize lead nurturing and conversion",
+        },
+        {
+          id: "2",
+          company: "Creative Agency Inc",
+          position: "Marketing Specialist",
+          startDate: "2018-03",
+          endDate: "2020-12",
+          current: false,
+          description:
+            "Managed social media strategy across multiple platforms\nDeveloped email marketing campaigns with 25% open rate improvement\nCoordinated events and product launches",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Boston University",
+          degree: "Master of Business Administration",
+          field: "Marketing",
+          startDate: "2016-09",
+          endDate: "2018-05",
+        },
+        {
+          id: "2",
+          school: "University of Massachusetts",
+          degree: "Bachelor of Science",
+          field: "Communications",
+          startDate: "2012-09",
+          endDate: "2016-05",
+        },
+      ],
+      skills: buildSkills(
+        "premium-pro",
+        [
+          "Digital Marketing",
+          "SEO & SEM",
+          "Google Analytics",
+          "Marketing Automation",
+          "Content Strategy",
+          "Social Media Marketing",
+          "Brand Management",
+          "Campaign Management",
+        ],
+        [9, 8, 8, 8, 9, 8, 8, 7],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Certifications",
+          content:
+            "Google Ads Certification\nHubSpot Content Marketing Certification\nFacebook Blueprint Certification",
+        },
+      ],
+    },
   };
 
   return templates[templateId] || templates.professional;
@@ -1479,6 +1554,7 @@ const Editor = () => {
         "senior-backend": SeniorBackendPDF,
         software: SoftwarePDF,
         "premium-universal": PremiumUniversalPDF,
+        "premium-pro": PremiumProPDF,
       };
 
       const PDFTemplate =

@@ -48,6 +48,7 @@ const professions = [
       "minimal",
       "executive",
       "premium-universal",
+      "premium-pro",
     ],
   },
 ];
@@ -130,6 +131,13 @@ const templates = [
     description:
       "Elegant and simple ATS-friendly template suitable for all industries and experience levels",
     highlights: ["ATS-Optimized", "Clean Layout", "Universal Design", "Professional"],
+  },
+  {
+    id: "premium-pro",
+    name: "Premium Pro",
+    description:
+      "Modern premium design with side accent panel and sophisticated typography",
+    highlights: ["Side Accent Panel", "Modern Design", "ATS-Optimized", "Distinctive"],
   },
   {
     id: "software",
