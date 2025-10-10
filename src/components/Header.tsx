@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { ChefHat } from "lucide-react";
+import { ChefHat, LogOut } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, signOut } = useAuth();
   const isDashboard = location.pathname === "/dashboard";
   const isEditor = location.pathname.startsWith("/editor");
 
@@ -55,12 +57,33 @@ export const Header = () => {
               ))}
             </div>
 
-            {!isEditor && (
+            {!isEditor && !user && (
+              <Button
+                onClick={() => navigate("/auth")}
+                className="bg-primary hover:bg-primary-hover"
+              >
+                Sign In
+              </Button>
+            )}
+            
+            {!isEditor && user && (
               <Button
                 onClick={() => navigate("/dashboard")}
                 className="bg-primary hover:bg-primary-hover"
               >
-                {isDashboard ? "Choose Template" : "Create Your Resume"}
+                {isDashboard ? "Choose Template" : "My Resumes"}
+              </Button>
+            )}
+            
+            {user && (
+              <Button
+                onClick={signOut}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="hidden sm:inline">Sign Out</span>
               </Button>
             )}
           </div>
