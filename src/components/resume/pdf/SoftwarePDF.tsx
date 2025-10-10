@@ -76,6 +76,12 @@ const styles = StyleSheet.create({
     borderLeftStyle: 'solid',
     marginTop: 18,
   },
+  sectionBreakable: {
+    paddingLeft: 14,
+    borderLeftWidth: 3,
+    borderLeftStyle: 'solid',
+    marginTop: 18,
+  },
   sectionTitle: {
     fontSize: 9,
     fontWeight: 600,
@@ -91,6 +97,9 @@ const styles = StyleSheet.create({
   experienceBlock: {
     flexDirection: 'column',
     marginBottom: 12,
+  },
+  educationBlock: {
+    marginBottom: 10,
   },
   experienceHeader: {
     flexDirection: 'row',
@@ -193,19 +202,19 @@ export const SoftwarePDF = ({ resumeData, themeColor = '#2563eb' }: Props) => {
           </View>
 
           {resumeData.personalInfo.summary ? (
-            <View style={[styles.section, { borderLeftColor: themeColor }]}>
+            <View style={[styles.section, { borderLeftColor: themeColor }]} wrap={false}>
               <Text style={[styles.sectionTitle, { color: themeColor }]}>Summary</Text>
               <Text style={styles.paragraph}>{resumeData.personalInfo.summary}</Text>
             </View>
           ) : null}
 
-          <View style={[styles.section, { borderLeftColor: themeColor }]}>
+          <View style={[styles.sectionBreakable, { borderLeftColor: themeColor }]}>
             <Text style={[styles.sectionTitle, { color: themeColor }]}>Professional Experience</Text>
             <View style={{ marginTop: 4 }}>
               {resumeData.experience.map(exp => {
                 const bullets = splitLines(exp.description);
                 return (
-                  <View key={exp.id} style={styles.experienceBlock}>
+                  <View key={exp.id} style={styles.experienceBlock} wrap={false}>
                     <View style={styles.experienceHeader}>
                       <Text style={styles.position}>{exp.position}</Text>
                       <Text style={styles.date}>
@@ -229,14 +238,14 @@ export const SoftwarePDF = ({ resumeData, themeColor = '#2563eb' }: Props) => {
           </View>
 
           {resumeData.skills.length > 0 ? (
-            <View style={[styles.section, { borderLeftColor: themeColor }]}>
+            <View style={[styles.section, { borderLeftColor: themeColor }]} wrap={false}>
               <Text style={[styles.sectionTitle, { color: themeColor }]}>Skills</Text>
               <Text style={styles.paragraph}>{skillsList}</Text>
             </View>
           ) : null}
 
           {achievements.length > 0 ? (
-            <View style={[styles.section, { borderLeftColor: themeColor }]}>
+            <View style={[styles.section, { borderLeftColor: themeColor }]} wrap={false}>
               <Text style={[styles.sectionTitle, { color: themeColor }]}>Achievements</Text>
               <View style={styles.list}>
                 {achievements.map((item, idx) => (
@@ -249,7 +258,7 @@ export const SoftwarePDF = ({ resumeData, themeColor = '#2563eb' }: Props) => {
           ) : null}
 
           {strengths.length > 0 ? (
-            <View style={[styles.section, { borderLeftColor: themeColor }]}>
+            <View style={[styles.section, { borderLeftColor: themeColor }]} wrap={false}>
               <Text style={[styles.sectionTitle, { color: themeColor }]}>Strengths</Text>
               <View style={styles.list}>
                 {strengths.map((item, idx) => (
@@ -262,11 +271,11 @@ export const SoftwarePDF = ({ resumeData, themeColor = '#2563eb' }: Props) => {
           ) : null}
 
           {resumeData.education.length > 0 ? (
-            <View style={[styles.section, { borderLeftColor: themeColor }]}>
+            <View style={[styles.sectionBreakable, { borderLeftColor: themeColor }]}>
               <Text style={[styles.sectionTitle, { color: themeColor }]}>Education</Text>
               <View style={{ marginTop: 4 }}>
                 {resumeData.education.map(edu => (
-                  <View key={edu.id} style={{ marginBottom: 10 }}>
+                  <View key={edu.id} style={styles.educationBlock} wrap={false}>
                     <Text style={styles.position}>{edu.degree}</Text>
                     <Text style={styles.company}>{edu.school}</Text>
                     {edu.field ? <Text style={styles.paragraph}>{edu.field}</Text> : null}

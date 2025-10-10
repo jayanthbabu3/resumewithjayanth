@@ -82,6 +82,9 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 22,
   },
+  sectionBreakable: {
+    marginBottom: 22,
+  },
   summary: {
     fontSize: 9,
     lineHeight: 1.6,
@@ -241,7 +244,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
         <View style={styles.content}>
           {/* Summary */}
           {resumeData.personalInfo.summary && (
-            <View style={styles.section}>
+            <View style={styles.section} wrap={false}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>ABOUT ME</Text>
               <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
             </View>
@@ -259,7 +262,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
 
           {/* Experience */}
           {resumeData.experience && resumeData.experience.length > 0 && (
-            <View style={styles.section}>
+            <View style={styles.sectionBreakable}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>PROFESSIONAL EXPERIENCE</Text>
               {resumeData.experience.map((exp, index) => (
                 <View key={index} style={styles.experienceItem} wrap={false}>
@@ -280,7 +283,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
 
           {/* Education */}
           {resumeData.education && resumeData.education.length > 0 && (
-            <View style={styles.section}>
+            <View style={styles.sectionBreakable}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>EDUCATION</Text>
               {resumeData.education.map((edu, index) => (
                 <View key={index} style={styles.educationItem} wrap={false}>
