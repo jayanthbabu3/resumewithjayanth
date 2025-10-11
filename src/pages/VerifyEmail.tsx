@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Mail, CheckCircle2, ArrowRight } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import { Header } from '@/components/Header';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -19,8 +20,10 @@ const VerifyEmail = () => {
   }, [user, navigate]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background to-muted/20 p-4">
-      <Card className="w-full max-w-lg">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/20">
+      <Header />
+      <div className="flex items-center justify-center min-h-[calc(100vh-73px)] p-4">
+        <Card className="w-full max-w-lg">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
             <Mail className="w-10 h-10 text-primary" />
@@ -85,6 +88,7 @@ const VerifyEmail = () => {
           </Button>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 };
