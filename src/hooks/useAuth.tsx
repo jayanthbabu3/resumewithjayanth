@@ -79,15 +79,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     bio?: string;
   }) => {
     try {
-      // First, send OTP to email
-      const { error: otpError } = await supabase.auth.signInWithOtp({
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
+        password,
         options: {
-          shouldCreateUser: true,
           emailRedirectTo: `${window.location.origin}/auth`,
           data: {
             full_name: userData.fullName,
-            password: password, // Store password in metadata for later and remove after verify
             phone: userData.phone || '',
             location: userData.location || '',
             linkedin_url: userData.linkedinUrl || '',
@@ -99,13 +97,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       });
       
-      if (otpError) {
-        const msg = (otpError.message || '').toLowerCase();
-        if (msg.includes('already') || msg.includes('exist') || otpError.status === 400 || otpError.status === 422) {
+      if (signUpError) {
+        const msg = (signUpError.message || '').toLowerCase();
+        if (msg.includes('already') || msg.includes('exist') || signUpError.status === 400 || signUpError.status === 422) {
           toast.error('An account with this email already exists. Please sign in instead.');
           throw new Error('User already exists');
         }
-        throw otpError;
+        throw signUpError;
       }
       
       toast.success('Verification email sent! Please check your inbox.');
@@ -128,26 +126,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (error) throw error;
 
-      // After OTP verification, Supabase returns a session. Use it to set the password
-      const { data: sessionData } = await supabase.auth.getSession();
-      const userMeta = sessionData?.session?.user?.user_metadata as any;
-      const pendingPassword = userMeta?.password as string | undefined;
-
-      if (pendingPassword) {
-        const { error: updateError } = await supabase.auth.updateUser({
-          password: pendingPassword,
-          data: { password: null }, // clear temporary password from metadata
-        });
-        if (updateError) {
-          // Not fatal for navigation, but inform the user
-          toast.error(updateError.message || 'Verified but failed to set password');
-        } else {
-          toast.success('Email verified! Password set successfully.');
-        }
-      } else {
-        toast.success('Email verified successfully!');
-      }
-
+      toast.success('Email verified successfully!');
       navigate('/profile-completion');
     } catch (error: any) {
       toast.error(error.message || 'Invalid verification code');
