@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -10,17 +10,14 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Header } from '@/components/Header';
 
 const Auth = () => {
-  const { user, signIn, signUp, loading } = useAuth();
+  const { signIn, signUp, loading } = useAuth();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [signInError, setSignInError] = useState('');
   const [signUpError, setSignUpError] = useState('');
 
-  useEffect(() => {
-    if (user) {
-      navigate('/profile-completion');
-    }
-  }, [user, navigate]);
+  // No auto-redirect needed - signIn function handles navigation to dashboard
+  // and signUp redirects to verify-email page
 
   const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
