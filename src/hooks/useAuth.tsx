@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     bio?: string;
   }) => {
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -97,14 +97,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
       
       if (error) {
-        // Check if user already exists
-        if (error.message.toLowerCase().includes('already') || 
-            error.message.toLowerCase().includes('exists') ||
-            error.status === 422) {
+        // Check if user already exists (common cases: "User already registered", 400/422)
+        const msg = (error.message || '').toLowerCase();
+        if (msg.includes('already') || msg.includes('exist') || error.status === 400 || error.status === 422) {
           toast.error('An account with this email already exists. Please sign in instead.');
           throw new Error('User already exists');
         }
         throw error;
+      }
+
+      // Supabase may return no error but an empty identities array when email is already registered
+      const identities = (data?.user as any)?.identities ?? [];
+      if (Array.isArray(identities) && identities.length === 0) {
+        toast.error('An account with this email already exists. Please sign in instead.');
+        throw new Error('User already exists');
       }
       
       toast.success('Verification email sent! Please check your inbox and verify your email to continue.');
