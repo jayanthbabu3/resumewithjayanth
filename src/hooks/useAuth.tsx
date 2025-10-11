@@ -8,7 +8,16 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, fullName: string) => Promise<void>;
+  signUp: (email: string, password: string, userData: {
+    fullName: string;
+    phone?: string;
+    location?: string;
+    linkedinUrl?: string;
+    githubUrl?: string;
+    portfolioUrl?: string;
+    professionalTitle?: string;
+    bio?: string;
+  }) => Promise<void>;
   signOut: () => Promise<void>;
   loading: boolean;
 }
@@ -58,7 +67,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const signUp = async (email: string, password: string, fullName: string) => {
+  const signUp = async (email: string, password: string, userData: {
+    fullName: string;
+    phone?: string;
+    location?: string;
+    linkedinUrl?: string;
+    githubUrl?: string;
+    portfolioUrl?: string;
+    professionalTitle?: string;
+    bio?: string;
+  }) => {
     try {
       const { error } = await supabase.auth.signUp({
         email,
@@ -66,7 +84,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         options: {
           emailRedirectTo: `${window.location.origin}/`,
           data: {
-            full_name: fullName,
+            full_name: userData.fullName,
+            phone: userData.phone || '',
+            location: userData.location || '',
+            linkedin_url: userData.linkedinUrl || '',
+            github_url: userData.githubUrl || '',
+            portfolio_url: userData.portfolioUrl || '',
+            professional_title: userData.professionalTitle || '',
+            bio: userData.bio || '',
           }
         }
       });

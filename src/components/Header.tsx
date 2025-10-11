@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { ChefHat, LogOut } from "lucide-react";
+import { ChefHat, LogOut, User } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
@@ -11,6 +11,7 @@ export const Header = () => {
   const { user, signOut } = useAuth();
   const isDashboard = location.pathname === "/dashboard";
   const isEditor = location.pathname.startsWith("/editor");
+  const isProfile = location.pathname === "/profile";
 
   const navItems = useMemo(() => [{ label: "Home", to: "/" }], []);
 
@@ -67,12 +68,23 @@ export const Header = () => {
             )}
             
             {!isEditor && user && (
-              <Button
-                onClick={() => navigate("/dashboard")}
-                className="bg-primary hover:bg-primary-hover"
-              >
-                {isDashboard ? "Choose Template" : "My Resumes"}
-              </Button>
+              <>
+                <Button
+                  onClick={() => navigate("/dashboard")}
+                  className="bg-primary hover:bg-primary-hover"
+                >
+                  {isDashboard ? "Choose Template" : "My Resumes"}
+                </Button>
+                <Button
+                  onClick={() => navigate("/profile")}
+                  variant={isProfile ? "default" : "outline"}
+                  size="sm"
+                  className="gap-2"
+                >
+                  <User className="h-4 w-4" />
+                  <span className="hidden sm:inline">Profile</span>
+                </Button>
+              </>
             )}
             
             {user && (

@@ -42,9 +42,25 @@ const Auth = () => {
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
     const fullName = formData.get('fullName') as string;
+    const phone = formData.get('phone') as string;
+    const location = formData.get('location') as string;
+    const professionalTitle = formData.get('professionalTitle') as string;
+    const linkedinUrl = formData.get('linkedinUrl') as string;
+    const githubUrl = formData.get('githubUrl') as string;
+    const portfolioUrl = formData.get('portfolioUrl') as string;
+    const bio = formData.get('bio') as string;
 
     try {
-      await signUp(email, password, fullName);
+      await signUp(email, password, {
+        fullName,
+        phone,
+        location,
+        professionalTitle,
+        linkedinUrl,
+        githubUrl,
+        portfolioUrl,
+        bio
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -100,9 +116,9 @@ const Auth = () => {
             </TabsContent>
             
             <TabsContent value="signup">
-              <form onSubmit={handleSignUp} className="space-y-4">
+              <form onSubmit={handleSignUp} className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                 <div className="space-y-2">
-                  <Label htmlFor="signup-name">Full Name</Label>
+                  <Label htmlFor="signup-name">Full Name *</Label>
                   <Input 
                     id="signup-name" 
                     name="fullName" 
@@ -112,7 +128,7 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
+                  <Label htmlFor="signup-email">Email *</Label>
                   <Input 
                     id="signup-email" 
                     name="email" 
@@ -122,13 +138,76 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="signup-password">Password</Label>
+                  <Label htmlFor="signup-password">Password *</Label>
                   <Input 
                     id="signup-password" 
                     name="password" 
                     type="password" 
                     minLength={6}
                     required 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-phone">Phone</Label>
+                  <Input 
+                    id="signup-phone" 
+                    name="phone" 
+                    type="tel" 
+                    placeholder="+1 (555) 000-0000" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-location">Location</Label>
+                  <Input 
+                    id="signup-location" 
+                    name="location" 
+                    type="text" 
+                    placeholder="New York, NY" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-title">Professional Title</Label>
+                  <Input 
+                    id="signup-title" 
+                    name="professionalTitle" 
+                    type="text" 
+                    placeholder="Software Engineer" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-linkedin">LinkedIn URL</Label>
+                  <Input 
+                    id="signup-linkedin" 
+                    name="linkedinUrl" 
+                    type="url" 
+                    placeholder="https://linkedin.com/in/username" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-github">GitHub URL</Label>
+                  <Input 
+                    id="signup-github" 
+                    name="githubUrl" 
+                    type="url" 
+                    placeholder="https://github.com/username" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-portfolio">Portfolio URL</Label>
+                  <Input 
+                    id="signup-portfolio" 
+                    name="portfolioUrl" 
+                    type="url" 
+                    placeholder="https://yourportfolio.com" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-bio">Professional Bio</Label>
+                  <Input 
+                    id="signup-bio" 
+                    name="bio" 
+                    type="text" 
+                    placeholder="Brief professional summary..." 
                   />
                 </div>
                 <Button type="submit" className="w-full" disabled={isSubmitting}>
