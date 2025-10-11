@@ -10,7 +10,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { Plus, Trash2, Briefcase, GraduationCap, Code, FileText, Sparkles } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Plus, Trash2, Briefcase, GraduationCap, Code, FileText, Sparkles, Camera, X, Search, Tag } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import type { ResumeData } from "@/pages/Editor";
 
@@ -21,7 +22,13 @@ interface ResumeFormProps {
 
 export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const experienceContainerRef = useRef<HTMLDivElement>(null);
+  const educationContainerRef = useRef<HTMLDivElement>(null);
+  const skillsContainerRef = useRef<HTMLDivElement>(null);
+  const customContainerRef = useRef<HTMLDivElement>(null);
   const [photoUrlInput, setPhotoUrlInput] = useState("");
+  const [skillInput, setSkillInput] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     const currentPhoto = resumeData.personalInfo.photo || "";
@@ -64,6 +71,42 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
       handlePhotoRemove();
     }
   };
+
+  useEffect(() => {
+    if (experienceContainerRef.current) {
+      const lastExperienceElement = experienceContainerRef.current.lastElementChild;
+      if (lastExperienceElement) {
+        lastExperienceElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [resumeData.experience.length]);
+
+  useEffect(() => {
+    if (educationContainerRef.current) {
+      const lastEducationElement = educationContainerRef.current.lastElementChild;
+      if (lastEducationElement) {
+        lastEducationElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [resumeData.education.length]);
+
+  useEffect(() => {
+    if (skillsContainerRef.current) {
+      const lastSkillElement = skillsContainerRef.current.lastElementChild;
+      if (lastSkillElement) {
+        lastSkillElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [resumeData.skills.length]);
+
+  useEffect(() => {
+    if (customContainerRef.current) {
+      const lastCustomElement = customContainerRef.current.lastElementChild;
+      if (lastCustomElement) {
+        lastCustomElement.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+  }, [resumeData.sections.length]);
 
   const addExperience = () => {
     setResumeData({
@@ -132,7 +175,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
     });
   };
 
-  const addSkill = (category: "core" | "toolbox") => {
+  const addSkill = () => {
     setResumeData({
       ...resumeData,
       skills: [
@@ -141,10 +184,94 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
           name: "",
           level: 7,
-          category,
+          category: "core",
         },
       ],
     });
+  };
+
+  const handleAddSkill = () => {
+    const skillName = skillInput.trim();
+    if (skillName && !resumeData.skills.some(skill => skill.name.toLowerCase() === skillName.toLowerCase())) {
+      setResumeData({
+        ...resumeData,
+        skills: [
+          ...resumeData.skills,
+          {
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            name: skillName,
+            level: 7,
+            category: "core",
+          },
+        ],
+      });
+      setSkillInput("");
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddSkill();
+    }
+  };
+
+  const skillSuggestions = [
+    // Frontend
+    { name: "React", category: "Frontend" },
+    { name: "Vue.js", category: "Frontend" },
+    { name: "Angular", category: "Frontend" },
+    { name: "JavaScript", category: "Frontend" },
+    { name: "TypeScript", category: "Frontend" },
+    { name: "HTML", category: "Frontend" },
+    { name: "CSS", category: "Frontend" },
+    { name: "SASS", category: "Frontend" },
+    { name: "Tailwind CSS", category: "Frontend" },
+    { name: "Next.js", category: "Frontend" },
+    
+    // Backend
+    { name: "Node.js", category: "Backend" },
+    { name: "Python", category: "Backend" },
+    { name: "Java", category: "Backend" },
+    { name: "C#", category: "Backend" },
+    { name: "PHP", category: "Backend" },
+    { name: "Express.js", category: "Backend" },
+    { name: "Django", category: "Backend" },
+    { name: "Spring Boot", category: "Backend" },
+    { name: "Laravel", category: "Backend" },
+    { name: "Ruby on Rails", category: "Backend" },
+    
+    // Database
+    { name: "SQL", category: "Database" },
+    { name: "PostgreSQL", category: "Database" },
+    { name: "MySQL", category: "Database" },
+    { name: "MongoDB", category: "Database" },
+    { name: "Redis", category: "Database" },
+    { name: "Firebase", category: "Database" },
+    
+    // Tools & Others
+    { name: "Git", category: "Tools" },
+    { name: "Docker", category: "Tools" },
+    { name: "AWS", category: "Tools" },
+    { name: "Kubernetes", category: "Tools" },
+    { name: "Jenkins", category: "Tools" },
+    { name: "Figma", category: "Tools" },
+    { name: "Agile", category: "Methodology" },
+    { name: "Scrum", category: "Methodology" },
+    { name: "Communication", category: "Soft Skills" },
+    { name: "Leadership", category: "Soft Skills" },
+    { name: "Problem Solving", category: "Soft Skills" },
+  ];
+
+  const filteredSuggestions = skillSuggestions.filter(skill => 
+    skill.name.toLowerCase().includes(skillInput.toLowerCase()) &&
+    !resumeData.skills.some(existingSkill => existingSkill.name.toLowerCase() === skill.name.toLowerCase())
+  );
+
+  const handleSuggestionClick = (skillName: string) => {
+    setSkillInput(skillName);
+    setShowSuggestions(false);
+    setTimeout(() => handleAddSkill(), 100);
   };
 
   const updateSkillName = (index: number, value: string) => {
@@ -153,11 +280,6 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
     setResumeData({ ...resumeData, skills: newSkills });
   };
 
-  const updateSkillLevel = (index: number, value: number) => {
-    const newSkills = [...resumeData.skills];
-    newSkills[index] = { ...newSkills[index], level: value };
-    setResumeData({ ...resumeData, skills: newSkills });
-  };
 
   const removeSkill = (index: number) => {
     setResumeData({
@@ -196,6 +318,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
     });
   };
 
+
   const formatCountLabel = (
     count: number,
     singular: string,
@@ -224,7 +347,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
   );
 
   return (
-    <Accordion type="multiple" defaultValue={["personal"]} className="space-y-4">
+    <Accordion type="multiple" defaultValue={["personal", "photo"]} className="space-y-4">
       <AccordionItem
         value="personal"
         className="group overflow-hidden rounded-2xl border border-border/50 bg-card/60 shadow-sm transition-all data-[state=open]:border-primary/40 data-[state=open]:shadow-md"
@@ -299,76 +422,6 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Profile Photo</Label>
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                  <div className="h-24 w-24 rounded-full border border-dashed border-muted flex items-center justify-center overflow-hidden bg-muted/40 text-sm text-muted-foreground">
-                    {resumeData.personalInfo.photo ? (
-                      <img
-                        src={resumeData.personalInfo.photo}
-                        alt="Profile preview"
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <span>No photo</span>
-                    )}
-                  </div>
-                  <div className="flex-1 space-y-2">
-                    <div className="flex flex-wrap gap-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={() => fileInputRef.current?.click()}
-                      >
-                        Upload Photo
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        onClick={applyPhotoUrl}
-                        disabled={!photoUrlInput.trim()}
-                      >
-                        Use Image URL
-                      </Button>
-                      {resumeData.personalInfo.photo && (
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          onClick={handlePhotoRemove}
-                        >
-                          Remove
-                        </Button>
-                      )}
-                    </div>
-                    <Input
-                      placeholder="Paste image URL (https://...)"
-                      value={photoUrlInput}
-                      onChange={(e) => setPhotoUrlInput(e.target.value)}
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      Square images work best. Uploaded photos are stored locally in your browser.
-                    </p>
-                  </div>
-                </div>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(event) => {
-                    const file = event.target.files?.[0];
-                    if (file) {
-                      handlePhotoUpload(file);
-                    }
-                    if (event.target) {
-                      event.target.value = "";
-                    }
-                  }}
-                />
-              </div>
-              <div className="space-y-2">
                 <Label htmlFor="summary">Professional Summary</Label>
                 <Textarea
                   id="summary"
@@ -378,6 +431,136 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                   rows={4}
                 />
               </div>
+            </CardContent>
+          </Card>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem
+        value="photo"
+        className="group overflow-hidden rounded-2xl border border-border/50 bg-card/60 shadow-sm transition-all data-[state=open]:border-primary/40 data-[state=open]:shadow-md"
+      >
+        <AccordionTrigger className="group flex w-full items-center gap-4 rounded-none px-4 py-4 text-left text-sm font-semibold tracking-tight transition-all hover:bg-muted/40 hover:no-underline data-[state=open]:bg-primary/5 data-[state=open]:text-primary sm:px-5">
+          <span className="flex items-center gap-3 text-foreground">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm">
+              <Camera className="h-4 w-4" />
+            </span>
+            Profile Photo
+          </span>
+          <span className="ml-auto flex items-center">
+            <span className="hidden sm:inline-flex items-center rounded-full border border-border/40 bg-muted/15 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground capitalize leading-tight shadow-[0_1px_2px_rgba(15,23,42,0.06)] transition-all group-hover:translate-x-0.5 group-data-[state=open]:border-primary/50 group-data-[state=open]:text-primary/90 mr-2">
+              {resumeData.personalInfo.photo ? "Photo Added" : "No Photo"}
+            </span>
+          </span>
+        </AccordionTrigger>
+        <AccordionContent className="px-0 pb-6 pt-0">
+          <Card className="border-0 bg-transparent shadow-none">
+            <CardHeader className="pb-4">
+              <CardDescription>Add a professional photo to personalize your resume</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Photo Preview */}
+              <div className="flex justify-center">
+                <div className="h-32 w-32 rounded-full border-2 border-dashed border-muted-foreground/30 flex items-center justify-center overflow-hidden bg-muted/20 relative">
+                  {resumeData.personalInfo.photo ? (
+                    <>
+                      <img
+                        src={resumeData.personalInfo.photo}
+                        alt="Profile preview"
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          onClick={handlePhotoRemove}
+                          className="h-8 w-8 p-0"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-center">
+                      <div className="text-3xl text-muted-foreground mb-2">📷</div>
+                      <div className="text-sm text-muted-foreground">No photo</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {/* Upload Options with Tabs */}
+              <Tabs defaultValue="upload" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="upload">Upload File</TabsTrigger>
+                  <TabsTrigger value="url">From URL</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="upload" className="space-y-3 mt-4">
+                  <div className="text-center space-y-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="gap-2"
+                    >
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      Choose File
+                    </Button>
+                    <p className="text-xs text-muted-foreground">
+                      Select an image file from your device
+                    </p>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="url" className="space-y-3 mt-4">
+                  <div className="space-y-3">
+                    <Input
+                      placeholder="Paste image URL here..."
+                      value={photoUrlInput}
+                      onChange={(e) => setPhotoUrlInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && photoUrlInput.trim()) {
+                          applyPhotoUrl();
+                        }
+                      }}
+                    />
+                    <Button
+                      type="button"
+                      variant={photoUrlInput.trim() ? "default" : "outline"}
+                      onClick={applyPhotoUrl}
+                      disabled={!photoUrlInput.trim()}
+                      className="w-full"
+                    >
+                      Add Photo from URL
+                    </Button>
+                  </div>
+                </TabsContent>
+              </Tabs>
+              
+              <p className="text-xs text-muted-foreground text-center">
+                Square images work best. Photos are stored locally in your browser.
+              </p>
+              
+              {/* Hidden File Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+                  if (file) {
+                    handlePhotoUpload(file);
+                  }
+                  if (event.target) {
+                    event.target.value = "";
+                  }
+                }}
+              />
             </CardContent>
           </Card>
         </AccordionContent>
@@ -411,17 +594,19 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
-              {resumeData.experience.map((exp) => (
+            <CardContent className="space-y-6" ref={experienceContainerRef}>
+              {resumeData.experience.map((exp, index) => (
                 <div key={exp.id} className="space-y-4 p-4 border border-border rounded-lg relative">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="absolute top-2 right-2"
-                    onClick={() => removeExperience(exp.id)}
-                  >
-                    <Trash2 className="h-4 w-4 text-destructive" />
-                  </Button>
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="font-semibold text-blue-500">Experience #{index + 1}</h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeExperience(exp.id)}
+                    >
+                      <Trash2 className="h-4 w-4 text-destructive" />
+                    </Button>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label>Company</Label>
@@ -442,20 +627,24 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>Start Date</Label>
+                      <Label htmlFor={`start-date-${exp.id}`}>Start Date</Label>
                       <Input
+                        id={`start-date-${exp.id}`}
                         type="month"
                         value={exp.startDate}
                         onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)}
+                        className="cursor-pointer"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End Date</Label>
+                      <Label htmlFor={`end-date-${exp.id}`}>End Date</Label>
                       <Input
+                        id={`end-date-${exp.id}`}
                         type="month"
                         value={exp.endDate}
                         onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)}
                         disabled={exp.current}
+                        className="cursor-pointer disabled:cursor-not-allowed"
                       />
                     </div>
                   </div>
@@ -521,17 +710,19 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
-              {resumeData.education.map((edu) => (
+            <CardContent className="space-y-6" ref={educationContainerRef}>
+              {resumeData.education.map((edu, index) => (
                 <div key={edu.id} className="space-y-4 p-4 border border-border rounded-lg relative">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="absolute top-2 right-2"
-                    onClick={() => removeEducation(edu.id)}
-                  >
-                    <Trash2 className="h-4 w-4 text-destructive" />
-                  </Button>
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="font-semibold text-blue-500">Education #{index + 1}</h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeEducation(edu.id)}
+                    >
+                      <Trash2 className="h-4 w-4 text-destructive" />
+                    </Button>
+                  </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label>School/University</Label>
@@ -560,19 +751,23 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>Start Date</Label>
+                      <Label htmlFor={`edu-start-date-${edu.id}`}>Start Date</Label>
                       <Input
+                        id={`edu-start-date-${edu.id}`}
                         type="month"
                         value={edu.startDate}
                         onChange={(e) => updateEducation(edu.id, "startDate", e.target.value)}
+                        className="cursor-pointer"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>End Date</Label>
+                      <Label htmlFor={`edu-end-date-${edu.id}`}>End Date</Label>
                       <Input
+                        id={`edu-end-date-${edu.id}`}
                         type="month"
                         value={edu.endDate}
                         onChange={(e) => updateEducation(edu.id, "endDate", e.target.value)}
+                        className="cursor-pointer"
                       />
                     </div>
                   </div>
@@ -607,96 +802,169 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         </AccordionTrigger>
         <AccordionContent className="px-0 pb-6 pt-0">
           <Card className="border-0 bg-transparent shadow-none">
-            <CardHeader className="pb-4 space-y-3">
-              <CardDescription>Your technical competencies are shown in two blocks on the resume: core skills display with proficiency bars and toolbox skills appear as labeled chips. Add as many as you like in either section.</CardDescription>
-              <div className="flex flex-wrap gap-2">
-                <Button onClick={() => addSkill("core")} size="xs" className="gap-1.5">
-                  <Plus className="h-3 w-3" />
-                  Add Core Skill
-                </Button>
-                <Button onClick={() => addSkill("toolbox")} size="xs" className="gap-1.5">
-                  <Plus className="h-3 w-3" />
-                  Add Toolbox Skill
-                </Button>
-              </div>
+            <CardHeader className="pb-4">
+              <CardDescription>Add your technical skills and competencies</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-5">
-              {(["core", "toolbox"] as const).map((category) => {
-                const filtered = resumeData.skills.filter((skill) => skill.category === category);
-                if (!filtered.length) return null;
+            <CardContent className="space-y-6" ref={skillsContainerRef}>
+              {/* Advanced Skill Input */}
+              <div className="relative">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    value={skillInput}
+                    onChange={(e) => {
+                      setSkillInput(e.target.value);
+                      setShowSuggestions(e.target.value.length > 0);
+                    }}
+                    onKeyPress={handleKeyPress}
+                    onFocus={() => setShowSuggestions(skillInput.length > 0)}
+                    onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                    placeholder="Search and add skills..."
+                    className="pl-10 pr-12 h-11"
+                  />
+                  <Button
+                    onClick={handleAddSkill}
+                    disabled={!skillInput.trim()}
+                    size="sm"
+                    className="absolute right-1 top-1/2 transform -translate-y-1/2 h-9 px-3"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
 
-                return (
-                  <div key={category} className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                        {category === "core" ? "Core Skills" : "Toolbox Skills"}
-                      </h4>
-                    </div>
-                    <div className="space-y-3">
-                      {filtered.map((skill, idx) => {
-                        const showRating = category === "core";
-                        const rowClasses = showRating
-                          ? "grid grid-cols-1 sm:grid-cols-[minmax(0,240px)_120px_auto] gap-2 sm:gap-3 items-start"
-                          : "grid grid-cols-1 sm:grid-cols-[minmax(0,260px)_auto] gap-2 sm:gap-3 items-start";
-
-                        return (
-                          <div
-                            key={skill.id}
-                            className={rowClasses}
+                {/* Smart Suggestions Dropdown */}
+                {showSuggestions && filteredSuggestions.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                    <div className="p-2">
+                      <div className="text-xs text-muted-foreground mb-2 px-2">
+                        Suggestions ({filteredSuggestions.length})
+                      </div>
+                      <div className="space-y-1">
+                        {filteredSuggestions.slice(0, 8).map((skill) => (
+                          <button
+                            key={skill.name}
+                            onClick={() => handleSuggestionClick(skill.name)}
+                            className="w-full text-left px-3 py-2 rounded-md hover:bg-muted transition-colors flex items-center justify-between group"
                           >
-                            <div className="flex flex-col gap-1 text-xs text-muted-foreground">
-                              <Label className="text-xs" htmlFor={`skill-name-${skill.id}`}>
-                                {`Skill ${idx + 1}`}
-                              </Label>
-                              <Input
-                                id={`skill-name-${skill.id}`}
-                                value={skill.name}
-                                onChange={(e) => updateSkillName(resumeData.skills.indexOf(skill), e.target.value)}
-                                placeholder="e.g., React, Communication"
-                                className="h-9 text-sm"
-                              />
+                            <div className="flex items-center gap-3">
+                              <Tag className="h-3 w-3 text-muted-foreground" />
+                              <span className="font-medium">{skill.name}</span>
+                              <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                                {skill.category}
+                              </span>
                             </div>
-                            {showRating && (
-                              <div className="flex flex-col gap-1 text-xs text-muted-foreground">
-                                <Label className="text-xs" htmlFor={`skill-level-${skill.id}`}>
-                                  Rating (1-10)
-                                </Label>
-                                <Input
-                                  id={`skill-level-${skill.id}`}
-                                  type="number"
-                                  min={1}
-                                  max={10}
-                                  value={skill.level ?? 7}
-                                  onChange={(e) =>
-                                    updateSkillLevel(
-                                      resumeData.skills.indexOf(skill),
-                                      Math.min(10, Math.max(1, Number(e.target.value) || 1))
-                                    )
-                                  }
-                                  className="h-9 text-sm"
-                                />
-                              </div>
-                            )}
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeSkill(resumeData.skills.indexOf(skill))}
-                              className={showRating ? "self-end sm:self-center" : "self-end sm:self-end"}
-                            >
-                              <Trash2 className="h-4 w-4 text-destructive" />
-                            </Button>
-                          </div>
-                        );
-                      })}
+                            <Plus className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                );
-              })}
+                )}
+              </div>
 
+              {/* Skills Tags Grid */}
+              {resumeData.skills.length > 0 && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-medium text-foreground">
+                      Added Skills ({resumeData.skills.length})
+                    </h4>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        setResumeData({ ...resumeData, skills: [] });
+                      }}
+                      className="text-xs text-muted-foreground hover:text-destructive"
+                    >
+                      Clear All
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {resumeData.skills.map((skill, index) => (
+                      <div
+                        key={skill.id}
+                        className="group inline-flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+                      >
+                        <span className="truncate max-w-[120px]">{skill.name}</span>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeSkill(index)}
+                          className="h-4 w-4 p-0 hover:bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Empty State */}
               {resumeData.skills.length === 0 && (
-                <p className="text-center text-muted-foreground py-8">
-                  No skills added yet. Click "Add Core Skill" to get started.
-                </p>
+                <div className="space-y-6">
+                  {/* Quick Add Section */}
+                  <div className="text-center space-y-3">
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                      <Tag className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-foreground">
+                        No skills added yet
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Start by typing above or choose from popular skills below
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Popular Skills by Category */}
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-medium text-foreground text-center">
+                      Popular Skills
+                    </h4>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { name: "Frontend", skills: ["React", "JavaScript", "CSS", "HTML"], color: "bg-blue-50 border-blue-200 text-blue-700" },
+                        { name: "Backend", skills: ["Node.js", "Python", "SQL", "Java"], color: "bg-green-50 border-green-200 text-green-700" },
+                        { name: "Tools", skills: ["Git", "Docker", "AWS", "VS Code"], color: "bg-purple-50 border-purple-200 text-purple-700" },
+                        { name: "Soft Skills", skills: ["Leadership", "Communication", "Problem Solving"], color: "bg-orange-50 border-orange-200 text-orange-700" },
+                      ].map((category) => (
+                        <div key={category.name} className="space-y-2">
+                          <h5 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                            {category.name}
+                          </h5>
+                          <div className="space-y-1">
+                            {category.skills.map((skill) => (
+                              <button
+                                key={skill}
+                                onClick={() => {
+                                  setSkillInput(skill);
+                                  setTimeout(() => handleAddSkill(), 100);
+                                }}
+                                className={`w-full text-left px-3 py-2 rounded-md border text-xs font-medium hover:shadow-sm transition-all duration-200 ${category.color}`}
+                              >
+                                + {skill}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Tips */}
+                  <div className="bg-muted/30 rounded-lg p-4 space-y-2">
+                    <h5 className="text-sm font-medium text-foreground">💡 Tips</h5>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      <li>• Type in the search box above to find specific skills</li>
+                      <li>• Press Enter or click the + button to add skills quickly</li>
+                      <li>• Add 5-15 relevant skills to showcase your expertise</li>
+                    </ul>
+                  </div>
+                </div>
               )}
             </CardContent>
           </Card>
@@ -731,7 +999,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6" ref={customContainerRef}>
               {resumeData.sections.map((section) => (
                 <div key={section.id} className="space-y-4 p-4 border border-border rounded-lg relative">
                   <Button

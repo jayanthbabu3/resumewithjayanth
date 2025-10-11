@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download, Gauge, Loader2 } from "lucide-react";
+import { Download, Gauge, Loader2, RotateCcw } from "lucide-react";
 import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
@@ -98,7 +98,7 @@ const buildSkills = (
     category: index < 6 ? "core" : "toolbox",
   }));
 
-const getTemplateDefaults = (templateId: string): ResumeData => {
+export const getTemplateDefaults = (templateId: string): ResumeData => {
   const templates: Record<string, ResumeData> = {
     professional: {
       personalInfo: {
@@ -1524,6 +1524,7 @@ const Editor = () => {
   const [atsReport, setAtsReport] = useState<AtsReport | null>(null);
   const [atsDialogOpen, setAtsDialogOpen] = useState(false);
   const [atsLoading, setAtsLoading] = useState(false);
+  const [resetDialogOpen, setResetDialogOpen] = useState(false);
 
   // Register fonts for PDF generation
   useEffect(() => {
@@ -1659,6 +1660,24 @@ const Editor = () => {
     }
   };
 
+  const handleResetForm = () => {
+    if (!templateId) return;
+    
+    // Clear localStorage
+    const key = `resume-${templateId}`;
+    localStorage.removeItem(key);
+    
+    // Reset to template defaults
+    const defaultData = getTemplateDefaults(templateId);
+    setResumeData(defaultData);
+    
+    // Close dialog
+    setResetDialogOpen(false);
+    
+    // Scroll to top of form
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const runAtsCheck = useCallback(() => {
     setAtsLoading(true);
     requestAnimationFrame(() => {
@@ -1781,90 +1800,38 @@ const Editor = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="container mx-auto px-4 pt-4 sm:px-6">
-        <Breadcrumbs items={editorBreadcrumbItems} className="mb-6" />
+      
+      {/* Fixed Header Section */}
+      <div className="sticky top-0 z-50 bg-background border-b border-border/60 backdrop-blur-sm">
+        <div className="container mx-auto px-4 py-4 sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <Breadcrumbs items={editorBreadcrumbItems} />
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                onClick={() => setResetDialogOpen(true)}
+                variant="outline"
+                size="sm"
+                className="gap-1 h-8 px-3 text-xs"
+              >
+                <RotateCcw className="h-3 w-3" />
+                Reset Form
+              </Button>
+              <Button
+                onClick={handleDownload}
+                size="sm"
+                className="gap-1 h-8 px-3 text-xs bg-primary hover:bg-primary-hover"
+              >
+                <Download className="h-3 w-3" />
+                Download Resume
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Editor Toolbar */}
-      <div className="border-b border-border/60 bg-card/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 sm:px-6">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-start gap-4">
-              <div className="h-12 w-12 rounded-xl border border-border bg-background flex items-center justify-center text-sm font-semibold text-muted-foreground uppercase">
-                {templateDisplayName.slice(0, 2).toUpperCase()}
-              </div>
-              <div className="space-y-2">
-                <h1 className="text-lg font-semibold text-foreground">
-                  {templateDisplayName}
-                </h1>
-                <p className="text-sm text-muted-foreground max-w-2xl">
-                  {templateMeta?.description ||
-                    "Customize this template and export when you are ready."}
-                </p>
-              </div>
-            </div>
-
-            <Dialog open={atsDialogOpen} onOpenChange={setAtsDialogOpen}>
-              <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
-                {atsReport && (
-                  <button
-                    type="button"
-                    onClick={() => setAtsDialogOpen(true)}
-                    className="group flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2 transition hover:bg-primary/10"
-                  >
-                    {renderScoreRing(atsReport.score)}
-                    <div className="text-left">
-                      <p className="text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                        ATS Score
-                      </p>
-                      <p className="text-sm font-semibold text-foreground">
-                        {atsReport.score.toFixed(1)} /{" "}
-                        {atsReport.maxScore.toFixed(0)}
-                      </p>
-                      <p
-                        className={`text-[11px] font-medium ${gradeMap[atsReport.grade].tone}`}
-                      >
-                        {gradeMap[atsReport.grade].label}
-                      </p>
-                    </div>
-                  </button>
-                )}
-                {/* Temporarily hide ATS score trigger until the end-to-end workflow is ready */}
-                {false && (
-                  <Button
-                    onClick={runAtsCheck}
-                    variant="secondary"
-                    className="gap-2"
-                    disabled={atsLoading}
-                  >
-                    {atsLoading ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Gauge className="h-4 w-4" />
-                    )}
-                    {atsReport ? "Re-run ATS" : "Check ATS Score"}
-                  </Button>
-                )}
-                <Button
-                  onClick={() =>
-                    navigate(
-                      `/dashboard?focus=templates&category=${categorySlug}`,
-                    )
-                  }
-                  variant="outline"
-                >
-                  Change Template
-                </Button>
-                <Button
-                  onClick={handleDownload}
-                  className="gap-2 bg-primary hover:bg-primary-hover"
-                >
-                  <Download className="h-4 w-4" />
-                  Download Resume
-                </Button>
-              </div>
-
-              <DialogContent className="max-w-3xl sm:max-h-[80vh]">
+      {/* ATS Dialog */}
+      <Dialog open={atsDialogOpen} onOpenChange={setAtsDialogOpen}>
+        <DialogContent className="max-w-3xl sm:max-h-[80vh]">
                 {atsReport ? (
                   <div className="space-y-6 max-h-[65vh] overflow-y-auto pr-1">
                     <DialogHeader>
@@ -1995,27 +1962,54 @@ const Editor = () => {
                 )}
               </DialogContent>
             </Dialog>
-          </div>
-        </div>
-      </div>
+
+            {/* Reset Confirmation Dialog */}
+            <Dialog open={resetDialogOpen} onOpenChange={setResetDialogOpen}>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Reset Form</DialogTitle>
+                  <DialogDescription>
+                    This will replace all your current data with the original template defaults. This action cannot be undone.
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="flex justify-end gap-2 pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setResetDialogOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={handleResetForm}
+                  >
+                    <RotateCcw className="mr-2 h-3 w-3" />
+                    Reset Form
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
 
       {/* Editor Layout */}
-      <div className="container mx-auto px-4 py-6 sm:px-6 sm:py-8">
-        <div className="grid gap-2 max-w-8xl mx-auto lg:grid-cols-[37%,63%] lg:gap-2">
+      <div className="container mx-auto px-4 py-6 sm:px-6 sm:py-6">
+        <div className="grid gap-4 max-w-8xl mx-auto lg:grid-cols-[37%,63%] lg:gap-6">
           {/* Form Section */}
-          <div className="space-y-6 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
+          <div className="max-h-[calc(100vh-12rem)] overflow-y-auto space-y-6 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
             <div className="space-y-2">
               <h2 className="text-lg font-bold">Edit Your Resume</h2>
-              <p className="text-sm text-muted-foreground">
+              {/* <p className="text-sm text-muted-foreground">
                 Fill in your information and watch your resume update in
                 real-time
-              </p>
+              </p> */}
             </div>
             <ResumeForm resumeData={resumeData} setResumeData={setResumeData} />
           </div>
 
           {/* Preview Section */}
-          <div className="lg:sticky lg:top-24 h-fit">
+          <div className="lg:sticky lg:top-32 max-h-[calc(100vh-8rem)] overflow-y-auto">
             <div className="space-y-4 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 className="text-lg font-bold">Live Preview</h2>
