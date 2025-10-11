@@ -73,8 +73,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       
       if (error) throw error;
       
-      toast.success('Account created! Please check your email.');
-      navigate('/dashboard');
+      toast.success('Verification email sent! Please check your inbox and verify your email to continue.');
+      // Don't navigate to dashboard, user needs to verify email first
     } catch (error: any) {
       toast.error(error.message || 'Failed to sign up');
       throw error;
