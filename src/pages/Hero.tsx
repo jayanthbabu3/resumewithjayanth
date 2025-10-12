@@ -10,6 +10,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TemplateCarousel } from "@/components/TemplateCarousel";
 import { pdf } from "@react-pdf/renderer";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
+import { ModernTemplate } from "@/components/resume/templates/ModernTemplate";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 // Register fonts for PDF generation
@@ -99,7 +100,7 @@ const Hero = () => {
         id: `skill-${index}`,
         name: skill,
         level: Math.max(7, 10 - index),
-        category: index < 6 ? "core" : "toolbox"
+        category: (index < 6 ? "core" : "toolbox") as "core" | "toolbox"
       })),
       sections: []
     };
@@ -1037,71 +1038,13 @@ const Hero = () => {
                           </div>
                         </div>
 
-                        {/* Resume Preview */}
-                        <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm h-full overflow-hidden">
-                          {/* Resume Header */}
-                          <div className="text-center mb-4 pb-3 border-b border-gray-200">
-                            <h1 className="text-xl font-bold text-gray-800 mb-1">{demoFormData.fullName}</h1>
-                            <div className="flex justify-center items-center gap-3 text-xs text-gray-600">
-                              <span>{demoFormData.email}</span>
-                              <span>•</span>
-                              <span>{demoFormData.phone}</span>
-                              <span>•</span>
-                              <span>{demoFormData.location}</span>
-                            </div>
-                          </div>
-
-                          {/* Professional Summary */}
-                          <div className="mb-4">
-                            <h2 className="text-sm font-semibold text-gray-800 mb-2 border-b border-primary/20 pb-1">Professional Summary</h2>
-                            <p className="text-xs text-gray-600 leading-relaxed">
-                              Experienced software engineer with 5+ years of expertise in full-stack development. 
-                              Passionate about creating scalable web applications and leading technical teams.
-                            </p>
-                          </div>
-
-                          {/* Work Experience */}
-                          <div className="mb-4">
-                            <h2 className="text-sm font-semibold text-gray-800 mb-2 border-b border-primary/20 pb-1">Work Experience</h2>
-                            <div className="space-y-3">
-                              <div className="border-l-4 border-primary/30 pl-3">
-                                <div className="flex justify-between items-start mb-1">
-                                  <div>
-                                    <h3 className="font-semibold text-gray-800 text-sm">{demoFormData.jobTitle}</h3>
-                                    <p className="text-xs text-primary font-medium">{demoFormData.company}</p>
-                                  </div>
-                                  <span className="text-xs text-gray-500">
-                                    {demoFormData.startDate ? new Date(demoFormData.startDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : ''}
-                                    {demoFormData.endDate ? ` - ${new Date(demoFormData.endDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}` : demoFormData.endDate === '' ? ' - Present' : ''}
-                                  </span>
-                                </div>
-                                <p className="text-xs text-gray-600">
-                                  {demoFormData.description}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Skills */}
-                          <div className="mb-4">
-                            <h2 className="text-sm font-semibold text-gray-800 mb-2 border-b border-primary/20 pb-1">Technical Skills</h2>
-                            <div className="flex flex-wrap gap-1">
-                              {demoFormData.skills.map((skill, index) => {
-                                const colors = [
-                                  'bg-primary/10 text-primary border-primary/20',
-                                  'bg-emerald-500/10 text-emerald-600 border-emerald-500/20',
-                                  'bg-blue-500/10 text-blue-600 border-blue-500/20',
-                                  'bg-purple-500/10 text-purple-600 border-purple-500/20',
-                                  'bg-orange-500/10 text-orange-600 border-orange-500/20'
-                                ];
-                                const colorClass = colors[index % colors.length];
-                                return (
-                                  <span key={index} className={`px-2 py-1 text-xs rounded-full border ${colorClass}`}>
-                                    {skill}
-                                  </span>
-                                );
-                              })}
-                            </div>
+                        {/* Resume Preview - Use actual ModernTemplate */}
+                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm h-full overflow-y-auto">
+                          <div className="scale-[0.35] origin-top-left w-[285%]">
+                            <ModernTemplate 
+                              resumeData={convertToResumeData()} 
+                              themeColor="#3b82f6"
+                            />
                           </div>
                         </div>
                       </div>
