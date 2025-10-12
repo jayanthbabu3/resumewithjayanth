@@ -106,12 +106,12 @@ const Hero = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pb-12 pt-6 lg:py-6  bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="relative pb-8 pt-4 md:pb-12 md:pt-6 lg:py-6 bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
               {/* Left Side - Content */}
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
               {/* Badge */}
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary">
                 <Sparkles className="h-3 w-3" />
@@ -119,7 +119,7 @@ const Hero = () => {
               </div>
 
               {/* Headline */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
                   Creating Competitive
                   <br />
                   <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
@@ -128,7 +128,7 @@ const Hero = () => {
                 </h1>
 
               {/* Subheadline */}
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg">
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg">
                   Pick your role, choose a template, let AI tailor your resume to any job description. 
                   Get hired faster with professional, ATS-optimized resumes.
               </p>
@@ -153,24 +153,24 @@ const Hero = () => {
               </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-8 pt-4">
+                <div className="flex items-center gap-4 sm:gap-6 md:gap-8 pt-2 md:pt-4">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-primary">2.4k+</div>
-                    <div className="text-xs text-muted-foreground">Active Users</div>
+                    <div className="text-base md:text-lg font-bold text-primary">2.4k+</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">Active Users</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-lg font-bold text-emerald-600">95%</div>
-                    <div className="text-xs text-muted-foreground">ATS Compatible</div>
+                    <div className="text-base md:text-lg font-bold text-emerald-600">95%</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">ATS Compatible</div>
             </div>
                   <div className="text-center">
-                    <div className="text-lg font-bold text-primary">4.9</div>
-                    <div className="text-xs text-muted-foreground">User Rating</div>
+                    <div className="text-base md:text-lg font-bold text-primary">4.9</div>
+                    <div className="text-[10px] sm:text-xs text-muted-foreground">User Rating</div>
           </div>
         </div>
               </div>
 
               {/* Right Side - Enhanced Visual Demo */}
-              <div className="relative">
+              <div className="relative mt-8 lg:mt-0">
                 {/* Modern App Mockup */}
                 <div className="relative mx-auto max-w-5xl">
                   {/* App Container with Glow Effect */}
@@ -179,38 +179,39 @@ const Hero = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl blur-xl scale-105"></div>
                     
                     {/* Main App Window */}
-                    <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 rounded-2xl p-4 border border-gray-200/50">
+                    <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 rounded-xl md:rounded-2xl p-2 md:p-4 border border-gray-200/50">
                       {/* App Header */}
-                      <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-t-xl border-b border-primary/20">
+                      <div className="flex items-center gap-2 p-2 md:p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-t-xl border-b border-primary/20">
                         <div className="flex gap-2">
                           <div className="w-3 h-3 bg-red-500 rounded-full shadow-lg"></div>
                           <div className="w-3 h-3 bg-yellow-500 rounded-full shadow-lg"></div>
                           <div className="w-3 h-3 bg-green-500 rounded-full shadow-lg"></div>
                         </div>
                         <div className="flex-1 text-center">
-                          <span className="text-sm font-semibold text-gray-800">Resume Builder - Editor</span>
+                          <span className="text-xs md:text-sm font-semibold text-gray-800 hidden sm:inline">Resume Builder - Editor</span>
+                          <span className="text-xs font-semibold text-gray-800 sm:hidden">Editor</span>
                         </div>
                         <div className="flex gap-2">
-                          <div className="px-2 py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30">
-                            <span className="text-xs text-emerald-600 font-medium">LIVE</span>
+                          <div className="px-1.5 py-0.5 md:px-2 md:py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30">
+                            <span className="text-[10px] md:text-xs text-emerald-600 font-medium">LIVE</span>
                           </div>
                         </div>
                       </div>
                       
                       {/* App Content */}
-                      <div className="bg-white rounded-b-xl overflow-hidden h-[520px]">
+                      <div className="bg-white rounded-b-xl overflow-hidden h-[300px] sm:h-[400px] md:h-[520px]">
                         {/* Main Layout */}
-                        <div className="flex h-full">
+                        <div className="flex flex-col sm:flex-row h-full">
                           {/* Left Side - Form Editor */}
-                          <div className="w-1/2 p-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/20 border-r border-gray-200">
-                            <div className="space-y-6">
+                          <div className="w-full sm:w-1/2 p-3 md:p-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/20 border-b sm:border-b-0 sm:border-r border-gray-200 overflow-y-auto">
+                            <div className="space-y-3 md:space-y-6">
                               {/* Personal Information */}
-                              <div className="space-y-4">
+                              <div className="space-y-2 md:space-y-4">
                                 <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                                  <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
+                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full"></div>
+                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-2 md:space-y-3">
                                   <div className="space-y-2">
                                     <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
                                     <div className="h-2 bg-gray-100 rounded w-3/4"></div>
@@ -227,12 +228,12 @@ const Hero = () => {
                               </div>
 
                               {/* Work Experience */}
-                              <div className="space-y-4">
+                              <div className="space-y-2 md:space-y-4">
                                 <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                                  <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
+                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-500 rounded-full"></div>
+                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
                                 </div>
-                                <div className="space-y-3">
+                                <div className="space-y-2 md:space-y-3">
                                   <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                                     <div className="h-3 bg-gradient-to-r from-primary/40 to-primary/30 rounded w-4/5 mb-2"></div>
                                     <div className="h-2 bg-gray-200 rounded w-1/2 mb-2"></div>
@@ -254,12 +255,12 @@ const Hero = () => {
                               </div>
 
                               {/* Skills */}
-                              <div className="space-y-4">
+                              <div className="space-y-2 md:space-y-4 hidden sm:block">
                                 <div className="flex items-center gap-2">
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                  <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Skills</h3>
+                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full"></div>
+                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Skills</h3>
                                 </div>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5 md:gap-2">
                                   <div className="h-7 bg-gradient-to-r from-primary/15 to-primary/10 rounded-full px-4 flex items-center border border-primary/20">
                                     <div className="w-14 h-2 bg-gradient-to-r from-primary/60 to-primary/40 rounded"></div>
                                   </div>
@@ -278,29 +279,29 @@ const Hero = () => {
                           </div>
                           
                           {/* Right Side - Resume Preview */}
-                          <div className="w-1/2 p-6 bg-white overflow-y-auto">
-                            <div className="space-y-6">
+                          <div className="w-full sm:w-1/2 p-3 md:p-6 bg-white overflow-y-auto">
+                            <div className="space-y-3 md:space-y-6">
                               {/* Header */}
-                              <div className="border-b-2 border-primary/20 pb-6">
-                                <div className="flex items-center gap-4">
-                                  <div className="w-18 h-18 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg">
-                                    <span className="text-white font-bold text-2xl">JD</span>
+                              <div className="border-b-2 border-primary/20 pb-3 md:pb-6">
+                                <div className="flex items-center gap-2 md:gap-4">
+                                  <div className="w-12 h-12 md:w-18 md:h-18 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg">
+                                    <span className="text-white font-bold text-base md:text-2xl">JD</span>
                                   </div>
-                                  <div className="flex-1 space-y-2">
-                                    <div className="h-6 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-3/4"></div>
-                                    <div className="h-4 bg-primary/60 rounded w-1/2"></div>
-                                    <div className="flex gap-4 mt-2">
-                                      <div className="h-3 bg-gray-300 rounded w-32"></div>
-                                      <div className="h-3 bg-gray-300 rounded w-24"></div>
+                                  <div className="flex-1 space-y-1 md:space-y-2">
+                                    <div className="h-4 md:h-6 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-3/4"></div>
+                                    <div className="h-3 md:h-4 bg-primary/60 rounded w-1/2"></div>
+                                    <div className="flex gap-2 md:gap-4 mt-1 md:mt-2">
+                                      <div className="h-2 md:h-3 bg-gray-300 rounded w-20 md:w-32"></div>
+                                      <div className="h-2 md:h-3 bg-gray-300 rounded w-16 md:w-24"></div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
 
                               {/* Experience */}
-                              <div className="space-y-4">
-                                <div className="h-5 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-28"></div>
-                                <div className="space-y-4">
+                              <div className="space-y-2 md:space-y-4">
+                                <div className="h-3 md:h-5 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-20 md:w-28"></div>
+                                <div className="space-y-2 md:space-y-4">
                                   <div className="border-l-4 border-primary/30 pl-4 space-y-2">
                                     <div className="flex justify-between items-start">
                                       <div className="space-y-1">
@@ -387,19 +388,19 @@ const Hero = () => {
       </section>
 
       {/* Process Section - Full Height with Animation */}
-      <section className="min-h-screen bg-muted/20 flex items-center">
-        <div className="container mx-auto px-6 w-full">
+      <section className="min-h-screen bg-muted/20 flex items-center py-12 md:py-16">
+        <div className="container mx-auto px-4 md:px-6 w-full">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-16">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium text-primary backdrop-blur-sm">
+            <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16">
+              <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 border border-primary/20 text-xs md:text-sm font-medium text-primary backdrop-blur-sm">
                 <Zap className="h-4 w-4" />
                 <span>Quick & Easy Process</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
                 Create Your Resume in 
                 <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent"> 3 Simple Steps</span>
               </h2>
-              <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 From template selection to professional resume in minutes. Our guided process makes resume creation effortless and enjoyable.
               </p>
             </div>
@@ -593,8 +594,8 @@ const Hero = () => {
             </div>
 
             {/* Additional Benefits */}
-            <div className="mt-16 text-center">
-              <div className="inline-flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="mt-12 md:mt-16 text-center">
+              <div className="inline-flex flex-wrap justify-center items-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-emerald-600" />
                   <span>5 Minutes Setup</span>
@@ -614,7 +615,7 @@ const Hero = () => {
       </section>
 
       {/* Template Preview Section */}
-      <section className="py-16 relative overflow-hidden">
+      <section className="py-12 md:py-16 relative overflow-hidden">
         {/* Multi-layer gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/30 via-transparent to-pink-100/30"></div>
@@ -648,17 +649,17 @@ const Hero = () => {
           }}></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-sm font-medium text-primary">
+            <div className="text-center space-y-3 md:space-y-4 mb-8 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-xs md:text-sm font-medium text-primary">
                 <Palette className="h-4 w-4" />
                 <span>Premium Templates</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
                 Choose from <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Professional Templates</span>
               </h2>
-              <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xs md:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Browse our collection of beautifully designed, ATS-optimized resume templates. Each template is crafted for specific industries and experience levels.
               </p>
             </div>
@@ -712,7 +713,7 @@ const Hero = () => {
             <div className="text-center">
               <Button
                 size="lg"
-                className="text-base px-8 py-4 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
+                className="text-sm md:text-base px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
                 onClick={() => navigate("/dashboard")}
               >
                 <span>View All Templates</span>
@@ -721,7 +722,7 @@ const Hero = () => {
             </div>
 
             {/* Features */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
               <div className="text-center space-y-2">
                 <div className="h-12 w-12 mx-auto rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
                   <Eye className="h-6 w-6 text-primary" />
@@ -749,7 +750,7 @@ const Hero = () => {
       </section>
 
       {/* How Our Resume Editor Works */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-12 md:py-20 relative overflow-hidden">
         {/* Beautiful light gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-indigo-50/30 to-purple-50/40"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-50/30 via-transparent to-pink-50/30"></div>
@@ -762,17 +763,17 @@ const Hero = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-emerald-400/10 to-cyan-400/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
             {/* Section Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-12 md:mb-16">
               
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-foreground mb-6">
+              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-foreground mb-4 md:mb-6">
                 See How Our <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Resume Editor</span> Works
               </h2>
               
-              <p className="text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Experience our intuitive editor with real-time preview. Watch how your resume comes to life as you type, 
                 with professional templates that adapt to your content instantly.
               </p>
@@ -782,70 +783,71 @@ const Hero = () => {
             <div className="relative">
               {/* Editor Container with Glow */}
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/15 to-primary/10 rounded-3xl blur-2xl scale-105"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-primary/15 to-primary/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl scale-105"></div>
                 
-                <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden">
+                <div className="relative bg-white rounded-2xl md:rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden">
                   {/* Editor Header */}
-                  <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 px-6 py-4">
+                  <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 px-3 md:px-6 py-2 md:py-4">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                        <div className="ml-4 text-xs font-semibold text-gray-700">Resume Editor - Live Demo</div>
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <div className="w-2 h-2 md:w-3 md:h-3 bg-red-400 rounded-full"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-2 h-2 md:w-3 md:h-3 bg-green-400 rounded-full"></div>
+                        <div className="ml-2 md:ml-4 text-[10px] md:text-xs font-semibold text-gray-700 hidden sm:inline">Resume Editor - Live Demo</div>
+                        <div className="ml-2 text-[10px] font-semibold text-gray-700 sm:hidden">Live Demo</div>
                       </div>
                      
                     </div>
                   </div>
 
                   {/* Main Editor Layout */}
-                  <div className="flex h-[630px]">
+                  <div className="flex flex-col md:flex-row h-[400px] md:h-[630px]">
                     {/* Left Side - Form Editor */}
-                    <div className="w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-r border-gray-200">
-                      <div className="p-4 space-y-4 h-full overflow-y-auto">
+                    <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200">
+                      <div className="p-2 md:p-4 space-y-2 md:space-y-4 h-full overflow-y-auto">
                         {/* Personal Information */}
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-2 h-2 bg-primary rounded-full"></div>
-                            <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
+                        <div className="space-y-1 md:space-y-2">
+                          <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
+                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full"></div>
+                            <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
                           </div>
-                          <div className="space-y-2">
-                            <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1.5 md:space-y-2">
+                            <div className="grid grid-cols-2 gap-1.5 md:gap-2">
                               <div>
-                                <label className="block text-xs font-medium text-gray-600 mb-1">Full Name</label>
+                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Full Name</label>
                                 <Input 
                                   value={demoFormData.fullName}
                                   onChange={(e) => updateFormData('fullName', e.target.value)}
-                                  className="h-7 text-sm"
+                                  className="h-6 md:h-7 text-[10px] md:text-sm"
                                   placeholder="Enter your full name"
                                 />
                               </div>
                               <div>
-                                <label className="block text-xs font-medium text-gray-600 mb-1">Location</label>
+                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Location</label>
                                 <Input 
                                   value={demoFormData.location}
                                   onChange={(e) => updateFormData('location', e.target.value)}
-                                  className="h-7 text-sm"
+                                  className="h-6 md:h-7 text-[10px] md:text-sm"
                                   placeholder="Enter your location"
                                 />
                               </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="grid grid-cols-2 gap-1.5 md:gap-2">
                               <div>
-                                <label className="block text-xs font-medium text-gray-600 mb-1">Email Address</label>
+                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Email Address</label>
                                 <Input 
                                   value={demoFormData.email}
                                   onChange={(e) => updateFormData('email', e.target.value)}
-                                  className="h-7 text-sm"
+                                  className="h-6 md:h-7 text-[10px] md:text-sm"
                                   placeholder="Enter your email"
                                 />
                               </div>
                               <div>
-                                <label className="block text-xs font-medium text-gray-600 mb-1">Phone Number</label>
+                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Phone Number</label>
                                 <Input 
                                   value={demoFormData.phone}
                                   onChange={(e) => updateFormData('phone', e.target.value)}
-                                  className="h-7 text-sm"
+                                  className="h-6 md:h-7 text-[10px] md:text-sm"
                                   placeholder="Enter your phone number"
                                 />
                               </div>
@@ -854,7 +856,7 @@ const Hero = () => {
                         </div>
 
                         {/* Professional Summary */}
-                        <div className="space-y-2">
+                        <div className="space-y-1 md:space-y-2 hidden md:block">
                           <div className="flex items-center gap-2 mb-2">
                             <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                             <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Professional Summary</h3>
@@ -870,29 +872,29 @@ const Hero = () => {
                         </div>
 
                         {/* Work Experience */}
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                            <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
+                        <div className="space-y-2 md:space-y-3">
+                          <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
+                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-500 rounded-full"></div>
+                            <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
                           </div>
-                          <div className="p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
-                            <div className="space-y-2">
-                              <div className="grid grid-cols-2 gap-2">
+                          <div className="p-2 md:p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
+                            <div className="space-y-1.5 md:space-y-2">
+                              <div className="grid grid-cols-2 gap-1.5 md:gap-2">
                                 <div>
-                                  <label className="block text-xs font-medium text-gray-600 mb-1">Job Title</label>
+                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Job Title</label>
                                   <Input 
                                     value={demoFormData.jobTitle}
                                     onChange={(e) => updateFormData('jobTitle', e.target.value)}
-                                    className="h-7 text-sm"
+                                    className="h-6 md:h-7 text-[10px] md:text-sm"
                                     placeholder="Enter job title"
                                   />
                                 </div>
                                 <div>
-                                  <label className="block text-xs font-medium text-gray-600 mb-1">Company</label>
+                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Company</label>
                                   <Input 
                                     value={demoFormData.company}
                                     onChange={(e) => updateFormData('company', e.target.value)}
-                                    className="h-7 text-sm"
+                                    className="h-6 md:h-7 text-[10px] md:text-sm"
                                     placeholder="Enter company name"
                                   />
                                 </div>
