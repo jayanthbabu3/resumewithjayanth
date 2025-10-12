@@ -801,7 +801,7 @@ const Hero = () => {
                   </div>
 
                   {/* Main Editor Layout */}
-                  <div className="flex flex-col md:flex-row h-[400px] md:h-[630px]">
+                  <div className="flex flex-col md:flex-row h-[400px] md:h-[650px]">
                     {/* Left Side - Form Editor */}
                     <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200">
                       <div className="p-2 md:p-4 space-y-2 md:space-y-4 h-full overflow-y-auto">

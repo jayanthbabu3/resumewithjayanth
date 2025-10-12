@@ -26,8 +26,29 @@ export const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [itemsPerView, setItemsPerView] = useState(3);
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemsPerView = 3;
+
+  // Update itemsPerView based on screen size
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1); // Mobile: 1 template per view
+      } else {
+        setItemsPerView(3); // Desktop: 3 templates per view
+      }
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  // Reset currentIndex when itemsPerView changes
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [itemsPerView]);
+
   const maxIndex = Math.max(0, templates.length - itemsPerView);
 
   const nextSlide = () => {
@@ -100,7 +121,7 @@ export const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
             <div
               key={template.id}
               className="flex-shrink-0 px-2"
-              style={{ width: '28.3333%' }}
+              style={{ width: itemsPerView === 1 ? '100%' : '33.3333%' }}
             >
                      <div className="group cursor-pointer bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
                        {/* Template Preview */}
@@ -110,7 +131,7 @@ export const TemplateCarousel: React.FC<TemplateCarouselProps> = ({
                     style={{ 
                       aspectRatio: '1 / 1.414', // Standard A4 aspect ratio for proper resume display
                       width: '100%',
-                      minHeight: '350px'
+                      minHeight: itemsPerView === 1 ? '280px' : '350px'
                     }}
                   >
                     <TemplatePreview
