@@ -12,6 +12,7 @@ import { pdf } from "@react-pdf/renderer";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { ModernTemplate } from "@/components/resume/templates/ModernTemplate";
 import { registerPDFFonts } from "@/lib/pdfFonts";
+import { cn } from "@/lib/utils";
 
 // Register fonts for PDF generation
 registerPDFFonts();
@@ -40,6 +41,19 @@ const Hero = () => {
   const [previewHeight, setPreviewHeight] = useState(1120);
   const previewContainerRef = useRef<HTMLDivElement | null>(null);
   const previewContentRef = useRef<HTMLDivElement | null>(null);
+  const buttonBaseClass = "h-11 px-6 text-sm md:text-base font-semibold transition-all duration-300";
+  const primaryButtonClass = cn(
+    buttonBaseClass,
+    "bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl",
+  );
+  const neutralButtonClass = cn(
+    buttonBaseClass,
+    "border border-border/70 text-foreground hover:bg-muted/50",
+  );
+  const outlinePrimaryButtonClass = cn(
+    buttonBaseClass,
+    "border border-primary text-primary hover:bg-primary/5",
+  );
 
   useEffect(() => {
     const baseWidth = 816;
@@ -200,9 +214,9 @@ const Hero = () => {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
               {/* Left Side - Content */}
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-4 md:space-y-6 text-center lg:text-left mx-auto lg:mx-0 max-w-2xl">
               {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary">
+                <div className="inline-flex items-center justify-center lg:justify-start gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary">
                 <Sparkles className="h-3 w-3" />
                   <span>AI-Powered Resume Builder</span>
               </div>
@@ -223,26 +237,21 @@ const Hero = () => {
               </p>
 
               {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button
-                  size="default"
-                  className="text-sm px-6 py-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                  onClick={() => navigate("/dashboard")}
-                >
+                <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center sm:items-center lg:items-start justify-center lg:justify-start">
+                <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/dashboard")}>
                     <span>Start Building Free</span>
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
                   variant="outline"
-                  size="default"
-                  className="text-sm px-6 py-3 border hover:bg-muted/50 transition-all duration-300"
+                  className={neutralButtonClass}
                 >
                   View Templates
                 </Button>
               </div>
 
                 {/* Stats */}
-                <div className="flex items-center gap-4 sm:gap-6 md:gap-8 pt-2 md:pt-4">
+                <div className="flex items-center justify-center lg:justify-start gap-4 sm:gap-6 md:gap-8 pt-2 md:pt-4">
                   <div className="text-center">
                     <div className="text-base md:text-lg font-bold text-primary">2.4k+</div>
                     <div className="text-[10px] sm:text-xs text-muted-foreground">Active Users</div>
@@ -259,7 +268,7 @@ const Hero = () => {
               </div>
 
               {/* Right Side - Enhanced Visual Demo */}
-              <div className="relative mt-8 lg:mt-0">
+              <div className="relative mt-8 lg:mt-0 hidden lg:block">
                 {/* Modern App Mockup */}
                 <div className="relative mx-auto max-w-5xl">
                   {/* App Container with Glow Effect */}
@@ -800,11 +809,7 @@ const Hero = () => {
             />
 
             <div className="text-center">
-              <Button
-                size="lg"
-                className="text-sm md:text-base px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                onClick={() => navigate("/dashboard")}
-              >
+              <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/dashboard")}>
                 <span>View All Templates</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -1145,12 +1150,10 @@ const Hero = () => {
             {/* Call to Action */}
             <div className="text-center mt-12">
               <div className="inline-flex flex-col sm:flex-row gap-3">
-                <button className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg text-sm">
-                  Start Creating Your Resume
-                </button>
-                <button className="px-6 py-2 bg-white text-primary border border-primary rounded-lg font-semibold hover:bg-primary/5 transition-colors text-sm">
+                <Button className={primaryButtonClass}>Start Creating Your Resume</Button>
+                <Button variant="outline" className={outlinePrimaryButtonClass}>
                   Explore All Templates
-                </button>
+                </Button>
               </div>
               <p className="text-sm text-muted-foreground mt-4">
                 Join thousands of professionals who have created stunning resumes with our editor
@@ -1252,18 +1255,13 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Button
-                size="default"
-                className="text-sm px-6 py-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                onClick={() => navigate("/dashboard")}
-              >
+              <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/dashboard")}>
                 <span>Get Started Now</span>
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 variant="outline"
-                size="default"
-                className="text-sm px-6 py-3 border hover:bg-muted/50 transition-all duration-300"
+                className={neutralButtonClass}
               >
                 View Examples
               </Button>
@@ -1286,6 +1284,19 @@ const Hero = () => {
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-border/60 bg-muted/20">
+        <div className="container mx-auto px-4 py-4 md:px-6 md:py-5">
+          <div className="max-w-6xl mx-auto flex flex-col gap-3 text-center text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <div>© {new Date().getFullYear()} ResumeCook. Crafted to help you land your next role.</div>
+            <div className="flex items-center justify-center gap-4 text-xs uppercase tracking-wide">
+              <span>Privacy</span>
+              <span>Terms</span>
+              <span>Support</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
