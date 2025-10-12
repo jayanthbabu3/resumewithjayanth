@@ -802,7 +802,7 @@ const Hero = () => {
                   <div className="flex h-[600px]">
                     {/* Left Side - Form Editor */}
                     <div className="w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-r border-gray-200">
-                      <div className="p-4 space-y-4 h-full overflow-hidden">
+                      <div className="p-4 space-y-4 h-full overflow-y-auto">
                         {/* Personal Information */}
                         <div className="space-y-2">
                           <div className="flex items-center gap-2 mb-2">
@@ -1015,7 +1015,7 @@ const Hero = () => {
                         </div>
 
                         {/* Resume Preview - Use actual ModernTemplate */}
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm h-full overflow-y-auto">
+                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm h-full overflow-hidden">
                           <div className="origin-top-left" style={{ transform: 'scale(0.7)', width: '142.86%' }} key={JSON.stringify(demoFormData)}>
                             <ModernTemplate 
                               resumeData={convertToResumeData()} 
