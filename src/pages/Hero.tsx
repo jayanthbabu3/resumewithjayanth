@@ -86,16 +86,7 @@ const Hero = () => {
           description: demoFormData.description
         }
       ],
-      education: [
-        {
-          id: "1",
-          school: "University Name",
-          degree: "Bachelor's Degree",
-          field: "Computer Science",
-          startDate: "2018",
-          endDate: "2022"
-        }
-      ],
+      education: [],
       skills: demoFormData.skills.map((skill, index) => ({
         id: `skill-${index}`,
         name: skill,
