@@ -949,38 +949,6 @@ const Hero = () => {
                                 <span className="text-xs text-gray-400">↵</span>
                               </div>
                             </div>
-                            <div className="flex flex-wrap gap-1 max-h-16 overflow-y-auto">
-                              {demoFormData.skills.map((skill, index) => {
-                                const colors = [
-                                  'bg-primary/10 border-primary/20 text-primary hover:bg-primary/15',
-                                  'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 hover:bg-emerald-500/15',
-                                  'bg-blue-500/10 border-blue-500/20 text-blue-600 hover:bg-blue-500/15',
-                                  'bg-purple-500/10 border-purple-500/20 text-purple-600 hover:bg-purple-500/15',
-                                  'bg-orange-500/10 border-orange-500/20 text-orange-600 hover:bg-orange-500/15'
-                                ];
-                                const colorClass = colors[index % colors.length];
-                                return (
-                                  <div 
-                                    key={index} 
-                                    className={`h-6 rounded-full px-3 flex items-center border ${colorClass} cursor-pointer transition-colors group relative`}
-                                    onClick={() => {
-                                      // Remove skill from input string
-                                      const skillsArray = skillsInput.split(',').map(s => s.trim()).filter(s => s.length > 0);
-                                      const updatedSkills = skillsArray.filter((_, i) => i !== index);
-                                      setSkillsInput(updatedSkills.join(', '));
-                                      setDemoFormData(prev => ({
-                                        ...prev,
-                                        skills: updatedSkills
-                                      }));
-                                    }}
-                                    title="Click to remove"
-                                  >
-                                    <span className="text-xs font-medium pr-1">{skill}</span>
-                                    <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">×</span>
-                                  </div>
-                                );
-                              })}
-                            </div>
                           </div>
                         </div>
                       </div>
