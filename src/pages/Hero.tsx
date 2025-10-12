@@ -8,6 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TemplateCarousel } from "@/components/TemplateCarousel";
+import { pdf } from "@react-pdf/renderer";
+import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
+import { registerPDFFonts } from "@/lib/pdfFonts";
+
+// Register fonts for PDF generation
+registerPDFFonts();
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -55,6 +61,48 @@ const Hero = () => {
       ...prev,
       skills: updatedSkills
     }));
+  };
+
+  // Convert demo form data to ResumeData format
+  const convertToResumeData = () => {
+    return {
+      personalInfo: {
+        fullName: demoFormData.fullName,
+        email: demoFormData.email,
+        phone: demoFormData.phone,
+        location: demoFormData.location,
+        title: "Software Engineer",
+        summary: "Experienced software engineer with 5+ years of expertise in full-stack development. Passionate about creating scalable web applications and leading technical teams."
+      },
+      experience: [
+        {
+          id: "1",
+          company: demoFormData.company,
+          position: demoFormData.jobTitle,
+          startDate: demoFormData.startDate,
+          endDate: demoFormData.endDate || "",
+          current: !demoFormData.endDate,
+          description: demoFormData.description
+        }
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University Name",
+          degree: "Bachelor's Degree",
+          field: "Computer Science",
+          startDate: "2018",
+          endDate: "2022"
+        }
+      ],
+      skills: demoFormData.skills.map((skill, index) => ({
+        id: `skill-${index}`,
+        name: skill,
+        level: Math.max(7, 10 - index),
+        category: index < 6 ? "core" : "toolbox"
+      })),
+      sections: []
+    };
   };
 
   return (
@@ -753,14 +801,7 @@ const Hero = () => {
                         <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                         <div className="ml-4 text-xs font-semibold text-gray-700">Resume Editor - Live Demo</div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <div className="px-3 py-1 bg-emerald-500/10 rounded-full border border-emerald-500/20">
-                          <span className="text-xs text-emerald-600 font-medium">Real-time Preview</span>
-                        </div>
-                        <div className="px-3 py-1 bg-primary/10 rounded-full border border-primary/20">
-                          <span className="text-xs text-primary font-medium">Professional Template</span>
-                        </div>
-                      </div>
+                     
                     </div>
                   </div>
 
@@ -960,9 +1001,39 @@ const Hero = () => {
                         <div className="mb-4">
                           <div className="flex items-center justify-between mb-3">
                             <h3 className="text-sm font-semibold text-gray-800">Live Preview</h3>
-                            <div className="px-2 py-1 bg-green-500/10 rounded-full border border-green-500/20">
-                              <span className="text-xs text-green-600 font-medium">Auto-saved</span>
-                            </div>
+                            <button 
+                              onClick={async () => {
+                                try {
+                                  // Convert demo data to proper ResumeData format
+                                  const resumeData = convertToResumeData();
+                                  
+                                  // Generate PDF using the actual ModernPDF template
+                                  const blob = await pdf(
+                                    <ModernPDF resumeData={resumeData} themeColor="#3b82f6" />
+                                  ).toBlob();
+                                  
+                                  // Create download link
+                                  const url = URL.createObjectURL(blob);
+                                  const link = document.createElement("a");
+                                  link.href = url;
+                                  link.download = `${demoFormData.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+                                  document.body.appendChild(link);
+                                  link.click();
+                                  document.body.removeChild(link);
+                                  
+                                  // Cleanup
+                                  URL.revokeObjectURL(url);
+                                } catch (error) {
+                                  console.error("Download error:", error);
+                                }
+                              }}
+                              className="px-3 py-1 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors flex items-center gap-1"
+                            >
+                              <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <span className="text-xs text-primary font-medium">Download Resume</span>
+                            </button>
                           </div>
                         </div>
 
