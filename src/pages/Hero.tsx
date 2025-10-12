@@ -1016,7 +1016,7 @@ const Hero = () => {
 
                         {/* Resume Preview - Use actual ModernTemplate */}
                         <div className="bg-white border border-gray-200 rounded-lg shadow-sm h-full overflow-y-auto">
-                          <div className="scale-[0.35] origin-top-left w-[285%]" key={JSON.stringify(demoFormData)}>
+                          <div className="origin-top-left" style={{ transform: 'scale(0.7)', width: '142.86%' }} key={JSON.stringify(demoFormData)}>
                             <ModernTemplate 
                               resumeData={convertToResumeData()} 
                               themeColor="#3b82f6"
