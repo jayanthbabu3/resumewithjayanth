@@ -142,6 +142,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal",
     categorySlug: "all",
   },
+  "corporate-executive": {
+    name: "Corporate Executive",
+    description:
+      "Premium ATS-friendly template with sophisticated layout and elegant typography for senior professionals.",
+    category: "Corporate",
+    categorySlug: "all",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {

@@ -28,6 +28,7 @@ import { PremiumProPDF } from "@/components/resume/pdf/PremiumProPDF";
 import { FresherElitePDF } from "@/components/resume/pdf/FresherElitePDF";
 import { AnalystPDF } from "@/components/resume/pdf/AnalystPDF";
 import { ElitePDF } from "@/components/resume/pdf/ElitePDF";
+import { CorporateExecutivePDF } from "@/components/resume/pdf/CorporateExecutivePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1662,6 +1663,100 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
         },
       ],
     },
+    "corporate-executive": {
+      personalInfo: {
+        fullName: "Robert Anderson",
+        email: "r.anderson@executive.com",
+        phone: "+1 (555) 890-1234",
+        location: "New York, NY",
+        title: "Chief Operating Officer",
+        summary:
+          "Results-driven executive leader with 18+ years of experience driving organizational excellence and strategic growth initiatives. Proven expertise in operations management, business transformation, and P&L leadership. Successfully scaled operations for Fortune 500 companies while maintaining focus on efficiency, innovation, and sustainable growth.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "TechVision Corp",
+          position: "Chief Operating Officer",
+          startDate: "2020-01",
+          endDate: "",
+          current: true,
+          description:
+            "Lead operational strategy and execution for $2B+ technology enterprise with 3,500+ employees across 15 global locations\nDrive digital transformation initiatives resulting in 40% operational efficiency improvement and $50M annual cost savings\nOversee cross-functional teams including product development, supply chain, customer success, and business operations\nPartner with CEO and board on strategic planning, M&A activities, and long-term growth strategies\nImplement data-driven decision frameworks and KPI dashboards for executive leadership team",
+        },
+        {
+          id: "2",
+          company: "Global Systems Inc",
+          position: "Senior Vice President of Operations",
+          startDate: "2015-06",
+          endDate: "2019-12",
+          current: false,
+          description:
+            "Managed operations for $800M division with 1,200+ employees across multiple business units\nLed operational excellence program achieving 35% improvement in process efficiency metrics\nSuccessfully integrated 3 strategic acquisitions totaling $200M in combined revenue\nBuilt high-performing leadership team and established succession planning framework\nReduced operating costs by 25% while improving customer satisfaction scores by 30%",
+        },
+        {
+          id: "3",
+          company: "Enterprise Solutions LLC",
+          position: "Director of Business Operations",
+          startDate: "2010-03",
+          endDate: "2015-05",
+          current: false,
+          description:
+            "Directed business operations for fast-growing SaaS company scaling from $50M to $300M revenue\nDeveloped and executed operational strategies supporting 500% revenue growth over 5 years\nEstablished operational infrastructure including systems, processes, and organizational structure\nLed cross-functional initiatives spanning sales operations, customer success, and product delivery",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Harvard Business School",
+          degree: "Master of Business Administration",
+          field: "Strategy & Operations",
+          startDate: "2008-09",
+          endDate: "2010-05",
+        },
+        {
+          id: "2",
+          school: "University of Michigan",
+          degree: "Bachelor of Science",
+          field: "Industrial Engineering",
+          startDate: "2004-09",
+          endDate: "2008-05",
+        },
+      ],
+      skills: buildSkills(
+        "corporate-executive",
+        [
+          "Strategic Leadership",
+          "Operations Management",
+          "P&L Management",
+          "Business Transformation",
+          "Change Leadership",
+          "Team Building",
+          "Process Optimization",
+          "M&A Integration",
+          "Financial Planning",
+          "Data Analytics",
+          "Board Relations",
+          "Executive Communication",
+        ],
+        [10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 9, 9],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Board & Advisory Roles",
+          content:
+            "Board Member - TechGrowth Foundation (2022-Present)\nAdvisory Board - StartupScale Accelerator (2021-Present)\nMentor - Executive Leadership Program at Columbia Business School",
+        },
+        {
+          id: "2",
+          title: "Recognition & Awards",
+          content:
+            "COO of the Year - Tech Leadership Awards 2023\nTop 50 Most Influential Executives - Business Quarterly 2022\n40 Under 40 - Business Excellence Magazine 2018\nPublished: 'Operational Excellence in the Digital Age' - Harvard Business Review",
+        },
+      ],
+    },
   };
 
   return templates[templateId] || templates.professional;
@@ -1810,6 +1905,7 @@ const Editor = () => {
         "fresher-elite": FresherElitePDF,
         analyst: AnalystPDF,
         elite: ElitePDF,
+        "corporate-executive": CorporateExecutivePDF,
       };
 
       const PDFTemplate =

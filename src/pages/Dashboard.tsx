@@ -193,6 +193,13 @@ const templates = [
       "Premium elegant template with left accent bar and sophisticated typography for all professions",
     highlights: ["Left Accent Bar", "Elegant Design", "Universal", "ATS-Friendly"],
   },
+  {
+    id: "corporate-executive",
+    name: "Corporate Executive",
+    description:
+      "Premium ATS-friendly template with sophisticated two-column layout and elegant typography",
+    highlights: ["Two-Column Layout", "Executive Style", "ATS-Optimized", "Premium Design"],
+  },
 ];
 
 const Dashboard = () => {
