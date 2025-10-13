@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 28,
     fontWeight: 700,
-    marginBottom: 8,
+    marginBottom: 0,
     textTransform: "uppercase",
     letterSpacing: 1,
   },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     objectFit: "cover",
   },
   divider: {
-    height: 2,
+    height: 0.5,
     marginBottom: 20,
   },
   section: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   sectionDivider: {
-    height: 2,
+    height: 0.5,
     marginBottom: 12,
   },
   summary: {
@@ -175,8 +175,6 @@ export const AnalystPDF = ({
             <Image src={personalInfo.photo} style={styles.photo} />
           )}
         </View>
-
-        <View style={[styles.divider, { backgroundColor: themeColor }]} />
 
         {/* Summary */}
         {personalInfo.summary && (

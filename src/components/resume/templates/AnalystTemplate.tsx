@@ -15,10 +15,10 @@ export const AnalystTemplate = ({
   return (
     <div className="mx-auto bg-white p-12 font-sans text-gray-900">
       {/* Header Section */}
-      <div className="mb-8 flex items-start justify-between">
+      <div className="mb-6 flex items-start justify-between">
         <div className="flex-1">
           <h1
-            className="mb-2 text-4xl font-bold uppercase tracking-wide"
+            className="mb-0 text-4xl font-bold uppercase tracking-wide"
             style={{ color: themeColor }}
           >
             {personalInfo.fullName}
@@ -43,11 +43,6 @@ export const AnalystTemplate = ({
         )}
       </div>
 
-      <div
-        className="mb-6 h-0.5"
-        style={{ backgroundColor: themeColor }}
-      />
-
       {/* Summary Section */}
       {personalInfo.summary && (
         <div className="mb-6">
@@ -58,7 +53,7 @@ export const AnalystTemplate = ({
             Summary
           </h3>
           <div
-            className="mb-4 h-0.5"
+            className="mb-4 h-px"
             style={{ backgroundColor: themeColor }}
           />
           <p className="text-sm leading-relaxed text-gray-700">
@@ -77,7 +72,7 @@ export const AnalystTemplate = ({
             Professional Experience
           </h3>
           <div
-            className="mb-4 h-0.5"
+            className="mb-4 h-px"
             style={{ backgroundColor: themeColor }}
           />
           <div className="space-y-4">
@@ -114,7 +109,7 @@ export const AnalystTemplate = ({
             Education
           </h3>
           <div
-            className="mb-4 h-0.5"
+            className="mb-4 h-px"
             style={{ backgroundColor: themeColor }}
           />
           <div className="space-y-3">
@@ -146,7 +141,7 @@ export const AnalystTemplate = ({
             Technical Skills
           </h3>
           <div
-            className="mb-4 h-0.5"
+            className="mb-4 h-px"
             style={{ backgroundColor: themeColor }}
           />
           <div className="grid grid-cols-4 gap-x-6 gap-y-2">
@@ -169,7 +164,7 @@ export const AnalystTemplate = ({
             {section.title}
           </h3>
           <div
-            className="mb-4 h-0.5"
+            className="mb-4 h-px"
             style={{ backgroundColor: themeColor }}
           />
           <div className="space-y-1">
