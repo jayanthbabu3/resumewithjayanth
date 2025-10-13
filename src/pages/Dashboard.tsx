@@ -179,6 +179,13 @@ const templates = [
       "Two-column layout highlighting achievements and technical leadership",
     highlights: ["Two-Column", "Achievement Focused", "Tech Leadership"],
   },
+  {
+    id: "analyst",
+    name: "Business Analyst",
+    description:
+      "Clean professional layout with profile photo, blue accents, and organized sections",
+    highlights: ["Profile Photo", "Blue Theme", "Professional Layout", "ATS-Optimized"],
+  },
 ];
 
 const Dashboard = () => {
