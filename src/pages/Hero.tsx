@@ -486,8 +486,11 @@ const Hero = () => {
       </section>
 
       {/* Process Section - Full Height with Animation */}
-      <section className="min-h-screen bg-muted/20 flex items-center py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6 w-full">
+      <section className="relative min-h-screen flex items-center py-12 md:py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+        <div className="absolute -left-24 top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl sm:h-56 sm:w-56" />
+        <div className="absolute bottom-0 right-0 h-60 w-60 rounded-full bg-emerald-500/10 blur-3xl sm:h-64 sm:w-64" />
+        <div className="container mx-auto px-4 md:px-6 w-full relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16">
               <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 border border-primary/20 text-xs md:text-sm font-medium text-primary backdrop-blur-sm">
@@ -636,9 +639,9 @@ const Hero = () => {
                 {/* Connecting Arrow */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="h-16 w-1 bg-gradient-to-b from-primary/60 to-emerald-500/60 rounded-full"></div>
+                    <div className="h-12 w-[2px] sm:h-16 sm:w-1 bg-gradient-to-b from-primary/60 to-emerald-500/60 rounded-full"></div>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1">
-                      <ArrowRight className="h-4 w-4 text-emerald-500 rotate-90 animate-pulse" />
+                      <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500 rotate-90 animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -664,9 +667,9 @@ const Hero = () => {
                 {/* Connecting Arrow */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="h-16 w-1 bg-gradient-to-b from-emerald-500/60 to-blue-500/60 rounded-full"></div>
+                    <div className="h-12 w-[2px] sm:h-16 sm:w-1 bg-gradient-to-b from-emerald-500/60 to-blue-500/60 rounded-full"></div>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1">
-                      <ArrowRight className="h-4 w-4 text-blue-500 rotate-90 animate-pulse" />
+                      <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 rotate-90 animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -1164,8 +1167,10 @@ const Hero = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-muted/30" />
+        <div className="absolute top-0 left-1/2 h-40 w-[120%] -translate-x-1/2 bg-gradient-to-r from-primary/10 via-transparent to-emerald-100/20 blur-3xl" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-3 mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
@@ -1242,8 +1247,10 @@ const Hero = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-blue-100/20" />
+        <div className="absolute -top-10 right-1/2 h-40 w-40 translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <div className="space-y-3">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
