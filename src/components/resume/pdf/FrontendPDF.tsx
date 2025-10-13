@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: '#4f46e5',
     borderBottomStyle: 'solid',
   },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   experienceItem: {
     marginBottom: 16,
     paddingLeft: 15,
-    borderLeftWidth: 2,
+    borderLeftWidth: 1,
     borderLeftColor: '#e5e7eb',
     borderLeftStyle: 'solid',
   },
