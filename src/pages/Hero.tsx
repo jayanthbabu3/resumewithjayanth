@@ -7,7 +7,7 @@ import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, Users, TrendingUp, S
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { TemplateCarousel } from "@/components/TemplateCarousel";
+import { TemplatePreview } from "@/components/TemplatePreview";
 import { pdf } from "@react-pdf/renderer";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { ModernTemplate } from "@/components/resume/templates/ModernTemplate";
@@ -715,54 +715,118 @@ const Hero = () => {
               </p>
             </div>
 
-            <TemplateCarousel
-              templates={[
+            {/* Template Grid - 3x3 Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {[
                 {
                   id: "professional",
                   name: "Professional",
                   description: "Traditional single-column layout optimized for corporate roles",
-                  highlights: ["ATS-Friendly", "Corporate", "Clean Design"]
+                  color: "#2563eb"
                 },
                 {
                   id: "modern",
                   name: "Modern",
-                  description: "Contemporary two-column design for creative and product teams",
-                  highlights: ["Creative", "Two-Column", "Modern Layout"]
+                  description: "Contemporary two-column design for creative teams",
+                  color: "#7c3aed"
                 },
                 {
                   id: "software",
                   name: "Software Engineer",
-                  description: "Bold two-column layout with impact metrics and achievements",
-                  highlights: ["Tech-Focused", "Metrics", "Leadership"]
+                  description: "Bold layout with impact metrics and achievements",
+                  color: "#059669"
                 },
                 {
                   id: "fresher",
                   name: "Fresher Premium",
-                  description: "ATS-optimized premium template for fresh graduates",
-                  highlights: ["Entry-Level", "ATS-Friendly", "Premium"]
+                  description: "ATS-optimized template for fresh graduates",
+                  color: "#e11d48"
                 },
                 {
                   id: "executive",
                   name: "Executive",
-                  description: "Bold leadership-focused layout for senior candidates",
-                  highlights: ["Leadership", "Executive", "Bold Design"]
+                  description: "Bold leadership-focused layout for senior roles",
+                  color: "#ea580c"
                 },
                 {
                   id: "minimal",
                   name: "Minimal",
-                  description: "Sophisticated whitespace-focused template for easy scanning",
-                  highlights: ["Clean", "Minimalist", "Easy to Read"]
+                  description: "Sophisticated whitespace-focused design",
+                  color: "#0d9488"
+                },
+                {
+                  id: "frontend",
+                  name: "Frontend Developer",
+                  description: "Tech-focused design with skills grid layout",
+                  color: "#8b5cf6"
+                },
+                {
+                  id: "backend",
+                  name: "Backend Developer",
+                  description: "Clean technical design for backend specialists",
+                  color: "#ec4899"
+                },
+                {
+                  id: "fullstack",
+                  name: "Full Stack Engineer",
+                  description: "Comprehensive layout for full-stack developers",
+                  color: "#f59e0b"
                 }
-              ]}
-              themeColors={["#7c3aed", "#2563eb", "#059669", "#e11d48", "#ea580c", "#0d9488"]}
-              onTemplateSelect={(templateId) => {
-                navigate(`/editor/${templateId}`);
-              }}
-              className="mb-8"
-            />
+              ].map((template) => (
+                <div
+                  key={template.id}
+                  className="group relative bg-white rounded-xl border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+                  onClick={() => navigate(`/editor/${template.id}`)}
+                >
+                  {/* Template Preview */}
+                  <div className="relative h-72 bg-gray-50 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <TemplatePreview
+                      templateId={template.id}
+                      themeColor={template.color}
+                      className="border-0"
+                    />
+                    
+                    {/* Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                      <Button className="bg-white text-primary hover:bg-white/90 shadow-lg">
+                        <Eye className="w-4 h-4 mr-2" />
+                        Use Template
+                      </Button>
+                    </div>
+                  </div>
 
+                  {/* Template Info */}
+                  <div className="p-5 space-y-2 bg-white">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-bold text-gray-900 group-hover:text-primary transition-colors">
+                        {template.name}
+                      </h3>
+                      <div 
+                        className="w-4 h-4 rounded-full border-2 border-gray-200 group-hover:scale-110 transition-transform"
+                        style={{ backgroundColor: template.color }}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                      {template.description}
+                    </p>
+                    
+                    {/* View Details Link */}
+                    <div className="flex items-center text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-1">
+                      <span>View Details</span>
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* View All Templates Button */}
             <div className="text-center">
-              <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/dashboard")}>
+              <Button 
+                className={cn(primaryButtonClass, "group")} 
+                onClick={() => navigate("/dashboard")}
+              >
                 <span>View All Templates</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
