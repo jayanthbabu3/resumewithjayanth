@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -154,8 +155,6 @@ const TemplateGrid = ({ templates }: TemplateGridProps) => {
 
 const Dashboard = () => {
   const [category, setCategory] = useState("experienced");
-  
-  const currentTemplates = category === "experienced" ? experiencedTemplates : freshersTemplates;
 
   return (
     <div className="min-h-screen bg-background">
@@ -181,10 +180,10 @@ const Dashboard = () => {
       </div>
 
       <main className="container mx-auto px-4 md:px-6 py-6 md:py-12">
-        {/* Category Selection */}
-        <div className="mb-6 md:mb-12">
+        {/* Mobile Dropdown - visible only on mobile */}
+        <div className="mb-6 md:hidden">
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-full md:w-auto md:min-w-[320px] mx-auto h-12 md:h-14 text-sm md:text-base">
+            <SelectTrigger className="w-full h-12 text-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -210,8 +209,38 @@ const Dashboard = () => {
           </Select>
         </div>
 
+        {/* Desktop Tabs - hidden on mobile */}
+        <Tabs value={category} onValueChange={setCategory} className="w-full hidden md:block">
+          <div className="flex justify-center mb-12">
+            <TabsList className="inline-flex h-12 items-center justify-center rounded-xl bg-muted p-1.5 text-muted-foreground">
+              <TabsTrigger
+                value="experienced"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              >
+                <Briefcase className="h-4 w-4" />
+                Experienced Professionals
+                <span className="ml-1 rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                  {experiencedTemplates.length}
+                </span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="freshers"
+                className="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              >
+                <GraduationCap className="h-4 w-4" />
+                Freshers & Graduates
+                <span className="ml-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">
+                  {freshersTemplates.length}
+                </span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
+        </Tabs>
+
         {/* Template Grid */}
-        <TemplateGrid templates={currentTemplates} />
+        <TemplateGrid 
+          templates={category === "experienced" ? experiencedTemplates : freshersTemplates} 
+        />
       </main>
     </div>
   );
