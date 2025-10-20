@@ -75,6 +75,11 @@ const TemplateGrid = ({ templates }: TemplateGridProps) => {
             className="group relative overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer bg-card"
             onClick={() => navigate(`/editor/${template.id}`)}
           >
+            {/* Template Number Badge */}
+            <div className="absolute top-3 right-3 z-10 flex items-center justify-center h-8 w-8 rounded-full bg-gradient-to-br from-primary to-primary/80 text-white text-sm font-semibold shadow-lg group-hover:scale-110 transition-transform duration-300">
+              {index + 1}
+            </div>
+
             {/* Template Preview */}
             <div className="relative aspect-[8.5/9] bg-white overflow-hidden">
               <TemplatePreview
