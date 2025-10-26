@@ -170,39 +170,21 @@ export const PremiumElitePDF = ({
       marginTop: 4,
       fontWeight: 600,
     },
-    skillItem: {
-      marginBottom: 14,
-    },
-    skillHeader: {
+    skillsContainer: {
       flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: 6,
+      flexWrap: "wrap",
+      gap: 8,
     },
-    skillName: {
+    skillBadge: {
+      backgroundColor: `${themeColor}20`,
+      paddingHorizontal: 12,
+      paddingVertical: 6,
+      borderRadius: 8,
+    },
+    skillBadgeText: {
       fontSize: 9.5,
       fontWeight: 600,
-      color: "#111827",
-    },
-    skillLevelBadge: {
-      fontSize: 8,
-      fontWeight: 700,
       color: themeColor,
-      backgroundColor: `${themeColor}20`,
-      paddingHorizontal: 8,
-      paddingVertical: 2,
-      borderRadius: 999,
-    },
-    skillBar: {
-      height: 8,
-      backgroundColor: "#e5e7eb",
-      borderRadius: 4,
-      overflow: "hidden",
-    },
-    skillBarFill: {
-      height: "100%",
-      backgroundColor: themeColor,
-      borderRadius: 4,
     },
     experienceItem: {
       marginBottom: 22,
@@ -281,13 +263,13 @@ export const PremiumElitePDF = ({
               )}
               <View style={styles.contactInfo}>
                 {resumeData.personalInfo.email && (
-                  <Text>📧 {resumeData.personalInfo.email}</Text>
+                  <Text>{resumeData.personalInfo.email}</Text>
                 )}
                 {resumeData.personalInfo.phone && (
-                  <Text>📱 {resumeData.personalInfo.phone}</Text>
+                  <Text>{resumeData.personalInfo.phone}</Text>
                 )}
                 {resumeData.personalInfo.location && (
-                  <Text>📍 {resumeData.personalInfo.location}</Text>
+                  <Text>{resumeData.personalInfo.location}</Text>
                 )}
               </View>
             </View>
@@ -345,26 +327,13 @@ export const PremiumElitePDF = ({
                     <View style={styles.dot} />
                     <Text>Skills & Expertise</Text>
                   </View>
-                  {resumeData.skills.map((skill) => (
-                    <View key={skill.id} style={styles.skillItem}>
-                      <View style={styles.skillHeader}>
-                        <Text style={styles.skillName}>{skill.name}</Text>
-                        {skill.level && (
-                          <Text style={styles.skillLevelBadge}>{skill.level}/10</Text>
-                        )}
+                  <View style={styles.skillsContainer}>
+                    {resumeData.skills.map((skill) => (
+                      <View key={skill.id} style={styles.skillBadge}>
+                        <Text style={styles.skillBadgeText}>{skill.name}</Text>
                       </View>
-                      {skill.level && (
-                        <View style={styles.skillBar}>
-                          <View
-                            style={[
-                              styles.skillBarFill,
-                              { width: `${skill.level * 10}%` },
-                            ]}
-                          />
-                        </View>
-                      )}
-                    </View>
-                  ))}
+                    ))}
+                  </View>
                 </View>
               )}
             </View>

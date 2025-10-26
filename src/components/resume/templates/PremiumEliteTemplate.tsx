@@ -35,13 +35,13 @@ export const PremiumEliteTemplate = ({
             )}
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-[11.5px] opacity-90">
               {resumeData.personalInfo.email && (
-                <span>📧 {resumeData.personalInfo.email}</span>
+                <span>{resumeData.personalInfo.email}</span>
               )}
               {resumeData.personalInfo.phone && (
-                <span>📱 {resumeData.personalInfo.phone}</span>
+                <span>{resumeData.personalInfo.phone}</span>
               )}
               {resumeData.personalInfo.location && (
-                <span>📍 {resumeData.personalInfo.location}</span>
+                <span>{resumeData.personalInfo.location}</span>
               )}
             </div>
           </div>
@@ -124,37 +124,18 @@ export const PremiumEliteTemplate = ({
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accent }} />
                   Skills & Expertise
                 </h2>
-                <div className="space-y-3.5">
+                <div className="flex flex-wrap gap-2">
                   {resumeData.skills.map((skill) => (
-                    <div key={skill.id}>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[12px] font-semibold text-gray-900">
-                          {skill.name}
-                        </span>
-                        {skill.level && (
-                          <span 
-                            className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                            style={{ 
-                              backgroundColor: accentLight,
-                              color: accent 
-                            }}
-                          >
-                            {skill.level}/10
-                          </span>
-                        )}
-                      </div>
-                      {skill.level && (
-                        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all"
-                            style={{
-                              width: `${skill.level * 10}%`,
-                              background: `linear-gradient(90deg, ${accent} 0%, ${accent}cc 100%)`,
-                            }}
-                          />
-                        </div>
-                      )}
-                    </div>
+                    <span
+                      key={skill.id}
+                      className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
+                      style={{ 
+                        backgroundColor: accentLight,
+                        color: accent 
+                      }}
+                    >
+                      {skill.name}
+                    </span>
                   ))}
                 </div>
               </div>
