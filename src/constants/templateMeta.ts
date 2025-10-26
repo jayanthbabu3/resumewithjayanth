@@ -156,6 +156,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal",
     categorySlug: "all",
   },
+  "premium-elite": {
+    name: "Premium Elite",
+    description:
+      "Stunning gradient header design with modern typography, timeline elements, and visual hierarchy for all professionals.",
+    category: "Universal",
+    categorySlug: "all",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {

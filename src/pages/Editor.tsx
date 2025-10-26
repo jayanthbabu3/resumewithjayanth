@@ -30,6 +30,7 @@ import { AnalystPDF } from "@/components/resume/pdf/AnalystPDF";
 import { ElitePDF } from "@/components/resume/pdf/ElitePDF";
 import { CorporateExecutivePDF } from "@/components/resume/pdf/CorporateExecutivePDF";
 import { RefinedPDF } from "@/components/resume/pdf/RefinedPDF";
+import { PremiumElitePDF } from "@/components/resume/pdf/PremiumElitePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1908,6 +1909,7 @@ const Editor = () => {
         elite: ElitePDF,
         "corporate-executive": CorporateExecutivePDF,
         refined: RefinedPDF,
+        "premium-elite": PremiumElitePDF,
       };
 
       const PDFTemplate =
