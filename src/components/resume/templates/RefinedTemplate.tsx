@@ -16,7 +16,7 @@ export const RefinedTemplate = ({
     <div className="mx-auto bg-white font-sans text-gray-900">
       <div className="grid grid-cols-[280px,1fr]">
         {/* Left Sidebar */}
-        <div className="px-8 py-12" style={{ backgroundColor: `${themeColor}08` }}>
+        <div className="px-8 py-12" style={{ backgroundColor: `${themeColor}15` }}>
           {/* Photo */}
           {personalInfo.photo && (
             <div className="mb-8">
