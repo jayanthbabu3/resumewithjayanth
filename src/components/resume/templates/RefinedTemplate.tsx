@@ -111,7 +111,7 @@ export const RefinedTemplate = ({
           {/* Header */}
           <div className="mb-10">
             <h1
-              className="mb-2 text-5xl font-light tracking-tight leading-tight"
+              className="mb-3 text-6xl font-normal tracking-tight leading-none"
               style={{ color: themeColor }}
             >
               {personalInfo.fullName}
