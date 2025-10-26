@@ -29,6 +29,7 @@ import { FresherElitePDF } from "@/components/resume/pdf/FresherElitePDF";
 import { AnalystPDF } from "@/components/resume/pdf/AnalystPDF";
 import { ElitePDF } from "@/components/resume/pdf/ElitePDF";
 import { CorporateExecutivePDF } from "@/components/resume/pdf/CorporateExecutivePDF";
+import { RefinedPDF } from "@/components/resume/pdf/RefinedPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -1906,6 +1907,7 @@ const Editor = () => {
         analyst: AnalystPDF,
         elite: ElitePDF,
         "corporate-executive": CorporateExecutivePDF,
+        refined: RefinedPDF,
       };
 
       const PDFTemplate =

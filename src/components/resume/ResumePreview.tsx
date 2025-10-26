@@ -20,6 +20,7 @@ import { FresherEliteTemplate } from "./templates/FresherEliteTemplate";
 import { AnalystTemplate } from "./templates/AnalystTemplate";
 import { EliteTemplate } from "./templates/EliteTemplate";
 import { CorporateExecutiveTemplate } from "./templates/CorporateExecutiveTemplate";
+import { RefinedTemplate } from "./templates/RefinedTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -54,6 +55,7 @@ export const ResumePreview = ({
     analyst: AnalystTemplate,
     elite: EliteTemplate,
     "corporate-executive": CorporateExecutiveTemplate,
+    refined: RefinedTemplate,
   };
 
   const Template =

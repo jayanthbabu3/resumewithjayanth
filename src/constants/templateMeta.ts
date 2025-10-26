@@ -149,6 +149,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Corporate",
     categorySlug: "all",
   },
+  refined: {
+    name: "Refined Elegance",
+    description:
+      "Beautiful minimalist design with exceptional typography, timeline accents, and sophisticated spacing for all professionals.",
+    category: "Universal",
+    categorySlug: "all",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {
