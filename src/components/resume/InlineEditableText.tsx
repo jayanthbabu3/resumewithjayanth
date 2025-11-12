@@ -9,6 +9,7 @@ interface InlineEditableTextProps {
   multiline?: boolean;
   placeholder?: string;
   as?: keyof JSX.IntrinsicElements;
+  style?: React.CSSProperties;
 }
 
 export const InlineEditableText = ({
@@ -18,6 +19,7 @@ export const InlineEditableText = ({
   multiline = false,
   placeholder = "Click to edit",
   as: Component = "span",
+  style,
 }: InlineEditableTextProps) => {
   const { updateField } = useInlineEdit();
   const [isEditing, setIsEditing] = useState(false);
@@ -94,6 +96,7 @@ export const InlineEditableText = ({
         !value && "text-gray-400 italic",
         className
       )}
+      style={style}
       title="Click to edit"
     >
       {value || placeholder}
