@@ -67,11 +67,7 @@ const App = () => (
             />
             <Route 
               path="/live-editor/:templateId" 
-              element={
-                <ProtectedRoute>
-                  <LiveEditor />
-                </ProtectedRoute>
-              } 
+              element={<LiveEditor />} 
             />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
