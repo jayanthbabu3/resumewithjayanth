@@ -30,7 +30,7 @@ import { RefinedPDF } from "@/components/resume/pdf/RefinedPDF";
 import { PremiumElitePDF } from "@/components/resume/pdf/PremiumElitePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
-import { EditableResumePreview } from "@/components/resume/EditableResumePreview";
+import { InlineEditableResume } from "@/components/resume/InlineEditableResume";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
@@ -159,8 +159,8 @@ const LiveEditor = () => {
         </div>
       </div>
 
-      <div className="flex-1 overflow-hidden">
-        <EditableResumePreview
+      <div className="flex-1 overflow-auto bg-gray-100 p-8">
+        <InlineEditableResume
           resumeData={resumeData}
           setResumeData={setResumeData}
           templateId={templateId || "professional"}
