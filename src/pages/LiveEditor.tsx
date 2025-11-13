@@ -82,6 +82,9 @@ const pdfTemplates: Record<string, any> = {
   "premium-elite": PremiumElitePDF,
 };
 
+// Templates that support inline editing
+const inlineEditableTemplates = ["modern", "senior"];
+
 const displayTemplates: Record<string, any> = {
   professional: ProfessionalTemplate,
   modern: ModernTemplate,
@@ -251,18 +254,38 @@ const LiveEditor = () => {
 
       <div className="flex-1 overflow-auto p-4 md:p-8">
         <div className="container mx-auto max-w-5xl">
-          <InlineEditProvider resumeData={resumeData} setResumeData={setResumeData}>
-            <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
-              {(() => {
-                const TemplateComponent = displayTemplates[templateId || "professional"];
-                return TemplateComponent ? (
-                  <TemplateComponent resumeData={resumeData} themeColor={themeColor} />
-                ) : (
-                  <ProfessionalTemplate resumeData={resumeData} themeColor={themeColor} />
+          <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
+            {(() => {
+              const currentTemplateId = templateId || "professional";
+              const TemplateComponent = displayTemplates[currentTemplateId];
+              const supportsInlineEdit = inlineEditableTemplates.includes(currentTemplateId);
+              
+              if (!TemplateComponent) {
+                return <ProfessionalTemplate resumeData={resumeData} themeColor={themeColor} />;
+              }
+
+              // Wrap with InlineEditProvider only for templates that support it
+              if (supportsInlineEdit) {
+                return (
+                  <InlineEditProvider resumeData={resumeData} setResumeData={setResumeData}>
+                    <TemplateComponent resumeData={resumeData} themeColor={themeColor} />
+                  </InlineEditProvider>
                 );
-              })()}
-            </div>
-          </InlineEditProvider>
+              }
+
+              // For templates without inline editing, show message
+              return (
+                <div className="p-8">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                    <p className="text-sm text-yellow-800">
+                      Direct inline editing is not yet available for this template. Use the Form Editor tab to edit this template, or try the Modern or Senior templates which support inline editing.
+                    </p>
+                  </div>
+                  <TemplateComponent resumeData={resumeData} themeColor={themeColor} />
+                </div>
+              );
+            })()}
+          </div>
         </div>
       </div>
     </div>
