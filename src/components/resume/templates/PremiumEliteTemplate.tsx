@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface PremiumEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const PremiumEliteTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
+  editable = false,
 }: PremiumEliteTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
   const accent = themeColor;

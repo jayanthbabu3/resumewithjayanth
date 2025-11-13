@@ -5,11 +5,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const CorporateExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e40af",
+  editable = false,
 }: TemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";

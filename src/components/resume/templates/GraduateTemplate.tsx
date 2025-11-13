@@ -5,9 +5,10 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface GraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
-export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9" }: GraduateTemplateProps) => {
+export const GraduateTemplate = ({ resumeData, themeColor = "#0EA5E9", editable = false }: GraduateTemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");

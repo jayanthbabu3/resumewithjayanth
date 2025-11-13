@@ -5,11 +5,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface FresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const FresherTemplate = ({
   resumeData,
   themeColor = "#2563EB",
+  editable = false,
 }: FresherTemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";

@@ -1,10 +1,13 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
+import { InlineEditableText } from "@/components/resume/InlineEditableText";
+import { InlineEditableList } from "@/components/resume/InlineEditableList";
 
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 const normalizeHex = (color?: string) => {
@@ -31,6 +34,7 @@ const withOpacity = (color: string | undefined, alpha: string) => {
 export const ExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e293b",
+  editable = false,
 }: TemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";

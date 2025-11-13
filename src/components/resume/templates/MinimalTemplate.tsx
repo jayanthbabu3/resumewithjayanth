@@ -1,13 +1,16 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
+import { InlineEditableText } from "@/components/resume/InlineEditableText";
+import { InlineEditableList } from "@/components/resume/InlineEditableList";
 
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
-export const MinimalTemplate = ({ resumeData, themeColor }: TemplateProps) => {
+export const MinimalTemplate = ({ resumeData, themeColor, editable = false }: TemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");

@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface PremiumFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const PremiumFresherTemplate = ({
   resumeData,
   themeColor = "#7C3AED",
+  editable = false,
 }: PremiumFresherTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
 

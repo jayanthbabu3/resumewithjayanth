@@ -1,10 +1,13 @@
 import type { ResumeData } from "@/pages/Editor";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
+import { InlineEditableText } from "@/components/resume/InlineEditableText";
+import { InlineEditableList } from "@/components/resume/InlineEditableList";
 
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 const normalizeHex = (color?: string) => {
@@ -28,7 +31,7 @@ const formatDate = (date: string) => {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short" });
 };
 
-export const BackendTemplate = ({ resumeData, themeColor = "#374151" }: TemplateProps) => {
+export const BackendTemplate = ({ resumeData, themeColor = "#374151", editable = false }: TemplateProps) => {
   const photo = resumeData.personalInfo.photo;
   const fontFamily = `"Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif`;
   const accent = normalizeHex(themeColor) ?? "#374151";

@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface FresherEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const FresherEliteTemplate = ({
   resumeData,
   themeColor = "#6366f1",
+  editable = false,
 }: FresherEliteTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
 

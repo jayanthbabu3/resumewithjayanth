@@ -3,6 +3,7 @@ import { ResumeData } from "@/pages/Editor";
 interface PremiumUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 const normalizeHex = (color?: string) => {

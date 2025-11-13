@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface AnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const AnalystTemplate = ({
   resumeData,
-  themeColor = "#2563eb",
+  themeColor = "#3b82f6",
+  editable = false,
 }: AnalystTemplateProps) => {
   const { personalInfo, experience, education, skills, sections } = resumeData;
 

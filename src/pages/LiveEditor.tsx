@@ -82,8 +82,14 @@ const pdfTemplates: Record<string, any> = {
   "premium-elite": PremiumElitePDF,
 };
 
-// Templates that support inline editing
-const inlineEditableTemplates = ["modern", "senior"];
+// All templates now support inline editing
+const inlineEditableTemplates = [
+  "professional", "modern", "minimal", "executive", "frontend", "fullstack",
+  "backend", "graduate", "starter", "fresher", "premium-fresher", "senior",
+  "senior-frontend", "senior-backend", "software", "premium-universal",
+  "premium-pro", "fresher-elite", "analyst", "elite", "corporate-executive",
+  "refined", "premium-elite"
+];
 
 const displayTemplates: Record<string, any> = {
   professional: ProfessionalTemplate,

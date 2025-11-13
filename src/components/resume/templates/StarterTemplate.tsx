@@ -5,9 +5,10 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface StarterTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
-export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9" }: StarterTemplateProps) => {
+export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9", editable = false }: StarterTemplateProps) => {
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");

@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface RefinedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const RefinedTemplate = ({
   resumeData,
-  themeColor = "#2563eb",
+  themeColor = "#4f46e5",
+  editable = false,
 }: RefinedTemplateProps) => {
   const { personalInfo, experience, education, skills, sections } = resumeData;
 

@@ -4,11 +4,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface EliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 export const EliteTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
+  editable = false,
 }: EliteTemplateProps) => {
   const { personalInfo, experience, education, skills, sections } = resumeData;
 

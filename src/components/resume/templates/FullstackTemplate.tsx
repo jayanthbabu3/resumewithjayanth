@@ -5,6 +5,7 @@ import { ProfilePhoto } from "./ProfilePhoto";
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 const normalizeHex = (color?: string) => {

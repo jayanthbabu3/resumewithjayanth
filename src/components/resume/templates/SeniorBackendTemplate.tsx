@@ -3,6 +3,7 @@ import type { ResumeData } from "@/pages/Editor";
 interface TemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
+  editable?: boolean;
 }
 
 const formatDate = (value?: string) => {
