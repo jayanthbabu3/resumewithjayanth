@@ -113,22 +113,49 @@ export const ExecutiveTemplate = ({
             <ProfilePhoto src={photo} borderClass="border-4 border-white/50" />
           </div>
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[12px] text-white/80">
-            {resumeData.personalInfo.email && (
+            {(resumeData.personalInfo.email || editable) && (
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4" />
-                <span>{resumeData.personalInfo.email}</span>
+                {editable ? (
+                  <InlineEditableText
+                    path="personalInfo.email"
+                    value={resumeData.personalInfo.email || ""}
+                    placeholder="email@example.com"
+                    as="span"
+                  />
+                ) : (
+                  <span>{resumeData.personalInfo.email}</span>
+                )}
               </div>
             )}
-            {resumeData.personalInfo.phone && (
+            {(resumeData.personalInfo.phone || editable) && (
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span>{resumeData.personalInfo.phone}</span>
+                {editable ? (
+                  <InlineEditableText
+                    path="personalInfo.phone"
+                    value={resumeData.personalInfo.phone || ""}
+                    placeholder="+1 (555) 000-0000"
+                    as="span"
+                  />
+                ) : (
+                  <span>{resumeData.personalInfo.phone}</span>
+                )}
               </div>
             )}
-            {resumeData.personalInfo.location && (
+            {(resumeData.personalInfo.location || editable) && (
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4" />
-                <span>{resumeData.personalInfo.location}</span>
+                {editable ? (
+                  <InlineEditableText
+                    path="personalInfo.location"
+                    value={resumeData.personalInfo.location || ""}
+                    placeholder="City, State"
+                    as="span"
+                  />
+                ) : (
+                  <span>{resumeData.personalInfo.location}</span>
+                )}
               </div>
             )}
           </div>
