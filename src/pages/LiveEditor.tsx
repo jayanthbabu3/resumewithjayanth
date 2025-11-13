@@ -1,10 +1,11 @@
 import { useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download, Loader2, ArrowLeft } from "lucide-react";
+import { Download, Loader2, ArrowLeft, Edit3, FileEdit } from "lucide-react";
 import { toast } from "sonner";
 import { Header } from "@/components/Header";
 import { pdf } from "@react-pdf/renderer";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
@@ -30,7 +31,7 @@ import { RefinedPDF } from "@/components/resume/pdf/RefinedPDF";
 import { PremiumElitePDF } from "@/components/resume/pdf/PremiumElitePDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
-import { InlineEditableResume } from "@/components/resume/InlineEditableResume";
+import { EditableResumePreview } from "@/components/resume/EditableResumePreview";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
@@ -66,6 +67,7 @@ const LiveEditor = () => {
   );
   const [themeColor, setThemeColor] = useState("#7c3aed");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [editorMode, setEditorMode] = useState<"live" | "form">("live");
 
   const handleDownloadPDF = useCallback(async () => {
     if (!templateId) return;
@@ -103,69 +105,106 @@ const LiveEditor = () => {
     }
   }, [templateId, resumeData, themeColor]);
 
+  const handleSwitchToFormEditor = () => {
+    navigate(`/editor/${templateId}`);
+  };
+
   return (
-    <div className="flex h-screen flex-col bg-background">
+    <div className="flex h-screen flex-col bg-gradient-to-br from-background via-muted/5 to-background">
       <Header />
       
-      <div className="flex items-center justify-between border-b bg-card px-6 py-4">
-        <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate("/dashboard")}
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Dashboard
-          </Button>
-          <div>
-            <h1 className="text-xl font-semibold">Live Editor</h1>
-            <p className="text-sm text-muted-foreground">
-              Click any field to edit it directly
-            </p>
-          </div>
-        </div>
+      <div className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate("/dashboard")}
+                className="hover:bg-accent"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back
+              </Button>
+              <div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                  Live Editor
+                </h1>
+                <p className="text-sm text-muted-foreground">
+                  Click any field to edit directly
+                </p>
+              </div>
+            </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <label htmlFor="themeColor" className="text-sm font-medium">
-              Theme Color:
-            </label>
-            <input
-              id="themeColor"
-              type="color"
-              value={themeColor}
-              onChange={(e) => setThemeColor(e.target.value)}
-              className="h-10 w-16 cursor-pointer rounded border"
-            />
+            <div className="flex items-center gap-3 flex-wrap">
+              <Tabs value={editorMode} onValueChange={(v) => v === "form" && handleSwitchToFormEditor()} className="hidden md:block">
+                <TabsList className="bg-muted/50">
+                  <TabsTrigger value="live" className="gap-2">
+                    <Edit3 className="h-4 w-4" />
+                    Live Editor
+                  </TabsTrigger>
+                  <TabsTrigger value="form" className="gap-2">
+                    <FileEdit className="h-4 w-4" />
+                    Form Editor
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSwitchToFormEditor}
+                className="md:hidden"
+              >
+                <FileEdit className="h-4 w-4 mr-2" />
+                Switch to Form
+              </Button>
+              
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 border">
+                <label htmlFor="themeColor" className="text-sm font-medium whitespace-nowrap">
+                  Theme:
+                </label>
+                <input
+                  id="themeColor"
+                  type="color"
+                  value={themeColor}
+                  onChange={(e) => setThemeColor(e.target.value)}
+                  className="h-8 w-12 cursor-pointer rounded border border-border"
+                />
+              </div>
+              
+              <Button
+                onClick={handleDownloadPDF}
+                disabled={isGeneratingPDF}
+                size="default"
+                className="gap-2 shadow-md"
+              >
+                {isGeneratingPDF ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-4 w-4" />
+                    Download PDF
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
-          
-          <Button
-            onClick={handleDownloadPDF}
-            disabled={isGeneratingPDF}
-            size="lg"
-          >
-            {isGeneratingPDF ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
-              </>
-            ) : (
-              <>
-                <Download className="mr-2 h-4 w-4" />
-                Download PDF
-              </>
-            )}
-          </Button>
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto bg-gray-100 p-8">
-        <InlineEditableResume
-          resumeData={resumeData}
-          setResumeData={setResumeData}
-          templateId={templateId || "professional"}
-          themeColor={themeColor}
-        />
+      <div className="flex-1 overflow-auto p-4 md:p-8">
+        <div className="container mx-auto max-w-5xl">
+          <EditableResumePreview
+            resumeData={resumeData}
+            setResumeData={setResumeData}
+            templateId={templateId || "professional"}
+            themeColor={themeColor}
+          />
+        </div>
       </div>
     </div>
   );
