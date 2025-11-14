@@ -126,7 +126,7 @@ export function SectionLibrary({ onAddSection, disabledSections = [] }: SectionL
           className="gap-2 bg-gradient-to-r from-primary/10 to-purple-500/10 border-primary/20 hover:border-primary/40 hover:bg-gradient-to-r hover:from-primary/20 hover:to-purple-500/20"
         >
           <Sparkles className="h-4 w-4" />
-          Add Section
+          Helper Sections
         </Button>
       </SheetTrigger>
 
