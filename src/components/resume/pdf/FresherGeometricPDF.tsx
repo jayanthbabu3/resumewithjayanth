@@ -310,6 +310,12 @@ const formatDate = (date: string) => {
 };
 
 export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: FresherGeometricPDFProps) => {
+  // Ensure all array fields are valid arrays to prevent forEach errors
+  const safeSkills = Array.isArray(resumeData.skills) ? resumeData.skills : [];
+  const safeEducation = Array.isArray(resumeData.education) ? resumeData.education : [];
+  const safeExperience = Array.isArray(resumeData.experience) ? resumeData.experience : [];
+  const safeSections = Array.isArray(resumeData.sections) ? resumeData.sections : [];
+
   return (
   <Document>
     <Page size="A4" style={styles.page}>
@@ -383,13 +389,13 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
       <View style={styles.mainContent}>
         {/* Left Column - Skills */}
         <View style={styles.leftColumn}>
-          {resumeData.skills && resumeData.skills.length > 0 && (
+          {safeSkills.length > 0 && (
             <View style={styles.sectionMargin}>
               <View style={styles.sectionHeader}>
                 <View style={styles.diamond} />
                 <Text style={styles.sectionTitle}>Skills</Text>
               </View>
-              {resumeData.skills.map((skill) => (
+              {safeSkills.map((skill) => (
                 <View key={skill.id} style={styles.skillItem}>
                   <View style={styles.skillDot} />
                   <Text style={styles.skillText}>{skill.name}</Text>
@@ -402,7 +408,7 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
         {/* Right Column - Education & Experience */}
         <View style={styles.rightColumn}>
           {/* Education */}
-          {resumeData.education && resumeData.education.length > 0 && (
+          {safeEducation.length > 0 && (
             <View style={styles.sectionMargin}>
               <View style={styles.sectionHeader}>
                 <Svg style={styles.hexagonIcon} viewBox="0 0 24 24">
@@ -410,7 +416,7 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
                 </Svg>
                 <Text style={styles.sectionTitle}>Education</Text>
               </View>
-              {resumeData.education.map((edu, index) => (
+              {safeEducation.map((edu, index) => (
                 <View key={index} style={styles.educationItem}>
                   <View style={styles.geometricDot} />
                   <Text style={styles.educationDegree}>{edu.degree}</Text>
@@ -430,7 +436,7 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
           )}
 
           {/* Experience */}
-          {resumeData.experience && resumeData.experience.length > 0 && (
+          {safeExperience.length > 0 && (
             <View style={styles.sectionMargin}>
               <View style={styles.sectionHeader}>
                 <Svg style={styles.hexagonIcon} viewBox="0 0 24 24">
@@ -438,7 +444,7 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
                 </Svg>
                 <Text style={styles.sectionTitle}>Experience & Internships</Text>
               </View>
-              {resumeData.experience.map((exp, index) => (
+              {safeExperience.map((exp, index) => (
                 <View key={index} style={styles.experienceItem}>
                   <View style={styles.geometricDot} />
                   <Text style={styles.experiencePosition}>{exp.position}</Text>
@@ -458,9 +464,9 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
           )}
 
           {/* Custom Sections */}
-          {resumeData.sections && resumeData.sections.length > 0 && (
+          {safeSections.length > 0 && (
             <>
-              {resumeData.sections.map((section, index) => (
+              {safeSections.map((section, index) => (
                 hasContent(section.title) && hasContent(section.content) && (
                   <View key={index} style={styles.sectionMargin}>
                     <View style={styles.sectionHeader}>
