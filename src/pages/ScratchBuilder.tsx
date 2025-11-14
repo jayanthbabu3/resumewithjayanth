@@ -32,7 +32,7 @@ import { ScratchBuilderPDF } from '@/components/resume/pdf/ScratchBuilderPDF';
 import { registerPDFFonts } from '@/lib/pdfFonts';
 import { InlineEditProvider } from '@/contexts/InlineEditContext';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
-import { InlineEditableDynamicSection } from '@/components/resume/InlineEditableDynamicSection';
+import { ScratchBuilderSection } from '@/components/resume/ScratchBuilderSection';
 
 const generateId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
@@ -124,12 +124,16 @@ function SortableSection({ section, onDelete }: SortableSectionProps) {
     opacity: isDragging ? 0.5 : 1,
   };
 
+  const sectionIndex = 0; // This will be provided properly by parent
+
   return (
     <div ref={setNodeRef} style={style} className="mb-6">
-      <InlineEditableDynamicSection
+      <ScratchBuilderSection
         section={section}
+        sectionIndex={sectionIndex}
+        onDelete={onDelete}
         dragHandleProps={{ ...attributes, ...listeners }}
-        onDelete={() => onDelete(section.id)}
+        themeColor="#7c3aed"
       />
     </div>
   );
@@ -422,13 +426,39 @@ export default function ScratchBuilder() {
                       items={sections.map((s) => s.id)}
                       strategy={verticalListSortingStrategy}
                     >
-                      {sections.map((section) => (
-                        <SortableSection
-                          key={section.id}
-                          section={section}
-                          onDelete={handleDeleteSection}
-                        />
-                      ))}
+                      {sections.map((section, index) => {
+                        // Create a wrapper that passes the correct index
+                        const SortableSectionWrapper = () => {
+                          const {
+                            attributes,
+                            listeners,
+                            setNodeRef,
+                            transform,
+                            transition,
+                            isDragging,
+                          } = useSortable({ id: section.id });
+
+                          const style = {
+                            transform: CSS.Transform.toString(transform),
+                            transition,
+                            opacity: isDragging ? 0.5 : 1,
+                          };
+
+                          return (
+                            <div ref={setNodeRef} style={style} className="mb-6">
+                              <ScratchBuilderSection
+                                section={section}
+                                sectionIndex={index}
+                                onDelete={handleDeleteSection}
+                                dragHandleProps={{ ...attributes, ...listeners }}
+                                themeColor={themeColor}
+                              />
+                            </div>
+                          );
+                        };
+
+                        return <SortableSectionWrapper key={section.id} />;
+                      })}
                     </SortableContext>
                   )}
                 </div>
