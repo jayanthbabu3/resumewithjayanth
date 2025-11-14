@@ -230,7 +230,6 @@ interface FresherCenteredElegantPDFProps {
 const formatDate = (date: string) => {
   if (!date) return "";
   const [year, month] = date.split("-");
-};
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December",

@@ -246,7 +246,6 @@ interface FresherMinimalGridPDFProps {
 const formatDate = (date: string) => {
   if (!date) return "";
   const [year, month] = date.split("-");
-};
   const monthNames = [
     "Jan",
     "Feb",
