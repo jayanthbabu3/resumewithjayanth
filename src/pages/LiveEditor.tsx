@@ -58,6 +58,16 @@ import { CorporateExecutiveTemplate } from "@/components/resume/templates/Corpor
 import { RefinedTemplate } from "@/components/resume/templates/RefinedTemplate";
 import { PremiumEliteTemplate } from "@/components/resume/templates/PremiumEliteTemplate";
 import { SeniorBackendTemplate } from "@/components/resume/templates/SeniorBackendTemplate";
+import { SapphireExecutiveTemplate } from "@/components/resume/templates/SapphireExecutiveTemplate";
+import { CreativeAccentTemplate } from "@/components/resume/templates/CreativeAccentTemplate";
+import { ModernSidebarTemplate } from "@/components/resume/templates/ModernSidebarTemplate";
+import { MinimalistGeometricTemplate } from "@/components/resume/templates/MinimalistGeometricTemplate";
+import { BoldHeadlineTemplate } from "@/components/resume/templates/BoldHeadlineTemplate";
+import { DualToneTemplate } from "@/components/resume/templates/DualToneTemplate";
+import { ElegantSerifTemplate } from "@/components/resume/templates/ElegantSerifTemplate";
+import { TechGridTemplate } from "@/components/resume/templates/TechGridTemplate";
+import { ContemporarySplitTemplate } from "@/components/resume/templates/ContemporarySplitTemplate";
+import { LuxuryTimelineTemplate } from "@/components/resume/templates/LuxuryTimelineTemplate";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
@@ -83,6 +93,16 @@ const pdfTemplates: Record<string, any> = {
   "corporate-executive": CorporateExecutivePDF,
   refined: RefinedPDF,
   "premium-elite": PremiumElitePDF,
+  "sapphire-executive": SapphireExecutiveTemplate,
+  "creative-accent": CreativeAccentTemplate,
+  "modern-sidebar": ModernSidebarTemplate,
+  "minimalist-geometric": MinimalistGeometricTemplate,
+  "bold-headline": BoldHeadlineTemplate,
+  "dual-tone": DualToneTemplate,
+  "elegant-serif": ElegantSerifTemplate,
+  "tech-grid": TechGridTemplate,
+  "contemporary-split": ContemporarySplitTemplate,
+  "luxury-timeline": LuxuryTimelineTemplate,
 };
 
 // Templates that support inline editing - updated to include Professional
@@ -92,7 +112,9 @@ const inlineEditableTemplates = [
   "backend", "graduate", "starter", "fresher", "premium-fresher",
   "senior-frontend", "senior-backend", "software", "premium-universal",
   "premium-pro", "fresher-elite", "analyst", "elite", "corporate-executive",
-  "refined", "premium-elite"
+  "refined", "premium-elite", "sapphire-executive", "creative-accent",
+  "modern-sidebar", "minimalist-geometric", "bold-headline", "dual-tone",
+  "elegant-serif", "tech-grid", "contemporary-split", "luxury-timeline"
 ];
 
 const displayTemplates: Record<string, any> = {
@@ -119,6 +141,16 @@ const displayTemplates: Record<string, any> = {
   "corporate-executive": CorporateExecutiveTemplate,
   refined: RefinedTemplate,
   "premium-elite": PremiumEliteTemplate,
+  "sapphire-executive": SapphireExecutiveTemplate,
+  "creative-accent": CreativeAccentTemplate,
+  "modern-sidebar": ModernSidebarTemplate,
+  "minimalist-geometric": MinimalistGeometricTemplate,
+  "bold-headline": BoldHeadlineTemplate,
+  "dual-tone": DualToneTemplate,
+  "elegant-serif": ElegantSerifTemplate,
+  "tech-grid": TechGridTemplate,
+  "contemporary-split": ContemporarySplitTemplate,
+  "luxury-timeline": LuxuryTimelineTemplate,
 };
 
 const LiveEditor = () => {
