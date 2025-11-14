@@ -6,6 +6,34 @@ import type { HelperSection, SectionType } from '@/types/resume';
  */
 export const HELPER_SECTIONS: HelperSection[] = [
   {
+    type: 'summary',
+    icon: '📄',
+    title: 'Professional Summary',
+    description: 'Brief overview of your professional background',
+    isDefault: true,
+  },
+  {
+    type: 'experience',
+    icon: '💼',
+    title: 'Work Experience',
+    description: 'Your professional work history and achievements',
+    isDefault: true,
+  },
+  {
+    type: 'education',
+    icon: '🎓',
+    title: 'Education',
+    description: 'Your academic background and qualifications',
+    isDefault: true,
+  },
+  {
+    type: 'skills',
+    icon: '⚙️',
+    title: 'Skills',
+    description: 'Technical and professional skills',
+    isDefault: true,
+  },
+  {
     type: 'certifications',
     icon: '🏆',
     title: 'Certifications',

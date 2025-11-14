@@ -2550,7 +2550,10 @@ const Editor = () => {
           {/* Preview Section */}
           <div className="lg:sticky lg:top-32 max-h-[calc(100vh-8rem)] overflow-y-auto">
             <div className="space-y-4 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
-              <h2 className="text-lg font-bold">Live Preview</h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-bold">Live Preview</h2>
+                <div id="helper-sections-button-container"></div>
+              </div>
               <div className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white">
                 <ResumePreview
                   resumeData={resumeData}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   DndContext,
   DragOverlay,
@@ -26,6 +27,12 @@ interface DynamicSectionsProps {
 }
 
 export function DynamicSections({ sections, onChange }: DynamicSectionsProps) {
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const container = document.getElementById("helper-sections-button-container");
+    setPortalContainer(container);
+  }, []);
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const sensors = useSensors(
@@ -119,15 +126,18 @@ export function DynamicSections({ sections, onChange }: DynamicSectionsProps) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h3 className="text-lg font-semibold">Resume Sections</h3>
-          <p className="text-sm text-gray-500">
-            Drag to reorder, or add new sections from the library
-          </p>
+      {/* Portal the SectionLibrary button to the preview area */}
+      {portalContainer && createPortal(
+        <SectionLibrary onAddSection={addSection} disabledSections={addedSectionTypes} />,
+        portalContainer
+      )}
+
+      {sections.length === 0 && (
+        <div className="text-center py-8 text-sm text-muted-foreground border-2 border-dashed rounded-lg">
+          <p className="mb-2">No sections added yet.</p>
+          <p>Click "Helper Sections" button (next to Live Preview) to add sections.</p>
         </div>
-        <SectionLibrary onAddSection={addSection} disabledSections={addedSectionTypes} />
-      </div>
+      )}
 
       <DndContext
         sensors={sensors}

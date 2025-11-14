@@ -26,6 +26,9 @@ import {
   AwardsEditor,
   VolunteerEditor,
   PortfolioEditor,
+  ExperienceEditor,
+  EducationEditor,
+  SkillsEditor,
 } from './sections';
 
 interface DynamicSectionCardProps {
@@ -81,6 +84,30 @@ export function DynamicSectionCard({
               className="mt-2"
             />
           </div>
+        );
+
+      case 'experience':
+        return (
+          <ExperienceEditor
+            items={section.data.items}
+            onChange={(items) => onUpdate(section.id, { data: { ...section.data, items } })}
+          />
+        );
+
+      case 'education':
+        return (
+          <EducationEditor
+            items={section.data.items}
+            onChange={(items) => onUpdate(section.id, { data: { ...section.data, items } })}
+          />
+        );
+
+      case 'skills':
+        return (
+          <SkillsEditor
+            items={section.data.items}
+            onChange={(items) => onUpdate(section.id, { data: { ...section.data, items } })}
+          />
         );
 
       case 'certifications':
