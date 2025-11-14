@@ -461,5 +461,5 @@ export const FresherAchievementPDF = ({ resumeData, themeColor = "#EAB308" }: Fr
       </View>
     </Page>
   </Document>
-);
+  );
 };

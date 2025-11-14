@@ -415,4 +415,3 @@ export const FresherCardBasedPDF = ({ resumeData, themeColor = "#14B8A6" }: Fres
   </Document>
   );
 };
-};

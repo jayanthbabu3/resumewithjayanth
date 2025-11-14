@@ -358,5 +358,5 @@ export const FresherCenteredElegantPDF = ({ resumeData, themeColor = "#A855F7" }
       )}
     </Page>
   </Document>
-);
+  );
 };
