@@ -485,5 +485,5 @@ export const FresherPDF = ({ resumeData, themeColor = "#2563EB" }: FresherPDFPro
       </View>
     </Page>
   </Document>
-);
+  );
 };

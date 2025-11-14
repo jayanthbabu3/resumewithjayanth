@@ -394,5 +394,5 @@ export const FresherMinimalGridPDF = ({ resumeData, themeColor = "#10B981" }: Fr
       </View>
     </Page>
   </Document>
-);
+  );
 };

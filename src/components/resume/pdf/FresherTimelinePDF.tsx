@@ -400,5 +400,5 @@ export const FresherTimelinePDF = ({ resumeData, themeColor = "#EC4899" }: Fresh
       </View>
     </Page>
   </Document>
-);
+  );
 };

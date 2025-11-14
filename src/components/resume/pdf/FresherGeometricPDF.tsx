@@ -479,5 +479,5 @@ export const FresherGeometricPDF = ({ resumeData, themeColor = "#3B82F6" }: Fres
       </View>
     </Page>
   </Document>
-);
+  );
 };
