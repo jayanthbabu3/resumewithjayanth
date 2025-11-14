@@ -168,15 +168,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#ef4444",
     gradientFrom: "#ef4444",
     gradientTo: "#dc2626",
-    templateIds: [
-      // Directing to universal templates for now
-      "professional",
-      "minimal",
-      "premium-universal",
-      "elite",
-      "refined",
-      "premium-elite",
-    ],
+    templateIds: [],
   },
   {
     id: "education-teaching",
@@ -186,15 +178,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#06b6d4",
     gradientFrom: "#06b6d4",
     gradientTo: "#0891b2",
-    templateIds: [
-      // Directing to universal templates for now
-      "professional",
-      "minimal",
-      "premium-universal",
-      "elite",
-      "elegant-serif",
-      "refined",
-    ],
+    templateIds: [],
   },
   {
     id: "finance-accounting",
@@ -204,15 +188,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#84cc16",
     gradientFrom: "#84cc16",
     gradientTo: "#65a30d",
-    templateIds: [
-      // Directing to universal templates for now
-      "professional",
-      "minimal",
-      "premium-universal",
-      "analyst",
-      "corporate-executive",
-      "elite",
-    ],
+    templateIds: [],
   },
   {
     id: "sales-marketing",
@@ -222,15 +198,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#f97316",
     gradientFrom: "#f97316",
     gradientTo: "#ea580c",
-    templateIds: [
-      // Directing to universal templates for now
-      "modern",
-      "bold-headline",
-      "creative-accent",
-      "premium-pro",
-      "contemporary-split",
-      "dual-tone",
-    ],
+    templateIds: [],
   },
   {
     id: "legal-consulting",
@@ -240,15 +208,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#6366f1",
     gradientFrom: "#6366f1",
     gradientTo: "#4f46e5",
-    templateIds: [
-      // Directing to universal templates for now
-      "professional",
-      "minimal",
-      "refined",
-      "elegant-serif",
-      "premium-elite",
-      "executive",
-    ],
+    templateIds: [],
   },
   {
     id: "operations-management",
@@ -258,15 +218,7 @@ export const professionCategories: ProfessionCategory[] = [
     color: "#14b8a6",
     gradientFrom: "#14b8a6",
     gradientTo: "#0d9488",
-    templateIds: [
-      // Directing to universal templates for now
-      "professional",
-      "premium-universal",
-      "executive",
-      "corporate-executive",
-      "modern-sidebar",
-      "minimalist-geometric",
-    ],
+    templateIds: [],
   },
 ];
 
