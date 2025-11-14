@@ -292,13 +292,66 @@ export const FresherGeometricTemplate = ({
               </section>
             )}
 
-            {/* Experience with Geometric Accents */}
+            {/* Custom Sections - Most Important for Freshers */}
+            {resumeData.sections && resumeData.sections.length > 0 && (
+              editable ? (
+                <InlineEditableList
+                  path="sections"
+                  items={resumeData.sections}
+                  defaultItem={{
+                    id: Date.now().toString(),
+                    title: "Projects",
+                    content: "Project details here...",
+                  }}
+                  addButtonLabel="Add Section"
+                  renderItem={(section, index) => (
+                    <section className="mb-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
+                        <InlineEditableText
+                          path={`sections[${index}].title`}
+                          value={section.title}
+                          className="text-sm font-bold uppercase tracking-wider inline-block"
+                          style={{ color: themeColor }}
+                          as="h2"
+                        />
+                      </div>
+                      <InlineEditableText
+                        path={`sections[${index}].content`}
+                        value={section.content}
+                        className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
+                        multiline
+                        as="div"
+                      />
+                    </section>
+                  )}
+                />
+              ) : (
+                <>
+                  {resumeData.sections.map((section, index) => (
+                    <section key={index} className="mb-8">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
+                        <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
+                          {section.title}
+                        </h2>
+                      </div>
+                      <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+                        {section.content}
+                      </div>
+                    </section>
+                  ))}
+                </>
+              )
+            )}
+
+            {/* Internship Experience - Optional for Freshers */}
             {resumeData.experience && resumeData.experience.length > 0 && (
               <section>
                 <div className="flex items-center gap-3 mb-4">
                   <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
                   <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
-                    Experience & Internships
+                    Internship Experience
                   </h2>
                 </div>
                 {editable ? (
@@ -388,59 +441,6 @@ export const FresherGeometricTemplate = ({
                   </div>
                 )}
               </section>
-            )}
-
-            {/* Custom Sections */}
-            {resumeData.sections && resumeData.sections.length > 0 && (
-              editable ? (
-                <InlineEditableList
-                  path="sections"
-                  items={resumeData.sections}
-                  defaultItem={{
-                    id: Date.now().toString(),
-                    title: "New Section",
-                    content: "Section content here",
-                  }}
-                  addButtonLabel="Add Section"
-                  renderItem={(section, index) => (
-                    <section className="mb-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
-                        <InlineEditableText
-                          path={`sections[${index}].title`}
-                          value={section.title}
-                          className="text-sm font-bold uppercase tracking-wider inline-block"
-                          style={{ color: themeColor }}
-                          as="h2"
-                        />
-                      </div>
-                      <InlineEditableText
-                        path={`sections[${index}].content`}
-                        value={section.content}
-                        className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
-                        multiline
-                        as="div"
-                      />
-                    </section>
-                  )}
-                />
-              ) : (
-                <>
-                  {resumeData.sections.map((section, index) => (
-                    <section key={index} className="mb-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
-                        <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
-                          {section.title}
-                        </h2>
-                      </div>
-                      <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
-                        {section.content}
-                      </div>
-                    </section>
-                  ))}
-                </>
-              )
             )}
           </div>
         </div>

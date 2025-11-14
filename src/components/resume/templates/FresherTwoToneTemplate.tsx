@@ -273,11 +273,58 @@ export const FresherTwoToneTemplate = ({
             </section>
           )}
 
-          {/* Experience */}
+          {/* Projects/Custom Sections - Most Important for Freshers */}
+          {resumeData.sections && resumeData.sections.length > 0 && (
+            editable ? (
+              <InlineEditableList
+                path="sections"
+                items={resumeData.sections}
+                defaultItem={{
+                  id: Date.now().toString(),
+                  title: "Projects",
+                  content: "Project details here...",
+                }}
+                addButtonLabel="Add Section"
+                renderItem={(section, index) => (
+                  <section className="mb-8">
+                    <InlineEditableText
+                      path={`sections[${index}].title`}
+                      value={section.title}
+                      className="text-base font-bold text-gray-900 mb-4 pb-2 border-b-2 block"
+                      style={{ borderBottomColor: themeColor }}
+                      as="h2"
+                    />
+                    <InlineEditableText
+                      path={`sections[${index}].content`}
+                      value={section.content}
+                      className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
+                      multiline
+                      as="div"
+                    />
+                  </section>
+                )}
+              />
+            ) : (
+              <>
+                {resumeData.sections.map((section, index) => (
+                  <section key={index} className="mb-8">
+                    <h2 className="text-base font-bold text-gray-900 mb-4 pb-2 border-b-2" style={{ borderBottomColor: themeColor }}>
+                      {section.title}
+                    </h2>
+                    <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+                      {section.content}
+                    </div>
+                  </section>
+                ))}
+              </>
+            )
+          )}
+
+          {/* Internship Experience - Optional for Freshers */}
           {resumeData.experience && resumeData.experience.length > 0 && (
             <section className="mb-8">
               <h2 className="text-base font-bold text-gray-900 mb-4 pb-2 border-b-2" style={{ borderBottomColor: themeColor }}>
-                Experience & Internships
+                Internship Experience
               </h2>
               {editable ? (
                 <InlineEditableList
@@ -364,53 +411,6 @@ export const FresherTwoToneTemplate = ({
                 </div>
               )}
             </section>
-          )}
-
-          {/* Custom Sections */}
-          {resumeData.sections && resumeData.sections.length > 0 && (
-            editable ? (
-              <InlineEditableList
-                path="sections"
-                items={resumeData.sections}
-                defaultItem={{
-                  id: Date.now().toString(),
-                  title: "New Section",
-                  content: "Section content here",
-                }}
-                addButtonLabel="Add Section"
-                renderItem={(section, index) => (
-                  <section className="mb-8">
-                    <InlineEditableText
-                      path={`sections[${index}].title`}
-                      value={section.title}
-                      className="text-base font-bold text-gray-900 mb-4 pb-2 border-b-2 inline-block"
-                      style={{ borderBottomColor: themeColor }}
-                      as="h2"
-                    />
-                    <InlineEditableText
-                      path={`sections[${index}].content`}
-                      value={section.content}
-                      className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
-                      multiline
-                      as="div"
-                    />
-                  </section>
-                )}
-              />
-            ) : (
-              <>
-                {resumeData.sections.map((section, index) => (
-                  <section key={index} className="mb-8">
-                    <h2 className="text-base font-bold text-gray-900 mb-4 pb-2 border-b-2" style={{ borderBottomColor: themeColor }}>
-                      {section.title}
-                    </h2>
-                    <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
-                      {section.content}
-                    </div>
-                  </section>
-                ))}
-              </>
-            )
           )}
         </div>
       </div>
