@@ -269,10 +269,10 @@ const LiveEditor = () => {
                 Back
               </Button>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                <h1 className="text-lg font-semibold text-primary">
                   Live Editor
                 </h1>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   Click any field to edit directly
                 </p>
               </div>
