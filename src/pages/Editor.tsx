@@ -117,6 +117,25 @@ const buildSkills = (
     category: index < 6 ? "core" : "toolbox",
   }));
 
+// Helper function to ensure data has valid array fields
+const sanitizeResumeData = (data: any): ResumeData => {
+  return {
+    personalInfo: data.personalInfo || {
+      fullName: "",
+      email: "",
+      phone: "",
+      location: "",
+      title: "",
+      summary: "",
+      photo: "",
+    },
+    experience: Array.isArray(data.experience) ? data.experience : [],
+    education: Array.isArray(data.education) ? data.education : [],
+    skills: Array.isArray(data.skills) ? data.skills : [],
+    sections: Array.isArray(data.sections) ? data.sections : [],
+  };
+};
+
 export const getTemplateDefaults = (templateId: string): ResumeData => {
   const templates: Record<string, ResumeData> = {
     professional: {
@@ -1911,8 +1930,9 @@ const Editor = () => {
       try {
         const resume = await resumeService.getResume(resumeId);
         if (resume && resume.data) {
-          // The new service returns data in the same format as Editor's ResumeData
-          setResumeData(resume.data as ResumeData);
+          // Sanitize the data to ensure all array fields are valid arrays
+          const sanitizedData = sanitizeResumeData(resume.data);
+          setResumeData(sanitizedData);
           // Also update theme color if it exists
           if (resume.themeColor) {
             setThemeColor(resume.themeColor);
@@ -1982,6 +2002,9 @@ const Editor = () => {
   const handleDownload = async () => {
     setIsDownloading(true);
     try {
+      // Sanitize resume data to ensure all arrays are valid before PDF generation
+      const sanitizedData = sanitizeResumeData(resumeData);
+
       // Select the appropriate PDF template
       const pdfTemplates = {
         professional: ProfessionalPDF,
@@ -2025,14 +2048,14 @@ const Editor = () => {
 
       // Generate PDF blob
       const blob = await pdf(
-        <PDFTemplate resumeData={resumeData} themeColor={themeColor} />,
+        <PDFTemplate resumeData={sanitizedData} themeColor={themeColor} />,
       ).toBlob();
 
       // Create download link
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+      link.download = `${sanitizedData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
       link.click();
 
       // Cleanup
