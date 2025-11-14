@@ -75,6 +75,26 @@ class ResumeService {
   }
 
   /**
+   * Normalize resume data to ensure all required arrays exist
+   */
+  private normalizeResumeData(data: any): ResumeData {
+    return {
+      personalInfo: data.personalInfo || {
+        fullName: '',
+        email: '',
+        phone: '',
+        location: '',
+        title: '',
+        summary: '',
+      },
+      experience: Array.isArray(data.experience) ? data.experience : [],
+      education: Array.isArray(data.education) ? data.education : [],
+      skills: Array.isArray(data.skills) ? data.skills : [],
+      sections: Array.isArray(data.sections) ? data.sections : [],
+    };
+  }
+
+  /**
    * Create a new resume
    */
   async createResume(
@@ -136,10 +156,17 @@ class ResumeService {
     }).catch(console.error);
 
     const data = docSnap.data();
-    return {
+    const resume = {
       id: docSnap.id,
       ...this.convertTimestamps(data),
     } as Resume;
+
+    // Normalize the resume data to ensure all arrays are properly initialized
+    if (resume.data) {
+      resume.data = this.normalizeResumeData(resume.data);
+    }
+
+    return resume;
   }
 
   /**
@@ -343,10 +370,17 @@ class ResumeService {
       views: increment(1),
     }).catch(console.error);
 
-    return {
+    const publicResume = {
       id: doc.id,
       ...this.convertTimestamps(doc.data()),
     } as PublicResume;
+
+    // Normalize the resume data to ensure all arrays are properly initialized
+    if (publicResume.data) {
+      publicResume.data = this.normalizeResumeData(publicResume.data);
+    }
+
+    return publicResume;
   }
 
   /**
@@ -456,11 +490,16 @@ class ResumeService {
    */
   private calculateWordCount(data: ResumeData): number {
     let text = '';
-    text += data.personalInfo.summary || '';
-    data.experience.forEach((exp) => {
+    text += data.personalInfo?.summary || '';
+
+    // Safely handle arrays that might be undefined or null
+    const experience = Array.isArray(data.experience) ? data.experience : [];
+    experience.forEach((exp) => {
       text += exp.description || '';
     });
-    data.sections.forEach((section) => {
+
+    const sections = Array.isArray(data.sections) ? data.sections : [];
+    sections.forEach((section) => {
       text += section.content || '';
     });
 
