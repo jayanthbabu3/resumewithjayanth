@@ -133,7 +133,7 @@ export const Header = () => {
 
             {/* Mobile Menu Trigger */}
             <div className="flex items-center gap-3 sm:hidden">
-              {!isEditor && user && (
+              {user && (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
@@ -256,7 +256,7 @@ export const Header = () => {
                     ))}
                     
                     {/* Enhanced Sign In Button */}
-                    {!user && !isEditor && (
+                    {!user && (
                       <SheetClose asChild>
                         <Button
                           className={cn(
@@ -292,7 +292,7 @@ export const Header = () => {
             </div>
 
             {/* User Actions */}
-            {!isEditor && !user && (
+            {!user && (
               <Button
                 onClick={() => navigate("/auth")}
                 className="hidden sm:inline-flex bg-primary hover:bg-primary-hover"
@@ -300,8 +300,8 @@ export const Header = () => {
                 Sign In
               </Button>
             )}
-            
-            {!isEditor && user && (
+
+            {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button

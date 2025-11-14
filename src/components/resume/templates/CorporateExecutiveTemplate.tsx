@@ -4,6 +4,7 @@ import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -411,7 +412,21 @@ export const CorporateExecutiveTemplate = ({
                           as="p"
                         />
                         <p className="text-xs text-gray-600">
-                          {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+                          <div className="text-xs text-gray-500 flex items-center gap-1">
+                            <InlineEditableDate
+                              path={`education[${index}].startDate`}
+                              value={edu.startDate}
+                              formatDisplay={formatDate}
+                              className="inline-block"
+                            />
+                            <span> - </span>
+                            <InlineEditableDate
+                              path={`education[${index}].endDate`}
+                              value={edu.endDate}
+                              formatDisplay={formatDate}
+                              className="inline-block"
+                            />
+                          </div>
                         </p>
                       </div>
                     )}

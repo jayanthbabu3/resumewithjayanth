@@ -3,6 +3,7 @@ import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 
 interface FresherEliteTemplateProps {
   resumeData: ResumeData;
@@ -185,7 +186,19 @@ export const FresherEliteTemplate = ({
                             style={{ color: themeColor }}
                           />
                           <p className="text-xs text-gray-500">
-                            {edu.startDate} - {edu.endDate}
+                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                              <InlineEditableDate
+                                path={`education[${index}].startDate`}
+                                value={edu.startDate}
+                                className="inline-block"
+                              />
+                              <span> - </span>
+                              <InlineEditableDate
+                                path={`education[${index}].endDate`}
+                                value={edu.endDate}
+                                className="inline-block"
+                              />
+                            </div>
                           </p>
                         </div>
                       )}
@@ -331,7 +344,23 @@ export const FresherEliteTemplate = ({
                                 color: themeColor
                               }}
                             >
-                              {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                              <div className="text-xs text-gray-500 flex items-center gap-1">
+                                <InlineEditableDate
+                                  path={`experience[${index}].startDate`}
+                                  value={exp.startDate}
+                                  className="inline-block"
+                                />
+                                <span> - </span>
+                                {exp.current ? (
+                                  <span>Present</span>
+                                ) : (
+                                  <InlineEditableDate
+                                    path={`experience[${index}].endDate`}
+                                    value={exp.endDate}
+                                    className="inline-block"
+                                  />
+                                )}
+                              </div>
                             </span>
                           </div>
                           {exp.description && (

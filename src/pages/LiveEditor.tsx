@@ -256,9 +256,76 @@ const LiveEditor = () => {
       <Header />
       
       <div className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-4">
+        <div className="container mx-auto px-4 py-3">
+          {/* Mobile Layout */}
+          <div className="flex flex-col gap-3 md:hidden">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/dashboard")}
+                  className="hover:bg-accent"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back
+                </Button>
+                <div className="border-l border-border h-6" />
+                <div>
+                  <h1 className="text-lg font-semibold text-primary">Live Editor</h1>
+                  <p className="text-xs text-muted-foreground">Click to edit</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleSwitchToFormEditor}
+              >
+                <FileEdit className="h-4 w-4 mr-2" />
+                Form
+              </Button>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 px-2 py-1 rounded-lg bg-muted/30 border">
+                  <label htmlFor="themeColor" className="text-xs font-medium">
+                    Theme:
+                  </label>
+                  <input
+                    id="themeColor"
+                    type="color"
+                    value={themeColor}
+                    onChange={(e) => setThemeColor(e.target.value)}
+                    className="h-7 w-10 cursor-pointer rounded border border-border"
+                  />
+                </div>
+                <Button
+                  onClick={handleSave}
+                  disabled={isSaving || !user}
+                  size="sm"
+                  variant="outline"
+                  className="gap-2"
+                >
+                  <Save className="h-4 w-4" />
+                  {!isSaving && "Save"}
+                </Button>
+                <Button
+                  onClick={handleDownloadPDF}
+                  disabled={isGeneratingPDF}
+                  size="sm"
+                  className="gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  {!isGeneratingPDF && "PDF"}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - 3 Column Grid */}
+          <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+            {/* Left Section */}
+            <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
                 size="sm"
@@ -268,41 +335,32 @@ const LiveEditor = () => {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back
               </Button>
+              <div className="border-l border-border h-8" />
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                  Live Editor
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                  Click any field to edit directly
-                </p>
+                <h1 className="text-lg font-semibold text-primary">Live Editor</h1>
+                <p className="text-xs text-muted-foreground">Click any field to edit directly</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 flex-wrap">
-              <Tabs value={editorMode} onValueChange={(v) => v === "form" && handleSwitchToFormEditor()} className="hidden md:block">
-                <TabsList className="bg-muted/50">
-                  <TabsTrigger value="live" className="gap-2">
+            {/* Center Section - Tabs */}
+            <div className="flex justify-center">
+              <Tabs value={editorMode} onValueChange={(v) => v === "form" && handleSwitchToFormEditor()}>
+                <TabsList className="bg-muted/50 border">
+                  <TabsTrigger value="live" className="gap-2 text-sm">
                     <Edit3 className="h-4 w-4" />
                     Live Editor
                   </TabsTrigger>
-                  <TabsTrigger value="form" className="gap-2">
+                  <TabsTrigger value="form" className="gap-2 text-sm">
                     <FileEdit className="h-4 w-4" />
                     Form Editor
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
+            </div>
 
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleSwitchToFormEditor}
-                className="md:hidden"
-              >
-                <FileEdit className="h-4 w-4 mr-2" />
-                Switch to Form
-              </Button>
-              
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-muted/30 border">
+            {/* Right Section - Controls */}
+            <div className="flex items-center justify-end gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/30 border">
                 <label htmlFor="themeColor" className="text-sm font-medium whitespace-nowrap">
                   Theme:
                 </label>
@@ -311,16 +369,16 @@ const LiveEditor = () => {
                   type="color"
                   value={themeColor}
                   onChange={(e) => setThemeColor(e.target.value)}
-                  className="h-8 w-12 cursor-pointer rounded border border-border"
+                  className="h-7 w-10 cursor-pointer rounded border border-border"
                 />
               </div>
 
               <Button
                 onClick={handleSave}
                 disabled={isSaving || !user}
-                size="default"
+                size="sm"
                 variant="outline"
-                className="gap-2 shadow-md"
+                className="gap-2"
               >
                 {isSaving ? (
                   <>
@@ -338,8 +396,8 @@ const LiveEditor = () => {
               <Button
                 onClick={handleDownloadPDF}
                 disabled={isGeneratingPDF}
-                size="default"
-                className="gap-2 shadow-md"
+                size="sm"
+                className="gap-2"
               >
                 {isGeneratingPDF ? (
                   <>
