@@ -175,6 +175,54 @@ export const FresherCardBasedTemplate = ({
           </div>
         )}
 
+        {/* Custom Sections as Cards - Most Important for Freshers */}
+        {resumeData.sections && resumeData.sections.length > 0 && (
+          <div className="mb-6 space-y-6">
+            {editable ? (
+              <InlineEditableList
+                path="sections"
+                items={resumeData.sections}
+                defaultItem={{
+                  id: Date.now().toString(),
+                  title: "Projects",
+                  content: "Project details here...",
+                }}
+                addButtonLabel="Add Section"
+                renderItem={(section, index) => (
+                  <div className="bg-white rounded-lg shadow-lg p-6">
+                    <InlineEditableText
+                      path={`sections[${index}].title`}
+                      value={section.title}
+                      className="text-base font-bold text-gray-900 uppercase tracking-wide mb-4 inline-block"
+                      as="h2"
+                    />
+                    <InlineEditableText
+                      path={`sections[${index}].content`}
+                      value={section.content}
+                      className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
+                      multiline
+                      as="div"
+                    />
+                  </div>
+                )}
+              />
+            ) : (
+              <>
+                {resumeData.sections.map((section, index) => (
+                  <div key={index} className="bg-white rounded-lg shadow-lg p-6">
+                    <h2 className="text-base font-bold text-gray-900 uppercase tracking-wide mb-4">
+                      {section.title}
+                    </h2>
+                    <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
+                      {section.content}
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        )}
+
         <div className="grid grid-cols-2 gap-6">
           {/* Education Card */}
           {resumeData.education && resumeData.education.length > 0 && (
@@ -264,13 +312,13 @@ export const FresherCardBasedTemplate = ({
             </div>
           )}
 
-          {/* Experience Card */}
+          {/* Internship Experience Card - Optional for Freshers */}
           {resumeData.experience && resumeData.experience.length > 0 && (
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Briefcase className="h-5 w-5" style={{ color: themeColor }} />
                 <h2 className="text-base font-bold text-gray-900 uppercase tracking-wide">
-                  Experience
+                  Internship Experience
                 </h2>
               </div>
               {editable ? (
@@ -360,54 +408,6 @@ export const FresherCardBasedTemplate = ({
             </div>
           )}
         </div>
-
-        {/* Custom Sections as Cards */}
-        {resumeData.sections && resumeData.sections.length > 0 && (
-          <div className="mt-6 space-y-6">
-            {editable ? (
-              <InlineEditableList
-                path="sections"
-                items={resumeData.sections}
-                defaultItem={{
-                  id: Date.now().toString(),
-                  title: "New Section",
-                  content: "Section content here",
-                }}
-                addButtonLabel="Add Section"
-                renderItem={(section, index) => (
-                  <div className="bg-white rounded-lg shadow-lg p-6">
-                    <InlineEditableText
-                      path={`sections[${index}].title`}
-                      value={section.title}
-                      className="text-base font-bold text-gray-900 uppercase tracking-wide mb-4 inline-block"
-                      as="h2"
-                    />
-                    <InlineEditableText
-                      path={`sections[${index}].content`}
-                      value={section.content}
-                      className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
-                      multiline
-                      as="div"
-                    />
-                  </div>
-                )}
-              />
-            ) : (
-              <>
-                {resumeData.sections.map((section, index) => (
-                  <div key={index} className="bg-white rounded-lg shadow-lg p-6">
-                    <h2 className="text-base font-bold text-gray-900 uppercase tracking-wide mb-4">
-                      {section.title}
-                    </h2>
-                    <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
-                      {section.content}
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

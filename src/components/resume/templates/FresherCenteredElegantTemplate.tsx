@@ -260,11 +260,58 @@ export const FresherCenteredElegantTemplate = ({
           </section>
         )}
 
-        {/* Experience - Centered */}
+        {/* Custom Sections - Centered - Most Important for Freshers */}
+        {resumeData.sections && resumeData.sections.length > 0 && (
+          editable ? (
+            <InlineEditableList
+              path="sections"
+              items={resumeData.sections}
+              defaultItem={{
+                id: Date.now().toString(),
+                title: "Projects",
+                content: "Project details here...",
+              }}
+              addButtonLabel="Add Section"
+              renderItem={(section, index) => (
+                <section className="mb-10">
+                  <InlineEditableText
+                    path={`sections[${index}].title`}
+                    value={section.title}
+                    className="text-xl font-serif font-bold text-center mb-6 inline-block"
+                    style={{ color: themeColor }}
+                    as="h2"
+                  />
+                  <InlineEditableText
+                    path={`sections[${index}].content`}
+                    value={section.content}
+                    className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line block font-serif"
+                    multiline
+                    as="div"
+                  />
+                </section>
+              )}
+            />
+          ) : (
+            <>
+              {resumeData.sections.map((section, index) => (
+                <section key={index} className="mb-10">
+                  <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
+                    {section.title}
+                  </h2>
+                  <div className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line font-serif">
+                    {section.content}
+                  </div>
+                </section>
+              ))}
+            </>
+          )
+        )}
+
+        {/* Internship Experience - Centered - Optional for Freshers */}
         {resumeData.experience && resumeData.experience.length > 0 && (
           <section className="mb-10">
             <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
-              Professional Experience
+              Internship Experience
             </h2>
             {editable ? (
               <InlineEditableList
@@ -353,53 +400,6 @@ export const FresherCenteredElegantTemplate = ({
               </div>
             )}
           </section>
-        )}
-
-        {/* Custom Sections - Centered */}
-        {resumeData.sections && resumeData.sections.length > 0 && (
-          editable ? (
-            <InlineEditableList
-              path="sections"
-              items={resumeData.sections}
-              defaultItem={{
-                id: Date.now().toString(),
-                title: "New Section",
-                content: "Section content here",
-              }}
-              addButtonLabel="Add Section"
-              renderItem={(section, index) => (
-                <section className="mb-10">
-                  <InlineEditableText
-                    path={`sections[${index}].title`}
-                    value={section.title}
-                    className="text-xl font-serif font-bold text-center mb-6 inline-block"
-                    style={{ color: themeColor }}
-                    as="h2"
-                  />
-                  <InlineEditableText
-                    path={`sections[${index}].content`}
-                    value={section.content}
-                    className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line block font-serif"
-                    multiline
-                    as="div"
-                  />
-                </section>
-              )}
-            />
-          ) : (
-            <>
-              {resumeData.sections.map((section, index) => (
-                <section key={index} className="mb-10">
-                  <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
-                    {section.title}
-                  </h2>
-                  <div className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line font-serif">
-                    {section.content}
-                  </div>
-                </section>
-              ))}
-            </>
-          )
         )}
       </div>
     </div>

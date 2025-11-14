@@ -291,7 +291,65 @@ export const FresherEliteTemplate = ({
 
             {/* Right Column - 2 columns */}
             <div className="col-span-2 space-y-6">
-              {/* Experience */}
+              {/* Projects/Sections - Most Important for Freshers */}
+              {editable ? (
+                <InlineEditableList
+                  path="sections"
+                  items={resumeData.sections || []}
+                  defaultItem={{
+                    id: Date.now().toString(),
+                    title: "Projects",
+                    content: "Describe your project details here...",
+                  }}
+                  addButtonLabel="Add Section"
+                  renderItem={(section, index) => (
+                    <div className="mb-6">
+                      <h2
+                        className="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"
+                        style={{ color: themeColor }}
+                      >
+                        <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
+                        <InlineEditableText
+                          path={`sections[${index}].title`}
+                          value={section.title}
+                          className="text-xs font-bold uppercase tracking-wider"
+                          as="span"
+                          style={{ color: themeColor }}
+                        />
+                      </h2>
+                      <div className="bg-gray-50 rounded-xl p-5">
+                        <InlineEditableText
+                          path={`sections[${index}].content`}
+                          value={section.content}
+                          className="text-sm text-gray-700 leading-relaxed whitespace-pre-line"
+                          as="div"
+                          multiline
+                        />
+                      </div>
+                    </div>
+                  )}
+                />
+              ) : (
+                resumeData.sections &&
+                resumeData.sections.map((section, index) => (
+                  <div key={index} className="mb-6">
+                    <h2
+                      className="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"
+                      style={{ color: themeColor }}
+                    >
+                      <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
+                      {section.title}
+                    </h2>
+                    <div className="bg-gray-50 rounded-xl p-5">
+                      <div className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+                        {section.content}
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+
+              {/* Internship Experience - Optional for Freshers */}
               {resumeData.experience && resumeData.experience.length > 0 && (
                 <div>
                   <h2
@@ -299,7 +357,7 @@ export const FresherEliteTemplate = ({
                     style={{ color: themeColor }}
                   >
                     <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
-                    Experience
+                    Internship Experience
                   </h2>
                   {editable ? (
                     <InlineEditableList
@@ -416,68 +474,6 @@ export const FresherEliteTemplate = ({
                     </div>
                   )}
                 </div>
-              )}
-
-              {/* Projects/Sections */}
-              {editable ? (
-                <InlineEditableList
-                  path="sections"
-                  items={resumeData.sections || []}
-                  defaultItem={{
-                    id: Date.now().toString(),
-                    title: "Section Title",
-                    content: "Section content",
-                  }}
-                  addButtonLabel="Add Section"
-                  renderItem={(section, index) => (
-                    <div>
-                      <h2
-                        className="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"
-                        style={{ color: themeColor }}
-                      >
-                        <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
-                        <InlineEditableText
-                          path={`sections[${index}].title`}
-                          value={section.title}
-                          className="text-xs font-bold uppercase tracking-wider"
-                          as="span"
-                          style={{ color: themeColor }}
-                        />
-                      </h2>
-                      <div className="bg-gray-50 rounded-xl p-5">
-                        <InlineEditableText
-                          path={`sections[${index}].content`}
-                          value={section.content}
-                          className="text-sm text-gray-700 leading-relaxed"
-                          as="div"
-                          multiline
-                        />
-                      </div>
-                    </div>
-                  )}
-                />
-              ) : (
-                resumeData.sections &&
-                resumeData.sections.map((section, index) => (
-                  <div key={index}>
-                    <h2
-                      className="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"
-                      style={{ color: themeColor }}
-                    >
-                      <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
-                      {section.title}
-                    </h2>
-                    <div className="bg-gray-50 rounded-xl p-5">
-                      <div className="text-sm text-gray-700 leading-relaxed">
-                        {section.content.split("\n").map((line, i) => (
-                          <p key={i} className="mb-1.5">
-                            {line}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))
               )}
             </div>
           </div>
