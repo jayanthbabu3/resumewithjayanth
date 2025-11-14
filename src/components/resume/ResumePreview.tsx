@@ -32,6 +32,16 @@ import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
 import { LuxuryTimelineTemplate } from "./templates/LuxuryTimelineTemplate";
+import { FresherMinimalGridTemplate } from "./templates/FresherMinimalGridTemplate";
+import { FresherDarkProfessionalTemplate } from "./templates/FresherDarkProfessionalTemplate";
+import { FresherColorAccentTemplate } from "./templates/FresherColorAccentTemplate";
+import { FresherTimelineTemplate } from "./templates/FresherTimelineTemplate";
+import { FresherSkillsFirstTemplate } from "./templates/FresherSkillsFirstTemplate";
+import { FresherCardBasedTemplate } from "./templates/FresherCardBasedTemplate";
+import { FresherTwoToneTemplate } from "./templates/FresherTwoToneTemplate";
+import { FresherCenteredElegantTemplate } from "./templates/FresherCenteredElegantTemplate";
+import { FresherGeometricTemplate } from "./templates/FresherGeometricTemplate";
+import { FresherAchievementTemplate } from "./templates/FresherAchievementTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -78,6 +88,16 @@ export const ResumePreview = ({
     "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
     "luxury-timeline": LuxuryTimelineTemplate,
+    "fresher-minimal-grid": FresherMinimalGridTemplate,
+    "fresher-dark-professional": FresherDarkProfessionalTemplate,
+    "fresher-color-accent": FresherColorAccentTemplate,
+    "fresher-timeline": FresherTimelineTemplate,
+    "fresher-skills-first": FresherSkillsFirstTemplate,
+    "fresher-card-based": FresherCardBasedTemplate,
+    "fresher-two-tone": FresherTwoToneTemplate,
+    "fresher-centered-elegant": FresherCenteredElegantTemplate,
+    "fresher-geometric": FresherGeometricTemplate,
+    "fresher-achievement": FresherAchievementTemplate,
   };
 
   const Template =
