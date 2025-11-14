@@ -2,6 +2,7 @@ import type { ResumeData } from "@/pages/Editor";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -228,7 +229,25 @@ export const SeniorBackendTemplate = ({
                               className="text-[13px] font-semibold text-slate-900 inline-block"
                             />
                             <div className="text-[11px] font-medium text-slate-600">
-                              {formatDate(exp.startDate)} — {exp.current ? "Present" : formatDate(exp.endDate)}
+                              <div className="text-[11px] font-medium text-slate-600 flex items-center gap-1">
+                                <InlineEditableDate
+                                  path={`experience[${index}].startDate`}
+                                  value={exp.startDate}
+                                  formatDisplay={formatDate}
+                                  className="inline-block"
+                                />
+                                <span> — </span>
+                                {exp.current ? (
+                                  <span>Present</span>
+                                ) : (
+                                  <InlineEditableDate
+                                    path={`experience[${index}].endDate`}
+                                    value={exp.endDate}
+                                    formatDisplay={formatDate}
+                                    className="inline-block"
+                                  />
+                                )}
+                              </div>
                             </div>
                           </div>
                           {exp.company && (
@@ -387,8 +406,20 @@ export const SeniorBackendTemplate = ({
                           />
                         )}
                         {(edu.startDate || edu.endDate) && (
-                          <div className="text-[11px] font-medium text-slate-600">
-                            {formatDate(edu.startDate)} — {formatDate(edu.endDate)}
+                          <div className="text-[11px] font-medium text-slate-600 flex items-center gap-1">
+                            <InlineEditableDate
+                              path={`education[${index}].startDate`}
+                              value={edu.startDate}
+                              formatDisplay={formatDate}
+                              className="inline-block"
+                            />
+                            <span> — </span>
+                            <InlineEditableDate
+                              path={`education[${index}].endDate`}
+                              value={edu.endDate}
+                              formatDisplay={formatDate}
+                              className="inline-block"
+                            />
                           </div>
                         )}
                       </div>

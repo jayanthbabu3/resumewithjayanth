@@ -2,6 +2,7 @@ import { ResumeData } from "@/pages/Editor";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 
 interface PremiumUniversalTemplateProps {
   resumeData: ResumeData;
@@ -146,7 +147,23 @@ export const PremiumUniversalTemplate = ({
                     </div>
                     <div className="text-right text-[11px] text-gray-600">
                       <p>
-                        {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                        <div className="text-xs text-gray-500 flex items-center gap-1">
+                          <InlineEditableDate
+                            path={`experience[${index}].startDate`}
+                            value={exp.startDate}
+                            className="inline-block"
+                          />
+                          <span> - </span>
+                          {exp.current ? (
+                            <span>Present</span>
+                          ) : (
+                            <InlineEditableDate
+                              path={`experience[${index}].endDate`}
+                              value={exp.endDate}
+                              className="inline-block"
+                            />
+                          )}
+                        </div>
                       </p>
                     </div>
                   </div>

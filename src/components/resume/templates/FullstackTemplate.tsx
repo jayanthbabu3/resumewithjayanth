@@ -4,6 +4,7 @@ import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -207,9 +208,21 @@ export const FullstackTemplate = ({ resumeData, themeColor = "#7c3aed", editable
                       className="text-[11px] text-gray-700 font-medium block"
                       as="p"
                     />
-                    <p className="text-[10px] text-gray-500 mt-1">
-                      {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
-                    </p>
+                    <div className="text-[10px] text-gray-500 mt-1 flex items-center gap-1">
+                      <InlineEditableDate
+                        path={`education[${index}].startDate`}
+                        value={edu.startDate}
+                        formatDisplay={formatDate}
+                        className="inline-block"
+                      />
+                      <span> - </span>
+                      <InlineEditableDate
+                        path={`education[${index}].endDate`}
+                        value={edu.endDate}
+                        formatDisplay={formatDate}
+                        className="inline-block"
+                      />
+                    </div>
                   </div>
                 )}
               />
@@ -300,8 +313,24 @@ export const FullstackTemplate = ({ resumeData, themeColor = "#7c3aed", editable
                           as="p"
                         />
                       </div>
-                      <div className="text-[11px] text-gray-500 font-medium whitespace-nowrap">
-                        {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
+                      <div className="text-[11px] text-gray-500 font-medium whitespace-nowrap flex items-center gap-1">
+                        <InlineEditableDate
+                          path={`experience[${index}].startDate`}
+                          value={exp.startDate}
+                          formatDisplay={formatDate}
+                          className="inline-block"
+                        />
+                        <span> - </span>
+                        {exp.current ? (
+                          <span>Present</span>
+                        ) : (
+                          <InlineEditableDate
+                            path={`experience[${index}].endDate`}
+                            value={exp.endDate}
+                            formatDisplay={formatDate}
+                            className="inline-block"
+                          />
+                        )}
                       </div>
                     </div>
                     <InlineEditableText
