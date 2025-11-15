@@ -36,6 +36,24 @@ export function ScratchBuilderPDF({
   resumeData,
   themeColor = "#2563eb",
 }: ScratchBuilderPDFProps) {
+  // Helper to apply text case transformation
+  const applyTextCase = (text: string, caseType?: string) => {
+    if (!text) return text;
+    switch (caseType) {
+      case 'upper':
+        return text.toUpperCase();
+      case 'lower':
+        return text.toLowerCase();
+      case 'title':
+        // Title case: capitalize first letter of each word
+        return text.replace(/\w\S*/g, (word) =>
+          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        );
+      default:
+        return text.toUpperCase(); // Default to uppercase for backwards compatibility
+    }
+  };
+
   const styles = StyleSheet.create({
     page: {
       padding: 40,
@@ -163,11 +181,58 @@ export function ScratchBuilderPDF({
           .filter((section) => section.enabled)
           .map((section) => (
             <View key={section.id} style={styles.section}>
-              <Text style={styles.sectionTitle}>{section.title}</Text>
+              <Text style={[
+                styles.sectionTitle,
+                { textAlign: section.titleAlignment || 'left' }
+              ]}>
+                {applyTextCase(section.title, section.titleCase)}
+              </Text>
 
-              {/* Summary Section */}
-              {section.data.type === "summary" && section.data.content && (
-                <Text style={styles.sectionContent}>{section.data.content}</Text>
+              {/* Summary Section with variant support */}
+              {(section.type === "summary" || section.data.type === "summary") && (
+                <>
+                  {/* Executive Summary - bold */}
+                  {section.data.variant === "executive-summary" && section.data.content && (
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left', fontWeight: 600 }]}>
+                      {section.data.content}
+                    </Text>
+                  )}
+
+                  {/* Professional Profile - bullet points */}
+                  {section.data.variant === "professional-profile" && Array.isArray(section.data.content) && (
+                    <View style={{ textAlign: section.contentAlignment || 'left' }}>
+                      {section.data.content.map((item: string, idx: number) => (
+                        <Text key={idx} style={[styles.sectionContent, { marginBottom: 3 }]}>
+                          • {item}
+                        </Text>
+                      ))}
+                    </View>
+                  )}
+
+                  {/* Career Objective - italic style */}
+                  {section.data.variant === "career-objective" && section.data.content && (
+                    <Text style={[styles.sectionContent, { fontStyle: "italic", textAlign: section.contentAlignment || 'left' }]}>
+                      {section.data.content}
+                    </Text>
+                  )}
+
+                  {/* About Me - casual style */}
+                  {section.data.variant === "about-me" && section.data.content && (
+                    <Text style={[styles.sectionContent, { fontStyle: "italic", lineHeight: 1.7, textAlign: section.contentAlignment || 'left' }]}>
+                      {section.data.content}
+                    </Text>
+                  )}
+
+                  {/* Professional Summary - classic with border */}
+                  {section.data.variant === "professional-summary" && section.data.content && (
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
+                  )}
+
+                  {/* Default summary - for sections without variant */}
+                  {!section.data.variant && section.data.content && (
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
+                  )}
+                </>
               )}
 
               {/* Experience Section */}
@@ -224,19 +289,98 @@ export function ScratchBuilderPDF({
                   </View>
                 )}
 
-              {/* Skills Section */}
-              {section.data.type === "skills" &&
-                section.data.items?.length > 0 && (
-                  <View style={styles.skillsContainer}>
-                    {section.data.items
-                      .filter((skill) => skill.name)
-                      .map((skill) => (
-                        <View key={skill.id} style={styles.skillTag}>
-                          <Text>{skill.name}</Text>
+              {/* Skills Section with variant support */}
+              {(section.type === "skills" || section.data.type === "skills") && (
+                <>
+                  {/* Skill Pills - horizontal chips */}
+                  {(section.data.variant === "skill-pills" || !section.data.variant) && section.data.skills && (
+                    <View style={styles.skillsContainer}>
+                      {Array.isArray(section.data.skills) && section.data.skills.map((skill: string, idx: number) => (
+                        <View key={idx} style={styles.skillTag}>
+                          <Text>{skill}</Text>
                         </View>
                       ))}
-                  </View>
-                )}
+                    </View>
+                  )}
+
+                  {/* Vertical List with levels */}
+                  {section.data.variant === "skill-list" && section.data.skills && (
+                    <View>
+                      {section.data.skills.map((skill: any, idx: number) => (
+                        <View key={idx} style={[styles.itemContainer, { marginBottom: 4 }]}>
+                          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                            <Text style={styles.sectionContent}>{skill.name}</Text>
+                            <Text style={[styles.itemDate, { fontSize: 8 }]}>{skill.level}</Text>
+                          </View>
+                        </View>
+                      ))}
+                    </View>
+                  )}
+
+                  {/* Comma Separated - inline */}
+                  {section.data.variant === "skill-inline" && section.data.skills && (
+                    <Text style={styles.sectionContent}>
+                      {typeof section.data.skills === "string" ? section.data.skills : ""}
+                    </Text>
+                  )}
+
+                  {/* Grouped Categories */}
+                  {section.data.variant === "skill-grouped" && section.data.skillGroups && (
+                    <View>
+                      {section.data.skillGroups.map((group: any, idx: number) => (
+                        <View key={idx} style={[styles.itemContainer, { marginBottom: 6 }]}>
+                          <Text style={[styles.sectionContent, { fontWeight: 600 }]}>
+                            {group.category}:
+                          </Text>
+                          <Text style={[styles.sectionContent, { marginLeft: 8 }]}>
+                            {group.skills.join(", ")}
+                          </Text>
+                        </View>
+                      ))}
+                    </View>
+                  )}
+
+                  {/* Skill Bars */}
+                  {section.data.variant === "skill-bars" && section.data.skills && (
+                    <View>
+                      {section.data.skills.map((skill: any, idx: number) => (
+                        <View key={idx} style={[styles.itemContainer, { marginBottom: 6 }]}>
+                          <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 2 }}>
+                            <Text style={styles.sectionContent}>{skill.name}</Text>
+                            <Text style={[styles.itemDate, { fontSize: 8 }]}>{skill.level}%</Text>
+                          </View>
+                          <View style={{
+                            height: 4,
+                            backgroundColor: "#e5e7eb",
+                            borderRadius: 2,
+                            width: "100%",
+                          }}>
+                            <View style={{
+                              height: 4,
+                              backgroundColor: themeColor,
+                              borderRadius: 2,
+                              width: `${skill.level}%`,
+                            }} />
+                          </View>
+                        </View>
+                      ))}
+                    </View>
+                  )}
+
+                  {/* Legacy support for items array */}
+                  {section.data.items?.length > 0 && !section.data.skills && (
+                    <View style={styles.skillsContainer}>
+                      {section.data.items
+                        .filter((skill: any) => skill.name)
+                        .map((skill: any) => (
+                          <View key={skill.id} style={styles.skillTag}>
+                            <Text>{skill.name}</Text>
+                          </View>
+                        ))}
+                    </View>
+                  )}
+                </>
+              )}
 
               {/* Certifications Section */}
               {section.data.type === "certifications" &&

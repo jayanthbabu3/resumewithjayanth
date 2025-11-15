@@ -173,6 +173,9 @@ export interface ResumeSection {
   order: number;
   enabled: boolean;
   title: string;
+  titleCase?: 'title' | 'upper' | 'lower'; // Text case for the section title
+  titleAlignment?: 'left' | 'center' | 'right'; // Alignment for section title
+  contentAlignment?: 'left' | 'center' | 'right' | 'justify'; // Alignment for section content
   data: SectionData;
 }
 
