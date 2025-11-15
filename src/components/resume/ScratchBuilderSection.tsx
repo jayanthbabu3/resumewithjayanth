@@ -554,35 +554,41 @@ export function ScratchBuilderSection({
                   <InlineEditableText
                     path={`${basePath}.data.items[${idx}].school`}
                     value={edu.school}
-                    className="font-semibold text-base block mb-1"
+                    className="font-semibold text-sm block mb-1"
                     placeholder="School Name"
                   />
-                  <InlineEditableText
-                    path={`${basePath}.data.items[${idx}].degree`}
-                    value={edu.degree}
-                    className="block mb-1"
-                    placeholder="Degree"
-                    style={{ color: themeColor }}
-                  />
-                  <InlineEditableText
-                    path={`${basePath}.data.items[${idx}].field`}
-                    value={edu.field}
-                    className="text-sm block mb-2"
-                    placeholder="Field of Study"
-                  />
-                  <div className="text-sm text-muted-foreground mb-1">
+                  <div className="text-sm mb-1" style={{ color: themeColor }}>
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].degree`}
+                      value={edu.degree}
+                      className="inline"
+                      placeholder="Degree"
+                    />
+                    {edu.field && ' in '}
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].field`}
+                      value={edu.field}
+                      className="inline"
+                      placeholder="Field"
+                    />
+                  </div>
+                  <div className="text-xs text-muted-foreground mb-1">
                     {edu.startDate && (
-                      <InlineEditableText
-                        path={`${basePath}.data.items[${idx}].startDate`}
-                        value={edu.startDate}
-                        placeholder="2016"
-                      />
+                      <>
+                        <InlineEditableText
+                          path={`${basePath}.data.items[${idx}].startDate`}
+                          value={edu.startDate}
+                          placeholder="2016"
+                          className="inline"
+                        />
+                        {' - '}
+                      </>
                     )}
-                    {edu.startDate && ' - '}
                     <InlineEditableText
                       path={`${basePath}.data.items[${idx}].endDate`}
                       value={edu.endDate}
                       placeholder="2020"
+                      className="inline"
                     />
                   </div>
                   {edu.gpa && (
@@ -633,35 +639,35 @@ export function ScratchBuilderSection({
           return (
             <div className="space-y-4">
               {data.items?.map((edu, idx) => (
-                <div key={edu.id} className="bg-gray-50 rounded-lg p-4">
-                  <InlineEditableText
-                    path={`${basePath}.data.items[${idx}].degree`}
-                    value={edu.degree}
-                    className="font-semibold text-base block mb-1"
-                    placeholder="Bachelor of Science"
-                  />
-                  {edu.field && (
-                    <div className="text-sm mb-2">
-                      in <InlineEditableText
-                        path={`${basePath}.data.items[${idx}].field`}
-                        value={edu.field}
-                        placeholder="Computer Science"
-                        className="inline"
-                      />
-                    </div>
-                  )}
+                <div key={edu.id} className="bg-gray-50 rounded-lg p-3">
+                  <div className="font-semibold text-sm mb-1">
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].degree`}
+                      value={edu.degree}
+                      className="inline"
+                      placeholder="Bachelor of Science"
+                    />
+                    {edu.field && ' in '}
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].field`}
+                      value={edu.field}
+                      className="inline"
+                      placeholder="Computer Science"
+                    />
+                  </div>
                   <InlineEditableText
                     path={`${basePath}.data.items[${idx}].school`}
                     value={edu.school}
-                    className="block mb-1"
+                    className="text-sm block mb-1"
                     placeholder="School Name"
                     style={{ color: themeColor }}
                   />
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-xs text-muted-foreground">
                     <InlineEditableText
                       path={`${basePath}.data.items[${idx}].endDate`}
                       value={edu.endDate}
                       placeholder="2020"
+                      className="inline"
                     />
                   </div>
                   {edu.gpa && (
