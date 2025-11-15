@@ -167,8 +167,8 @@ export default function ScratchBuilder() {
   const createSection = useCallback(
     (type: SectionType, variant?: SectionVariant): ResumeSection => {
       const id = generateId();
-      // Use variant name as title if available, otherwise use default title
-      const title = variant?.name || SECTION_DEFAULT_TITLES[type];
+      // Use variant preview title if available, otherwise use default title
+      const title = variant?.previewData?.title || SECTION_DEFAULT_TITLES[type];
       const order = sections.length;
 
       // Get base mock data with correct editable structure
