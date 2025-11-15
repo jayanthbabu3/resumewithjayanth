@@ -299,6 +299,162 @@ export function ScratchBuilderSection({
                 />
               )}
 
+              {/* Highlighted Summary - with border accent */}
+              {data.variantId === 'highlighted-summary' && !Array.isArray(data.content) && (
+                <div className="border-l-4 pl-4" style={{ borderColor: themeColor }}>
+                  <InlineEditableText
+                    path={`${basePath}.data.content`}
+                    value={data.content}
+                    multiline
+                    placeholder="Write your profile highlights..."
+                    className="block text-sm leading-relaxed font-medium"
+                    onCustomUpdate={createFieldUpdater(`${basePath}.data.content`)}
+                  />
+                </div>
+              )}
+
+              {/* Two-Column Layout - stats + description */}
+              {data.variantId === 'two-column-summary' && (
+                <div className="space-y-3">
+                  {data.stats && Array.isArray(data.stats) && (
+                    <div className="flex flex-wrap gap-2">
+                      {data.stats.map((stat: string, idx: number) => (
+                        <div
+                          key={idx}
+                          className="px-3 py-1 rounded-full flex items-center gap-2"
+                          style={{ backgroundColor: `${themeColor}15`, color: themeColor }}
+                        >
+                          <InlineEditableText
+                            path={`${basePath}.data.stats[${idx}]`}
+                            value={stat}
+                            placeholder="Stat"
+                            className="text-xs font-semibold"
+                            onCustomUpdate={createFieldUpdater(`${basePath}.data.stats[${idx}]`)}
+                          />
+                          <button
+                            onClick={() => removeArrayItem(`${basePath}.data.stats`, idx)}
+                            className="text-xs hover:opacity-70"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addArrayItem(`${basePath}.data.stats`, '0+ Years')}
+                      >
+                        <Plus className="h-3 w-3 mr-1" />
+                        Add Stat
+                      </Button>
+                    </div>
+                  )}
+                  {data.content && (
+                    <InlineEditableText
+                      path={`${basePath}.data.content`}
+                      value={data.content}
+                      multiline
+                      placeholder="Write your professional overview..."
+                      className="block text-sm leading-relaxed"
+                      onCustomUpdate={createFieldUpdater(`${basePath}.data.content`)}
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* Minimal Summary - clean and simple */}
+              {data.variantId === 'minimal-summary' && !Array.isArray(data.content) && (
+                <InlineEditableText
+                  path={`${basePath}.data.content`}
+                  value={data.content}
+                  multiline
+                  placeholder="Write your summary..."
+                  className="block text-sm leading-relaxed text-gray-700"
+                  onCustomUpdate={createFieldUpdater(`${basePath}.data.content`)}
+                />
+              )}
+
+              {/* Achievement-Focused - bullet points with arrows */}
+              {data.variantId === 'achievement-focused' && Array.isArray(data.content) && (
+                <div className="space-y-2">
+                  {data.content.map((item: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <span className="text-sm mt-1" style={{ color: themeColor }}>↗</span>
+                      <InlineEditableText
+                        path={`${basePath}.data.content[${idx}]`}
+                        value={item}
+                        multiline
+                        placeholder="Add an achievement..."
+                        className="flex-1 text-sm leading-relaxed"
+                        onCustomUpdate={createFieldUpdater(`${basePath}.data.content[${idx}]`)}
+                      />
+                      <button
+                        onClick={() => removeArrayItem(`${basePath}.data.content`, idx)}
+                        className="text-xs text-destructive hover:text-destructive/80"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => addArrayItem(`${basePath}.data.content`, '')}
+                  >
+                    <Plus className="h-4 w-4 mr-1" />
+                    Add Achievement
+                  </Button>
+                </div>
+              )}
+
+              {/* Expertise Summary - content + tags */}
+              {data.variantId === 'expertise-summary' && (
+                <div className="space-y-3">
+                  {data.content && (
+                    <InlineEditableText
+                      path={`${basePath}.data.content`}
+                      value={data.content}
+                      multiline
+                      placeholder="Write about your core expertise..."
+                      className="block text-sm leading-relaxed"
+                      onCustomUpdate={createFieldUpdater(`${basePath}.data.content`)}
+                    />
+                  )}
+                  {data.tags && Array.isArray(data.tags) && (
+                    <div className="flex flex-wrap gap-2">
+                      {data.tags.map((tag: string, idx: number) => (
+                        <div
+                          key={idx}
+                          className="px-3 py-1 rounded bg-gray-100 flex items-center gap-2"
+                        >
+                          <InlineEditableText
+                            path={`${basePath}.data.tags[${idx}]`}
+                            value={tag}
+                            placeholder="Expertise area"
+                            className="text-xs"
+                            onCustomUpdate={createFieldUpdater(`${basePath}.data.tags[${idx}]`)}
+                          />
+                          <button
+                            onClick={() => removeArrayItem(`${basePath}.data.tags`, idx)}
+                            className="text-xs text-destructive hover:text-destructive/80"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addArrayItem(`${basePath}.data.tags`, '')}
+                      >
+                        <Plus className="h-3 w-3 mr-1" />
+                        Add Tag
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Default/Professional Summary */}
               {(!data.variantId || data.variantId === 'professional-summary') && !Array.isArray(data.content) && (
                 <InlineEditableText

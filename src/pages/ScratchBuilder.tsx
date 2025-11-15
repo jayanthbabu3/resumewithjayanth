@@ -167,7 +167,8 @@ export default function ScratchBuilder() {
   const createSection = useCallback(
     (type: SectionType, variant?: SectionVariant): ResumeSection => {
       const id = generateId();
-      const title = SECTION_DEFAULT_TITLES[type];
+      // Use variant name as title if available, otherwise use default title
+      const title = variant?.name || SECTION_DEFAULT_TITLES[type];
       const order = sections.length;
 
       // Get base mock data with correct editable structure
@@ -178,8 +179,23 @@ export default function ScratchBuilder() {
         const previewData = variant.previewData;
 
         // For summary: Keep the content structure as-is (array or string)
-        if (type === 'summary' && previewData.content) {
-          data = { type: 'summary', content: previewData.content };
+        if (type === 'summary') {
+          data = { type: 'summary' };
+
+          // Preserve content (can be string or array)
+          if (previewData.content) {
+            (data as any).content = previewData.content;
+          }
+
+          // Preserve stats for two-column variant
+          if (previewData.stats) {
+            (data as any).stats = previewData.stats;
+          }
+
+          // Preserve tags for expertise variant
+          if (previewData.tags) {
+            (data as any).tags = previewData.tags;
+          }
         }
         // For skills: Convert preview skills to proper format based on variant style
         else if (type === 'skills' && previewData.skills) {

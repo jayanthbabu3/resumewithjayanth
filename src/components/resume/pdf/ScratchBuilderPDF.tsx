@@ -228,6 +228,64 @@ export function ScratchBuilderPDF({
                     <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
                   )}
 
+                  {/* Highlighted Summary - with accent */}
+                  {section.data.variantId === "highlighted-summary" && section.data.content && (
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left', fontWeight: 600 }]}>{section.data.content}</Text>
+                  )}
+
+                  {/* Two-Column Layout - stats + content */}
+                  {section.data.variantId === "two-column-summary" && (
+                    <View>
+                      {section.data.stats && Array.isArray(section.data.stats) && (
+                        <View style={{ flexDirection: "row", flexWrap: "wrap", marginBottom: 6, gap: 4 }}>
+                          {section.data.stats.map((stat: string, idx: number) => (
+                            <Text key={idx} style={[styles.sectionContent, { fontSize: 9, fontWeight: 600 }]}>
+                              {stat}
+                              {idx < section.data.stats.length - 1 ? " •" : ""}
+                            </Text>
+                          ))}
+                        </View>
+                      )}
+                      {section.data.content && (
+                        <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
+                      )}
+                    </View>
+                  )}
+
+                  {/* Minimal Summary */}
+                  {section.data.variantId === "minimal-summary" && section.data.content && (
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
+                  )}
+
+                  {/* Achievement-Focused - bullet points */}
+                  {section.data.variantId === "achievement-focused" && Array.isArray(section.data.content) && (
+                    <View style={{ textAlign: section.contentAlignment || 'left' }}>
+                      {section.data.content.map((item: string, idx: number) => (
+                        <Text key={idx} style={[styles.sectionContent, { marginBottom: 3 }]}>
+                          ↗ {item}
+                        </Text>
+                      ))}
+                    </View>
+                  )}
+
+                  {/* Expertise Summary - content + tags */}
+                  {section.data.variantId === "expertise-summary" && (
+                    <View>
+                      {section.data.content && (
+                        <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left', marginBottom: 6 }]}>{section.data.content}</Text>
+                      )}
+                      {section.data.tags && Array.isArray(section.data.tags) && (
+                        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 4 }}>
+                          {section.data.tags.map((tag: string, idx: number) => (
+                            <Text key={idx} style={[styles.sectionContent, { fontSize: 9, backgroundColor: "#f3f4f6", padding: 4, borderRadius: 4 }]}>
+                              {tag}
+                            </Text>
+                          ))}
+                        </View>
+                      )}
+                    </View>
+                  )}
+
                   {/* Default summary - for sections without variant */}
                   {!section.data.variantId && section.data.content && (
                     <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>{section.data.content}</Text>
