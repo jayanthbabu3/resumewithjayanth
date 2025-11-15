@@ -20,6 +20,7 @@ import { SectionLibrary } from './SectionLibrary';
 import { DynamicSectionCard } from './DynamicSectionCard';
 import type { ResumeSection, SectionType, SectionData } from '@/types/resume';
 import { SECTION_DEFAULT_TITLES, SECTION_ICONS } from '@/constants/helperSections';
+import { getMockSectionData } from '@/constants/mockSectionData';
 
 interface DynamicSectionsProps {
   sections: ResumeSection[];
@@ -174,38 +175,8 @@ export function DynamicSections({ sections, onChange }: DynamicSectionsProps) {
   );
 }
 
-// Helper function to create empty data for a section type
+// Helper function to create initial data for a section type
+// Returns mock data with helpful examples instead of empty arrays
 function getEmptyDataForType(type: SectionType): SectionData {
-  switch (type) {
-    case 'summary':
-      return { type: 'summary', content: '' };
-    case 'experience':
-      return { type: 'experience', items: [] };
-    case 'education':
-      return { type: 'education', items: [] };
-    case 'skills':
-      return { type: 'skills', items: [] };
-    case 'certifications':
-      return { type: 'certifications', items: [] };
-    case 'languages':
-      return { type: 'languages', items: [] };
-    case 'projects':
-      return { type: 'projects', items: [] };
-    case 'awards':
-      return { type: 'awards', items: [] };
-    case 'publications':
-      return { type: 'publications', items: [] };
-    case 'volunteer':
-      return { type: 'volunteer', items: [] };
-    case 'speaking':
-      return { type: 'speaking', items: [] };
-    case 'patents':
-      return { type: 'patents', items: [] };
-    case 'portfolio':
-      return { type: 'portfolio', items: [] };
-    case 'custom':
-      return { type: 'custom', content: '' };
-    default:
-      return { type: 'custom', content: '' };
-  }
+  return getMockSectionData(type);
 }
