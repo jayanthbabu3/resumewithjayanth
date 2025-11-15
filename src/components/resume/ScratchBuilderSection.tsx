@@ -768,6 +768,347 @@ export function ScratchBuilderSection({
           );
         }
 
+        // Achievement-Focused - emphasizes academic achievements
+        if (data.variantId === 'education-achievement') {
+          return (
+            <div className="space-y-4">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="border-l-2 pl-4" style={{ borderColor: themeColor }}>
+                  <InlineEditableText
+                    path={`${basePath}.data.items[${idx}].school`}
+                    value={edu.school}
+                    className="font-semibold text-sm block mb-1"
+                    placeholder="School Name"
+                  />
+                  <InlineEditableText
+                    path={`${basePath}.data.items[${idx}].degree`}
+                    value={edu.degree}
+                    className="text-sm block mb-1"
+                    placeholder="Degree"
+                    style={{ color: themeColor }}
+                  />
+                  <div className="text-xs text-muted-foreground mb-2">
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].endDate`}
+                      value={edu.endDate}
+                      placeholder="2020"
+                      className="inline"
+                    />
+                  </div>
+
+                  {Array.isArray(edu.achievements) && edu.achievements.length > 0 && (
+                    <div className="mt-1 space-y-1">
+                      {edu.achievements.map((ach: string, aIdx: number) => (
+                        <div key={aIdx} className="flex items-start gap-2 text-sm">
+                          <span className="mt-0.5" style={{ color: themeColor }}>✓</span>
+                          <InlineEditableText
+                            path={`${basePath}.data.items[${idx}].achievements[${aIdx}]`}
+                            value={ach}
+                            placeholder="Add achievement"
+                            className="flex-1"
+                          />
+                          <button
+                            onClick={() => removeArrayItem(`${basePath}.data.items[${idx}].achievements`, aIdx)}
+                            className="text-xs text-destructive hover:text-destructive/80"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addArrayItem(`${basePath}.data.items[${idx}].achievements`, '')}
+                      >
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add Achievement
+                      </Button>
+                    </div>
+                  )}
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeArrayItem(`${basePath}.data.items`, idx)}
+                    className="mt-2 text-destructive"
+                  >
+                    <Trash2 className="h-3 w-3 mr-1" />
+                    Remove
+                  </Button>
+                </div>
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  addArrayItem(`${basePath}.data.items`, {
+                    id: Date.now().toString(),
+                    school: '',
+                    degree: '',
+                    endDate: '',
+                    achievements: [],
+                  })
+                }
+              >
+                <Plus className="h-4 w-4 mr-1" />
+                Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Honors Emphasis - show GPA and honors list
+        if (data.variantId === 'education-honors') {
+          return (
+            <div className="space-y-4">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="pl-4 border-l-2" style={{ borderColor: themeColor }}>
+                  <InlineEditableText
+                    path={`${basePath}.data.items[${idx}].school`}
+                    value={edu.school}
+                    className="font-semibold text-sm block"
+                    placeholder="School"
+                  />
+                  <div className="text-sm mb-1" style={{ color: themeColor }}>
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].degree`}
+                      value={edu.degree}
+                      className="inline"
+                      placeholder="Degree"
+                    />
+                    {edu.field && ' in '}
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].field`}
+                      value={edu.field}
+                      className="inline"
+                      placeholder="Field"
+                    />
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].endDate`}
+                      value={edu.endDate}
+                      placeholder="2020"
+                      className="inline"
+                    />
+                  </div>
+                  {(edu.gpa || (Array.isArray(edu.honors) && edu.honors.length)) && (
+                    <div className="mt-2 space-y-1">
+                      {edu.gpa && (
+                        <div className="flex items-start gap-2 text-sm">
+                          <span className="mt-0.5" style={{ color: themeColor }}>✓</span>
+                          <span>
+                            GPA: <InlineEditableText
+                              path={`${basePath}.data.items[${idx}].gpa`}
+                              value={edu.gpa}
+                              placeholder="3.8"
+                              className="inline"
+                            />
+                          </span>
+                        </div>
+                      )}
+                      {Array.isArray(edu.honors) && edu.honors.map((h: string, hIdx: number) => (
+                        <div key={hIdx} className="flex items-start gap-2 text-sm">
+                          <span className="mt-0.5" style={{ color: themeColor }}>✓</span>
+                          <InlineEditableText
+                            path={`${basePath}.data.items[${idx}].honors[${hIdx}]`}
+                            value={h}
+                            placeholder="Honor"
+                            className="flex-1"
+                          />
+                          <button
+                            onClick={() => removeArrayItem(`${basePath}.data.items[${idx}].honors`, hIdx)}
+                            className="text-xs text-destructive hover:text-destructive/80"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeArrayItem(`${basePath}.data.items`, idx)}
+                    className="mt-2 text-destructive"
+                  >
+                    <Trash2 className="h-3 w-3 mr-1" />
+                    Remove
+                  </Button>
+                </div>
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => addArrayItem(`${basePath}.data.items`, { id: Date.now().toString(), school: '', degree: '', field: '', endDate: '', gpa: '', honors: [] })}
+              >
+                <Plus className="h-4 w-4 mr-1" />
+                Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Detailed - show coursework
+        if (data.variantId === 'education-detailed') {
+          return (
+            <div className="space-y-4">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="border rounded-md p-3">
+                  <div className="font-semibold text-sm mb-1">
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].school`}
+                      value={edu.school}
+                      placeholder="School"
+                    />
+                  </div>
+                  <div className="text-sm mb-1" style={{ color: themeColor }}>
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].degree`}
+                      value={edu.degree}
+                      placeholder="Degree"
+                    />
+                    {edu.field && ' in '}
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].field`}
+                      value={edu.field}
+                      placeholder="Field"
+                    />
+                  </div>
+                  <div className="text-xs text-muted-foreground mb-2">
+                    <InlineEditableText
+                      path={`${basePath}.data.items[${idx}].endDate`}
+                      value={edu.endDate}
+                      placeholder="2020"
+                    />
+                  </div>
+                  {Array.isArray(edu.coursework) && (
+                    <div className="text-sm text-muted-foreground">
+                      <span className="font-medium mr-1">Coursework:</span>
+                      <InlineEditableText
+                        path={`${basePath}.data.items[${idx}].__courseworkString`}
+                        value={edu.coursework.join(', ')}
+                        placeholder="Algorithms, Distributed Systems"
+                        onCustomUpdate={(val) => {
+                          const list = val.split(',').map((s: string) => s.trim()).filter(Boolean);
+                          updateField(`${basePath}.data.items[${idx}].coursework`, list);
+                        }}
+                      />
+                    </div>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeArrayItem(`${basePath}.data.items`, idx)}
+                    className="mt-2 text-destructive"
+                  >
+                    <Trash2 className="h-3 w-3 mr-1" />
+                    Remove
+                  </Button>
+                </div>
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => addArrayItem(`${basePath}.data.items`, { id: Date.now().toString(), school: '', degree: '', field: '', endDate: '', coursework: [] })}
+              >
+                <Plus className="h-4 w-4 mr-1" />
+                Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Timeline - visual dates
+        if (data.variantId === 'education-timeline') {
+          return (
+            <div className="space-y-4">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="pl-4 border-l-2" style={{ borderColor: themeColor }}>
+                  <div className="text-xs text-muted-foreground mb-1">
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].startDate`} value={edu.startDate} placeholder="2016" className="inline" />
+                    {' - '}
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].endDate`} value={edu.endDate} placeholder="2020" className="inline" />
+                  </div>
+                  <div className="font-semibold text-sm">
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].school`} value={edu.school} placeholder="School" />
+                  </div>
+                  <div className="text-sm" style={{ color: themeColor }}>
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].degree`} value={edu.degree} placeholder="Degree" />
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => removeArrayItem(`${basePath}.data.items`, idx)} className="mt-2 text-destructive">
+                    <Trash2 className="h-3 w-3 mr-1" /> Remove
+                  </Button>
+                </div>
+              ))}
+              <Button variant="outline" size="sm" onClick={() => addArrayItem(`${basePath}.data.items`, { id: Date.now().toString(), school: '', degree: '', startDate: '', endDate: '' })}>
+                <Plus className="h-4 w-4 mr-1" /> Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Compact single line
+        if (data.variantId === 'education-compact') {
+          return (
+            <div className="space-y-2">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="text-sm flex items-center gap-2">
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].degree`} value={edu.degree} placeholder="BS CS" className="inline" />
+                  <span>•</span>
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].school`} value={edu.school} placeholder="School" className="inline" />
+                  <span className="text-muted-foreground">•</span>
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].endDate`} value={edu.endDate} placeholder="2020" className="inline text-muted-foreground" />
+                  <button onClick={() => removeArrayItem(`${basePath}.data.items`, idx)} className="text-xs text-destructive ml-auto">×</button>
+                </div>
+              ))}
+              <Button variant="outline" size="sm" onClick={() => addArrayItem(`${basePath}.data.items`, { id: Date.now().toString(), school: '', degree: '', endDate: '' })}>
+                <Plus className="h-4 w-4 mr-1" /> Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Boxed layout
+        if (data.variantId === 'education-boxed') {
+          return (
+            <div className="space-y-3">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id} className="border rounded-md p-3">
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].school`} value={edu.school} className="font-semibold text-sm block mb-1" placeholder="School" />
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].degree`} value={edu.degree} className="text-sm" placeholder="Degree" style={{ color: themeColor }} />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].endDate`} value={edu.endDate} placeholder="2020" className="inline" />
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => removeArrayItem(`${basePath}.data.items`, idx)} className="mt-2 text-destructive">
+                    <Trash2 className="h-3 w-3 mr-1" /> Remove
+                  </Button>
+                </div>
+              ))}
+              <Button variant="outline" size="sm" onClick={() => addArrayItem(`${basePath}.data.items`, { id: Date.now().toString(), school: '', degree: '', endDate: '' })}>
+                <Plus className="h-4 w-4 mr-1" /> Add Education
+              </Button>
+            </div>
+          );
+        }
+
+        // Two-column layout
+        if (data.variantId === 'education-two-column') {
+          return (
+            <div className="grid grid-cols-2 gap-6">
+              {data.items?.map((edu, idx) => (
+                <div key={edu.id}>
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].school`} value={edu.school} className="font-semibold text-sm block" placeholder="School" />
+                  <InlineEditableText path={`${basePath}.data.items[${idx}].degree`} value={edu.degree} className="text-sm" placeholder="Degree" style={{ color: themeColor }} />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    <InlineEditableText path={`${basePath}.data.items[${idx}].endDate`} value={edu.endDate} placeholder="2020" className="inline" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        }
+
         // Default fallback - same as classic
         return (
           <div className="space-y-4">
