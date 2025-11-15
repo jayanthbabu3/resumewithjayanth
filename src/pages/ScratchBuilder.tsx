@@ -167,19 +167,40 @@ export default function ScratchBuilder() {
   const createSection = useCallback(
     (type: SectionType, variant?: SectionVariant): ResumeSection => {
       const id = generateId();
-      const title = variant?.previewData?.title || SECTION_DEFAULT_TITLES[type];
+      const title = SECTION_DEFAULT_TITLES[type];
       const order = sections.length;
 
-      // Build the section data with proper type field
-      let data;
+      // Get base mock data with correct editable structure
+      let data = getMockSectionData(type);
+
+      // If variant is selected, apply variant-specific content while keeping editable structure
       if (variant?.previewData) {
-        data = {
-          type, // Ensure type is set for rendering
-          ...variant.previewData,
-          variant: variant?.id, // Store the variant ID for rendering
-        };
-      } else {
-        data = getMockSectionData(type);
+        const previewData = variant.previewData;
+
+        // For summary: Convert content to string format (editors expect string)
+        if (type === 'summary' && previewData.content) {
+          const content = Array.isArray(previewData.content)
+            ? '• ' + previewData.content.join('\n• ')
+            : previewData.content;
+          data = { type: 'summary', content };
+        }
+        // For skills: Convert preview skills to proper items array
+        else if (type === 'skills' && previewData.skills) {
+          const skills = previewData.skills;
+          const items = Array.isArray(skills)
+            ? skills.slice(0, 6).map((skill: any) => ({
+                id: generateId(),
+                name: typeof skill === 'string' ? skill : skill.name || String(skill),
+                level: 80,
+                category: 'core' as const,
+              }))
+            : []; // Fallback to empty if not array
+          data = { type: 'skills', items };
+        }
+        // For all other types, keep mock data structure as-is
+
+        // Store variant ID for styling
+        (data as any).variantId = variant.id;
       }
 
       return {
