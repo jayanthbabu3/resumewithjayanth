@@ -1,12 +1,13 @@
 import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
 import type { ResumeData } from '@/pages/Editor';
+import { PDF_PAGE_MARGINS, hasContent } from '@/lib/pdfConfig';
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 40,
-    paddingBottom: 40,
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingTop: PDF_PAGE_MARGINS.top,
+    paddingBottom: PDF_PAGE_MARGINS.bottom,
+    paddingLeft: PDF_PAGE_MARGINS.left,
+    paddingRight: PDF_PAGE_MARGINS.right,
     fontFamily: 'Inter',
     fontSize: 10,
     backgroundColor: '#ffffff',
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: '#4f46e5',
     borderBottomStyle: 'solid',
   },
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   experienceItem: {
     marginBottom: 16,
     paddingLeft: 15,
-    borderLeftWidth: 2,
+    borderLeftWidth: 1,
     borderLeftColor: '#e5e7eb',
     borderLeftStyle: 'solid',
   },
@@ -243,8 +244,8 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
 
         <View style={styles.content}>
           {/* Summary */}
-          {resumeData.personalInfo.summary && (
-            <View style={styles.section} wrap={false}>
+          {hasContent(resumeData.personalInfo.summary) && (
+            <View style={styles.section}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>ABOUT ME</Text>
               <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
             </View>
@@ -252,7 +253,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
 
           {/* Skills */}
           {resumeData.skills && resumeData.skills.length > 0 && (
-            <View style={styles.section} wrap={false}>
+            <View style={styles.section}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>TECHNICAL SKILLS</Text>
               <Text style={styles.skillsText}>
                 {resumeData.skills.map((skill) => skill.name).join(' • ')}
@@ -265,7 +266,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
             <View style={styles.sectionBreakable}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>PROFESSIONAL EXPERIENCE</Text>
               {resumeData.experience.map((exp, index) => (
-                <View key={index} style={styles.experienceItem} wrap={false}>
+                <View key={index} style={styles.experienceItem}>
                   <View style={styles.experienceHeader}>
                     <View style={{ flex: 1 }}>
                       <Text style={styles.position}>{exp.position}</Text>
@@ -278,7 +279,7 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
                   <Text style={styles.description}>{exp.description}</Text>
                 </View>
               ))}
-            </View>
+        )            </View>
           )}
 
           {/* Education */}
@@ -286,11 +287,11 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
             <View style={styles.sectionBreakable}>
               <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>EDUCATION</Text>
               {resumeData.education.map((edu, index) => (
-                <View key={index} style={styles.educationItem} wrap={false}>
+                <View key={index} style={styles.educationItem}>
                   <View style={styles.educationHeader}>
                     <View style={{ flex: 1 }}>
                       <Text style={styles.degree}>{edu.degree}</Text>
-                      {edu.field && <Text style={styles.field}>{edu.field}</Text>}
+                      {hasContent(edu.field) && <Text style={styles.field}>{edu.field}</Text>}
                       <Text style={styles.school}>{edu.school}</Text>
                     </View>
                     <Text style={styles.dateRange}>
@@ -299,18 +300,18 @@ export const FrontendPDF = ({ resumeData, themeColor = "#4f46e5" }: Props) => {
                   </View>
                 </View>
               ))}
-            </View>
+        )            </View>
           )}
 
           {/* Custom Sections */}
           {resumeData.sections &&
             resumeData.sections.map((section, index) => (
-              <View key={index} style={styles.section} wrap={false}>
+              <View key={index} style={styles.section}>
                 <Text style={[styles.sectionTitle, { borderBottomColor: themeColor }]}>{section.title.toUpperCase()}</Text>
                 <Text style={styles.customSectionContent}>{section.content}</Text>
               </View>
             ))}
-        </View>
+        )        </View>
       </Page>
     </Document>
   );

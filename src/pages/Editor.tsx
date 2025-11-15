@@ -1,7 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Download, Gauge, Loader2, RotateCcw } from "lucide-react";
+import { Download, Gauge, Loader2, RotateCcw, ArrowLeft, Edit3, FileEdit, Save } from "lucide-react";
+import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
+import { resumeService } from "@/lib/firestore/resumeService";
+import type { ResumeData as NewResumeData } from "@/types/resume";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ResumeForm } from "@/components/resume/ResumeForm";
 import { ResumePreview } from "@/components/resume/ResumePreview";
 import { toast } from "sonner";
@@ -26,6 +30,21 @@ import { SoftwarePDF } from "@/components/resume/pdf/SoftwarePDF";
 import { PremiumUniversalPDF } from "@/components/resume/pdf/PremiumUniversalPDF";
 import { PremiumProPDF } from "@/components/resume/pdf/PremiumProPDF";
 import { FresherElitePDF } from "@/components/resume/pdf/FresherElitePDF";
+import { AnalystPDF } from "@/components/resume/pdf/AnalystPDF";
+import { ElitePDF } from "@/components/resume/pdf/ElitePDF";
+import { CorporateExecutivePDF } from "@/components/resume/pdf/CorporateExecutivePDF";
+import { RefinedPDF } from "@/components/resume/pdf/RefinedPDF";
+import { PremiumElitePDF } from "@/components/resume/pdf/PremiumElitePDF";
+import { FresherMinimalGridPDF } from "@/components/resume/pdf/FresherMinimalGridPDF";
+import { FresherDarkProfessionalPDF } from "@/components/resume/pdf/FresherDarkProfessionalPDF";
+import { FresherColorAccentPDF } from "@/components/resume/pdf/FresherColorAccentPDF";
+import { FresherTimelinePDF } from "@/components/resume/pdf/FresherTimelinePDF";
+import { FresherSkillsFirstPDF } from "@/components/resume/pdf/FresherSkillsFirstPDF";
+import { FresherCardBasedPDF } from "@/components/resume/pdf/FresherCardBasedPDF";
+import { FresherTwoTonePDF } from "@/components/resume/pdf/FresherTwoTonePDF";
+import { FresherCenteredElegantPDF } from "@/components/resume/pdf/FresherCenteredElegantPDF";
+import { FresherGeometricPDF } from "@/components/resume/pdf/FresherGeometricPDF";
+import { FresherAchievementPDF } from "@/components/resume/pdf/FresherAchievementPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -84,6 +103,7 @@ export interface ResumeData {
     title: string;
     content: string;
   }>;
+  dynamicSections?: any[]; // For backward compatibility
 }
 
 const buildSkills = (
@@ -97,6 +117,25 @@ const buildSkills = (
     level: levels?.[index] ?? Math.max(1, Math.min(10, 10 - index)),
     category: index < 6 ? "core" : "toolbox",
   }));
+
+// Helper function to ensure data has valid array fields
+const sanitizeResumeData = (data: any): ResumeData => {
+  return {
+    personalInfo: data.personalInfo || {
+      fullName: "",
+      email: "",
+      phone: "",
+      location: "",
+      title: "",
+      summary: "",
+      photo: "",
+    },
+    experience: Array.isArray(data.experience) ? data.experience : [],
+    education: Array.isArray(data.education) ? data.education : [],
+    skills: Array.isArray(data.skills) ? data.skills : [],
+    sections: Array.isArray(data.sections) ? data.sections : [],
+  };
+};
 
 export const getTemplateDefaults = (templateId: string): ResumeData => {
   const templates: Record<string, ResumeData> = {
@@ -1488,6 +1527,272 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
         },
       ],
     },
+    analyst: {
+      personalInfo: {
+        fullName: "Herman Walton",
+        email: "example@gmail.com",
+        phone: "(412) 479-6342",
+        location: "Market Street 12, New York, 1021, The USA",
+        title: "Financial Analyst",
+        summary:
+          "Experienced and driven Financial Analyst with an impressive background of managing multi-million dollar budgets while providing analysis and account support within product development departments. Worked to reduce business expenses and develop logical and advantageous operating plan budgets. Experience creating quarterly accruals based on trends and forecasted expenses.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "GEO Corp.",
+          position: "Financial Analyst",
+          startDate: "Jan 2012",
+          endDate: "",
+          current: true,
+          description:
+            "Created budgets and ensured that labor and material costs were decreased by 15 percent.\nCreated financial reports on completed projects, indicating advantageous results.\nGenerated financial statements including cash flow charts and balance sheets.\nCreated analysis and performance reports for management teams to review.\nIntroduced and implemented a different type of software to enhance communication of different organization.",
+        },
+        {
+          id: "2",
+          company: "Cisco Enterprises",
+          position: "Financial Analyst",
+          startDate: "Feb 2008",
+          endDate: "Dec 2012",
+          current: false,
+          description:
+            "Provide reports, ad-hoc analysis, annual operations plan budgets, monthly cash forecasts, and revenue forecasts.\nAnalyzed supplier contracts and advised in negotiations bringing budgets down by 6%.\nCreated weekly labor finance reports and presented the results to management.",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "University of Arizona",
+          degree: "Diploma in Computer Engineering",
+          field: "",
+          startDate: "Aug 2006",
+          endDate: "Oct 2008",
+        },
+        {
+          id: "2",
+          school: "University of Arizona",
+          degree: "Bachelor in Computer Engineering",
+          field: "",
+          startDate: "Aug 2004",
+          endDate: "Oct 2006",
+        },
+      ],
+      skills: buildSkills(
+        "analyst",
+        [
+          "Solution Strategies",
+          "Analytical Thinker",
+          "Innovation",
+          "Agile Methodologies",
+          "Effective Team leader",
+          "Market Assessment",
+          "Collaboration",
+          "Creative Problem Solving",
+          "Customer-centric Selling",
+          "Trend Analysis",
+          "Source Control",
+          "Networking",
+        ],
+        [9, 9, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Additional Information",
+          content:
+            "Languages: English, French\nCertificates: Financial Analyst License\nAwards/Activities: Most Innovate Employer of the Year (2011), Overall Best Employee Division Two (2009)",
+        },
+      ],
+    },
+    elite: {
+      personalInfo: {
+        fullName: "Victoria Sterling",
+        email: "v.sterling@professional.com",
+        phone: "+1 (555) 789-0123",
+        location: "Seattle, WA",
+        title: "Executive Business Consultant",
+        summary:
+          "Strategic business consultant with 12+ years of experience driving transformational change and delivering measurable results for Fortune 500 companies. Specialized in operational excellence, change management, and strategic planning. Proven track record of leading cross-functional teams and implementing solutions that increase revenue and reduce costs.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "Global Consulting Partners",
+          position: "Senior Business Consultant",
+          startDate: "Mar 2019",
+          endDate: "",
+          current: true,
+          description:
+            "Lead strategic initiatives for enterprise clients with annual revenues exceeding $1B\nDeveloped and implemented operational strategies resulting in 35% efficiency improvement\nManaged portfolio of 8 concurrent client engagements with 100% satisfaction rating\nMentored team of 12 junior consultants and facilitated professional development programs\nPresented findings and recommendations to C-suite executives and board members",
+        },
+        {
+          id: "2",
+          company: "Strategic Solutions Inc",
+          position: "Business Analyst & Consultant",
+          startDate: "Jun 2015",
+          endDate: "Feb 2019",
+          current: false,
+          description:
+            "Conducted comprehensive business analysis and market research for clients across multiple industries\nDesigned and executed change management strategies for organizational restructuring\nFacilitated stakeholder workshops and strategy sessions with executive leadership\nDeveloped data-driven recommendations that increased client profitability by average of 28%",
+        },
+        {
+          id: "3",
+          company: "Innovation Corp",
+          position: "Junior Business Analyst",
+          startDate: "Sep 2012",
+          endDate: "May 2015",
+          current: false,
+          description:
+            "Analyzed business processes and identified opportunities for optimization\nCreated detailed reports and presentations for senior management\nCollaborated with IT teams to implement process automation solutions\nSupported senior consultants in client-facing engagements and project delivery",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Harvard Business School",
+          degree: "Master of Business Administration",
+          field: "Strategy & Operations",
+          startDate: "2010-09",
+          endDate: "2012-06",
+        },
+        {
+          id: "2",
+          school: "University of Washington",
+          degree: "Bachelor of Science",
+          field: "Business Administration",
+          startDate: "2006-09",
+          endDate: "2010-06",
+        },
+      ],
+      skills: buildSkills(
+        "elite",
+        [
+          "Strategic Planning",
+          "Change Management",
+          "Business Analysis",
+          "Project Management",
+          "Stakeholder Engagement",
+          "Process Optimization",
+          "Financial Modeling",
+          "Data Analytics",
+          "Leadership & Mentoring",
+          "Executive Presentations",
+          "Risk Management",
+          "Agile Methodologies",
+        ],
+        [10, 9, 9, 9, 9, 8, 8, 8, 9, 9, 8, 7],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Certifications & Awards",
+          content:
+            "Project Management Professional (PMP) - PMI Certified\nCertified Management Consultant (CMC) - Institute of Management Consultants\nLean Six Sigma Black Belt\nConsultant of the Year Award 2022 - Global Consulting Partners\nTop 40 Under 40 Business Leaders - Seattle Business Journal 2021",
+        },
+        {
+          id: "2",
+          title: "Speaking & Publications",
+          content:
+            "Keynote Speaker - Annual Business Transformation Summit 2023\nPublished Article: 'Digital Transformation in Enterprise' - Harvard Business Review\nGuest Lecturer - University of Washington Business School (2020-Present)\nPanelist - Women in Leadership Conference 2022",
+        },
+      ],
+    },
+    "corporate-executive": {
+      personalInfo: {
+        fullName: "Robert Anderson",
+        email: "r.anderson@executive.com",
+        phone: "+1 (555) 890-1234",
+        location: "New York, NY",
+        title: "Chief Operating Officer",
+        summary:
+          "Results-driven executive leader with 18+ years of experience driving organizational excellence and strategic growth initiatives. Proven expertise in operations management, business transformation, and P&L leadership. Successfully scaled operations for Fortune 500 companies while maintaining focus on efficiency, innovation, and sustainable growth.",
+        photo: "",
+      },
+      experience: [
+        {
+          id: "1",
+          company: "TechVision Corp",
+          position: "Chief Operating Officer",
+          startDate: "2020-01",
+          endDate: "",
+          current: true,
+          description:
+            "Lead operational strategy and execution for $2B+ technology enterprise with 3,500+ employees across 15 global locations\nDrive digital transformation initiatives resulting in 40% operational efficiency improvement and $50M annual cost savings\nOversee cross-functional teams including product development, supply chain, customer success, and business operations\nPartner with CEO and board on strategic planning, M&A activities, and long-term growth strategies\nImplement data-driven decision frameworks and KPI dashboards for executive leadership team",
+        },
+        {
+          id: "2",
+          company: "Global Systems Inc",
+          position: "Senior Vice President of Operations",
+          startDate: "2015-06",
+          endDate: "2019-12",
+          current: false,
+          description:
+            "Managed operations for $800M division with 1,200+ employees across multiple business units\nLed operational excellence program achieving 35% improvement in process efficiency metrics\nSuccessfully integrated 3 strategic acquisitions totaling $200M in combined revenue\nBuilt high-performing leadership team and established succession planning framework\nReduced operating costs by 25% while improving customer satisfaction scores by 30%",
+        },
+        {
+          id: "3",
+          company: "Enterprise Solutions LLC",
+          position: "Director of Business Operations",
+          startDate: "2010-03",
+          endDate: "2015-05",
+          current: false,
+          description:
+            "Directed business operations for fast-growing SaaS company scaling from $50M to $300M revenue\nDeveloped and executed operational strategies supporting 500% revenue growth over 5 years\nEstablished operational infrastructure including systems, processes, and organizational structure\nLed cross-functional initiatives spanning sales operations, customer success, and product delivery",
+        },
+      ],
+      education: [
+        {
+          id: "1",
+          school: "Harvard Business School",
+          degree: "Master of Business Administration",
+          field: "Strategy & Operations",
+          startDate: "2008-09",
+          endDate: "2010-05",
+        },
+        {
+          id: "2",
+          school: "University of Michigan",
+          degree: "Bachelor of Science",
+          field: "Industrial Engineering",
+          startDate: "2004-09",
+          endDate: "2008-05",
+        },
+      ],
+      skills: buildSkills(
+        "corporate-executive",
+        [
+          "Strategic Leadership",
+          "Operations Management",
+          "P&L Management",
+          "Business Transformation",
+          "Change Leadership",
+          "Team Building",
+          "Process Optimization",
+          "M&A Integration",
+          "Financial Planning",
+          "Data Analytics",
+          "Board Relations",
+          "Executive Communication",
+        ],
+        [10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 9, 9],
+      ),
+      sections: [
+        {
+          id: "1",
+          title: "Board & Advisory Roles",
+          content:
+            "Board Member - TechGrowth Foundation (2022-Present)\nAdvisory Board - StartupScale Accelerator (2021-Present)\nMentor - Executive Leadership Program at Columbia Business School",
+        },
+        {
+          id: "2",
+          title: "Recognition & Awards",
+          content:
+            "COO of the Year - Tech Leadership Awards 2023\nTop 50 Most Influential Executives - Business Quarterly 2022\n40 Under 40 - Business Excellence Magazine 2018\nPublished: 'Operational Excellence in the Digital Age' - Harvard Business Review",
+        },
+      ],
+    },
   };
 
   return templates[templateId] || templates.professional;
@@ -1504,6 +1809,9 @@ const formatTemplateName = (id?: string) => {
 const Editor = () => {
   const { templateId } = useParams<{ templateId: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const resumeId = searchParams.get("resumeId");
+  const { user } = useFirebaseAuth();
   const [resumeData, setResumeData] = useState<ResumeData>(() =>
     getTemplateDefaults(templateId || "professional"),
   );
@@ -1517,6 +1825,8 @@ const Editor = () => {
       "senior-backend": "#2563eb",
       software: "#2563eb",
       "premium-fresher": "#7C3AED",
+      analyst: "#2563eb",
+      elite: "#7c3aed",
     };
 
     return defaultThemeColors[templateId || ""] || "#7c3aed"; // default purple
@@ -1525,6 +1835,9 @@ const Editor = () => {
   const [atsDialogOpen, setAtsDialogOpen] = useState(false);
   const [atsLoading, setAtsLoading] = useState(false);
   const [resetDialogOpen, setResetDialogOpen] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [currentResumeId, setCurrentResumeId] = useState<string | null>(resumeId);
 
   // Register fonts for PDF generation
   useEffect(() => {
@@ -1610,8 +1923,89 @@ const Editor = () => {
     }
   }, [themeColor, templateId]);
 
-  const handleDownload = async () => {
+  // Load resume from Firestore if resumeId exists
+  useEffect(() => {
+    const loadResumeFromFirestore = async () => {
+      if (!resumeId || !user) return;
+
+      try {
+        const resume = await resumeService.getResume(resumeId);
+        if (resume && resume.data) {
+          // Sanitize the data to ensure all array fields are valid arrays
+          const sanitizedData = sanitizeResumeData(resume.data);
+          setResumeData(sanitizedData);
+          // Also update theme color if it exists
+          if (resume.themeColor) {
+            setThemeColor(resume.themeColor);
+          }
+        }
+      } catch (error) {
+        console.error("Error loading resume from Firestore:", error);
+        toast.error("Failed to load resume");
+      }
+    };
+
+    loadResumeFromFirestore();
+  }, [resumeId, user]);
+
+  // Sync currentResumeId with resumeId from URL parameters
+  useEffect(() => {
+    setCurrentResumeId(resumeId);
+  }, [resumeId]);
+
+  const handleSave = async () => {
+    if (!user) {
+      toast.error("Please sign in to save your resume");
+      return;
+    }
+
+    if (!templateId) {
+      toast.error("Template ID is missing");
+      return;
+    }
+
+    setIsSaving(true);
     try {
+      // Convert Editor resume data to new service format (same structure!)
+      const resumeDataToSave: NewResumeData = {
+        personalInfo: resumeData.personalInfo,
+        experience: resumeData.experience,
+        education: resumeData.education,
+        skills: resumeData.skills,
+        sections: resumeData.sections,
+      };
+
+      if (currentResumeId) {
+        // Update existing resume
+        await resumeService.updateResumeData(currentResumeId, resumeDataToSave);
+        toast.success("Resume updated successfully!");
+      } else {
+        // Create new resume
+        const newResumeId = await resumeService.createResume(
+          templateId,
+          resumeDataToSave,
+          {
+            title: `Resume - ${resumeData.personalInfo.fullName || new Date().toLocaleDateString()}`,
+            themeColor: themeColor,
+          }
+        );
+        setCurrentResumeId(newResumeId);
+        toast.success("Resume saved successfully!");
+      }
+    } catch (error) {
+      console.error("Error saving resume:", error);
+      toast.error("Failed to save resume. Please try again.");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    try {
+      // Sanitize resume data to ensure all arrays are valid before PDF generation
+      const sanitizedData = sanitizeResumeData(resumeData);
+
       // Select the appropriate PDF template
       const pdfTemplates = {
         professional: ProfessionalPDF,
@@ -1632,6 +2026,21 @@ const Editor = () => {
         "premium-universal": PremiumUniversalPDF,
         "premium-pro": PremiumProPDF,
         "fresher-elite": FresherElitePDF,
+        analyst: AnalystPDF,
+        elite: ElitePDF,
+        "corporate-executive": CorporateExecutivePDF,
+        refined: RefinedPDF,
+        "premium-elite": PremiumElitePDF,
+        "fresher-minimal-grid": FresherMinimalGridPDF,
+        "fresher-dark-professional": FresherDarkProfessionalPDF,
+        "fresher-color-accent": FresherColorAccentPDF,
+        "fresher-timeline": FresherTimelinePDF,
+        "fresher-skills-first": FresherSkillsFirstPDF,
+        "fresher-card-based": FresherCardBasedPDF,
+        "fresher-two-tone": FresherTwoTonePDF,
+        "fresher-centered-elegant": FresherCenteredElegantPDF,
+        "fresher-geometric": FresherGeometricPDF,
+        "fresher-achievement": FresherAchievementPDF,
       };
 
       const PDFTemplate =
@@ -1640,14 +2049,14 @@ const Editor = () => {
 
       // Generate PDF blob
       const blob = await pdf(
-        <PDFTemplate resumeData={resumeData} themeColor={themeColor} />,
+        <PDFTemplate resumeData={sanitizedData} themeColor={themeColor} />,
       ).toBlob();
 
       // Create download link
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+      link.download = `${sanitizedData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
       link.click();
 
       // Cleanup
@@ -1657,6 +2066,8 @@ const Editor = () => {
     } catch (error) {
       console.error("Download error:", error);
       toast.error("Failed to download resume");
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -1797,27 +2208,161 @@ const Editor = () => {
       <Header />
       
       {/* Fixed Header Section */}
-      <div className="sticky top-0 z-50 bg-background border-b border-border/60 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 sm:px-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <Breadcrumbs items={editorBreadcrumbItems} />
-            <div className="flex flex-wrap items-center gap-2">
+      <div className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-sm shadow-sm">
+        <div className="container mx-auto px-4 py-3">
+          {/* Mobile Layout */}
+          <div className="flex flex-col gap-3 md:hidden">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/dashboard")}
+                  className="hover:bg-accent"
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back
+                </Button>
+                <div className="border-l border-border h-6" />
+                <div>
+                  <h1 className="text-lg font-semibold text-primary">Form Editor</h1>
+                  <p className="text-xs text-muted-foreground">Fill in your information</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-2">
               <Button
-                onClick={() => setResetDialogOpen(true)}
                 variant="outline"
                 size="sm"
-                className="gap-1 h-8 px-3 text-xs"
+                onClick={() => navigate(`/live-editor/${templateId}`)}
               >
-                <RotateCcw className="h-3 w-3" />
-                Reset Form
+                <Edit3 className="h-4 w-4 mr-2" />
+                Live
               </Button>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 px-2 py-1 rounded-lg bg-muted/30 border">
+                  <label htmlFor="themeColor" className="text-xs font-medium">
+                    Theme:
+                  </label>
+                  <input
+                    id="themeColor"
+                    type="color"
+                    value={themeColor}
+                    onChange={(e) => setThemeColor(e.target.value)}
+                    className="h-7 w-10 cursor-pointer rounded border border-border"
+                  />
+                </div>
+                <Button
+                  onClick={handleSave}
+                  disabled={isSaving || !user}
+                  size="sm"
+                  variant="outline"
+                  className="gap-2"
+                >
+                  <Save className="h-4 w-4" />
+                  {!isSaving && "Save"}
+                </Button>
+                <Button
+                  onClick={handleDownload}
+                  disabled={isDownloading}
+                  size="sm"
+                  className="gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  {!isDownloading && "PDF"}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - 3 Column Grid */}
+          <div className="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4">
+            {/* Left Section */}
+            <div className="flex items-center gap-3">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate("/dashboard")}
+                className="hover:bg-accent"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back
+              </Button>
+              <div className="border-l border-border h-8" />
+              <div>
+                <h1 className="text-lg font-semibold text-primary">Form Editor</h1>
+                <p className="text-xs text-muted-foreground">Fill in your information below</p>
+              </div>
+            </div>
+
+            {/* Center Section - Tabs */}
+            <div className="flex justify-center">
+              <Tabs value="form" onValueChange={(v) => v === "live" && navigate(`/live-editor/${templateId}`)}>
+                <TabsList className="bg-muted/50 border">
+                  <TabsTrigger value="live" className="gap-2 text-sm">
+                    <Edit3 className="h-4 w-4" />
+                    Live Editor
+                  </TabsTrigger>
+                  <TabsTrigger value="form" className="gap-2 text-sm">
+                    <FileEdit className="h-4 w-4" />
+                    Form Editor
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+
+            {/* Right Section - Controls */}
+            <div className="flex items-center justify-end gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/30 border">
+                <label htmlFor="themeColor" className="text-sm font-medium whitespace-nowrap">
+                  Theme:
+                </label>
+                <input
+                  id="themeColor"
+                  type="color"
+                  value={themeColor}
+                  onChange={(e) => setThemeColor(e.target.value)}
+                  className="h-7 w-10 cursor-pointer rounded border border-border"
+                />
+              </div>
+
+              <Button
+                onClick={handleSave}
+                disabled={isSaving || !user}
+                size="sm"
+                variant="outline"
+                className="gap-2"
+              >
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  <>
+                    <Save className="h-4 w-4" />
+                    Save
+                  </>
+                )}
+              </Button>
+
               <Button
                 onClick={handleDownload}
+                disabled={isDownloading}
                 size="sm"
-                className="gap-1 h-8 px-3 text-xs bg-primary hover:bg-primary-hover"
+                className="gap-2"
               >
-                <Download className="h-3 w-3" />
-                Download Resume
+                {isDownloading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-4 w-4" />
+                    Download PDF
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -2006,48 +2551,8 @@ const Editor = () => {
           {/* Preview Section */}
           <div className="lg:sticky lg:top-32 max-h-[calc(100vh-8rem)] overflow-y-auto">
             <div className="space-y-4 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold">Live Preview</h2>
-
-                {/* Color Theme Selector */}
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-sm font-medium text-muted-foreground sm:text-right">
-                    Theme color
-                  </span>
-                  <div className="flex flex-wrap items-center gap-2">
-                    {[
-                      { name: "Purple", color: "#7c3aed" },
-                      { name: "Blue", color: "#2563eb" },
-                      { name: "Emerald", color: "#059669" },
-                      { name: "Rose", color: "#e11d48" },
-                      { name: "Orange", color: "#ea580c" },
-                      { name: "Teal", color: "#0d9488" },
-                    ].map((theme) => (
-                      <button
-                        key={theme.color}
-                        onClick={() => setThemeColor(theme.color)}
-                        className={`w-7 h-7 rounded-full border-2 transition-all hover:scale-110 ${
-                          themeColor === theme.color
-                            ? "border-gray-900 ring-2 ring-offset-2 ring-gray-900"
-                            : "border-gray-300"
-                        }`}
-                        style={{ backgroundColor: theme.color }}
-                        title={theme.name}
-                      />
-                    ))}
-
-                    {/* Custom Color Picker */}
-                    <div className="relative">
-                      <input
-                        type="color"
-                        value={themeColor}
-                        onChange={(e) => setThemeColor(e.target.value)}
-                        className="w-7 h-7 rounded-full border-2 border-gray-300 cursor-pointer"
-                        title="Custom Color"
-                      />
-                    </div>
-                  </div>
-                </div>
               </div>
               <div className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white">
                 <ResumePreview

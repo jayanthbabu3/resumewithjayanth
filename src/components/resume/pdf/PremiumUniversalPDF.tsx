@@ -20,53 +20,58 @@ export const PremiumUniversalPDF = ({
   resumeData,
   themeColor = "#2563eb",
 }: PremiumUniversalPDFProps) => {
+  const hasContent = (value?: string | null) => value && value.trim().length > 0;
+
   const styles = StyleSheet.create({
     page: {
       backgroundColor: "#ffffff",
-      padding: 48,
+      paddingTop: 40,
+      paddingRight: 40,
+      paddingBottom: 40,
+      paddingLeft: 40,
       fontFamily: "Inter",
       color: "#111827",
     },
     header: {
-      marginBottom: 24,
-      paddingBottom: 20,
+      marginBottom: 20,
+      paddingBottom: 16,
       borderBottomWidth: 2,
       borderBottomColor: themeColor,
     },
     name: {
-      fontSize: 28,
+      fontSize: 26,
       fontFamily: "Inter",
       fontWeight: 700,
       color: themeColor,
-      marginBottom: 8,
+      marginBottom: 6,
     },
     contactInfo: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 16,
-      fontSize: 10,
+      gap: 14,
+      fontSize: 9,
       color: "#4b5563",
     },
     contactItem: {
       marginRight: 8,
     },
     section: {
-      marginBottom: 24,
+      marginBottom: 20,
     },
     sectionTitle: {
-      fontSize: 14,
+      fontSize: 12,
       fontFamily: "Inter",
-      fontWeight: 700,
+      fontWeight: 600,
       color: themeColor,
-      marginBottom: 12,
+      marginBottom: 10,
     },
     summaryText: {
-      fontSize: 10,
+      fontSize: 9,
       lineHeight: 1.6,
       color: "#374151",
     },
     experienceItem: {
-      marginBottom: 20,
+      marginBottom: 16,
     },
     experienceHeader: {
       flexDirection: "row",
@@ -75,30 +80,53 @@ export const PremiumUniversalPDF = ({
       marginBottom: 8,
     },
     positionTitle: {
-      fontSize: 12,
+      fontSize: 11,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
     },
     companyName: {
-      fontSize: 11,
+      fontSize: 10,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#374151",
       marginTop: 2,
     },
     dateLocation: {
-      fontSize: 9,
+      fontSize: 8,
       color: "#4b5563",
       textAlign: "right",
     },
     description: {
-      fontSize: 10,
+      fontSize: 9,
       lineHeight: 1.6,
       color: "#374151",
     },
+    bulletList: {
+      marginTop: 4,
+      paddingLeft: 12,
+    },
+    bulletItem: {
+      flexDirection: "row",
+      alignItems: "flex-start",
+      marginBottom: 4,
+      gap: 6,
+    },
+    bulletDot: {
+      width: 4,
+      height: 4,
+      borderRadius: 2,
+      marginTop: 4,
+      backgroundColor: themeColor,
+    },
+    bulletText: {
+      fontSize: 9,
+      lineHeight: 1.5,
+      color: "#374151",
+      flex: 1,
+    },
     educationItem: {
-      marginBottom: 16,
+      marginBottom: 14,
     },
     educationHeader: {
       flexDirection: "row",
@@ -106,18 +134,18 @@ export const PremiumUniversalPDF = ({
       alignItems: "flex-start",
     },
     degree: {
-      fontSize: 12,
+      fontSize: 11,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
     },
     institution: {
-      fontSize: 11,
+      fontSize: 10,
       color: "#374151",
       marginTop: 2,
     },
     gpa: {
-      fontSize: 9,
+      fontSize: 8,
       color: "#4b5563",
       marginTop: 2,
     },
@@ -129,7 +157,7 @@ export const PremiumUniversalPDF = ({
     skillChip: {
       paddingHorizontal: 12,
       paddingVertical: 6,
-      fontSize: 9,
+      fontSize: 8,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
@@ -141,13 +169,13 @@ export const PremiumUniversalPDF = ({
       marginBottom: 12,
     },
     certificationName: {
-      fontSize: 11,
+      fontSize: 10,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
     },
     certificationDetails: {
-      fontSize: 10,
+      fontSize: 9,
       color: "#374151",
       marginTop: 2,
     },
@@ -155,13 +183,13 @@ export const PremiumUniversalPDF = ({
       marginBottom: 16,
     },
     projectName: {
-      fontSize: 12,
+      fontSize: 11,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
     },
     projectDescription: {
-      fontSize: 10,
+      fontSize: 9,
       lineHeight: 1.6,
       color: "#374151",
       marginTop: 4,
@@ -170,20 +198,20 @@ export const PremiumUniversalPDF = ({
       marginBottom: 16,
     },
     customItemTitle: {
-      fontSize: 12,
+      fontSize: 11,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#111827",
     },
     customItemSubtitle: {
-      fontSize: 11,
+      fontSize: 10,
       fontFamily: "Inter",
       fontWeight: 600,
       color: "#374151",
       marginTop: 2,
     },
     customItemDescription: {
-      fontSize: 10,
+      fontSize: 9,
       lineHeight: 1.6,
       color: "#374151",
       marginTop: 4,
@@ -210,7 +238,7 @@ export const PremiumUniversalPDF = ({
         </View>
 
         {/* Professional Summary */}
-        {resumeData.personalInfo.summary && (
+        {hasContent(resumeData.personalInfo.summary) && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Summary</Text>
             <Text style={styles.summaryText}>{resumeData.personalInfo.summary}</Text>
@@ -234,12 +262,23 @@ export const PremiumUniversalPDF = ({
                     </Text>
                   </View>
                 </View>
-                {exp.description && (
-                  <Text style={styles.description}>{exp.description}</Text>
+                {hasContent(exp.description) && (
+                  <View style={styles.bulletList}>
+                    {exp.description
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean)
+                      .map((point, bulletIndex) => (
+                        <View key={bulletIndex} style={styles.bulletItem}>
+                          <View style={styles.bulletDot} />
+                          <Text style={styles.bulletText}>{point}</Text>
+                        </View>
+                      ))}
+        )                  </View>
                 )}
               </View>
             ))}
-          </View>
+        )          </View>
         )}
 
         {/* Education */}
@@ -251,7 +290,7 @@ export const PremiumUniversalPDF = ({
                 <View style={styles.educationHeader}>
                   <View>
                     <Text style={styles.degree}>
-                      {edu.degree} {edu.field && `in ${edu.field}`}
+                      {edu.degree} {hasContent(edu.field) && `in ${edu.field}`}
                     </Text>
                     <Text style={styles.institution}>{edu.school}</Text>
                   </View>
@@ -263,7 +302,7 @@ export const PremiumUniversalPDF = ({
                 </View>
               </View>
             ))}
-          </View>
+        )          </View>
         )}
 
         {/* Skills */}
@@ -276,7 +315,7 @@ export const PremiumUniversalPDF = ({
                   {skill.name}
                 </Text>
               ))}
-            </View>
+        )            </View>
           </View>
         )}
 
@@ -288,7 +327,7 @@ export const PremiumUniversalPDF = ({
               <Text style={styles.description}>{section.content}</Text>
             </View>
           ))}
-      </Page>
+        )      </Page>
     </Document>
   );
 };
