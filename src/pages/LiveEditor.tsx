@@ -45,6 +45,8 @@ import { FresherAchievementPDF } from "@/components/resume/pdf/FresherAchievemen
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
+import { ATSScoreButton } from "@/components/ATSScoreButton";
+import type { AtsReport } from "@/lib/atsAnalyzer";
 import { ProfessionalTemplate } from "@/components/resume/templates/ProfessionalTemplate";
 import { ModernTemplate } from "@/components/resume/templates/ModernTemplate";
 import { MinimalTemplate } from "@/components/resume/templates/MinimalTemplate";
@@ -413,6 +415,18 @@ const LiveEditor = () => {
     }
   }, [templateId, resumeData, themeColor]);
 
+  const handleATSScoreCalculated = useCallback(async (score: number, report: AtsReport) => {
+    if (currentResumeId) {
+      try {
+        await resumeService.updateAtsScore(currentResumeId, score, report);
+        toast.success(`ATS Score saved: ${score.toFixed(1)}/10`);
+      } catch (error) {
+        console.error("Failed to save ATS score:", error);
+        // Don't show error toast, score is still displayed
+      }
+    }
+  }, [currentResumeId]);
+
   const handleSwitchToFormEditor = () => {
     navigate(`/editor/${templateId}`);
   };
@@ -475,6 +489,13 @@ const LiveEditor = () => {
                   <Save className="h-4 w-4" />
                   {!isSaving && "Save"}
                 </Button>
+                <ATSScoreButton
+                  resumeData={resumeData}
+                  templateId={templateId}
+                  onScoreCalculated={handleATSScoreCalculated}
+                  variant="outline"
+                  size="sm"
+                />
                 <Button
                   onClick={handleDownloadPDF}
                   disabled={isGeneratingPDF}
@@ -558,6 +579,14 @@ const LiveEditor = () => {
                   </>
                 )}
               </Button>
+
+              <ATSScoreButton
+                resumeData={resumeData}
+                templateId={templateId}
+                onScoreCalculated={handleATSScoreCalculated}
+                variant="outline"
+                size="sm"
+              />
 
               <Button
                 onClick={handleDownloadPDF}

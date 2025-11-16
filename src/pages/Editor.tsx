@@ -57,6 +57,7 @@ import {
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { ATSScoreButton } from "@/components/ATSScoreButton";
 
 const gradeMap: Record<AtsReport["grade"], { label: string; tone: string }> = {
   excellent: { label: "ATS ready", tone: "text-emerald-600" },
@@ -2071,9 +2072,21 @@ const Editor = () => {
     }
   };
 
+  const handleATSScoreCalculated = async (score: number, report: AtsReport) => {
+    if (currentResumeId) {
+      try {
+        await resumeService.updateAtsScore(currentResumeId, score, report);
+        toast.success(`ATS Score saved: ${score.toFixed(1)}/10`);
+      } catch (error) {
+        console.error("Failed to save ATS score:", error);
+        // Don't show error toast, score is still displayed
+      }
+    }
+  };
+
   const handleResetForm = () => {
     if (!templateId) return;
-    
+
     // Clear localStorage
     const key = `resume-${templateId}`;
     localStorage.removeItem(key);
@@ -2262,6 +2275,13 @@ const Editor = () => {
                   <Save className="h-4 w-4" />
                   {!isSaving && "Save"}
                 </Button>
+                <ATSScoreButton
+                  resumeData={resumeData}
+                  templateId={templateId}
+                  onScoreCalculated={handleATSScoreCalculated}
+                  variant="outline"
+                  size="sm"
+                />
                 <Button
                   onClick={handleDownload}
                   disabled={isDownloading}
@@ -2345,6 +2365,14 @@ const Editor = () => {
                   </>
                 )}
               </Button>
+
+              <ATSScoreButton
+                resumeData={resumeData}
+                templateId={templateId}
+                onScoreCalculated={handleATSScoreCalculated}
+                variant="outline"
+                size="sm"
+              />
 
               <Button
                 onClick={handleDownload}

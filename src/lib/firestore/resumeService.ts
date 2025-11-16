@@ -521,10 +521,19 @@ class ResumeService {
   }
 
   /**
-   * Update ATS score
+   * Update ATS score and report
    */
-  async updateAtsScore(resumeId: string, score: number): Promise<void> {
-    await this.updateResume(resumeId, { atsScore: score } as any);
+  async updateAtsScore(resumeId: string, score: number, report?: any): Promise<void> {
+    const updates: any = {
+      atsScore: score,
+      atsAnalyzedAt: serverTimestamp()
+    };
+
+    if (report) {
+      updates.atsReport = report;
+    }
+
+    await this.updateResume(resumeId, updates as any);
   }
 }
 
