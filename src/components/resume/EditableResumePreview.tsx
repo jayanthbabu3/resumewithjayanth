@@ -95,6 +95,22 @@ import { NodeJSDeveloperTemplate } from "./templates/NodeJSDeveloperTemplate";
 import { ReactDeveloperTemplate } from "./templates/ReactDeveloperTemplate";
 import { GoDeveloperTemplate } from "./templates/GoDeveloperTemplate";
 import { KuberneteEngineerTemplate } from "./templates/KuberneteEngineerTemplate";
+// New Universal Professional Templates
+import { ExecutiveModernTemplate } from "./templates/ExecutiveModernTemplate";
+import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
+import { ProfessionalSidebarTemplate } from "./templates/ProfessionalSidebarTemplate";
+import { MinimalistProTemplate } from "./templates/MinimalistProTemplate";
+import { ClassicElegantTemplate } from "./templates/ClassicElegantTemplate";
+import { BusinessModernTemplate } from "./templates/BusinessModernTemplate";
+import { ProfessionalTimelineTemplate } from "./templates/ProfessionalTimelineTemplate";
+import { CleanCorporateTemplate } from "./templates/CleanCorporateTemplate";
+import { ModernProfessionalTemplate } from "./templates/ModernProfessionalTemplate";
+import { ElegantProfessionalTemplate } from "./templates/ElegantProfessionalTemplate";
+import { ProfessionalGridTemplate } from "./templates/ProfessionalGridTemplate";
+import { BusinessEliteTemplate } from "./templates/BusinessEliteTemplate";
+import { CorporateCleanTemplate } from "./templates/CorporateCleanTemplate";
+import { ProfessionalClassicTemplate } from "./templates/ProfessionalClassicTemplate";
+import { ModernBusinessTemplate } from "./templates/ModernBusinessTemplate";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
@@ -337,6 +353,22 @@ export const EditableResumePreview = ({
     "react-developer": ReactDeveloperTemplate,
     "go-developer": GoDeveloperTemplate,
     "kubernetes-engineer": KuberneteEngineerTemplate,
+    // New Universal Professional Templates
+    "executive-modern": ExecutiveModernTemplate,
+    "corporate-blue": CorporateBlueTemplate,
+    "professional-sidebar": ProfessionalSidebarTemplate,
+    "minimalist-pro": MinimalistProTemplate,
+    "classic-elegant": ClassicElegantTemplate,
+    "business-modern": BusinessModernTemplate,
+    "professional-timeline": ProfessionalTimelineTemplate,
+    "clean-corporate": CleanCorporateTemplate,
+    "modern-professional": ModernProfessionalTemplate,
+    "elegant-professional": ElegantProfessionalTemplate,
+    "professional-grid": ProfessionalGridTemplate,
+    "business-elite": BusinessEliteTemplate,
+    "corporate-clean": CorporateCleanTemplate,
+    "professional-classic": ProfessionalClassicTemplate,
+    "modern-business": ModernBusinessTemplate,
   };
 
   const Template =
