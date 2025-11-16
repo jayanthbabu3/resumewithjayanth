@@ -208,6 +208,8 @@ export interface ResumeMetadata {
   // Analytics
   wordCount?: number;
   atsScore?: number;
+  atsReport?: any; // Detailed ATS report (from atsAnalyzer)
+  atsAnalyzedAt?: Date | Timestamp; // When was the last ATS analysis
   viewCount?: number;
   downloadCount?: number;
 
