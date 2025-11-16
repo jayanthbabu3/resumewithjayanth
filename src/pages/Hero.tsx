@@ -125,7 +125,7 @@ const Hero = () => {
   );
   const neutralButtonClass = cn(
     buttonBaseClass,
-    "border border-border/70 text-foreground hover:bg-muted/50",
+    "border border-border/70 text-foreground hover:bg-muted/50 hover:text-foreground",
   );
   const outlinePrimaryButtonClass = cn(
     buttonBaseClass,
@@ -424,6 +424,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   className={neutralButtonClass}
+                  onClick={() => navigate("/dashboard")}
                 >
                   View Templates
                 </Button>
@@ -1339,8 +1340,8 @@ const Hero = () => {
             {/* Call to Action */}
             <div className="text-center mt-12">
               <div className="inline-flex flex-col sm:flex-row gap-3">
-                <Button className={primaryButtonClass}>Start Creating Your Resume</Button>
-                <Button variant="outline" className={outlinePrimaryButtonClass}>
+                <Button className={primaryButtonClass} onClick={() => navigate("/dashboard")}>Start Creating Your Resume</Button>
+                <Button variant="outline" className={outlinePrimaryButtonClass} onClick={() => navigate("/dashboard")}>
                   Explore All Templates
                 </Button>
               </div>
@@ -1640,6 +1641,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 className={neutralButtonClass}
+                onClick={() => navigate("/dashboard")}
               >
                 View Examples
               </Button>
