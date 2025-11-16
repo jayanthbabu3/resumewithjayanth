@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { resumeService } from '@/lib/firestore/resumeService';
 import { useFirebaseAuth } from './useFirebaseAuth';
+import { toast } from 'sonner';
 
 /**
  * Custom hook for managing favorite templates
@@ -51,12 +52,17 @@ export const useFavoriteTemplates = () => {
    */
   const toggleFavorite = useCallback(
     async (templateId: string) => {
+      console.log('[Favorites] Toggle favorite clicked for:', templateId);
+      console.log('[Favorites] User authenticated:', !!user);
+
       if (!user) {
+        toast.error('Please sign in to save favorites');
         return;
       }
 
       // Prevent multiple simultaneous toggles
       if (toggling[templateId]) {
+        console.log('[Favorites] Toggle already in progress, skipping');
         return;
       }
 
@@ -64,6 +70,7 @@ export const useFavoriteTemplates = () => {
         setToggling(prev => ({ ...prev, [templateId]: true }));
 
         const wasFavorited = favorites.includes(templateId);
+        console.log('[Favorites] Current favorite status:', wasFavorited ? 'favorited' : 'not favorited');
 
         // Optimistically update UI
         if (wasFavorited) {
@@ -73,21 +80,28 @@ export const useFavoriteTemplates = () => {
         }
 
         // Update in Firestore
+        console.log('[Favorites] Updating Firestore...');
         if (wasFavorited) {
           await resumeService.removeFavoriteTemplate(templateId);
         } else {
           await resumeService.addFavoriteTemplate(templateId);
         }
+        console.log('[Favorites] Firestore update successful');
       } catch (error) {
-        console.error('Error toggling favorite:', error);
+        console.error('[Favorites] Error toggling favorite:', error);
+        toast.error('Failed to update favorites. Please try again.');
         // Revert optimistic update on error
-        const currentFavorites = await resumeService.getFavoriteTemplates();
-        setFavorites(currentFavorites);
+        try {
+          const currentFavorites = await resumeService.getFavoriteTemplates();
+          setFavorites(currentFavorites);
+        } catch (revertError) {
+          console.error('[Favorites] Error reverting favorites:', revertError);
+        }
       } finally {
         setToggling(prev => ({ ...prev, [templateId]: false }));
       }
     },
-    [user, favorites]
+    [user, favorites, toggling]
   );
 
   /**
@@ -95,7 +109,12 @@ export const useFavoriteTemplates = () => {
    */
   const addFavorite = useCallback(
     async (templateId: string) => {
-      if (!user || favorites.includes(templateId)) {
+      if (!user) {
+        toast.error('Please sign in to save favorites');
+        return;
+      }
+
+      if (favorites.includes(templateId)) {
         return;
       }
 
@@ -104,9 +123,14 @@ export const useFavoriteTemplates = () => {
         setFavorites(prev => [...prev, templateId]);
         await resumeService.addFavoriteTemplate(templateId);
       } catch (error) {
-        console.error('Error adding favorite:', error);
-        const currentFavorites = await resumeService.getFavoriteTemplates();
-        setFavorites(currentFavorites);
+        console.error('[Favorites] Error adding favorite:', error);
+        toast.error('Failed to add to favorites');
+        try {
+          const currentFavorites = await resumeService.getFavoriteTemplates();
+          setFavorites(currentFavorites);
+        } catch (revertError) {
+          console.error('[Favorites] Error reverting:', revertError);
+        }
       } finally {
         setToggling(prev => ({ ...prev, [templateId]: false }));
       }
@@ -119,7 +143,12 @@ export const useFavoriteTemplates = () => {
    */
   const removeFavorite = useCallback(
     async (templateId: string) => {
-      if (!user || !favorites.includes(templateId)) {
+      if (!user) {
+        toast.error('Please sign in to manage favorites');
+        return;
+      }
+
+      if (!favorites.includes(templateId)) {
         return;
       }
 
@@ -128,9 +157,14 @@ export const useFavoriteTemplates = () => {
         setFavorites(prev => prev.filter(id => id !== templateId));
         await resumeService.removeFavoriteTemplate(templateId);
       } catch (error) {
-        console.error('Error removing favorite:', error);
-        const currentFavorites = await resumeService.getFavoriteTemplates();
-        setFavorites(currentFavorites);
+        console.error('[Favorites] Error removing favorite:', error);
+        toast.error('Failed to remove from favorites');
+        try {
+          const currentFavorites = await resumeService.getFavoriteTemplates();
+          setFavorites(currentFavorites);
+        } catch (revertError) {
+          console.error('[Favorites] Error reverting:', revertError);
+        }
       } finally {
         setToggling(prev => ({ ...prev, [templateId]: false }));
       }
