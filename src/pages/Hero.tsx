@@ -1396,7 +1396,7 @@ const Hero = () => {
                                 try {
                                   // Generate PDF using the Executive template
                                   const blob = await pdf(
-                                    <ExecutivePDF resumeData={liveResumeData} themeColor="#059669" />
+                                    <ExecutivePDF resumeData={liveResumeData} themeColor="#3b82f6" />
                                   ).toBlob();
 
                                   // Create download link
@@ -1414,12 +1414,11 @@ const Hero = () => {
                                   console.error("Download error:", error);
                                 }
                               }}
-                              className={cn(primaryButtonClass, "h-9 px-4 text-sm")}
+                              className={cn(primaryButtonClass, "h-9 px-3")}
                             >
-                              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                               </svg>
-                              <span>Download</span>
                             </Button>
                           </div>
                         </div>
@@ -1437,7 +1436,7 @@ const Hero = () => {
                               <div ref={previewContentRef} className="w-[816px]">
                                 <ExecutiveTemplate
                                   resumeData={liveResumeData}
-                                  themeColor="#059669"
+                                  themeColor="#3b82f6"
                                 />
                               </div>
                             </div>
@@ -1543,12 +1542,11 @@ const Hero = () => {
                             console.error("Download error:", error);
                           }
                         }}
-                        className={cn(primaryButtonClass, "h-9 px-4 text-sm")}
+                        className={cn(buttonBaseClass, "bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl h-9 px-3")}
                       >
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <span>Download</span>
                       </Button>
                     </div>
                   </div>
