@@ -44,6 +44,22 @@ import { FresherTwoTonePDF } from "@/components/resume/pdf/FresherTwoTonePDF";
 import { FresherCenteredElegantPDF } from "@/components/resume/pdf/FresherCenteredElegantPDF";
 import { FresherGeometricPDF } from "@/components/resume/pdf/FresherGeometricPDF";
 import { FresherAchievementPDF } from "@/components/resume/pdf/FresherAchievementPDF";
+// New Software Development PDF Templates
+import { JavaDeveloperPDF } from "@/components/resume/pdf/JavaDeveloperPDF";
+import { DotNetDeveloperPDF } from "@/components/resume/pdf/DotNetDeveloperPDF";
+import { DevOpsEngineerPDF } from "@/components/resume/pdf/DevOpsEngineerPDF";
+import { CloudArchitectPDF } from "@/components/resume/pdf/CloudArchitectPDF";
+import { MobileDeveloperPDF } from "@/components/resume/pdf/MobileDeveloperPDF";
+import { ReactNativeDeveloperPDF } from "@/components/resume/pdf/ReactNativeDeveloperPDF";
+import { DataEngineerPDF } from "@/components/resume/pdf/DataEngineerPDF";
+import { MachineLearningEngineerPDF } from "@/components/resume/pdf/MachineLearningEngineerPDF";
+import { QAAutomationEngineerPDF } from "@/components/resume/pdf/QAAutomationEngineerPDF";
+import { SecurityEngineerPDF } from "@/components/resume/pdf/SecurityEngineerPDF";
+import { PythonDeveloperPDF } from "@/components/resume/pdf/PythonDeveloperPDF";
+import { NodeJSDeveloperPDF } from "@/components/resume/pdf/NodeJSDeveloperPDF";
+import { ReactDeveloperPDF } from "@/components/resume/pdf/ReactDeveloperPDF";
+import { GoDeveloperPDF } from "@/components/resume/pdf/GoDeveloperPDF";
+import { KubernetesEngineerPDF } from "@/components/resume/pdf/KubernetesEngineerPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
@@ -190,21 +206,21 @@ const pdfTemplates: Record<string, any> = {
   "fresher-geometric": FresherGeometricPDF,
   "fresher-achievement": FresherAchievementPDF,
   // New Software Development Templates
-  "java-developer": JavaDeveloperTemplate,
-  "dotnet-developer": DotNetDeveloperTemplate,
-  "devops-engineer": DevOpsEngineerTemplate,
-  "cloud-architect": CloudArchitectTemplate,
-  "mobile-developer": MobileDeveloperTemplate,
-  "react-native-developer": ReactNativeDeveloperTemplate,
-  "data-engineer": DataEngineerTemplate,
-  "machine-learning-engineer": MachineLearningEngineerTemplate,
-  "qa-automation-engineer": QAAutomationEngineerTemplate,
-  "security-engineer": SecurityEngineerTemplate,
-  "python-developer": PythonDeveloperTemplate,
-  "nodejs-developer": NodeJSDeveloperTemplate,
-  "react-developer": ReactDeveloperTemplate,
-  "go-developer": GoDeveloperTemplate,
-  "kubernetes-engineer": KuberneteEngineerTemplate,
+  "java-developer": JavaDeveloperPDF,
+  "dotnet-developer": DotNetDeveloperPDF,
+  "devops-engineer": DevOpsEngineerPDF,
+  "cloud-architect": CloudArchitectPDF,
+  "mobile-developer": MobileDeveloperPDF,
+  "react-native-developer": ReactNativeDeveloperPDF,
+  "data-engineer": DataEngineerPDF,
+  "machine-learning-engineer": MachineLearningEngineerPDF,
+  "qa-automation-engineer": QAAutomationEngineerPDF,
+  "security-engineer": SecurityEngineerPDF,
+  "python-developer": PythonDeveloperPDF,
+  "nodejs-developer": NodeJSDeveloperPDF,
+  "react-developer": ReactDeveloperPDF,
+  "go-developer": GoDeveloperPDF,
+  "kubernetes-engineer": KubernetesEngineerPDF,
 };
 
 // Templates that support inline editing
