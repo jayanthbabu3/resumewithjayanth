@@ -1085,10 +1085,10 @@ const Hero = () => {
                   </div>
 
                   {/* Main Editor Layout */}
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-0 h-auto md:h-[650px]">
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-0 h-auto">
                     {/* Left Side - Form Editor */}
-                    <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200 md:h-full">
-                      <div className="p-2 md:p-4 space-y-2 md:space-y-4 md:h-full md:overflow-y-auto">
+                    <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200">
+                      <div className="p-2 md:p-4 space-y-2 md:space-y-4">
                         {/* Personal Information */}
                         <div className="space-y-1 md:space-y-2">
                           <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
@@ -1176,6 +1176,8 @@ const Hero = () => {
                             <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-500 rounded-full"></div>
                             <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
                           </div>
+
+                          {/* Experience 1 */}
                           <div className="p-2 md:p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
                             <div className="space-y-1.5 md:space-y-2">
                               <div className="grid grid-cols-2 gap-1.5 md:gap-2">
@@ -1255,6 +1257,87 @@ const Hero = () => {
                               </div>
                             </div>
                           </div>
+
+                          {/* Experience 2 */}
+                          <div className="p-2 md:p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
+                            <div className="space-y-1.5 md:space-y-2">
+                              <div className="grid grid-cols-2 gap-1.5 md:gap-2">
+                                <div>
+                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Job Title</label>
+                                  <Input
+                                    value={liveResumeData.experience[1]?.position || ""}
+                                    onChange={(e) => setLiveResumeData(prev => ({
+                                      ...prev,
+                                      experience: prev.experience.map((exp, idx) =>
+                                        idx === 1 ? { ...exp, position: e.target.value } : exp
+                                      )
+                                    }))}
+                                    className="h-6 md:h-7 text-[10px] md:text-sm"
+                                    placeholder="Enter job title"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Company</label>
+                                  <Input
+                                    value={liveResumeData.experience[1]?.company || ""}
+                                    onChange={(e) => setLiveResumeData(prev => ({
+                                      ...prev,
+                                      experience: prev.experience.map((exp, idx) =>
+                                        idx === 1 ? { ...exp, company: e.target.value } : exp
+                                      )
+                                    }))}
+                                    className="h-6 md:h-7 text-[10px] md:text-sm"
+                                    placeholder="Enter company name"
+                                  />
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2 gap-2">
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-600 mb-1">Start Date</label>
+                                  <Input
+                                    type="month"
+                                    value={toMonthInputValue(liveResumeData.experience[1]?.startDate || "")}
+                                    onChange={(e) => setLiveResumeData(prev => ({
+                                      ...prev,
+                                      experience: prev.experience.map((exp, idx) =>
+                                        idx === 1 ? { ...exp, startDate: e.target.value } : exp
+                                      )
+                                    }))}
+                                    className="h-7 text-sm"
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-xs font-medium text-gray-600 mb-1">End Date</label>
+                                  <Input
+                                    type="month"
+                                    value={toMonthInputValue(liveResumeData.experience[1]?.endDate || "")}
+                                    onChange={(e) => setLiveResumeData(prev => ({
+                                      ...prev,
+                                      experience: prev.experience.map((exp, idx) =>
+                                        idx === 1 ? { ...exp, endDate: e.target.value, current: !e.target.value } : exp
+                                      )
+                                    }))}
+                                    className="h-7 text-sm"
+                                    placeholder="Present"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <label className="block text-xs font-medium text-gray-600 mb-1">Description</label>
+                                <Textarea
+                                  value={liveResumeData.experience[1]?.description || ""}
+                                  onChange={(e) => setLiveResumeData(prev => ({
+                                    ...prev,
+                                    experience: prev.experience.map((exp, idx) =>
+                                      idx === 1 ? { ...exp, description: e.target.value } : exp
+                                    )
+                                  }))}
+                                  className="h-12 text-sm resize-none"
+                                  placeholder="Describe your role and achievements..."
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
                         {/* Skills */}
@@ -1302,7 +1385,7 @@ const Hero = () => {
                     <div className="w-full md:w-1/2 bg-white">
                       <div
                         ref={previewContainerRef}
-                        className="p-4 md:h-full md:overflow-hidden"
+                        className="p-4"
                       >
                         {/* Preview Header */}
                         <div className="mb-4">
@@ -1342,29 +1425,20 @@ const Hero = () => {
                         </div>
 
                         {/* Resume Preview - Use Executive Template */}
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm md:h-full overflow-hidden">
-                          <div
-                            className="relative"
-                            style={{
-                              height: `${Math.max(previewHeight * previewScale, 420)}px`,
-                            }}
-                          >
+                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-auto">
+                          <div className="flex justify-center py-4">
                             <div
-                              className="absolute inset-x-0 top-0 flex justify-center"
+                              style={{
+                                transform: `scale(${previewScale})`,
+                                transformOrigin: "top center",
+                              }}
+                              key={JSON.stringify(liveResumeData)}
                             >
-                              <div
-                                style={{
-                                  transform: `scale(${previewScale})`,
-                                  transformOrigin: "top center",
-                                }}
-                                key={JSON.stringify(liveResumeData)}
-                              >
-                                <div ref={previewContentRef} className="w-[816px]">
-                                  <ExecutiveTemplate
-                                    resumeData={liveResumeData}
-                                    themeColor="#059669"
-                                  />
-                                </div>
+                              <div ref={previewContentRef} className="w-[816px]">
+                                <ExecutiveTemplate
+                                  resumeData={liveResumeData}
+                                  themeColor="#059669"
+                                />
                               </div>
                             </div>
                           </div>
