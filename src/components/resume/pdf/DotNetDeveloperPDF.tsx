@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    borderBottom: 4,
+    borderBottom: 2,
     borderBottomColor: '#512bd4',
     paddingBottom: 15,
   },
@@ -25,25 +25,23 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   name: {
-    fontSize: 28,
+    fontSize: 38,
     fontFamily: 'Inter',
-    fontWeight: 700,
+    fontWeight: 600,
     marginBottom: 5,
     color: '#111827',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
   },
   title: {
-    fontSize: 13,
+    fontSize: 15,
     marginBottom: 10,
-    color: '#512bd4',
-    fontWeight: 600,
+    color: '#374151',
+    fontWeight: 500,
   },
   contactRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
-    fontSize: 9,
+    fontSize: 11.5,
     color: '#4b5563',
   },
   contactItem: {
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
     height: 72,
     borderRadius: 36,
     overflow: 'hidden',
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: '#512bd4',
   },
   photo: {
@@ -68,76 +66,92 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   sectionTitle: {
-    fontSize: 12,
+    fontSize: 14.5,
     fontFamily: 'Inter',
-    fontWeight: 700,
+    fontWeight: 600,
     marginBottom: 10,
     textTransform: 'uppercase',
-    color: '#111827',
-    borderBottom: 2,
-    borderBottomColor: '#512bd4',
-    paddingBottom: 5,
+    color: '#512bd4',
     letterSpacing: 0.8,
   },
   experienceItem: {
     marginBottom: 14,
   },
   jobTitle: {
-    fontSize: 11,
+    fontSize: 15,
     fontFamily: 'Inter',
-    fontWeight: 700,
+    fontWeight: 600,
     marginBottom: 2,
     color: '#111827',
   },
   company: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'Inter',
-    fontWeight: 600,
-    color: '#512bd4',
+    fontWeight: 500,
+    color: '#374151',
     marginBottom: 2,
   },
   date: {
-    fontSize: 9,
-    color: '#6b7280',
-    marginBottom: 5,
+    fontSize: 11.5,
+    color: '#ffffff',
+    backgroundColor: '#512bd4',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 3,
     fontWeight: 500,
   },
   description: {
-    fontSize: 9.5,
-    lineHeight: 1.6,
+    fontSize: 12.5,
+    lineHeight: 1.75,
     color: '#374151',
   },
   educationItem: {
     marginBottom: 10,
   },
   degree: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: 'Inter',
-    fontWeight: 700,
+    fontWeight: 600,
     marginBottom: 2,
     color: '#111827',
   },
+  field: {
+    fontSize: 12.5,
+    color: '#4b5563',
+    marginBottom: 2,
+  },
   school: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'Inter',
-    fontWeight: 600,
+    fontWeight: 500,
     color: '#374151',
   },
   skillsContainer: {
+    flexDirection: 'column',
+    gap: 8,
+  },
+  skillItem: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    alignItems: 'center',
     gap: 6,
   },
-  skill: {
-    fontSize: 9,
-    color: '#512bd4',
-    backgroundColor: '#f3eeff',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  skillBullet: {
+    width: 6,
+    height: 6,
     borderRadius: 3,
-    borderWidth: 1,
-    borderColor: '#c4b5fd',
-    fontWeight: 500,
+    backgroundColor: '#512bd4',
+  },
+  skill: {
+    fontSize: 12.5,
+    color: '#374151',
+  },
+  summary: {
+    fontSize: 13,
+    lineHeight: 1.8,
+    color: '#374151',
+    paddingLeft: 12,
+    borderLeftWidth: 3,
+    borderLeftColor: '#d4c5f9',
   },
 });
 
@@ -368,21 +382,22 @@ export const DotNetDeveloperPDF = ({ resumeData, themeColor = "#512bd4" }: Props
         {/* Summary */}
         {hasContent(resumeData.personalInfo.summary) && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Professional Summary</Text>
-            <Text style={styles.description}>{resumeData.personalInfo.summary}</Text>
+            <Text style={styles.sectionTitle}>Professional Profile</Text>
+            <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
           </View>
         )}
 
         {/* Skills */}
         {resumeData.skills.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Technical Skills</Text>
+            <Text style={styles.sectionTitle}>Core Competencies</Text>
             <View style={styles.skillsContainer}>
               {resumeData.skills.map((skill) => (
                 hasContent(skill.name) && (
-                  <Text key={skill.id} style={styles.skill}>
-                    {skill.name}
-                  </Text>
+                  <View key={skill.id} style={styles.skillItem}>
+                    <View style={styles.skillBullet} />
+                    <Text style={styles.skill}>{skill.name}</Text>
+                  </View>
                 )
               ))}
             </View>
@@ -412,9 +427,8 @@ export const DotNetDeveloperPDF = ({ resumeData, themeColor = "#512bd4" }: Props
             <Text style={styles.sectionTitle}>Education</Text>
             {resumeData.education.map((edu) => (
               <View key={edu.id} style={styles.educationItem}>
-                <Text style={styles.degree}>
-                  {edu.degree || "Degree"} {edu.field && `in ${edu.field}`}
-                </Text>
+                <Text style={styles.degree}>{edu.degree || "Degree"}</Text>
+                {edu.field && <Text style={styles.field}>{edu.field}</Text>}
                 <Text style={styles.school}>{edu.school || "School Name"}</Text>
                 <Text style={styles.date}>
                   {formatDate(edu.startDate)} - {formatDate(edu.endDate)}

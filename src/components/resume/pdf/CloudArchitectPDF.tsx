@@ -14,13 +14,9 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 20,
-    borderBottom: 3,
-    borderBottomColor: '#FF9900',
+    borderBottom: 4,
+    borderBottomColor: '#ff9900',
     paddingBottom: 15,
-    backgroundColor: '#fafafa',
-    paddingHorizontal: 15,
-    paddingTop: 15,
-    marginHorizontal: -15,
   },
   headerContent: {
     flexDirection: 'row',
@@ -29,24 +25,23 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   name: {
-    fontSize: 32,
+    fontSize: 40,
     fontFamily: 'Inter',
     fontWeight: 700,
-    marginBottom: 8,
+    marginBottom: 5,
     color: '#111827',
-    letterSpacing: -0.5,
   },
   title: {
-    fontSize: 14,
+    fontSize: 16,
     marginBottom: 10,
-    color: '#374151',
+    color: '#ff9900',
     fontWeight: 600,
   },
   contactRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 14,
-    fontSize: 9,
+    gap: 12,
+    fontSize: 12,
     color: '#4b5563',
   },
   contactItem: {
@@ -55,12 +50,12 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   photoWrapper: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 72,
+    height: 72,
+    borderRadius: 36,
     overflow: 'hidden',
-    borderWidth: 3,
-    borderColor: '#FF9900',
+    borderWidth: 4,
+    borderColor: '#ff9900',
   },
   photo: {
     width: '100%',
@@ -68,87 +63,89 @@ const styles = StyleSheet.create({
     objectFit: 'cover',
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 18,
   },
   sectionTitle: {
-    fontSize: 13,
+    fontSize: 15,
     fontFamily: 'Inter',
     fontWeight: 700,
-    marginBottom: 12,
+    marginBottom: 10,
     textTransform: 'uppercase',
     color: '#111827',
     borderBottom: 2,
-    borderBottomColor: '#FF9900',
+    borderBottomColor: '#ff9900',
     paddingBottom: 5,
-    letterSpacing: 1.2,
+    letterSpacing: 0.8,
   },
   experienceItem: {
-    marginBottom: 15,
-    paddingLeft: 10,
-    borderLeft: 3,
-    borderLeftColor: '#ffeedd',
+    marginBottom: 14,
   },
   jobTitle: {
-    fontSize: 12,
+    fontSize: 15,
     fontFamily: 'Inter',
     fontWeight: 700,
-    marginBottom: 3,
+    marginBottom: 2,
     color: '#111827',
   },
   company: {
-    fontSize: 11,
+    fontSize: 13,
     fontFamily: 'Inter',
     fontWeight: 600,
-    color: '#FF9900',
-    marginBottom: 3,
+    color: '#ff9900',
+    marginBottom: 2,
   },
   date: {
-    fontSize: 9,
-    color: '#ffffff',
-    backgroundColor: '#FF9900',
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    borderRadius: 10,
-    marginBottom: 6,
-    alignSelf: 'flex-start',
-    fontWeight: 600,
+    fontSize: 11.5,
+    color: '#6b7280',
+    marginBottom: 5,
+    fontWeight: 500,
   },
   description: {
-    fontSize: 9.5,
-    lineHeight: 1.7,
+    fontSize: 12.5,
+    lineHeight: 1.75,
     color: '#374151',
   },
   educationItem: {
     marginBottom: 10,
   },
   degree: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: 'Inter',
     fontWeight: 700,
     marginBottom: 2,
     color: '#111827',
   },
+  field: {
+    fontSize: 12.5,
+    color: '#4b5563',
+    marginBottom: 2,
+  },
   school: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'Inter',
-    fontWeight: 600,
+    fontWeight: 500,
     color: '#374151',
   },
   skillsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 7,
+    gap: 6,
   },
   skill: {
-    fontSize: 9,
-    color: '#374151',
-    backgroundColor: '#fff7ed',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 4,
-    borderLeftWidth: 3,
-    borderLeftColor: '#FF9900',
+    fontSize: 12,
+    color: '#ff9900',
+    backgroundColor: '#fef3e6',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#fbd38d',
     fontWeight: 500,
+  },
+  summary: {
+    fontSize: 13,
+    lineHeight: 1.75,
+    color: '#374151',
   },
 });
 
@@ -164,11 +161,13 @@ interface Props {
   themeColor?: string;
 }
 
-export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props) => {
+export const CloudArchitectPDF = ({ resumeData, themeColor = "#ff9900" }: Props) => {
   const photo = resumeData.personalInfo.photo;
 
+  // Render a single dynamic section
   const renderDynamicSection = (section: ResumeSection) => {
     if (!section.enabled) return null;
+
     const sectionData = section.data;
 
     switch (sectionData.type) {
@@ -180,7 +179,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
               <View key={cert.id} style={styles.educationItem}>
                 <Text style={styles.degree}>{cert.name}</Text>
                 <Text style={styles.company}>{cert.issuer}</Text>
-                <Text style={styles.description}>{formatDate(cert.date)}</Text>
+                <Text style={styles.date}>{formatDate(cert.date)}</Text>
                 {cert.credentialId && (
                   <Text style={styles.description}>ID: {cert.credentialId}</Text>
                 )}
@@ -232,7 +231,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
               <View key={award.id} style={styles.educationItem}>
                 <Text style={styles.degree}>{award.title}</Text>
                 <Text style={styles.company}>{award.issuer}</Text>
-                <Text style={styles.description}>{formatDate(award.date)}</Text>
+                <Text style={styles.date}>{formatDate(award.date)}</Text>
                 {award.description && (
                   <Text style={styles.description}>{award.description}</Text>
                 )}
@@ -249,7 +248,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
               <View key={vol.id} style={styles.experienceItem}>
                 <Text style={styles.jobTitle}>{vol.role}</Text>
                 <Text style={styles.company}>{vol.organization}</Text>
-                <Text style={styles.description}>
+                <Text style={styles.date}>
                   {formatDate(vol.startDate)} - {vol.current ? "Present" : formatDate(vol.endDate)}
                 </Text>
                 {vol.description && (
@@ -268,7 +267,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
               <View key={pub.id} style={styles.educationItem}>
                 <Text style={styles.degree}>{pub.title}</Text>
                 <Text style={styles.company}>{pub.publisher}</Text>
-                <Text style={styles.description}>{formatDate(pub.date)}</Text>
+                <Text style={styles.date}>{formatDate(pub.date)}</Text>
                 {pub.description && (
                   <Text style={styles.description}>{pub.description}</Text>
                 )}
@@ -285,7 +284,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
               <View key={talk.id} style={styles.educationItem}>
                 <Text style={styles.degree}>{talk.topic}</Text>
                 <Text style={styles.company}>{talk.event}</Text>
-                <Text style={styles.description}>
+                <Text style={styles.date}>
                   {formatDate(talk.date)} • {talk.location}
                 </Text>
               </View>
@@ -303,7 +302,7 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
                 <Text style={styles.company}>
                   {patent.patentNumber} • {patent.status}
                 </Text>
-                <Text style={styles.description}>{formatDate(patent.date)}</Text>
+                <Text style={styles.date}>{formatDate(patent.date)}</Text>
                 {patent.description && (
                   <Text style={styles.description}>{patent.description}</Text>
                 )}
@@ -379,15 +378,15 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
         {/* Summary */}
         {hasContent(resumeData.personalInfo.summary) && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Executive Summary</Text>
-            <Text style={styles.description}>{resumeData.personalInfo.summary}</Text>
+            <Text style={styles.sectionTitle}>Professional Summary</Text>
+            <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
           </View>
         )}
 
         {/* Skills */}
         {resumeData.skills.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Core Competencies</Text>
+            <Text style={styles.sectionTitle}>Technical Skills</Text>
             <View style={styles.skillsContainer}>
               {resumeData.skills.map((skill) => (
                 hasContent(skill.name) && (
@@ -423,11 +422,10 @@ export const CloudArchitectPDF = ({ resumeData, themeColor = "#FF9900" }: Props)
             <Text style={styles.sectionTitle}>Education</Text>
             {resumeData.education.map((edu) => (
               <View key={edu.id} style={styles.educationItem}>
-                <Text style={styles.degree}>
-                  {edu.degree || "Degree"} {edu.field && `in ${edu.field}`}
-                </Text>
+                <Text style={styles.degree}>{edu.degree || "Degree"}</Text>
+                {edu.field && <Text style={styles.field}>{edu.field}</Text>}
                 <Text style={styles.school}>{edu.school || "School Name"}</Text>
-                <Text style={styles.description}>
+                <Text style={styles.date}>
                   {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
                 </Text>
               </View>

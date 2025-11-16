@@ -25,16 +25,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   name: {
-    fontSize: 28,
+    fontSize: 36,
     fontFamily: 'Inter',
     fontWeight: 700,
     marginBottom: 5,
     color: '#111827',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
   },
   title: {
-    fontSize: 13,
+    fontSize: 15,
     marginBottom: 10,
     color: '#f89820',
     fontWeight: 600,
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
-    fontSize: 9,
+    fontSize: 11.5,
     color: '#4b5563',
   },
   contactItem: {
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
     height: 72,
     borderRadius: 36,
     overflow: 'hidden',
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: '#f89820',
   },
   photo: {
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   sectionTitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'Inter',
     fontWeight: 700,
     marginBottom: 10,
@@ -83,44 +81,49 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   jobTitle: {
-    fontSize: 11,
+    fontSize: 15,
     fontFamily: 'Inter',
     fontWeight: 700,
     marginBottom: 2,
     color: '#111827',
   },
   company: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'Inter',
     fontWeight: 600,
     color: '#f89820',
     marginBottom: 2,
   },
   date: {
-    fontSize: 9,
+    fontSize: 11.5,
     color: '#6b7280',
     marginBottom: 5,
     fontWeight: 500,
   },
   description: {
-    fontSize: 9.5,
-    lineHeight: 1.6,
+    fontSize: 12.5,
+    lineHeight: 1.75,
     color: '#374151',
   },
   educationItem: {
     marginBottom: 10,
   },
   degree: {
-    fontSize: 11,
+    fontSize: 14,
     fontFamily: 'Inter',
     fontWeight: 700,
     marginBottom: 2,
     color: '#111827',
   },
+  field: {
+    fontSize: 12.5,
+    color: '#4b5563',
+    marginBottom: 2,
+  },
   school: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'Inter',
-    fontWeight: 600,
+    fontWeight: 500,
     color: '#374151',
   },
   skillsContainer: {
@@ -129,15 +132,20 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   skill: {
-    fontSize: 9,
+    fontSize: 12,
     color: '#f89820',
     backgroundColor: '#fef3e6',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
     borderRadius: 3,
     borderWidth: 1,
     borderColor: '#fbd38d',
     fontWeight: 500,
+  },
+  summary: {
+    fontSize: 13,
+    lineHeight: 1.75,
+    color: '#374151',
   },
 });
 
@@ -371,7 +379,7 @@ export const JavaDeveloperPDF = ({ resumeData, themeColor = "#f89820" }: Props) 
         {hasContent(resumeData.personalInfo.summary) && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Summary</Text>
-            <Text style={styles.description}>{resumeData.personalInfo.summary}</Text>
+            <Text style={styles.summary}>{resumeData.personalInfo.summary}</Text>
           </View>
         )}
 
@@ -414,9 +422,8 @@ export const JavaDeveloperPDF = ({ resumeData, themeColor = "#f89820" }: Props) 
             <Text style={styles.sectionTitle}>Education</Text>
             {resumeData.education.map((edu) => (
               <View key={edu.id} style={styles.educationItem}>
-                <Text style={styles.degree}>
-                  {edu.degree || "Degree"} {edu.field && `in ${edu.field}`}
-                </Text>
+                <Text style={styles.degree}>{edu.degree || "Degree"}</Text>
+                {edu.field && <Text style={styles.field}>{edu.field}</Text>}
                 <Text style={styles.school}>{edu.school || "School Name"}</Text>
                 <Text style={styles.date}>
                   {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
