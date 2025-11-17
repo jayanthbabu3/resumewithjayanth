@@ -44,6 +44,22 @@ import { FresherTwoTonePDF } from "@/components/resume/pdf/FresherTwoTonePDF";
 import { FresherCenteredElegantPDF } from "@/components/resume/pdf/FresherCenteredElegantPDF";
 import { FresherGeometricPDF } from "@/components/resume/pdf/FresherGeometricPDF";
 import { FresherAchievementPDF } from "@/components/resume/pdf/FresherAchievementPDF";
+// New Fresher PDF Templates
+import { FresherModernTwoColumnPDF } from "@/components/resume/pdf/FresherModernTwoColumnPDF";
+import { FresherProfessionalSidebarPDF } from "@/components/resume/pdf/FresherProfessionalSidebarPDF";
+import { FresherCleanModernPDF } from "@/components/resume/pdf/FresherCleanModernPDF";
+import { FresherTechSplitPDF } from "@/components/resume/pdf/FresherTechSplitPDF";
+import { FresherExecutiveStylePDF } from "@/components/resume/pdf/FresherExecutiveStylePDF";
+import { FresherBoldHeaderPDF } from "@/components/resume/pdf/FresherBoldHeaderPDF";
+import { FresherMinimalistTwoColumnPDF } from "@/components/resume/pdf/FresherMinimalistTwoColumnPDF";
+import { FresherCreativeEdgePDF } from "@/components/resume/pdf/FresherCreativeEdgePDF";
+import { FresherProfessionalGridPDF } from "@/components/resume/pdf/FresherProfessionalGridPDF";
+import { FresherModernClassicPDF } from "@/components/resume/pdf/FresherModernClassicPDF";
+import { FresherSplitLayoutPDF } from "@/components/resume/pdf/FresherSplitLayoutPDF";
+import { FresherCompactProPDF } from "@/components/resume/pdf/FresherCompactProPDF";
+import { FresherElegantSidebarPDF } from "@/components/resume/pdf/FresherElegantSidebarPDF";
+import { FresherTechModernPDF } from "@/components/resume/pdf/FresherTechModernPDF";
+import { FresherProfessionalMinimalPDF } from "@/components/resume/pdf/FresherProfessionalMinimalPDF";
 // New Software Development PDF Templates
 import { JavaDeveloperPDF } from "@/components/resume/pdf/JavaDeveloperPDF";
 import { DotNetDeveloperPDF } from "@/components/resume/pdf/DotNetDeveloperPDF";
@@ -124,6 +140,22 @@ import { FresherTwoToneTemplate } from "@/components/resume/templates/FresherTwo
 import { FresherCenteredElegantTemplate } from "@/components/resume/templates/FresherCenteredElegantTemplate";
 import { FresherGeometricTemplate } from "@/components/resume/templates/FresherGeometricTemplate";
 import { FresherAchievementTemplate } from "@/components/resume/templates/FresherAchievementTemplate";
+// New Fresher Templates
+import { FresherModernTwoColumnTemplate } from "@/components/resume/templates/FresherModernTwoColumnTemplate";
+import { FresherProfessionalSidebarTemplate } from "@/components/resume/templates/FresherProfessionalSidebarTemplate";
+import { FresherCleanModernTemplate } from "@/components/resume/templates/FresherCleanModernTemplate";
+import { FresherTechSplitTemplate } from "@/components/resume/templates/FresherTechSplitTemplate";
+import { FresherExecutiveStyleTemplate } from "@/components/resume/templates/FresherExecutiveStyleTemplate";
+import { FresherBoldHeaderTemplate } from "@/components/resume/templates/FresherBoldHeaderTemplate";
+import { FresherMinimalistTwoColumnTemplate } from "@/components/resume/templates/FresherMinimalistTwoColumnTemplate";
+import { FresherCreativeEdgeTemplate } from "@/components/resume/templates/FresherCreativeEdgeTemplate";
+import { FresherProfessionalGridTemplate } from "@/components/resume/templates/FresherProfessionalGridTemplate";
+import { FresherModernClassicTemplate } from "@/components/resume/templates/FresherModernClassicTemplate";
+import { FresherSplitLayoutTemplate } from "@/components/resume/templates/FresherSplitLayoutTemplate";
+import { FresherCompactProTemplate } from "@/components/resume/templates/FresherCompactProTemplate";
+import { FresherElegantSidebarTemplate } from "@/components/resume/templates/FresherElegantSidebarTemplate";
+import { FresherTechModernTemplate } from "@/components/resume/templates/FresherTechModernTemplate";
+import { FresherProfessionalMinimalTemplate } from "@/components/resume/templates/FresherProfessionalMinimalTemplate";
 // Healthcare & Medical Templates
 import { MedicalProfessionalTemplate } from "@/components/resume/templates/MedicalProfessionalTemplate";
 import { HealthcareTwoColumnTemplate } from "@/components/resume/templates/HealthcareTwoColumnTemplate";
@@ -237,6 +269,22 @@ const pdfTemplates: Record<string, any> = {
   "fresher-centered-elegant": FresherCenteredElegantPDF,
   "fresher-geometric": FresherGeometricPDF,
   "fresher-achievement": FresherAchievementPDF,
+  // New Fresher Templates
+  "fresher-modern-two-column": FresherModernTwoColumnPDF,
+  "fresher-professional-sidebar": FresherProfessionalSidebarPDF,
+  "fresher-clean-modern": FresherCleanModernPDF,
+  "fresher-tech-split": FresherTechSplitPDF,
+  "fresher-executive-style": FresherExecutiveStylePDF,
+  "fresher-bold-header": FresherBoldHeaderPDF,
+  "fresher-minimalist-two-column": FresherMinimalistTwoColumnPDF,
+  "fresher-creative-edge": FresherCreativeEdgePDF,
+  "fresher-professional-grid": FresherProfessionalGridPDF,
+  "fresher-modern-classic": FresherModernClassicPDF,
+  "fresher-split-layout": FresherSplitLayoutPDF,
+  "fresher-compact-pro": FresherCompactProPDF,
+  "fresher-elegant-sidebar": FresherElegantSidebarPDF,
+  "fresher-tech-modern": FresherTechModernPDF,
+  "fresher-professional-minimal": FresherProfessionalMinimalPDF,
   // New Software Development Templates
   "java-developer": JavaDeveloperPDF,
   "dotnet-developer": DotNetDeveloperPDF,
@@ -285,6 +333,12 @@ const inlineEditableTemplates = [
   "fresher-timeline", "fresher-skills-first", "fresher-card-based",
   "fresher-two-tone", "fresher-centered-elegant", "fresher-geometric",
   "fresher-achievement",
+  // New Fresher Templates
+  "fresher-modern-two-column", "fresher-professional-sidebar", "fresher-clean-modern",
+  "fresher-tech-split", "fresher-executive-style", "fresher-bold-header",
+  "fresher-minimalist-two-column", "fresher-creative-edge", "fresher-professional-grid",
+  "fresher-modern-classic", "fresher-split-layout", "fresher-compact-pro",
+  "fresher-elegant-sidebar", "fresher-tech-modern", "fresher-professional-minimal",
   // Healthcare & Medical
   "medical-professional", "healthcare-two-column", "nurse-specialist",
   "medical-executive", "clinical-minimal",
@@ -361,6 +415,22 @@ const displayTemplates: Record<string, any> = {
   "fresher-centered-elegant": FresherCenteredElegantTemplate,
   "fresher-geometric": FresherGeometricTemplate,
   "fresher-achievement": FresherAchievementTemplate,
+  // New Fresher Templates
+  "fresher-modern-two-column": FresherModernTwoColumnTemplate,
+  "fresher-professional-sidebar": FresherProfessionalSidebarTemplate,
+  "fresher-clean-modern": FresherCleanModernTemplate,
+  "fresher-tech-split": FresherTechSplitTemplate,
+  "fresher-executive-style": FresherExecutiveStyleTemplate,
+  "fresher-bold-header": FresherBoldHeaderTemplate,
+  "fresher-minimalist-two-column": FresherMinimalistTwoColumnTemplate,
+  "fresher-creative-edge": FresherCreativeEdgeTemplate,
+  "fresher-professional-grid": FresherProfessionalGridTemplate,
+  "fresher-modern-classic": FresherModernClassicTemplate,
+  "fresher-split-layout": FresherSplitLayoutTemplate,
+  "fresher-compact-pro": FresherCompactProTemplate,
+  "fresher-elegant-sidebar": FresherElegantSidebarTemplate,
+  "fresher-tech-modern": FresherTechModernTemplate,
+  "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
   // Healthcare & Medical
   "medical-professional": MedicalProfessionalTemplate,
   "healthcare-two-column": HealthcareTwoColumnTemplate,

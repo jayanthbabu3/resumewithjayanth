@@ -43,6 +43,21 @@ import { FresherTwoToneTemplate } from "./templates/FresherTwoToneTemplate";
 import { FresherCenteredElegantTemplate } from "./templates/FresherCenteredElegantTemplate";
 import { FresherGeometricTemplate } from "./templates/FresherGeometricTemplate";
 import { FresherAchievementTemplate } from "./templates/FresherAchievementTemplate";
+import { FresherModernTwoColumnTemplate } from "./templates/FresherModernTwoColumnTemplate";
+import { FresherProfessionalSidebarTemplate } from "./templates/FresherProfessionalSidebarTemplate";
+import { FresherCleanModernTemplate } from "./templates/FresherCleanModernTemplate";
+import { FresherTechSplitTemplate } from "./templates/FresherTechSplitTemplate";
+import { FresherExecutiveStyleTemplate } from "./templates/FresherExecutiveStyleTemplate";
+import { FresherBoldHeaderTemplate } from "./templates/FresherBoldHeaderTemplate";
+import { FresherMinimalistTwoColumnTemplate } from "./templates/FresherMinimalistTwoColumnTemplate";
+import { FresherCreativeEdgeTemplate } from "./templates/FresherCreativeEdgeTemplate";
+import { FresherProfessionalGridTemplate } from "./templates/FresherProfessionalGridTemplate";
+import { FresherModernClassicTemplate } from "./templates/FresherModernClassicTemplate";
+import { FresherSplitLayoutTemplate } from "./templates/FresherSplitLayoutTemplate";
+import { FresherCompactProTemplate } from "./templates/FresherCompactProTemplate";
+import { FresherElegantSidebarTemplate } from "./templates/FresherElegantSidebarTemplate";
+import { FresherTechModernTemplate } from "./templates/FresherTechModernTemplate";
+import { FresherProfessionalMinimalTemplate } from "./templates/FresherProfessionalMinimalTemplate";
 // Healthcare & Medical Templates
 import { MedicalProfessionalTemplate } from "./templates/MedicalProfessionalTemplate";
 import { HealthcareTwoColumnTemplate } from "./templates/HealthcareTwoColumnTemplate";
@@ -301,6 +316,21 @@ export const EditableResumePreview = ({
     "fresher-centered-elegant": FresherCenteredElegantTemplate,
     "fresher-geometric": FresherGeometricTemplate,
     "fresher-achievement": FresherAchievementTemplate,
+    "fresher-modern-two-column": FresherModernTwoColumnTemplate,
+    "fresher-professional-sidebar": FresherProfessionalSidebarTemplate,
+    "fresher-clean-modern": FresherCleanModernTemplate,
+    "fresher-tech-split": FresherTechSplitTemplate,
+    "fresher-executive-style": FresherExecutiveStyleTemplate,
+    "fresher-bold-header": FresherBoldHeaderTemplate,
+    "fresher-minimalist-two-column": FresherMinimalistTwoColumnTemplate,
+    "fresher-creative-edge": FresherCreativeEdgeTemplate,
+    "fresher-professional-grid": FresherProfessionalGridTemplate,
+    "fresher-modern-classic": FresherModernClassicTemplate,
+    "fresher-split-layout": FresherSplitLayoutTemplate,
+    "fresher-compact-pro": FresherCompactProTemplate,
+    "fresher-elegant-sidebar": FresherElegantSidebarTemplate,
+    "fresher-tech-modern": FresherTechModernTemplate,
+    "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
     // Healthcare & Medical
     "medical-professional": MedicalProfessionalTemplate,
     "healthcare-two-column": HealthcareTwoColumnTemplate,
