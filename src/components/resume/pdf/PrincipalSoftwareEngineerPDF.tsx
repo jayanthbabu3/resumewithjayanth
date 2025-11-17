@@ -4,27 +4,27 @@ import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
 const createStyles = (color: string) => StyleSheet.create({
   page: { paddingTop: PDF_PAGE_MARGINS.top, paddingRight: PDF_PAGE_MARGINS.right, paddingBottom: PDF_PAGE_MARGINS.bottom, paddingLeft: PDF_PAGE_MARGINS.left, fontSize: 10, fontFamily: 'Inter' },
-  header: { marginBottom: 20, borderBottom: 3, borderBottomColor: color, paddingBottom: 15 },
+  header: { marginBottom: 20, borderBottom: 4, borderBottomColor: color, paddingBottom: 15 },
   headerContent: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 },
-  name: { fontSize: 40, fontFamily: 'Inter', fontWeight: 700, marginBottom: 5, color: '#111827' },
-  title: { fontSize: 16, marginBottom: 10, color: color, fontWeight: 600 },
-  contactRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, fontSize: 12, color: '#4b5563' },
-  photoWrapper: { width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 4, borderColor: color },
+  name: { fontSize: 36, fontFamily: 'Inter', fontWeight: 700, marginBottom: 5, color: '#111827' },
+  title: { fontSize: 15, marginBottom: 10, color: color, fontWeight: 600 },
+  contactRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 12, fontSize: 11.5, color: '#4b5563' },
+  photoWrapper: { width: 72, height: 72, borderRadius: 36, overflow: 'hidden', borderWidth: 4, borderColor: color },
   photo: { width: '100%', height: '100%', objectFit: 'cover' },
   section: { marginBottom: 18 },
-  sectionTitle: { fontSize: 15, fontFamily: 'Inter', fontWeight: 700, marginBottom: 10, textTransform: 'uppercase', color: '#111827', borderBottom: 2.5, borderBottomColor: color, paddingBottom: 5, letterSpacing: 0.8 },
+  sectionTitle: { fontSize: 14, fontFamily: 'Inter', fontWeight: 700, marginBottom: 10, textTransform: 'uppercase', color: '#111827', borderBottom: 2, borderBottomColor: color, paddingBottom: 5, letterSpacing: 0.8 },
   experienceItem: { marginBottom: 14 },
   jobTitle: { fontSize: 15, fontFamily: 'Inter', fontWeight: 700, marginBottom: 2, color: '#111827' },
-  company: { fontSize: 14, fontFamily: 'Inter', fontWeight: 600, color: color, marginBottom: 2 },
-  date: { fontSize: 12, color: '#6b7280', marginBottom: 5, fontWeight: 500 },
-  description: { fontSize: 13, lineHeight: 1.8, color: '#374151' },
+  company: { fontSize: 13, fontFamily: 'Inter', fontWeight: 600, color: color, marginBottom: 2 },
+  date: { fontSize: 11.5, color: '#6b7280', marginBottom: 5, fontWeight: 500 },
+  description: { fontSize: 12.5, lineHeight: 1.75, color: '#374151' },
   educationItem: { marginBottom: 10 },
-  degree: { fontSize: 14.5, fontFamily: 'Inter', fontWeight: 700, marginBottom: 2, color: '#111827' },
-  field: { fontSize: 13, color: '#4b5563', marginBottom: 2 },
-  school: { fontSize: 13.5, fontFamily: 'Inter', fontWeight: 500, color: '#374151' },
+  degree: { fontSize: 14, fontFamily: 'Inter', fontWeight: 700, marginBottom: 2, color: '#111827' },
+  field: { fontSize: 12.5, color: '#4b5563', marginBottom: 2 },
+  school: { fontSize: 12.5, fontFamily: 'Inter', fontWeight: 500, color: '#374151' },
   skillsContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
-  skill: { fontSize: 12.5, color: color, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 4, borderWidth: 1.5, fontWeight: 600 },
-  summary: { fontSize: 13.5, lineHeight: 1.8, color: '#374151' }
+  skill: { fontSize: 12, color: color, paddingHorizontal: 11, paddingVertical: 5, borderRadius: 4, borderWidth: 1.5, fontWeight: 600 },
+  summary: { fontSize: 12.5, lineHeight: 1.75, color: '#374151' }
 });
 
 const formatDate = (date: string) => {
