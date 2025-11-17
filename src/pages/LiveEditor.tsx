@@ -60,6 +60,22 @@ import { NodeJSDeveloperPDF } from "@/components/resume/pdf/NodeJSDeveloperPDF";
 import { ReactDeveloperPDF } from "@/components/resume/pdf/ReactDeveloperPDF";
 import { GoDeveloperPDF } from "@/components/resume/pdf/GoDeveloperPDF";
 import { KubernetesEngineerPDF } from "@/components/resume/pdf/KubernetesEngineerPDF";
+// New Universal Professional Templates
+import { ExecutiveModernPDF } from "@/components/resume/pdf/ExecutiveModernPDF";
+import { CorporateBluePDF } from "@/components/resume/pdf/CorporateBluePDF";
+import { ProfessionalSidebarPDF } from "@/components/resume/pdf/ProfessionalSidebarPDF";
+import { MinimalistProPDF } from "@/components/resume/pdf/MinimalistProPDF";
+import { ClassicElegantPDF } from "@/components/resume/pdf/ClassicElegantPDF";
+import { BusinessModernPDF } from "@/components/resume/pdf/BusinessModernPDF";
+import { ProfessionalTimelinePDF } from "@/components/resume/pdf/ProfessionalTimelinePDF";
+import { CleanCorporatePDF } from "@/components/resume/pdf/CleanCorporatePDF";
+import { ModernProfessionalPDF } from "@/components/resume/pdf/ModernProfessionalPDF";
+import { ElegantProfessionalPDF } from "@/components/resume/pdf/ElegantProfessionalPDF";
+import { ProfessionalGridPDF } from "@/components/resume/pdf/ProfessionalGridPDF";
+import { BusinessElitePDF } from "@/components/resume/pdf/BusinessElitePDF";
+import { CorporateCleanPDF } from "@/components/resume/pdf/CorporateCleanPDF";
+import { ProfessionalClassicPDF } from "@/components/resume/pdf/ProfessionalClassicPDF";
+import { ModernBusinessPDF } from "@/components/resume/pdf/ModernBusinessPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
@@ -160,6 +176,22 @@ import { NodeJSDeveloperTemplate } from "@/components/resume/templates/NodeJSDev
 import { ReactDeveloperTemplate } from "@/components/resume/templates/ReactDeveloperTemplate";
 import { GoDeveloperTemplate } from "@/components/resume/templates/GoDeveloperTemplate";
 import { KuberneteEngineerTemplate } from "@/components/resume/templates/KuberneteEngineerTemplate";
+// New Universal Professional Templates
+import { ExecutiveModernTemplate } from "@/components/resume/templates/ExecutiveModernTemplate";
+import { CorporateBlueTemplate } from "@/components/resume/templates/CorporateBlueTemplate";
+import { ProfessionalSidebarTemplate } from "@/components/resume/templates/ProfessionalSidebarTemplate";
+import { MinimalistProTemplate } from "@/components/resume/templates/MinimalistProTemplate";
+import { ClassicElegantTemplate } from "@/components/resume/templates/ClassicElegantTemplate";
+import { BusinessModernTemplate } from "@/components/resume/templates/BusinessModernTemplate";
+import { ProfessionalTimelineTemplate } from "@/components/resume/templates/ProfessionalTimelineTemplate";
+import { CleanCorporateTemplate } from "@/components/resume/templates/CleanCorporateTemplate";
+import { ModernProfessionalTemplate } from "@/components/resume/templates/ModernProfessionalTemplate";
+import { ElegantProfessionalTemplate } from "@/components/resume/templates/ElegantProfessionalTemplate";
+import { ProfessionalGridTemplate } from "@/components/resume/templates/ProfessionalGridTemplate";
+import { BusinessEliteTemplate } from "@/components/resume/templates/BusinessEliteTemplate";
+import { CorporateCleanTemplate } from "@/components/resume/templates/CorporateCleanTemplate";
+import { ProfessionalClassicTemplate } from "@/components/resume/templates/ProfessionalClassicTemplate";
+import { ModernBusinessTemplate } from "@/components/resume/templates/ModernBusinessTemplate";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
@@ -221,6 +253,22 @@ const pdfTemplates: Record<string, any> = {
   "react-developer": ReactDeveloperPDF,
   "go-developer": GoDeveloperPDF,
   "kubernetes-engineer": KubernetesEngineerPDF,
+  // New Universal Professional Templates
+  "executive-modern": ExecutiveModernPDF,
+  "corporate-blue": CorporateBluePDF,
+  "professional-sidebar": ProfessionalSidebarPDF,
+  "minimalist-pro": MinimalistProPDF,
+  "classic-elegant": ClassicElegantPDF,
+  "business-modern": BusinessModernPDF,
+  "professional-timeline": ProfessionalTimelinePDF,
+  "clean-corporate": CleanCorporatePDF,
+  "modern-professional": ModernProfessionalPDF,
+  "elegant-professional": ElegantProfessionalPDF,
+  "professional-grid": ProfessionalGridPDF,
+  "business-elite": BusinessElitePDF,
+  "corporate-clean": CorporateCleanPDF,
+  "professional-classic": ProfessionalClassicPDF,
+  "modern-business": ModernBusinessPDF,
 };
 
 // Templates that support inline editing
@@ -260,7 +308,13 @@ const inlineEditableTemplates = [
   "cloud-architect", "mobile-developer", "react-native-developer",
   "data-engineer", "machine-learning-engineer", "qa-automation-engineer",
   "security-engineer", "python-developer", "nodejs-developer",
-  "react-developer", "go-developer", "kubernetes-engineer"
+  "react-developer", "go-developer", "kubernetes-engineer",
+  // New Universal Professional Templates
+  "executive-modern", "corporate-blue", "professional-sidebar",
+  "minimalist-pro", "classic-elegant", "business-modern",
+  "professional-timeline", "clean-corporate", "modern-professional",
+  "elegant-professional", "professional-grid", "business-elite",
+  "corporate-clean", "professional-classic", "modern-business"
 ];
 
 const displayTemplates: Record<string, any> = {
@@ -359,6 +413,22 @@ const displayTemplates: Record<string, any> = {
   "react-developer": ReactDeveloperTemplate,
   "go-developer": GoDeveloperTemplate,
   "kubernetes-engineer": KuberneteEngineerTemplate,
+  // New Universal Professional Templates
+  "executive-modern": ExecutiveModernTemplate,
+  "corporate-blue": CorporateBlueTemplate,
+  "professional-sidebar": ProfessionalSidebarTemplate,
+  "minimalist-pro": MinimalistProTemplate,
+  "classic-elegant": ClassicElegantTemplate,
+  "business-modern": BusinessModernTemplate,
+  "professional-timeline": ProfessionalTimelineTemplate,
+  "clean-corporate": CleanCorporateTemplate,
+  "modern-professional": ModernProfessionalTemplate,
+  "elegant-professional": ElegantProfessionalTemplate,
+  "professional-grid": ProfessionalGridTemplate,
+  "business-elite": BusinessEliteTemplate,
+  "corporate-clean": CorporateCleanTemplate,
+  "professional-classic": ProfessionalClassicTemplate,
+  "modern-business": ModernBusinessTemplate,
 };
 
 const LiveEditor = () => {

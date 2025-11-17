@@ -62,6 +62,22 @@ import { NodeJSDeveloperPDF } from "@/components/resume/pdf/NodeJSDeveloperPDF";
 import { ReactDeveloperPDF } from "@/components/resume/pdf/ReactDeveloperPDF";
 import { GoDeveloperPDF } from "@/components/resume/pdf/GoDeveloperPDF";
 import { KubernetesEngineerPDF } from "@/components/resume/pdf/KubernetesEngineerPDF";
+// New Universal Professional Templates
+import { ExecutiveModernPDF } from "@/components/resume/pdf/ExecutiveModernPDF";
+import { CorporateBluePDF } from "@/components/resume/pdf/CorporateBluePDF";
+import { ProfessionalSidebarPDF } from "@/components/resume/pdf/ProfessionalSidebarPDF";
+import { MinimalistProPDF } from "@/components/resume/pdf/MinimalistProPDF";
+import { ClassicElegantPDF } from "@/components/resume/pdf/ClassicElegantPDF";
+import { BusinessModernPDF } from "@/components/resume/pdf/BusinessModernPDF";
+import { ProfessionalTimelinePDF } from "@/components/resume/pdf/ProfessionalTimelinePDF";
+import { CleanCorporatePDF } from "@/components/resume/pdf/CleanCorporatePDF";
+import { ModernProfessionalPDF } from "@/components/resume/pdf/ModernProfessionalPDF";
+import { ElegantProfessionalPDF } from "@/components/resume/pdf/ElegantProfessionalPDF";
+import { ProfessionalGridPDF } from "@/components/resume/pdf/ProfessionalGridPDF";
+import { BusinessElitePDF } from "@/components/resume/pdf/BusinessElitePDF";
+import { CorporateCleanPDF } from "@/components/resume/pdf/CorporateCleanPDF";
+import { ProfessionalClassicPDF } from "@/components/resume/pdf/ProfessionalClassicPDF";
+import { ModernBusinessPDF } from "@/components/resume/pdf/ModernBusinessPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -2076,6 +2092,22 @@ const Editor = () => {
         "react-developer": ReactDeveloperPDF,
         "go-developer": GoDeveloperPDF,
         "kubernetes-engineer": KubernetesEngineerPDF,
+        // New Universal Professional Templates
+        "executive-modern": ExecutiveModernPDF,
+        "corporate-blue": CorporateBluePDF,
+        "professional-sidebar": ProfessionalSidebarPDF,
+        "minimalist-pro": MinimalistProPDF,
+        "classic-elegant": ClassicElegantPDF,
+        "business-modern": BusinessModernPDF,
+        "professional-timeline": ProfessionalTimelinePDF,
+        "clean-corporate": CleanCorporatePDF,
+        "modern-professional": ModernProfessionalPDF,
+        "elegant-professional": ElegantProfessionalPDF,
+        "professional-grid": ProfessionalGridPDF,
+        "business-elite": BusinessElitePDF,
+        "corporate-clean": CorporateCleanPDF,
+        "professional-classic": ProfessionalClassicPDF,
+        "modern-business": ModernBusinessPDF,
       };
 
       const PDFTemplate =

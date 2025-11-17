@@ -93,6 +93,22 @@ import { NodeJSDeveloperTemplate } from "./resume/templates/NodeJSDeveloperTempl
 import { ReactDeveloperTemplate } from "./resume/templates/ReactDeveloperTemplate";
 import { GoDeveloperTemplate } from "./resume/templates/GoDeveloperTemplate";
 import { KuberneteEngineerTemplate } from "./resume/templates/KuberneteEngineerTemplate";
+// New Universal Professional Templates
+import { ExecutiveModernTemplate } from "./resume/templates/ExecutiveModernTemplate";
+import { CorporateBlueTemplate } from "./resume/templates/CorporateBlueTemplate";
+import { ProfessionalSidebarTemplate } from "./resume/templates/ProfessionalSidebarTemplate";
+import { MinimalistProTemplate } from "./resume/templates/MinimalistProTemplate";
+import { ClassicElegantTemplate } from "./resume/templates/ClassicElegantTemplate";
+import { BusinessModernTemplate } from "./resume/templates/BusinessModernTemplate";
+import { ProfessionalTimelineTemplate } from "./resume/templates/ProfessionalTimelineTemplate";
+import { CleanCorporateTemplate } from "./resume/templates/CleanCorporateTemplate";
+import { ModernProfessionalTemplate } from "./resume/templates/ModernProfessionalTemplate";
+import { ElegantProfessionalTemplate } from "./resume/templates/ElegantProfessionalTemplate";
+import { ProfessionalGridTemplate } from "./resume/templates/ProfessionalGridTemplate";
+import { BusinessEliteTemplate } from "./resume/templates/BusinessEliteTemplate";
+import { CorporateCleanTemplate } from "./resume/templates/CorporateCleanTemplate";
+import { ProfessionalClassicTemplate } from "./resume/templates/ProfessionalClassicTemplate";
+import { ModernBusinessTemplate } from "./resume/templates/ModernBusinessTemplate";
 
 interface TemplatePreviewProps {
   templateId: string;
@@ -1397,6 +1413,22 @@ const templates = {
   "react-developer": ReactDeveloperTemplate,
   "go-developer": GoDeveloperTemplate,
   "kubernetes-engineer": KuberneteEngineerTemplate,
+  // New Universal Professional Templates
+  "executive-modern": ExecutiveModernTemplate,
+  "corporate-blue": CorporateBlueTemplate,
+  "professional-sidebar": ProfessionalSidebarTemplate,
+  "minimalist-pro": MinimalistProTemplate,
+  "classic-elegant": ClassicElegantTemplate,
+  "business-modern": BusinessModernTemplate,
+  "professional-timeline": ProfessionalTimelineTemplate,
+  "clean-corporate": CleanCorporateTemplate,
+  "modern-professional": ModernProfessionalTemplate,
+  "elegant-professional": ElegantProfessionalTemplate,
+  "professional-grid": ProfessionalGridTemplate,
+  "business-elite": BusinessEliteTemplate,
+  "corporate-clean": CorporateCleanTemplate,
+  "professional-classic": ProfessionalClassicTemplate,
+  "modern-business": ModernBusinessTemplate,
 };
 
 export const TemplatePreview = memo<TemplatePreviewProps>(({

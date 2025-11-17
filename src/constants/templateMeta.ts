@@ -625,6 +625,112 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Engineering",
     categorySlug: "software",
   },
+  // New Universal Professional Templates
+  "executive-modern": {
+    name: "Executive Modern",
+    description:
+      "Clean modern executive design with two-column layout and professional timeline for experience.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "corporate-blue": {
+    name: "Corporate Blue",
+    description:
+      "Classic corporate style with blue accents and emphasis on achievements and metrics.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "professional-sidebar": {
+    name: "Professional Sidebar",
+    description:
+      "Modern two-column design with left sidebar for skills and contact information.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "minimalist-pro": {
+    name: "Minimalist Pro",
+    description:
+      "Ultra-clean minimal design with lots of white space and subtle professional accents.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "classic-elegant": {
+    name: "Classic Elegant",
+    description:
+      "Timeless elegant design with serif-inspired headers and classic professional layout.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "business-modern": {
+    name: "Business Modern",
+    description:
+      "Contemporary business style with grid-based skill display and modern typography.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "professional-timeline": {
+    name: "Professional Timeline",
+    description:
+      "Timeline-based experience section with vertical line connecting positions.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "clean-corporate": {
+    name: "Clean Corporate",
+    description:
+      "Clean lines and structure with corporate professional styling and organized sections.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "modern-professional": {
+    name: "Modern Professional",
+    description:
+      "Modern design with accent colors, card-style sections, and contemporary layout.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "elegant-professional": {
+    name: "Elegant Professional",
+    description:
+      "Sophisticated elegant design with refined typography and premium professional look.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "professional-grid": {
+    name: "Professional Grid",
+    description:
+      "Grid-based layout with organized sections and modern structured design.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "business-elite": {
+    name: "Business Elite",
+    description:
+      "High-end professional design with premium styling and executive presence.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "corporate-clean": {
+    name: "Corporate Clean",
+    description:
+      "Clean corporate aesthetic with professional hierarchy and structured layout.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "professional-classic": {
+    name: "Professional Classic",
+    description:
+      "Classic timeless design with traditional professional layout and ATS-friendly structure.",
+    category: "Universal",
+    categorySlug: "all",
+  },
+  "modern-business": {
+    name: "Modern Business",
+    description:
+      "Modern business styling with fresh contemporary design and professional polish.",
+    category: "Universal",
+    categorySlug: "all",
+  },
 };
 
 export const categoryLabelMap: Record<string, string> = {
