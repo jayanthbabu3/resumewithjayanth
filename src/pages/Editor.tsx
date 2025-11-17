@@ -1884,6 +1884,37 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
     },
   };
 
+  // For new templates without specific defaults, use professional template data
+  const newTemplatesUsingProfessionalDefaults = [
+    "timeline-elegance",
+    "executive-minimal",
+    "sidebar-accent",
+    "geometric-modern",
+    "two-tone-classic",
+    "bordered-elegance",
+    "column-divide",
+    "compact-professional",
+    "code-minimal",
+    "tech-stack-pro",
+    "github-style",
+    "developer-grid",
+    "terminal-theme",
+    "algo-engineer",
+    "fullstack-modern",
+    "devops-pro",
+    "ml-engineer",
+    "artistic-bold",
+    "designer-showcase",
+    "creative-timeline",
+    "colorful-modern",
+    "asymmetric-creative",
+  ];
+
+  // Add all new templates using professional defaults
+  newTemplatesUsingProfessionalDefaults.forEach(id => {
+    templates[id] = templates.professional;
+  });
+
   return templates[templateId] || templates.professional;
 };
 
