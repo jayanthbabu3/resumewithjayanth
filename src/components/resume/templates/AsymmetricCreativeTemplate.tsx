@@ -31,11 +31,11 @@ export const AsymmetricCreativeTemplate = ({
               <InlineEditableText
                 path="personalInfo.fullName"
                 value={personalInfo.fullName}
-                className="text-6xl font-bold mb-3 text-gray-900"
+                className="text-[32px] font-bold mb-3 text-gray-900"
                 as="h1"
               />
             ) : (
-              <h1 className="text-6xl font-bold mb-3 text-gray-900">
+              <h1 className="text-[32px] font-bold mb-3 text-gray-900">
                 {personalInfo.fullName}
               </h1>
             )}
@@ -46,12 +46,12 @@ export const AsymmetricCreativeTemplate = ({
                   <InlineEditableText
                     path="personalInfo.title"
                     value={personalInfo.title}
-                    className="text-2xl font-medium"
+                    className="text-[16px] font-medium"
                     as="p"
                     style={{ color: themeColor }}
                   />
                 ) : (
-                  <p className="text-2xl font-medium" style={{ color: themeColor }}>
+                  <p className="text-[16px] font-medium" style={{ color: themeColor }}>
                     {personalInfo.title}
                   </p>
                 )}
@@ -116,7 +116,7 @@ export const AsymmetricCreativeTemplate = ({
                 className="absolute -left-10 top-0 w-2 h-full"
                 style={{ backgroundColor: themeColor }}
               />
-              <h2 className="text-3xl font-bold mb-4" style={{ color: themeColor }}>
+              <h2 className="text-[15px] font-bold mb-4" style={{ color: themeColor }}>
                 Profile
               </h2>
               {editable ? (
@@ -136,7 +136,7 @@ export const AsymmetricCreativeTemplate = ({
         {/* Experience - Asymmetric Layout */}
         {experience && experience.length > 0 && (
           <div className="mb-12">
-            <h2 className="text-4xl font-bold mb-8" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-8" style={{ color: themeColor }}>
               Experience
             </h2>
             <div className="space-y-10">
@@ -154,24 +154,24 @@ export const AsymmetricCreativeTemplate = ({
                     <div className="mb-4">
                       {editable ? (
                         <InlineEditableText
-                          path={`experience.${index}.position`}
+                          path={`experience[${index}].position`}
                           value={exp.position}
-                          className="text-2xl font-bold text-gray-900"
+                          className="text-[16px] font-bold text-gray-900"
                           as="h3"
                         />
                       ) : (
-                        <h3 className="text-2xl font-bold text-gray-900">{exp.position}</h3>
+                        <h3 className="text-[16px] font-bold text-gray-900">{exp.position}</h3>
                       )}
                       {editable ? (
                         <InlineEditableText
-                          path={`experience.${index}.company`}
+                          path={`experience[${index}].company`}
                           value={exp.company}
-                          className="text-xl font-medium"
+                          className="text-[13px] font-medium"
                           as="p"
                           style={{ color: themeColor }}
                         />
                       ) : (
-                        <p className="text-xl font-medium" style={{ color: themeColor }}>
+                        <p className="text-[13px] font-medium" style={{ color: themeColor }}>
                           {exp.company}
                         </p>
                       )}
@@ -184,7 +184,7 @@ export const AsymmetricCreativeTemplate = ({
                       <div className="text-gray-700 leading-relaxed">
                         {editable ? (
                           <InlineEditableList
-                            path={`experience.${index}.description`}
+                            path={`experience[${index}].description`}
                             items={exp.description.split("\n")}
                           />
                         ) : (
@@ -206,7 +206,7 @@ export const AsymmetricCreativeTemplate = ({
         {/* Skills - Asymmetric Grid */}
         {skills && skills.length > 0 && (
           <div className="mb-12 mr-20">
-            <h2 className="text-4xl font-bold mb-8 text-right" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-8 text-right" style={{ color: themeColor }}>
               Skills
             </h2>
             {editable ? (
@@ -230,7 +230,7 @@ export const AsymmetricCreativeTemplate = ({
         {/* Education - Offset */}
         {education && education.length > 0 && (
           <div className="mb-12 ml-20">
-            <h2 className="text-4xl font-bold mb-8" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-8" style={{ color: themeColor }}>
               Education
             </h2>
             <div className="space-y-6 max-w-3xl">
@@ -238,17 +238,17 @@ export const AsymmetricCreativeTemplate = ({
                 <div key={index} className="bg-gray-50 p-6 rounded-2xl shadow-lg">
                   {editable ? (
                     <InlineEditableText
-                      path={`education.${index}.degree`}
+                      path={`education[${index}].degree`}
                       value={edu.degree}
-                      className="text-2xl font-bold text-gray-900 mb-2"
+                      className="text-[16px] font-bold text-gray-900 mb-2"
                       as="h3"
                     />
                   ) : (
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{edu.degree}</h3>
+                    <h3 className="text-[16px] font-bold text-gray-900 mb-2">{edu.degree}</h3>
                   )}
                   {editable ? (
                     <InlineEditableText
-                      path={`education.${index}.institution`}
+                      path={`education[${index}].institution`}
                       value={edu.institution}
                       className="text-lg text-gray-700 mb-2"
                       as="p"
@@ -269,7 +269,7 @@ export const AsymmetricCreativeTemplate = ({
         {sections &&
           sections.map((section, index) => (
             <div key={index} className={`mb-12 ${index % 2 === 0 ? 'ml-0' : 'mr-20 text-right'}`}>
-              <h2 className="text-4xl font-bold mb-6" style={{ color: themeColor }}>
+              <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
                 {section.title}
               </h2>
               <div className={`text-lg text-gray-700 leading-relaxed whitespace-pre-wrap ${index % 2 === 0 ? 'max-w-3xl' : 'ml-auto max-w-3xl'}`}>

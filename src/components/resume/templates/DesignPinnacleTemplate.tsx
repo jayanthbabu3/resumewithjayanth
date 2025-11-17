@@ -12,10 +12,9 @@ interface TemplateProps {
 
 export const DesignPinnacleTemplate = ({
   resumeData,
-  themeColor = "#14b8a6",
+  themeColor = "#f59e0b",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -27,106 +26,141 @@ export const DesignPinnacleTemplate = ({
 
   return (
     <div className="w-full h-full bg-white text-gray-900 p-10 text-[13px] leading-relaxed">
-      {/* Header */}
-      <div className="mb-8 pb-6 border-b-2" style={{ borderColor: themeColor }}>
+      {/* Header with Chevron/Peak Design */}
+      <div className="relative mb-8 pb-6">
+        <div className="absolute top-0 right-0 w-24 h-24 opacity-10" style={{
+          clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+          backgroundColor: themeColor
+        }}></div>
+
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
-            value={personalInfo.fullName || "Your Name"}
+            value={resumeData.personalInfo.fullName || "Your Name"}
             className="text-[32px] font-bold mb-2 block"
             style={{ color: themeColor }}
             as="h1"
           />
         ) : (
           <h1 className="text-[32px] font-bold mb-2" style={{ color: themeColor }}>
-            {personalInfo.fullName || "Your Name"}
+            {resumeData.personalInfo.fullName || "Your Name"}
           </h1>
         )}
-        {personalInfo.title && (
+
+        {resumeData.personalInfo.title && (
           editable ? (
             <InlineEditableText
               path="personalInfo.title"
-              value={personalInfo.title}
-              className="text-[14px] text-gray-600 mb-4 font-light block"
+              value={resumeData.personalInfo.title}
+              className="text-[14px] text-gray-600 mb-4 font-medium uppercase tracking-wide block"
               as="h2"
             />
           ) : (
-            <h2 className="text-[14px] text-gray-600 mb-4 font-light">
-              {personalInfo.title}
+            <h2 className="text-[14px] text-gray-600 mb-4 font-medium uppercase tracking-wide">
+              {resumeData.personalInfo.title}
             </h2>
           )
         )}
-        <div className="flex gap-6 text-[12px] text-gray-700">
-          {personalInfo.email && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.email"
-                value={personalInfo.email}
-                className="inline-block"
-              />
-            ) : (
-              <span>{personalInfo.email}</span>
-            )
+
+        <div className="flex gap-5 text-[12px] text-gray-700 flex-wrap">
+          {resumeData.personalInfo.email && (
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2" style={{
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                backgroundColor: themeColor
+              }}></div>
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.email"
+                  value={resumeData.personalInfo.email}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.email}</span>
+              )}
+            </div>
           )}
-          {personalInfo.email && personalInfo.phone && <span>•</span>}
-          {personalInfo.phone && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.phone"
-                value={personalInfo.phone}
-                className="inline-block"
-              />
-            ) : (
-              <span>{personalInfo.phone}</span>
-            )
+          {resumeData.personalInfo.phone && (
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2" style={{
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                backgroundColor: themeColor
+              }}></div>
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.phone"
+                  value={resumeData.personalInfo.phone}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.phone}</span>
+              )}
+            </div>
           )}
-          {personalInfo.location && (personalInfo.email || personalInfo.phone) && <span>•</span>}
-          {personalInfo.location && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.location"
-                value={personalInfo.location}
-                className="inline-block"
-              />
-            ) : (
-              <span>{personalInfo.location}</span>
-            )
+          {resumeData.personalInfo.location && (
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2" style={{
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                backgroundColor: themeColor
+              }}></div>
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.location"
+                  value={resumeData.personalInfo.location}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.location}</span>
+              )}
+            </div>
           )}
         </div>
       </div>
 
       {/* Summary */}
-      {personalInfo.summary && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
-            Professional Summary
-          </h2>
+      {resumeData.personalInfo.summary && (
+        <div className="mb-8 relative">
+          <div className="flex items-baseline gap-3 mb-3">
+            <div className="w-3 h-3" style={{
+              clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+              backgroundColor: themeColor
+            }}></div>
+            <h2 className="text-[15px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+              Career Summit
+            </h2>
+          </div>
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
-              value={personalInfo.summary}
-              className="text-[12.5px] text-gray-700 leading-[1.7] block"
+              value={resumeData.personalInfo.summary}
+              className="text-[12.5px] text-gray-700 leading-[1.7] block pl-6"
               multiline
               as="p"
             />
           ) : (
-            <p className="text-[12.5px] text-gray-700 leading-[1.7]">
-              {personalInfo.summary}
+            <p className="text-[12.5px] text-gray-700 leading-[1.7] pl-6">
+              {resumeData.personalInfo.summary}
             </p>
           )}
         </div>
       )}
 
       {/* Experience */}
-      {experience && experience.length > 0 && (
+      {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
-            Experience
-          </h2>
+          <div className="flex items-baseline gap-3 mb-6">
+            <div className="w-3 h-3" style={{
+              clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+              backgroundColor: themeColor
+            }}></div>
+            <h2 className="text-[15px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+              Achievement Path
+            </h2>
+          </div>
           {editable ? (
             <InlineEditableList
               path="experience"
-              items={experience}
+              items={resumeData.experience}
               defaultItem={{
                 id: Date.now().toString(),
                 company: "Company Name",
@@ -138,42 +172,46 @@ export const DesignPinnacleTemplate = ({
               }}
               addButtonLabel="Add Experience"
               renderItem={(exp, index) => (
-                <div className="mb-6 last:mb-0">
-                  <div className="flex justify-between items-baseline mb-2">
-                    <div className="flex-1">
+                <div className="mb-6 last:mb-0 pl-6 relative">
+                  <div className="absolute left-0 top-1.5 w-2 h-2" style={{
+                    clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                    backgroundColor: themeColor
+                  }}></div>
+                  <div className="mb-2">
+                    <div className="flex justify-between items-start">
                       <InlineEditableText
                         path={`experience[${index}].position`}
                         value={exp.position || "Position Title"}
-                        className="text-[15px] font-bold block"
+                        className="text-[15px] font-bold block flex-1"
                         style={{ color: themeColor }}
                         as="h3"
                       />
-                      <InlineEditableText
-                        path={`experience[${index}].company`}
-                        value={exp.company || "Company Name"}
-                        className="text-[13px] font-semibold text-gray-700 block"
-                        as="p"
-                      />
-                    </div>
-                    <div className="text-[12px] text-gray-600 font-medium whitespace-nowrap flex items-center gap-1">
-                      <InlineEditableDate
-                        path={`experience[${index}].startDate`}
-                        value={exp.startDate}
-                        formatDisplay={formatDate}
-                        className="inline-block"
-                      />
-                      <span> - </span>
-                      {exp.current ? (
-                        <span>Present</span>
-                      ) : (
+                      <div className="text-[12px] text-gray-600 font-medium whitespace-nowrap ml-4 flex items-center gap-1">
                         <InlineEditableDate
-                          path={`experience[${index}].endDate`}
-                          value={exp.endDate}
+                          path={`experience[${index}].startDate`}
+                          value={exp.startDate}
                           formatDisplay={formatDate}
                           className="inline-block"
                         />
-                      )}
+                        <span> - </span>
+                        {exp.current ? (
+                          <span>Present</span>
+                        ) : (
+                          <InlineEditableDate
+                            path={`experience[${index}].endDate`}
+                            value={exp.endDate}
+                            formatDisplay={formatDate}
+                            className="inline-block"
+                          />
+                        )}
+                      </div>
                     </div>
+                    <InlineEditableText
+                      path={`experience[${index}].company`}
+                      value={exp.company || "Company Name"}
+                      className="text-[13px] font-semibold text-gray-700 block"
+                      as="p"
+                    />
                   </div>
                   {exp.description && (
                     <InlineEditableText
@@ -189,20 +227,24 @@ export const DesignPinnacleTemplate = ({
             />
           ) : (
             <div className="space-y-6">
-              {experience.map((exp) => (
-                <div key={exp.id} className="mb-6 last:mb-0">
-                  <div className="flex justify-between items-baseline mb-2">
-                    <div className="flex-1">
-                      <h3 className="text-[15px] font-bold" style={{ color: themeColor }}>
+              {resumeData.experience.map((exp) => (
+                <div key={exp.id} className="pl-6 relative">
+                  <div className="absolute left-0 top-1.5 w-2 h-2" style={{
+                    clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                    backgroundColor: themeColor
+                  }}></div>
+                  <div className="mb-2">
+                    <div className="flex justify-between items-start">
+                      <h3 className="text-[15px] font-bold flex-1" style={{ color: themeColor }}>
                         {exp.position || "Position Title"}
                       </h3>
-                      <p className="text-[13px] font-semibold text-gray-700">
-                        {exp.company || "Company Name"}
-                      </p>
+                      <span className="text-[12px] text-gray-600 font-medium whitespace-nowrap ml-4">
+                        {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
+                      </span>
                     </div>
-                    <span className="text-[12px] text-gray-600 font-medium whitespace-nowrap">
-                      {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
-                    </span>
+                    <p className="text-[13px] font-semibold text-gray-700">
+                      {exp.company || "Company Name"}
+                    </p>
                   </div>
                   {exp.description && (
                     <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
@@ -218,28 +260,41 @@ export const DesignPinnacleTemplate = ({
 
       <div className="grid grid-cols-2 gap-8">
         {/* Skills */}
-        {skills && skills.length > 0 && (
+        {resumeData.skills && resumeData.skills.length > 0 && (
           <div>
-            <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
-              Skills
-            </h2>
+            <div className="flex items-baseline gap-3 mb-4">
+              <div className="w-3 h-3" style={{
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                backgroundColor: themeColor
+              }}></div>
+              <h2 className="text-[15px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+                Expertise
+              </h2>
+            </div>
             {editable ? (
               <InlineEditableSkills
                 path="skills"
-                skills={skills}
+                skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
-                    <div className="px-3 py-2 rounded text-[12px] font-medium text-center" style={{ backgroundColor: `${themeColor}15`, color: themeColor }}>
-                      {skill.name}
+                    <div className="relative px-4 py-2 text-[12px] font-medium" style={{
+                      backgroundColor: `${themeColor}10`,
+                      clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0 100%)'
+                    }}>
+                      <span style={{ color: themeColor }}>{skill.name}</span>
                     </div>
                   ) : null
                 }
               />
             ) : (
-              <div className="grid grid-cols-2 gap-3">
-                {skills.map((skill) =>
+              <div className="grid grid-cols-1 gap-2">
+                {resumeData.skills.map((skill) =>
                   skill.name ? (
-                    <div key={skill.id} className="px-3 py-2 rounded text-[12px] font-medium text-center" style={{ backgroundColor: `${themeColor}15`, color: themeColor }}>
+                    <div key={skill.id} className="relative px-4 py-2 text-[12px] font-medium" style={{
+                      backgroundColor: `${themeColor}10`,
+                      clipPath: 'polygon(0 0, 100% 0, 95% 100%, 0 100%)',
+                      color: themeColor
+                    }}>
                       {skill.name}
                     </div>
                   ) : null
@@ -250,15 +305,21 @@ export const DesignPinnacleTemplate = ({
         )}
 
         {/* Education */}
-        {education && education.length > 0 && (
+        {resumeData.education && resumeData.education.length > 0 && (
           <div>
-            <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
-              Education
-            </h2>
+            <div className="flex items-baseline gap-3 mb-4">
+              <div className="w-3 h-3" style={{
+                clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+                backgroundColor: themeColor
+              }}></div>
+              <h2 className="text-[15px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+                Education
+              </h2>
+            </div>
             {editable ? (
               <InlineEditableList
                 path="education"
-                items={education}
+                items={resumeData.education}
                 defaultItem={{
                   id: Date.now().toString(),
                   school: "School Name",
@@ -269,28 +330,28 @@ export const DesignPinnacleTemplate = ({
                 }}
                 addButtonLabel="Add Education"
                 renderItem={(edu, index) => (
-                  <div className="mb-4 last:mb-0">
+                  <div className="mb-5 last:mb-0">
                     <InlineEditableText
                       path={`education[${index}].degree`}
                       value={edu.degree || "Degree"}
-                      className="text-[14px] font-bold text-gray-900 block"
+                      className="text-[13px] font-bold text-gray-900 block"
                       as="h3"
                     />
                     {edu.field && (
                       <InlineEditableText
                         path={`education[${index}].field`}
                         value={edu.field}
-                        className="text-[13px] text-gray-700 block"
+                        className="text-[12px] text-gray-700 block"
                         as="p"
                       />
                     )}
                     <InlineEditableText
                       path={`education[${index}].school`}
                       value={edu.school || "School Name"}
-                      className="text-[13px] text-gray-600 italic block"
+                      className="text-[12.5px] text-gray-600 block"
                       as="p"
                     />
-                    <div className="text-[12px] text-gray-500 flex items-center gap-1">
+                    <div className="text-[12px] text-gray-500 flex items-center gap-1 mt-1">
                       <InlineEditableDate
                         path={`education[${index}].startDate`}
                         value={edu.startDate}
@@ -309,13 +370,13 @@ export const DesignPinnacleTemplate = ({
                 )}
               />
             ) : (
-              <div className="space-y-4">
-                {education.map((edu) => (
-                  <div key={edu.id} className="mb-4 last:mb-0">
-                    <h3 className="text-[14px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
-                    {edu.field && <p className="text-[13px] text-gray-700">{edu.field}</p>}
-                    <p className="text-[13px] text-gray-600 italic">{edu.school || "School Name"}</p>
-                    <span className="text-[12px] text-gray-500">
+              <div className="space-y-5">
+                {resumeData.education.map((edu) => (
+                  <div key={edu.id}>
+                    <h3 className="text-[13px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
+                    {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
+                    <p className="text-[12.5px] text-gray-600">{edu.school || "School Name"}</p>
+                    <span className="text-[12px] text-gray-500 block mt-1">
                       {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
                     </span>
                   </div>
@@ -327,21 +388,27 @@ export const DesignPinnacleTemplate = ({
       </div>
 
       {/* Additional Sections */}
-      {sections && sections.length > 0 && sections.map((section) => (
+      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
         <div key={section.id} className="mt-8">
-          <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
-            {section.title}
-          </h2>
+          <div className="flex items-baseline gap-3 mb-3">
+            <div className="w-3 h-3" style={{
+              clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
+              backgroundColor: themeColor
+            }}></div>
+            <h2 className="text-[15px] font-bold uppercase tracking-wide" style={{ color: themeColor }}>
+              {section.title}
+            </h2>
+          </div>
           {editable ? (
             <InlineEditableText
-              path={`sections[${sections.indexOf(section)}].content`}
+              path={`sections[${index}].content`}
               value={section.content}
-              className="text-[12.5px] text-gray-700 leading-[1.7] block"
+              className="text-[12.5px] text-gray-700 leading-[1.7] block pl-6"
               multiline
               as="p"
             />
           ) : (
-            <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">{section.content}</p>
+            <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line pl-6">{section.content}</p>
           )}
         </div>
       ))}

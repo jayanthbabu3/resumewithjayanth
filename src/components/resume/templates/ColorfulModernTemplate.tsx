@@ -29,11 +29,11 @@ export const ColorfulModernTemplate = ({
             <InlineEditableText
               path="personalInfo.fullName"
               value={personalInfo.fullName}
-              className="text-6xl font-bold mb-3"
+              className="text-[32px] font-bold mb-3"
               as="h1"
             />
           ) : (
-            <h1 className="text-6xl font-bold mb-3">
+            <h1 className="text-[32px] font-bold mb-3">
               {personalInfo.fullName}
             </h1>
           )}
@@ -44,11 +44,11 @@ export const ColorfulModernTemplate = ({
                 <InlineEditableText
                   path="personalInfo.title"
                   value={personalInfo.title}
-                  className="text-2xl font-medium opacity-90"
+                  className="text-[16px] font-medium opacity-90"
                   as="p"
                 />
               ) : (
-                <p className="text-2xl font-medium opacity-90">{personalInfo.title}</p>
+                <p className="text-[16px] font-medium opacity-90">{personalInfo.title}</p>
               )}
             </div>
           )}
@@ -104,18 +104,18 @@ export const ColorfulModernTemplate = ({
       {/* Summary */}
       {personalInfo.summary && (
         <div className="mb-10 bg-white rounded-3xl shadow-lg p-8">
-          <h2 className="text-3xl font-bold mb-4" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-4" style={{ color: themeColor }}>
             About Me
           </h2>
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
               value={personalInfo.summary}
-              className="text-lg text-gray-700 leading-relaxed"
+              className="text-[12.5px] text-gray-700 leading-relaxed"
               as="p"
             />
           ) : (
-            <p className="text-lg text-gray-700 leading-relaxed">{personalInfo.summary}</p>
+            <p className="text-[12.5px] text-gray-700 leading-relaxed">{personalInfo.summary}</p>
           )}
         </div>
       )}
@@ -123,7 +123,7 @@ export const ColorfulModernTemplate = ({
       {/* Skills - Colorful Cards */}
       {skills && skills.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
             Skills
           </h2>
           {editable ? (
@@ -147,7 +147,7 @@ export const ColorfulModernTemplate = ({
       {/* Experience - Colorful Cards */}
       {experience && experience.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
             Experience
           </h2>
           <div className="space-y-6">
@@ -161,24 +161,24 @@ export const ColorfulModernTemplate = ({
                   <div className="flex-1">
                     {editable ? (
                       <InlineEditableText
-                        path={`experience.${index}.position`}
+                        path={`experience[${index}].position`}
                         value={exp.position}
-                        className="text-2xl font-bold text-gray-900"
+                        className="text-[16px] font-bold text-gray-900"
                         as="h3"
                       />
                     ) : (
-                      <h3 className="text-2xl font-bold text-gray-900">{exp.position}</h3>
+                      <h3 className="text-[16px] font-bold text-gray-900">{exp.position}</h3>
                     )}
                     {editable ? (
                       <InlineEditableText
-                        path={`experience.${index}.company`}
+                        path={`experience[${index}].company`}
                         value={exp.company}
-                        className="text-xl font-medium"
+                        className="text-[13px] font-medium"
                         as="p"
                         style={{ color: colors[index % colors.length] }}
                       />
                     ) : (
-                      <p className="text-xl font-medium" style={{ color: colors[index % colors.length] }}>
+                      <p className="text-[13px] font-medium" style={{ color: colors[index % colors.length] }}>
                         {exp.company}
                       </p>
                     )}
@@ -195,7 +195,7 @@ export const ColorfulModernTemplate = ({
                   <div className="text-gray-700 leading-relaxed">
                     {editable ? (
                       <InlineEditableList
-                        path={`experience.${index}.description`}
+                        path={`experience[${index}].description`}
                         items={exp.description.split("\n")}
                       />
                     ) : (
@@ -216,7 +216,7 @@ export const ColorfulModernTemplate = ({
       {/* Education - Colorful Cards */}
       {education && education.length > 0 && (
         <div className="mb-10">
-          <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
             Education
           </h2>
           <div className="grid grid-cols-2 gap-6">
@@ -228,17 +228,17 @@ export const ColorfulModernTemplate = ({
               >
                 {editable ? (
                   <InlineEditableText
-                    path={`education.${index}.degree`}
+                    path={`education[${index}].degree`}
                     value={edu.degree}
-                    className="text-xl font-bold text-gray-900 mb-2"
+                    className="text-[13px] font-bold text-gray-900 mb-2"
                     as="h3"
                   />
                 ) : (
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{edu.degree}</h3>
+                  <h3 className="text-[13px] font-bold text-gray-900 mb-2">{edu.degree}</h3>
                 )}
                 {editable ? (
                   <InlineEditableText
-                    path={`education.${index}.institution`}
+                    path={`education[${index}].institution`}
                     value={edu.institution}
                     className="text-gray-700 mb-2"
                     as="p"
@@ -262,7 +262,7 @@ export const ColorfulModernTemplate = ({
       {sections &&
         sections.map((section, index) => (
           <div key={index} className="mb-10">
-            <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
               {section.title}
             </h2>
             <div className="bg-white rounded-3xl shadow-lg p-8 text-gray-700 leading-relaxed whitespace-pre-wrap">

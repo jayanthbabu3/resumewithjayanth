@@ -220,13 +220,13 @@ export const CreativeAccentTemplate = ({
             <InlineEditableText
               path="personalInfo.fullName"
               value={resumeData.personalInfo.fullName}
-              className="text-[40px] font-bold mb-2 tracking-tight"
+              className="text-[32px] font-bold mb-2 tracking-tight"
               as="h1"
               style={{ color: accent }}
             />
           ) : (
             <h1
-              className="text-[40px] font-bold mb-2 tracking-tight"
+              className="text-[32px] font-bold mb-2 tracking-tight"
               style={{ color: accent }}
             >
               {resumeData.personalInfo.fullName}
