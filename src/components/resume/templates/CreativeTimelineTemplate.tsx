@@ -27,12 +27,12 @@ export const CreativeTimelineTemplate = ({
             <InlineEditableText
               path="personalInfo.fullName"
               value={personalInfo.fullName}
-              className="text-6xl font-bold mb-3"
+              className="text-[32px] font-bold mb-3"
               as="h1"
               style={{ color: themeColor }}
             />
           ) : (
-            <h1 className="text-6xl font-bold mb-3" style={{ color: themeColor }}>
+            <h1 className="text-[32px] font-bold mb-3" style={{ color: themeColor }}>
               {personalInfo.fullName}
             </h1>
           )}
@@ -43,11 +43,11 @@ export const CreativeTimelineTemplate = ({
                 <InlineEditableText
                   path="personalInfo.title"
                   value={personalInfo.title}
-                  className="text-2xl font-medium text-gray-700"
+                  className="text-[16px] font-medium text-gray-700"
                   as="p"
                 />
               ) : (
-                <p className="text-2xl font-medium text-gray-700">{personalInfo.title}</p>
+                <p className="text-[16px] font-medium text-gray-700">{personalInfo.title}</p>
               )}
             </div>
           )}
@@ -106,7 +106,7 @@ export const CreativeTimelineTemplate = ({
       {/* Summary */}
       {personalInfo.summary && (
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-4" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-4" style={{ color: themeColor }}>
             My Story
           </h2>
           {editable ? (
@@ -125,7 +125,7 @@ export const CreativeTimelineTemplate = ({
       {/* Experience - Visual Timeline */}
       {experience && experience.length > 0 && (
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-8" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-8" style={{ color: themeColor }}>
             Journey
           </h2>
           <div className="relative">
@@ -149,22 +149,22 @@ export const CreativeTimelineTemplate = ({
                         <InlineEditableText
                           path={`experience.${index}.position`}
                           value={exp.position}
-                          className="text-2xl font-bold text-gray-900"
+                          className="text-[16px] font-bold text-gray-900"
                           as="h3"
                         />
                       ) : (
-                        <h3 className="text-2xl font-bold text-gray-900">{exp.position}</h3>
+                        <h3 className="text-[16px] font-bold text-gray-900">{exp.position}</h3>
                       )}
                       {editable ? (
                         <InlineEditableText
                           path={`experience.${index}.company`}
                           value={exp.company}
-                          className="text-xl font-medium"
+                          className="text-[13px] font-medium"
                           as="p"
                           style={{ color: themeColor }}
                         />
                       ) : (
-                        <p className="text-xl font-medium" style={{ color: themeColor }}>
+                        <p className="text-[13px] font-medium" style={{ color: themeColor }}>
                           {exp.company}
                         </p>
                       )}
@@ -200,7 +200,7 @@ export const CreativeTimelineTemplate = ({
       {/* Skills - Creative Display */}
       {skills && skills.length > 0 && (
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
             Toolkit
           </h2>
           {editable ? (
@@ -224,7 +224,7 @@ export const CreativeTimelineTemplate = ({
       {/* Education */}
       {education && education.length > 0 && (
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+          <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
             Learning Path
           </h2>
           <div className="space-y-6">
@@ -238,11 +238,11 @@ export const CreativeTimelineTemplate = ({
                     <InlineEditableText
                       path={`education.${index}.degree`}
                       value={edu.degree}
-                      className="text-xl font-bold text-gray-900 mb-1"
+                      className="text-[13px] font-bold text-gray-900 mb-1"
                       as="h3"
                     />
                   ) : (
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{edu.degree}</h3>
+                    <h3 className="text-[13px] font-bold text-gray-900 mb-1">{edu.degree}</h3>
                   )}
                   {editable ? (
                     <InlineEditableText
@@ -266,7 +266,7 @@ export const CreativeTimelineTemplate = ({
       {sections &&
         sections.map((section, index) => (
           <div key={index} className="mb-12">
-            <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
               {section.title}
             </h2>
             <div className="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap bg-gray-50 p-6 rounded-lg shadow-md">

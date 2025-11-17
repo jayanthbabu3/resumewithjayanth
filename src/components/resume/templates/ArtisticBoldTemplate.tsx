@@ -30,11 +30,11 @@ export const ArtisticBoldTemplate = ({
             <InlineEditableText
               path="personalInfo.fullName"
               value={personalInfo.fullName}
-              className="text-7xl font-black mb-4 tracking-tight"
+              className="text-[32px] font-black mb-4 tracking-tight"
               as="h1"
             />
           ) : (
-            <h1 className="text-7xl font-black mb-4 tracking-tight">
+            <h1 className="text-[32px] font-black mb-4 tracking-tight">
               {personalInfo.fullName}
             </h1>
           )}
@@ -45,11 +45,11 @@ export const ArtisticBoldTemplate = ({
                 <InlineEditableText
                   path="personalInfo.title"
                   value={personalInfo.title}
-                  className="text-3xl font-bold uppercase tracking-wider opacity-90"
+                  className="text-[16px] font-bold uppercase tracking-wider opacity-90"
                   as="p"
                 />
               ) : (
-                <p className="text-3xl font-bold uppercase tracking-wider opacity-90">
+                <p className="text-[16px] font-bold uppercase tracking-wider opacity-90">
                   {personalInfo.title}
                 </p>
               )}
@@ -57,7 +57,7 @@ export const ArtisticBoldTemplate = ({
           )}
 
           {/* Contact Info */}
-          <div className="flex flex-wrap gap-6 text-lg opacity-90">
+          <div className="flex flex-wrap gap-6 text-[12px] opacity-90">
             {personalInfo.email && (
               <div>
                 {editable ? (
@@ -108,18 +108,18 @@ export const ArtisticBoldTemplate = ({
         {/* Summary */}
         {personalInfo.summary && (
           <div className="mb-10">
-            <h2 className="text-4xl font-black mb-6 uppercase" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-black mb-6 uppercase" style={{ color: themeColor }}>
               About
             </h2>
             {editable ? (
               <InlineEditableText
                 path="personalInfo.summary"
                 value={personalInfo.summary}
-                className="text-xl text-gray-700 leading-relaxed"
+                className="text-[12.5px] text-gray-700 leading-relaxed"
                 as="p"
               />
             ) : (
-              <p className="text-xl text-gray-700 leading-relaxed">{personalInfo.summary}</p>
+              <p className="text-[12.5px] text-gray-700 leading-relaxed">{personalInfo.summary}</p>
             )}
           </div>
         )}
@@ -127,7 +127,7 @@ export const ArtisticBoldTemplate = ({
         {/* Experience */}
         {experience && experience.length > 0 && (
           <div className="mb-10">
-            <h2 className="text-4xl font-black mb-8 uppercase" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-black mb-8 uppercase" style={{ color: themeColor }}>
               Experience
             </h2>
             <div className="space-y-10">
@@ -140,22 +140,22 @@ export const ArtisticBoldTemplate = ({
                       <InlineEditableText
                         path={`experience.${index}.position`}
                         value={exp.position}
-                        className="text-2xl font-black text-gray-900"
+                        className="text-[15px] font-black text-gray-900"
                         as="h3"
                       />
                     ) : (
-                      <h3 className="text-2xl font-black text-gray-900">{exp.position}</h3>
+                      <h3 className="text-[15px] font-black text-gray-900">{exp.position}</h3>
                     )}
                     {editable ? (
                       <InlineEditableText
                         path={`experience.${index}.company`}
                         value={exp.company}
-                        className="text-xl font-bold"
+                        className="text-[13px] font-bold"
                         as="p"
                         style={{ color: themeColor }}
                       />
                     ) : (
-                      <p className="text-xl font-bold" style={{ color: themeColor }}>
+                      <p className="text-[13px] font-bold" style={{ color: themeColor }}>
                         {exp.company}
                       </p>
                     )}
@@ -165,7 +165,7 @@ export const ArtisticBoldTemplate = ({
                   </div>
 
                   {exp.description && (
-                    <div className="text-gray-700 text-lg leading-relaxed">
+                    <div className="text-gray-700 text-[12.5px] leading-relaxed">
                       {editable ? (
                         <InlineEditableList
                           path={`experience.${index}.description`}
@@ -189,7 +189,7 @@ export const ArtisticBoldTemplate = ({
         {/* Skills */}
         {skills && skills.length > 0 && (
           <div className="mb-10">
-            <h2 className="text-4xl font-black mb-8 uppercase" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-black mb-8 uppercase" style={{ color: themeColor }}>
               Skills
             </h2>
             {editable ? (
@@ -199,7 +199,7 @@ export const ArtisticBoldTemplate = ({
                 {skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-6 py-3 text-white text-lg font-bold uppercase rounded-lg shadow-lg"
+                    className="px-6 py-3 text-white text-[12px] font-bold uppercase rounded-lg shadow-lg"
                     style={{ backgroundColor: themeColor }}
                   >
                     {skill.name}
@@ -213,7 +213,7 @@ export const ArtisticBoldTemplate = ({
         {/* Education */}
         {education && education.length > 0 && (
           <div className="mb-10">
-            <h2 className="text-4xl font-black mb-8 uppercase" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-black mb-8 uppercase" style={{ color: themeColor }}>
               Education
             </h2>
             <div className="space-y-6">
@@ -223,21 +223,21 @@ export const ArtisticBoldTemplate = ({
                     <InlineEditableText
                       path={`education.${index}.degree`}
                       value={edu.degree}
-                      className="text-2xl font-black text-gray-900"
+                      className="text-[13px] font-black text-gray-900"
                       as="h3"
                     />
                   ) : (
-                    <h3 className="text-2xl font-black text-gray-900">{edu.degree}</h3>
+                    <h3 className="text-[13px] font-black text-gray-900">{edu.degree}</h3>
                   )}
                   {editable ? (
                     <InlineEditableText
                       path={`education.${index}.institution`}
                       value={edu.institution}
-                      className="text-xl text-gray-700"
+                      className="text-[12.5px] text-gray-700"
                       as="p"
                     />
                   ) : (
-                    <p className="text-xl text-gray-700">{edu.institution}</p>
+                    <p className="text-[12.5px] text-gray-700">{edu.institution}</p>
                   )}
                   <p className="text-sm text-gray-500 font-semibold uppercase mt-1">
                     {edu.graduationDate}
@@ -252,10 +252,10 @@ export const ArtisticBoldTemplate = ({
         {sections &&
           sections.map((section, index) => (
             <div key={index} className="mb-10">
-              <h2 className="text-4xl font-black mb-6 uppercase" style={{ color: themeColor }}>
+              <h2 className="text-[15px] font-black mb-6 uppercase" style={{ color: themeColor }}>
                 {section.title}
               </h2>
-              <div className="text-xl text-gray-700 leading-relaxed whitespace-pre-wrap">
+              <div className="text-[12.5px] text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {section.content}
               </div>
             </div>

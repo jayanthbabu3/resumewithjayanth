@@ -30,11 +30,11 @@ export const DesignerShowcaseTemplate = ({
               <InlineEditableText
                 path="personalInfo.fullName"
                 value={personalInfo.fullName}
-                className="text-6xl font-bold mb-2"
+                className="text-[32px] font-bold mb-2"
                 as="h1"
               />
             ) : (
-              <h1 className="text-6xl font-bold mb-2">
+              <h1 className="text-[32px] font-bold mb-2">
                 {personalInfo.fullName}
               </h1>
             )}
@@ -45,12 +45,12 @@ export const DesignerShowcaseTemplate = ({
                   <InlineEditableText
                     path="personalInfo.title"
                     value={personalInfo.title}
-                    className="text-2xl"
+                    className="text-[16px]"
                     as="p"
                     style={{ color: themeColor }}
                   />
                 ) : (
-                  <p className="text-2xl" style={{ color: themeColor }}>
+                  <p className="text-[16px]" style={{ color: themeColor }}>
                     {personalInfo.title}
                   </p>
                 )}
@@ -114,18 +114,18 @@ export const DesignerShowcaseTemplate = ({
         {personalInfo.summary && (
           <div className="mb-10 bg-white p-8 rounded-2xl shadow-lg">
             <div className="w-16 h-1 mb-4 rounded" style={{ backgroundColor: themeColor }} />
-            <h2 className="text-3xl font-bold mb-4" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-4" style={{ color: themeColor }}>
               Creative Profile
             </h2>
             {editable ? (
               <InlineEditableText
                 path="personalInfo.summary"
                 value={personalInfo.summary}
-                className="text-lg text-gray-700 leading-relaxed"
+                className="text-[12.5px] text-gray-700 leading-relaxed"
                 as="p"
               />
             ) : (
-              <p className="text-lg text-gray-700 leading-relaxed">{personalInfo.summary}</p>
+              <p className="text-[12.5px] text-gray-700 leading-relaxed">{personalInfo.summary}</p>
             )}
           </div>
         )}
@@ -134,7 +134,7 @@ export const DesignerShowcaseTemplate = ({
         {skills && skills.length > 0 && (
           <div className="mb-10">
             <div className="w-16 h-1 mb-4 rounded" style={{ backgroundColor: themeColor }} />
-            <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
               Skills & Expertise
             </h2>
             {editable ? (
@@ -159,7 +159,7 @@ export const DesignerShowcaseTemplate = ({
         {experience && experience.length > 0 && (
           <div className="mb-10">
             <div className="w-16 h-1 mb-4 rounded" style={{ backgroundColor: themeColor }} />
-            <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
               Work Experience
             </h2>
             <div className="grid grid-cols-1 gap-6">
@@ -175,22 +175,22 @@ export const DesignerShowcaseTemplate = ({
                           <InlineEditableText
                             path={`experience.${index}.position`}
                             value={exp.position}
-                            className="text-2xl font-bold text-gray-900"
+                            className="text-[15px] font-bold text-gray-900"
                             as="h3"
                           />
                         ) : (
-                          <h3 className="text-2xl font-bold text-gray-900">{exp.position}</h3>
+                          <h3 className="text-[15px] font-bold text-gray-900">{exp.position}</h3>
                         )}
                         {editable ? (
                           <InlineEditableText
                             path={`experience.${index}.company`}
                             value={exp.company}
-                            className="text-lg font-medium"
+                            className="text-[13px] font-medium"
                             as="p"
                             style={{ color: themeColor }}
                           />
                         ) : (
-                          <p className="text-lg font-medium" style={{ color: themeColor }}>
+                          <p className="text-[13px] font-medium" style={{ color: themeColor }}>
                             {exp.company}
                           </p>
                         )}
@@ -227,7 +227,7 @@ export const DesignerShowcaseTemplate = ({
         {education && education.length > 0 && (
           <div className="mb-10">
             <div className="w-16 h-1 mb-4 rounded" style={{ backgroundColor: themeColor }} />
-            <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+            <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
               Education
             </h2>
             <div className="grid grid-cols-2 gap-6">
@@ -265,7 +265,7 @@ export const DesignerShowcaseTemplate = ({
           sections.map((section, index) => (
             <div key={index} className="mb-10">
               <div className="w-16 h-1 mb-4 rounded" style={{ backgroundColor: themeColor }} />
-              <h2 className="text-3xl font-bold mb-6" style={{ color: themeColor }}>
+              <h2 className="text-[15px] font-bold mb-6" style={{ color: themeColor }}>
                 {section.title}
               </h2>
               <div className="bg-white p-8 rounded-2xl shadow-lg text-gray-700 leading-relaxed whitespace-pre-wrap">

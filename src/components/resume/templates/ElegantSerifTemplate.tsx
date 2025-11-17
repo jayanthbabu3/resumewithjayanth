@@ -40,13 +40,13 @@ export const ElegantSerifTemplate = ({
           <InlineEditableText
             path="personalInfo.fullName"
             value={resumeData.personalInfo.fullName}
-            className="text-[44px] font-serif font-bold mb-3 tracking-tight"
+            className="text-[32px] font-serif font-bold mb-3 tracking-tight"
             as="h1"
             style={{ color: accent }}
           />
         ) : (
           <h1
-            className="text-[44px] font-serif font-bold mb-3 tracking-tight"
+            className="text-[32px] font-serif font-bold mb-3 tracking-tight"
             style={{ color: accent }}
           >
             {resumeData.personalInfo.fullName}
