@@ -168,6 +168,11 @@ import { TechCraftedTemplate } from "./templates/TechCraftedTemplate";
 import { SoftwareVisionTemplate } from "./templates/SoftwareVisionTemplate";
 import { CodePinnacleTemplate } from "./templates/CodePinnacleTemplate";
 import { DevMomentumTemplate } from "./templates/DevMomentumTemplate";
+import { ArtisticBoldTemplate } from "./templates/ArtisticBoldTemplate";
+import { DesignerShowcaseTemplate } from "./templates/DesignerShowcaseTemplate";
+import { CreativeTimelineTemplate } from "./templates/CreativeTimelineTemplate";
+import { ColorfulModernTemplate } from "./templates/ColorfulModernTemplate";
+import { AsymmetricCreativeTemplate } from "./templates/AsymmetricCreativeTemplate";
 import { CreativeCanvasTemplate } from "./templates/CreativeCanvasTemplate";
 import { DesignMaestroTemplate } from "./templates/DesignMaestroTemplate";
 import { ArtisticVisionTemplate } from "./templates/ArtisticVisionTemplate";
@@ -368,6 +373,11 @@ export const ResumePreview = ({
     "software-vision": SoftwareVisionTemplate,
     "code-pinnacle": CodePinnacleTemplate,
     "dev-momentum": DevMomentumTemplate,
+    "artistic-bold": ArtisticBoldTemplate,
+    "designer-showcase": DesignerShowcaseTemplate,
+    "creative-timeline": CreativeTimelineTemplate,
+    "colorful-modern": ColorfulModernTemplate,
+    "asymmetric-creative": AsymmetricCreativeTemplate,
     "creative-canvas": CreativeCanvasTemplate,
     "design-maestro": DesignMaestroTemplate,
     "artistic-vision": ArtisticVisionTemplate,
