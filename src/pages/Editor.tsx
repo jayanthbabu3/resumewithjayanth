@@ -46,6 +46,21 @@ import { FresherTwoTonePDF } from "@/components/resume/pdf/FresherTwoTonePDF";
 import { FresherCenteredElegantPDF } from "@/components/resume/pdf/FresherCenteredElegantPDF";
 import { FresherGeometricPDF } from "@/components/resume/pdf/FresherGeometricPDF";
 import { FresherAchievementPDF } from "@/components/resume/pdf/FresherAchievementPDF";
+import { FresherModernTwoColumnPDF } from "@/components/resume/pdf/FresherModernTwoColumnPDF";
+import { FresherProfessionalSidebarPDF } from "@/components/resume/pdf/FresherProfessionalSidebarPDF";
+import { FresherCleanModernPDF } from "@/components/resume/pdf/FresherCleanModernPDF";
+import { FresherTechSplitPDF } from "@/components/resume/pdf/FresherTechSplitPDF";
+import { FresherExecutiveStylePDF } from "@/components/resume/pdf/FresherExecutiveStylePDF";
+import { FresherBoldHeaderPDF } from "@/components/resume/pdf/FresherBoldHeaderPDF";
+import { FresherMinimalistTwoColumnPDF } from "@/components/resume/pdf/FresherMinimalistTwoColumnPDF";
+import { FresherCreativeEdgePDF } from "@/components/resume/pdf/FresherCreativeEdgePDF";
+import { FresherProfessionalGridPDF } from "@/components/resume/pdf/FresherProfessionalGridPDF";
+import { FresherModernClassicPDF } from "@/components/resume/pdf/FresherModernClassicPDF";
+import { FresherSplitLayoutPDF } from "@/components/resume/pdf/FresherSplitLayoutPDF";
+import { FresherCompactProPDF } from "@/components/resume/pdf/FresherCompactProPDF";
+import { FresherElegantSidebarPDF } from "@/components/resume/pdf/FresherElegantSidebarPDF";
+import { FresherTechModernPDF } from "@/components/resume/pdf/FresherTechModernPDF";
+import { FresherProfessionalMinimalPDF } from "@/components/resume/pdf/FresherProfessionalMinimalPDF";
 // New Software Development PDF Templates
 import { JavaDeveloperPDF } from "@/components/resume/pdf/JavaDeveloperPDF";
 import { DotNetDeveloperPDF } from "@/components/resume/pdf/DotNetDeveloperPDF";
@@ -2076,6 +2091,21 @@ const Editor = () => {
         "fresher-centered-elegant": FresherCenteredElegantPDF,
         "fresher-geometric": FresherGeometricPDF,
         "fresher-achievement": FresherAchievementPDF,
+        "fresher-modern-two-column": FresherModernTwoColumnPDF,
+        "fresher-professional-sidebar": FresherProfessionalSidebarPDF,
+        "fresher-clean-modern": FresherCleanModernPDF,
+        "fresher-tech-split": FresherTechSplitPDF,
+        "fresher-executive-style": FresherExecutiveStylePDF,
+        "fresher-bold-header": FresherBoldHeaderPDF,
+        "fresher-minimalist-two-column": FresherMinimalistTwoColumnPDF,
+        "fresher-creative-edge": FresherCreativeEdgePDF,
+        "fresher-professional-grid": FresherProfessionalGridPDF,
+        "fresher-modern-classic": FresherModernClassicPDF,
+        "fresher-split-layout": FresherSplitLayoutPDF,
+        "fresher-compact-pro": FresherCompactProPDF,
+        "fresher-elegant-sidebar": FresherElegantSidebarPDF,
+        "fresher-tech-modern": FresherTechModernPDF,
+        "fresher-professional-minimal": FresherProfessionalMinimalPDF,
         // New Software Development Templates
         "java-developer": JavaDeveloperPDF,
         "dotnet-developer": DotNetDeveloperPDF,

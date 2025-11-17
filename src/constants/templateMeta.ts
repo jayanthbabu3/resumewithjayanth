@@ -303,6 +303,111 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Early Career",
     categorySlug: "freshers",
   },
+  "fresher-modern-two-column": {
+    name: "Modern Two-Column",
+    description:
+      "Contemporary two-column design with clean sections and modern typography, ideal for showcasing skills and education side-by-side.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-professional-sidebar": {
+    name: "Professional Sidebar",
+    description:
+      "Professional layout with left sidebar for contact and skills, providing a clean, organized structure for fresh graduates.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-clean-modern": {
+    name: "Clean Modern",
+    description:
+      "Minimalist modern design with exceptional readability and clean spacing, perfect for entry-level professionals.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-tech-split": {
+    name: "Tech Split",
+    description:
+      "Technical split-layout design optimized for tech freshers with emphasis on skills and projects.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-executive-style": {
+    name: "Executive Style",
+    description:
+      "Sophisticated executive-inspired design for ambitious fresh graduates targeting leadership programs.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-bold-header": {
+    name: "Bold Header",
+    description:
+      "Eye-catching bold header design with strong visual impact and clear section hierarchy for fresh talent.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-minimalist-two-column": {
+    name: "Minimalist Two-Column",
+    description:
+      "Ultra-clean two-column minimalist layout emphasizing content clarity and professional simplicity.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-creative-edge": {
+    name: "Creative Edge",
+    description:
+      "Creative design with unique visual elements while maintaining professional standards for innovative freshers.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-professional-grid": {
+    name: "Professional Grid",
+    description:
+      "Grid-based professional layout providing organized structure for education, skills, and early experience.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-modern-classic": {
+    name: "Modern Classic",
+    description:
+      "Perfect blend of modern aesthetics and classic professionalism for versatile entry-level applications.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-split-layout": {
+    name: "Split Layout",
+    description:
+      "Distinctive split-screen design creating visual interest while maintaining ATS compatibility for freshers.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-compact-pro": {
+    name: "Compact Professional",
+    description:
+      "Space-efficient professional design maximizing content density while maintaining readability for graduates.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-elegant-sidebar": {
+    name: "Elegant Sidebar",
+    description:
+      "Elegant sidebar template with refined typography and sophisticated layout for polished fresh graduates.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-tech-modern": {
+    name: "Tech Modern",
+    description:
+      "Modern technical design with tech-forward styling perfect for engineering and IT fresh graduates.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
+  "fresher-professional-minimal": {
+    name: "Professional Minimal",
+    description:
+      "Clean professional minimalist approach with focus on content over decoration for entry-level roles.",
+    category: "Early Career",
+    categorySlug: "freshers",
+  },
   // Healthcare & Medical Templates
   "medical-professional": {
     name: "Medical Professional",
