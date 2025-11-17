@@ -15,7 +15,6 @@ export const DesignPinnacleTemplate = ({
   themeColor = "#f59e0b",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -37,34 +36,34 @@ export const DesignPinnacleTemplate = ({
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
-            value={personalInfo.fullName || "Your Name"}
+            value={resumeData.personalInfo.fullName || "Your Name"}
             className="text-[32px] font-bold mb-2 block"
             style={{ color: themeColor }}
             as="h1"
           />
         ) : (
           <h1 className="text-[32px] font-bold mb-2" style={{ color: themeColor }}>
-            {personalInfo.fullName || "Your Name"}
+            {resumeData.personalInfo.fullName || "Your Name"}
           </h1>
         )}
 
-        {personalInfo.title && (
+        {resumeData.personalInfo.title && (
           editable ? (
             <InlineEditableText
               path="personalInfo.title"
-              value={personalInfo.title}
+              value={resumeData.personalInfo.title}
               className="text-[14px] text-gray-600 mb-4 font-medium uppercase tracking-wide block"
               as="h2"
             />
           ) : (
             <h2 className="text-[14px] text-gray-600 mb-4 font-medium uppercase tracking-wide">
-              {personalInfo.title}
+              {resumeData.personalInfo.title}
             </h2>
           )
         )}
 
         <div className="flex gap-5 text-[12px] text-gray-700 flex-wrap">
-          {personalInfo.email && (
+          {resumeData.personalInfo.email && (
             <div className="flex items-center gap-2">
               <div className="w-2 h-2" style={{
                 clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
@@ -73,15 +72,15 @@ export const DesignPinnacleTemplate = ({
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.email"
-                  value={personalInfo.email}
+                  value={resumeData.personalInfo.email}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.email}</span>
+                <span>{resumeData.personalInfo.email}</span>
               )}
             </div>
           )}
-          {personalInfo.phone && (
+          {resumeData.personalInfo.phone && (
             <div className="flex items-center gap-2">
               <div className="w-2 h-2" style={{
                 clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
@@ -90,15 +89,15 @@ export const DesignPinnacleTemplate = ({
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.phone"
-                  value={personalInfo.phone}
+                  value={resumeData.personalInfo.phone}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.phone}</span>
+                <span>{resumeData.personalInfo.phone}</span>
               )}
             </div>
           )}
-          {personalInfo.location && (
+          {resumeData.personalInfo.location && (
             <div className="flex items-center gap-2">
               <div className="w-2 h-2" style={{
                 clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
@@ -107,11 +106,11 @@ export const DesignPinnacleTemplate = ({
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.location"
-                  value={personalInfo.location}
+                  value={resumeData.personalInfo.location}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.location}</span>
+                <span>{resumeData.personalInfo.location}</span>
               )}
             </div>
           )}
@@ -119,7 +118,7 @@ export const DesignPinnacleTemplate = ({
       </div>
 
       {/* Summary */}
-      {personalInfo.summary && (
+      {resumeData.personalInfo.summary && (
         <div className="mb-8 relative">
           <div className="flex items-baseline gap-3 mb-3">
             <div className="w-3 h-3" style={{
@@ -133,21 +132,21 @@ export const DesignPinnacleTemplate = ({
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
-              value={personalInfo.summary}
+              value={resumeData.personalInfo.summary}
               className="text-[12.5px] text-gray-700 leading-[1.7] block pl-6"
               multiline
               as="p"
             />
           ) : (
             <p className="text-[12.5px] text-gray-700 leading-[1.7] pl-6">
-              {personalInfo.summary}
+              {resumeData.personalInfo.summary}
             </p>
           )}
         </div>
       )}
 
       {/* Experience */}
-      {experience && experience.length > 0 && (
+      {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8">
           <div className="flex items-baseline gap-3 mb-6">
             <div className="w-3 h-3" style={{
@@ -161,7 +160,7 @@ export const DesignPinnacleTemplate = ({
           {editable ? (
             <InlineEditableList
               path="experience"
-              items={experience}
+              items={resumeData.experience}
               defaultItem={{
                 id: Date.now().toString(),
                 company: "Company Name",
@@ -228,7 +227,7 @@ export const DesignPinnacleTemplate = ({
             />
           ) : (
             <div className="space-y-6">
-              {experience.map((exp) => (
+              {resumeData.experience.map((exp) => (
                 <div key={exp.id} className="pl-6 relative">
                   <div className="absolute left-0 top-1.5 w-2 h-2" style={{
                     clipPath: 'polygon(50% 0%, 100% 100%, 0% 100%)',
@@ -261,7 +260,7 @@ export const DesignPinnacleTemplate = ({
 
       <div className="grid grid-cols-2 gap-8">
         {/* Skills */}
-        {skills && skills.length > 0 && (
+        {resumeData.skills && resumeData.skills.length > 0 && (
           <div>
             <div className="flex items-baseline gap-3 mb-4">
               <div className="w-3 h-3" style={{
@@ -275,7 +274,7 @@ export const DesignPinnacleTemplate = ({
             {editable ? (
               <InlineEditableSkills
                 path="skills"
-                skills={skills}
+                skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
                     <div className="relative px-4 py-2 text-[12px] font-medium" style={{
@@ -289,7 +288,7 @@ export const DesignPinnacleTemplate = ({
               />
             ) : (
               <div className="grid grid-cols-1 gap-2">
-                {skills.map((skill) =>
+                {resumeData.skills.map((skill) =>
                   skill.name ? (
                     <div key={skill.id} className="relative px-4 py-2 text-[12px] font-medium" style={{
                       backgroundColor: `${themeColor}10`,
@@ -306,7 +305,7 @@ export const DesignPinnacleTemplate = ({
         )}
 
         {/* Education */}
-        {education && education.length > 0 && (
+        {resumeData.education && resumeData.education.length > 0 && (
           <div>
             <div className="flex items-baseline gap-3 mb-4">
               <div className="w-3 h-3" style={{
@@ -320,7 +319,7 @@ export const DesignPinnacleTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="education"
-                items={education}
+                items={resumeData.education}
                 defaultItem={{
                   id: Date.now().toString(),
                   school: "School Name",
@@ -372,7 +371,7 @@ export const DesignPinnacleTemplate = ({
               />
             ) : (
               <div className="space-y-5">
-                {education.map((edu) => (
+                {resumeData.education.map((edu) => (
                   <div key={edu.id}>
                     <h3 className="text-[13px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
                     {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
@@ -389,7 +388,7 @@ export const DesignPinnacleTemplate = ({
       </div>
 
       {/* Additional Sections */}
-      {sections && sections.length > 0 && sections.map((section, index) => (
+      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
         <div key={section.id} className="mt-8">
           <div className="flex items-baseline gap-3 mb-3">
             <div className="w-3 h-3" style={{

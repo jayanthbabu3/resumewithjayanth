@@ -16,7 +16,6 @@ export const CreativeCanvasTemplate = ({
   themeColor = "#f43f5e",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -26,7 +25,7 @@ export const CreativeCanvasTemplate = ({
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   };
 
-  const photo = personalInfo.photo;
+  const photo = resumeData.personalInfo.photo;
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 to-white text-gray-900">
@@ -52,70 +51,70 @@ export const CreativeCanvasTemplate = ({
             {editable ? (
               <InlineEditableText
                 path="personalInfo.fullName"
-                value={personalInfo.fullName || "Your Name"}
+                value={resumeData.personalInfo.fullName || "Your Name"}
                 className="text-[32px] font-bold mb-1 block"
                 style={{ color: themeColor }}
                 as="h1"
               />
             ) : (
               <h1 className="text-[32px] font-bold mb-1" style={{ color: themeColor }}>
-                {personalInfo.fullName || "Your Name"}
+                {resumeData.personalInfo.fullName || "Your Name"}
               </h1>
             )}
-            {personalInfo.title && (
+            {resumeData.personalInfo.title && (
               editable ? (
                 <InlineEditableText
                   path="personalInfo.title"
-                  value={personalInfo.title}
+                  value={resumeData.personalInfo.title}
                   className="text-[16px] text-gray-700 mb-4 font-medium block uppercase tracking-wide"
                   as="h2"
                 />
               ) : (
                 <h2 className="text-[16px] text-gray-700 mb-4 font-medium uppercase tracking-wide">
-                  {personalInfo.title}
+                  {resumeData.personalInfo.title}
                 </h2>
               )
             )}
             <div className="flex flex-wrap gap-4 text-[12px] text-gray-600">
-              {personalInfo.email && (
+              {resumeData.personalInfo.email && (
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }} />
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.email"
-                      value={personalInfo.email}
+                      value={resumeData.personalInfo.email}
                       className="inline-block"
                     />
                   ) : (
-                    <span>{personalInfo.email}</span>
+                    <span>{resumeData.personalInfo.email}</span>
                   )}
                 </div>
               )}
-              {personalInfo.phone && (
+              {resumeData.personalInfo.phone && (
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }} />
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.phone"
-                      value={personalInfo.phone}
+                      value={resumeData.personalInfo.phone}
                       className="inline-block"
                     />
                   ) : (
-                    <span>{personalInfo.phone}</span>
+                    <span>{resumeData.personalInfo.phone}</span>
                   )}
                 </div>
               )}
-              {personalInfo.location && (
+              {resumeData.personalInfo.location && (
                 <div className="flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }} />
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.location"
-                      value={personalInfo.location}
+                      value={resumeData.personalInfo.location}
                       className="inline-block"
                     />
                   ) : (
-                    <span>{personalInfo.location}</span>
+                    <span>{resumeData.personalInfo.location}</span>
                   )}
                 </div>
               )}
@@ -126,7 +125,7 @@ export const CreativeCanvasTemplate = ({
 
       <div className="px-10 pb-10">
         {/* Summary as canvas card */}
-        {personalInfo.summary && (
+        {resumeData.personalInfo.summary && (
           <div className="mb-8 p-6 bg-white shadow-md border-l-4" style={{ borderColor: themeColor }}>
             <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
               Creative Profile
@@ -134,21 +133,21 @@ export const CreativeCanvasTemplate = ({
             {editable ? (
               <InlineEditableText
                 path="personalInfo.summary"
-                value={personalInfo.summary}
+                value={resumeData.personalInfo.summary}
                 className="text-[12.5px] text-gray-700 leading-[1.7] block"
                 multiline
                 as="p"
               />
             ) : (
               <p className="text-[12.5px] text-gray-700 leading-[1.7]">
-                {personalInfo.summary}
+                {resumeData.personalInfo.summary}
               </p>
             )}
           </div>
         )}
 
         {/* Experience as gallery cards */}
-        {experience && experience.length > 0 && (
+        {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
             <h2 className="text-[15px] font-bold mb-5 uppercase tracking-wide flex items-center gap-3" style={{ color: themeColor }}>
               <span>Experience</span>
@@ -157,7 +156,7 @@ export const CreativeCanvasTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="experience"
-                items={experience}
+                items={resumeData.experience}
                 defaultItem={{
                   id: Date.now().toString(),
                   company: "Company Name",
@@ -220,7 +219,7 @@ export const CreativeCanvasTemplate = ({
               />
             ) : (
               <div className="space-y-6">
-                {experience.map((exp) => (
+                {resumeData.experience.map((exp) => (
                   <div key={exp.id} className="p-5 bg-white shadow-sm border-t-2" style={{ borderColor: `${themeColor}40` }}>
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex-1">
@@ -244,7 +243,7 @@ export const CreativeCanvasTemplate = ({
         )}
 
         {/* Skills as paint palette */}
-        {skills && skills.length > 0 && (
+        {resumeData.skills && resumeData.skills.length > 0 && (
           <div className="mb-8 p-6 bg-white shadow-md">
             <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
               Creative Skills
@@ -252,7 +251,7 @@ export const CreativeCanvasTemplate = ({
             {editable ? (
               <InlineEditableSkills
                 path="skills"
-                skills={skills}
+                skills={resumeData.skills}
                 renderSkill={(skill, index) => {
                   const colors = [themeColor, '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4'];
                   const color = colors[index % colors.length];
@@ -272,7 +271,7 @@ export const CreativeCanvasTemplate = ({
               />
             ) : (
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => {
+                {resumeData.skills.map((skill, index) => {
                   const colors = [themeColor, '#10b981', '#f59e0b', '#8b5cf6', '#06b6d4'];
                   const color = colors[index % colors.length];
                   return skill.name ? (
@@ -295,7 +294,7 @@ export const CreativeCanvasTemplate = ({
         )}
 
         {/* Education */}
-        {education && education.length > 0 && (
+        {resumeData.education && resumeData.education.length > 0 && (
           <div className="mb-8">
             <h2 className="text-[15px] font-bold mb-5 uppercase tracking-wide flex items-center gap-3" style={{ color: themeColor }}>
               <span>Education</span>
@@ -304,7 +303,7 @@ export const CreativeCanvasTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="education"
-                items={education}
+                items={resumeData.education}
                 defaultItem={{
                   id: Date.now().toString(),
                   school: "School Name",
@@ -359,7 +358,7 @@ export const CreativeCanvasTemplate = ({
               />
             ) : (
               <div className="space-y-4">
-                {education.map((edu) => (
+                {resumeData.education.map((edu) => (
                   <div key={edu.id} className="flex justify-between items-start gap-4 p-4 bg-white shadow-sm">
                     <div className="flex-1">
                       <h3 className="text-[13px] font-bold text-gray-900">{edu.degree}</h3>
@@ -377,7 +376,7 @@ export const CreativeCanvasTemplate = ({
         )}
 
         {/* Custom Sections */}
-        {sections && sections.map((section, index) => (
+        {resumeData.sections && resumeData.sections.map((section, index) => (
           <div key={section.id} className="mb-8 p-6 bg-white shadow-md">
             <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
               {section.title}

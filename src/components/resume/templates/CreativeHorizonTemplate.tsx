@@ -15,7 +15,6 @@ export const CreativeHorizonTemplate = ({
   themeColor = "#f43f5e",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -35,66 +34,66 @@ export const CreativeHorizonTemplate = ({
           {editable ? (
             <InlineEditableText
               path="personalInfo.fullName"
-              value={personalInfo.fullName || "Your Name"}
+              value={resumeData.personalInfo.fullName || "Your Name"}
               className="text-[32px] font-bold mb-2 block"
               style={{ color: themeColor }}
               as="h1"
             />
           ) : (
             <h1 className="text-[32px] font-bold mb-2" style={{ color: themeColor }}>
-              {personalInfo.fullName || "Your Name"}
+              {resumeData.personalInfo.fullName || "Your Name"}
             </h1>
           )}
 
-          {personalInfo.title && (
+          {resumeData.personalInfo.title && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.title"
-                value={personalInfo.title}
+                value={resumeData.personalInfo.title}
                 className="text-[14px] text-gray-600 mb-4 block"
                 as="h2"
               />
             ) : (
               <h2 className="text-[14px] text-gray-600 mb-4">
-                {personalInfo.title}
+                {resumeData.personalInfo.title}
               </h2>
             )
           )}
 
           <div className="flex gap-6 text-[12px] text-gray-700 flex-wrap">
-            {personalInfo.email && (
+            {resumeData.personalInfo.email && (
               editable ? (
                 <InlineEditableText
                   path="personalInfo.email"
-                  value={personalInfo.email}
+                  value={resumeData.personalInfo.email}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.email}</span>
+                <span>{resumeData.personalInfo.email}</span>
               )
             )}
-            {personalInfo.email && personalInfo.phone && <span>|</span>}
-            {personalInfo.phone && (
+            {resumeData.personalInfo.email && resumeData.personalInfo.phone && <span>|</span>}
+            {resumeData.personalInfo.phone && (
               editable ? (
                 <InlineEditableText
                   path="personalInfo.phone"
-                  value={personalInfo.phone}
+                  value={resumeData.personalInfo.phone}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.phone}</span>
+                <span>{resumeData.personalInfo.phone}</span>
               )
             )}
-            {personalInfo.location && (personalInfo.email || personalInfo.phone) && <span>|</span>}
-            {personalInfo.location && (
+            {resumeData.personalInfo.location && (resumeData.personalInfo.email || resumeData.personalInfo.phone) && <span>|</span>}
+            {resumeData.personalInfo.location && (
               editable ? (
                 <InlineEditableText
                   path="personalInfo.location"
-                  value={personalInfo.location}
+                  value={resumeData.personalInfo.location}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.location}</span>
+                <span>{resumeData.personalInfo.location}</span>
               )
             )}
           </div>
@@ -103,7 +102,7 @@ export const CreativeHorizonTemplate = ({
 
       <div className="px-10">
         {/* Summary Layer */}
-        {personalInfo.summary && (
+        {resumeData.personalInfo.summary && (
           <div className="mb-8 -mt-4 p-6 relative" style={{
             background: `linear-gradient(to right, ${themeColor}08, transparent)`,
             borderLeft: `4px solid ${themeColor}`
@@ -114,21 +113,21 @@ export const CreativeHorizonTemplate = ({
             {editable ? (
               <InlineEditableText
                 path="personalInfo.summary"
-                value={personalInfo.summary}
+                value={resumeData.personalInfo.summary}
                 className="text-[12.5px] text-gray-700 leading-[1.7] block"
                 multiline
                 as="p"
               />
             ) : (
               <p className="text-[12.5px] text-gray-700 leading-[1.7]">
-                {personalInfo.summary}
+                {resumeData.personalInfo.summary}
               </p>
             )}
           </div>
         )}
 
         {/* Experience Layers */}
-        {experience && experience.length > 0 && (
+        {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
             <div className="mb-6 py-3 px-4" style={{
               background: `linear-gradient(to right, ${themeColor}15, transparent)`,
@@ -141,7 +140,7 @@ export const CreativeHorizonTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="experience"
-                items={experience}
+                items={resumeData.experience}
                 defaultItem={{
                   id: Date.now().toString(),
                   company: "Company Name",
@@ -207,7 +206,7 @@ export const CreativeHorizonTemplate = ({
               />
             ) : (
               <div className="space-y-6">
-                {experience.map((exp) => (
+                {resumeData.experience.map((exp) => (
                   <div key={exp.id} className="p-5 relative" style={{
                     background: `linear-gradient(to right, ${themeColor}05, transparent)`,
                     borderLeft: `3px solid ${themeColor}40`
@@ -239,7 +238,7 @@ export const CreativeHorizonTemplate = ({
 
         <div className="grid grid-cols-2 gap-8">
           {/* Skills Layer */}
-          {skills && skills.length > 0 && (
+          {resumeData.skills && resumeData.skills.length > 0 && (
             <div>
               <div className="mb-4 py-2 px-4" style={{
                 background: `linear-gradient(to right, ${themeColor}15, transparent)`,
@@ -252,7 +251,7 @@ export const CreativeHorizonTemplate = ({
               {editable ? (
                 <InlineEditableSkills
                   path="skills"
-                  skills={skills}
+                  skills={resumeData.skills}
                   renderSkill={(skill) =>
                     skill.name ? (
                       <div className="px-3 py-2 text-[12px] font-medium" style={{
@@ -267,7 +266,7 @@ export const CreativeHorizonTemplate = ({
                 />
               ) : (
                 <div className="grid grid-cols-1 gap-2">
-                  {skills.map((skill) =>
+                  {resumeData.skills.map((skill) =>
                     skill.name ? (
                       <div key={skill.id} className="px-3 py-2 text-[12px] font-medium" style={{
                         background: `linear-gradient(to right, ${themeColor}10, transparent)`,
@@ -284,7 +283,7 @@ export const CreativeHorizonTemplate = ({
           )}
 
           {/* Education Layer */}
-          {education && education.length > 0 && (
+          {resumeData.education && resumeData.education.length > 0 && (
             <div>
               <div className="mb-4 py-2 px-4" style={{
                 background: `linear-gradient(to right, ${themeColor}15, transparent)`,
@@ -297,7 +296,7 @@ export const CreativeHorizonTemplate = ({
               {editable ? (
                 <InlineEditableList
                   path="education"
-                  items={education}
+                  items={resumeData.education}
                   defaultItem={{
                     id: Date.now().toString(),
                     school: "School Name",
@@ -349,7 +348,7 @@ export const CreativeHorizonTemplate = ({
                 />
               ) : (
                 <div className="space-y-4">
-                  {education.map((edu) => (
+                  {resumeData.education.map((edu) => (
                     <div key={edu.id}>
                       <h3 className="text-[13px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
                       {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
@@ -366,7 +365,7 @@ export const CreativeHorizonTemplate = ({
         </div>
 
         {/* Additional Sections */}
-        {sections && sections.length > 0 && sections.map((section, index) => (
+        {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
           <div key={section.id} className="mt-8">
             <div className="mb-4 py-2 px-4" style={{
               background: `linear-gradient(to right, ${themeColor}15, transparent)`,

@@ -15,7 +15,6 @@ export const CreativeCraftedTemplate = ({
   themeColor = "#84cc16",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -37,73 +36,73 @@ export const CreativeCraftedTemplate = ({
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
-            value={personalInfo.fullName || "Your Name"}
+            value={resumeData.personalInfo.fullName || "Your Name"}
             className="text-[32px] font-bold mb-2 block"
             style={{ color: themeColor }}
             as="h1"
           />
         ) : (
           <h1 className="text-[32px] font-bold mb-2" style={{ color: themeColor }}>
-            {personalInfo.fullName || "Your Name"}
+            {resumeData.personalInfo.fullName || "Your Name"}
           </h1>
         )}
 
-        {personalInfo.title && (
+        {resumeData.personalInfo.title && (
           editable ? (
             <InlineEditableText
               path="personalInfo.title"
-              value={personalInfo.title}
+              value={resumeData.personalInfo.title}
               className="text-[14px] text-gray-600 mb-4 font-medium block"
               as="h2"
             />
           ) : (
             <h2 className="text-[14px] text-gray-600 mb-4 font-medium">
-              {personalInfo.title}
+              {resumeData.personalInfo.title}
             </h2>
           )
         )}
 
         <div className="flex gap-5 text-[12px] text-gray-700 flex-wrap">
-          {personalInfo.email && (
+          {resumeData.personalInfo.email && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.email"
-                value={personalInfo.email}
+                value={resumeData.personalInfo.email}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.email}</span>
+              <span>{resumeData.personalInfo.email}</span>
             )
           )}
-          {personalInfo.email && personalInfo.phone && <span className="text-gray-400">•</span>}
-          {personalInfo.phone && (
+          {resumeData.personalInfo.email && resumeData.personalInfo.phone && <span className="text-gray-400">•</span>}
+          {resumeData.personalInfo.phone && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.phone"
-                value={personalInfo.phone}
+                value={resumeData.personalInfo.phone}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.phone}</span>
+              <span>{resumeData.personalInfo.phone}</span>
             )
           )}
-          {personalInfo.location && (personalInfo.email || personalInfo.phone) && <span className="text-gray-400">•</span>}
-          {personalInfo.location && (
+          {resumeData.personalInfo.location && (resumeData.personalInfo.email || resumeData.personalInfo.phone) && <span className="text-gray-400">•</span>}
+          {resumeData.personalInfo.location && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.location"
-                value={personalInfo.location}
+                value={resumeData.personalInfo.location}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.location}</span>
+              <span>{resumeData.personalInfo.location}</span>
             )
           )}
         </div>
       </div>
 
       {/* Summary with Textured Box */}
-      {personalInfo.summary && (
+      {resumeData.personalInfo.summary && (
         <div className="mb-8 p-5 relative" style={{
           backgroundColor: `${themeColor}08`,
           border: `2px dashed ${themeColor}40`
@@ -114,21 +113,21 @@ export const CreativeCraftedTemplate = ({
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
-              value={personalInfo.summary}
+              value={resumeData.personalInfo.summary}
               className="text-[12.5px] text-gray-700 leading-[1.7] block"
               multiline
               as="p"
             />
           ) : (
             <p className="text-[12.5px] text-gray-700 leading-[1.7]">
-              {personalInfo.summary}
+              {resumeData.personalInfo.summary}
             </p>
           )}
         </div>
       )}
 
       {/* Experience with Artisan Cards */}
-      {experience && experience.length > 0 && (
+      {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8">
           <h2 className="text-[15px] font-bold mb-6 uppercase tracking-wide" style={{ color: themeColor }}>
             Work Portfolio
@@ -136,7 +135,7 @@ export const CreativeCraftedTemplate = ({
           {editable ? (
             <InlineEditableList
               path="experience"
-              items={experience}
+              items={resumeData.experience}
               defaultItem={{
                 id: Date.now().toString(),
                 company: "Company Name",
@@ -207,7 +206,7 @@ export const CreativeCraftedTemplate = ({
             />
           ) : (
             <div className="space-y-6">
-              {experience.map((exp) => (
+              {resumeData.experience.map((exp) => (
                 <div key={exp.id} className="p-5 border-2 rounded-lg" style={{
                   borderColor: `${themeColor}30`,
                   backgroundColor: `${themeColor}05`
@@ -242,7 +241,7 @@ export const CreativeCraftedTemplate = ({
 
       <div className="grid grid-cols-2 gap-8">
         {/* Skills with Artisan Tags */}
-        {skills && skills.length > 0 && (
+        {resumeData.skills && resumeData.skills.length > 0 && (
           <div>
             <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
               Craftsman Skills
@@ -250,7 +249,7 @@ export const CreativeCraftedTemplate = ({
             {editable ? (
               <InlineEditableSkills
                 path="skills"
-                skills={skills}
+                skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
                     <div className="px-3 py-2 text-[12px] font-medium border-2" style={{
@@ -265,7 +264,7 @@ export const CreativeCraftedTemplate = ({
               />
             ) : (
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill) =>
+                {resumeData.skills.map((skill) =>
                   skill.name ? (
                     <div key={skill.id} className="px-3 py-2 text-[12px] font-medium border-2" style={{
                       borderColor: themeColor,
@@ -282,7 +281,7 @@ export const CreativeCraftedTemplate = ({
         )}
 
         {/* Education */}
-        {education && education.length > 0 && (
+        {resumeData.education && resumeData.education.length > 0 && (
           <div>
             <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
               Education
@@ -290,7 +289,7 @@ export const CreativeCraftedTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="education"
-                items={education}
+                items={resumeData.education}
                 defaultItem={{
                   id: Date.now().toString(),
                   school: "School Name",
@@ -342,7 +341,7 @@ export const CreativeCraftedTemplate = ({
               />
             ) : (
               <div className="space-y-5">
-                {education.map((edu) => (
+                {resumeData.education.map((edu) => (
                   <div key={edu.id}>
                     <h3 className="text-[13px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
                     {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
@@ -359,7 +358,7 @@ export const CreativeCraftedTemplate = ({
       </div>
 
       {/* Additional Sections */}
-      {sections && sections.length > 0 && sections.map((section, index) => (
+      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
         <div key={section.id} className="mt-8">
           <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
             {section.title}

@@ -15,7 +15,6 @@ export const CreativePulseTemplate = ({
   themeColor = "#10b981",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -39,72 +38,72 @@ export const CreativePulseTemplate = ({
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
-            value={personalInfo.fullName || "Your Name"}
+            value={resumeData.personalInfo.fullName || "Your Name"}
             className="text-[32px] font-bold mb-2 block tracking-wide"
             style={{ color: themeColor }}
             as="h1"
           />
         ) : (
           <h1 className="text-[32px] font-bold mb-2 tracking-wide" style={{ color: themeColor }}>
-            {personalInfo.fullName || "Your Name"}
+            {resumeData.personalInfo.fullName || "Your Name"}
           </h1>
         )}
 
-        {personalInfo.title && (
+        {resumeData.personalInfo.title && (
           editable ? (
             <InlineEditableText
               path="personalInfo.title"
-              value={personalInfo.title}
+              value={resumeData.personalInfo.title}
               className="text-[14px] text-gray-600 mb-4 font-medium block"
               as="h2"
             />
           ) : (
             <h2 className="text-[14px] text-gray-600 mb-4 font-medium">
-              {personalInfo.title}
+              {resumeData.personalInfo.title}
             </h2>
           )
         )}
 
         <div className="flex gap-4 text-[12px] text-gray-700 flex-wrap items-center">
-          {personalInfo.email && (
+          {resumeData.personalInfo.email && (
             <div className="flex items-center gap-2">
               <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }}></div>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.email"
-                  value={personalInfo.email}
+                  value={resumeData.personalInfo.email}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.email}</span>
+                <span>{resumeData.personalInfo.email}</span>
               )}
             </div>
           )}
-          {personalInfo.phone && (
+          {resumeData.personalInfo.phone && (
             <div className="flex items-center gap-2">
               <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }}></div>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.phone"
-                  value={personalInfo.phone}
+                  value={resumeData.personalInfo.phone}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.phone}</span>
+                <span>{resumeData.personalInfo.phone}</span>
               )}
             </div>
           )}
-          {personalInfo.location && (
+          {resumeData.personalInfo.location && (
             <div className="flex items-center gap-2">
               <div className="w-1 h-1 rounded-full" style={{ backgroundColor: themeColor }}></div>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.location"
-                  value={personalInfo.location}
+                  value={resumeData.personalInfo.location}
                   className="inline-block"
                 />
               ) : (
-                <span>{personalInfo.location}</span>
+                <span>{resumeData.personalInfo.location}</span>
               )}
             </div>
           )}
@@ -112,7 +111,7 @@ export const CreativePulseTemplate = ({
       </div>
 
       {/* Summary with Diagonal Divider */}
-      {personalInfo.summary && (
+      {resumeData.personalInfo.summary && (
         <div className="mb-8 relative">
           <div className="absolute -left-10 top-0 w-24 h-0.5 -rotate-12" style={{ backgroundColor: `${themeColor}60` }}></div>
           <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wider" style={{ color: themeColor }}>
@@ -121,21 +120,21 @@ export const CreativePulseTemplate = ({
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
-              value={personalInfo.summary}
+              value={resumeData.personalInfo.summary}
               className="text-[12.5px] text-gray-700 leading-[1.7] block"
               multiline
               as="p"
             />
           ) : (
             <p className="text-[12.5px] text-gray-700 leading-[1.7]">
-              {personalInfo.summary}
+              {resumeData.personalInfo.summary}
             </p>
           )}
         </div>
       )}
 
       {/* Experience with Pulse Indicators */}
-      {experience && experience.length > 0 && (
+      {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8 relative">
           <div className="absolute -left-10 top-0 w-24 h-0.5 -rotate-12" style={{ backgroundColor: `${themeColor}60` }}></div>
           <h2 className="text-[15px] font-bold mb-6 uppercase tracking-wider" style={{ color: themeColor }}>
@@ -144,7 +143,7 @@ export const CreativePulseTemplate = ({
           {editable ? (
             <InlineEditableList
               path="experience"
-              items={experience}
+              items={resumeData.experience}
               defaultItem={{
                 id: Date.now().toString(),
                 company: "Company Name",
@@ -210,7 +209,7 @@ export const CreativePulseTemplate = ({
             />
           ) : (
             <div className="space-y-6">
-              {experience.map((exp) => (
+              {resumeData.experience.map((exp) => (
                 <div key={exp.id} className="relative pl-6 border-l-2" style={{ borderColor: `${themeColor}20` }}>
                   <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full" style={{ backgroundColor: themeColor }}></div>
                   <div className="flex justify-between items-start mb-2">
@@ -240,7 +239,7 @@ export const CreativePulseTemplate = ({
 
       <div className="grid grid-cols-2 gap-8">
         {/* Skills with Dynamic Pulse */}
-        {skills && skills.length > 0 && (
+        {resumeData.skills && resumeData.skills.length > 0 && (
           <div className="relative">
             <div className="absolute -left-10 top-0 w-24 h-0.5 -rotate-12" style={{ backgroundColor: `${themeColor}60` }}></div>
             <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wider" style={{ color: themeColor }}>
@@ -249,7 +248,7 @@ export const CreativePulseTemplate = ({
             {editable ? (
               <InlineEditableSkills
                 path="skills"
-                skills={skills}
+                skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
                     <div className="px-4 py-2 text-[12px] font-medium relative overflow-hidden" style={{
@@ -264,7 +263,7 @@ export const CreativePulseTemplate = ({
               />
             ) : (
               <div className="grid grid-cols-1 gap-2">
-                {skills.map((skill) =>
+                {resumeData.skills.map((skill) =>
                   skill.name ? (
                     <div key={skill.id} className="px-4 py-2 text-[12px] font-medium relative overflow-hidden" style={{
                       backgroundColor: `${themeColor}10`,
@@ -281,7 +280,7 @@ export const CreativePulseTemplate = ({
         )}
 
         {/* Education */}
-        {education && education.length > 0 && (
+        {resumeData.education && resumeData.education.length > 0 && (
           <div className="relative">
             <div className="absolute -left-10 top-0 w-24 h-0.5 -rotate-12" style={{ backgroundColor: `${themeColor}60` }}></div>
             <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wider" style={{ color: themeColor }}>
@@ -290,7 +289,7 @@ export const CreativePulseTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="education"
-                items={education}
+                items={resumeData.education}
                 defaultItem={{
                   id: Date.now().toString(),
                   school: "School Name",
@@ -342,7 +341,7 @@ export const CreativePulseTemplate = ({
               />
             ) : (
               <div className="space-y-5">
-                {education.map((edu) => (
+                {resumeData.education.map((edu) => (
                   <div key={edu.id} className="p-3 border-l-4" style={{ borderColor: themeColor, backgroundColor: `${themeColor}05` }}>
                     <h3 className="text-[13px] font-bold text-gray-900">{edu.degree || "Degree"}</h3>
                     {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
@@ -359,7 +358,7 @@ export const CreativePulseTemplate = ({
       </div>
 
       {/* Additional Sections */}
-      {sections && sections.length > 0 && sections.map((section, index) => (
+      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
         <div key={section.id} className="mt-8 relative">
           <div className="absolute -left-10 top-0 w-24 h-0.5 -rotate-12" style={{ backgroundColor: `${themeColor}60` }}></div>
           <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wider" style={{ color: themeColor }}>

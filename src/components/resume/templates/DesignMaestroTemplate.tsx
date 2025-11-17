@@ -15,7 +15,6 @@ export const DesignMaestroTemplate = ({
   themeColor = "#8b5cf6",
   editable = false,
 }: TemplateProps) => {
-  const { personalInfo, experience, education, skills, sections } = resumeData;
 
   const formatDate = (date: string) => {
     if (!date) return "";
@@ -35,77 +34,77 @@ export const DesignMaestroTemplate = ({
             {editable ? (
               <InlineEditableText
                 path="personalInfo.fullName"
-                value={personalInfo.fullName || "Your Name"}
+                value={resumeData.personalInfo.fullName || "Your Name"}
                 className="text-[32px] font-bold block"
                 style={{ color: themeColor }}
                 as="h1"
               />
             ) : (
               <h1 className="text-[32px] font-bold" style={{ color: themeColor }}>
-                {personalInfo.fullName || "Your Name"}
+                {resumeData.personalInfo.fullName || "Your Name"}
               </h1>
             )}
           </div>
           <div className="h-px flex-1 bg-gradient-to-l from-transparent via-gray-300 to-gray-400"></div>
         </div>
 
-        {personalInfo.title && (
+        {resumeData.personalInfo.title && (
           editable ? (
             <InlineEditableText
               path="personalInfo.title"
-              value={personalInfo.title}
+              value={resumeData.personalInfo.title}
               className="text-[14px] text-gray-600 mb-4 italic block"
               as="h2"
             />
           ) : (
             <h2 className="text-[14px] text-gray-600 mb-4 italic">
-              {personalInfo.title}
+              {resumeData.personalInfo.title}
             </h2>
           )
         )}
 
         {/* Contact Info with Flowing Separators */}
         <div className="flex gap-4 text-[12px] text-gray-700 justify-center items-center flex-wrap">
-          {personalInfo.email && (
+          {resumeData.personalInfo.email && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.email"
-                value={personalInfo.email}
+                value={resumeData.personalInfo.email}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.email}</span>
+              <span>{resumeData.personalInfo.email}</span>
             )
           )}
-          {personalInfo.email && personalInfo.phone && <span className="text-gray-400">~</span>}
-          {personalInfo.phone && (
+          {resumeData.personalInfo.email && resumeData.personalInfo.phone && <span className="text-gray-400">~</span>}
+          {resumeData.personalInfo.phone && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.phone"
-                value={personalInfo.phone}
+                value={resumeData.personalInfo.phone}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.phone}</span>
+              <span>{resumeData.personalInfo.phone}</span>
             )
           )}
-          {personalInfo.location && (personalInfo.email || personalInfo.phone) && <span className="text-gray-400">~</span>}
-          {personalInfo.location && (
+          {resumeData.personalInfo.location && (resumeData.personalInfo.email || resumeData.personalInfo.phone) && <span className="text-gray-400">~</span>}
+          {resumeData.personalInfo.location && (
             editable ? (
               <InlineEditableText
                 path="personalInfo.location"
-                value={personalInfo.location}
+                value={resumeData.personalInfo.location}
                 className="inline-block"
               />
             ) : (
-              <span>{personalInfo.location}</span>
+              <span>{resumeData.personalInfo.location}</span>
             )
           )}
         </div>
       </div>
 
       {/* Summary with Musical Flow */}
-      {personalInfo.summary && (
+      {resumeData.personalInfo.summary && (
         <div className="mb-8 max-w-3xl mx-auto">
           <div className="flex items-center justify-center mb-3">
             <div className="w-12 h-px" style={{ backgroundColor: themeColor }}></div>
@@ -117,21 +116,21 @@ export const DesignMaestroTemplate = ({
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
-              value={personalInfo.summary}
+              value={resumeData.personalInfo.summary}
               className="text-[12.5px] text-gray-700 leading-[1.8] block text-center"
               multiline
               as="p"
             />
           ) : (
             <p className="text-[12.5px] text-gray-700 leading-[1.8] text-center">
-              {personalInfo.summary}
+              {resumeData.personalInfo.summary}
             </p>
           )}
         </div>
       )}
 
       {/* Experience with Flowing Timeline */}
-      {experience && experience.length > 0 && (
+      {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8 max-w-3xl mx-auto">
           <div className="flex items-center justify-center mb-6">
             <div className="w-12 h-px" style={{ backgroundColor: themeColor }}></div>
@@ -144,7 +143,7 @@ export const DesignMaestroTemplate = ({
             {editable ? (
               <InlineEditableList
                 path="experience"
-                items={experience}
+                items={resumeData.experience}
                 defaultItem={{
                   id: Date.now().toString(),
                   company: "Company Name",
@@ -208,7 +207,7 @@ export const DesignMaestroTemplate = ({
               />
             ) : (
               <div className="space-y-8">
-                {experience.map((exp) => (
+                {resumeData.experience.map((exp) => (
                   <div key={exp.id} className="relative">
                     <div className="absolute -left-[2.4rem] w-5 h-5 rounded-full border-2 bg-white" style={{ borderColor: themeColor }}></div>
                     <div className="flex justify-between items-baseline mb-2">
@@ -238,7 +237,7 @@ export const DesignMaestroTemplate = ({
       )}
 
       {/* Skills with Curved Progress Design */}
-      {skills && skills.length > 0 && (
+      {resumeData.skills && resumeData.skills.length > 0 && (
         <div className="mb-8 max-w-3xl mx-auto">
           <div className="flex items-center justify-center mb-6">
             <div className="w-12 h-px" style={{ backgroundColor: themeColor }}></div>
@@ -250,7 +249,7 @@ export const DesignMaestroTemplate = ({
           {editable ? (
             <InlineEditableSkills
               path="skills"
-              skills={skills}
+              skills={resumeData.skills}
               renderSkill={(skill) =>
                 skill.name ? (
                   <div className="px-4 py-2.5 rounded-full border-2 text-[12px] font-medium text-center transition-all hover:shadow-md" style={{ borderColor: themeColor, color: themeColor }}>
@@ -261,7 +260,7 @@ export const DesignMaestroTemplate = ({
             />
           ) : (
             <div className="flex flex-wrap gap-3 justify-center">
-              {skills.map((skill) =>
+              {resumeData.skills.map((skill) =>
                 skill.name ? (
                   <div key={skill.id} className="px-4 py-2.5 rounded-full border-2 text-[12px] font-medium text-center" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
@@ -274,7 +273,7 @@ export const DesignMaestroTemplate = ({
       )}
 
       {/* Education */}
-      {education && education.length > 0 && (
+      {resumeData.education && resumeData.education.length > 0 && (
         <div className="mb-8 max-w-3xl mx-auto">
           <div className="flex items-center justify-center mb-6">
             <div className="w-12 h-px" style={{ backgroundColor: themeColor }}></div>
@@ -286,7 +285,7 @@ export const DesignMaestroTemplate = ({
           {editable ? (
             <InlineEditableList
               path="education"
-              items={education}
+              items={resumeData.education}
               defaultItem={{
                 id: Date.now().toString(),
                 school: "School Name",
@@ -339,7 +338,7 @@ export const DesignMaestroTemplate = ({
             />
           ) : (
             <div className="space-y-6">
-              {education.map((edu) => (
+              {resumeData.education.map((edu) => (
                 <div key={edu.id} className="text-center p-4 rounded-lg" style={{ backgroundColor: `${themeColor}08` }}>
                   <h3 className="text-[13px] font-bold" style={{ color: themeColor }}>{edu.degree || "Degree"}</h3>
                   {edu.field && <p className="text-[12px] text-gray-700">{edu.field}</p>}
@@ -355,7 +354,7 @@ export const DesignMaestroTemplate = ({
       )}
 
       {/* Additional Sections */}
-      {sections && sections.length > 0 && sections.map((section, index) => (
+      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
         <div key={section.id} className="mt-8 max-w-3xl mx-auto">
           <div className="flex items-center justify-center mb-4">
             <div className="w-12 h-px" style={{ backgroundColor: themeColor }}></div>
