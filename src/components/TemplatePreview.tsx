@@ -276,6 +276,322 @@ import { ExecutiveEasyTemplateTemplate } from "./resume/templates/ExecutiveEasyT
 import { ProfessionalReadableLayoutTemplate } from "./resume/templates/ProfessionalReadableLayoutTemplate";
 import { CleanReadableProTemplate } from "./resume/templates/CleanReadableProTemplate";
 import { SimpleStructuredTemplateTemplate } from "./resume/templates/SimpleStructuredTemplateTemplate";
+// 2025 New Templates (100 HTML imports)
+import { StrategicLeadershipTemplate } from "./resume/templates/StrategicLeadershipTemplate";
+import { CorporateExcellenceTemplate } from "./resume/templates/CorporateExcellenceTemplate";
+import { ExecutivePrestigeTemplate } from "./resume/templates/ExecutivePrestigeTemplate";
+import { GlobalExecutiveProTemplate } from "./resume/templates/GlobalExecutiveProTemplate";
+import { PremiumCorporateEdgeTemplate } from "./resume/templates/PremiumCorporateEdgeTemplate";
+import { EnterpriseLeaderTemplate } from "./resume/templates/EnterpriseLeaderTemplate";
+import { BoardroomReadyTemplate } from "./resume/templates/BoardroomReadyTemplate";
+import { CSuiteModernTemplate } from "./resume/templates/CSuiteModernTemplate";
+import { ExecutiveImpactTemplate } from "./resume/templates/ExecutiveImpactTemplate";
+import { CorporateVisionaryTemplate } from "./resume/templates/CorporateVisionaryTemplate";
+import { PlatinumExecutiveTemplate } from "./resume/templates/PlatinumExecutiveTemplate";
+import { GlobalLeadershipTemplate } from "./resume/templates/GlobalLeadershipTemplate";
+import { SeniorExecutiveProTemplate } from "./resume/templates/SeniorExecutiveProTemplate";
+import { CorporateElitePlusTemplate } from "./resume/templates/CorporateElitePlusTemplate";
+import { ExecutivePinnacleTemplate } from "./resume/templates/ExecutivePinnacleTemplate";
+import { CorporateDistinctionTemplate } from "./resume/templates/CorporateDistinctionTemplate";
+import { LeadershipSummitTemplate } from "./resume/templates/LeadershipSummitTemplate";
+import { ExecutiveAuthorityTemplate } from "./resume/templates/ExecutiveAuthorityTemplate";
+import { CorporatePremierTemplate } from "./resume/templates/CorporatePremierTemplate";
+import { GlobalEnterpriseTemplate } from "./resume/templates/GlobalEnterpriseTemplate";
+import { ExecutiveSignatureTemplate } from "./resume/templates/ExecutiveSignatureTemplate";
+import { CorporateApexTemplate } from "./resume/templates/CorporateApexTemplate";
+import { StrategicExecutivePlusTemplate } from "./resume/templates/StrategicExecutivePlusTemplate";
+import { CorporateParadigmTemplate } from "./resume/templates/CorporateParadigmTemplate";
+import { ExecutiveMagnitudeTemplate } from "./resume/templates/ExecutiveMagnitudeTemplate";
+import { CorporateSovereignTemplate } from "./resume/templates/CorporateSovereignTemplate";
+import { LeadershipZenithTemplate } from "./resume/templates/LeadershipZenithTemplate";
+import { ExecutiveNexusTemplate } from "./resume/templates/ExecutiveNexusTemplate";
+import { CorporateVanguardTemplate } from "./resume/templates/CorporateVanguardTemplate";
+import { ExecutiveAscendancyTemplate } from "./resume/templates/ExecutiveAscendancyTemplate";
+import { VueSpecialistTemplate } from "./resume/templates/VueSpecialistTemplate";
+import { SvelteDeveloperTemplate } from "./resume/templates/SvelteDeveloperTemplate";
+import { FlutterEngineerTemplate } from "./resume/templates/FlutterEngineerTemplate";
+import { SwiftIOSDeveloperTemplate } from "./resume/templates/SwiftIOSDeveloperTemplate";
+import { RustSystemsEngineerTemplate } from "./resume/templates/RustSystemsEngineerTemplate";
+import { ScalaBackendEngineerTemplate } from "./resume/templates/ScalaBackendEngineerTemplate";
+import { ElixirDeveloperTemplate } from "./resume/templates/ElixirDeveloperTemplate";
+import { GraphQLArchitectTemplate } from "./resume/templates/GraphQLArchitectTemplate";
+import { TypeScriptExpertTemplate } from "./resume/templates/TypeScriptExpertTemplate";
+import { NextJSFullstackTemplate } from "./resume/templates/NextJSFullstackTemplate";
+import { NestJSBackendTemplate } from "./resume/templates/NestJSBackendTemplate";
+import { DjangoFullstackTemplate } from "./resume/templates/DjangoFullstackTemplate";
+import { SpringBootDeveloperTemplate } from "./resume/templates/SpringBootDeveloperTemplate";
+import { PostgreSQLDBATemplate } from "./resume/templates/PostgreSQLDBATemplate";
+import { MongoDBSpecialistTemplate } from "./resume/templates/MongoDBSpecialistTemplate";
+import { RedisEngineerTemplate } from "./resume/templates/RedisEngineerTemplate";
+import { ElasticsearchExpertTemplate } from "./resume/templates/ElasticsearchExpertTemplate";
+import { TerraformDevOpsTemplate } from "./resume/templates/TerraformDevOpsTemplate";
+import { AnsibleAutomationTemplate } from "./resume/templates/AnsibleAutomationTemplate";
+import { JenkinsCICDTemplate } from "./resume/templates/JenkinsCICDTemplate";
+import { KafkaStreamingTemplate } from "./resume/templates/KafkaStreamingTemplate";
+import { RabbitMQSpecialistTemplate } from "./resume/templates/RabbitMQSpecialistTemplate";
+import { GRPCDeveloperTemplate } from "./resume/templates/GRPCDeveloperTemplate";
+import { WebAssemblyEngineerTemplate } from "./resume/templates/WebAssemblyEngineerTemplate";
+import { UnityGameDeveloperTemplate } from "./resume/templates/UnityGameDeveloperTemplate";
+import { AcademicAchieverTemplate } from "./resume/templates/AcademicAchieverTemplate";
+import { GraduateInnovatorTemplate } from "./resume/templates/GraduateInnovatorTemplate";
+import { CampusLeaderTemplate } from "./resume/templates/CampusLeaderTemplate";
+import { ScholarshipGraduateTemplate } from "./resume/templates/ScholarshipGraduateTemplate";
+import { HonorsStudentTemplate } from "./resume/templates/HonorsStudentTemplate";
+import { STEMGraduateTemplate } from "./resume/templates/STEMGraduateTemplate";
+import { InternshipReadyTemplate } from "./resume/templates/InternshipReadyTemplate";
+import { ResearchGraduateTemplate } from "./resume/templates/ResearchGraduateTemplate";
+import { EntrepreneurialGraduateTemplate } from "./resume/templates/EntrepreneurialGraduateTemplate";
+import { VolunteerLeaderTemplate } from "./resume/templates/VolunteerLeaderTemplate";
+import { CodingBootcampGradTemplate } from "./resume/templates/CodingBootcampGradTemplate";
+import { LiberalArtsGraduateTemplate } from "./resume/templates/LiberalArtsGraduateTemplate";
+import { BusinessGraduateTemplate } from "./resume/templates/BusinessGraduateTemplate";
+import { EngineeringFresherTemplate } from "./resume/templates/EngineeringFresherTemplate";
+import { DesignSchoolGradTemplate } from "./resume/templates/DesignSchoolGradTemplate";
+import { MastersGraduateTemplate } from "./resume/templates/MastersGraduateTemplate";
+import { PhDCandidateTemplate } from "./resume/templates/PhDCandidateTemplate";
+import { StudentAthleteTemplate } from "./resume/templates/StudentAthleteTemplate";
+import { StudyAbroadGraduateTemplate } from "./resume/templates/StudyAbroadGraduateTemplate";
+import { DualDegreeGraduateTemplate } from "./resume/templates/DualDegreeGraduateTemplate";
+import { PortfolioArtistTemplate } from "./resume/templates/PortfolioArtistTemplate";
+import { MotionDesignerTemplate } from "./resume/templates/MotionDesignerTemplate";
+import { BrandStrategistTemplate } from "./resume/templates/BrandStrategistTemplate";
+import { ContentCreatorTemplate } from "./resume/templates/ContentCreatorTemplate";
+import { IllustratorArtistTemplate } from "./resume/templates/IllustratorArtistTemplate";
+import { VideoProducerTemplate } from "./resume/templates/VideoProducerTemplate";
+import { CopywriterCreativeTemplate } from "./resume/templates/CopywriterCreativeTemplate";
+import { ArtDirectorProTemplate } from "./resume/templates/ArtDirectorProTemplate";
+import { PhotographerProTemplate } from "./resume/templates/PhotographerProTemplate";
+import { TypographerSpecialistTemplate } from "./resume/templates/TypographerSpecialistTemplate";
+import { DigitalArtistTemplate } from "./resume/templates/DigitalArtistTemplate";
+import { CreativeDirectorEliteTemplate } from "./resume/templates/CreativeDirectorEliteTemplate";
+import { SocialMediaCreativeTemplate } from "./resume/templates/SocialMediaCreativeTemplate";
+import { AnimationArtistTemplate } from "./resume/templates/AnimationArtistTemplate";
+import { MultimediaDesignerTemplate } from "./resume/templates/MultimediaDesignerTemplate";
+import { UXResearcherTemplate } from "./resume/templates/UXResearcherTemplate";
+import { UISpecialistTemplate } from "./resume/templates/UISpecialistTemplate";
+import { ProductDesignerProTemplate } from "./resume/templates/ProductDesignerProTemplate";
+import { InteractionDesignerTemplate } from "./resume/templates/InteractionDesignerTemplate";
+import { ServiceDesignerTemplate } from "./resume/templates/ServiceDesignerTemplate";
+import { DesignSystemsArchitectTemplate } from "./resume/templates/DesignSystemsArchitectTemplate";
+import { AccessibilityDesignerTemplate } from "./resume/templates/AccessibilityDesignerTemplate";
+import { DesignLeadTemplate } from "./resume/templates/DesignLeadTemplate";
+import { DesignStrategistTemplate } from "./resume/templates/DesignStrategistTemplate";
+import { VisualDesignerProTemplate } from "./resume/templates/VisualDesignerProTemplate";
+// 2025 Batch 2 - Universal Professional Templates (30 templates)
+import { SapphireProfessionalTemplate } from "./resume/templates/SapphireProfessionalTemplate";
+import { EmeraldExecutiveTemplate } from "./resume/templates/EmeraldExecutiveTemplate";
+import { RubyCorporateTemplate } from "./resume/templates/RubyCorporateTemplate";
+import { OnyxLeadershipTemplate } from "./resume/templates/OnyxLeadershipTemplate";
+import { PlatinumPrestigeTemplate } from "./resume/templates/PlatinumPrestigeTemplate";
+import { AzureProfessionalTemplate } from "./resume/templates/AzureProfessionalTemplate";
+import { AmberExecutiveTemplate } from "./resume/templates/AmberExecutiveTemplate";
+import { VioletCorporateTemplate } from "./resume/templates/VioletCorporateTemplate";
+import { JadeProfessionalTemplate } from "./resume/templates/JadeProfessionalTemplate";
+import { CrimsonLeadershipTemplate } from "./resume/templates/CrimsonLeadershipTemplate";
+import { SlateMinimalistTemplate } from "./resume/templates/SlateMinimalistTemplate";
+import { TealModernTemplate } from "./resume/templates/TealModernTemplate";
+import { IndigoExecutiveTemplate } from "./resume/templates/IndigoExecutiveTemplate";
+import { RoseProfessionalTemplate } from "./resume/templates/RoseProfessionalTemplate";
+import { NavyCorporateTemplate } from "./resume/templates/NavyCorporateTemplate";
+import { GoldPrestigeTemplate } from "./resume/templates/GoldPrestigeTemplate";
+import { CharcoalProfessionalTemplate } from "./resume/templates/CharcoalProfessionalTemplate";
+import { CoralExecutiveTemplate } from "./resume/templates/CoralExecutiveTemplate";
+import { PewterMinimalistTemplate } from "./resume/templates/PewterMinimalistTemplate";
+import { ForestProfessionalTemplate } from "./resume/templates/ForestProfessionalTemplate";
+import { BurgundyExecutiveTemplate } from "./resume/templates/BurgundyExecutiveTemplate";
+import { SkyModernTemplate } from "./resume/templates/SkyModernTemplate";
+import { PlumProfessionalTemplate } from "./resume/templates/PlumProfessionalTemplate";
+import { BronzeCorporateTemplate } from "./resume/templates/BronzeCorporateTemplate";
+import { MintProfessionalTemplate } from "./resume/templates/MintProfessionalTemplate";
+import { ObsidianExecutiveTemplate } from "./resume/templates/ObsidianExecutiveTemplate";
+import { TangerineModernTemplate } from "./resume/templates/TangerineModernTemplate";
+import { SteelProfessionalTemplate } from "./resume/templates/SteelProfessionalTemplate";
+import { LavenderExecutiveTemplate } from "./resume/templates/LavenderExecutiveTemplate";
+import { CobaltProfessionalTemplate } from "./resume/templates/CobaltProfessionalTemplate";
+// 2025 Batch 2 - Software & Technology Templates (25 templates)
+import { GitHubDeveloperTemplate } from "./resume/templates/GitHubDeveloperTemplate";
+import { LinkedInTechProTemplate } from "./resume/templates/LinkedInTechProTemplate";
+import { LaravelArtisanTemplate } from "./resume/templates/LaravelArtisanTemplate";
+import { RailsDeveloperTemplate } from "./resume/templates/RailsDeveloperTemplate";
+import { AngularSpecialistTemplate } from "./resume/templates/AngularSpecialistTemplate";
+import { VueMasterTemplate } from "./resume/templates/VueMasterTemplate";
+import { KotlinAndroidDevTemplate } from "./resume/templates/KotlinAndroidDevTemplate";
+import { iOSSwiftEngineerTemplate } from "./resume/templates/iOSSwiftEngineerTemplate";
+import { DockerSpecialistTemplate } from "./resume/templates/DockerSpecialistTemplate";
+import { AWSSolutionsArchitectTemplate } from "./resume/templates/AWSSolutionsArchitectTemplate";
+import { GCPCloudEngineerTemplate } from "./resume/templates/GCPCloudEngineerTemplate";
+import { AzureDevOpsProTemplate } from "./resume/templates/AzureDevOpsProTemplate";
+import { ReactNativeDevTemplate } from "./resume/templates/ReactNativeDevTemplate";
+import { FlutterUISpecialistTemplate } from "./resume/templates/FlutterUISpecialistTemplate";
+import { DotNetCoreDeveloperTemplate } from "./resume/templates/DotNetCoreDeveloperTemplate";
+import { GolangBackendEngineerTemplate } from "./resume/templates/GolangBackendEngineerTemplate";
+import { PythonMLEngineerTemplate } from "./resume/templates/PythonMLEngineerTemplate";
+import { DataScientistProTemplate } from "./resume/templates/DataScientistProTemplate";
+import { BlockchainEngineerTemplate } from "./resume/templates/BlockchainEngineerTemplate";
+import { SolidityDeveloperTemplate } from "./resume/templates/SolidityDeveloperTemplate";
+import { CybersecurityAnalystTemplate } from "./resume/templates/CybersecurityAnalystTemplate";
+import { DevSecOpsEngineerTemplate } from "./resume/templates/DevSecOpsEngineerTemplate";
+import { FullstackJavaScriptTemplate } from "./resume/templates/FullstackJavaScriptTemplate";
+import { JAMStackDeveloperTemplate } from "./resume/templates/JAMStackDeveloperTemplate";
+import { HeadlessCMSDeveloperTemplate } from "./resume/templates/HeadlessCMSDeveloperTemplate";
+// 2025 Batch 2 - Fresh Graduates Templates (20 templates)
+import { DigitalNativeGraduateTemplate } from "./resume/templates/DigitalNativeGraduateTemplate";
+import { TechSavvyFresherTemplate } from "./resume/templates/TechSavvyFresherTemplate";
+import { LinkedInReadyGraduateTemplate } from "./resume/templates/LinkedInReadyGraduateTemplate";
+import { GitHubStudentDeveloperTemplate } from "./resume/templates/GitHubStudentDeveloperTemplate";
+import { PortfolioFirstGraduateTemplate } from "./resume/templates/PortfolioFirstGraduateTemplate";
+import { ConnectedGraduateTemplate } from "./resume/templates/ConnectedGraduateTemplate";
+import { SocialMediaSavvyGradTemplate } from "./resume/templates/SocialMediaSavvyGradTemplate";
+import { OpenSourceContributorTemplate } from "./resume/templates/OpenSourceContributorTemplate";
+import { HackathonWinnerTemplate } from "./resume/templates/HackathonWinnerTemplate";
+import { CodingChallengeChampionTemplate } from "./resume/templates/CodingChallengeChampionTemplate";
+import { CapstoneShowcaseTemplate } from "./resume/templates/CapstoneShowcaseTemplate";
+import { ResearchPublicationGradTemplate } from "./resume/templates/ResearchPublicationGradTemplate";
+import { ConferencePresenterTemplate } from "./resume/templates/ConferencePresenterTemplate";
+import { StartupInternTemplate } from "./resume/templates/StartupInternTemplate";
+import { FAANGAspirantTemplate } from "./resume/templates/FAANGAspirantTemplate";
+import { BootcampSuccessStoryTemplate } from "./resume/templates/BootcampSuccessStoryTemplate";
+import { RemoteWorkReadyTemplate } from "./resume/templates/RemoteWorkReadyTemplate";
+import { CommunityBuilderTemplate } from "./resume/templates/CommunityBuilderTemplate";
+import { TechBloggerGraduateTemplate } from "./resume/templates/TechBloggerGraduateTemplate";
+import { YouTubeEducatorTemplate } from "./resume/templates/YouTubeEducatorTemplate";
+// 2025 Batch 2 - Creative Templates (15 templates)
+import { BehanceDesignerTemplate } from "./resume/templates/BehanceDesignerTemplate";
+import { DribbbleCreativeTemplate } from "./resume/templates/DribbbleCreativeTemplate";
+import { InstagramInfluencerTemplate } from "./resume/templates/InstagramInfluencerTemplate";
+import { PinterestCuratorTemplate } from "./resume/templates/PinterestCuratorTemplate";
+import { VimeoVideographerTemplate } from "./resume/templates/VimeoVideographerTemplate";
+import { MediumWriterTemplate } from "./resume/templates/MediumWriterTemplate";
+import { TikTokCreatorTemplate } from "./resume/templates/TikTokCreatorTemplate";
+import { TwitchStreamerTemplate } from "./resume/templates/TwitchStreamerTemplate";
+import { SoundCloudProducerTemplate } from "./resume/templates/SoundCloudProducerTemplate";
+import { SpotifyArtistTemplate } from "./resume/templates/SpotifyArtistTemplate";
+import { ArtStationArtistTemplate } from "./resume/templates/ArtStationArtistTemplate";
+import { DeviantArtCreatorTemplate } from "./resume/templates/DeviantArtCreatorTemplate";
+import { PatreonCreatorTemplate } from "./resume/templates/PatreonCreatorTemplate";
+import { SubstackWriterTemplate } from "./resume/templates/SubstackWriterTemplate";
+import { ClubhouseModeratorTemplate } from "./resume/templates/ClubhouseModeratorTemplate";
+// 2025 Batch 2 - Design Templates (10 templates)
+import { FigmaExpertTemplate } from "./resume/templates/FigmaExpertTemplate";
+import { SketchSpecialistTemplate } from "./resume/templates/SketchSpecialistTemplate";
+import { AdobeXDDesignerTemplate } from "./resume/templates/AdobeXDDesignerTemplate";
+import { FramerDesignerTemplate } from "./resume/templates/FramerDesignerTemplate";
+import { WebflowDeveloperTemplate } from "./resume/templates/WebflowDeveloperTemplate";
+import { PrincipleAnimatorTemplate } from "./resume/templates/PrincipleAnimatorTemplate";
+import { InVisionPrototyperTemplate } from "./resume/templates/InVisionPrototyperTemplate";
+import { MarvelAppDesignerTemplate } from "./resume/templates/MarvelAppDesignerTemplate";
+import { ZeplinHandoffSpecialistTemplate } from "./resume/templates/ZeplinHandoffSpecialistTemplate";
+import { AbstractVersionDesignerTemplate } from "./resume/templates/AbstractVersionDesignerTemplate";
+// 2025 Batch 3 - Healthcare & Medical (15 templates)
+import { RegisteredNurseProTemplate } from "./resume/templates/RegisteredNurseProTemplate";
+import { PhysicianSpecialistTemplate } from "./resume/templates/PhysicianSpecialistTemplate";
+import { DentalProfessionalTemplate } from "./resume/templates/DentalProfessionalTemplate";
+import { PharmacistClinicalTemplate } from "./resume/templates/PharmacistClinicalTemplate";
+import { PhysicalTherapistTemplate } from "./resume/templates/PhysicalTherapistTemplate";
+import { MedicalTechnologistTemplate } from "./resume/templates/MedicalTechnologistTemplate";
+import { RadiologyTechnicianTemplate } from "./resume/templates/RadiologyTechnicianTemplate";
+import { HealthcareAdministratorTemplate } from "./resume/templates/HealthcareAdministratorTemplate";
+import { MentalHealthCounselorTemplate } from "./resume/templates/MentalHealthCounselorTemplate";
+import { OccupationalTherapistTemplate } from "./resume/templates/OccupationalTherapistTemplate";
+import { SpeechPathologistTemplate } from "./resume/templates/SpeechPathologistTemplate";
+import { VeterinaryDoctorTemplate } from "./resume/templates/VeterinaryDoctorTemplate";
+import { NutritionistDietitianTemplate } from "./resume/templates/NutritionistDietitianTemplate";
+import { MedicalAssistantTemplate } from "./resume/templates/MedicalAssistantTemplate";
+import { ParamedicEMTTemplate } from "./resume/templates/ParamedicEMTTemplate";
+// 2025 Batch 3 - Engineering (15 templates)
+import { MechanicalEngineerProTemplate } from "./resume/templates/MechanicalEngineerProTemplate";
+import { CivilEngineerPETemplate } from "./resume/templates/CivilEngineerPETemplate";
+import { ElectricalEngineerTemplate } from "./resume/templates/ElectricalEngineerTemplate";
+import { ChemicalEngineerProTemplate } from "./resume/templates/ChemicalEngineerProTemplate";
+import { AerospaceEngineerTemplate } from "./resume/templates/AerospaceEngineerTemplate";
+import { BiomedicalEngineerTemplate } from "./resume/templates/BiomedicalEngineerTemplate";
+import { IndustrialEngineerTemplate } from "./resume/templates/IndustrialEngineerTemplate";
+import { EnvironmentalEngineerTemplate } from "./resume/templates/EnvironmentalEngineerTemplate";
+import { PetroleumEngineerTemplate } from "./resume/templates/PetroleumEngineerTemplate";
+import { StructuralEngineerTemplate } from "./resume/templates/StructuralEngineerTemplate";
+import { ManufacturingEngineerTemplate } from "./resume/templates/ManufacturingEngineerTemplate";
+import { QualityAssuranceEngineerTemplate } from "./resume/templates/QualityAssuranceEngineerTemplate";
+import { AutomationEngineerTemplate } from "./resume/templates/AutomationEngineerTemplate";
+import { RoboticsEngineerTemplate } from "./resume/templates/RoboticsEngineerTemplate";
+import { HVACEngineerTemplate } from "./resume/templates/HVACEngineerTemplate";
+// 2025 Batch 3 - Sales & Marketing (15 templates)
+import { SalesExecutiveProTemplate } from "./resume/templates/SalesExecutiveProTemplate";
+import { AccountManagerEnterpriseTemplate } from "./resume/templates/AccountManagerEnterpriseTemplate";
+import { DigitalMarketingSpecialistTemplate } from "./resume/templates/DigitalMarketingSpecialistTemplate";
+import { BrandManagerStrategicTemplate } from "./resume/templates/BrandManagerStrategicTemplate";
+import { SEOSpecialistProTemplate } from "./resume/templates/SEOSpecialistProTemplate";
+import { GrowthMarketingManagerTemplate } from "./resume/templates/GrowthMarketingManagerTemplate";
+import { EmailMarketingSpecialistTemplate } from "./resume/templates/EmailMarketingSpecialistTemplate";
+import { ProductMarketingManagerTemplate } from "./resume/templates/ProductMarketingManagerTemplate";
+import { BusinessDevelopmentManagerTemplate } from "./resume/templates/BusinessDevelopmentManagerTemplate";
+import { InsideSalesRepresentativeTemplate } from "./resume/templates/InsideSalesRepresentativeTemplate";
+import { FieldSalesSpecialistTemplate } from "./resume/templates/FieldSalesSpecialistTemplate";
+import { CustomerSuccessManagerTemplate } from "./resume/templates/CustomerSuccessManagerTemplate";
+import { MarketingAnalyticsManagerTemplate } from "./resume/templates/MarketingAnalyticsManagerTemplate";
+import { EcommerceManagerTemplate } from "./resume/templates/EcommerceManagerTemplate";
+import { AffiliateMarketingManagerTemplate } from "./resume/templates/AffiliateMarketingManagerTemplate";
+// 2025 Batch 3 - Finance & Accounting (12 templates)
+import { FinancialAnalystCFATemplate } from "./resume/templates/FinancialAnalystCFATemplate";
+import { InvestmentBankerTemplate } from "./resume/templates/InvestmentBankerTemplate";
+import { CertifiedPublicAccountantTemplate } from "./resume/templates/CertifiedPublicAccountantTemplate";
+import { TaxSpecialistProTemplate } from "./resume/templates/TaxSpecialistProTemplate";
+import { FinancialControllerTemplate } from "./resume/templates/FinancialControllerTemplate";
+import { PortfolioManagerTemplate } from "./resume/templates/PortfolioManagerTemplate";
+import { RiskManagementAnalystTemplate } from "./resume/templates/RiskManagementAnalystTemplate";
+import { TreasuryAnalystTemplate } from "./resume/templates/TreasuryAnalystTemplate";
+import { ForensicAccountantTemplate } from "./resume/templates/ForensicAccountantTemplate";
+import { InternalAuditorTemplate } from "./resume/templates/InternalAuditorTemplate";
+import { BudgetAnalystTemplate } from "./resume/templates/BudgetAnalystTemplate";
+import { EquityResearchAnalystTemplate } from "./resume/templates/EquityResearchAnalystTemplate";
+// 2025 Batch 3 - Education & Teaching (10 templates)
+import { UniversityProfessorTemplate } from "./resume/templates/UniversityProfessorTemplate";
+import { ElementaryTeacherTemplate } from "./resume/templates/ElementaryTeacherTemplate";
+import { HighSchoolTeacherTemplate } from "./resume/templates/HighSchoolTeacherTemplate";
+import { SpecialEducationTeacherTemplate } from "./resume/templates/SpecialEducationTeacherTemplate";
+import { ESLTeacherCertifiedTemplate } from "./resume/templates/ESLTeacherCertifiedTemplate";
+import { CurriculumDeveloperTemplate } from "./resume/templates/CurriculumDeveloperTemplate";
+import { InstructionalDesignerTemplate } from "./resume/templates/InstructionalDesignerTemplate";
+import { AcademicAdvisorTemplate } from "./resume/templates/AcademicAdvisorTemplate";
+import { OnlineCourseInstructorTemplate } from "./resume/templates/OnlineCourseInstructorTemplate";
+import { PrivateTutorSpecialistTemplate } from "./resume/templates/PrivateTutorSpecialistTemplate";
+// 2025 Batch 3 - Legal (8 templates)
+import { CorporateAttorneyTemplate } from "./resume/templates/CorporateAttorneyTemplate";
+import { LitigationAttorneyTemplate } from "./resume/templates/LitigationAttorneyTemplate";
+import { ParalegalCertifiedTemplate } from "./resume/templates/ParalegalCertifiedTemplate";
+import { LegalConsultantTemplate } from "./resume/templates/LegalConsultantTemplate";
+import { ComplianceOfficerLegalTemplate } from "./resume/templates/ComplianceOfficerLegalTemplate";
+import { ContractSpecialistTemplate } from "./resume/templates/ContractSpecialistTemplate";
+import { IntellectualPropertyAttorneyTemplate } from "./resume/templates/IntellectualPropertyAttorneyTemplate";
+import { LegalOperationsManagerTemplate } from "./resume/templates/LegalOperationsManagerTemplate";
+// 2025 Batch 3 - Human Resources (8 templates)
+import { HRBusinessPartnerTemplate } from "./resume/templates/HRBusinessPartnerTemplate";
+import { TalentAcquisitionSpecialistTemplate } from "./resume/templates/TalentAcquisitionSpecialistTemplate";
+import { CompensationBenefitsManagerTemplate } from "./resume/templates/CompensationBenefitsManagerTemplate";
+import { LearningDevelopmentManagerTemplate } from "./resume/templates/LearningDevelopmentManagerTemplate";
+import { EmployeeRelationsSpecialistTemplate } from "./resume/templates/EmployeeRelationsSpecialistTemplate";
+import { HRAnalyticsManagerTemplate } from "./resume/templates/HRAnalyticsManagerTemplate";
+import { OrganizationalDevelopmentTemplate } from "./resume/templates/OrganizationalDevelopmentTemplate";
+import { DiversityInclusionManagerTemplate } from "./resume/templates/DiversityInclusionManagerTemplate";
+// 2025 Batch 3 - Hospitality & Culinary (7 templates)
+import { ExecutiveChefTemplate } from "./resume/templates/ExecutiveChefTemplate";
+import { HotelManagerOperationsTemplate } from "./resume/templates/HotelManagerOperationsTemplate";
+import { RestaurantManagerTemplate } from "./resume/templates/RestaurantManagerTemplate";
+import { EventPlannerCoordinatorTemplate } from "./resume/templates/EventPlannerCoordinatorTemplate";
+import { SommelierWineSpecialistTemplate } from "./resume/templates/SommelierWineSpecialistTemplate";
+import { PastryChefTemplate } from "./resume/templates/PastryChefTemplate";
+import { HospitalityDirectorTemplate } from "./resume/templates/HospitalityDirectorTemplate";
+// 2025 Batch 3 - Real Estate & Construction (7 templates)
+import { RealEstateBrokerTemplate } from "./resume/templates/RealEstateBrokerTemplate";
+import { PropertyManagerCommercialTemplate } from "./resume/templates/PropertyManagerCommercialTemplate";
+import { ConstructionProjectManagerTemplate } from "./resume/templates/ConstructionProjectManagerTemplate";
+import { ArchitectRegisteredTemplate } from "./resume/templates/ArchitectRegisteredTemplate";
+import { GeneralContractorTemplate } from "./resume/templates/GeneralContractorTemplate";
+import { EstimatorCostAnalystTemplate } from "./resume/templates/EstimatorCostAnalystTemplate";
+import { RealEstateAppraiserTemplate } from "./resume/templates/RealEstateAppraiserTemplate";
+// 2025 Batch 3 - Operations & Logistics (3 templates)
+import { SupplyChainManagerTemplate } from "./resume/templates/SupplyChainManagerTemplate";
+import { LogisticsCoordinatorTemplate } from "./resume/templates/LogisticsCoordinatorTemplate";
+import { ProcurementSpecialistTemplate } from "./resume/templates/ProcurementSpecialistTemplate";
 
 interface TemplatePreviewProps {
   templateId: string;
@@ -1763,6 +2079,322 @@ const templates = {
   "professional-readable-layout": ProfessionalReadableLayoutTemplate,
   "clean-readable-pro": CleanReadableProTemplate,
   "simple-structured-template": SimpleStructuredTemplateTemplate,
+  // 2025 New Templates (100 displayTemplates map entries)
+  "strategic-leadership": StrategicLeadershipTemplate,
+  "corporate-excellence": CorporateExcellenceTemplate,
+  "executive-prestige": ExecutivePrestigeTemplate,
+  "global-executive-pro": GlobalExecutiveProTemplate,
+  "premium-corporate-edge": PremiumCorporateEdgeTemplate,
+  "enterprise-leader": EnterpriseLeaderTemplate,
+  "boardroom-ready": BoardroomReadyTemplate,
+  "c-suite-modern": CSuiteModernTemplate,
+  "executive-impact": ExecutiveImpactTemplate,
+  "corporate-visionary": CorporateVisionaryTemplate,
+  "platinum-executive": PlatinumExecutiveTemplate,
+  "global-leadership": GlobalLeadershipTemplate,
+  "senior-executive-pro": SeniorExecutiveProTemplate,
+  "corporate-elite-plus": CorporateElitePlusTemplate,
+  "executive-pinnacle": ExecutivePinnacleTemplate,
+  "corporate-distinction": CorporateDistinctionTemplate,
+  "leadership-summit": LeadershipSummitTemplate,
+  "executive-authority": ExecutiveAuthorityTemplate,
+  "corporate-premier": CorporatePremierTemplate,
+  "global-enterprise": GlobalEnterpriseTemplate,
+  "executive-signature": ExecutiveSignatureTemplate,
+  "corporate-apex": CorporateApexTemplate,
+  "strategic-executive-plus": StrategicExecutivePlusTemplate,
+  "corporate-paradigm": CorporateParadigmTemplate,
+  "executive-magnitude": ExecutiveMagnitudeTemplate,
+  "corporate-sovereign": CorporateSovereignTemplate,
+  "leadership-zenith": LeadershipZenithTemplate,
+  "executive-nexus": ExecutiveNexusTemplate,
+  "corporate-vanguard": CorporateVanguardTemplate,
+  "executive-ascendancy": ExecutiveAscendancyTemplate,
+  "vue-specialist": VueSpecialistTemplate,
+  "svelte-developer": SvelteDeveloperTemplate,
+  "flutter-engineer": FlutterEngineerTemplate,
+  "swift-ios-developer": SwiftIOSDeveloperTemplate,
+  "rust-systems-engineer": RustSystemsEngineerTemplate,
+  "scala-backend-engineer": ScalaBackendEngineerTemplate,
+  "elixir-developer": ElixirDeveloperTemplate,
+  "graphql-architect": GraphQLArchitectTemplate,
+  "typescript-expert": TypeScriptExpertTemplate,
+  "nextjs-fullstack": NextJSFullstackTemplate,
+  "nestjs-backend": NestJSBackendTemplate,
+  "django-fullstack": DjangoFullstackTemplate,
+  "spring-boot-developer": SpringBootDeveloperTemplate,
+  "postgresql-dba": PostgreSQLDBATemplate,
+  "mongodb-specialist": MongoDBSpecialistTemplate,
+  "redis-engineer": RedisEngineerTemplate,
+  "elasticsearch-expert": ElasticsearchExpertTemplate,
+  "terraform-devops": TerraformDevOpsTemplate,
+  "ansible-automation": AnsibleAutomationTemplate,
+  "jenkins-cicd": JenkinsCICDTemplate,
+  "kafka-streaming": KafkaStreamingTemplate,
+  "rabbitmq-specialist": RabbitMQSpecialistTemplate,
+  "grpc-developer": GRPCDeveloperTemplate,
+  "webassembly-engineer": WebAssemblyEngineerTemplate,
+  "unity-game-developer": UnityGameDeveloperTemplate,
+  "academic-achiever": AcademicAchieverTemplate,
+  "graduate-innovator": GraduateInnovatorTemplate,
+  "campus-leader": CampusLeaderTemplate,
+  "scholarship-graduate": ScholarshipGraduateTemplate,
+  "honors-student": HonorsStudentTemplate,
+  "stem-graduate": STEMGraduateTemplate,
+  "internship-ready": InternshipReadyTemplate,
+  "research-graduate": ResearchGraduateTemplate,
+  "entrepreneurial-graduate": EntrepreneurialGraduateTemplate,
+  "volunteer-leader": VolunteerLeaderTemplate,
+  "coding-bootcamp-grad": CodingBootcampGradTemplate,
+  "liberal-arts-graduate": LiberalArtsGraduateTemplate,
+  "business-graduate": BusinessGraduateTemplate,
+  "engineering-fresher": EngineeringFresherTemplate,
+  "design-school-grad": DesignSchoolGradTemplate,
+  "masters-graduate": MastersGraduateTemplate,
+  "phd-candidate": PhDCandidateTemplate,
+  "student-athlete": StudentAthleteTemplate,
+  "study-abroad-graduate": StudyAbroadGraduateTemplate,
+  "dual-degree-graduate": DualDegreeGraduateTemplate,
+  "portfolio-artist": PortfolioArtistTemplate,
+  "motion-designer": MotionDesignerTemplate,
+  "brand-strategist": BrandStrategistTemplate,
+  "content-creator": ContentCreatorTemplate,
+  "illustrator-artist": IllustratorArtistTemplate,
+  "video-producer": VideoProducerTemplate,
+  "copywriter-creative": CopywriterCreativeTemplate,
+  "art-director-pro": ArtDirectorProTemplate,
+  "photographer-pro": PhotographerProTemplate,
+  "typographer-specialist": TypographerSpecialistTemplate,
+  "digital-artist": DigitalArtistTemplate,
+  "creative-director-elite": CreativeDirectorEliteTemplate,
+  "social-media-creative": SocialMediaCreativeTemplate,
+  "animation-artist": AnimationArtistTemplate,
+  "multimedia-designer": MultimediaDesignerTemplate,
+  "ux-researcher": UXResearcherTemplate,
+  "ui-specialist": UISpecialistTemplate,
+  "product-designer-pro": ProductDesignerProTemplate,
+  "interaction-designer": InteractionDesignerTemplate,
+  "service-designer": ServiceDesignerTemplate,
+  "design-systems-architect": DesignSystemsArchitectTemplate,
+  "accessibility-designer": AccessibilityDesignerTemplate,
+  "design-lead": DesignLeadTemplate,
+  "design-strategist": DesignStrategistTemplate,
+  "visual-designer-pro": VisualDesignerProTemplate,
+  // 2025 Batch 2 - Universal Professional Templates (30 templates)
+  "sapphire-professional": SapphireProfessionalTemplate,
+  "emerald-executive": EmeraldExecutiveTemplate,
+  "ruby-corporate": RubyCorporateTemplate,
+  "onyx-leadership": OnyxLeadershipTemplate,
+  "platinum-prestige": PlatinumPrestigeTemplate,
+  "azure-professional": AzureProfessionalTemplate,
+  "amber-executive": AmberExecutiveTemplate,
+  "violet-corporate": VioletCorporateTemplate,
+  "jade-professional": JadeProfessionalTemplate,
+  "crimson-leadership": CrimsonLeadershipTemplate,
+  "slate-minimalist": SlateMinimalistTemplate,
+  "teal-modern": TealModernTemplate,
+  "indigo-executive": IndigoExecutiveTemplate,
+  "rose-professional": RoseProfessionalTemplate,
+  "navy-corporate": NavyCorporateTemplate,
+  "gold-prestige": GoldPrestigeTemplate,
+  "charcoal-professional": CharcoalProfessionalTemplate,
+  "coral-executive": CoralExecutiveTemplate,
+  "pewter-minimalist": PewterMinimalistTemplate,
+  "forest-professional": ForestProfessionalTemplate,
+  "burgundy-executive": BurgundyExecutiveTemplate,
+  "sky-modern": SkyModernTemplate,
+  "plum-professional": PlumProfessionalTemplate,
+  "bronze-corporate": BronzeCorporateTemplate,
+  "mint-professional": MintProfessionalTemplate,
+  "obsidian-executive": ObsidianExecutiveTemplate,
+  "tangerine-modern": TangerineModernTemplate,
+  "steel-professional": SteelProfessionalTemplate,
+  "lavender-executive": LavenderExecutiveTemplate,
+  "cobalt-professional": CobaltProfessionalTemplate,
+  // 2025 Batch 2 - Software & Technology Templates (25 templates)
+  "github-developer": GitHubDeveloperTemplate,
+  "linkedin-tech-pro": LinkedInTechProTemplate,
+  "laravel-artisan": LaravelArtisanTemplate,
+  "rails-developer": RailsDeveloperTemplate,
+  "angular-specialist": AngularSpecialistTemplate,
+  "vue-master": VueMasterTemplate,
+  "kotlin-android-dev": KotlinAndroidDevTemplate,
+  "ios-swift-engineer": iOSSwiftEngineerTemplate,
+  "docker-specialist": DockerSpecialistTemplate,
+  "aws-solutions-architect": AWSSolutionsArchitectTemplate,
+  "gcp-cloud-engineer": GCPCloudEngineerTemplate,
+  "azure-devops-pro": AzureDevOpsProTemplate,
+  "react-native-dev": ReactNativeDevTemplate,
+  "flutter-ui-specialist": FlutterUISpecialistTemplate,
+  "dotnet-core-developer": DotNetCoreDeveloperTemplate,
+  "golang-backend-engineer": GolangBackendEngineerTemplate,
+  "python-ml-engineer": PythonMLEngineerTemplate,
+  "data-scientist-pro": DataScientistProTemplate,
+  "blockchain-engineer": BlockchainEngineerTemplate,
+  "solidity-developer": SolidityDeveloperTemplate,
+  "cybersecurity-analyst": CybersecurityAnalystTemplate,
+  "devsecops-engineer": DevSecOpsEngineerTemplate,
+  "fullstack-javascript": FullstackJavaScriptTemplate,
+  "jamstack-developer": JAMStackDeveloperTemplate,
+  "headless-cms-developer": HeadlessCMSDeveloperTemplate,
+  // 2025 Batch 2 - Fresh Graduates Templates (20 templates)
+  "digital-native-graduate": DigitalNativeGraduateTemplate,
+  "tech-savvy-fresher": TechSavvyFresherTemplate,
+  "linkedin-ready-graduate": LinkedInReadyGraduateTemplate,
+  "github-student-developer": GitHubStudentDeveloperTemplate,
+  "portfolio-first-graduate": PortfolioFirstGraduateTemplate,
+  "connected-graduate": ConnectedGraduateTemplate,
+  "social-media-savvy-grad": SocialMediaSavvyGradTemplate,
+  "open-source-contributor": OpenSourceContributorTemplate,
+  "hackathon-winner": HackathonWinnerTemplate,
+  "coding-challenge-champion": CodingChallengeChampionTemplate,
+  "capstone-showcase": CapstoneShowcaseTemplate,
+  "research-publication-grad": ResearchPublicationGradTemplate,
+  "conference-presenter": ConferencePresenterTemplate,
+  "startup-intern": StartupInternTemplate,
+  "faang-aspirant": FAANGAspirantTemplate,
+  "bootcamp-success-story": BootcampSuccessStoryTemplate,
+  "remote-work-ready": RemoteWorkReadyTemplate,
+  "community-builder": CommunityBuilderTemplate,
+  "tech-blogger-graduate": TechBloggerGraduateTemplate,
+  "youtube-educator": YouTubeEducatorTemplate,
+  // 2025 Batch 2 - Creative Templates (15 templates)
+  "behance-designer": BehanceDesignerTemplate,
+  "dribbble-creative": DribbbleCreativeTemplate,
+  "instagram-influencer": InstagramInfluencerTemplate,
+  "pinterest-curator": PinterestCuratorTemplate,
+  "vimeo-videographer": VimeoVideographerTemplate,
+  "medium-writer": MediumWriterTemplate,
+  "tiktok-creator": TikTokCreatorTemplate,
+  "twitch-streamer": TwitchStreamerTemplate,
+  "soundcloud-producer": SoundCloudProducerTemplate,
+  "spotify-artist": SpotifyArtistTemplate,
+  "artstation-artist": ArtStationArtistTemplate,
+  "deviantart-creator": DeviantArtCreatorTemplate,
+  "patreon-creator": PatreonCreatorTemplate,
+  "substack-writer": SubstackWriterTemplate,
+  "clubhouse-moderator": ClubhouseModeratorTemplate,
+  // 2025 Batch 2 - Design Templates (10 templates)
+  "figma-expert": FigmaExpertTemplate,
+  "sketch-specialist": SketchSpecialistTemplate,
+  "adobe-xd-designer": AdobeXDDesignerTemplate,
+  "framer-designer": FramerDesignerTemplate,
+  "webflow-developer": WebflowDeveloperTemplate,
+  "principle-animator": PrincipleAnimatorTemplate,
+  "invision-prototyper": InVisionPrototyperTemplate,
+  "marvel-app-designer": MarvelAppDesignerTemplate,
+  "zeplin-handoff-specialist": ZeplinHandoffSpecialistTemplate,
+  "abstract-version-designer": AbstractVersionDesignerTemplate,
+  // 2025 Batch 3 - Healthcare & Medical (15 templates)
+  "registered-nurse-pro": RegisteredNurseProTemplate,
+  "physician-specialist": PhysicianSpecialistTemplate,
+  "dental-professional": DentalProfessionalTemplate,
+  "pharmacist-clinical": PharmacistClinicalTemplate,
+  "physical-therapist": PhysicalTherapistTemplate,
+  "medical-technologist": MedicalTechnologistTemplate,
+  "radiology-technician": RadiologyTechnicianTemplate,
+  "healthcare-administrator": HealthcareAdministratorTemplate,
+  "mental-health-counselor": MentalHealthCounselorTemplate,
+  "occupational-therapist": OccupationalTherapistTemplate,
+  "speech-pathologist": SpeechPathologistTemplate,
+  "veterinary-doctor": VeterinaryDoctorTemplate,
+  "nutritionist-dietitian": NutritionistDietitianTemplate,
+  "medical-assistant": MedicalAssistantTemplate,
+  "paramedic-emt": ParamedicEMTTemplate,
+  // 2025 Batch 3 - Engineering (15 templates)
+  "mechanical-engineer-pro": MechanicalEngineerProTemplate,
+  "civil-engineer-pe": CivilEngineerPETemplate,
+  "electrical-engineer": ElectricalEngineerTemplate,
+  "chemical-engineer-pro": ChemicalEngineerProTemplate,
+  "aerospace-engineer": AerospaceEngineerTemplate,
+  "biomedical-engineer": BiomedicalEngineerTemplate,
+  "industrial-engineer": IndustrialEngineerTemplate,
+  "environmental-engineer": EnvironmentalEngineerTemplate,
+  "petroleum-engineer": PetroleumEngineerTemplate,
+  "structural-engineer": StructuralEngineerTemplate,
+  "manufacturing-engineer": ManufacturingEngineerTemplate,
+  "quality-assurance-engineer": QualityAssuranceEngineerTemplate,
+  "automation-engineer": AutomationEngineerTemplate,
+  "robotics-engineer": RoboticsEngineerTemplate,
+  "hvac-engineer": HVACEngineerTemplate,
+  // 2025 Batch 3 - Sales & Marketing (15 templates)
+  "sales-executive-pro": SalesExecutiveProTemplate,
+  "account-manager-enterprise": AccountManagerEnterpriseTemplate,
+  "digital-marketing-specialist": DigitalMarketingSpecialistTemplate,
+  "brand-manager-strategic": BrandManagerStrategicTemplate,
+  "seo-specialist-pro": SEOSpecialistProTemplate,
+  "growth-marketing-manager": GrowthMarketingManagerTemplate,
+  "email-marketing-specialist": EmailMarketingSpecialistTemplate,
+  "product-marketing-manager": ProductMarketingManagerTemplate,
+  "business-development-manager": BusinessDevelopmentManagerTemplate,
+  "inside-sales-representative": InsideSalesRepresentativeTemplate,
+  "field-sales-specialist": FieldSalesSpecialistTemplate,
+  "customer-success-manager": CustomerSuccessManagerTemplate,
+  "marketing-analytics-manager": MarketingAnalyticsManagerTemplate,
+  "ecommerce-manager": EcommerceManagerTemplate,
+  "affiliate-marketing-manager": AffiliateMarketingManagerTemplate,
+  // 2025 Batch 3 - Finance & Accounting (12 templates)
+  "financial-analyst-cfa": FinancialAnalystCFATemplate,
+  "investment-banker": InvestmentBankerTemplate,
+  "certified-public-accountant": CertifiedPublicAccountantTemplate,
+  "tax-specialist-pro": TaxSpecialistProTemplate,
+  "financial-controller": FinancialControllerTemplate,
+  "portfolio-manager": PortfolioManagerTemplate,
+  "risk-management-analyst": RiskManagementAnalystTemplate,
+  "treasury-analyst": TreasuryAnalystTemplate,
+  "forensic-accountant": ForensicAccountantTemplate,
+  "internal-auditor": InternalAuditorTemplate,
+  "budget-analyst": BudgetAnalystTemplate,
+  "equity-research-analyst": EquityResearchAnalystTemplate,
+  // 2025 Batch 3 - Education & Teaching (10 templates)
+  "university-professor": UniversityProfessorTemplate,
+  "elementary-teacher": ElementaryTeacherTemplate,
+  "high-school-teacher": HighSchoolTeacherTemplate,
+  "special-education-teacher": SpecialEducationTeacherTemplate,
+  "esl-teacher-certified": ESLTeacherCertifiedTemplate,
+  "curriculum-developer": CurriculumDeveloperTemplate,
+  "instructional-designer": InstructionalDesignerTemplate,
+  "academic-advisor": AcademicAdvisorTemplate,
+  "online-course-instructor": OnlineCourseInstructorTemplate,
+  "private-tutor-specialist": PrivateTutorSpecialistTemplate,
+  // 2025 Batch 3 - Legal (8 templates)
+  "corporate-attorney": CorporateAttorneyTemplate,
+  "litigation-attorney": LitigationAttorneyTemplate,
+  "paralegal-certified": ParalegalCertifiedTemplate,
+  "legal-consultant": LegalConsultantTemplate,
+  "compliance-officer-legal": ComplianceOfficerLegalTemplate,
+  "contract-specialist": ContractSpecialistTemplate,
+  "intellectual-property-attorney": IntellectualPropertyAttorneyTemplate,
+  "legal-operations-manager": LegalOperationsManagerTemplate,
+  // 2025 Batch 3 - Human Resources (8 templates)
+  "hr-business-partner": HRBusinessPartnerTemplate,
+  "talent-acquisition-specialist": TalentAcquisitionSpecialistTemplate,
+  "compensation-benefits-manager": CompensationBenefitsManagerTemplate,
+  "learning-development-manager": LearningDevelopmentManagerTemplate,
+  "employee-relations-specialist": EmployeeRelationsSpecialistTemplate,
+  "hr-analytics-manager": HRAnalyticsManagerTemplate,
+  "organizational-development": OrganizationalDevelopmentTemplate,
+  "diversity-inclusion-manager": DiversityInclusionManagerTemplate,
+  // 2025 Batch 3 - Hospitality & Culinary (7 templates)
+  "executive-chef": ExecutiveChefTemplate,
+  "hotel-manager-operations": HotelManagerOperationsTemplate,
+  "restaurant-manager": RestaurantManagerTemplate,
+  "event-planner-coordinator": EventPlannerCoordinatorTemplate,
+  "sommelier-wine-specialist": SommelierWineSpecialistTemplate,
+  "pastry-chef": PastryChefTemplate,
+  "hospitality-director": HospitalityDirectorTemplate,
+  // 2025 Batch 3 - Real Estate & Construction (7 templates)
+  "real-estate-broker": RealEstateBrokerTemplate,
+  "property-manager-commercial": PropertyManagerCommercialTemplate,
+  "construction-project-manager": ConstructionProjectManagerTemplate,
+  "architect-registered": ArchitectRegisteredTemplate,
+  "general-contractor": GeneralContractorTemplate,
+  "estimator-cost-analyst": EstimatorCostAnalystTemplate,
+  "real-estate-appraiser": RealEstateAppraiserTemplate,
+  // 2025 Batch 3 - Operations & Logistics (3 templates)
+  "supply-chain-manager": SupplyChainManagerTemplate,
+  "logistics-coordinator": LogisticsCoordinatorTemplate,
+  "procurement-specialist": ProcurementSpecialistTemplate,
 };
 
 export const TemplatePreview = memo<TemplatePreviewProps>(({
