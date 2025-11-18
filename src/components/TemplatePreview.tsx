@@ -377,6 +377,111 @@ import { AccessibilityDesignerTemplate } from "./resume/templates/AccessibilityD
 import { DesignLeadTemplate } from "./resume/templates/DesignLeadTemplate";
 import { DesignStrategistTemplate } from "./resume/templates/DesignStrategistTemplate";
 import { VisualDesignerProTemplate } from "./resume/templates/VisualDesignerProTemplate";
+// 2025 Batch 2 - Universal Professional Templates (30 templates)
+import { SapphireProfessionalTemplate } from "./resume/templates/SapphireProfessionalTemplate";
+import { EmeraldExecutiveTemplate } from "./resume/templates/EmeraldExecutiveTemplate";
+import { RubyCorporateTemplate } from "./resume/templates/RubyCorporateTemplate";
+import { OnyxLeadershipTemplate } from "./resume/templates/OnyxLeadershipTemplate";
+import { PlatinumPrestigeTemplate } from "./resume/templates/PlatinumPrestigeTemplate";
+import { AzureProfessionalTemplate } from "./resume/templates/AzureProfessionalTemplate";
+import { AmberExecutiveTemplate } from "./resume/templates/AmberExecutiveTemplate";
+import { VioletCorporateTemplate } from "./resume/templates/VioletCorporateTemplate";
+import { JadeProfessionalTemplate } from "./resume/templates/JadeProfessionalTemplate";
+import { CrimsonLeadershipTemplate } from "./resume/templates/CrimsonLeadershipTemplate";
+import { SlateMinimalistTemplate } from "./resume/templates/SlateMinimalistTemplate";
+import { TealModernTemplate } from "./resume/templates/TealModernTemplate";
+import { IndigoExecutiveTemplate } from "./resume/templates/IndigoExecutiveTemplate";
+import { RoseProfessionalTemplate } from "./resume/templates/RoseProfessionalTemplate";
+import { NavyCorporateTemplate } from "./resume/templates/NavyCorporateTemplate";
+import { GoldPrestigeTemplate } from "./resume/templates/GoldPrestigeTemplate";
+import { CharcoalProfessionalTemplate } from "./resume/templates/CharcoalProfessionalTemplate";
+import { CoralExecutiveTemplate } from "./resume/templates/CoralExecutiveTemplate";
+import { PewterMinimalistTemplate } from "./resume/templates/PewterMinimalistTemplate";
+import { ForestProfessionalTemplate } from "./resume/templates/ForestProfessionalTemplate";
+import { BurgundyExecutiveTemplate } from "./resume/templates/BurgundyExecutiveTemplate";
+import { SkyModernTemplate } from "./resume/templates/SkyModernTemplate";
+import { PlumProfessionalTemplate } from "./resume/templates/PlumProfessionalTemplate";
+import { BronzeCorporateTemplate } from "./resume/templates/BronzeCorporateTemplate";
+import { MintProfessionalTemplate } from "./resume/templates/MintProfessionalTemplate";
+import { ObsidianExecutiveTemplate } from "./resume/templates/ObsidianExecutiveTemplate";
+import { TangerineModernTemplate } from "./resume/templates/TangerineModernTemplate";
+import { SteelProfessionalTemplate } from "./resume/templates/SteelProfessionalTemplate";
+import { LavenderExecutiveTemplate } from "./resume/templates/LavenderExecutiveTemplate";
+import { CobaltProfessionalTemplate } from "./resume/templates/CobaltProfessionalTemplate";
+// 2025 Batch 2 - Software & Technology Templates (25 templates)
+import { GitHubDeveloperTemplate } from "./resume/templates/GitHubDeveloperTemplate";
+import { LinkedInTechProTemplate } from "./resume/templates/LinkedInTechProTemplate";
+import { LaravelArtisanTemplate } from "./resume/templates/LaravelArtisanTemplate";
+import { RailsDeveloperTemplate } from "./resume/templates/RailsDeveloperTemplate";
+import { AngularSpecialistTemplate } from "./resume/templates/AngularSpecialistTemplate";
+import { VueMasterTemplate } from "./resume/templates/VueMasterTemplate";
+import { KotlinAndroidDevTemplate } from "./resume/templates/KotlinAndroidDevTemplate";
+import { iOSSwiftEngineerTemplate } from "./resume/templates/iOSSwiftEngineerTemplate";
+import { DockerSpecialistTemplate } from "./resume/templates/DockerSpecialistTemplate";
+import { AWSSolutionsArchitectTemplate } from "./resume/templates/AWSSolutionsArchitectTemplate";
+import { GCPCloudEngineerTemplate } from "./resume/templates/GCPCloudEngineerTemplate";
+import { AzureDevOpsProTemplate } from "./resume/templates/AzureDevOpsProTemplate";
+import { ReactNativeDevTemplate } from "./resume/templates/ReactNativeDevTemplate";
+import { FlutterUISpecialistTemplate } from "./resume/templates/FlutterUISpecialistTemplate";
+import { DotNetCoreDeveloperTemplate } from "./resume/templates/DotNetCoreDeveloperTemplate";
+import { GolangBackendEngineerTemplate } from "./resume/templates/GolangBackendEngineerTemplate";
+import { PythonMLEngineerTemplate } from "./resume/templates/PythonMLEngineerTemplate";
+import { DataScientistProTemplate } from "./resume/templates/DataScientistProTemplate";
+import { BlockchainEngineerTemplate } from "./resume/templates/BlockchainEngineerTemplate";
+import { SolidityDeveloperTemplate } from "./resume/templates/SolidityDeveloperTemplate";
+import { CybersecurityAnalystTemplate } from "./resume/templates/CybersecurityAnalystTemplate";
+import { DevSecOpsEngineerTemplate } from "./resume/templates/DevSecOpsEngineerTemplate";
+import { FullstackJavaScriptTemplate } from "./resume/templates/FullstackJavaScriptTemplate";
+import { JAMStackDeveloperTemplate } from "./resume/templates/JAMStackDeveloperTemplate";
+import { HeadlessCMSDeveloperTemplate } from "./resume/templates/HeadlessCMSDeveloperTemplate";
+// 2025 Batch 2 - Fresh Graduates Templates (20 templates)
+import { DigitalNativeGraduateTemplate } from "./resume/templates/DigitalNativeGraduateTemplate";
+import { TechSavvyFresherTemplate } from "./resume/templates/TechSavvyFresherTemplate";
+import { LinkedInReadyGraduateTemplate } from "./resume/templates/LinkedInReadyGraduateTemplate";
+import { GitHubStudentDeveloperTemplate } from "./resume/templates/GitHubStudentDeveloperTemplate";
+import { PortfolioFirstGraduateTemplate } from "./resume/templates/PortfolioFirstGraduateTemplate";
+import { ConnectedGraduateTemplate } from "./resume/templates/ConnectedGraduateTemplate";
+import { SocialMediaSavvyGradTemplate } from "./resume/templates/SocialMediaSavvyGradTemplate";
+import { OpenSourceContributorTemplate } from "./resume/templates/OpenSourceContributorTemplate";
+import { HackathonWinnerTemplate } from "./resume/templates/HackathonWinnerTemplate";
+import { CodingChallengeChampionTemplate } from "./resume/templates/CodingChallengeChampionTemplate";
+import { CapstoneShowcaseTemplate } from "./resume/templates/CapstoneShowcaseTemplate";
+import { ResearchPublicationGradTemplate } from "./resume/templates/ResearchPublicationGradTemplate";
+import { ConferencePresenterTemplate } from "./resume/templates/ConferencePresenterTemplate";
+import { StartupInternTemplate } from "./resume/templates/StartupInternTemplate";
+import { FAANGAspirantTemplate } from "./resume/templates/FAANGAspirantTemplate";
+import { BootcampSuccessStoryTemplate } from "./resume/templates/BootcampSuccessStoryTemplate";
+import { RemoteWorkReadyTemplate } from "./resume/templates/RemoteWorkReadyTemplate";
+import { CommunityBuilderTemplate } from "./resume/templates/CommunityBuilderTemplate";
+import { TechBloggerGraduateTemplate } from "./resume/templates/TechBloggerGraduateTemplate";
+import { YouTubeEducatorTemplate } from "./resume/templates/YouTubeEducatorTemplate";
+// 2025 Batch 2 - Creative Templates (15 templates)
+import { BehanceDesignerTemplate } from "./resume/templates/BehanceDesignerTemplate";
+import { DribbbleCreativeTemplate } from "./resume/templates/DribbbleCreativeTemplate";
+import { InstagramInfluencerTemplate } from "./resume/templates/InstagramInfluencerTemplate";
+import { PinterestCuratorTemplate } from "./resume/templates/PinterestCuratorTemplate";
+import { VimeoVideographerTemplate } from "./resume/templates/VimeoVideographerTemplate";
+import { MediumWriterTemplate } from "./resume/templates/MediumWriterTemplate";
+import { TikTokCreatorTemplate } from "./resume/templates/TikTokCreatorTemplate";
+import { TwitchStreamerTemplate } from "./resume/templates/TwitchStreamerTemplate";
+import { SoundCloudProducerTemplate } from "./resume/templates/SoundCloudProducerTemplate";
+import { SpotifyArtistTemplate } from "./resume/templates/SpotifyArtistTemplate";
+import { ArtStationArtistTemplate } from "./resume/templates/ArtStationArtistTemplate";
+import { DeviantArtCreatorTemplate } from "./resume/templates/DeviantArtCreatorTemplate";
+import { PatreonCreatorTemplate } from "./resume/templates/PatreonCreatorTemplate";
+import { SubstackWriterTemplate } from "./resume/templates/SubstackWriterTemplate";
+import { ClubhouseModeratorTemplate } from "./resume/templates/ClubhouseModeratorTemplate";
+// 2025 Batch 2 - Design Templates (10 templates)
+import { FigmaExpertTemplate } from "./resume/templates/FigmaExpertTemplate";
+import { SketchSpecialistTemplate } from "./resume/templates/SketchSpecialistTemplate";
+import { AdobeXDDesignerTemplate } from "./resume/templates/AdobeXDDesignerTemplate";
+import { FramerDesignerTemplate } from "./resume/templates/FramerDesignerTemplate";
+import { WebflowDeveloperTemplate } from "./resume/templates/WebflowDeveloperTemplate";
+import { PrincipleAnimatorTemplate } from "./resume/templates/PrincipleAnimatorTemplate";
+import { InVisionPrototyperTemplate } from "./resume/templates/InVisionPrototyperTemplate";
+import { MarvelAppDesignerTemplate } from "./resume/templates/MarvelAppDesignerTemplate";
+import { ZeplinHandoffSpecialistTemplate } from "./resume/templates/ZeplinHandoffSpecialistTemplate";
+import { AbstractVersionDesignerTemplate } from "./resume/templates/AbstractVersionDesignerTemplate";
 
 interface TemplatePreviewProps {
   templateId: string;
@@ -1965,6 +2070,111 @@ const templates = {
   "design-lead": DesignLeadTemplate,
   "design-strategist": DesignStrategistTemplate,
   "visual-designer-pro": VisualDesignerProTemplate,
+  // 2025 Batch 2 - Universal Professional Templates (30 templates)
+  "sapphire-professional": SapphireProfessionalTemplate,
+  "emerald-executive": EmeraldExecutiveTemplate,
+  "ruby-corporate": RubyCorporateTemplate,
+  "onyx-leadership": OnyxLeadershipTemplate,
+  "platinum-prestige": PlatinumPrestigeTemplate,
+  "azure-professional": AzureProfessionalTemplate,
+  "amber-executive": AmberExecutiveTemplate,
+  "violet-corporate": VioletCorporateTemplate,
+  "jade-professional": JadeProfessionalTemplate,
+  "crimson-leadership": CrimsonLeadershipTemplate,
+  "slate-minimalist": SlateMinimalistTemplate,
+  "teal-modern": TealModernTemplate,
+  "indigo-executive": IndigoExecutiveTemplate,
+  "rose-professional": RoseProfessionalTemplate,
+  "navy-corporate": NavyCorporateTemplate,
+  "gold-prestige": GoldPrestigeTemplate,
+  "charcoal-professional": CharcoalProfessionalTemplate,
+  "coral-executive": CoralExecutiveTemplate,
+  "pewter-minimalist": PewterMinimalistTemplate,
+  "forest-professional": ForestProfessionalTemplate,
+  "burgundy-executive": BurgundyExecutiveTemplate,
+  "sky-modern": SkyModernTemplate,
+  "plum-professional": PlumProfessionalTemplate,
+  "bronze-corporate": BronzeCorporateTemplate,
+  "mint-professional": MintProfessionalTemplate,
+  "obsidian-executive": ObsidianExecutiveTemplate,
+  "tangerine-modern": TangerineModernTemplate,
+  "steel-professional": SteelProfessionalTemplate,
+  "lavender-executive": LavenderExecutiveTemplate,
+  "cobalt-professional": CobaltProfessionalTemplate,
+  // 2025 Batch 2 - Software & Technology Templates (25 templates)
+  "github-developer": GitHubDeveloperTemplate,
+  "linkedin-tech-pro": LinkedInTechProTemplate,
+  "laravel-artisan": LaravelArtisanTemplate,
+  "rails-developer": RailsDeveloperTemplate,
+  "angular-specialist": AngularSpecialistTemplate,
+  "vue-master": VueMasterTemplate,
+  "kotlin-android-dev": KotlinAndroidDevTemplate,
+  "ios-swift-engineer": iOSSwiftEngineerTemplate,
+  "docker-specialist": DockerSpecialistTemplate,
+  "aws-solutions-architect": AWSSolutionsArchitectTemplate,
+  "gcp-cloud-engineer": GCPCloudEngineerTemplate,
+  "azure-devops-pro": AzureDevOpsProTemplate,
+  "react-native-dev": ReactNativeDevTemplate,
+  "flutter-ui-specialist": FlutterUISpecialistTemplate,
+  "dotnet-core-developer": DotNetCoreDeveloperTemplate,
+  "golang-backend-engineer": GolangBackendEngineerTemplate,
+  "python-ml-engineer": PythonMLEngineerTemplate,
+  "data-scientist-pro": DataScientistProTemplate,
+  "blockchain-engineer": BlockchainEngineerTemplate,
+  "solidity-developer": SolidityDeveloperTemplate,
+  "cybersecurity-analyst": CybersecurityAnalystTemplate,
+  "devsecops-engineer": DevSecOpsEngineerTemplate,
+  "fullstack-javascript": FullstackJavaScriptTemplate,
+  "jamstack-developer": JAMStackDeveloperTemplate,
+  "headless-cms-developer": HeadlessCMSDeveloperTemplate,
+  // 2025 Batch 2 - Fresh Graduates Templates (20 templates)
+  "digital-native-graduate": DigitalNativeGraduateTemplate,
+  "tech-savvy-fresher": TechSavvyFresherTemplate,
+  "linkedin-ready-graduate": LinkedInReadyGraduateTemplate,
+  "github-student-developer": GitHubStudentDeveloperTemplate,
+  "portfolio-first-graduate": PortfolioFirstGraduateTemplate,
+  "connected-graduate": ConnectedGraduateTemplate,
+  "social-media-savvy-grad": SocialMediaSavvyGradTemplate,
+  "open-source-contributor": OpenSourceContributorTemplate,
+  "hackathon-winner": HackathonWinnerTemplate,
+  "coding-challenge-champion": CodingChallengeChampionTemplate,
+  "capstone-showcase": CapstoneShowcaseTemplate,
+  "research-publication-grad": ResearchPublicationGradTemplate,
+  "conference-presenter": ConferencePresenterTemplate,
+  "startup-intern": StartupInternTemplate,
+  "faang-aspirant": FAANGAspirantTemplate,
+  "bootcamp-success-story": BootcampSuccessStoryTemplate,
+  "remote-work-ready": RemoteWorkReadyTemplate,
+  "community-builder": CommunityBuilderTemplate,
+  "tech-blogger-graduate": TechBloggerGraduateTemplate,
+  "youtube-educator": YouTubeEducatorTemplate,
+  // 2025 Batch 2 - Creative Templates (15 templates)
+  "behance-designer": BehanceDesignerTemplate,
+  "dribbble-creative": DribbbleCreativeTemplate,
+  "instagram-influencer": InstagramInfluencerTemplate,
+  "pinterest-curator": PinterestCuratorTemplate,
+  "vimeo-videographer": VimeoVideographerTemplate,
+  "medium-writer": MediumWriterTemplate,
+  "tiktok-creator": TikTokCreatorTemplate,
+  "twitch-streamer": TwitchStreamerTemplate,
+  "soundcloud-producer": SoundCloudProducerTemplate,
+  "spotify-artist": SpotifyArtistTemplate,
+  "artstation-artist": ArtStationArtistTemplate,
+  "deviantart-creator": DeviantArtCreatorTemplate,
+  "patreon-creator": PatreonCreatorTemplate,
+  "substack-writer": SubstackWriterTemplate,
+  "clubhouse-moderator": ClubhouseModeratorTemplate,
+  // 2025 Batch 2 - Design Templates (10 templates)
+  "figma-expert": FigmaExpertTemplate,
+  "sketch-specialist": SketchSpecialistTemplate,
+  "adobe-xd-designer": AdobeXDDesignerTemplate,
+  "framer-designer": FramerDesignerTemplate,
+  "webflow-developer": WebflowDeveloperTemplate,
+  "principle-animator": PrincipleAnimatorTemplate,
+  "invision-prototyper": InVisionPrototyperTemplate,
+  "marvel-app-designer": MarvelAppDesignerTemplate,
+  "zeplin-handoff-specialist": ZeplinHandoffSpecialistTemplate,
+  "abstract-version-designer": AbstractVersionDesignerTemplate,
 };
 
 export const TemplatePreview = memo<TemplatePreviewProps>(({

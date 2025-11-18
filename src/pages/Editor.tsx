@@ -278,6 +278,111 @@ import { AccessibilityDesignerPDF } from "@/components/resume/pdf/AccessibilityD
 import { DesignLeadPDF } from "@/components/resume/pdf/DesignLeadPDF";
 import { DesignStrategistPDF } from "@/components/resume/pdf/DesignStrategistPDF";
 import { VisualDesignerProPDF } from "@/components/resume/pdf/VisualDesignerProPDF";
+// 2025 Batch 2 - Universal Professional PDFs (30 templates)
+import { SapphireProfessionalPDF } from "@/components/resume/pdf/SapphireProfessionalPDF";
+import { EmeraldExecutivePDF } from "@/components/resume/pdf/EmeraldExecutivePDF";
+import { RubyCorporatePDF } from "@/components/resume/pdf/RubyCorporatePDF";
+import { OnyxLeadershipPDF } from "@/components/resume/pdf/OnyxLeadershipPDF";
+import { PlatinumPrestigePDF } from "@/components/resume/pdf/PlatinumPrestigePDF";
+import { AzureProfessionalPDF } from "@/components/resume/pdf/AzureProfessionalPDF";
+import { AmberExecutivePDF } from "@/components/resume/pdf/AmberExecutivePDF";
+import { VioletCorporatePDF } from "@/components/resume/pdf/VioletCorporatePDF";
+import { JadeProfessionalPDF } from "@/components/resume/pdf/JadeProfessionalPDF";
+import { CrimsonLeadershipPDF } from "@/components/resume/pdf/CrimsonLeadershipPDF";
+import { SlateMinimalistPDF } from "@/components/resume/pdf/SlateMinimalistPDF";
+import { TealModernPDF } from "@/components/resume/pdf/TealModernPDF";
+import { IndigoExecutivePDF } from "@/components/resume/pdf/IndigoExecutivePDF";
+import { RoseProfessionalPDF } from "@/components/resume/pdf/RoseProfessionalPDF";
+import { NavyCorporatePDF } from "@/components/resume/pdf/NavyCorporatePDF";
+import { GoldPrestigePDF } from "@/components/resume/pdf/GoldPrestigePDF";
+import { CharcoalProfessionalPDF } from "@/components/resume/pdf/CharcoalProfessionalPDF";
+import { CoralExecutivePDF } from "@/components/resume/pdf/CoralExecutivePDF";
+import { PewterMinimalistPDF } from "@/components/resume/pdf/PewterMinimalistPDF";
+import { ForestProfessionalPDF } from "@/components/resume/pdf/ForestProfessionalPDF";
+import { BurgundyExecutivePDF } from "@/components/resume/pdf/BurgundyExecutivePDF";
+import { SkyModernPDF } from "@/components/resume/pdf/SkyModernPDF";
+import { PlumProfessionalPDF } from "@/components/resume/pdf/PlumProfessionalPDF";
+import { BronzeCorporatePDF } from "@/components/resume/pdf/BronzeCorporatePDF";
+import { MintProfessionalPDF } from "@/components/resume/pdf/MintProfessionalPDF";
+import { ObsidianExecutivePDF } from "@/components/resume/pdf/ObsidianExecutivePDF";
+import { TangerineModernPDF } from "@/components/resume/pdf/TangerineModernPDF";
+import { SteelProfessionalPDF } from "@/components/resume/pdf/SteelProfessionalPDF";
+import { LavenderExecutivePDF } from "@/components/resume/pdf/LavenderExecutivePDF";
+import { CobaltProfessionalPDF } from "@/components/resume/pdf/CobaltProfessionalPDF";
+// 2025 Batch 2 - Software & Technology PDFs (25 templates)
+import { GitHubDeveloperPDF } from "@/components/resume/pdf/GitHubDeveloperPDF";
+import { LinkedInTechProPDF } from "@/components/resume/pdf/LinkedInTechProPDF";
+import { LaravelArtisanPDF } from "@/components/resume/pdf/LaravelArtisanPDF";
+import { RailsDeveloperPDF } from "@/components/resume/pdf/RailsDeveloperPDF";
+import { AngularSpecialistPDF } from "@/components/resume/pdf/AngularSpecialistPDF";
+import { VueMasterPDF } from "@/components/resume/pdf/VueMasterPDF";
+import { KotlinAndroidDevPDF } from "@/components/resume/pdf/KotlinAndroidDevPDF";
+import { iOSSwiftEngineerPDF } from "@/components/resume/pdf/iOSSwiftEngineerPDF";
+import { DockerSpecialistPDF } from "@/components/resume/pdf/DockerSpecialistPDF";
+import { AWSSolutionsArchitectPDF } from "@/components/resume/pdf/AWSSolutionsArchitectPDF";
+import { GCPCloudEngineerPDF } from "@/components/resume/pdf/GCPCloudEngineerPDF";
+import { AzureDevOpsProPDF } from "@/components/resume/pdf/AzureDevOpsProPDF";
+import { ReactNativeDevPDF } from "@/components/resume/pdf/ReactNativeDevPDF";
+import { FlutterUISpecialistPDF } from "@/components/resume/pdf/FlutterUISpecialistPDF";
+import { DotNetCoreDeveloperPDF } from "@/components/resume/pdf/DotNetCoreDeveloperPDF";
+import { GolangBackendEngineerPDF } from "@/components/resume/pdf/GolangBackendEngineerPDF";
+import { PythonMLEngineerPDF } from "@/components/resume/pdf/PythonMLEngineerPDF";
+import { DataScientistProPDF } from "@/components/resume/pdf/DataScientistProPDF";
+import { BlockchainEngineerPDF } from "@/components/resume/pdf/BlockchainEngineerPDF";
+import { SolidityDeveloperPDF } from "@/components/resume/pdf/SolidityDeveloperPDF";
+import { CybersecurityAnalystPDF } from "@/components/resume/pdf/CybersecurityAnalystPDF";
+import { DevSecOpsEngineerPDF } from "@/components/resume/pdf/DevSecOpsEngineerPDF";
+import { FullstackJavaScriptPDF } from "@/components/resume/pdf/FullstackJavaScriptPDF";
+import { JAMStackDeveloperPDF } from "@/components/resume/pdf/JAMStackDeveloperPDF";
+import { HeadlessCMSDeveloperPDF } from "@/components/resume/pdf/HeadlessCMSDeveloperPDF";
+// 2025 Batch 2 - Fresh Graduates PDFs (20 templates)
+import { DigitalNativeGraduatePDF } from "@/components/resume/pdf/DigitalNativeGraduatePDF";
+import { TechSavvyFresherPDF } from "@/components/resume/pdf/TechSavvyFresherPDF";
+import { LinkedInReadyGraduatePDF } from "@/components/resume/pdf/LinkedInReadyGraduatePDF";
+import { GitHubStudentDeveloperPDF } from "@/components/resume/pdf/GitHubStudentDeveloperPDF";
+import { PortfolioFirstGraduatePDF } from "@/components/resume/pdf/PortfolioFirstGraduatePDF";
+import { ConnectedGraduatePDF } from "@/components/resume/pdf/ConnectedGraduatePDF";
+import { SocialMediaSavvyGradPDF } from "@/components/resume/pdf/SocialMediaSavvyGradPDF";
+import { OpenSourceContributorPDF } from "@/components/resume/pdf/OpenSourceContributorPDF";
+import { HackathonWinnerPDF } from "@/components/resume/pdf/HackathonWinnerPDF";
+import { CodingChallengeChampionPDF } from "@/components/resume/pdf/CodingChallengeChampionPDF";
+import { CapstoneShowcasePDF } from "@/components/resume/pdf/CapstoneShowcasePDF";
+import { ResearchPublicationGradPDF } from "@/components/resume/pdf/ResearchPublicationGradPDF";
+import { ConferencePresenterPDF } from "@/components/resume/pdf/ConferencePresenterPDF";
+import { StartupInternPDF } from "@/components/resume/pdf/StartupInternPDF";
+import { FAANGAspirantPDF } from "@/components/resume/pdf/FAANGAspirantPDF";
+import { BootcampSuccessStoryPDF } from "@/components/resume/pdf/BootcampSuccessStoryPDF";
+import { RemoteWorkReadyPDF } from "@/components/resume/pdf/RemoteWorkReadyPDF";
+import { CommunityBuilderPDF } from "@/components/resume/pdf/CommunityBuilderPDF";
+import { TechBloggerGraduatePDF } from "@/components/resume/pdf/TechBloggerGraduatePDF";
+import { YouTubeEducatorPDF } from "@/components/resume/pdf/YouTubeEducatorPDF";
+// 2025 Batch 2 - Creative PDFs (15 templates)
+import { BehanceDesignerPDF } from "@/components/resume/pdf/BehanceDesignerPDF";
+import { DribbbleCreativePDF } from "@/components/resume/pdf/DribbbleCreativePDF";
+import { InstagramInfluencerPDF } from "@/components/resume/pdf/InstagramInfluencerPDF";
+import { PinterestCuratorPDF } from "@/components/resume/pdf/PinterestCuratorPDF";
+import { VimeoVideographerPDF } from "@/components/resume/pdf/VimeoVideographerPDF";
+import { MediumWriterPDF } from "@/components/resume/pdf/MediumWriterPDF";
+import { TikTokCreatorPDF } from "@/components/resume/pdf/TikTokCreatorPDF";
+import { TwitchStreamerPDF } from "@/components/resume/pdf/TwitchStreamerPDF";
+import { SoundCloudProducerPDF } from "@/components/resume/pdf/SoundCloudProducerPDF";
+import { SpotifyArtistPDF } from "@/components/resume/pdf/SpotifyArtistPDF";
+import { ArtStationArtistPDF } from "@/components/resume/pdf/ArtStationArtistPDF";
+import { DeviantArtCreatorPDF } from "@/components/resume/pdf/DeviantArtCreatorPDF";
+import { PatreonCreatorPDF } from "@/components/resume/pdf/PatreonCreatorPDF";
+import { SubstackWriterPDF } from "@/components/resume/pdf/SubstackWriterPDF";
+import { ClubhouseModeratorPDF } from "@/components/resume/pdf/ClubhouseModeratorPDF";
+// 2025 Batch 2 - Design PDFs (10 templates)
+import { FigmaExpertPDF } from "@/components/resume/pdf/FigmaExpertPDF";
+import { SketchSpecialistPDF } from "@/components/resume/pdf/SketchSpecialistPDF";
+import { AdobeXDDesignerPDF } from "@/components/resume/pdf/AdobeXDDesignerPDF";
+import { FramerDesignerPDF } from "@/components/resume/pdf/FramerDesignerPDF";
+import { WebflowDeveloperPDF } from "@/components/resume/pdf/WebflowDeveloperPDF";
+import { PrincipleAnimatorPDF } from "@/components/resume/pdf/PrincipleAnimatorPDF";
+import { InVisionPrototyperPDF } from "@/components/resume/pdf/InVisionPrototyperPDF";
+import { MarvelAppDesignerPDF } from "@/components/resume/pdf/MarvelAppDesignerPDF";
+import { ZeplinHandoffSpecialistPDF } from "@/components/resume/pdf/ZeplinHandoffSpecialistPDF";
+import { AbstractVersionDesignerPDF } from "@/components/resume/pdf/AbstractVersionDesignerPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -2585,6 +2690,111 @@ const Editor = () => {
         "design-lead": DesignLeadPDF,
         "design-strategist": DesignStrategistPDF,
         "visual-designer-pro": VisualDesignerProPDF,
+        // 2025 Batch 2 - Universal Professional PDFs (30 templates)
+        "sapphire-professional": SapphireProfessionalPDF,
+        "emerald-executive": EmeraldExecutivePDF,
+        "ruby-corporate": RubyCorporatePDF,
+        "onyx-leadership": OnyxLeadershipPDF,
+        "platinum-prestige": PlatinumPrestigePDF,
+        "azure-professional": AzureProfessionalPDF,
+        "amber-executive": AmberExecutivePDF,
+        "violet-corporate": VioletCorporatePDF,
+        "jade-professional": JadeProfessionalPDF,
+        "crimson-leadership": CrimsonLeadershipPDF,
+        "slate-minimalist": SlateMinimalistPDF,
+        "teal-modern": TealModernPDF,
+        "indigo-executive": IndigoExecutivePDF,
+        "rose-professional": RoseProfessionalPDF,
+        "navy-corporate": NavyCorporatePDF,
+        "gold-prestige": GoldPrestigePDF,
+        "charcoal-professional": CharcoalProfessionalPDF,
+        "coral-executive": CoralExecutivePDF,
+        "pewter-minimalist": PewterMinimalistPDF,
+        "forest-professional": ForestProfessionalPDF,
+        "burgundy-executive": BurgundyExecutivePDF,
+        "sky-modern": SkyModernPDF,
+        "plum-professional": PlumProfessionalPDF,
+        "bronze-corporate": BronzeCorporatePDF,
+        "mint-professional": MintProfessionalPDF,
+        "obsidian-executive": ObsidianExecutivePDF,
+        "tangerine-modern": TangerineModernPDF,
+        "steel-professional": SteelProfessionalPDF,
+        "lavender-executive": LavenderExecutivePDF,
+        "cobalt-professional": CobaltProfessionalPDF,
+        // 2025 Batch 2 - Software & Technology PDFs (25 templates)
+        "github-developer": GitHubDeveloperPDF,
+        "linkedin-tech-pro": LinkedInTechProPDF,
+        "laravel-artisan": LaravelArtisanPDF,
+        "rails-developer": RailsDeveloperPDF,
+        "angular-specialist": AngularSpecialistPDF,
+        "vue-master": VueMasterPDF,
+        "kotlin-android-dev": KotlinAndroidDevPDF,
+        "ios-swift-engineer": iOSSwiftEngineerPDF,
+        "docker-specialist": DockerSpecialistPDF,
+        "aws-solutions-architect": AWSSolutionsArchitectPDF,
+        "gcp-cloud-engineer": GCPCloudEngineerPDF,
+        "azure-devops-pro": AzureDevOpsProPDF,
+        "react-native-dev": ReactNativeDevPDF,
+        "flutter-ui-specialist": FlutterUISpecialistPDF,
+        "dotnet-core-developer": DotNetCoreDeveloperPDF,
+        "golang-backend-engineer": GolangBackendEngineerPDF,
+        "python-ml-engineer": PythonMLEngineerPDF,
+        "data-scientist-pro": DataScientistProPDF,
+        "blockchain-engineer": BlockchainEngineerPDF,
+        "solidity-developer": SolidityDeveloperPDF,
+        "cybersecurity-analyst": CybersecurityAnalystPDF,
+        "devsecops-engineer": DevSecOpsEngineerPDF,
+        "fullstack-javascript": FullstackJavaScriptPDF,
+        "jamstack-developer": JAMStackDeveloperPDF,
+        "headless-cms-developer": HeadlessCMSDeveloperPDF,
+        // 2025 Batch 2 - Fresh Graduates PDFs (20 templates)
+        "digital-native-graduate": DigitalNativeGraduatePDF,
+        "tech-savvy-fresher": TechSavvyFresherPDF,
+        "linkedin-ready-graduate": LinkedInReadyGraduatePDF,
+        "github-student-developer": GitHubStudentDeveloperPDF,
+        "portfolio-first-graduate": PortfolioFirstGraduatePDF,
+        "connected-graduate": ConnectedGraduatePDF,
+        "social-media-savvy-grad": SocialMediaSavvyGradPDF,
+        "open-source-contributor": OpenSourceContributorPDF,
+        "hackathon-winner": HackathonWinnerPDF,
+        "coding-challenge-champion": CodingChallengeChampionPDF,
+        "capstone-showcase": CapstoneShowcasePDF,
+        "research-publication-grad": ResearchPublicationGradPDF,
+        "conference-presenter": ConferencePresenterPDF,
+        "startup-intern": StartupInternPDF,
+        "faang-aspirant": FAANGAspirantPDF,
+        "bootcamp-success-story": BootcampSuccessStoryPDF,
+        "remote-work-ready": RemoteWorkReadyPDF,
+        "community-builder": CommunityBuilderPDF,
+        "tech-blogger-graduate": TechBloggerGraduatePDF,
+        "youtube-educator": YouTubeEducatorPDF,
+        // 2025 Batch 2 - Creative PDFs (15 templates)
+        "behance-designer": BehanceDesignerPDF,
+        "dribbble-creative": DribbbleCreativePDF,
+        "instagram-influencer": InstagramInfluencerPDF,
+        "pinterest-curator": PinterestCuratorPDF,
+        "vimeo-videographer": VimeoVideographerPDF,
+        "medium-writer": MediumWriterPDF,
+        "tiktok-creator": TikTokCreatorPDF,
+        "twitch-streamer": TwitchStreamerPDF,
+        "soundcloud-producer": SoundCloudProducerPDF,
+        "spotify-artist": SpotifyArtistPDF,
+        "artstation-artist": ArtStationArtistPDF,
+        "deviantart-creator": DeviantArtCreatorPDF,
+        "patreon-creator": PatreonCreatorPDF,
+        "substack-writer": SubstackWriterPDF,
+        "clubhouse-moderator": ClubhouseModeratorPDF,
+        // 2025 Batch 2 - Design PDFs (10 templates)
+        "figma-expert": FigmaExpertPDF,
+        "sketch-specialist": SketchSpecialistPDF,
+        "adobe-xd-designer": AdobeXDDesignerPDF,
+        "framer-designer": FramerDesignerPDF,
+        "webflow-developer": WebflowDeveloperPDF,
+        "principle-animator": PrincipleAnimatorPDF,
+        "invision-prototyper": InVisionPrototyperPDF,
+        "marvel-app-designer": MarvelAppDesignerPDF,
+        "zeplin-handoff-specialist": ZeplinHandoffSpecialistPDF,
+        "abstract-version-designer": AbstractVersionDesignerPDF,
       };
 
       const PDFTemplate =
