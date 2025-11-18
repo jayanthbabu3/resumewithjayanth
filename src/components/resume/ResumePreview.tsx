@@ -337,6 +337,48 @@ import { TriangularElementsUniversalTemplate } from "./templates/TriangularEleme
 import { ParallaxStyleUniversalTemplate } from "./templates/ParallaxStyleUniversalTemplate";
 import { VerticalTimelineUniversalTemplate } from "./templates/VerticalTimelineUniversalTemplate";
 import { InfinityLoopUniversalTemplate } from "./templates/InfinityLoopUniversalTemplate";
+// 2025 New Profession-Specific Templates - Healthcare
+import { MedicalCertificationTemplate } from "./templates/MedicalCertificationTemplate";
+import { ClinicalExcellenceTemplate } from "./templates/ClinicalExcellenceTemplate";
+import { HealthcareProfessionalTemplate } from "./templates/HealthcareProfessionalTemplate";
+import { NursingSpecialistTemplate } from "./templates/NursingSpecialistTemplate";
+import { MedicalResearchTemplate } from "./templates/MedicalResearchTemplate";
+// 2025 New Profession-Specific Templates - Education
+import { TeachingExcellenceTemplate } from "./templates/TeachingExcellenceTemplate";
+import { ModernEducatorProfessionTemplate } from "./templates/ModernEducatorProfessionTemplate";
+import { AcademicEducatorTemplate } from "./templates/AcademicEducatorTemplate";
+import { CurriculumDeveloperTemplate } from "./templates/CurriculumDeveloperTemplate";
+import { StudentEngagementTemplate } from "./templates/StudentEngagementTemplate";
+// 2025 New Profession-Specific Templates - Finance
+import { FinancialAnalystTemplate } from "./templates/FinancialAnalystTemplate";
+import { AccountingProTemplate } from "./templates/AccountingProTemplate";
+import { InvestmentBankerTemplate } from "./templates/InvestmentBankerTemplate";
+import { TaxSpecialistTemplate } from "./templates/TaxSpecialistTemplate";
+import { AuditExpertTemplate } from "./templates/AuditExpertTemplate";
+// 2025 New Profession-Specific Templates - Sales & Marketing
+import { SalesAchievementTemplate } from "./templates/SalesAchievementTemplate";
+import { MarketingStrategistTemplate } from "./templates/MarketingStrategistTemplate";
+import { DigitalMarketingProTemplate } from "./templates/DigitalMarketingProTemplate";
+import { BrandManagerTemplate } from "./templates/BrandManagerTemplate";
+import { ExecutiveSalesLeaderTemplate } from "./templates/ExecutiveSalesLeaderTemplate";
+// 2025 New Profession-Specific Templates - Legal
+import { CorporateLegalCounselTemplate } from "./templates/CorporateLegalCounselTemplate";
+import { CorporateLawTemplate } from "./templates/CorporateLawTemplate";
+import { LitigationAttorneyTemplate } from "./templates/LitigationAttorneyTemplate";
+import { ComplianceOfficerTemplate } from "./templates/ComplianceOfficerTemplate";
+import { LegalAdvisorTemplate } from "./templates/LegalAdvisorTemplate";
+// 2025 New Profession-Specific Templates - Operations/PM
+import { ProjectManagerProTemplate } from "./templates/ProjectManagerProTemplate";
+import { OperationsExcellenceTemplate } from "./templates/OperationsExcellenceTemplate";
+import { ProcessImprovementTemplate } from "./templates/ProcessImprovementTemplate";
+import { SupplyChainManagerTemplate } from "./templates/SupplyChainManagerTemplate";
+import { AgileProjectLeadTemplate } from "./templates/AgileProjectLeadTemplate";
+// 2025 New Profession-Specific Templates - Business Leadership
+import { ExecutiveLeadershipTemplate } from "./templates/ExecutiveLeadershipTemplate";
+import { CEOProfileTemplate } from "./templates/CEOProfileTemplate";
+import { StrategicLeaderTemplate } from "./templates/StrategicLeaderTemplate";
+import { DirectorLevelTemplate } from "./templates/DirectorLevelTemplate";
+import { VPExecutiveTemplate } from "./templates/VPExecutiveTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -688,6 +730,42 @@ export const ResumePreview = ({
     "parallax-style-universal": ParallaxStyleUniversalTemplate,
     "vertical-timeline-universal": VerticalTimelineUniversalTemplate,
     "infinity-loop-universal": InfinityLoopUniversalTemplate,
+    // 2025 New Profession-Specific Templates
+    "medical-certification": MedicalCertificationTemplate,
+    "clinical-excellence": ClinicalExcellenceTemplate,
+    "healthcare-professional": HealthcareProfessionalTemplate,
+    "nursing-specialist": NursingSpecialistTemplate,
+    "medical-research": MedicalResearchTemplate,
+    "teaching-excellence": TeachingExcellenceTemplate,
+    "modern-educator-profession": ModernEducatorProfessionTemplate,
+    "academic-educator": AcademicEducatorTemplate,
+    "curriculum-developer": CurriculumDeveloperTemplate,
+    "student-engagement": StudentEngagementTemplate,
+    "financial-analyst": FinancialAnalystTemplate,
+    "accounting-pro": AccountingProTemplate,
+    "investment-banker": InvestmentBankerTemplate,
+    "tax-specialist": TaxSpecialistTemplate,
+    "audit-expert": AuditExpertTemplate,
+    "sales-achievement": SalesAchievementTemplate,
+    "marketing-strategist": MarketingStrategistTemplate,
+    "digital-marketing-pro": DigitalMarketingProTemplate,
+    "brand-manager": BrandManagerTemplate,
+    "executive-sales-leader": ExecutiveSalesLeaderTemplate,
+    "corporate-legal-counsel": CorporateLegalCounselTemplate,
+    "corporate-law": CorporateLawTemplate,
+    "litigation-attorney": LitigationAttorneyTemplate,
+    "compliance-officer": ComplianceOfficerTemplate,
+    "legal-advisor": LegalAdvisorTemplate,
+    "project-manager-pro": ProjectManagerProTemplate,
+    "operations-excellence": OperationsExcellenceTemplate,
+    "process-improvement": ProcessImprovementTemplate,
+    "supply-chain-manager": SupplyChainManagerTemplate,
+    "agile-project-lead": AgileProjectLeadTemplate,
+    "executive-leadership": ExecutiveLeadershipTemplate,
+    "ceo-profile": CEOProfileTemplate,
+    "strategic-leader": StrategicLeaderTemplate,
+    "director-level": DirectorLevelTemplate,
+    "vp-executive": VPExecutiveTemplate,
   };
 
   const Template =
