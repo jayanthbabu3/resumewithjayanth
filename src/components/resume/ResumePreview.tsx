@@ -453,6 +453,37 @@ import { WebDesignerModernTemplate } from "./templates/WebDesignerModernTemplate
 import { ProductDesignerUXTemplate } from "./templates/ProductDesignerUXTemplate";
 import { InteractionDesignerTemplate } from "./templates/InteractionDesignerTemplate";
 import { VisualStorytellerTemplateTemplate } from "./templates/VisualStorytellerTemplateTemplate";
+// 2025 Simple Universal Professional Templates (Batch 6)
+import { CleanProfessionalSimpleTemplate } from "./templates/CleanProfessionalSimpleTemplate";
+import { SimpleExecutiveLayoutTemplate } from "./templates/SimpleExecutiveLayoutTemplate";
+import { MinimalProLayoutTemplate } from "./templates/MinimalProLayoutTemplate";
+import { ProfessionalCleanSimpleTemplate } from "./templates/ProfessionalCleanSimpleTemplate";
+import { CorporateSimpleTemplateTemplate } from "./templates/CorporateSimpleTemplateTemplate";
+import { ModernSimpleProTemplate } from "./templates/ModernSimpleProTemplate";
+import { ExecutiveSimpleCleanTemplate } from "./templates/ExecutiveSimpleCleanTemplate";
+import { BusinessSimpleModernTemplate } from "./templates/BusinessSimpleModernTemplate";
+import { ProfessionalEasyReadTemplate } from "./templates/ProfessionalEasyReadTemplate";
+import { CleanCorporateSimpleTemplate } from "./templates/CleanCorporateSimpleTemplate";
+import { SimpleModernExecutiveTemplate } from "./templates/SimpleModernExecutiveTemplate";
+import { MinimalistProSimpleTemplate } from "./templates/MinimalistProSimpleTemplate";
+import { ProfessionalStraightforwardTemplate } from "./templates/ProfessionalStraightforwardTemplate";
+import { ExecutiveDirectLayoutTemplate } from "./templates/ExecutiveDirectLayoutTemplate";
+import { BusinessClearTemplateTemplate } from "./templates/BusinessClearTemplateTemplate";
+import { SimpleProfessionalCleanTemplate } from "./templates/SimpleProfessionalCleanTemplate";
+import { CorporateEasyLayoutTemplate } from "./templates/CorporateEasyLayoutTemplate";
+import { ModernClearProTemplate } from "./templates/ModernClearProTemplate";
+import { ProfessionalPlainSimpleTemplate } from "./templates/ProfessionalPlainSimpleTemplate";
+import { ExecutivePlainLayoutTemplate } from "./templates/ExecutivePlainLayoutTemplate";
+import { SimpleBusinessCleanTemplate } from "./templates/SimpleBusinessCleanTemplate";
+import { MinimalDirectTemplateTemplate } from "./templates/MinimalDirectTemplateTemplate";
+import { ProfessionalBasicModernTemplate } from "./templates/ProfessionalBasicModernTemplate";
+import { CleanBasicExecutiveTemplate } from "./templates/CleanBasicExecutiveTemplate";
+import { SimpleClearBusinessTemplate } from "./templates/SimpleClearBusinessTemplate";
+import { ModernPlainProTemplate } from "./templates/ModernPlainProTemplate";
+import { ExecutiveEasyTemplateTemplate } from "./templates/ExecutiveEasyTemplateTemplate";
+import { ProfessionalReadableLayoutTemplate } from "./templates/ProfessionalReadableLayoutTemplate";
+import { CleanReadableProTemplate } from "./templates/CleanReadableProTemplate";
+import { SimpleStructuredTemplateTemplate } from "./templates/SimpleStructuredTemplateTemplate";
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -914,6 +945,37 @@ export const ResumePreview = ({
     "product-designer-ux": ProductDesignerUXTemplate,
     "interaction-designer": InteractionDesignerTemplate,
     "visual-storyteller-template": VisualStorytellerTemplateTemplate,
+    // 2025 Simple Universal Professional Templates (Batch 6)
+    "clean-professional-simple": CleanProfessionalSimpleTemplate,
+    "simple-executive-layout": SimpleExecutiveLayoutTemplate,
+    "minimal-pro-layout": MinimalProLayoutTemplate,
+    "professional-clean-simple": ProfessionalCleanSimpleTemplate,
+    "corporate-simple-template": CorporateSimpleTemplateTemplate,
+    "modern-simple-pro": ModernSimpleProTemplate,
+    "executive-simple-clean": ExecutiveSimpleCleanTemplate,
+    "business-simple-modern": BusinessSimpleModernTemplate,
+    "professional-easy-read": ProfessionalEasyReadTemplate,
+    "clean-corporate-simple": CleanCorporateSimpleTemplate,
+    "simple-modern-executive": SimpleModernExecutiveTemplate,
+    "minimalist-pro-simple": MinimalistProSimpleTemplate,
+    "professional-straightforward": ProfessionalStraightforwardTemplate,
+    "executive-direct-layout": ExecutiveDirectLayoutTemplate,
+    "business-clear-template": BusinessClearTemplateTemplate,
+    "simple-professional-clean": SimpleProfessionalCleanTemplate,
+    "corporate-easy-layout": CorporateEasyLayoutTemplate,
+    "modern-clear-pro": ModernClearProTemplate,
+    "professional-plain-simple": ProfessionalPlainSimpleTemplate,
+    "executive-plain-layout": ExecutivePlainLayoutTemplate,
+    "simple-business-clean": SimpleBusinessCleanTemplate,
+    "minimal-direct-template": MinimalDirectTemplateTemplate,
+    "professional-basic-modern": ProfessionalBasicModernTemplate,
+    "clean-basic-executive": CleanBasicExecutiveTemplate,
+    "simple-clear-business": SimpleClearBusinessTemplate,
+    "modern-plain-pro": ModernPlainProTemplate,
+    "executive-easy-template": ExecutiveEasyTemplateTemplate,
+    "professional-readable-layout": ProfessionalReadableLayoutTemplate,
+    "clean-readable-pro": CleanReadableProTemplate,
+    "simple-structured-template": SimpleStructuredTemplateTemplate,
   };
 
   const Template =
