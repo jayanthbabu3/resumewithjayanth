@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCivilEngineerPEProps {
+interface PDFCivilEngineerPETemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCivilEngineerPE = ({
+export const PDFCivilEngineerPETemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFCivilEngineerPEProps) => {
+}: PDFCivilEngineerPETemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

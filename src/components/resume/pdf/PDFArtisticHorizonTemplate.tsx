@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFArtisticHorizonProps {
+interface PDFArtisticHorizonTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFArtisticHorizon = ({
+export const PDFArtisticHorizonTemplate = ({
   resumeData,
   themeColor = "#06b6d4",
-}: PDFArtisticHorizonProps) => {
+}: PDFArtisticHorizonTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

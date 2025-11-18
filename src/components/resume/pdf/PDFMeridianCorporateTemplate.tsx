@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMeridianCorporateProps {
+interface PDFMeridianCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMeridianCorporate = ({
+export const PDFMeridianCorporateTemplate = ({
   resumeData,
   themeColor = "#0369a1",
-}: PDFMeridianCorporateProps) => {
+}: PDFMeridianCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

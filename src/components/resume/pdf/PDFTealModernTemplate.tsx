@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTealModernProps {
+interface PDFTealModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTealModern = ({
+export const PDFTealModernTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFTealModernProps) => {
+}: PDFTealModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

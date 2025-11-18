@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAspireGraduateProps {
+interface PDFAspireGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAspireGraduate = ({
+export const PDFAspireGraduateTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFAspireGraduateProps) => {
+}: PDFAspireGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

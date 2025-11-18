@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateCleanProps {
+interface PDFCorporateCleanTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateClean = ({
+export const PDFCorporateCleanTemplate = ({
   resumeData,
   themeColor = "#0369a1",
-}: PDFCorporateCleanProps) => {
+}: PDFCorporateCleanTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRegisteredNurseProProps {
+interface PDFRegisteredNurseProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRegisteredNursePro = ({
+export const PDFRegisteredNurseProTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFRegisteredNurseProProps) => {
+}: PDFRegisteredNurseProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

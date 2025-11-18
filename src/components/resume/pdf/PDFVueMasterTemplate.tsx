@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVueMasterProps {
+interface PDFVueMasterTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVueMaster = ({
+export const PDFVueMasterTemplate = ({
   resumeData,
   themeColor = "#42b883",
-}: PDFVueMasterProps) => {
+}: PDFVueMasterTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

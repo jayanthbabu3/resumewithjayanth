@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHealthcareAdministratorProps {
+interface PDFHealthcareAdministratorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHealthcareAdministrator = ({
+export const PDFHealthcareAdministratorTemplate = ({
   resumeData,
   themeColor = "#164e63",
-}: PDFHealthcareAdministratorProps) => {
+}: PDFHealthcareAdministratorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

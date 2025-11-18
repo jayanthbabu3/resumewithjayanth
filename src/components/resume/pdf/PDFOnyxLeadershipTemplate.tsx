@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnyxLeadershipProps {
+interface PDFOnyxLeadershipTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnyxLeadership = ({
+export const PDFOnyxLeadershipTemplate = ({
   resumeData,
   themeColor = "#1f2937",
-}: PDFOnyxLeadershipProps) => {
+}: PDFOnyxLeadershipTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

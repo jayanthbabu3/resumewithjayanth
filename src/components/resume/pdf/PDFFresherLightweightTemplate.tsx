@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherLightweightProps {
+interface PDFFresherLightweightTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherLightweight = ({
+export const PDFFresherLightweightTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherLightweightProps) => {
+}: PDFFresherLightweightTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

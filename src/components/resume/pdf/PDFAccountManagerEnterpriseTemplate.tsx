@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAccountManagerEnterpriseProps {
+interface PDFAccountManagerEnterpriseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAccountManagerEnterprise = ({
+export const PDFAccountManagerEnterpriseTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFAccountManagerEnterpriseProps) => {
+}: PDFAccountManagerEnterpriseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

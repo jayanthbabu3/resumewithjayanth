@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAgileflowDeveloperProps {
+interface PDFAgileflowDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAgileflowDeveloper = ({
+export const PDFAgileflowDeveloperTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFAgileflowDeveloperProps) => {
+}: PDFAgileflowDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

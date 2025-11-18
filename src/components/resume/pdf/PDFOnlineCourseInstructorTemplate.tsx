@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnlineCourseInstructorProps {
+interface PDFOnlineCourseInstructorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnlineCourseInstructor = ({
+export const PDFOnlineCourseInstructorTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFOnlineCourseInstructorProps) => {
+}: PDFOnlineCourseInstructorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

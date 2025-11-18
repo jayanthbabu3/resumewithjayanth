@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFKuberneteEngineerProps {
+interface PDFKuberneteEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFKuberneteEngineer = ({
+export const PDFKuberneteEngineerTemplate = ({
   resumeData,
   themeColor = "#326CE5",
-}: PDFKuberneteEngineerProps) => {
+}: PDFKuberneteEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

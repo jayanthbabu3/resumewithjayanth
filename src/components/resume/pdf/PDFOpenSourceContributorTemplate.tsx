@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOpenSourceContributorProps {
+interface PDFOpenSourceContributorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOpenSourceContributor = ({
+export const PDFOpenSourceContributorTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFOpenSourceContributorProps) => {
+}: PDFOpenSourceContributorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

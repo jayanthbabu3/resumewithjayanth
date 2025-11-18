@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAutomationEngineerProps {
+interface PDFAutomationEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAutomationEngineer = ({
+export const PDFAutomationEngineerTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFAutomationEngineerProps) => {
+}: PDFAutomationEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

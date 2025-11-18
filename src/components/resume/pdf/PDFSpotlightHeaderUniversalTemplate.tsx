@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpotlightHeaderUniversalProps {
+interface PDFSpotlightHeaderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpotlightHeaderUniversal = ({
+export const PDFSpotlightHeaderUniversalTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFSpotlightHeaderUniversalProps) => {
+}: PDFSpotlightHeaderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalVerticalLineProps {
+interface PDFProfessionalVerticalLineTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalVerticalLine = ({
+export const PDFProfessionalVerticalLineTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalVerticalLineProps) => {
+}: PDFProfessionalVerticalLineTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

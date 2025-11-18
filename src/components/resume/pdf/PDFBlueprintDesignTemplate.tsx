@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBlueprintDesignProps {
+interface PDFBlueprintDesignTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBlueprintDesign = ({
+export const PDFBlueprintDesignTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFBlueprintDesignProps) => {
+}: PDFBlueprintDesignTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

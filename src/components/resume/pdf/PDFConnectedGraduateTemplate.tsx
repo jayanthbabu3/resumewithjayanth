@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFConnectedGraduateProps {
+interface PDFConnectedGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFConnectedGraduate = ({
+export const PDFConnectedGraduateTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFConnectedGraduateProps) => {
+}: PDFConnectedGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

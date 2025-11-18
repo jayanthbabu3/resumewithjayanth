@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFramerDesignerProps {
+interface PDFFramerDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFramerDesigner = ({
+export const PDFFramerDesignerTemplate = ({
   resumeData,
   themeColor = "#0055ff",
-}: PDFFramerDesignerProps) => {
+}: PDFFramerDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSEOSpecialistProProps {
+interface PDFSEOSpecialistProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSEOSpecialistPro = ({
+export const PDFSEOSpecialistProTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFSEOSpecialistProProps) => {
+}: PDFSEOSpecialistProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

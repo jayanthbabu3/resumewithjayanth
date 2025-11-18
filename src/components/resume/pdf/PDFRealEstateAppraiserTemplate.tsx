@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRealEstateAppraiserProps {
+interface PDFRealEstateAppraiserTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRealEstateAppraiser = ({
+export const PDFRealEstateAppraiserTemplate = ({
   resumeData,
   themeColor = "#22c55e",
-}: PDFRealEstateAppraiserProps) => {
+}: PDFRealEstateAppraiserTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMetroModernUniversalProps {
+interface PDFMetroModernUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMetroModernUniversal = ({
+export const PDFMetroModernUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMetroModernUniversalProps) => {
+}: PDFMetroModernUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

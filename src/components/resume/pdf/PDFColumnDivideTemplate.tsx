@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFColumnDivideProps {
+interface PDFColumnDivideTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFColumnDivide = ({
+export const PDFColumnDivideTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFColumnDivideProps) => {
+}: PDFColumnDivideTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFThreeDModelingArtistProps {
+interface PDFThreeDModelingArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFThreeDModelingArtist = ({
+export const PDFThreeDModelingArtistTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFThreeDModelingArtistProps) => {
+}: PDFThreeDModelingArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

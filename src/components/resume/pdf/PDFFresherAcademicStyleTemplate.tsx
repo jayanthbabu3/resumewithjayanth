@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherAcademicStyleProps {
+interface PDFFresherAcademicStyleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherAcademicStyle = ({
+export const PDFFresherAcademicStyleTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherAcademicStyleProps) => {
+}: PDFFresherAcademicStyleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

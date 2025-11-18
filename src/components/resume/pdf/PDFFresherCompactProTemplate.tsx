@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherCompactProProps {
+interface PDFFresherCompactProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherCompactPro = ({
+export const PDFFresherCompactProTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFFresherCompactProProps) => {
+}: PDFFresherCompactProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFArchitectRegisteredProps {
+interface PDFArchitectRegisteredTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFArchitectRegistered = ({
+export const PDFArchitectRegisteredTemplate = ({
   resumeData,
   themeColor = "#57534e",
-}: PDFArchitectRegisteredProps) => {
+}: PDFArchitectRegisteredTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

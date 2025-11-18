@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEnterpriseLeaderProps {
+interface PDFEnterpriseLeaderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEnterpriseLeader = ({
+export const PDFEnterpriseLeaderTemplate = ({
   resumeData,
   themeColor = "#1e3a8a",
-}: PDFEnterpriseLeaderProps) => {
+}: PDFEnterpriseLeaderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

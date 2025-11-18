@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLaravelArtisanProps {
+interface PDFLaravelArtisanTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLaravelArtisan = ({
+export const PDFLaravelArtisanTemplate = ({
   resumeData,
   themeColor = "#ff2d20",
-}: PDFLaravelArtisanProps) => {
+}: PDFLaravelArtisanTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

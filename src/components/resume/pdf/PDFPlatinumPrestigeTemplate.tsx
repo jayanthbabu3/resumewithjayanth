@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPlatinumPrestigeProps {
+interface PDFPlatinumPrestigeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPlatinumPrestige = ({
+export const PDFPlatinumPrestigeTemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFPlatinumPrestigeProps) => {
+}: PDFPlatinumPrestigeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

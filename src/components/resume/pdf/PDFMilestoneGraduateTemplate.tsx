@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMilestoneGraduateProps {
+interface PDFMilestoneGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMilestoneGraduate = ({
+export const PDFMilestoneGraduateTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMilestoneGraduateProps) => {
+}: PDFMilestoneGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

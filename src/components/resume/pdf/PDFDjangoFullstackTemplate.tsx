@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDjangoFullstackProps {
+interface PDFDjangoFullstackTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDjangoFullstack = ({
+export const PDFDjangoFullstackTemplate = ({
   resumeData,
   themeColor = "#092e20",
-}: PDFDjangoFullstackProps) => {
+}: PDFDjangoFullstackTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

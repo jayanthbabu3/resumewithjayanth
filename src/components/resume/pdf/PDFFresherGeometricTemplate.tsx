@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherGeometricProps {
+interface PDFFresherGeometricTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherGeometric = ({
+export const PDFFresherGeometricTemplate = ({
   resumeData,
   themeColor = "#3B82F6",
-}: PDFFresherGeometricProps) => {
+}: PDFFresherGeometricTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

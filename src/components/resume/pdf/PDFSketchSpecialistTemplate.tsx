@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSketchSpecialistProps {
+interface PDFSketchSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSketchSpecialist = ({
+export const PDFSketchSpecialistTemplate = ({
   resumeData,
   themeColor = "#fdb300",
-}: PDFSketchSpecialistProps) => {
+}: PDFSketchSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

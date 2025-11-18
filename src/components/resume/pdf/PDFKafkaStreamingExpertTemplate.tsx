@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFKafkaStreamingExpertProps {
+interface PDFKafkaStreamingExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFKafkaStreamingExpert = ({
+export const PDFKafkaStreamingExpertTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFKafkaStreamingExpertProps) => {
+}: PDFKafkaStreamingExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

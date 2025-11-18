@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMarvelAppDesignerProps {
+interface PDFMarvelAppDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMarvelAppDesigner = ({
+export const PDFMarvelAppDesignerTemplate = ({
   resumeData,
   themeColor = "#1fb6ff",
-}: PDFMarvelAppDesignerProps) => {
+}: PDFMarvelAppDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

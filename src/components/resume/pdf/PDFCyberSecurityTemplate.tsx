@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCyberSecurityProps {
+interface PDFCyberSecurityTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCyberSecurity = ({
+export const PDFCyberSecurityTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCyberSecurityProps) => {
+}: PDFCyberSecurityTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

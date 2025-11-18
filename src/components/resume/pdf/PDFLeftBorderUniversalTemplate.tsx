@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLeftBorderUniversalProps {
+interface PDFLeftBorderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLeftBorderUniversal = ({
+export const PDFLeftBorderUniversalTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFLeftBorderUniversalProps) => {
+}: PDFLeftBorderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

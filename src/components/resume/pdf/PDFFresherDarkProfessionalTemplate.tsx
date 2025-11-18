@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherDarkProfessionalProps {
+interface PDFFresherDarkProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherDarkProfessional = ({
+export const PDFFresherDarkProfessionalTemplate = ({
   resumeData,
   themeColor = "#6366F1",
-}: PDFFresherDarkProfessionalProps) => {
+}: PDFFresherDarkProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

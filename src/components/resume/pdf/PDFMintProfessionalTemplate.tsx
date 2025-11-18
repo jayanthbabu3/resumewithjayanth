@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMintProfessionalProps {
+interface PDFMintProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMintProfessional = ({
+export const PDFMintProfessionalTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFMintProfessionalProps) => {
+}: PDFMintProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

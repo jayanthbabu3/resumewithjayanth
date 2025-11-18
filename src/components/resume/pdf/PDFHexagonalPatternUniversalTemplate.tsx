@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHexagonalPatternUniversalProps {
+interface PDFHexagonalPatternUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHexagonalPatternUniversal = ({
+export const PDFHexagonalPatternUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFHexagonalPatternUniversalProps) => {
+}: PDFHexagonalPatternUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

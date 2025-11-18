@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAnimationArtistProps {
+interface PDFAnimationArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAnimationArtist = ({
+export const PDFAnimationArtistTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFAnimationArtistProps) => {
+}: PDFAnimationArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

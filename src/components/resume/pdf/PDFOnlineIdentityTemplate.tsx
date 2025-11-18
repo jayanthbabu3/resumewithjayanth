@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnlineIdentityProps {
+interface PDFOnlineIdentityTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnlineIdentity = ({
+export const PDFOnlineIdentityTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFOnlineIdentityProps) => {
+}: PDFOnlineIdentityTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

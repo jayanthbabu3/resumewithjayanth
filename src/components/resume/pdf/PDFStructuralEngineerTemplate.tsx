@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStructuralEngineerProps {
+interface PDFStructuralEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStructuralEngineer = ({
+export const PDFStructuralEngineerTemplate = ({
   resumeData,
   themeColor = "#57534e",
-}: PDFStructuralEngineerProps) => {
+}: PDFStructuralEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

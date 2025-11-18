@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNutritionistDietitianProps {
+interface PDFNutritionistDietitianTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNutritionistDietitian = ({
+export const PDFNutritionistDietitianTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFNutritionistDietitianProps) => {
+}: PDFNutritionistDietitianTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

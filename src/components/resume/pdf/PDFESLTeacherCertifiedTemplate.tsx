@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFESLTeacherCertifiedProps {
+interface PDFESLTeacherCertifiedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFESLTeacherCertified = ({
+export const PDFESLTeacherCertifiedTemplate = ({
   resumeData,
   themeColor = "#fdba74",
-}: PDFESLTeacherCertifiedProps) => {
+}: PDFESLTeacherCertifiedTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

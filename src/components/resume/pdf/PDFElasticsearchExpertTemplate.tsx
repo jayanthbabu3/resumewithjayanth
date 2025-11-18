@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFElasticsearchExpertProps {
+interface PDFElasticsearchExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFElasticsearchExpert = ({
+export const PDFElasticsearchExpertTemplate = ({
   resumeData,
   themeColor = "#005571",
-}: PDFElasticsearchExpertProps) => {
+}: PDFElasticsearchExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFThinBorderUniversalProps {
+interface PDFThinBorderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFThinBorderUniversal = ({
+export const PDFThinBorderUniversalTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFThinBorderUniversalProps) => {
+}: PDFThinBorderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

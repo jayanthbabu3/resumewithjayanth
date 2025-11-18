@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLuxuryTimelineProps {
+interface PDFLuxuryTimelineTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLuxuryTimeline = ({
+export const PDFLuxuryTimelineTemplate = ({
   resumeData,
   themeColor = "#b45309",
-}: PDFLuxuryTimelineProps) => {
+}: PDFLuxuryTimelineTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

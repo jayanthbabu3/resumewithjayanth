@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAuditorProps {
+interface PDFAuditorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAuditor = ({
+export const PDFAuditorTemplate = ({
   resumeData,
   themeColor = "#283593",
-}: PDFAuditorProps) => {
+}: PDFAuditorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

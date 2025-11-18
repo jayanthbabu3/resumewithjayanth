@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGRPCDeveloperProps {
+interface PDFGRPCDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGRPCDeveloper = ({
+export const PDFGRPCDeveloperTemplate = ({
   resumeData,
   themeColor = "#244c5a",
-}: PDFGRPCDeveloperProps) => {
+}: PDFGRPCDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFReactNativeDevProps {
+interface PDFReactNativeDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFReactNativeDev = ({
+export const PDFReactNativeDevTemplate = ({
   resumeData,
   themeColor = "#61dafb",
-}: PDFReactNativeDevProps) => {
+}: PDFReactNativeDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

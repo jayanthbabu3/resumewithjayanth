@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEntrySphereProps {
+interface PDFEntrySphereTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEntrySphere = ({
+export const PDFEntrySphereTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFEntrySphereProps) => {
+}: PDFEntrySphereTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

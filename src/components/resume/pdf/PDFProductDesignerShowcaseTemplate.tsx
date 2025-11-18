@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProductDesignerShowcaseProps {
+interface PDFProductDesignerShowcaseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProductDesignerShowcase = ({
+export const PDFProductDesignerShowcaseTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFProductDesignerShowcaseProps) => {
+}: PDFProductDesignerShowcaseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOccupationalTherapistProps {
+interface PDFOccupationalTherapistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOccupationalTherapist = ({
+export const PDFOccupationalTherapistTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFOccupationalTherapistProps) => {
+}: PDFOccupationalTherapistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

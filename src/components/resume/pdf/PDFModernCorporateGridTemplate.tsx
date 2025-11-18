@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFModernCorporateGridProps {
+interface PDFModernCorporateGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFModernCorporateGrid = ({
+export const PDFModernCorporateGridTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFModernCorporateGridProps) => {
+}: PDFModernCorporateGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

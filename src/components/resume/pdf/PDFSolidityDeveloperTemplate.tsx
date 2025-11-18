@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSolidityDeveloperProps {
+interface PDFSolidityDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSolidityDeveloper = ({
+export const PDFSolidityDeveloperTemplate = ({
   resumeData,
   themeColor = "#363636",
-}: PDFSolidityDeveloperProps) => {
+}: PDFSolidityDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

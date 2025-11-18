@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPypiContributorProps {
+interface PDFPypiContributorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPypiContributor = ({
+export const PDFPypiContributorTemplate = ({
   resumeData,
   themeColor = "#3775a9",
-}: PDFPypiContributorProps) => {
+}: PDFPypiContributorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

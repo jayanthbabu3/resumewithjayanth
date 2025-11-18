@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDualDegreeGraduateProps {
+interface PDFDualDegreeGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDualDegreeGraduate = ({
+export const PDFDualDegreeGraduateTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFDualDegreeGraduateProps) => {
+}: PDFDualDegreeGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

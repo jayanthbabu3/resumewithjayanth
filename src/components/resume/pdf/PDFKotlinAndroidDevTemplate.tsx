@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFKotlinAndroidDevProps {
+interface PDFKotlinAndroidDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFKotlinAndroidDev = ({
+export const PDFKotlinAndroidDevTemplate = ({
   resumeData,
   themeColor = "#7f52ff",
-}: PDFKotlinAndroidDevProps) => {
+}: PDFKotlinAndroidDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

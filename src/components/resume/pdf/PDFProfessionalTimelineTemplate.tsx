@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalTimelineProps {
+interface PDFProfessionalTimelineTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalTimeline = ({
+export const PDFProfessionalTimelineTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFProfessionalTimelineProps) => {
+}: PDFProfessionalTimelineTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

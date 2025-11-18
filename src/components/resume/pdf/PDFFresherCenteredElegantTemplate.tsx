@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherCenteredElegantProps {
+interface PDFFresherCenteredElegantTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherCenteredElegant = ({
+export const PDFFresherCenteredElegantTemplate = ({
   resumeData,
   themeColor = "#A855F7",
-}: PDFFresherCenteredElegantProps) => {
+}: PDFFresherCenteredElegantTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

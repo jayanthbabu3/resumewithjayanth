@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBootcampPortfolioProps {
+interface PDFBootcampPortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBootcampPortfolio = ({
+export const PDFBootcampPortfolioTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFBootcampPortfolioProps) => {
+}: PDFBootcampPortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

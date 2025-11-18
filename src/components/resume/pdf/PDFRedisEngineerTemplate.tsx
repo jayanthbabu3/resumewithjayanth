@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRedisEngineerProps {
+interface PDFRedisEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRedisEngineer = ({
+export const PDFRedisEngineerTemplate = ({
   resumeData,
   themeColor = "#dc382d",
-}: PDFRedisEngineerProps) => {
+}: PDFRedisEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

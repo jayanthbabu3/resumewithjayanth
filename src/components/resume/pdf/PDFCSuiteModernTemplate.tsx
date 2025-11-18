@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCSuiteModernProps {
+interface PDFCSuiteModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCSuiteModern = ({
+export const PDFCSuiteModernTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFCSuiteModernProps) => {
+}: PDFCSuiteModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

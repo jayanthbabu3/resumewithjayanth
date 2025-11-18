@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBoldTypographyProps {
+interface PDFBoldTypographyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBoldTypography = ({
+export const PDFBoldTypographyTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFBoldTypographyProps) => {
+}: PDFBoldTypographyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGeometricShapesUniversalProps {
+interface PDFGeometricShapesUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGeometricShapesUniversal = ({
+export const PDFGeometricShapesUniversalTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFGeometricShapesUniversalProps) => {
+}: PDFGeometricShapesUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

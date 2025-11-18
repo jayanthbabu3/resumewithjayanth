@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAccessibilityDesignerProps {
+interface PDFAccessibilityDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAccessibilityDesigner = ({
+export const PDFAccessibilityDesignerTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFAccessibilityDesignerProps) => {
+}: PDFAccessibilityDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

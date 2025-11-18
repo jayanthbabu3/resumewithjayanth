@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHarmonyExecutiveProps {
+interface PDFHarmonyExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHarmonyExecutive = ({
+export const PDFHarmonyExecutiveTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFHarmonyExecutiveProps) => {
+}: PDFHarmonyExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUrbanDesignerProps {
+interface PDFUrbanDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUrbanDesigner = ({
+export const PDFUrbanDesignerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFUrbanDesignerProps) => {
+}: PDFUrbanDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

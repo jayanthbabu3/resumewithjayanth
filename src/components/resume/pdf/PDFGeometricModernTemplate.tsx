@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGeometricModernProps {
+interface PDFGeometricModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGeometricModern = ({
+export const PDFGeometricModernTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFGeometricModernProps) => {
+}: PDFGeometricModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

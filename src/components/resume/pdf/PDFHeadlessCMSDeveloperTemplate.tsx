@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHeadlessCMSDeveloperProps {
+interface PDFHeadlessCMSDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHeadlessCMSDeveloper = ({
+export const PDFHeadlessCMSDeveloperTemplate = ({
   resumeData,
   themeColor = "#5468ff",
-}: PDFHeadlessCMSDeveloperProps) => {
+}: PDFHeadlessCMSDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

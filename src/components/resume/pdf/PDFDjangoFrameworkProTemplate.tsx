@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDjangoFrameworkProProps {
+interface PDFDjangoFrameworkProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDjangoFrameworkPro = ({
+export const PDFDjangoFrameworkProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFDjangoFrameworkProProps) => {
+}: PDFDjangoFrameworkProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPlatinumExecutiveProps {
+interface PDFPlatinumExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPlatinumExecutive = ({
+export const PDFPlatinumExecutiveTemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFPlatinumExecutiveProps) => {
+}: PDFPlatinumExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

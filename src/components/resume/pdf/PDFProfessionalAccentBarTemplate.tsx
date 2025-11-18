@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalAccentBarProps {
+interface PDFProfessionalAccentBarTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalAccentBar = ({
+export const PDFProfessionalAccentBarTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalAccentBarProps) => {
+}: PDFProfessionalAccentBarTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

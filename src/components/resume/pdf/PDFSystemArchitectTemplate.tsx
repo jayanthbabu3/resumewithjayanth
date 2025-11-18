@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSystemArchitectProps {
+interface PDFSystemArchitectTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSystemArchitect = ({
+export const PDFSystemArchitectTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFSystemArchitectProps) => {
+}: PDFSystemArchitectTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

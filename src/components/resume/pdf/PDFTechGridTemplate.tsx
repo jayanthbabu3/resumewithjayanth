@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTechGridProps {
+interface PDFTechGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTechGrid = ({
+export const PDFTechGridTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFTechGridProps) => {
+}: PDFTechGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

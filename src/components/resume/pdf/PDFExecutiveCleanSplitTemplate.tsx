@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveCleanSplitProps {
+interface PDFExecutiveCleanSplitTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveCleanSplit = ({
+export const PDFExecutiveCleanSplitTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFExecutiveCleanSplitProps) => {
+}: PDFExecutiveCleanSplitTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

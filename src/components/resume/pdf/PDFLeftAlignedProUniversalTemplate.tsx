@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLeftAlignedProUniversalProps {
+interface PDFLeftAlignedProUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLeftAlignedProUniversal = ({
+export const PDFLeftAlignedProUniversalTemplate = ({
   resumeData,
   themeColor = "#0369a1",
-}: PDFLeftAlignedProUniversalProps) => {
+}: PDFLeftAlignedProUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

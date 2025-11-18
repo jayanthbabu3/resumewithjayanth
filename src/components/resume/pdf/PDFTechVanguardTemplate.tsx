@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTechVanguardProps {
+interface PDFTechVanguardTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTechVanguard = ({
+export const PDFTechVanguardTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFTechVanguardProps) => {
+}: PDFTechVanguardTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInvestmentBankerProps {
+interface PDFInvestmentBankerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInvestmentBanker = ({
+export const PDFInvestmentBankerTemplate = ({
   resumeData,
   themeColor = "#1e293b",
-}: PDFInvestmentBankerProps) => {
+}: PDFInvestmentBankerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

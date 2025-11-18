@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGenZGraduateProps {
+interface PDFGenZGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGenZGraduate = ({
+export const PDFGenZGraduateTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFGenZGraduateProps) => {
+}: PDFGenZGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

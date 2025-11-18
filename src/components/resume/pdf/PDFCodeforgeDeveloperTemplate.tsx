@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodeforgeDeveloperProps {
+interface PDFCodeforgeDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodeforgeDeveloper = ({
+export const PDFCodeforgeDeveloperTemplate = ({
   resumeData,
   themeColor = "#0f172a",
-}: PDFCodeforgeDeveloperProps) => {
+}: PDFCodeforgeDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

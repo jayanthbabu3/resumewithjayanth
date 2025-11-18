@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFClassicElegantProps {
+interface PDFClassicElegantTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFClassicElegant = ({
+export const PDFClassicElegantTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFClassicElegantProps) => {
+}: PDFClassicElegantTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

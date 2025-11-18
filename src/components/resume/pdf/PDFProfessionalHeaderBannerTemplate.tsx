@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalHeaderBannerProps {
+interface PDFProfessionalHeaderBannerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalHeaderBanner = ({
+export const PDFProfessionalHeaderBannerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalHeaderBannerProps) => {
+}: PDFProfessionalHeaderBannerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWavePatternUniversalProps {
+interface PDFWavePatternUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWavePatternUniversal = ({
+export const PDFWavePatternUniversalTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFWavePatternUniversalProps) => {
+}: PDFWavePatternUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRibbonHeaderUniversalProps {
+interface PDFRibbonHeaderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRibbonHeaderUniversal = ({
+export const PDFRibbonHeaderUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFRibbonHeaderUniversalProps) => {
+}: PDFRibbonHeaderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

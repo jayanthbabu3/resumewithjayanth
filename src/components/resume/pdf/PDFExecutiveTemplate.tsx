@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveProps {
+interface PDFExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutive = ({
+export const PDFExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e293b",
-}: PDFExecutiveProps) => {
+}: PDFExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

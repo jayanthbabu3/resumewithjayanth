@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUXResearcherProps {
+interface PDFUXResearcherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUXResearcher = ({
+export const PDFUXResearcherTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFUXResearcherProps) => {
+}: PDFUXResearcherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFScalaEngineerProps {
+interface PDFScalaEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFScalaEngineer = ({
+export const PDFScalaEngineerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFScalaEngineerProps) => {
+}: PDFScalaEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

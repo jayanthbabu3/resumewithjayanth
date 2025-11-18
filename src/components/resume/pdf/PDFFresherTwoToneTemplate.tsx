@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherTwoToneProps {
+interface PDFFresherTwoToneTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherTwoTone = ({
+export const PDFFresherTwoToneTemplate = ({
   resumeData,
   themeColor = "#F43F5E",
-}: PDFFresherTwoToneProps) => {
+}: PDFFresherTwoToneTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

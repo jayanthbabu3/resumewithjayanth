@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherRibbonStyleProps {
+interface PDFFresherRibbonStyleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherRibbonStyle = ({
+export const PDFFresherRibbonStyleTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherRibbonStyleProps) => {
+}: PDFFresherRibbonStyleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

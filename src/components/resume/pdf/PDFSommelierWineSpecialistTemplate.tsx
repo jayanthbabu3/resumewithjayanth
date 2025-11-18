@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSommelierWineSpecialistProps {
+interface PDFSommelierWineSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSommelierWineSpecialist = ({
+export const PDFSommelierWineSpecialistTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFSommelierWineSpecialistProps) => {
+}: PDFSommelierWineSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

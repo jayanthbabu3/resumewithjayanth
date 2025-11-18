@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRabbitMQSpecialistProps {
+interface PDFRabbitMQSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRabbitMQSpecialist = ({
+export const PDFRabbitMQSpecialistTemplate = ({
   resumeData,
   themeColor = "#ff6600",
-}: PDFRabbitMQSpecialistProps) => {
+}: PDFRabbitMQSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

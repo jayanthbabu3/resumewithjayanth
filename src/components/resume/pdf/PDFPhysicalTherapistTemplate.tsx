@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPhysicalTherapistProps {
+interface PDFPhysicalTherapistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPhysicalTherapist = ({
+export const PDFPhysicalTherapistTemplate = ({
   resumeData,
   themeColor = "#06b6d4",
-}: PDFPhysicalTherapistProps) => {
+}: PDFPhysicalTherapistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

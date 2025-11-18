@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFClassicSerifUniversalProps {
+interface PDFClassicSerifUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFClassicSerifUniversal = ({
+export const PDFClassicSerifUniversalTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFClassicSerifUniversalProps) => {
+}: PDFClassicSerifUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVintagePosterProps {
+interface PDFVintagePosterTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVintagePoster = ({
+export const PDFVintagePosterTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFVintagePosterProps) => {
+}: PDFVintagePosterTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

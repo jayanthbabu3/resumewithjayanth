@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveCornerAccentProps {
+interface PDFExecutiveCornerAccentTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveCornerAccent = ({
+export const PDFExecutiveCornerAccentTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFExecutiveCornerAccentProps) => {
+}: PDFExecutiveCornerAccentTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

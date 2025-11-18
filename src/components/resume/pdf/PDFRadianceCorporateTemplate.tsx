@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRadianceCorporateProps {
+interface PDFRadianceCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRadianceCorporate = ({
+export const PDFRadianceCorporateTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFRadianceCorporateProps) => {
+}: PDFRadianceCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

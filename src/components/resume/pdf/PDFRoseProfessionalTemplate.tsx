@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRoseProfessionalProps {
+interface PDFRoseProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRoseProfessional = ({
+export const PDFRoseProfessionalTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFRoseProfessionalProps) => {
+}: PDFRoseProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

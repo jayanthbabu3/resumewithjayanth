@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPixelcraftDeveloperProps {
+interface PDFPixelcraftDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPixelcraftDeveloper = ({
+export const PDFPixelcraftDeveloperTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFPixelcraftDeveloperProps) => {
+}: PDFPixelcraftDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

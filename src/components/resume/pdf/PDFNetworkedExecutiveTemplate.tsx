@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNetworkedExecutiveProps {
+interface PDFNetworkedExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNetworkedExecutive = ({
+export const PDFNetworkedExecutiveTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFNetworkedExecutiveProps) => {
+}: PDFNetworkedExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

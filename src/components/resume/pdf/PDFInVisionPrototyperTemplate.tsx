@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInVisionPrototyperProps {
+interface PDFInVisionPrototyperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInVisionPrototyper = ({
+export const PDFInVisionPrototyperTemplate = ({
   resumeData,
   themeColor = "#ff3366",
-}: PDFInVisionPrototyperProps) => {
+}: PDFInVisionPrototyperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMobileFirstDesignerProps {
+interface PDFMobileFirstDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMobileFirstDesigner = ({
+export const PDFMobileFirstDesignerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMobileFirstDesignerProps) => {
+}: PDFMobileFirstDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

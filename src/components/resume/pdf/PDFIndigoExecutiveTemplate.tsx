@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFIndigoExecutiveProps {
+interface PDFIndigoExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFIndigoExecutive = ({
+export const PDFIndigoExecutiveTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFIndigoExecutiveProps) => {
+}: PDFIndigoExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOperationsManagerProps {
+interface PDFOperationsManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOperationsManager = ({
+export const PDFOperationsManagerTemplate = ({
   resumeData,
   themeColor = "#00695c",
-}: PDFOperationsManagerProps) => {
+}: PDFOperationsManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSalesMarketingHybridProps {
+interface PDFSalesMarketingHybridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSalesMarketingHybrid = ({
+export const PDFSalesMarketingHybridTemplate = ({
   resumeData,
   themeColor = "#ff6f00",
-}: PDFSalesMarketingHybridProps) => {
+}: PDFSalesMarketingHybridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

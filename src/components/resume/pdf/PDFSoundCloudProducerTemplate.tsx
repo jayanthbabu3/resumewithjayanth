@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSoundCloudProducerProps {
+interface PDFSoundCloudProducerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSoundCloudProducer = ({
+export const PDFSoundCloudProducerTemplate = ({
   resumeData,
   themeColor = "#ff5500",
-}: PDFSoundCloudProducerProps) => {
+}: PDFSoundCloudProducerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

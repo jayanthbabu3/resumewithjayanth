@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBootcampSuccessStoryProps {
+interface PDFBootcampSuccessStoryTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBootcampSuccessStory = ({
+export const PDFBootcampSuccessStoryTemplate = ({
   resumeData,
   themeColor = "#16a34a",
-}: PDFBootcampSuccessStoryProps) => {
+}: PDFBootcampSuccessStoryTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

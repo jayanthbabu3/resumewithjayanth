@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherMinimalGridProps {
+interface PDFFresherMinimalGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherMinimalGrid = ({
+export const PDFFresherMinimalGridTemplate = ({
   resumeData,
   themeColor = "#10B981",
-}: PDFFresherMinimalGridProps) => {
+}: PDFFresherMinimalGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

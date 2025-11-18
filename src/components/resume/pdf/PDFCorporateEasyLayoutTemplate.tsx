@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateEasyLayoutProps {
+interface PDFCorporateEasyLayoutTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateEasyLayout = ({
+export const PDFCorporateEasyLayoutTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCorporateEasyLayoutProps) => {
+}: PDFCorporateEasyLayoutTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

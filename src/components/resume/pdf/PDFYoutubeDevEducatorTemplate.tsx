@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFYoutubeDevEducatorProps {
+interface PDFYoutubeDevEducatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFYoutubeDevEducator = ({
+export const PDFYoutubeDevEducatorTemplate = ({
   resumeData,
   themeColor = "#ff0000",
-}: PDFYoutubeDevEducatorProps) => {
+}: PDFYoutubeDevEducatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

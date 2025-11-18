@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGeometricCreativeProps {
+interface PDFGeometricCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGeometricCreative = ({
+export const PDFGeometricCreativeTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFGeometricCreativeProps) => {
+}: PDFGeometricCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

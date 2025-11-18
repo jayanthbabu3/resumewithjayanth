@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPharmacistClinicalProps {
+interface PDFPharmacistClinicalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPharmacistClinical = ({
+export const PDFPharmacistClinicalTemplate = ({
   resumeData,
   themeColor = "#0369a1",
-}: PDFPharmacistClinicalProps) => {
+}: PDFPharmacistClinicalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

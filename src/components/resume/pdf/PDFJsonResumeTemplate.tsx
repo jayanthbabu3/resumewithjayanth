@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFJsonResumeProps {
+interface PDFJsonResumeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFJsonResume = ({
+export const PDFJsonResumeTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFJsonResumeProps) => {
+}: PDFJsonResumeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

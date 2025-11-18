@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCircularElementsUniversalProps {
+interface PDFCircularElementsUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCircularElementsUniversal = ({
+export const PDFCircularElementsUniversalTemplate = ({
   resumeData,
   themeColor = "#0369a1",
-}: PDFCircularElementsUniversalProps) => {
+}: PDFCircularElementsUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

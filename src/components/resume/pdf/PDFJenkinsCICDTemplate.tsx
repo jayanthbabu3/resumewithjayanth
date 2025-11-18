@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFJenkinsCICDProps {
+interface PDFJenkinsCICDTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFJenkinsCICD = ({
+export const PDFJenkinsCICDTemplate = ({
   resumeData,
   themeColor = "#d24939",
-}: PDFJenkinsCICDProps) => {
+}: PDFJenkinsCICDTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

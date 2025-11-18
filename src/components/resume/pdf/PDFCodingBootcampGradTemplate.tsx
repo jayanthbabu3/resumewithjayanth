@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodingBootcampGradProps {
+interface PDFCodingBootcampGradTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodingBootcampGrad = ({
+export const PDFCodingBootcampGradTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFCodingBootcampGradProps) => {
+}: PDFCodingBootcampGradTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

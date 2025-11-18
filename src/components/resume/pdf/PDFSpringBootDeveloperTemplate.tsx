@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpringBootDeveloperProps {
+interface PDFSpringBootDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpringBootDeveloper = ({
+export const PDFSpringBootDeveloperTemplate = ({
   resumeData,
   themeColor = "#6db33f",
-}: PDFSpringBootDeveloperProps) => {
+}: PDFSpringBootDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

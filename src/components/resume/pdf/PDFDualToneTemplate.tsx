@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDualToneProps {
+interface PDFDualToneTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDualTone = ({
+export const PDFDualToneTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFDualToneProps) => {
+}: PDFDualToneTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

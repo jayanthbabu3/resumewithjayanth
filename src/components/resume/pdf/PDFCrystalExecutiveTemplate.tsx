@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCrystalExecutiveProps {
+interface PDFCrystalExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCrystalExecutive = ({
+export const PDFCrystalExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e293b",
-}: PDFCrystalExecutiveProps) => {
+}: PDFCrystalExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEcommerceManagerProps {
+interface PDFEcommerceManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEcommerceManager = ({
+export const PDFEcommerceManagerTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFEcommerceManagerProps) => {
+}: PDFEcommerceManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

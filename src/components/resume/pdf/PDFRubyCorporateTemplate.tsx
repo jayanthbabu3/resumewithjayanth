@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRubyCorporateProps {
+interface PDFRubyCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRubyCorporate = ({
+export const PDFRubyCorporateTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFRubyCorporateProps) => {
+}: PDFRubyCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

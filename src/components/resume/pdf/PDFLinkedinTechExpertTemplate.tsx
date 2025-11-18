@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLinkedinTechExpertProps {
+interface PDFLinkedinTechExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLinkedinTechExpert = ({
+export const PDFLinkedinTechExpertTemplate = ({
   resumeData,
   themeColor = "#0077b5",
-}: PDFLinkedinTechExpertProps) => {
+}: PDFLinkedinTechExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

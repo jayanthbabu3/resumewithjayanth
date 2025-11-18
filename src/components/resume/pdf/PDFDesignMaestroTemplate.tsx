@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDesignMaestroProps {
+interface PDFDesignMaestroTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDesignMaestro = ({
+export const PDFDesignMaestroTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFDesignMaestroProps) => {
+}: PDFDesignMaestroTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

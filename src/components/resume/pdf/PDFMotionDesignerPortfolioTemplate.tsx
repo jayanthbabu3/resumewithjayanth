@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMotionDesignerPortfolioProps {
+interface PDFMotionDesignerPortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMotionDesignerPortfolio = ({
+export const PDFMotionDesignerPortfolioTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFMotionDesignerPortfolioProps) => {
+}: PDFMotionDesignerPortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

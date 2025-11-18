@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFinanceTwoColumnProps {
+interface PDFFinanceTwoColumnTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFinanceTwoColumn = ({
+export const PDFFinanceTwoColumnTemplate = ({
   resumeData,
   themeColor = "#2e7d32",
-}: PDFFinanceTwoColumnProps) => {
+}: PDFFinanceTwoColumnTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

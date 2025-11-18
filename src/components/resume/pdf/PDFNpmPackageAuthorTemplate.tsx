@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNpmPackageAuthorProps {
+interface PDFNpmPackageAuthorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNpmPackageAuthor = ({
+export const PDFNpmPackageAuthorTemplate = ({
   resumeData,
   themeColor = "#cb3837",
-}: PDFNpmPackageAuthorProps) => {
+}: PDFNpmPackageAuthorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

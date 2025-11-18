@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInsideSalesRepresentativeProps {
+interface PDFInsideSalesRepresentativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInsideSalesRepresentative = ({
+export const PDFInsideSalesRepresentativeTemplate = ({
   resumeData,
   themeColor = "#db2777",
-}: PDFInsideSalesRepresentativeProps) => {
+}: PDFInsideSalesRepresentativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

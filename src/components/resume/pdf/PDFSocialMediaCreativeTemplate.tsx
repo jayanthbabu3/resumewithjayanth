@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSocialMediaCreativeProps {
+interface PDFSocialMediaCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSocialMediaCreative = ({
+export const PDFSocialMediaCreativeTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFSocialMediaCreativeProps) => {
+}: PDFSocialMediaCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

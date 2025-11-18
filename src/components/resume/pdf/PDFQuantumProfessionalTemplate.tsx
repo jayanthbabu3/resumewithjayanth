@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFQuantumProfessionalProps {
+interface PDFQuantumProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFQuantumProfessional = ({
+export const PDFQuantumProfessionalTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFQuantumProfessionalProps) => {
+}: PDFQuantumProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

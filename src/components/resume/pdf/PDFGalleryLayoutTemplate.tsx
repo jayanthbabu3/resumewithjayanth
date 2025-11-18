@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGalleryLayoutProps {
+interface PDFGalleryLayoutTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGalleryLayout = ({
+export const PDFGalleryLayoutTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFGalleryLayoutProps) => {
+}: PDFGalleryLayoutTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

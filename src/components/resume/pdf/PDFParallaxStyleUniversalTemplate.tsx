@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFParallaxStyleUniversalProps {
+interface PDFParallaxStyleUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFParallaxStyleUniversal = ({
+export const PDFParallaxStyleUniversalTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFParallaxStyleUniversalProps) => {
+}: PDFParallaxStyleUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

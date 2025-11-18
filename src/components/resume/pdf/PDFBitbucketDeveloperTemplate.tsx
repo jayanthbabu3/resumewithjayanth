@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBitbucketDeveloperProps {
+interface PDFBitbucketDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBitbucketDeveloper = ({
+export const PDFBitbucketDeveloperTemplate = ({
   resumeData,
   themeColor = "#0052cc",
-}: PDFBitbucketDeveloperProps) => {
+}: PDFBitbucketDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHackernewsDeveloperProps {
+interface PDFHackernewsDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHackernewsDeveloper = ({
+export const PDFHackernewsDeveloperTemplate = ({
   resumeData,
   themeColor = "#ff6600",
-}: PDFHackernewsDeveloperProps) => {
+}: PDFHackernewsDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

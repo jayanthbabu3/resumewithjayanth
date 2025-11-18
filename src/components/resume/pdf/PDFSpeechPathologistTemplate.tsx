@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpeechPathologistProps {
+interface PDFSpeechPathologistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpeechPathologist = ({
+export const PDFSpeechPathologistTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFSpeechPathologistProps) => {
+}: PDFSpeechPathologistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

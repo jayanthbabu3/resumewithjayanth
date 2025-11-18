@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSiteReliabilityEngineerProps {
+interface PDFSiteReliabilityEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSiteReliabilityEngineer = ({
+export const PDFSiteReliabilityEngineerTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFSiteReliabilityEngineerProps) => {
+}: PDFSiteReliabilityEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

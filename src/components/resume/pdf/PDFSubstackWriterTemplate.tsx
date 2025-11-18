@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSubstackWriterProps {
+interface PDFSubstackWriterTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSubstackWriter = ({
+export const PDFSubstackWriterTemplate = ({
   resumeData,
   themeColor = "#ff6719",
-}: PDFSubstackWriterProps) => {
+}: PDFSubstackWriterTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

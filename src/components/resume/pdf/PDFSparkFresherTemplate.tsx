@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSparkFresherProps {
+interface PDFSparkFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSparkFresher = ({
+export const PDFSparkFresherTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFSparkFresherProps) => {
+}: PDFSparkFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalCompactUniversalProps {
+interface PDFProfessionalCompactUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalCompactUniversal = ({
+export const PDFProfessionalCompactUniversalTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFProfessionalCompactUniversalProps) => {
+}: PDFProfessionalCompactUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

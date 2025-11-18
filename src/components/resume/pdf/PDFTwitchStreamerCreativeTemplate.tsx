@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTwitchStreamerCreativeProps {
+interface PDFTwitchStreamerCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTwitchStreamerCreative = ({
+export const PDFTwitchStreamerCreativeTemplate = ({
   resumeData,
   themeColor = "#9146ff",
-}: PDFTwitchStreamerCreativeProps) => {
+}: PDFTwitchStreamerCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

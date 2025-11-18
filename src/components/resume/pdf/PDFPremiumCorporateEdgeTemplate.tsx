@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPremiumCorporateEdgeProps {
+interface PDFPremiumCorporateEdgeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPremiumCorporateEdge = ({
+export const PDFPremiumCorporateEdgeTemplate = ({
   resumeData,
   themeColor = "#581c87",
-}: PDFPremiumCorporateEdgeProps) => {
+}: PDFPremiumCorporateEdgeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHotelManagerOperationsProps {
+interface PDFHotelManagerOperationsTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHotelManagerOperations = ({
+export const PDFHotelManagerOperationsTemplate = ({
   resumeData,
   themeColor = "#78350f",
-}: PDFHotelManagerOperationsProps) => {
+}: PDFHotelManagerOperationsTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

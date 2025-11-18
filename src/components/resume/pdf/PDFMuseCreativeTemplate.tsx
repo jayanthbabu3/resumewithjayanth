@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMuseCreativeProps {
+interface PDFMuseCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMuseCreative = ({
+export const PDFMuseCreativeTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFMuseCreativeProps) => {
+}: PDFMuseCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

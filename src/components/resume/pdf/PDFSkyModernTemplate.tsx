@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSkyModernProps {
+interface PDFSkyModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSkyModern = ({
+export const PDFSkyModernTemplate = ({
   resumeData,
   themeColor = "#0ea5e9",
-}: PDFSkyModernProps) => {
+}: PDFSkyModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

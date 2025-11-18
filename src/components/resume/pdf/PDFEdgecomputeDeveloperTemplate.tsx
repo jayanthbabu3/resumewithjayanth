@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEdgecomputeDeveloperProps {
+interface PDFEdgecomputeDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEdgecomputeDeveloper = ({
+export const PDFEdgecomputeDeveloperTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFEdgecomputeDeveloperProps) => {
+}: PDFEdgecomputeDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

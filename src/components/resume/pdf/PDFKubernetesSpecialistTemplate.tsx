@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFKubernetesSpecialistProps {
+interface PDFKubernetesSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFKubernetesSpecialist = ({
+export const PDFKubernetesSpecialistTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFKubernetesSpecialistProps) => {
+}: PDFKubernetesSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

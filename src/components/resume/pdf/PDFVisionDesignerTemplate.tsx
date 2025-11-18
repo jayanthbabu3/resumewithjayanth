@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVisionDesignerProps {
+interface PDFVisionDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVisionDesigner = ({
+export const PDFVisionDesignerTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFVisionDesignerProps) => {
+}: PDFVisionDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

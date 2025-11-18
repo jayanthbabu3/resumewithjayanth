@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBoldHeadlineProps {
+interface PDFBoldHeadlineTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBoldHeadline = ({
+export const PDFBoldHeadlineTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFBoldHeadlineProps) => {
+}: PDFBoldHeadlineTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

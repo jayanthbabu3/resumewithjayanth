@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPostgreSQLDBAProps {
+interface PDFPostgreSQLDBATemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPostgreSQLDBA = ({
+export const PDFPostgreSQLDBATemplate = ({
   resumeData,
   themeColor = "#336791",
-}: PDFPostgreSQLDBAProps) => {
+}: PDFPostgreSQLDBATemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

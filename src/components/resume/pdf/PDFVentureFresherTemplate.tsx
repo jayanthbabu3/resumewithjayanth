@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVentureFresherProps {
+interface PDFVentureFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVentureFresher = ({
+export const PDFVentureFresherTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFVentureFresherProps) => {
+}: PDFVentureFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

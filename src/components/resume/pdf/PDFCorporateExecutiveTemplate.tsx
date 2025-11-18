@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateExecutiveProps {
+interface PDFCorporateExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateExecutive = ({
+export const PDFCorporateExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFCorporateExecutiveProps) => {
+}: PDFCorporateExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

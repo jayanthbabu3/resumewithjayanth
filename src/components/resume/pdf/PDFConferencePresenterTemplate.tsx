@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFConferencePresenterProps {
+interface PDFConferencePresenterTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFConferencePresenter = ({
+export const PDFConferencePresenterTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFConferencePresenterProps) => {
+}: PDFConferencePresenterTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

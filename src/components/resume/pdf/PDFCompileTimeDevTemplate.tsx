@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCompileTimeDevProps {
+interface PDFCompileTimeDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCompileTimeDev = ({
+export const PDFCompileTimeDevTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFCompileTimeDevProps) => {
+}: PDFCompileTimeDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

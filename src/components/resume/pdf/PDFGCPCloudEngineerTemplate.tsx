@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGCPCloudEngineerProps {
+interface PDFGCPCloudEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGCPCloudEngineer = ({
+export const PDFGCPCloudEngineerTemplate = ({
   resumeData,
   themeColor = "#4285f4",
-}: PDFGCPCloudEngineerProps) => {
+}: PDFGCPCloudEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

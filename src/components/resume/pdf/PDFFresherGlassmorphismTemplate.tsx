@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherGlassmorphismProps {
+interface PDFFresherGlassmorphismTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherGlassmorphism = ({
+export const PDFFresherGlassmorphismTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherGlassmorphismProps) => {
+}: PDFFresherGlassmorphismTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

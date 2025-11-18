@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateMomentumProps {
+interface PDFCorporateMomentumTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateMomentum = ({
+export const PDFCorporateMomentumTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFCorporateMomentumProps) => {
+}: PDFCorporateMomentumTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

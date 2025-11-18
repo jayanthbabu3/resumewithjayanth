@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAmberExecutiveProps {
+interface PDFAmberExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAmberExecutive = ({
+export const PDFAmberExecutiveTemplate = ({
   resumeData,
   themeColor = "#d97706",
-}: PDFAmberExecutiveProps) => {
+}: PDFAmberExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

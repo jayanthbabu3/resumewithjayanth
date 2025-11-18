@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWatermarkStyleUniversalProps {
+interface PDFWatermarkStyleUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWatermarkStyleUniversal = ({
+export const PDFWatermarkStyleUniversalTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFWatermarkStyleUniversalProps) => {
+}: PDFWatermarkStyleUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

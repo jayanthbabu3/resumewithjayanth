@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCarbonmadeDesignerProps {
+interface PDFCarbonmadeDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCarbonmadeDesigner = ({
+export const PDFCarbonmadeDesignerTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFCarbonmadeDesignerProps) => {
+}: PDFCarbonmadeDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

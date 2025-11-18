@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDataEngineerProps {
+interface PDFDataEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDataEngineer = ({
+export const PDFDataEngineerTemplate = ({
   resumeData,
   themeColor = "#00758F",
-}: PDFDataEngineerProps) => {
+}: PDFDataEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

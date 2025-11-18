@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPathwayGraduateProps {
+interface PDFPathwayGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPathwayGraduate = ({
+export const PDFPathwayGraduateTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFPathwayGraduateProps) => {
+}: PDFPathwayGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

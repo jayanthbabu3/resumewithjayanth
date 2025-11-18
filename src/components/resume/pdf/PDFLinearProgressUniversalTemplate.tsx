@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLinearProgressUniversalProps {
+interface PDFLinearProgressUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLinearProgressUniversal = ({
+export const PDFLinearProgressUniversalTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFLinearProgressUniversalProps) => {
+}: PDFLinearProgressUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

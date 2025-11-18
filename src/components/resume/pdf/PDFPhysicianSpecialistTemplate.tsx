@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPhysicianSpecialistProps {
+interface PDFPhysicianSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPhysicianSpecialist = ({
+export const PDFPhysicianSpecialistTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFPhysicianSpecialistProps) => {
+}: PDFPhysicianSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

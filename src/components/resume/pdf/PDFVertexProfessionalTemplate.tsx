@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVertexProfessionalProps {
+interface PDFVertexProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVertexProfessional = ({
+export const PDFVertexProfessionalTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFVertexProfessionalProps) => {
+}: PDFVertexProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

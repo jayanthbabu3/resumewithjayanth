@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFJAMStackDeveloperProps {
+interface PDFJAMStackDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFJAMStackDeveloper = ({
+export const PDFJAMStackDeveloperTemplate = ({
   resumeData,
   themeColor = "#f0047f",
-}: PDFJAMStackDeveloperProps) => {
+}: PDFJAMStackDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

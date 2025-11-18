@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEditorialArtistProps {
+interface PDFEditorialArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEditorialArtist = ({
+export const PDFEditorialArtistTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFEditorialArtistProps) => {
+}: PDFEditorialArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

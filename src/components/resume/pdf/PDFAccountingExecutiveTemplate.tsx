@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAccountingExecutiveProps {
+interface PDFAccountingExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAccountingExecutive = ({
+export const PDFAccountingExecutiveTemplate = ({
   resumeData,
   themeColor = "#263238",
-}: PDFAccountingExecutiveProps) => {
+}: PDFAccountingExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGolangBackendEngineerProps {
+interface PDFGolangBackendEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGolangBackendEngineer = ({
+export const PDFGolangBackendEngineerTemplate = ({
   resumeData,
   themeColor = "#00add8",
-}: PDFGolangBackendEngineerProps) => {
+}: PDFGolangBackendEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

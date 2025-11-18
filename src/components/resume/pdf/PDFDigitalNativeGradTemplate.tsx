@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDigitalNativeGradProps {
+interface PDFDigitalNativeGradTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDigitalNativeGrad = ({
+export const PDFDigitalNativeGradTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFDigitalNativeGradProps) => {
+}: PDFDigitalNativeGradTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNestJSBackendProps {
+interface PDFNestJSBackendTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNestJSBackend = ({
+export const PDFNestJSBackendTemplate = ({
   resumeData,
   themeColor = "#e0234e",
-}: PDFNestJSBackendProps) => {
+}: PDFNestJSBackendTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

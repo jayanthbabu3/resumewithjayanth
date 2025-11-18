@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPinterestCuratorProps {
+interface PDFPinterestCuratorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPinterestCurator = ({
+export const PDFPinterestCuratorTemplate = ({
   resumeData,
   themeColor = "#e60023",
-}: PDFPinterestCuratorProps) => {
+}: PDFPinterestCuratorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

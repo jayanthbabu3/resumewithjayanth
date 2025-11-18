@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFIntellectualPropertyAttorneyProps {
+interface PDFIntellectualPropertyAttorneyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFIntellectualPropertyAttorney = ({
+export const PDFIntellectualPropertyAttorneyTemplate = ({
   resumeData,
   themeColor = "#312e81",
-}: PDFIntellectualPropertyAttorneyProps) => {
+}: PDFIntellectualPropertyAttorneyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

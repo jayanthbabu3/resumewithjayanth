@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProjectManagerPMPProps {
+interface PDFProjectManagerPMPTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProjectManagerPMP = ({
+export const PDFProjectManagerPMPTemplate = ({
   resumeData,
   themeColor = "#0277bd",
-}: PDFProjectManagerPMPProps) => {
+}: PDFProjectManagerPMPTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEditorialStyleProps {
+interface PDFEditorialStyleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEditorialStyle = ({
+export const PDFEditorialStyleTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFEditorialStyleProps) => {
+}: PDFEditorialStyleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

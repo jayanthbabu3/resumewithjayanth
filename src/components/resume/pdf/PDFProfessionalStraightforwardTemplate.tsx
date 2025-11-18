@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalStraightforwardProps {
+interface PDFProfessionalStraightforwardTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalStraightforward = ({
+export const PDFProfessionalStraightforwardTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalStraightforwardProps) => {
+}: PDFProfessionalStraightforwardTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

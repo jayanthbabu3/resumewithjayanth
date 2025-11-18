@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLiberalArtsGraduateProps {
+interface PDFLiberalArtsGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLiberalArtsGraduate = ({
+export const PDFLiberalArtsGraduateTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFLiberalArtsGraduateProps) => {
+}: PDFLiberalArtsGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWebAssemblyEngineerProps {
+interface PDFWebAssemblyEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWebAssemblyEngineer = ({
+export const PDFWebAssemblyEngineerTemplate = ({
   resumeData,
   themeColor = "#654ff0",
-}: PDFWebAssemblyEngineerProps) => {
+}: PDFWebAssemblyEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

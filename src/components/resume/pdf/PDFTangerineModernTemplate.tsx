@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTangerineModernProps {
+interface PDFTangerineModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTangerineModern = ({
+export const PDFTangerineModernTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFTangerineModernProps) => {
+}: PDFTangerineModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

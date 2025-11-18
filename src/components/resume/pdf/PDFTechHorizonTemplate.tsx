@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTechHorizonProps {
+interface PDFTechHorizonTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTechHorizon = ({
+export const PDFTechHorizonTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFTechHorizonProps) => {
+}: PDFTechHorizonTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

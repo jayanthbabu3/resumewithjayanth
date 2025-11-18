@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMarketingAnalyticsManagerProps {
+interface PDFMarketingAnalyticsManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMarketingAnalyticsManager = ({
+export const PDFMarketingAnalyticsManagerTemplate = ({
   resumeData,
   themeColor = "#06b6d4",
-}: PDFMarketingAnalyticsManagerProps) => {
+}: PDFMarketingAnalyticsManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

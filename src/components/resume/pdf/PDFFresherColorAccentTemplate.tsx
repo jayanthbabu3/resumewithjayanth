@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherColorAccentProps {
+interface PDFFresherColorAccentTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherColorAccent = ({
+export const PDFFresherColorAccentTemplate = ({
   resumeData,
   themeColor = "#8B5CF6",
-}: PDFFresherColorAccentProps) => {
+}: PDFFresherColorAccentTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

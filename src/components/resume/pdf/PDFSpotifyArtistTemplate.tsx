@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpotifyArtistProps {
+interface PDFSpotifyArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpotifyArtist = ({
+export const PDFSpotifyArtistTemplate = ({
   resumeData,
   themeColor = "#1db954",
-}: PDFSpotifyArtistProps) => {
+}: PDFSpotifyArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

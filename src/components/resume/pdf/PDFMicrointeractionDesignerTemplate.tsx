@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMicrointeractionDesignerProps {
+interface PDFMicrointeractionDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMicrointeractionDesigner = ({
+export const PDFMicrointeractionDesignerTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFMicrointeractionDesignerProps) => {
+}: PDFMicrointeractionDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

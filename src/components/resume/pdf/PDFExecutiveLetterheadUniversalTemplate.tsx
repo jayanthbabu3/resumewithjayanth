@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveLetterheadUniversalProps {
+interface PDFExecutiveLetterheadUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveLetterheadUniversal = ({
+export const PDFExecutiveLetterheadUniversalTemplate = ({
   resumeData,
   themeColor = "#1e3a8a",
-}: PDFExecutiveLetterheadUniversalProps) => {
+}: PDFExecutiveLetterheadUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

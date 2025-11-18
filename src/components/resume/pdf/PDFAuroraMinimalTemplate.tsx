@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAuroraMinimalProps {
+interface PDFAuroraMinimalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAuroraMinimal = ({
+export const PDFAuroraMinimalTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFAuroraMinimalProps) => {
+}: PDFAuroraMinimalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInteractionDesignerProps {
+interface PDFInteractionDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInteractionDesigner = ({
+export const PDFInteractionDesignerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFInteractionDesignerProps) => {
+}: PDFInteractionDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

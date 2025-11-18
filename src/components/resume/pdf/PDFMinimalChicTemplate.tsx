@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMinimalChicProps {
+interface PDFMinimalChicTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMinimalChic = ({
+export const PDFMinimalChicTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFMinimalChicProps) => {
+}: PDFMinimalChicTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

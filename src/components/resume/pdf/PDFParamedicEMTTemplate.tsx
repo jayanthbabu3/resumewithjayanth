@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFParamedicEMTProps {
+interface PDFParamedicEMTTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFParamedicEMT = ({
+export const PDFParamedicEMTTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFParamedicEMTProps) => {
+}: PDFParamedicEMTTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMagazineLayoutUniversalProps {
+interface PDFMagazineLayoutUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMagazineLayoutUniversal = ({
+export const PDFMagazineLayoutUniversalTemplate = ({
   resumeData,
   themeColor = "#e11d48",
-}: PDFMagazineLayoutUniversalProps) => {
+}: PDFMagazineLayoutUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherGradientBorderProps {
+interface PDFFresherGradientBorderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherGradientBorder = ({
+export const PDFFresherGradientBorderTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherGradientBorderProps) => {
+}: PDFFresherGradientBorderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

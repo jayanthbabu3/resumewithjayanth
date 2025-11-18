@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFElegantSerifProps {
+interface PDFElegantSerifTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFElegantSerif = ({
+export const PDFElegantSerifTemplate = ({
   resumeData,
   themeColor = "#854d0e",
-}: PDFElegantSerifProps) => {
+}: PDFElegantSerifTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherTopBottomProps {
+interface PDFFresherTopBottomTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherTopBottom = ({
+export const PDFFresherTopBottomTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherTopBottomProps) => {
+}: PDFFresherTopBottomTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

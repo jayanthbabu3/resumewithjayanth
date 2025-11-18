@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherAchievementProps {
+interface PDFFresherAchievementTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherAchievement = ({
+export const PDFFresherAchievementTemplate = ({
   resumeData,
   themeColor = "#EAB308",
-}: PDFFresherAchievementProps) => {
+}: PDFFresherAchievementTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

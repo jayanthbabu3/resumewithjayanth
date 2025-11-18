@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLinkedinOptimizedProps {
+interface PDFLinkedinOptimizedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLinkedinOptimized = ({
+export const PDFLinkedinOptimizedTemplate = ({
   resumeData,
   themeColor = "#0077b5",
-}: PDFLinkedinOptimizedProps) => {
+}: PDFLinkedinOptimizedTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

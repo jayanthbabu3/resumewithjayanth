@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNeonArtistProps {
+interface PDFNeonArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNeonArtist = ({
+export const PDFNeonArtistTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFNeonArtistProps) => {
+}: PDFNeonArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

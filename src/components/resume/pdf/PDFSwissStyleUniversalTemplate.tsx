@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSwissStyleUniversalProps {
+interface PDFSwissStyleUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSwissStyleUniversal = ({
+export const PDFSwissStyleUniversalTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFSwissStyleUniversalProps) => {
+}: PDFSwissStyleUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

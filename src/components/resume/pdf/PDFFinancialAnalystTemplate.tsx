@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFinancialAnalystProps {
+interface PDFFinancialAnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFinancialAnalyst = ({
+export const PDFFinancialAnalystTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFFinancialAnalystProps) => {
+}: PDFFinancialAnalystTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

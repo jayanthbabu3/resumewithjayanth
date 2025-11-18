@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSterlingExecutiveProps {
+interface PDFSterlingExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSterlingExecutive = ({
+export const PDFSterlingExecutiveTemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFSterlingExecutiveProps) => {
+}: PDFSterlingExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

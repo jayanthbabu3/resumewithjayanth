@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalDividerProps {
+interface PDFProfessionalDividerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalDivider = ({
+export const PDFProfessionalDividerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalDividerProps) => {
+}: PDFProfessionalDividerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTerminalConsoleProps {
+interface PDFTerminalConsoleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTerminalConsole = ({
+export const PDFTerminalConsoleTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFTerminalConsoleProps) => {
+}: PDFTerminalConsoleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

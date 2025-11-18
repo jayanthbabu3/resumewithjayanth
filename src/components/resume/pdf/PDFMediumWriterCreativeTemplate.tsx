@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMediumWriterCreativeProps {
+interface PDFMediumWriterCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMediumWriterCreative = ({
+export const PDFMediumWriterCreativeTemplate = ({
   resumeData,
   themeColor = "#000000",
-}: PDFMediumWriterCreativeProps) => {
+}: PDFMediumWriterCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

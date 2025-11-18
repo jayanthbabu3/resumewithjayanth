@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherSplitLayoutProps {
+interface PDFFresherSplitLayoutTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherSplitLayout = ({
+export const PDFFresherSplitLayoutTemplate = ({
   resumeData,
   themeColor = "#16a34a",
-}: PDFFresherSplitLayoutProps) => {
+}: PDFFresherSplitLayoutTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

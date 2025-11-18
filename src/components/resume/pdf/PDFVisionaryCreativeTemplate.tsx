@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVisionaryCreativeProps {
+interface PDFVisionaryCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVisionaryCreative = ({
+export const PDFVisionaryCreativeTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFVisionaryCreativeProps) => {
+}: PDFVisionaryCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

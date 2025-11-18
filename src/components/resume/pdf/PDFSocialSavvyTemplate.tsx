@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSocialSavvyProps {
+interface PDFSocialSavvyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSocialSavvy = ({
+export const PDFSocialSavvyTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFSocialSavvyProps) => {
+}: PDFSocialSavvyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

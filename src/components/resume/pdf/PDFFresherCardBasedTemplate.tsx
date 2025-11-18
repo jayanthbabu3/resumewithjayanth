@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherCardBasedProps {
+interface PDFFresherCardBasedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherCardBased = ({
+export const PDFFresherCardBasedTemplate = ({
   resumeData,
   themeColor = "#14B8A6",
-}: PDFFresherCardBasedProps) => {
+}: PDFFresherCardBasedTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

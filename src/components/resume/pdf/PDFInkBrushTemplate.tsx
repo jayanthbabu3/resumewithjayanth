@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInkBrushProps {
+interface PDFInkBrushTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInkBrush = ({
+export const PDFInkBrushTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFInkBrushProps) => {
+}: PDFInkBrushTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

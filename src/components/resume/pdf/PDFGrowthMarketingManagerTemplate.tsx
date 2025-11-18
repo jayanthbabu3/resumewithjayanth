@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGrowthMarketingManagerProps {
+interface PDFGrowthMarketingManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGrowthMarketingManager = ({
+export const PDFGrowthMarketingManagerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFGrowthMarketingManagerProps) => {
+}: PDFGrowthMarketingManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

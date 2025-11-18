@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveTimelineModernProps {
+interface PDFExecutiveTimelineModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveTimelineModern = ({
+export const PDFExecutiveTimelineModernTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFExecutiveTimelineModernProps) => {
+}: PDFExecutiveTimelineModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

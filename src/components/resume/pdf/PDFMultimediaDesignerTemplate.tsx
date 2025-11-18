@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMultimediaDesignerProps {
+interface PDFMultimediaDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMultimediaDesigner = ({
+export const PDFMultimediaDesignerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMultimediaDesignerProps) => {
+}: PDFMultimediaDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

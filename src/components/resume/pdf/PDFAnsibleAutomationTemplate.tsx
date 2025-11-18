@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAnsibleAutomationProps {
+interface PDFAnsibleAutomationTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAnsibleAutomation = ({
+export const PDFAnsibleAutomationTemplate = ({
   resumeData,
   themeColor = "#ee0000",
-}: PDFAnsibleAutomationProps) => {
+}: PDFAnsibleAutomationTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

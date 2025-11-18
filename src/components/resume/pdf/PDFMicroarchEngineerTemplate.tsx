@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMicroarchEngineerProps {
+interface PDFMicroarchEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMicroarchEngineer = ({
+export const PDFMicroarchEngineerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMicroarchEngineerProps) => {
+}: PDFMicroarchEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

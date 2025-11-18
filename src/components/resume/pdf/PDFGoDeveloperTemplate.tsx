@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGoDeveloperProps {
+interface PDFGoDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGoDeveloper = ({
+export const PDFGoDeveloperTemplate = ({
   resumeData,
   themeColor = "#00ADD8",
-}: PDFGoDeveloperProps) => {
+}: PDFGoDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

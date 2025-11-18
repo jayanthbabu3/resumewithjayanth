@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPewterMinimalistProps {
+interface PDFPewterMinimalistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPewterMinimalist = ({
+export const PDFPewterMinimalistTemplate = ({
   resumeData,
   themeColor = "#71717a",
-}: PDFPewterMinimalistProps) => {
+}: PDFPewterMinimalistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

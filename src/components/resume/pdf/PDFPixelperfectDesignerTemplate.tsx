@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPixelperfectDesignerProps {
+interface PDFPixelperfectDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPixelperfectDesigner = ({
+export const PDFPixelperfectDesignerTemplate = ({
   resumeData,
   themeColor = "#1e293b",
-}: PDFPixelperfectDesignerProps) => {
+}: PDFPixelperfectDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

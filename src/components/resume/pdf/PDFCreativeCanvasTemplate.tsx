@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativeCanvasProps {
+interface PDFCreativeCanvasTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativeCanvas = ({
+export const PDFCreativeCanvasTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFCreativeCanvasProps) => {
+}: PDFCreativeCanvasTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

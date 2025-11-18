@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPremiumEliteProps {
+interface PDFPremiumEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPremiumElite = ({
+export const PDFPremiumEliteTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFPremiumEliteProps) => {
+}: PDFPremiumEliteTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSwiftIOSDeveloperProps {
+interface PDFSwiftIOSDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSwiftIOSDeveloper = ({
+export const PDFSwiftIOSDeveloperTemplate = ({
   resumeData,
   themeColor = "#f05138",
-}: PDFSwiftIOSDeveloperProps) => {
+}: PDFSwiftIOSDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherElegantSidebarProps {
+interface PDFFresherElegantSidebarTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -142,10 +142,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   },
 });
 
-export const PDFFresherElegantSidebar = ({
+export const PDFFresherElegantSidebarTemplate = ({
   resumeData,
   themeColor = "#9333ea",
-}: PDFFresherElegantSidebarProps) => {
+}: PDFFresherElegantSidebarTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

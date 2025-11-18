@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBoardroomReadyProps {
+interface PDFBoardroomReadyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBoardroomReady = ({
+export const PDFBoardroomReadyTemplate = ({
   resumeData,
   themeColor = "#4c1d95",
-}: PDFBoardroomReadyProps) => {
+}: PDFBoardroomReadyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

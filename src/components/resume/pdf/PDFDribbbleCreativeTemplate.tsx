@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDribbbleCreativeProps {
+interface PDFDribbbleCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDribbbleCreative = ({
+export const PDFDribbbleCreativeTemplate = ({
   resumeData,
   themeColor = "#ea4c89",
-}: PDFDribbbleCreativeProps) => {
+}: PDFDribbbleCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

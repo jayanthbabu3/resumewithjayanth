@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSketchExpertPortfolioProps {
+interface PDFSketchExpertPortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSketchExpertPortfolio = ({
+export const PDFSketchExpertPortfolioTemplate = ({
   resumeData,
   themeColor = "#f7b500",
-}: PDFSketchExpertPortfolioProps) => {
+}: PDFSketchExpertPortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

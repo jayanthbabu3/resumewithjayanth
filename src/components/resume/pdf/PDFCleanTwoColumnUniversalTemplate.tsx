@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCleanTwoColumnUniversalProps {
+interface PDFCleanTwoColumnUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCleanTwoColumnUniversal = ({
+export const PDFCleanTwoColumnUniversalTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCleanTwoColumnUniversalProps) => {
+}: PDFCleanTwoColumnUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

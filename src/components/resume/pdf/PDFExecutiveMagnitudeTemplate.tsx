@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveMagnitudeProps {
+interface PDFExecutiveMagnitudeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveMagnitude = ({
+export const PDFExecutiveMagnitudeTemplate = ({
   resumeData,
   themeColor = "#15803d",
-}: PDFExecutiveMagnitudeProps) => {
+}: PDFExecutiveMagnitudeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

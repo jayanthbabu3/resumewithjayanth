@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSapphireExecutiveProps {
+interface PDFSapphireExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSapphireExecutive = ({
+export const PDFSapphireExecutiveTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFSapphireExecutiveProps) => {
+}: PDFSapphireExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUserflowDesignerProps {
+interface PDFUserflowDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUserflowDesigner = ({
+export const PDFUserflowDesignerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFUserflowDesignerProps) => {
+}: PDFUserflowDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

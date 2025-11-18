@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBrandIdentityProps {
+interface PDFBrandIdentityTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBrandIdentity = ({
+export const PDFBrandIdentityTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFBrandIdentityProps) => {
+}: PDFBrandIdentityTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

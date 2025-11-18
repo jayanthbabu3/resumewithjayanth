@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherTimelineDotsProps {
+interface PDFFresherTimelineDotsTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherTimelineDots = ({
+export const PDFFresherTimelineDotsTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherTimelineDotsProps) => {
+}: PDFFresherTimelineDotsTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEntrepreneurialGraduateProps {
+interface PDFEntrepreneurialGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEntrepreneurialGraduate = ({
+export const PDFEntrepreneurialGraduateTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFEntrepreneurialGraduateProps) => {
+}: PDFEntrepreneurialGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

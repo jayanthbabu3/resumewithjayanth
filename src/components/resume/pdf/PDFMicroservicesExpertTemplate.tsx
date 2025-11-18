@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMicroservicesExpertProps {
+interface PDFMicroservicesExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMicroservicesExpert = ({
+export const PDFMicroservicesExpertTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFMicroservicesExpertProps) => {
+}: PDFMicroservicesExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

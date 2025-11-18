@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSeniorFrontendProps {
+interface PDFSeniorFrontendTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSeniorFrontend = ({
+export const PDFSeniorFrontendTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFSeniorFrontendProps) => {
+}: PDFSeniorFrontendTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

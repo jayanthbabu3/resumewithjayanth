@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMomentumFresherProps {
+interface PDFMomentumFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMomentumFresher = ({
+export const PDFMomentumFresherTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFMomentumFresherProps) => {
+}: PDFMomentumFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

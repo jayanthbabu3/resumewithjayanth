@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFModernMinimalistUniversalProps {
+interface PDFModernMinimalistUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFModernMinimalistUniversal = ({
+export const PDFModernMinimalistUniversalTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFModernMinimalistUniversalProps) => {
+}: PDFModernMinimalistUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

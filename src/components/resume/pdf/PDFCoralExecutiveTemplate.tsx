@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCoralExecutiveProps {
+interface PDFCoralExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCoralExecutive = ({
+export const PDFCoralExecutiveTemplate = ({
   resumeData,
   themeColor = "#fb923c",
-}: PDFCoralExecutiveProps) => {
+}: PDFCoralExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

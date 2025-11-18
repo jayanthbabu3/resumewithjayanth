@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWideMarginUniversalProps {
+interface PDFWideMarginUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWideMarginUniversal = ({
+export const PDFWideMarginUniversalTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFWideMarginUniversalProps) => {
+}: PDFWideMarginUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

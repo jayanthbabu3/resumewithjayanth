@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUiuxPortfolioProProps {
+interface PDFUiuxPortfolioProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUiuxPortfolioPro = ({
+export const PDFUiuxPortfolioProTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFUiuxPortfolioProProps) => {
+}: PDFUiuxPortfolioProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

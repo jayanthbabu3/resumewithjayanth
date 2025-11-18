@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGraphdbSpecialistProps {
+interface PDFGraphdbSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGraphdbSpecialist = ({
+export const PDFGraphdbSpecialistTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFGraphdbSpecialistProps) => {
+}: PDFGraphdbSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

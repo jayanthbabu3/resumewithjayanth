@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCollageArtProps {
+interface PDFCollageArtTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCollageArt = ({
+export const PDFCollageArtTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFCollageArtProps) => {
+}: PDFCollageArtTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

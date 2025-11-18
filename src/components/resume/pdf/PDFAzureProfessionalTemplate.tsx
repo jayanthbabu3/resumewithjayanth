@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAzureProfessionalProps {
+interface PDFAzureProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAzureProfessional = ({
+export const PDFAzureProfessionalTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFAzureProfessionalProps) => {
+}: PDFAzureProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

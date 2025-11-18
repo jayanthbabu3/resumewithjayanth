@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDottedGridUniversalProps {
+interface PDFDottedGridUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDottedGridUniversal = ({
+export const PDFDottedGridUniversalTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFDottedGridUniversalProps) => {
+}: PDFDottedGridUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

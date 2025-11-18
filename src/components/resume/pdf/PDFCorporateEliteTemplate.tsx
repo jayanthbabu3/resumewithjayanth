@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateEliteProps {
+interface PDFCorporateEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateElite = ({
+export const PDFCorporateEliteTemplate = ({
   resumeData,
   themeColor = "#0f172a",
-}: PDFCorporateEliteProps) => {
+}: PDFCorporateEliteTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

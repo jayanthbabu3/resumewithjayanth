@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTechSavvyFresherProps {
+interface PDFTechSavvyFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTechSavvyFresher = ({
+export const PDFTechSavvyFresherTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFTechSavvyFresherProps) => {
+}: PDFTechSavvyFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

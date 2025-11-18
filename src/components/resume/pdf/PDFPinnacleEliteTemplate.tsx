@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPinnacleEliteProps {
+interface PDFPinnacleEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPinnacleElite = ({
+export const PDFPinnacleEliteTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFPinnacleEliteProps) => {
+}: PDFPinnacleEliteTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

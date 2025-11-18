@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCampusInfluencerProps {
+interface PDFCampusInfluencerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCampusInfluencer = ({
+export const PDFCampusInfluencerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFCampusInfluencerProps) => {
+}: PDFCampusInfluencerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

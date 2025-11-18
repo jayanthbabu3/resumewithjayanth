@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFigmaExpertProps {
+interface PDFFigmaExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFigmaExpert = ({
+export const PDFFigmaExpertTemplate = ({
   resumeData,
   themeColor = "#f24e1e",
-}: PDFFigmaExpertProps) => {
+}: PDFFigmaExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

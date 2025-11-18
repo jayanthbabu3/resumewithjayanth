@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAzureDevOpsProProps {
+interface PDFAzureDevOpsProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAzureDevOpsPro = ({
+export const PDFAzureDevOpsProTemplate = ({
   resumeData,
   themeColor = "#0078d4",
-}: PDFAzureDevOpsProProps) => {
+}: PDFAzureDevOpsProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

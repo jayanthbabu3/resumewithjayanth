@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodingChallengeChampionProps {
+interface PDFCodingChallengeChampionTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodingChallengeChampion = ({
+export const PDFCodingChallengeChampionTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFCodingChallengeChampionProps) => {
+}: PDFCodingChallengeChampionTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

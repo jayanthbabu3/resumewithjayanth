@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHackerrankExpertProps {
+interface PDFHackerrankExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHackerrankExpert = ({
+export const PDFHackerrankExpertTemplate = ({
   resumeData,
   themeColor = "#00ea64",
-}: PDFHackerrankExpertProps) => {
+}: PDFHackerrankExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

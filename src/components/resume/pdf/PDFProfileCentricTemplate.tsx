@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfileCentricProps {
+interface PDFProfileCentricTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfileCentric = ({
+export const PDFProfileCentricTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFProfileCentricProps) => {
+}: PDFProfileCentricTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

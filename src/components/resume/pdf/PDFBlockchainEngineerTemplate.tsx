@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBlockchainEngineerProps {
+interface PDFBlockchainEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBlockchainEngineer = ({
+export const PDFBlockchainEngineerTemplate = ({
   resumeData,
   themeColor = "#f0b90b",
-}: PDFBlockchainEngineerProps) => {
+}: PDFBlockchainEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

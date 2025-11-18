@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFImaginativeDesignerProps {
+interface PDFImaginativeDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFImaginativeDesigner = ({
+export const PDFImaginativeDesignerTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFImaginativeDesignerProps) => {
+}: PDFImaginativeDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAdobeXDDesignerProps {
+interface PDFAdobeXDDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAdobeXDDesigner = ({
+export const PDFAdobeXDDesignerTemplate = ({
   resumeData,
   themeColor = "#ff61f6",
-}: PDFAdobeXDDesignerProps) => {
+}: PDFAdobeXDDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

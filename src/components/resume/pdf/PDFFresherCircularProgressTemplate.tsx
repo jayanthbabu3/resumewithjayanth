@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherCircularProgressProps {
+interface PDFFresherCircularProgressTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherCircularProgress = ({
+export const PDFFresherCircularProgressTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherCircularProgressProps) => {
+}: PDFFresherCircularProgressTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

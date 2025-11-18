@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTwitterDevProps {
+interface PDFTwitterDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTwitterDev = ({
+export const PDFTwitterDevTemplate = ({
   resumeData,
   themeColor = "#1da1f2",
-}: PDFTwitterDevProps) => {
+}: PDFTwitterDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

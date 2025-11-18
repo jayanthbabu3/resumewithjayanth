@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveSignatureProps {
+interface PDFExecutiveSignatureTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveSignature = ({
+export const PDFExecutiveSignatureTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFExecutiveSignatureProps) => {
+}: PDFExecutiveSignatureTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

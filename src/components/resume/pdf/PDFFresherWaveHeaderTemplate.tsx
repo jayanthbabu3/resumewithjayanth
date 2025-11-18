@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherWaveHeaderProps {
+interface PDFFresherWaveHeaderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherWaveHeader = ({
+export const PDFFresherWaveHeaderTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherWaveHeaderProps) => {
+}: PDFFresherWaveHeaderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

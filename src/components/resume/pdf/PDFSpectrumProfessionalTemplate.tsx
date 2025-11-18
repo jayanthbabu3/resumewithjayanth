@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpectrumProfessionalProps {
+interface PDFSpectrumProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpectrumProfessional = ({
+export const PDFSpectrumProfessionalTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFSpectrumProfessionalProps) => {
+}: PDFSpectrumProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

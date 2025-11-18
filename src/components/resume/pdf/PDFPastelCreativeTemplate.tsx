@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPastelCreativeProps {
+interface PDFPastelCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPastelCreative = ({
+export const PDFPastelCreativeTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFPastelCreativeProps) => {
+}: PDFPastelCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

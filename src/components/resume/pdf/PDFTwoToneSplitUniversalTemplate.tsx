@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTwoToneSplitUniversalProps {
+interface PDFTwoToneSplitUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTwoToneSplitUniversal = ({
+export const PDFTwoToneSplitUniversalTemplate = ({
   resumeData,
   themeColor = "#15803d",
-}: PDFTwoToneSplitUniversalProps) => {
+}: PDFTwoToneSplitUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

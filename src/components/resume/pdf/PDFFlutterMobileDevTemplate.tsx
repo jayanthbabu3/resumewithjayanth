@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFlutterMobileDevProps {
+interface PDFFlutterMobileDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFlutterMobileDev = ({
+export const PDFFlutterMobileDevTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFFlutterMobileDevProps) => {
+}: PDFFlutterMobileDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

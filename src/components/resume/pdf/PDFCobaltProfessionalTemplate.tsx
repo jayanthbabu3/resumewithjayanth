@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCobaltProfessionalProps {
+interface PDFCobaltProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCobaltProfessional = ({
+export const PDFCobaltProfessionalTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFCobaltProfessionalProps) => {
+}: PDFCobaltProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

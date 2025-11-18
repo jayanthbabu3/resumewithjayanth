@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInstagramInfluencerProps {
+interface PDFInstagramInfluencerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInstagramInfluencer = ({
+export const PDFInstagramInfluencerTemplate = ({
   resumeData,
   themeColor = "#e4405f",
-}: PDFInstagramInfluencerProps) => {
+}: PDFInstagramInfluencerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

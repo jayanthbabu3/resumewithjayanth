@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPatreonCreatorProps {
+interface PDFPatreonCreatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPatreonCreator = ({
+export const PDFPatreonCreatorTemplate = ({
   resumeData,
   themeColor = "#ff424d",
-}: PDFPatreonCreatorProps) => {
+}: PDFPatreonCreatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

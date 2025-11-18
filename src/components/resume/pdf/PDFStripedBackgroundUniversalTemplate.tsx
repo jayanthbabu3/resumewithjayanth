@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStripedBackgroundUniversalProps {
+interface PDFStripedBackgroundUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStripedBackgroundUniversal = ({
+export const PDFStripedBackgroundUniversalTemplate = ({
   resumeData,
   themeColor = "#ca8a04",
-}: PDFStripedBackgroundUniversalProps) => {
+}: PDFStripedBackgroundUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

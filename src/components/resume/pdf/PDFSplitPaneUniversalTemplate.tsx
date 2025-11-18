@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSplitPaneUniversalProps {
+interface PDFSplitPaneUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSplitPaneUniversal = ({
+export const PDFSplitPaneUniversalTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFSplitPaneUniversalProps) => {
+}: PDFSplitPaneUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

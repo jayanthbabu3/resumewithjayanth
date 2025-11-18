@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNavyCorporateProps {
+interface PDFNavyCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNavyCorporate = ({
+export const PDFNavyCorporateTemplate = ({
   resumeData,
   themeColor = "#1e3a8a",
-}: PDFNavyCorporateProps) => {
+}: PDFNavyCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

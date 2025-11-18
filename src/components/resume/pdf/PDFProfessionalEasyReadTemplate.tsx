@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalEasyReadProps {
+interface PDFProfessionalEasyReadTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalEasyRead = ({
+export const PDFProfessionalEasyReadTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalEasyReadProps) => {
+}: PDFProfessionalEasyReadTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

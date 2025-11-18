@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFResponsiveUxProps {
+interface PDFResponsiveUxTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFResponsiveUx = ({
+export const PDFResponsiveUxTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFResponsiveUxProps) => {
+}: PDFResponsiveUxTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNodeJSDeveloperProps {
+interface PDFNodeJSDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNodeJSDeveloper = ({
+export const PDFNodeJSDeveloperTemplate = ({
   resumeData,
   themeColor = "#339933",
-}: PDFNodeJSDeveloperProps) => {
+}: PDFNodeJSDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

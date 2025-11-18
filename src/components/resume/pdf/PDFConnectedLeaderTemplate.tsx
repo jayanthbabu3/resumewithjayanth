@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFConnectedLeaderProps {
+interface PDFConnectedLeaderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFConnectedLeader = ({
+export const PDFConnectedLeaderTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFConnectedLeaderProps) => {
+}: PDFConnectedLeaderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

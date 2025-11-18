@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUnderlineAccentUniversalProps {
+interface PDFUnderlineAccentUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUnderlineAccentUniversal = ({
+export const PDFUnderlineAccentUniversalTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFUnderlineAccentUniversalProps) => {
+}: PDFUnderlineAccentUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

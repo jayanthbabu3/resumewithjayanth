@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMlopsEngineerProps {
+interface PDFMlopsEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMlopsEngineer = ({
+export const PDFMlopsEngineerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFMlopsEngineerProps) => {
+}: PDFMlopsEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVimeoVideographerProps {
+interface PDFVimeoVideographerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVimeoVideographer = ({
+export const PDFVimeoVideographerTemplate = ({
   resumeData,
   themeColor = "#1ab7ea",
-}: PDFVimeoVideographerProps) => {
+}: PDFVimeoVideographerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

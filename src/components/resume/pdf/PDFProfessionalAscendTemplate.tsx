@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalAscendProps {
+interface PDFProfessionalAscendTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalAscend = ({
+export const PDFProfessionalAscendTemplate = ({
   resumeData,
   themeColor = "#7c2d12",
-}: PDFProfessionalAscendProps) => {
+}: PDFProfessionalAscendTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDirectorLevelProps {
+interface PDFDirectorLevelTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDirectorLevel = ({
+export const PDFDirectorLevelTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFDirectorLevelProps) => {
+}: PDFDirectorLevelTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

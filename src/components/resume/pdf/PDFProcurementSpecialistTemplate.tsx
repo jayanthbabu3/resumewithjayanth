@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProcurementSpecialistProps {
+interface PDFProcurementSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProcurementSpecialist = ({
+export const PDFProcurementSpecialistTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFProcurementSpecialistProps) => {
+}: PDFProcurementSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCrimsonLeadershipProps {
+interface PDFCrimsonLeadershipTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCrimsonLeadership = ({
+export const PDFCrimsonLeadershipTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFCrimsonLeadershipProps) => {
+}: PDFCrimsonLeadershipTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

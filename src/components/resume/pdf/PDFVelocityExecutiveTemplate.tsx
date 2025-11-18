@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVelocityExecutiveProps {
+interface PDFVelocityExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVelocityExecutive = ({
+export const PDFVelocityExecutiveTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFVelocityExecutiveProps) => {
+}: PDFVelocityExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

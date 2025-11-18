@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativeAccentProps {
+interface PDFCreativeAccentTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativeAccent = ({
+export const PDFCreativeAccentTemplate = ({
   resumeData,
   themeColor = "#d946ef",
-}: PDFCreativeAccentProps) => {
+}: PDFCreativeAccentTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

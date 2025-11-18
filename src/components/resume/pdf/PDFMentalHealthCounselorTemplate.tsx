@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMentalHealthCounselorProps {
+interface PDFMentalHealthCounselorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMentalHealthCounselor = ({
+export const PDFMentalHealthCounselorTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFMentalHealthCounselorProps) => {
+}: PDFMentalHealthCounselorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRemoteWorkReadyProps {
+interface PDFRemoteWorkReadyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRemoteWorkReady = ({
+export const PDFRemoteWorkReadyTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFRemoteWorkReadyProps) => {
+}: PDFRemoteWorkReadyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

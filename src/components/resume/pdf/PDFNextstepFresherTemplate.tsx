@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNextstepFresherProps {
+interface PDFNextstepFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNextstepFresher = ({
+export const PDFNextstepFresherTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFNextstepFresherProps) => {
+}: PDFNextstepFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

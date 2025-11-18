@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDeveloperGridProps {
+interface PDFDeveloperGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDeveloperGrid = ({
+export const PDFDeveloperGridTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFDeveloperGridProps) => {
+}: PDFDeveloperGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

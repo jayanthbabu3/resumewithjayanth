@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLearningDevelopmentManagerProps {
+interface PDFLearningDevelopmentManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLearningDevelopmentManager = ({
+export const PDFLearningDevelopmentManagerTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFLearningDevelopmentManagerProps) => {
+}: PDFLearningDevelopmentManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProtfolioShowcaseUxProps {
+interface PDFProtfolioShowcaseUxTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProtfolioShowcaseUx = ({
+export const PDFProtfolioShowcaseUxTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFProtfolioShowcaseUxProps) => {
+}: PDFProtfolioShowcaseUxTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

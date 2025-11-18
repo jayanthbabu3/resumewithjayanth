@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFContaineropsEngineerProps {
+interface PDFContaineropsEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFContaineropsEngineer = ({
+export const PDFContaineropsEngineerTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFContaineropsEngineerProps) => {
+}: PDFContaineropsEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

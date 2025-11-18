@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGitHubStudentDeveloperProps {
+interface PDFGitHubStudentDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGitHubStudentDeveloper = ({
+export const PDFGitHubStudentDeveloperTemplate = ({
   resumeData,
   themeColor = "#24292f",
-}: PDFGitHubStudentDeveloperProps) => {
+}: PDFGitHubStudentDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

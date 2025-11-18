@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPropertyManagerCommercialProps {
+interface PDFPropertyManagerCommercialTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPropertyManagerCommercial = ({
+export const PDFPropertyManagerCommercialTemplate = ({
   resumeData,
   themeColor = "#16a34a",
-}: PDFPropertyManagerCommercialProps) => {
+}: PDFPropertyManagerCommercialTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

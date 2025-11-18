@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLogisticsCoordinatorProps {
+interface PDFLogisticsCoordinatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLogisticsCoordinator = ({
+export const PDFLogisticsCoordinatorTemplate = ({
   resumeData,
   themeColor = "#06b6d4",
-}: PDFLogisticsCoordinatorProps) => {
+}: PDFLogisticsCoordinatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

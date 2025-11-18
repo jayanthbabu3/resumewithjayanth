@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBehanceDesignerProps {
+interface PDFBehanceDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBehanceDesigner = ({
+export const PDFBehanceDesignerTemplate = ({
   resumeData,
   themeColor = "#1769ff",
-}: PDFBehanceDesignerProps) => {
+}: PDFBehanceDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAgileProjectLeadProps {
+interface PDFAgileProjectLeadTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAgileProjectLead = ({
+export const PDFAgileProjectLeadTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFAgileProjectLeadProps) => {
+}: PDFAgileProjectLeadTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

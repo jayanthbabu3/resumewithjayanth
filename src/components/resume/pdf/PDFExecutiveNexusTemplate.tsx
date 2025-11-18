@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveNexusProps {
+interface PDFExecutiveNexusTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveNexus = ({
+export const PDFExecutiveNexusTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFExecutiveNexusProps) => {
+}: PDFExecutiveNexusTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

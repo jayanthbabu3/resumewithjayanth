@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherBoldHeaderProps {
+interface PDFFresherBoldHeaderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherBoldHeader = ({
+export const PDFFresherBoldHeaderTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFFresherBoldHeaderProps) => {
+}: PDFFresherBoldHeaderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRoundedCornersUniversalProps {
+interface PDFRoundedCornersUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRoundedCornersUniversal = ({
+export const PDFRoundedCornersUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFRoundedCornersUniversalProps) => {
+}: PDFRoundedCornersUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

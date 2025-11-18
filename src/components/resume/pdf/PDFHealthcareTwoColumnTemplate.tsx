@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHealthcareTwoColumnProps {
+interface PDFHealthcareTwoColumnTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHealthcareTwoColumn = ({
+export const PDFHealthcareTwoColumnTemplate = ({
   resumeData,
   themeColor = "#00695c",
-}: PDFHealthcareTwoColumnProps) => {
+}: PDFHealthcareTwoColumnTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

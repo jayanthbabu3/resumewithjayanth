@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWebflowDeveloperProps {
+interface PDFWebflowDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWebflowDeveloper = ({
+export const PDFWebflowDeveloperTemplate = ({
   resumeData,
   themeColor = "#4353ff",
-}: PDFWebflowDeveloperProps) => {
+}: PDFWebflowDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

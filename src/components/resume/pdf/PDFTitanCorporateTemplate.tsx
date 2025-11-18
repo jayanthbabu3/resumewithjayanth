@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTitanCorporateProps {
+interface PDFTitanCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTitanCorporate = ({
+export const PDFTitanCorporateTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFTitanCorporateProps) => {
+}: PDFTitanCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPostgreSQLExpertProps {
+interface PDFPostgreSQLExpertTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPostgreSQLExpert = ({
+export const PDFPostgreSQLExpertTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFPostgreSQLExpertProps) => {
+}: PDFPostgreSQLExpertTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

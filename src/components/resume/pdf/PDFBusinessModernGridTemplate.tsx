@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBusinessModernGridProps {
+interface PDFBusinessModernGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBusinessModernGrid = ({
+export const PDFBusinessModernGridTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFBusinessModernGridProps) => {
+}: PDFBusinessModernGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

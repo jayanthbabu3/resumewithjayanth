@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSerenityMinimalProps {
+interface PDFSerenityMinimalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSerenityMinimal = ({
+export const PDFSerenityMinimalTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFSerenityMinimalProps) => {
+}: PDFSerenityMinimalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

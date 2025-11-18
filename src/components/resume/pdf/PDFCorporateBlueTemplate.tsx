@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateBlueProps {
+interface PDFCorporateBlueTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateBlue = ({
+export const PDFCorporateBlueTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFCorporateBlueProps) => {
+}: PDFCorporateBlueTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

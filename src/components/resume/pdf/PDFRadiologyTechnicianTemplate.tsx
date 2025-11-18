@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRadiologyTechnicianProps {
+interface PDFRadiologyTechnicianTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRadiologyTechnician = ({
+export const PDFRadiologyTechnicianTemplate = ({
   resumeData,
   themeColor = "#0c4a6e",
-}: PDFRadiologyTechnicianProps) => {
+}: PDFRadiologyTechnicianTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

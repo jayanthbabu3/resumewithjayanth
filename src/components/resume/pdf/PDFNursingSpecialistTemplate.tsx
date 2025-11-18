@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNursingSpecialistProps {
+interface PDFNursingSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNursingSpecialist = ({
+export const PDFNursingSpecialistTemplate = ({
   resumeData,
   themeColor = "#ef4444",
-}: PDFNursingSpecialistProps) => {
+}: PDFNursingSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

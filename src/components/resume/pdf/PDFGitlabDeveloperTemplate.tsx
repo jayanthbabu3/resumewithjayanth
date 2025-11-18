@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGitlabDeveloperProps {
+interface PDFGitlabDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGitlabDeveloper = ({
+export const PDFGitlabDeveloperTemplate = ({
   resumeData,
   themeColor = "#fc6d26",
-}: PDFGitlabDeveloperProps) => {
+}: PDFGitlabDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

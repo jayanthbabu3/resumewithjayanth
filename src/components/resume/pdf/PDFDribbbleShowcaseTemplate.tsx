@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDribbbleShowcaseProps {
+interface PDFDribbbleShowcaseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDribbbleShowcase = ({
+export const PDFDribbbleShowcaseTemplate = ({
   resumeData,
   themeColor = "#ea4c89",
-}: PDFDribbbleShowcaseProps) => {
+}: PDFDribbbleShowcaseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

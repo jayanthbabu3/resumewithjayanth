@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCopywriterCreativeProps {
+interface PDFCopywriterCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCopywriterCreative = ({
+export const PDFCopywriterCreativeTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFCopywriterCreativeProps) => {
+}: PDFCopywriterCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

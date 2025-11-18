@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPastryChefProps {
+interface PDFPastryChefTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPastryChef = ({
+export const PDFPastryChefTemplate = ({
   resumeData,
   themeColor = "#fbbf24",
-}: PDFPastryChefProps) => {
+}: PDFPastryChefTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

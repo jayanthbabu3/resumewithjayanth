@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFObsidianExecutiveProps {
+interface PDFObsidianExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFObsidianExecutive = ({
+export const PDFObsidianExecutiveTemplate = ({
   resumeData,
   themeColor = "#0f172a",
-}: PDFObsidianExecutiveProps) => {
+}: PDFObsidianExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

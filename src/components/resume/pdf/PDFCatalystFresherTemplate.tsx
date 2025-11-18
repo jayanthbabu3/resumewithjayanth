@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCatalystFresherProps {
+interface PDFCatalystFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCatalystFresher = ({
+export const PDFCatalystFresherTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFCatalystFresherProps) => {
+}: PDFCatalystFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

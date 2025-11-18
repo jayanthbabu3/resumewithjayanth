@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCoroflotPortfolioProps {
+interface PDFCoroflotPortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCoroflotPortfolio = ({
+export const PDFCoroflotPortfolioTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFCoroflotPortfolioProps) => {
+}: PDFCoroflotPortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

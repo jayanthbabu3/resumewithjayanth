@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHVACEngineerProps {
+interface PDFHVACEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHVACEngineer = ({
+export const PDFHVACEngineerTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFHVACEngineerProps) => {
+}: PDFHVACEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

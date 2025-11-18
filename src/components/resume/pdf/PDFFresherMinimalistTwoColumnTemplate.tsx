@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherMinimalistTwoColumnProps {
+interface PDFFresherMinimalistTwoColumnTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherMinimalistTwoColumn = ({
+export const PDFFresherMinimalistTwoColumnTemplate = ({
   resumeData,
   themeColor = "#475569",
-}: PDFFresherMinimalistTwoColumnProps) => {
+}: PDFFresherMinimalistTwoColumnTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

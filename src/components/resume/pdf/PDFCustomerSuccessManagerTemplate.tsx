@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCustomerSuccessManagerProps {
+interface PDFCustomerSuccessManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCustomerSuccessManager = ({
+export const PDFCustomerSuccessManagerTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFCustomerSuccessManagerProps) => {
+}: PDFCustomerSuccessManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLeetcodeChampionProps {
+interface PDFLeetcodeChampionTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLeetcodeChampion = ({
+export const PDFLeetcodeChampionTemplate = ({
   resumeData,
   themeColor = "#ffa116",
-}: PDFLeetcodeChampionProps) => {
+}: PDFLeetcodeChampionTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

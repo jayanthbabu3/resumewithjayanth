@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPyTorchDeveloperProps {
+interface PDFPyTorchDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPyTorchDeveloper = ({
+export const PDFPyTorchDeveloperTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFPyTorchDeveloperProps) => {
+}: PDFPyTorchDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

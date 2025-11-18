@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGlobalNetworkerProps {
+interface PDFGlobalNetworkerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGlobalNetworker = ({
+export const PDFGlobalNetworkerTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFGlobalNetworkerProps) => {
+}: PDFGlobalNetworkerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

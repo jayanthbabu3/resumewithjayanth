@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCICDPipelineEngineerProps {
+interface PDFCICDPipelineEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCICDPipelineEngineer = ({
+export const PDFCICDPipelineEngineerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCICDPipelineEngineerProps) => {
+}: PDFCICDPipelineEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUnityGameDeveloperProps {
+interface PDFUnityGameDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUnityGameDeveloper = ({
+export const PDFUnityGameDeveloperTemplate = ({
   resumeData,
   themeColor = "#000000",
-}: PDFUnityGameDeveloperProps) => {
+}: PDFUnityGameDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

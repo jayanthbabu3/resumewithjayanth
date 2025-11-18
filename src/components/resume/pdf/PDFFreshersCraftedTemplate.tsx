@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFreshersCraftedProps {
+interface PDFFreshersCraftedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFreshersCrafted = ({
+export const PDFFreshersCraftedTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFFreshersCraftedProps) => {
+}: PDFFreshersCraftedTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

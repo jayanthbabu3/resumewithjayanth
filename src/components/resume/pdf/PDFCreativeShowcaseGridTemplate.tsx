@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativeShowcaseGridProps {
+interface PDFCreativeShowcaseGridTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativeShowcaseGrid = ({
+export const PDFCreativeShowcaseGridTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFCreativeShowcaseGridProps) => {
+}: PDFCreativeShowcaseGridTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

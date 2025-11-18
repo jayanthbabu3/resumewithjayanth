@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFChevronAccentUniversalProps {
+interface PDFChevronAccentUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFChevronAccentUniversal = ({
+export const PDFChevronAccentUniversalTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFChevronAccentUniversalProps) => {
+}: PDFChevronAccentUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

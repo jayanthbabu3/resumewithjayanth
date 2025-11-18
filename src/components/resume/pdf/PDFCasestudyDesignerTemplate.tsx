@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCasestudyDesignerProps {
+interface PDFCasestudyDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCasestudyDesigner = ({
+export const PDFCasestudyDesignerTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFCasestudyDesignerProps) => {
+}: PDFCasestudyDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

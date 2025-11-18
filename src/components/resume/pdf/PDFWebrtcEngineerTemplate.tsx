@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWebrtcEngineerProps {
+interface PDFWebrtcEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWebrtcEngineer = ({
+export const PDFWebrtcEngineerTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFWebrtcEngineerProps) => {
+}: PDFWebrtcEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

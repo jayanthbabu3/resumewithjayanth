@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMonospaceTechProps {
+interface PDFMonospaceTechTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMonospaceTech = ({
+export const PDFMonospaceTechTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFMonospaceTechProps) => {
+}: PDFMonospaceTechTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

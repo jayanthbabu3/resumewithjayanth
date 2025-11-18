@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSpecialEducationTeacherProps {
+interface PDFSpecialEducationTeacherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSpecialEducationTeacher = ({
+export const PDFSpecialEducationTeacherTemplate = ({
   resumeData,
   themeColor = "#fb923c",
-}: PDFSpecialEducationTeacherProps) => {
+}: PDFSpecialEducationTeacherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

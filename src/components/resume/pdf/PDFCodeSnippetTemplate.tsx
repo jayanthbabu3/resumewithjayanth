@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodeSnippetProps {
+interface PDFCodeSnippetTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodeSnippet = ({
+export const PDFCodeSnippetTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCodeSnippetProps) => {
+}: PDFCodeSnippetTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

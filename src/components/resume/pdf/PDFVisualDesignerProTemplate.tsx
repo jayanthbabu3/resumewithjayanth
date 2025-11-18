@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVisualDesignerProProps {
+interface PDFVisualDesignerProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVisualDesignerPro = ({
+export const PDFVisualDesignerProTemplate = ({
   resumeData,
   themeColor = "#be185d",
-}: PDFVisualDesignerProProps) => {
+}: PDFVisualDesignerProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

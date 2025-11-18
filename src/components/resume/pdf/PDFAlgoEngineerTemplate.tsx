@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAlgoEngineerProps {
+interface PDFAlgoEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAlgoEngineer = ({
+export const PDFAlgoEngineerTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFAlgoEngineerProps) => {
+}: PDFAlgoEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

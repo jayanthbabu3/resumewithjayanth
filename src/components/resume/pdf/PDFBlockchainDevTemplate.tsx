@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBlockchainDevProps {
+interface PDFBlockchainDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBlockchainDev = ({
+export const PDFBlockchainDevTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFBlockchainDevProps) => {
+}: PDFBlockchainDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

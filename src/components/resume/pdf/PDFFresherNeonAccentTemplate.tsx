@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherNeonAccentProps {
+interface PDFFresherNeonAccentTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherNeonAccent = ({
+export const PDFFresherNeonAccentTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherNeonAccentProps) => {
+}: PDFFresherNeonAccentTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

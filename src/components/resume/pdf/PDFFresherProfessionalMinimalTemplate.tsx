@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherProfessionalMinimalProps {
+interface PDFFresherProfessionalMinimalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherProfessionalMinimal = ({
+export const PDFFresherProfessionalMinimalTemplate = ({
   resumeData,
   themeColor = "#65a30d",
-}: PDFFresherProfessionalMinimalProps) => {
+}: PDFFresherProfessionalMinimalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

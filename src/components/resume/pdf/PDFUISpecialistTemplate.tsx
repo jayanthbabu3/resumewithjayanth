@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFUISpecialistProps {
+interface PDFUISpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFUISpecialist = ({
+export const PDFUISpecialistTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFUISpecialistProps) => {
+}: PDFUISpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

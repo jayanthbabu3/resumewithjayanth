@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTaxSpecialistProps {
+interface PDFTaxSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTaxSpecialist = ({
+export const PDFTaxSpecialistTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFTaxSpecialistProps) => {
+}: PDFTaxSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFChemicalEngineerProProps {
+interface PDFChemicalEngineerProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFChemicalEngineerPro = ({
+export const PDFChemicalEngineerProTemplate = ({
   resumeData,
   themeColor = "#84cc16",
-}: PDFChemicalEngineerProProps) => {
+}: PDFChemicalEngineerProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

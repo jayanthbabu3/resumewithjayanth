@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateParadigmProps {
+interface PDFCorporateParadigmTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateParadigm = ({
+export const PDFCorporateParadigmTemplate = ({
   resumeData,
   themeColor = "#6d28d9",
-}: PDFCorporateParadigmProps) => {
+}: PDFCorporateParadigmTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

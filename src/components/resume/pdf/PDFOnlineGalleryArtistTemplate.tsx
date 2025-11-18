@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnlineGalleryArtistProps {
+interface PDFOnlineGalleryArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnlineGalleryArtist = ({
+export const PDFOnlineGalleryArtistTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFOnlineGalleryArtistProps) => {
+}: PDFOnlineGalleryArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

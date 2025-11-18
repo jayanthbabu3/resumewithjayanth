@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBytecodeSpecialistProps {
+interface PDFBytecodeSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBytecodeSpecialist = ({
+export const PDFBytecodeSpecialistTemplate = ({
   resumeData,
   themeColor = "#1e293b",
-}: PDFBytecodeSpecialistProps) => {
+}: PDFBytecodeSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

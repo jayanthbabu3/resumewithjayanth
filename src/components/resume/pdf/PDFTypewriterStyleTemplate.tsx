@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTypewriterStyleProps {
+interface PDFTypewriterStyleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTypewriterStyle = ({
+export const PDFTypewriterStyleTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFTypewriterStyleProps) => {
+}: PDFTypewriterStyleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

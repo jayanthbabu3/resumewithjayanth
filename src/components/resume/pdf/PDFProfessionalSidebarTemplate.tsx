@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalSidebarProps {
+interface PDFProfessionalSidebarTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -142,10 +142,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   },
 });
 
-export const PDFProfessionalSidebar = ({
+export const PDFProfessionalSidebarTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFProfessionalSidebarProps) => {
+}: PDFProfessionalSidebarTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

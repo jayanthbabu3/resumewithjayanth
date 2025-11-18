@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDeviantArtCreatorProps {
+interface PDFDeviantArtCreatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDeviantArtCreator = ({
+export const PDFDeviantArtCreatorTemplate = ({
   resumeData,
   themeColor = "#05cc47",
-}: PDFDeviantArtCreatorProps) => {
+}: PDFDeviantArtCreatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

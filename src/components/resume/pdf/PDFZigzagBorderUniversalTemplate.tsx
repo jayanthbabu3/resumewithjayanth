@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFZigzagBorderUniversalProps {
+interface PDFZigzagBorderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFZigzagBorderUniversal = ({
+export const PDFZigzagBorderUniversalTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFZigzagBorderUniversalProps) => {
+}: PDFZigzagBorderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

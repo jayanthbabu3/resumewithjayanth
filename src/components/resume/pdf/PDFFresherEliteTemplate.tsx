@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherEliteProps {
+interface PDFFresherEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherElite = ({
+export const PDFFresherEliteTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFFresherEliteProps) => {
+}: PDFFresherEliteTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

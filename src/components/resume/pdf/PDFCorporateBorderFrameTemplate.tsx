@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateBorderFrameProps {
+interface PDFCorporateBorderFrameTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateBorderFrame = ({
+export const PDFCorporateBorderFrameTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCorporateBorderFrameProps) => {
+}: PDFCorporateBorderFrameTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

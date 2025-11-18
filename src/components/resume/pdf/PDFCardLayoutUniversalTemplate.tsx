@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCardLayoutUniversalProps {
+interface PDFCardLayoutUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCardLayoutUniversal = ({
+export const PDFCardLayoutUniversalTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFCardLayoutUniversalProps) => {
+}: PDFCardLayoutUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

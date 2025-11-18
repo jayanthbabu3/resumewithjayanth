@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAcademicAdvisorProps {
+interface PDFAcademicAdvisorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAcademicAdvisor = ({
+export const PDFAcademicAdvisorTemplate = ({
   resumeData,
   themeColor = "#9a3412",
-}: PDFAcademicAdvisorProps) => {
+}: PDFAcademicAdvisorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

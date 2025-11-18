@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDotNetDeveloperProps {
+interface PDFDotNetDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDotNetDeveloper = ({
+export const PDFDotNetDeveloperTemplate = ({
   resumeData,
   themeColor = "#512bd4",
-}: PDFDotNetDeveloperProps) => {
+}: PDFDotNetDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

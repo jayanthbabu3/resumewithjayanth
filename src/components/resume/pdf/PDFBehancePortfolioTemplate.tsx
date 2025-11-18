@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBehancePortfolioProps {
+interface PDFBehancePortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBehancePortfolio = ({
+export const PDFBehancePortfolioTemplate = ({
   resumeData,
   themeColor = "#1769ff",
-}: PDFBehancePortfolioProps) => {
+}: PDFBehancePortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

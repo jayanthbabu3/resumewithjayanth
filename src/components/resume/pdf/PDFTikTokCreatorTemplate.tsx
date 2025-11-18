@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTikTokCreatorProps {
+interface PDFTikTokCreatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTikTokCreator = ({
+export const PDFTikTokCreatorTemplate = ({
   resumeData,
   themeColor = "#fe2c55",
-}: PDFTikTokCreatorProps) => {
+}: PDFTikTokCreatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

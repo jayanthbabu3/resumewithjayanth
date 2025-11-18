@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHospitalityDirectorProps {
+interface PDFHospitalityDirectorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHospitalityDirector = ({
+export const PDFHospitalityDirectorTemplate = ({
   resumeData,
   themeColor = "#d97706",
-}: PDFHospitalityDirectorProps) => {
+}: PDFHospitalityDirectorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSidebarAccentProps {
+interface PDFSidebarAccentTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -142,10 +142,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   },
 });
 
-export const PDFSidebarAccent = ({
+export const PDFSidebarAccentTemplate = ({
   resumeData,
   themeColor = "#1e40af",
-}: PDFSidebarAccentProps) => {
+}: PDFSidebarAccentTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

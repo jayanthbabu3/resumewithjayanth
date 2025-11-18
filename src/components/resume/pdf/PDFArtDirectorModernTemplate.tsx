@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFArtDirectorModernProps {
+interface PDFArtDirectorModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFArtDirectorModern = ({
+export const PDFArtDirectorModernTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFArtDirectorModernProps) => {
+}: PDFArtDirectorModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTechPioneerProps {
+interface PDFTechPioneerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTechPioneer = ({
+export const PDFTechPioneerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFTechPioneerProps) => {
+}: PDFTechPioneerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAffiliateMarketingManagerProps {
+interface PDFAffiliateMarketingManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAffiliateMarketingManager = ({
+export const PDFAffiliateMarketingManagerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFAffiliateMarketingManagerProps) => {
+}: PDFAffiliateMarketingManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

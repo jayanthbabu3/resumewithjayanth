@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFZeplinHandoffSpecialistProps {
+interface PDFZeplinHandoffSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFZeplinHandoffSpecialist = ({
+export const PDFZeplinHandoffSpecialistTemplate = ({
   resumeData,
   themeColor = "#fdbd39",
-}: PDFZeplinHandoffSpecialistProps) => {
+}: PDFZeplinHandoffSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

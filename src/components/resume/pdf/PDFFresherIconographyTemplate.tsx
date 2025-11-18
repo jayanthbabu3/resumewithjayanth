@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherIconographyProps {
+interface PDFFresherIconographyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherIconography = ({
+export const PDFFresherIconographyTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherIconographyProps) => {
+}: PDFFresherIconographyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

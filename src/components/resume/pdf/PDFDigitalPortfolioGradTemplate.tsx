@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDigitalPortfolioGradProps {
+interface PDFDigitalPortfolioGradTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDigitalPortfolioGrad = ({
+export const PDFDigitalPortfolioGradTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFDigitalPortfolioGradProps) => {
+}: PDFDigitalPortfolioGradTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

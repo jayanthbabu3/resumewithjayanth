@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPMExecutiveProps {
+interface PDFPMExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPMExecutive = ({
+export const PDFPMExecutiveTemplate = ({
   resumeData,
   themeColor = "#1b5e20",
-}: PDFPMExecutiveProps) => {
+}: PDFPMExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

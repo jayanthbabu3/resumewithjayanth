@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSeniorJavaDeveloperProps {
+interface PDFSeniorJavaDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSeniorJavaDeveloper = ({
+export const PDFSeniorJavaDeveloperTemplate = ({
   resumeData,
   themeColor = "#f89820",
-}: PDFSeniorJavaDeveloperProps) => {
+}: PDFSeniorJavaDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

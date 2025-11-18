@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInstructionalDesignerProps {
+interface PDFInstructionalDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInstructionalDesigner = ({
+export const PDFInstructionalDesignerTemplate = ({
   resumeData,
   themeColor = "#c2410c",
-}: PDFInstructionalDesignerProps) => {
+}: PDFInstructionalDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

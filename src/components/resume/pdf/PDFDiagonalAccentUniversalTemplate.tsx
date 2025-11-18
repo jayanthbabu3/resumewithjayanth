@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDiagonalAccentUniversalProps {
+interface PDFDiagonalAccentUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDiagonalAccentUniversal = ({
+export const PDFDiagonalAccentUniversalTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFDiagonalAccentUniversalProps) => {
+}: PDFDiagonalAccentUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

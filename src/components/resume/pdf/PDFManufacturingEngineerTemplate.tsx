@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFManufacturingEngineerProps {
+interface PDFManufacturingEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFManufacturingEngineer = ({
+export const PDFManufacturingEngineerTemplate = ({
   resumeData,
   themeColor = "#78716c",
-}: PDFManufacturingEngineerProps) => {
+}: PDFManufacturingEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

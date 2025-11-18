@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAnalystProps {
+interface PDFAnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAnalyst = ({
+export const PDFAnalystTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFAnalystProps) => {
+}: PDFAnalystTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

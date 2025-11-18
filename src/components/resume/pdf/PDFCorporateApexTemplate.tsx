@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateApexProps {
+interface PDFCorporateApexTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateApex = ({
+export const PDFCorporateApexTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFCorporateApexProps) => {
+}: PDFCorporateApexTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

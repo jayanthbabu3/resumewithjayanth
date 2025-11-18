@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStackoverflowDevProps {
+interface PDFStackoverflowDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStackoverflowDev = ({
+export const PDFStackoverflowDevTemplate = ({
   resumeData,
   themeColor = "#f48024",
-}: PDFStackoverflowDevProps) => {
+}: PDFStackoverflowDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

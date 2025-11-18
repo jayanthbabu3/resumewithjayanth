@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFContemporarySplitProps {
+interface PDFContemporarySplitTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFContemporarySplit = ({
+export const PDFContemporarySplitTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFContemporarySplitProps) => {
+}: PDFContemporarySplitTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

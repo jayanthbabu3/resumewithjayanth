@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProfessionalModernEdgeProps {
+interface PDFProfessionalModernEdgeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProfessionalModernEdge = ({
+export const PDFProfessionalModernEdgeTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFProfessionalModernEdgeProps) => {
+}: PDFProfessionalModernEdgeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

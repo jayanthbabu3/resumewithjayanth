@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSocialFirstFresherProps {
+interface PDFSocialFirstFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSocialFirstFresher = ({
+export const PDFSocialFirstFresherTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFSocialFirstFresherProps) => {
+}: PDFSocialFirstFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

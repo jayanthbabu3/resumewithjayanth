@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVPExecutiveProps {
+interface PDFVPExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVPExecutive = ({
+export const PDFVPExecutiveTemplate = ({
   resumeData,
   themeColor = "#8b5cf6",
-}: PDFVPExecutiveProps) => {
+}: PDFVPExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

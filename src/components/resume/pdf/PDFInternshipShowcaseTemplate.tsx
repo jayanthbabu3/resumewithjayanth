@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFInternshipShowcaseProps {
+interface PDFInternshipShowcaseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFInternshipShowcase = ({
+export const PDFInternshipShowcaseTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFInternshipShowcaseProps) => {
+}: PDFInternshipShowcaseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

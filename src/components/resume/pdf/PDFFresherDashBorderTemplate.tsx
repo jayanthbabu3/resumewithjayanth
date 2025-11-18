@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherDashBorderProps {
+interface PDFFresherDashBorderTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherDashBorder = ({
+export const PDFFresherDashBorderTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherDashBorderProps) => {
+}: PDFFresherDashBorderTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

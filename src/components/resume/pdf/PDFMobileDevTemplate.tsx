@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMobileDevProps {
+interface PDFMobileDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMobileDev = ({
+export const PDFMobileDevTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFMobileDevProps) => {
+}: PDFMobileDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

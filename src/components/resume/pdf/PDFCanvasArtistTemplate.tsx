@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCanvasArtistProps {
+interface PDFCanvasArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCanvasArtist = ({
+export const PDFCanvasArtistTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFCanvasArtistProps) => {
+}: PDFCanvasArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

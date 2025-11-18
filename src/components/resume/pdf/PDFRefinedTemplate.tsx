@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRefinedProps {
+interface PDFRefinedTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRefined = ({
+export const PDFRefinedTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFRefinedProps) => {
+}: PDFRefinedTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

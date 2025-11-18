@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRestaurantManagerProps {
+interface PDFRestaurantManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRestaurantManager = ({
+export const PDFRestaurantManagerTemplate = ({
   resumeData,
   themeColor = "#b45309",
-}: PDFRestaurantManagerProps) => {
+}: PDFRestaurantManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBorderFrameUniversalProps {
+interface PDFBorderFrameUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBorderFrameUniversal = ({
+export const PDFBorderFrameUniversalTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFBorderFrameUniversalProps) => {
+}: PDFBorderFrameUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

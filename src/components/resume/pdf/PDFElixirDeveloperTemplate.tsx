@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFElixirDeveloperProps {
+interface PDFElixirDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFElixirDeveloper = ({
+export const PDFElixirDeveloperTemplate = ({
   resumeData,
   themeColor = "#4e2a8e",
-}: PDFElixirDeveloperProps) => {
+}: PDFElixirDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

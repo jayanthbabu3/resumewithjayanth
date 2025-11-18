@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateFusionProps {
+interface PDFCorporateFusionTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateFusion = ({
+export const PDFCorporateFusionTemplate = ({
   resumeData,
   themeColor = "#c026d3",
-}: PDFCorporateFusionProps) => {
+}: PDFCorporateFusionTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

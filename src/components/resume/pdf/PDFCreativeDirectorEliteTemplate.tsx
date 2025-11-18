@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativeDirectorEliteProps {
+interface PDFCreativeDirectorEliteTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativeDirectorElite = ({
+export const PDFCreativeDirectorEliteTemplate = ({
   resumeData,
   themeColor = "#be123c",
-}: PDFCreativeDirectorEliteProps) => {
+}: PDFCreativeDirectorEliteTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCPAProfessionalProps {
+interface PDFCPAProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCPAProfessional = ({
+export const PDFCPAProfessionalTemplate = ({
   resumeData,
   themeColor = "#004d40",
-}: PDFCPAProfessionalProps) => {
+}: PDFCPAProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

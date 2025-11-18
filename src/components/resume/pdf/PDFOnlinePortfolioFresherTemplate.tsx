@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnlinePortfolioFresherProps {
+interface PDFOnlinePortfolioFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnlinePortfolioFresher = ({
+export const PDFOnlinePortfolioFresherTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFOnlinePortfolioFresherProps) => {
+}: PDFOnlinePortfolioFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

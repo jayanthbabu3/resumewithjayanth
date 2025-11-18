@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRedisCacheSpecialistProps {
+interface PDFRedisCacheSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRedisCacheSpecialist = ({
+export const PDFRedisCacheSpecialistTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFRedisCacheSpecialistProps) => {
+}: PDFRedisCacheSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

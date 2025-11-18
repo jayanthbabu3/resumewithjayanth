@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOperationsTwoColumnProps {
+interface PDFOperationsTwoColumnTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOperationsTwoColumn = ({
+export const PDFOperationsTwoColumnTemplate = ({
   resumeData,
   themeColor = "#006064",
-}: PDFOperationsTwoColumnProps) => {
+}: PDFOperationsTwoColumnTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

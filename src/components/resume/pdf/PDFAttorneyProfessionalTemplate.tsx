@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAttorneyProfessionalProps {
+interface PDFAttorneyProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAttorneyProfessional = ({
+export const PDFAttorneyProfessionalTemplate = ({
   resumeData,
   themeColor = "#1a237e",
-}: PDFAttorneyProfessionalProps) => {
+}: PDFAttorneyProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

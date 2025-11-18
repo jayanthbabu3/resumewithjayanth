@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVideoProducerProps {
+interface PDFVideoProducerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVideoProducer = ({
+export const PDFVideoProducerTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFVideoProducerProps) => {
+}: PDFVideoProducerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCloudnativeArchitectProps {
+interface PDFCloudnativeArchitectTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCloudnativeArchitect = ({
+export const PDFCloudnativeArchitectTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCloudnativeArchitectProps) => {
+}: PDFCloudnativeArchitectTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

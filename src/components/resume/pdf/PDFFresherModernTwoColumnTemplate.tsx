@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherModernTwoColumnProps {
+interface PDFFresherModernTwoColumnTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherModernTwoColumn = ({
+export const PDFFresherModernTwoColumnTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFFresherModernTwoColumnProps) => {
+}: PDFFresherModernTwoColumnTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

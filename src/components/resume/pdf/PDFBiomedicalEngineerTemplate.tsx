@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBiomedicalEngineerProps {
+interface PDFBiomedicalEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBiomedicalEngineer = ({
+export const PDFBiomedicalEngineerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFBiomedicalEngineerProps) => {
+}: PDFBiomedicalEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

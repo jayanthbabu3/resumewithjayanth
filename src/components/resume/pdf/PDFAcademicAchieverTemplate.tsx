@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAcademicAchieverProps {
+interface PDFAcademicAchieverTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAcademicAchiever = ({
+export const PDFAcademicAchieverTemplate = ({
   resumeData,
   themeColor = "#2563eb",
-}: PDFAcademicAchieverProps) => {
+}: PDFAcademicAchieverTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

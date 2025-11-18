@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveChefProps {
+interface PDFExecutiveChefTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveChef = ({
+export const PDFExecutiveChefTemplate = ({
   resumeData,
   themeColor = "#92400e",
-}: PDFExecutiveChefProps) => {
+}: PDFExecutiveChefTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMinimalLinesUniversalProps {
+interface PDFMinimalLinesUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMinimalLinesUniversal = ({
+export const PDFMinimalLinesUniversalTemplate = ({
   resumeData,
   themeColor = "#4338ca",
-}: PDFMinimalLinesUniversalProps) => {
+}: PDFMinimalLinesUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

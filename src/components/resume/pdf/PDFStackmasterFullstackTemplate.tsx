@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStackmasterFullstackProps {
+interface PDFStackmasterFullstackTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStackmasterFullstack = ({
+export const PDFStackmasterFullstackTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFStackmasterFullstackProps) => {
+}: PDFStackmasterFullstackTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

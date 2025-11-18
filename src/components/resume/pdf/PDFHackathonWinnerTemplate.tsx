@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHackathonWinnerProps {
+interface PDFHackathonWinnerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHackathonWinner = ({
+export const PDFHackathonWinnerTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFHackathonWinnerProps) => {
+}: PDFHackathonWinnerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

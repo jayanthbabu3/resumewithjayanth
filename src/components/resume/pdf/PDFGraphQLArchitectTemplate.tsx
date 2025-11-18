@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGraphQLArchitectProps {
+interface PDFGraphQLArchitectTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGraphQLArchitect = ({
+export const PDFGraphQLArchitectTemplate = ({
   resumeData,
   themeColor = "#e535ab",
-}: PDFGraphQLArchitectProps) => {
+}: PDFGraphQLArchitectTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

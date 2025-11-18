@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPetroleumEngineerProps {
+interface PDFPetroleumEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPetroleumEngineer = ({
+export const PDFPetroleumEngineerTemplate = ({
   resumeData,
   themeColor = "#171717",
-}: PDFPetroleumEngineerProps) => {
+}: PDFPetroleumEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

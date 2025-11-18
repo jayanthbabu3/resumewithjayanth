@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFPythonDeveloperProProps {
+interface PDFPythonDeveloperProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFPythonDeveloperPro = ({
+export const PDFPythonDeveloperProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFPythonDeveloperProProps) => {
+}: PDFPythonDeveloperProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

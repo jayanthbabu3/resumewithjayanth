@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRailsDeveloperProps {
+interface PDFRailsDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRailsDeveloper = ({
+export const PDFRailsDeveloperTemplate = ({
   resumeData,
   themeColor = "#cc0000",
-}: PDFRailsDeveloperProps) => {
+}: PDFRailsDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

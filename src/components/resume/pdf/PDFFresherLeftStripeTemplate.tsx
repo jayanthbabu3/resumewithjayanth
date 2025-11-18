@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherLeftStripeProps {
+interface PDFFresherLeftStripeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherLeftStripe = ({
+export const PDFFresherLeftStripeTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherLeftStripeProps) => {
+}: PDFFresherLeftStripeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

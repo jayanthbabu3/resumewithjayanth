@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNarrativeCreativeProps {
+interface PDFNarrativeCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNarrativeCreative = ({
+export const PDFNarrativeCreativeTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFNarrativeCreativeProps) => {
+}: PDFNarrativeCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

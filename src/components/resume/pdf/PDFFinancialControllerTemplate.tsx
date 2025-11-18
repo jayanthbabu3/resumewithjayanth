@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFinancialControllerProps {
+interface PDFFinancialControllerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFinancialController = ({
+export const PDFFinancialControllerTemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFFinancialControllerProps) => {
+}: PDFFinancialControllerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

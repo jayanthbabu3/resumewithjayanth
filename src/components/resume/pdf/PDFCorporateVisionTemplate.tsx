@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateVisionProps {
+interface PDFCorporateVisionTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateVision = ({
+export const PDFCorporateVisionTemplate = ({
   resumeData,
   themeColor = "#115e59",
-}: PDFCorporateVisionProps) => {
+}: PDFCorporateVisionTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

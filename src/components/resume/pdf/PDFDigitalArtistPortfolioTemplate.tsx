@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDigitalArtistPortfolioProps {
+interface PDFDigitalArtistPortfolioTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDigitalArtistPortfolio = ({
+export const PDFDigitalArtistPortfolioTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFDigitalArtistPortfolioProps) => {
+}: PDFDigitalArtistPortfolioTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

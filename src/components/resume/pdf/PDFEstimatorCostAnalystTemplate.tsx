@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEstimatorCostAnalystProps {
+interface PDFEstimatorCostAnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEstimatorCostAnalyst = ({
+export const PDFEstimatorCostAnalystTemplate = ({
   resumeData,
   themeColor = "#292524",
-}: PDFEstimatorCostAnalystProps) => {
+}: PDFEstimatorCostAnalystTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

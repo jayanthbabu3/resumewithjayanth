@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLayeredCardsUniversalProps {
+interface PDFLayeredCardsUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLayeredCardsUniversal = ({
+export const PDFLayeredCardsUniversalTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFLayeredCardsUniversalProps) => {
+}: PDFLayeredCardsUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

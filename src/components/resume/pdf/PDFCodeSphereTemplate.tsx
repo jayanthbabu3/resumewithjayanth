@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodeSphereProps {
+interface PDFCodeSphereTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodeSphere = ({
+export const PDFCodeSphereTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFCodeSphereProps) => {
+}: PDFCodeSphereTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

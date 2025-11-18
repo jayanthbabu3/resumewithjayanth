@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGradientHeaderUniversalProps {
+interface PDFGradientHeaderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGradientHeaderUniversal = ({
+export const PDFGradientHeaderUniversalTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFGradientHeaderUniversalProps) => {
+}: PDFGradientHeaderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

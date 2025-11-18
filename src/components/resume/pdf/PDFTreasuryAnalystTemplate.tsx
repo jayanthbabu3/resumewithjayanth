@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTreasuryAnalystProps {
+interface PDFTreasuryAnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTreasuryAnalyst = ({
+export const PDFTreasuryAnalystTemplate = ({
   resumeData,
   themeColor = "#312e81",
-}: PDFTreasuryAnalystProps) => {
+}: PDFTreasuryAnalystTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

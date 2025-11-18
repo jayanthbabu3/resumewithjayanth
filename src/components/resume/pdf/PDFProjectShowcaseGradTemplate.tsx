@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFProjectShowcaseGradProps {
+interface PDFProjectShowcaseGradTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFProjectShowcaseGrad = ({
+export const PDFProjectShowcaseGradTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFProjectShowcaseGradProps) => {
+}: PDFProjectShowcaseGradTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

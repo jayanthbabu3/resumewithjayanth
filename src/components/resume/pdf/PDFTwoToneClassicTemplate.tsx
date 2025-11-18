@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTwoToneClassicProps {
+interface PDFTwoToneClassicTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTwoToneClassic = ({
+export const PDFTwoToneClassicTemplate = ({
   resumeData,
   themeColor = "#334155",
-}: PDFTwoToneClassicProps) => {
+}: PDFTwoToneClassicTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

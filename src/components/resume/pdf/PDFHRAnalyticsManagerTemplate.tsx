@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHRAnalyticsManagerProps {
+interface PDFHRAnalyticsManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHRAnalyticsManager = ({
+export const PDFHRAnalyticsManagerTemplate = ({
   resumeData,
   themeColor = "#f9a8d4",
-}: PDFHRAnalyticsManagerProps) => {
+}: PDFHRAnalyticsManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

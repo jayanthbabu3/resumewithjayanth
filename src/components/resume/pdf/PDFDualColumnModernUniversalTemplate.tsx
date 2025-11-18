@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDualColumnModernUniversalProps {
+interface PDFDualColumnModernUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDualColumnModernUniversal = ({
+export const PDFDualColumnModernUniversalTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFDualColumnModernUniversalProps) => {
+}: PDFDualColumnModernUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

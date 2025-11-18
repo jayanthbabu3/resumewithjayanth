@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFloatingHeaderUniversalProps {
+interface PDFFloatingHeaderUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFloatingHeaderUniversal = ({
+export const PDFFloatingHeaderUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFFloatingHeaderUniversalProps) => {
+}: PDFFloatingHeaderUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

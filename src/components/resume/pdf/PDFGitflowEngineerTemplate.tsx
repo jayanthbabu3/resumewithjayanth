@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFGitflowEngineerProps {
+interface PDFGitflowEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFGitflowEngineer = ({
+export const PDFGitflowEngineerTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFGitflowEngineerProps) => {
+}: PDFGitflowEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFObservabilityEngineerProps {
+interface PDFObservabilityEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFObservabilityEngineer = ({
+export const PDFObservabilityEngineerTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFObservabilityEngineerProps) => {
+}: PDFObservabilityEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

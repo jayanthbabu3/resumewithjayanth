@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFlutterUISpecialistProps {
+interface PDFFlutterUISpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFlutterUISpecialist = ({
+export const PDFFlutterUISpecialistTemplate = ({
   resumeData,
   themeColor = "#02569b",
-}: PDFFlutterUISpecialistProps) => {
+}: PDFFlutterUISpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

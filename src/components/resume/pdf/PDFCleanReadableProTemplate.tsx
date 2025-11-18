@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCleanReadableProProps {
+interface PDFCleanReadableProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCleanReadablePro = ({
+export const PDFCleanReadableProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCleanReadableProProps) => {
+}: PDFCleanReadableProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

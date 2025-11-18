@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateSovereignProps {
+interface PDFCorporateSovereignTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateSovereign = ({
+export const PDFCorporateSovereignTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFCorporateSovereignProps) => {
+}: PDFCorporateSovereignTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

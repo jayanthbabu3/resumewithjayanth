@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherCleanModernProps {
+interface PDFFresherCleanModernTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherCleanModern = ({
+export const PDFFresherCleanModernTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFFresherCleanModernProps) => {
+}: PDFFresherCleanModernTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

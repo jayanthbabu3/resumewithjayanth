@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEmeraldExecutiveProps {
+interface PDFEmeraldExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEmeraldExecutive = ({
+export const PDFEmeraldExecutiveTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFEmeraldExecutiveProps) => {
+}: PDFEmeraldExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDentalProfessionalProps {
+interface PDFDentalProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDentalProfessional = ({
+export const PDFDentalProfessionalTemplate = ({
   resumeData,
   themeColor = "#0284c7",
-}: PDFDentalProfessionalProps) => {
+}: PDFDentalProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

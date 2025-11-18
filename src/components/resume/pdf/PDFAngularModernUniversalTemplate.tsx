@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAngularModernUniversalProps {
+interface PDFAngularModernUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAngularModernUniversal = ({
+export const PDFAngularModernUniversalTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFAngularModernUniversalProps) => {
+}: PDFAngularModernUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

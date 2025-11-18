@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAIEngineerProps {
+interface PDFAIEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAIEngineer = ({
+export const PDFAIEngineerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFAIEngineerProps) => {
+}: PDFAIEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

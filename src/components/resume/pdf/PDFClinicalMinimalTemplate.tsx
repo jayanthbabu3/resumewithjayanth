@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFClinicalMinimalProps {
+interface PDFClinicalMinimalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFClinicalMinimal = ({
+export const PDFClinicalMinimalTemplate = ({
   resumeData,
   themeColor = "#455a64",
-}: PDFClinicalMinimalProps) => {
+}: PDFClinicalMinimalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

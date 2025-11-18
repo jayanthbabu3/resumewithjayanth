@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStudentEngagementProps {
+interface PDFStudentEngagementTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStudentEngagement = ({
+export const PDFStudentEngagementTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFStudentEngagementProps) => {
+}: PDFStudentEngagementTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLaunchpadGraduateProps {
+interface PDFLaunchpadGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLaunchpadGraduate = ({
+export const PDFLaunchpadGraduateTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFLaunchpadGraduateProps) => {
+}: PDFLaunchpadGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

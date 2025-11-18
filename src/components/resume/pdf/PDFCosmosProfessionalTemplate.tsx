@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCosmosProfessionalProps {
+interface PDFCosmosProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCosmosProfessional = ({
+export const PDFCosmosProfessionalTemplate = ({
   resumeData,
   themeColor = "#4f46e5",
-}: PDFCosmosProfessionalProps) => {
+}: PDFCosmosProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

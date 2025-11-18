@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHighSchoolTeacherProps {
+interface PDFHighSchoolTeacherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHighSchoolTeacher = ({
+export const PDFHighSchoolTeacherTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFHighSchoolTeacherProps) => {
+}: PDFHighSchoolTeacherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

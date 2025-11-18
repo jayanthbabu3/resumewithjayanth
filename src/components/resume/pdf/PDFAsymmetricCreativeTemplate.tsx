@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAsymmetricCreativeProps {
+interface PDFAsymmetricCreativeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAsymmetricCreative = ({
+export const PDFAsymmetricCreativeTemplate = ({
   resumeData,
   themeColor = "#14b8a6",
-}: PDFAsymmetricCreativeProps) => {
+}: PDFAsymmetricCreativeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

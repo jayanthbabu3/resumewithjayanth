@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEventPlannerCoordinatorProps {
+interface PDFEventPlannerCoordinatorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEventPlannerCoordinator = ({
+export const PDFEventPlannerCoordinatorTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFEventPlannerCoordinatorProps) => {
+}: PDFEventPlannerCoordinatorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

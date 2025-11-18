@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHorizonGraduateProps {
+interface PDFHorizonGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHorizonGraduate = ({
+export const PDFHorizonGraduateTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFHorizonGraduateProps) => {
+}: PDFHorizonGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

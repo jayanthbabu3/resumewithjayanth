@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFStackedSectionsUniversalProps {
+interface PDFStackedSectionsUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFStackedSectionsUniversal = ({
+export const PDFStackedSectionsUniversalTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFStackedSectionsUniversalProps) => {
+}: PDFStackedSectionsUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

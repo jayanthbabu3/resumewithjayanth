@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAtlasExecutiveProps {
+interface PDFAtlasExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAtlasExecutive = ({
+export const PDFAtlasExecutiveTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFAtlasExecutiveProps) => {
+}: PDFAtlasExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFQAAutomationEngineerProps {
+interface PDFQAAutomationEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFQAAutomationEngineer = ({
+export const PDFQAAutomationEngineerTemplate = ({
   resumeData,
   themeColor = "#00A95C",
-}: PDFQAAutomationEngineerProps) => {
+}: PDFQAAutomationEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

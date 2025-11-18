@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativeHorizonProps {
+interface PDFCreativeHorizonTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativeHorizon = ({
+export const PDFCreativeHorizonTemplate = ({
   resumeData,
   themeColor = "#f43f5e",
-}: PDFCreativeHorizonProps) => {
+}: PDFCreativeHorizonTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

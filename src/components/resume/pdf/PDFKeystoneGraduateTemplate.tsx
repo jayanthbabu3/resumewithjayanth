@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFKeystoneGraduateProps {
+interface PDFKeystoneGraduateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFKeystoneGraduate = ({
+export const PDFKeystoneGraduateTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFKeystoneGraduateProps) => {
+}: PDFKeystoneGraduateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

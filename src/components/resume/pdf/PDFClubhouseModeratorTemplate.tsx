@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFClubhouseModeratorProps {
+interface PDFClubhouseModeratorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFClubhouseModerator = ({
+export const PDFClubhouseModeratorTemplate = ({
   resumeData,
   themeColor = "#f1efe1",
-}: PDFClubhouseModeratorProps) => {
+}: PDFClubhouseModeratorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

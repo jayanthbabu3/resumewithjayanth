@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAsymmetricLayoutUniversalProps {
+interface PDFAsymmetricLayoutUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAsymmetricLayoutUniversal = ({
+export const PDFAsymmetricLayoutUniversalTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFAsymmetricLayoutUniversalProps) => {
+}: PDFAsymmetricLayoutUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

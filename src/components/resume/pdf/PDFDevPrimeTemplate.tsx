@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDevPrimeProps {
+interface PDFDevPrimeTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDevPrime = ({
+export const PDFDevPrimeTemplate = ({
   resumeData,
   themeColor = "#0ea5e9",
-}: PDFDevPrimeProps) => {
+}: PDFDevPrimeTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCloudArchitectProps {
+interface PDFCloudArchitectTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCloudArchitect = ({
+export const PDFCloudArchitectTemplate = ({
   resumeData,
   themeColor = "#FF9900",
-}: PDFCloudArchitectProps) => {
+}: PDFCloudArchitectTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

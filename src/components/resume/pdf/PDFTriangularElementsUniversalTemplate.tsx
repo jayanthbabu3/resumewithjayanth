@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTriangularElementsUniversalProps {
+interface PDFTriangularElementsUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTriangularElementsUniversal = ({
+export const PDFTriangularElementsUniversalTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFTriangularElementsUniversalProps) => {
+}: PDFTriangularElementsUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

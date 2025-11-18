@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherProgressiveProps {
+interface PDFFresherProgressiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherProgressive = ({
+export const PDFFresherProgressiveTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherProgressiveProps) => {
+}: PDFFresherProgressiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

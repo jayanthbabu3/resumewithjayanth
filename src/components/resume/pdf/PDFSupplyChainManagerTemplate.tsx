@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSupplyChainManagerProps {
+interface PDFSupplyChainManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSupplyChainManager = ({
+export const PDFSupplyChainManagerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFSupplyChainManagerProps) => {
+}: PDFSupplyChainManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

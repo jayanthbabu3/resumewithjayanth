@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFFresherPolaroidStyleProps {
+interface PDFFresherPolaroidStyleTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFFresherPolaroidStyle = ({
+export const PDFFresherPolaroidStyleTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFFresherPolaroidStyleProps) => {
+}: PDFFresherPolaroidStyleTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBurgundyExecutiveProps {
+interface PDFBurgundyExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBurgundyExecutive = ({
+export const PDFBurgundyExecutiveTemplate = ({
   resumeData,
   themeColor = "#9f1239",
-}: PDFBurgundyExecutiveProps) => {
+}: PDFBurgundyExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

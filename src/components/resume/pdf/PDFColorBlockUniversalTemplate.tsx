@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFColorBlockUniversalProps {
+interface PDFColorBlockUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFColorBlockUniversal = ({
+export const PDFColorBlockUniversalTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFColorBlockUniversalProps) => {
+}: PDFColorBlockUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

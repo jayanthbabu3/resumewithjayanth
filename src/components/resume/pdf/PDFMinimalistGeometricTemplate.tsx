@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMinimalistGeometricProps {
+interface PDFMinimalistGeometricTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMinimalistGeometric = ({
+export const PDFMinimalistGeometricTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFMinimalistGeometricProps) => {
+}: PDFMinimalistGeometricTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCreativePulseProps {
+interface PDFCreativePulseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCreativePulse = ({
+export const PDFCreativePulseTemplate = ({
   resumeData,
   themeColor = "#dc2626",
-}: PDFCreativePulseProps) => {
+}: PDFCreativePulseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

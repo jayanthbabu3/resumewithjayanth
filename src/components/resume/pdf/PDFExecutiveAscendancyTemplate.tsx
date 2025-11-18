@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFExecutiveAscendancyProps {
+interface PDFExecutiveAscendancyTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFExecutiveAscendancy = ({
+export const PDFExecutiveAscendancyTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFExecutiveAscendancyProps) => {
+}: PDFExecutiveAscendancyTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMinimalEleganceUniversalProps {
+interface PDFMinimalEleganceUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMinimalEleganceUniversal = ({
+export const PDFMinimalEleganceUniversalTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFMinimalEleganceUniversalProps) => {
+}: PDFMinimalEleganceUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

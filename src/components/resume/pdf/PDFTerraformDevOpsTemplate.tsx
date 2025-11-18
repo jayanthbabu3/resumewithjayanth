@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTerraformDevOpsProps {
+interface PDFTerraformDevOpsTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTerraformDevOps = ({
+export const PDFTerraformDevOpsTemplate = ({
   resumeData,
   themeColor = "#7b42bc",
-}: PDFTerraformDevOpsProps) => {
+}: PDFTerraformDevOpsTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

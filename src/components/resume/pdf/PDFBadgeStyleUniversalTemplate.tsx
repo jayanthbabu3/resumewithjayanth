@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFBadgeStyleUniversalProps {
+interface PDFBadgeStyleUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFBadgeStyleUniversal = ({
+export const PDFBadgeStyleUniversalTemplate = ({
   resumeData,
   themeColor = "#ea580c",
-}: PDFBadgeStyleUniversalProps) => {
+}: PDFBadgeStyleUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

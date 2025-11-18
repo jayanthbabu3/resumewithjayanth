@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFiOSSwiftEngineerProps {
+interface PDFiOSSwiftEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFiOSSwiftEngineer = ({
+export const PDFiOSSwiftEngineerTemplate = ({
   resumeData,
   themeColor = "#f05138",
-}: PDFiOSSwiftEngineerProps) => {
+}: PDFiOSSwiftEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

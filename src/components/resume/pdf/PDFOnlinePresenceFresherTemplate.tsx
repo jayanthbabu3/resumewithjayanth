@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFOnlinePresenceFresherProps {
+interface PDFOnlinePresenceFresherTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFOnlinePresenceFresher = ({
+export const PDFOnlinePresenceFresherTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFOnlinePresenceFresherProps) => {
+}: PDFOnlinePresenceFresherTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

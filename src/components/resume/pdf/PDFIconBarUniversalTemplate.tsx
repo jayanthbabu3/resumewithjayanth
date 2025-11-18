@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFIconBarUniversalProps {
+interface PDFIconBarUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -145,10 +145,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFIconBarUniversal = ({
+export const PDFIconBarUniversalTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFIconBarUniversalProps) => {
+}: PDFIconBarUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

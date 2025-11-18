@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFHRBusinessPartnerProps {
+interface PDFHRBusinessPartnerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFHRBusinessPartner = ({
+export const PDFHRBusinessPartnerTemplate = ({
   resumeData,
   themeColor = "#be185d",
-}: PDFHRBusinessPartnerProps) => {
+}: PDFHRBusinessPartnerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTensorFlowMLEngineerProps {
+interface PDFTensorFlowMLEngineerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTensorFlowMLEngineer = ({
+export const PDFTensorFlowMLEngineerTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFTensorFlowMLEngineerProps) => {
+}: PDFTensorFlowMLEngineerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

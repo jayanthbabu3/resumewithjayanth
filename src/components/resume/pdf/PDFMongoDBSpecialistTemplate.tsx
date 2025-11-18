@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMongoDBSpecialistProps {
+interface PDFMongoDBSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMongoDBSpecialist = ({
+export const PDFMongoDBSpecialistTemplate = ({
   resumeData,
   themeColor = "#13aa52",
-}: PDFMongoDBSpecialistProps) => {
+}: PDFMongoDBSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

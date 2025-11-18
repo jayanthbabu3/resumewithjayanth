@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFNewspaperStyleUniversalProps {
+interface PDFNewspaperStyleUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFNewspaperStyleUniversal = ({
+export const PDFNewspaperStyleUniversalTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFNewspaperStyleUniversalProps) => {
+}: PDFNewspaperStyleUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

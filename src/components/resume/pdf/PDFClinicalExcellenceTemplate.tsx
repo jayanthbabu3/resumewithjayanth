@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFClinicalExcellenceProps {
+interface PDFClinicalExcellenceTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFClinicalExcellence = ({
+export const PDFClinicalExcellenceTemplate = ({
   resumeData,
   themeColor = "#ef4444",
-}: PDFClinicalExcellenceProps) => {
+}: PDFClinicalExcellenceTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

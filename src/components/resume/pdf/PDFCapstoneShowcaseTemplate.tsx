@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCapstoneShowcaseProps {
+interface PDFCapstoneShowcaseTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCapstoneShowcase = ({
+export const PDFCapstoneShowcaseTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFCapstoneShowcaseProps) => {
+}: PDFCapstoneShowcaseTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

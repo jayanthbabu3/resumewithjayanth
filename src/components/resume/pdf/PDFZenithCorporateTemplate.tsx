@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFZenithCorporateProps {
+interface PDFZenithCorporateTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFZenithCorporate = ({
+export const PDFZenithCorporateTemplate = ({
   resumeData,
   themeColor = "#0f172a",
-}: PDFZenithCorporateProps) => {
+}: PDFZenithCorporateTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

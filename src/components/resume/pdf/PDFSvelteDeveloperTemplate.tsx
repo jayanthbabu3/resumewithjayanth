@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFSvelteDeveloperProps {
+interface PDFSvelteDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFSvelteDeveloper = ({
+export const PDFSvelteDeveloperTemplate = ({
   resumeData,
   themeColor = "#ff3e00",
-}: PDFSvelteDeveloperProps) => {
+}: PDFSvelteDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMotionUiDesignerProps {
+interface PDFMotionUiDesignerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMotionUiDesigner = ({
+export const PDFMotionUiDesignerTemplate = ({
   resumeData,
   themeColor = "#f97316",
-}: PDFMotionUiDesignerProps) => {
+}: PDFMotionUiDesignerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

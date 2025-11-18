@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTimelineVerticalUniversalProps {
+interface PDFTimelineVerticalUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTimelineVerticalUniversal = ({
+export const PDFTimelineVerticalUniversalTemplate = ({
   resumeData,
   themeColor = "#7c3aed",
-}: PDFTimelineVerticalUniversalProps) => {
+}: PDFTimelineVerticalUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

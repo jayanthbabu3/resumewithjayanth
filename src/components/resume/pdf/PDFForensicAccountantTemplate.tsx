@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFForensicAccountantProps {
+interface PDFForensicAccountantTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFForensicAccountant = ({
+export const PDFForensicAccountantTemplate = ({
   resumeData,
   themeColor = "#4c1d95",
-}: PDFForensicAccountantProps) => {
+}: PDFForensicAccountantTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

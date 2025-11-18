@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFTopBarUniversalProps {
+interface PDFTopBarUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFTopBarUniversal = ({
+export const PDFTopBarUniversalTemplate = ({
   resumeData,
   themeColor = "#0f766e",
-}: PDFTopBarUniversalProps) => {
+}: PDFTopBarUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFAWSSolutionsArchitectProps {
+interface PDFAWSSolutionsArchitectTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFAWSSolutionsArchitect = ({
+export const PDFAWSSolutionsArchitectTemplate = ({
   resumeData,
   themeColor = "#ff9900",
-}: PDFAWSSolutionsArchitectProps) => {
+}: PDFAWSSolutionsArchitectTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

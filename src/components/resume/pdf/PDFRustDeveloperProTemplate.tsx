@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRustDeveloperProProps {
+interface PDFRustDeveloperProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRustDeveloperPro = ({
+export const PDFRustDeveloperProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFRustDeveloperProProps) => {
+}: PDFRustDeveloperProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

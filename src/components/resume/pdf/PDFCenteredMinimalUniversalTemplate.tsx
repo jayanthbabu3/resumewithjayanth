@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCenteredMinimalUniversalProps {
+interface PDFCenteredMinimalUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCenteredMinimalUniversal = ({
+export const PDFCenteredMinimalUniversalTemplate = ({
   resumeData,
   themeColor = "#0f172a",
-}: PDFCenteredMinimalUniversalProps) => {
+}: PDFCenteredMinimalUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

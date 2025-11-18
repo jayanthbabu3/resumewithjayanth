@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRealEstateBrokerProps {
+interface PDFRealEstateBrokerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRealEstateBroker = ({
+export const PDFRealEstateBrokerTemplate = ({
   resumeData,
   themeColor = "#15803d",
-}: PDFRealEstateBrokerProps) => {
+}: PDFRealEstateBrokerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

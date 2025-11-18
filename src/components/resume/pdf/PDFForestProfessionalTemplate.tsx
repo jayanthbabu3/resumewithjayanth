@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFForestProfessionalProps {
+interface PDFForestProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFForestProfessional = ({
+export const PDFForestProfessionalTemplate = ({
   resumeData,
   themeColor = "#15803d",
-}: PDFForestProfessionalProps) => {
+}: PDFForestProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

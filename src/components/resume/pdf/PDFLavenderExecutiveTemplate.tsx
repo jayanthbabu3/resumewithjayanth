@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFLavenderExecutiveProps {
+interface PDFLavenderExecutiveTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFLavenderExecutive = ({
+export const PDFLavenderExecutiveTemplate = ({
   resumeData,
   themeColor = "#c084fc",
-}: PDFLavenderExecutiveProps) => {
+}: PDFLavenderExecutiveTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

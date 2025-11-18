@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFJadeProfessionalProps {
+interface PDFJadeProfessionalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFJadeProfessional = ({
+export const PDFJadeProfessionalTemplate = ({
   resumeData,
   themeColor = "#0d9488",
-}: PDFJadeProfessionalProps) => {
+}: PDFJadeProfessionalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

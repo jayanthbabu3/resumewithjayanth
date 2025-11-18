@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCorporateMinimalistProProps {
+interface PDFCorporateMinimalistProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCorporateMinimalistPro = ({
+export const PDFCorporateMinimalistProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFCorporateMinimalistProProps) => {
+}: PDFCorporateMinimalistProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

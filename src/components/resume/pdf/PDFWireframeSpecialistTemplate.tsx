@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFWireframeSpecialistProps {
+interface PDFWireframeSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFWireframeSpecialist = ({
+export const PDFWireframeSpecialistTemplate = ({
   resumeData,
   themeColor = "#64748b",
-}: PDFWireframeSpecialistProps) => {
+}: PDFWireframeSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

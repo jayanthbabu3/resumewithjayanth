@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFEmailMarketingSpecialistProps {
+interface PDFEmailMarketingSpecialistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFEmailMarketingSpecialist = ({
+export const PDFEmailMarketingSpecialistTemplate = ({
   resumeData,
   themeColor = "#6366f1",
-}: PDFEmailMarketingSpecialistProps) => {
+}: PDFEmailMarketingSpecialistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

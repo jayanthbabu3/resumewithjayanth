@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFComplianceOfficerProps {
+interface PDFComplianceOfficerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFComplianceOfficer = ({
+export const PDFComplianceOfficerTemplate = ({
   resumeData,
   themeColor = "#0891b2",
-}: PDFComplianceOfficerProps) => {
+}: PDFComplianceOfficerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFParalegalProps {
+interface PDFParalegalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFParalegal = ({
+export const PDFParalegalTemplate = ({
   resumeData,
   themeColor = "#455a64",
-}: PDFParalegalProps) => {
+}: PDFParalegalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodeCraftsmanProps {
+interface PDFCodeCraftsmanTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -141,10 +141,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodeCraftsman = ({
+export const PDFCodeCraftsmanTemplate = ({
   resumeData,
   themeColor = "#10b981",
-}: PDFCodeCraftsmanProps) => {
+}: PDFCodeCraftsmanTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

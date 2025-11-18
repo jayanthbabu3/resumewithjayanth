@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFVeterinaryDoctorProps {
+interface PDFVeterinaryDoctorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFVeterinaryDoctor = ({
+export const PDFVeterinaryDoctorTemplate = ({
   resumeData,
   themeColor = "#059669",
-}: PDFVeterinaryDoctorProps) => {
+}: PDFVeterinaryDoctorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

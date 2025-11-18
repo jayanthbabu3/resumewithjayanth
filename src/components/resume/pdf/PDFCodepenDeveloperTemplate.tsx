@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCodepenDeveloperProps {
+interface PDFCodepenDeveloperTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCodepenDeveloper = ({
+export const PDFCodepenDeveloperTemplate = ({
   resumeData,
   themeColor = "#000000",
-}: PDFCodepenDeveloperProps) => {
+}: PDFCodepenDeveloperTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

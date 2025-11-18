@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMultiPlatformArtistProps {
+interface PDFMultiPlatformArtistTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMultiPlatformArtist = ({
+export const PDFMultiPlatformArtistTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
-}: PDFMultiPlatformArtistProps) => {
+}: PDFMultiPlatformArtistTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

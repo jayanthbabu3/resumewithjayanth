@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCertifiedPublicAccountantProps {
+interface PDFCertifiedPublicAccountantTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCertifiedPublicAccountant = ({
+export const PDFCertifiedPublicAccountantTemplate = ({
   resumeData,
   themeColor = "#334155",
-}: PDFCertifiedPublicAccountantProps) => {
+}: PDFCertifiedPublicAccountantTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

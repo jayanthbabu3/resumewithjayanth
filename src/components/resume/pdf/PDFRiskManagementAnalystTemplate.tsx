@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFRiskManagementAnalystProps {
+interface PDFRiskManagementAnalystTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFRiskManagementAnalyst = ({
+export const PDFRiskManagementAnalystTemplate = ({
   resumeData,
   themeColor = "#1e3a8a",
-}: PDFRiskManagementAnalystProps) => {
+}: PDFRiskManagementAnalystTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

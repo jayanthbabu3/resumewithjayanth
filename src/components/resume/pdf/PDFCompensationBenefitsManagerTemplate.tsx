@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFCompensationBenefitsManagerProps {
+interface PDFCompensationBenefitsManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFCompensationBenefitsManager = ({
+export const PDFCompensationBenefitsManagerTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFCompensationBenefitsManagerProps) => {
+}: PDFCompensationBenefitsManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

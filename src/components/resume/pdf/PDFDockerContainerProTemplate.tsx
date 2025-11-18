@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDockerContainerProProps {
+interface PDFDockerContainerProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDockerContainerPro = ({
+export const PDFDockerContainerProTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFDockerContainerProProps) => {
+}: PDFDockerContainerProTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

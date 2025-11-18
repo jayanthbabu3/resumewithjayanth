@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDevtoContributorProps {
+interface PDFDevtoContributorTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDevtoContributor = ({
+export const PDFDevtoContributorTemplate = ({
   resumeData,
   themeColor = "#0a0a0a",
-}: PDFDevtoContributorProps) => {
+}: PDFDevtoContributorTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

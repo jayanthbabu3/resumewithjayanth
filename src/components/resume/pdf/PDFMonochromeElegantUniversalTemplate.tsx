@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMonochromeElegantUniversalProps {
+interface PDFMonochromeElegantUniversalTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMonochromeElegantUniversal = ({
+export const PDFMonochromeElegantUniversalTemplate = ({
   resumeData,
   themeColor = "#374151",
-}: PDFMonochromeElegantUniversalProps) => {
+}: PDFMonochromeElegantUniversalTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

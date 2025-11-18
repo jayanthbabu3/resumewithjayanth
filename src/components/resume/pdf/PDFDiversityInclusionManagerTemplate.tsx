@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFDiversityInclusionManagerProps {
+interface PDFDiversityInclusionManagerTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -146,10 +146,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFDiversityInclusionManager = ({
+export const PDFDiversityInclusionManagerTemplate = ({
   resumeData,
   themeColor = "#9f1239",
-}: PDFDiversityInclusionManagerProps) => {
+}: PDFDiversityInclusionManagerTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

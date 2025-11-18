@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFConversationalUxProps {
+interface PDFConversationalUxTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFConversationalUx = ({
+export const PDFConversationalUxTemplate = ({
   resumeData,
   themeColor = "#ec4899",
-}: PDFConversationalUxProps) => {
+}: PDFConversationalUxTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (

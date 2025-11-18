@@ -10,7 +10,7 @@ Font.register({
   ]
 });
 
-interface PDFMicroservicesDevProps {
+interface PDFMicroservicesDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
 }
@@ -140,10 +140,10 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   }
 });
 
-export const PDFMicroservicesDev = ({
+export const PDFMicroservicesDevTemplate = ({
   resumeData,
   themeColor = "#3b82f6",
-}: PDFMicroservicesDevProps) => {
+}: PDFMicroservicesDevTemplateProps) => {
   const styles = createStyles(themeColor);
 
   return (
