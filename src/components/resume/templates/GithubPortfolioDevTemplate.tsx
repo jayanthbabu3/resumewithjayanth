@@ -5,7 +5,7 @@ import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { Globe, Linkedin, Github, Twitter, Mail, Phone, MapPin } from "lucide-react";
 
-interface VimeoVideographerTemplateProps {
+interface GithubPortfolioDevTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
   editable?: boolean;
@@ -26,14 +26,14 @@ const withOpacity = (color: string | undefined, alpha: string) => {
   return `${normalized}${alpha}`;
 };
 
-export const VimeoVideographerTemplate = ({
+export const GithubPortfolioDevTemplate = ({
   resumeData,
-  themeColor = "#1ab7ea",
+  themeColor = "#24292e",
   editable = false,
-}: VimeoVideographerTemplateProps) => {
-  const accent = normalizeHex(themeColor) ?? "#1ab7ea";
-  const accentLight = withOpacity(accent, "15") ?? "#1ab7ea15";
-  const accentBorder = withOpacity(accent, "33") ?? "#1ab7ea33";
+}: GithubPortfolioDevTemplateProps) => {
+  const accent = normalizeHex(themeColor) ?? "#24292e";
+  const accentLight = withOpacity(accent, "15") ?? "#24292e15";
+  const accentBorder = withOpacity(accent, "33") ?? "#24292e33";
 
   return (
     <div className="w-full h-full bg-white text-gray-900 p-12 text-[13px] leading-relaxed">

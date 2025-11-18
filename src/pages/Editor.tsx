@@ -594,6 +594,107 @@ import { DesignstrategyLeadTemplate } from "@/components/resume/templates/Design
 import { ConversationalUxTemplate } from "@/components/resume/templates/ConversationalUxTemplate";
 import { MotionUiDesignerTemplate } from "@/components/resume/templates/MotionUiDesignerTemplate";
 import { DesignleadershipDirectorTemplate } from "@/components/resume/templates/DesignleadershipDirectorTemplate";
+// 2025 Batch 5 - UI Template Imports (100 templates)
+import { DigitalProfessionalTemplate } from "@/components/resume/templates/DigitalProfessionalTemplate";
+import { NetworkedExecutiveTemplate } from "@/components/resume/templates/NetworkedExecutiveTemplate";
+import { ConnectedProfessionalTemplate } from "@/components/resume/templates/ConnectedProfessionalTemplate";
+import { LinkedinOptimizedTemplate } from "@/components/resume/templates/LinkedinOptimizedTemplate";
+import { SocialExecutiveTemplate } from "@/components/resume/templates/SocialExecutiveTemplate";
+import { OnlineProfessionalTemplate } from "@/components/resume/templates/OnlineProfessionalTemplate";
+import { WebpresenceExecutiveTemplate } from "@/components/resume/templates/WebpresenceExecutiveTemplate";
+import { ProfileCentricTemplate } from "@/components/resume/templates/ProfileCentricTemplate";
+import { GlobalNetworkerTemplate } from "@/components/resume/templates/GlobalNetworkerTemplate";
+import { ModernDigitalTemplate } from "@/components/resume/templates/ModernDigitalTemplate";
+import { SocialSavvyTemplate } from "@/components/resume/templates/SocialSavvyTemplate";
+import { PlatformProfessionalTemplate } from "@/components/resume/templates/PlatformProfessionalTemplate";
+import { DigitalExecutiveTemplate } from "@/components/resume/templates/DigitalExecutiveTemplate";
+import { BrandedProfessionalTemplate } from "@/components/resume/templates/BrandedProfessionalTemplate";
+import { InfluencerProfessionalTemplate } from "@/components/resume/templates/InfluencerProfessionalTemplate";
+import { OnlineIdentityTemplate } from "@/components/resume/templates/OnlineIdentityTemplate";
+import { PortfolioProfessionalTemplate } from "@/components/resume/templates/PortfolioProfessionalTemplate";
+import { DigitalIdentityTemplate } from "@/components/resume/templates/DigitalIdentityTemplate";
+import { SocialMediaProTemplate } from "@/components/resume/templates/SocialMediaProTemplate";
+import { ConnectedLeaderTemplate } from "@/components/resume/templates/ConnectedLeaderTemplate";
+import { GithubPortfolioDevTemplate } from "@/components/resume/templates/GithubPortfolioDevTemplate";
+import { OpensourceDeveloperTemplate } from "@/components/resume/templates/OpensourceDeveloperTemplate";
+import { StackoverflowDevTemplate } from "@/components/resume/templates/StackoverflowDevTemplate";
+import { CodepenDeveloperTemplate } from "@/components/resume/templates/CodepenDeveloperTemplate";
+import { PortfolioCoderTemplate } from "@/components/resume/templates/PortfolioCoderTemplate";
+import { TechBloggerDevTemplate } from "@/components/resume/templates/TechBloggerDevTemplate";
+import { YoutubeDevEducatorTemplate } from "@/components/resume/templates/YoutubeDevEducatorTemplate";
+import { LinkedinTechExpertTemplate } from "@/components/resume/templates/LinkedinTechExpertTemplate";
+import { TwitterDevTemplate } from "@/components/resume/templates/TwitterDevTemplate";
+import { MediumTechWriterTemplate } from "@/components/resume/templates/MediumTechWriterTemplate";
+import { DevtoContributorTemplate } from "@/components/resume/templates/DevtoContributorTemplate";
+import { HackernewsDeveloperTemplate } from "@/components/resume/templates/HackernewsDeveloperTemplate";
+import { GitlabDeveloperTemplate } from "@/components/resume/templates/GitlabDeveloperTemplate";
+import { BitbucketDeveloperTemplate } from "@/components/resume/templates/BitbucketDeveloperTemplate";
+import { NpmPackageAuthorTemplate } from "@/components/resume/templates/NpmPackageAuthorTemplate";
+import { PypiContributorTemplate } from "@/components/resume/templates/PypiContributorTemplate";
+import { DockerhubPublisherTemplate } from "@/components/resume/templates/DockerhubPublisherTemplate";
+import { KaggleDataScientistTemplate } from "@/components/resume/templates/KaggleDataScientistTemplate";
+import { LeetcodeChampionTemplate } from "@/components/resume/templates/LeetcodeChampionTemplate";
+import { HackerrankExpertTemplate } from "@/components/resume/templates/HackerrankExpertTemplate";
+import { GenZGraduateTemplate } from "@/components/resume/templates/GenZGraduateTemplate";
+import { DigitalNativeGradTemplate } from "@/components/resume/templates/DigitalNativeGradTemplate";
+import { SocialFirstFresherTemplate } from "@/components/resume/templates/SocialFirstFresherTemplate";
+import { PortfolioGraduateTemplate } from "@/components/resume/templates/PortfolioGraduateTemplate";
+import { ProjectShowcaseGradTemplate } from "@/components/resume/templates/ProjectShowcaseGradTemplate";
+import { GithubStudentTemplate } from "@/components/resume/templates/GithubStudentTemplate";
+import { LinkedinGraduateTemplate } from "@/components/resume/templates/LinkedinGraduateTemplate";
+import { OnlinePortfolioFresherTemplate } from "@/components/resume/templates/OnlinePortfolioFresherTemplate";
+import { SocialGraduateTemplate } from "@/components/resume/templates/SocialGraduateTemplate";
+import { DigitalGraduateTemplate } from "@/components/resume/templates/DigitalGraduateTemplate";
+import { WebPortfolioGradTemplate } from "@/components/resume/templates/WebPortfolioGradTemplate";
+import { HackathonGraduateTemplate } from "@/components/resume/templates/HackathonGraduateTemplate";
+import { BootcampPortfolioTemplate } from "@/components/resume/templates/BootcampPortfolioTemplate";
+import { InternshipShowcaseTemplate } from "@/components/resume/templates/InternshipShowcaseTemplate";
+import { CampusInfluencerTemplate } from "@/components/resume/templates/CampusInfluencerTemplate";
+import { StudentDeveloperPortfolioTemplate } from "@/components/resume/templates/StudentDeveloperPortfolioTemplate";
+import { DigitalPortfolioGradTemplate } from "@/components/resume/templates/DigitalPortfolioGradTemplate";
+import { OnlinePresenceFresherTemplate } from "@/components/resume/templates/OnlinePresenceFresherTemplate";
+import { NetworkedGraduateTemplate } from "@/components/resume/templates/NetworkedGraduateTemplate";
+import { ProfileDrivenGradTemplate } from "@/components/resume/templates/ProfileDrivenGradTemplate";
+import { BehancePortfolioTemplate } from "@/components/resume/templates/BehancePortfolioTemplate";
+import { DribbbleShowcaseTemplate } from "@/components/resume/templates/DribbbleShowcaseTemplate";
+import { ArtstationProTemplate } from "@/components/resume/templates/ArtstationProTemplate";
+import { InstagramCreativeTemplate } from "@/components/resume/templates/InstagramCreativeTemplate";
+import { PinterestDesignerTemplate } from "@/components/resume/templates/PinterestDesignerTemplate";
+import { YoutubeCreatorTemplate } from "@/components/resume/templates/YoutubeCreatorTemplate";
+import { TiktokContentCreatorTemplate } from "@/components/resume/templates/TiktokContentCreatorTemplate";
+import { VimeoVideographerTemplate } from "@/components/resume/templates/VimeoVideographerTemplate";
+import { SoundcloudArtistTemplate } from "@/components/resume/templates/SoundcloudArtistTemplate";
+import { SpotifyMusicianTemplate } from "@/components/resume/templates/SpotifyMusicianTemplate";
+import { TwitchStreamerCreativeTemplate } from "@/components/resume/templates/TwitchStreamerCreativeTemplate";
+import { DeviantartArtistTemplate } from "@/components/resume/templates/DeviantartArtistTemplate";
+import { PatreonCreativeTemplate } from "@/components/resume/templates/PatreonCreativeTemplate";
+import { MediumWriterCreativeTemplate } from "@/components/resume/templates/MediumWriterCreativeTemplate";
+import { SubstackAuthorTemplate } from "@/components/resume/templates/SubstackAuthorTemplate";
+import { PortfolioWebsiteCreativeTemplate } from "@/components/resume/templates/PortfolioWebsiteCreativeTemplate";
+import { OnlineGalleryArtistTemplate } from "@/components/resume/templates/OnlineGalleryArtistTemplate";
+import { SocialCreativeInfluencerTemplate } from "@/components/resume/templates/SocialCreativeInfluencerTemplate";
+import { MultiPlatformArtistTemplate } from "@/components/resume/templates/MultiPlatformArtistTemplate";
+import { DigitalArtistPortfolioTemplate } from "@/components/resume/templates/DigitalArtistPortfolioTemplate";
+import { FigmaDesignerPortfolioTemplate } from "@/components/resume/templates/FigmaDesignerPortfolioTemplate";
+import { AdobePortfolioDesignerTemplate } from "@/components/resume/templates/AdobePortfolioDesignerTemplate";
+import { SketchExpertPortfolioTemplate } from "@/components/resume/templates/SketchExpertPortfolioTemplate";
+import { WebflowDesignerPortfolioTemplate } from "@/components/resume/templates/WebflowDesignerPortfolioTemplate";
+import { FramerDesignerPortfolioTemplate } from "@/components/resume/templates/FramerDesignerPortfolioTemplate";
+import { UxfolioDesignerTemplate } from "@/components/resume/templates/UxfolioDesignerTemplate";
+import { CoroflotPortfolioTemplate } from "@/components/resume/templates/CoroflotPortfolioTemplate";
+import { CarbonmadeDesignerTemplate } from "@/components/resume/templates/CarbonmadeDesignerTemplate";
+import { AwwwardsDesignerTemplate } from "@/components/resume/templates/AwwwardsDesignerTemplate";
+import { UiuxPortfolioProTemplate } from "@/components/resume/templates/UiuxPortfolioProTemplate";
+import { DesignportfolioSpecialistTemplate } from "@/components/resume/templates/DesignportfolioSpecialistTemplate";
+import { CasestudyDesignerTemplate } from "@/components/resume/templates/CasestudyDesignerTemplate";
+import { ProtfolioShowcaseUxTemplate } from "@/components/resume/templates/ProtfolioShowcaseUxTemplate";
+import { InteractivePortfolioDesignerTemplate } from "@/components/resume/templates/InteractivePortfolioDesignerTemplate";
+import { UxResearcherPortfolioTemplate } from "@/components/resume/templates/UxResearcherPortfolioTemplate";
+import { ProductDesignerShowcaseTemplate } from "@/components/resume/templates/ProductDesignerShowcaseTemplate";
+import { DesignSystemsPortfolioTemplate } from "@/components/resume/templates/DesignSystemsPortfolioTemplate";
+import { MotionDesignerPortfolioTemplate } from "@/components/resume/templates/MotionDesignerPortfolioTemplate";
+import { VisualDesignerShowcaseTemplate } from "@/components/resume/templates/VisualDesignerShowcaseTemplate";
+import { DesignLeaderPortfolioTemplate } from "@/components/resume/templates/DesignLeaderPortfolioTemplate";
 // 2025 Batch 4 - PDF Template Imports (100 templates)
 import { PDFCrystalExecutiveTemplate } from "@/components/resume/pdf/PDFCrystalExecutiveTemplate";
 import { PDFQuantumProfessionalTemplate } from "@/components/resume/pdf/PDFQuantumProfessionalTemplate";
@@ -695,6 +796,107 @@ import { PDFDesignstrategyLeadTemplate } from "@/components/resume/pdf/PDFDesign
 import { PDFConversationalUxTemplate } from "@/components/resume/pdf/PDFConversationalUxTemplate";
 import { PDFMotionUiDesignerTemplate } from "@/components/resume/pdf/PDFMotionUiDesignerTemplate";
 import { PDFDesignleadershipDirectorTemplate } from "@/components/resume/pdf/PDFDesignleadershipDirectorTemplate";
+// 2025 Batch 5 - PDF Template Imports (100 templates)
+import { PDFDigitalProfessionalTemplate } from "@/components/resume/pdf/PDFDigitalProfessionalTemplate";
+import { PDFNetworkedExecutiveTemplate } from "@/components/resume/pdf/PDFNetworkedExecutiveTemplate";
+import { PDFConnectedProfessionalTemplate } from "@/components/resume/pdf/PDFConnectedProfessionalTemplate";
+import { PDFLinkedinOptimizedTemplate } from "@/components/resume/pdf/PDFLinkedinOptimizedTemplate";
+import { PDFSocialExecutiveTemplate } from "@/components/resume/pdf/PDFSocialExecutiveTemplate";
+import { PDFOnlineProfessionalTemplate } from "@/components/resume/pdf/PDFOnlineProfessionalTemplate";
+import { PDFWebpresenceExecutiveTemplate } from "@/components/resume/pdf/PDFWebpresenceExecutiveTemplate";
+import { PDFProfileCentricTemplate } from "@/components/resume/pdf/PDFProfileCentricTemplate";
+import { PDFGlobalNetworkerTemplate } from "@/components/resume/pdf/PDFGlobalNetworkerTemplate";
+import { PDFModernDigitalTemplate } from "@/components/resume/pdf/PDFModernDigitalTemplate";
+import { PDFSocialSavvyTemplate } from "@/components/resume/pdf/PDFSocialSavvyTemplate";
+import { PDFPlatformProfessionalTemplate } from "@/components/resume/pdf/PDFPlatformProfessionalTemplate";
+import { PDFDigitalExecutiveTemplate } from "@/components/resume/pdf/PDFDigitalExecutiveTemplate";
+import { PDFBrandedProfessionalTemplate } from "@/components/resume/pdf/PDFBrandedProfessionalTemplate";
+import { PDFInfluencerProfessionalTemplate } from "@/components/resume/pdf/PDFInfluencerProfessionalTemplate";
+import { PDFOnlineIdentityTemplate } from "@/components/resume/pdf/PDFOnlineIdentityTemplate";
+import { PDFPortfolioProfessionalTemplate } from "@/components/resume/pdf/PDFPortfolioProfessionalTemplate";
+import { PDFDigitalIdentityTemplate } from "@/components/resume/pdf/PDFDigitalIdentityTemplate";
+import { PDFSocialMediaProTemplate } from "@/components/resume/pdf/PDFSocialMediaProTemplate";
+import { PDFConnectedLeaderTemplate } from "@/components/resume/pdf/PDFConnectedLeaderTemplate";
+import { PDFGithubPortfolioDevTemplate } from "@/components/resume/pdf/PDFGithubPortfolioDevTemplate";
+import { PDFOpensourceDeveloperTemplate } from "@/components/resume/pdf/PDFOpensourceDeveloperTemplate";
+import { PDFStackoverflowDevTemplate } from "@/components/resume/pdf/PDFStackoverflowDevTemplate";
+import { PDFCodepenDeveloperTemplate } from "@/components/resume/pdf/PDFCodepenDeveloperTemplate";
+import { PDFPortfolioCoderTemplate } from "@/components/resume/pdf/PDFPortfolioCoderTemplate";
+import { PDFTechBloggerDevTemplate } from "@/components/resume/pdf/PDFTechBloggerDevTemplate";
+import { PDFYoutubeDevEducatorTemplate } from "@/components/resume/pdf/PDFYoutubeDevEducatorTemplate";
+import { PDFLinkedinTechExpertTemplate } from "@/components/resume/pdf/PDFLinkedinTechExpertTemplate";
+import { PDFTwitterDevTemplate } from "@/components/resume/pdf/PDFTwitterDevTemplate";
+import { PDFMediumTechWriterTemplate } from "@/components/resume/pdf/PDFMediumTechWriterTemplate";
+import { PDFDevtoContributorTemplate } from "@/components/resume/pdf/PDFDevtoContributorTemplate";
+import { PDFHackernewsDeveloperTemplate } from "@/components/resume/pdf/PDFHackernewsDeveloperTemplate";
+import { PDFGitlabDeveloperTemplate } from "@/components/resume/pdf/PDFGitlabDeveloperTemplate";
+import { PDFBitbucketDeveloperTemplate } from "@/components/resume/pdf/PDFBitbucketDeveloperTemplate";
+import { PDFNpmPackageAuthorTemplate } from "@/components/resume/pdf/PDFNpmPackageAuthorTemplate";
+import { PDFPypiContributorTemplate } from "@/components/resume/pdf/PDFPypiContributorTemplate";
+import { PDFDockerhubPublisherTemplate } from "@/components/resume/pdf/PDFDockerhubPublisherTemplate";
+import { PDFKaggleDataScientistTemplate } from "@/components/resume/pdf/PDFKaggleDataScientistTemplate";
+import { PDFLeetcodeChampionTemplate } from "@/components/resume/pdf/PDFLeetcodeChampionTemplate";
+import { PDFHackerrankExpertTemplate } from "@/components/resume/pdf/PDFHackerrankExpertTemplate";
+import { PDFGenZGraduateTemplate } from "@/components/resume/pdf/PDFGenZGraduateTemplate";
+import { PDFDigitalNativeGradTemplate } from "@/components/resume/pdf/PDFDigitalNativeGradTemplate";
+import { PDFSocialFirstFresherTemplate } from "@/components/resume/pdf/PDFSocialFirstFresherTemplate";
+import { PDFPortfolioGraduateTemplate } from "@/components/resume/pdf/PDFPortfolioGraduateTemplate";
+import { PDFProjectShowcaseGradTemplate } from "@/components/resume/pdf/PDFProjectShowcaseGradTemplate";
+import { PDFGithubStudentTemplate } from "@/components/resume/pdf/PDFGithubStudentTemplate";
+import { PDFLinkedinGraduateTemplate } from "@/components/resume/pdf/PDFLinkedinGraduateTemplate";
+import { PDFOnlinePortfolioFresherTemplate } from "@/components/resume/pdf/PDFOnlinePortfolioFresherTemplate";
+import { PDFSocialGraduateTemplate } from "@/components/resume/pdf/PDFSocialGraduateTemplate";
+import { PDFDigitalGraduateTemplate } from "@/components/resume/pdf/PDFDigitalGraduateTemplate";
+import { PDFWebPortfolioGradTemplate } from "@/components/resume/pdf/PDFWebPortfolioGradTemplate";
+import { PDFHackathonGraduateTemplate } from "@/components/resume/pdf/PDFHackathonGraduateTemplate";
+import { PDFBootcampPortfolioTemplate } from "@/components/resume/pdf/PDFBootcampPortfolioTemplate";
+import { PDFInternshipShowcaseTemplate } from "@/components/resume/pdf/PDFInternshipShowcaseTemplate";
+import { PDFCampusInfluencerTemplate } from "@/components/resume/pdf/PDFCampusInfluencerTemplate";
+import { PDFStudentDeveloperPortfolioTemplate } from "@/components/resume/pdf/PDFStudentDeveloperPortfolioTemplate";
+import { PDFDigitalPortfolioGradTemplate } from "@/components/resume/pdf/PDFDigitalPortfolioGradTemplate";
+import { PDFOnlinePresenceFresherTemplate } from "@/components/resume/pdf/PDFOnlinePresenceFresherTemplate";
+import { PDFNetworkedGraduateTemplate } from "@/components/resume/pdf/PDFNetworkedGraduateTemplate";
+import { PDFProfileDrivenGradTemplate } from "@/components/resume/pdf/PDFProfileDrivenGradTemplate";
+import { PDFBehancePortfolioTemplate } from "@/components/resume/pdf/PDFBehancePortfolioTemplate";
+import { PDFDribbbleShowcaseTemplate } from "@/components/resume/pdf/PDFDribbbleShowcaseTemplate";
+import { PDFArtstationProTemplate } from "@/components/resume/pdf/PDFArtstationProTemplate";
+import { PDFInstagramCreativeTemplate } from "@/components/resume/pdf/PDFInstagramCreativeTemplate";
+import { PDFPinterestDesignerTemplate } from "@/components/resume/pdf/PDFPinterestDesignerTemplate";
+import { PDFYoutubeCreatorTemplate } from "@/components/resume/pdf/PDFYoutubeCreatorTemplate";
+import { PDFTiktokContentCreatorTemplate } from "@/components/resume/pdf/PDFTiktokContentCreatorTemplate";
+import { PDFVimeoVideographerTemplate } from "@/components/resume/pdf/PDFVimeoVideographerTemplate";
+import { PDFSoundcloudArtistTemplate } from "@/components/resume/pdf/PDFSoundcloudArtistTemplate";
+import { PDFSpotifyMusicianTemplate } from "@/components/resume/pdf/PDFSpotifyMusicianTemplate";
+import { PDFTwitchStreamerCreativeTemplate } from "@/components/resume/pdf/PDFTwitchStreamerCreativeTemplate";
+import { PDFDeviantartArtistTemplate } from "@/components/resume/pdf/PDFDeviantartArtistTemplate";
+import { PDFPatreonCreativeTemplate } from "@/components/resume/pdf/PDFPatreonCreativeTemplate";
+import { PDFMediumWriterCreativeTemplate } from "@/components/resume/pdf/PDFMediumWriterCreativeTemplate";
+import { PDFSubstackAuthorTemplate } from "@/components/resume/pdf/PDFSubstackAuthorTemplate";
+import { PDFPortfolioWebsiteCreativeTemplate } from "@/components/resume/pdf/PDFPortfolioWebsiteCreativeTemplate";
+import { PDFOnlineGalleryArtistTemplate } from "@/components/resume/pdf/PDFOnlineGalleryArtistTemplate";
+import { PDFSocialCreativeInfluencerTemplate } from "@/components/resume/pdf/PDFSocialCreativeInfluencerTemplate";
+import { PDFMultiPlatformArtistTemplate } from "@/components/resume/pdf/PDFMultiPlatformArtistTemplate";
+import { PDFDigitalArtistPortfolioTemplate } from "@/components/resume/pdf/PDFDigitalArtistPortfolioTemplate";
+import { PDFFigmaDesignerPortfolioTemplate } from "@/components/resume/pdf/PDFFigmaDesignerPortfolioTemplate";
+import { PDFAdobePortfolioDesignerTemplate } from "@/components/resume/pdf/PDFAdobePortfolioDesignerTemplate";
+import { PDFSketchExpertPortfolioTemplate } from "@/components/resume/pdf/PDFSketchExpertPortfolioTemplate";
+import { PDFWebflowDesignerPortfolioTemplate } from "@/components/resume/pdf/PDFWebflowDesignerPortfolioTemplate";
+import { PDFFramerDesignerPortfolioTemplate } from "@/components/resume/pdf/PDFFramerDesignerPortfolioTemplate";
+import { PDFUxfolioDesignerTemplate } from "@/components/resume/pdf/PDFUxfolioDesignerTemplate";
+import { PDFCoroflotPortfolioTemplate } from "@/components/resume/pdf/PDFCoroflotPortfolioTemplate";
+import { PDFCarbonmadeDesignerTemplate } from "@/components/resume/pdf/PDFCarbonmadeDesignerTemplate";
+import { PDFAwwwardsDesignerTemplate } from "@/components/resume/pdf/PDFAwwwardsDesignerTemplate";
+import { PDFUiuxPortfolioProTemplate } from "@/components/resume/pdf/PDFUiuxPortfolioProTemplate";
+import { PDFDesignportfolioSpecialistTemplate } from "@/components/resume/pdf/PDFDesignportfolioSpecialistTemplate";
+import { PDFCasestudyDesignerTemplate } from "@/components/resume/pdf/PDFCasestudyDesignerTemplate";
+import { PDFProtfolioShowcaseUxTemplate } from "@/components/resume/pdf/PDFProtfolioShowcaseUxTemplate";
+import { PDFInteractivePortfolioDesignerTemplate } from "@/components/resume/pdf/PDFInteractivePortfolioDesignerTemplate";
+import { PDFUxResearcherPortfolioTemplate } from "@/components/resume/pdf/PDFUxResearcherPortfolioTemplate";
+import { PDFProductDesignerShowcaseTemplate } from "@/components/resume/pdf/PDFProductDesignerShowcaseTemplate";
+import { PDFDesignSystemsPortfolioTemplate } from "@/components/resume/pdf/PDFDesignSystemsPortfolioTemplate";
+import { PDFMotionDesignerPortfolioTemplate } from "@/components/resume/pdf/PDFMotionDesignerPortfolioTemplate";
+import { PDFVisualDesignerShowcaseTemplate } from "@/components/resume/pdf/PDFVisualDesignerShowcaseTemplate";
+import { PDFDesignLeaderPortfolioTemplate } from "@/components/resume/pdf/PDFDesignLeaderPortfolioTemplate";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -2618,6 +2820,107 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
     "conversational-ux",
     "motion-ui-designer",
     "designleadership-director",
+    // 2025 Batch 5 - 100 New Templates
+    "digital-professional",
+    "networked-executive",
+    "connected-professional",
+    "linkedin-optimized",
+    "social-executive",
+    "online-professional",
+    "webpresence-executive",
+    "profile-centric",
+    "global-networker",
+    "modern-digital",
+    "social-savvy",
+    "platform-professional",
+    "digital-executive",
+    "branded-professional",
+    "influencer-professional",
+    "online-identity",
+    "portfolio-professional",
+    "digital-identity",
+    "social-media-pro",
+    "connected-leader",
+    "github-portfolio-dev",
+    "opensource-developer",
+    "stackoverflow-dev",
+    "codepen-developer",
+    "portfolio-coder",
+    "tech-blogger-dev",
+    "youtube-dev-educator",
+    "linkedin-tech-expert",
+    "twitter-dev",
+    "medium-tech-writer",
+    "devto-contributor",
+    "hackernews-developer",
+    "gitlab-developer",
+    "bitbucket-developer",
+    "npm-package-author",
+    "pypi-contributor",
+    "dockerhub-publisher",
+    "kaggle-data-scientist",
+    "leetcode-champion",
+    "hackerrank-expert",
+    "gen-z-graduate",
+    "digital-native-grad",
+    "social-first-fresher",
+    "portfolio-graduate",
+    "project-showcase-grad",
+    "github-student",
+    "linkedin-graduate",
+    "online-portfolio-fresher",
+    "social-graduate",
+    "digital-graduate",
+    "web-portfolio-grad",
+    "hackathon-graduate",
+    "bootcamp-portfolio",
+    "internship-showcase",
+    "campus-influencer",
+    "student-developer-portfolio",
+    "digital-portfolio-grad",
+    "online-presence-fresher",
+    "networked-graduate",
+    "profile-driven-grad",
+    "behance-portfolio",
+    "dribbble-showcase",
+    "artstation-pro",
+    "instagram-creative",
+    "pinterest-designer",
+    "youtube-creator",
+    "tiktok-content-creator",
+    "vimeo-videographer",
+    "soundcloud-artist",
+    "spotify-musician",
+    "twitch-streamer-creative",
+    "deviantart-artist",
+    "patreon-creative",
+    "medium-writer-creative",
+    "substack-author",
+    "portfolio-website-creative",
+    "online-gallery-artist",
+    "social-creative-influencer",
+    "multi-platform-artist",
+    "digital-artist-portfolio",
+    "figma-designer-portfolio",
+    "adobe-portfolio-designer",
+    "sketch-expert-portfolio",
+    "webflow-designer-portfolio",
+    "framer-designer-portfolio",
+    "uxfolio-designer",
+    "coroflot-portfolio",
+    "carbonmade-designer",
+    "awwwards-designer",
+    "uiux-portfolio-pro",
+    "designportfolio-specialist",
+    "casestudy-designer",
+    "protfolio-showcase-ux",
+    "interactive-portfolio-designer",
+    "ux-researcher-portfolio",
+    "product-designer-showcase",
+    "design-systems-portfolio",
+    "motion-designer-portfolio",
+    "visual-designer-showcase",
+    "design-leader-portfolio",
   ];
 
   // Add all new templates using professional defaults
@@ -3419,6 +3722,107 @@ const Editor = () => {
         "conversational-ux": PDFConversationalUxTemplate,
         "motion-ui-designer": PDFMotionUiDesignerTemplate,
         "designleadership-director": PDFDesignleadershipDirectorTemplate,
+        // 2025 Batch 5 - PDF Template Mappings (100 templates)
+        "digital-professional": PDFDigitalProfessionalTemplate,
+        "networked-executive": PDFNetworkedExecutiveTemplate,
+        "connected-professional": PDFConnectedProfessionalTemplate,
+        "linkedin-optimized": PDFLinkedinOptimizedTemplate,
+        "social-executive": PDFSocialExecutiveTemplate,
+        "online-professional": PDFOnlineProfessionalTemplate,
+        "webpresence-executive": PDFWebpresenceExecutiveTemplate,
+        "profile-centric": PDFProfileCentricTemplate,
+        "global-networker": PDFGlobalNetworkerTemplate,
+        "modern-digital": PDFModernDigitalTemplate,
+        "social-savvy": PDFSocialSavvyTemplate,
+        "platform-professional": PDFPlatformProfessionalTemplate,
+        "digital-executive": PDFDigitalExecutiveTemplate,
+        "branded-professional": PDFBrandedProfessionalTemplate,
+        "influencer-professional": PDFInfluencerProfessionalTemplate,
+        "online-identity": PDFOnlineIdentityTemplate,
+        "portfolio-professional": PDFPortfolioProfessionalTemplate,
+        "digital-identity": PDFDigitalIdentityTemplate,
+        "social-media-pro": PDFSocialMediaProTemplate,
+        "connected-leader": PDFConnectedLeaderTemplate,
+        "github-portfolio-dev": PDFGithubPortfolioDevTemplate,
+        "opensource-developer": PDFOpensourceDeveloperTemplate,
+        "stackoverflow-dev": PDFStackoverflowDevTemplate,
+        "codepen-developer": PDFCodepenDeveloperTemplate,
+        "portfolio-coder": PDFPortfolioCoderTemplate,
+        "tech-blogger-dev": PDFTechBloggerDevTemplate,
+        "youtube-dev-educator": PDFYoutubeDevEducatorTemplate,
+        "linkedin-tech-expert": PDFLinkedinTechExpertTemplate,
+        "twitter-dev": PDFTwitterDevTemplate,
+        "medium-tech-writer": PDFMediumTechWriterTemplate,
+        "devto-contributor": PDFDevtoContributorTemplate,
+        "hackernews-developer": PDFHackernewsDeveloperTemplate,
+        "gitlab-developer": PDFGitlabDeveloperTemplate,
+        "bitbucket-developer": PDFBitbucketDeveloperTemplate,
+        "npm-package-author": PDFNpmPackageAuthorTemplate,
+        "pypi-contributor": PDFPypiContributorTemplate,
+        "dockerhub-publisher": PDFDockerhubPublisherTemplate,
+        "kaggle-data-scientist": PDFKaggleDataScientistTemplate,
+        "leetcode-champion": PDFLeetcodeChampionTemplate,
+        "hackerrank-expert": PDFHackerrankExpertTemplate,
+        "gen-z-graduate": PDFGenZGraduateTemplate,
+        "digital-native-grad": PDFDigitalNativeGradTemplate,
+        "social-first-fresher": PDFSocialFirstFresherTemplate,
+        "portfolio-graduate": PDFPortfolioGraduateTemplate,
+        "project-showcase-grad": PDFProjectShowcaseGradTemplate,
+        "github-student": PDFGithubStudentTemplate,
+        "linkedin-graduate": PDFLinkedinGraduateTemplate,
+        "online-portfolio-fresher": PDFOnlinePortfolioFresherTemplate,
+        "social-graduate": PDFSocialGraduateTemplate,
+        "digital-graduate": PDFDigitalGraduateTemplate,
+        "web-portfolio-grad": PDFWebPortfolioGradTemplate,
+        "hackathon-graduate": PDFHackathonGraduateTemplate,
+        "bootcamp-portfolio": PDFBootcampPortfolioTemplate,
+        "internship-showcase": PDFInternshipShowcaseTemplate,
+        "campus-influencer": PDFCampusInfluencerTemplate,
+        "student-developer-portfolio": PDFStudentDeveloperPortfolioTemplate,
+        "digital-portfolio-grad": PDFDigitalPortfolioGradTemplate,
+        "online-presence-fresher": PDFOnlinePresenceFresherTemplate,
+        "networked-graduate": PDFNetworkedGraduateTemplate,
+        "profile-driven-grad": PDFProfileDrivenGradTemplate,
+        "behance-portfolio": PDFBehancePortfolioTemplate,
+        "dribbble-showcase": PDFDribbbleShowcaseTemplate,
+        "artstation-pro": PDFArtstationProTemplate,
+        "instagram-creative": PDFInstagramCreativeTemplate,
+        "pinterest-designer": PDFPinterestDesignerTemplate,
+        "youtube-creator": PDFYoutubeCreatorTemplate,
+        "tiktok-content-creator": PDFTiktokContentCreatorTemplate,
+        "vimeo-videographer": PDFVimeoVideographerTemplate,
+        "soundcloud-artist": PDFSoundcloudArtistTemplate,
+        "spotify-musician": PDFSpotifyMusicianTemplate,
+        "twitch-streamer-creative": PDFTwitchStreamerCreativeTemplate,
+        "deviantart-artist": PDFDeviantartArtistTemplate,
+        "patreon-creative": PDFPatreonCreativeTemplate,
+        "medium-writer-creative": PDFMediumWriterCreativeTemplate,
+        "substack-author": PDFSubstackAuthorTemplate,
+        "portfolio-website-creative": PDFPortfolioWebsiteCreativeTemplate,
+        "online-gallery-artist": PDFOnlineGalleryArtistTemplate,
+        "social-creative-influencer": PDFSocialCreativeInfluencerTemplate,
+        "multi-platform-artist": PDFMultiPlatformArtistTemplate,
+        "digital-artist-portfolio": PDFDigitalArtistPortfolioTemplate,
+        "figma-designer-portfolio": PDFFigmaDesignerPortfolioTemplate,
+        "adobe-portfolio-designer": PDFAdobePortfolioDesignerTemplate,
+        "sketch-expert-portfolio": PDFSketchExpertPortfolioTemplate,
+        "webflow-designer-portfolio": PDFWebflowDesignerPortfolioTemplate,
+        "framer-designer-portfolio": PDFFramerDesignerPortfolioTemplate,
+        "uxfolio-designer": PDFUxfolioDesignerTemplate,
+        "coroflot-portfolio": PDFCoroflotPortfolioTemplate,
+        "carbonmade-designer": PDFCarbonmadeDesignerTemplate,
+        "awwwards-designer": PDFAwwwardsDesignerTemplate,
+        "uiux-portfolio-pro": PDFUiuxPortfolioProTemplate,
+        "designportfolio-specialist": PDFDesignportfolioSpecialistTemplate,
+        "casestudy-designer": PDFCasestudyDesignerTemplate,
+        "protfolio-showcase-ux": PDFProtfolioShowcaseUxTemplate,
+        "interactive-portfolio-designer": PDFInteractivePortfolioDesignerTemplate,
+        "ux-researcher-portfolio": PDFUxResearcherPortfolioTemplate,
+        "product-designer-showcase": PDFProductDesignerShowcaseTemplate,
+        "design-systems-portfolio": PDFDesignSystemsPortfolioTemplate,
+        "motion-designer-portfolio": PDFMotionDesignerPortfolioTemplate,
+        "visual-designer-showcase": PDFVisualDesignerShowcaseTemplate,
+        "design-leader-portfolio": PDFDesignLeaderPortfolioTemplate,
       };
 
       const PDFTemplate =
