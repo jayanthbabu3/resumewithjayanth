@@ -383,6 +383,116 @@ import { InVisionPrototyperPDF } from "@/components/resume/pdf/InVisionPrototype
 import { MarvelAppDesignerPDF } from "@/components/resume/pdf/MarvelAppDesignerPDF";
 import { ZeplinHandoffSpecialistPDF } from "@/components/resume/pdf/ZeplinHandoffSpecialistPDF";
 import { AbstractVersionDesignerPDF } from "@/components/resume/pdf/AbstractVersionDesignerPDF";
+// 2025 Batch 3 - Healthcare & Medical (15 templates)
+import { RegisteredNurseProPDF } from "@/components/resume/pdf/RegisteredNurseProPDF";
+import { PhysicianSpecialistPDF } from "@/components/resume/pdf/PhysicianSpecialistPDF";
+import { DentalProfessionalPDF } from "@/components/resume/pdf/DentalProfessionalPDF";
+import { PharmacistClinicalPDF } from "@/components/resume/pdf/PharmacistClinicalPDF";
+import { PhysicalTherapistPDF } from "@/components/resume/pdf/PhysicalTherapistPDF";
+import { MedicalTechnologistPDF } from "@/components/resume/pdf/MedicalTechnologistPDF";
+import { RadiologyTechnicianPDF } from "@/components/resume/pdf/RadiologyTechnicianPDF";
+import { HealthcareAdministratorPDF } from "@/components/resume/pdf/HealthcareAdministratorPDF";
+import { MentalHealthCounselorPDF } from "@/components/resume/pdf/MentalHealthCounselorPDF";
+import { OccupationalTherapistPDF } from "@/components/resume/pdf/OccupationalTherapistPDF";
+import { SpeechPathologistPDF } from "@/components/resume/pdf/SpeechPathologistPDF";
+import { VeterinaryDoctorPDF } from "@/components/resume/pdf/VeterinaryDoctorPDF";
+import { NutritionistDietitianPDF } from "@/components/resume/pdf/NutritionistDietitianPDF";
+import { MedicalAssistantPDF } from "@/components/resume/pdf/MedicalAssistantPDF";
+import { ParamedicEMTPDF } from "@/components/resume/pdf/ParamedicEMTPDF";
+// 2025 Batch 3 - Engineering (15 templates)
+import { MechanicalEngineerProPDF } from "@/components/resume/pdf/MechanicalEngineerProPDF";
+import { CivilEngineerPEPDF } from "@/components/resume/pdf/CivilEngineerPEPDF";
+import { ElectricalEngineerPDF } from "@/components/resume/pdf/ElectricalEngineerPDF";
+import { ChemicalEngineerProPDF } from "@/components/resume/pdf/ChemicalEngineerProPDF";
+import { AerospaceEngineerPDF } from "@/components/resume/pdf/AerospaceEngineerPDF";
+import { BiomedicalEngineerPDF } from "@/components/resume/pdf/BiomedicalEngineerPDF";
+import { IndustrialEngineerPDF } from "@/components/resume/pdf/IndustrialEngineerPDF";
+import { EnvironmentalEngineerPDF } from "@/components/resume/pdf/EnvironmentalEngineerPDF";
+import { PetroleumEngineerPDF } from "@/components/resume/pdf/PetroleumEngineerPDF";
+import { StructuralEngineerPDF } from "@/components/resume/pdf/StructuralEngineerPDF";
+import { ManufacturingEngineerPDF } from "@/components/resume/pdf/ManufacturingEngineerPDF";
+import { QualityAssuranceEngineerPDF } from "@/components/resume/pdf/QualityAssuranceEngineerPDF";
+import { AutomationEngineerPDF } from "@/components/resume/pdf/AutomationEngineerPDF";
+import { RoboticsEngineerPDF } from "@/components/resume/pdf/RoboticsEngineerPDF";
+import { HVACEngineerPDF } from "@/components/resume/pdf/HVACEngineerPDF";
+// 2025 Batch 3 - Sales & Marketing (15 templates)
+import { SalesExecutiveProPDF } from "@/components/resume/pdf/SalesExecutiveProPDF";
+import { AccountManagerEnterprisePDF } from "@/components/resume/pdf/AccountManagerEnterprisePDF";
+import { DigitalMarketingSpecialistPDF } from "@/components/resume/pdf/DigitalMarketingSpecialistPDF";
+import { BrandManagerStrategicPDF } from "@/components/resume/pdf/BrandManagerStrategicPDF";
+import { SEOSpecialistProPDF } from "@/components/resume/pdf/SEOSpecialistProPDF";
+import { GrowthMarketingManagerPDF } from "@/components/resume/pdf/GrowthMarketingManagerPDF";
+import { EmailMarketingSpecialistPDF } from "@/components/resume/pdf/EmailMarketingSpecialistPDF";
+import { ProductMarketingManagerPDF } from "@/components/resume/pdf/ProductMarketingManagerPDF";
+import { BusinessDevelopmentManagerPDF } from "@/components/resume/pdf/BusinessDevelopmentManagerPDF";
+import { InsideSalesRepresentativePDF } from "@/components/resume/pdf/InsideSalesRepresentativePDF";
+import { FieldSalesSpecialistPDF } from "@/components/resume/pdf/FieldSalesSpecialistPDF";
+import { CustomerSuccessManagerPDF } from "@/components/resume/pdf/CustomerSuccessManagerPDF";
+import { MarketingAnalyticsManagerPDF } from "@/components/resume/pdf/MarketingAnalyticsManagerPDF";
+import { EcommerceManagerPDF } from "@/components/resume/pdf/EcommerceManagerPDF";
+import { AffiliateMarketingManagerPDF } from "@/components/resume/pdf/AffiliateMarketingManagerPDF";
+// 2025 Batch 3 - Finance & Accounting (12 templates)
+import { FinancialAnalystCFAPDF } from "@/components/resume/pdf/FinancialAnalystCFAPDF";
+import { InvestmentBankerPDF } from "@/components/resume/pdf/InvestmentBankerPDF";
+import { CertifiedPublicAccountantPDF } from "@/components/resume/pdf/CertifiedPublicAccountantPDF";
+import { TaxSpecialistProPDF } from "@/components/resume/pdf/TaxSpecialistProPDF";
+import { FinancialControllerPDF } from "@/components/resume/pdf/FinancialControllerPDF";
+import { PortfolioManagerPDF } from "@/components/resume/pdf/PortfolioManagerPDF";
+import { RiskManagementAnalystPDF } from "@/components/resume/pdf/RiskManagementAnalystPDF";
+import { TreasuryAnalystPDF } from "@/components/resume/pdf/TreasuryAnalystPDF";
+import { ForensicAccountantPDF } from "@/components/resume/pdf/ForensicAccountantPDF";
+import { InternalAuditorPDF } from "@/components/resume/pdf/InternalAuditorPDF";
+import { BudgetAnalystPDF } from "@/components/resume/pdf/BudgetAnalystPDF";
+import { EquityResearchAnalystPDF } from "@/components/resume/pdf/EquityResearchAnalystPDF";
+// 2025 Batch 3 - Education & Teaching (10 templates)
+import { UniversityProfessorPDF } from "@/components/resume/pdf/UniversityProfessorPDF";
+import { ElementaryTeacherPDF } from "@/components/resume/pdf/ElementaryTeacherPDF";
+import { HighSchoolTeacherPDF } from "@/components/resume/pdf/HighSchoolTeacherPDF";
+import { SpecialEducationTeacherPDF } from "@/components/resume/pdf/SpecialEducationTeacherPDF";
+import { ESLTeacherCertifiedPDF } from "@/components/resume/pdf/ESLTeacherCertifiedPDF";
+import { CurriculumDeveloperPDF } from "@/components/resume/pdf/CurriculumDeveloperPDF";
+import { InstructionalDesignerPDF } from "@/components/resume/pdf/InstructionalDesignerPDF";
+import { AcademicAdvisorPDF } from "@/components/resume/pdf/AcademicAdvisorPDF";
+import { OnlineCourseInstructorPDF } from "@/components/resume/pdf/OnlineCourseInstructorPDF";
+import { PrivateTutorSpecialistPDF } from "@/components/resume/pdf/PrivateTutorSpecialistPDF";
+// 2025 Batch 3 - Legal (8 templates)
+import { CorporateAttorneyPDF } from "@/components/resume/pdf/CorporateAttorneyPDF";
+import { LitigationAttorneyPDF } from "@/components/resume/pdf/LitigationAttorneyPDF";
+import { ParalegalCertifiedPDF } from "@/components/resume/pdf/ParalegalCertifiedPDF";
+import { LegalConsultantPDF } from "@/components/resume/pdf/LegalConsultantPDF";
+import { ComplianceOfficerLegalPDF } from "@/components/resume/pdf/ComplianceOfficerLegalPDF";
+import { ContractSpecialistPDF } from "@/components/resume/pdf/ContractSpecialistPDF";
+import { IntellectualPropertyAttorneyPDF } from "@/components/resume/pdf/IntellectualPropertyAttorneyPDF";
+import { LegalOperationsManagerPDF } from "@/components/resume/pdf/LegalOperationsManagerPDF";
+// 2025 Batch 3 - Human Resources (8 templates)
+import { HRBusinessPartnerPDF } from "@/components/resume/pdf/HRBusinessPartnerPDF";
+import { TalentAcquisitionSpecialistPDF } from "@/components/resume/pdf/TalentAcquisitionSpecialistPDF";
+import { CompensationBenefitsManagerPDF } from "@/components/resume/pdf/CompensationBenefitsManagerPDF";
+import { LearningDevelopmentManagerPDF } from "@/components/resume/pdf/LearningDevelopmentManagerPDF";
+import { EmployeeRelationsSpecialistPDF } from "@/components/resume/pdf/EmployeeRelationsSpecialistPDF";
+import { HRAnalyticsManagerPDF } from "@/components/resume/pdf/HRAnalyticsManagerPDF";
+import { OrganizationalDevelopmentPDF } from "@/components/resume/pdf/OrganizationalDevelopmentPDF";
+import { DiversityInclusionManagerPDF } from "@/components/resume/pdf/DiversityInclusionManagerPDF";
+// 2025 Batch 3 - Hospitality & Culinary (7 templates)
+import { ExecutiveChefPDF } from "@/components/resume/pdf/ExecutiveChefPDF";
+import { HotelManagerOperationsPDF } from "@/components/resume/pdf/HotelManagerOperationsPDF";
+import { RestaurantManagerPDF } from "@/components/resume/pdf/RestaurantManagerPDF";
+import { EventPlannerCoordinatorPDF } from "@/components/resume/pdf/EventPlannerCoordinatorPDF";
+import { SommelierWineSpecialistPDF } from "@/components/resume/pdf/SommelierWineSpecialistPDF";
+import { PastryChefPDF } from "@/components/resume/pdf/PastryChefPDF";
+import { HospitalityDirectorPDF } from "@/components/resume/pdf/HospitalityDirectorPDF";
+// 2025 Batch 3 - Real Estate & Construction (7 templates)
+import { RealEstateBrokerPDF } from "@/components/resume/pdf/RealEstateBrokerPDF";
+import { PropertyManagerCommercialPDF } from "@/components/resume/pdf/PropertyManagerCommercialPDF";
+import { ConstructionProjectManagerPDF } from "@/components/resume/pdf/ConstructionProjectManagerPDF";
+import { ArchitectRegisteredPDF } from "@/components/resume/pdf/ArchitectRegisteredPDF";
+import { GeneralContractorPDF } from "@/components/resume/pdf/GeneralContractorPDF";
+import { EstimatorCostAnalystPDF } from "@/components/resume/pdf/EstimatorCostAnalystPDF";
+import { RealEstateAppraiserPDF } from "@/components/resume/pdf/RealEstateAppraiserPDF";
+// 2025 Batch 3 - Operations & Logistics (3 templates)
+import { SupplyChainManagerPDF } from "@/components/resume/pdf/SupplyChainManagerPDF";
+import { LogisticsCoordinatorPDF } from "@/components/resume/pdf/LogisticsCoordinatorPDF";
+import { ProcurementSpecialistPDF } from "@/components/resume/pdf/ProcurementSpecialistPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { templateMetaMap, categoryLabelMap } from "@/constants/templateMeta";
 import { analyzeResumeForATS, type AtsReport } from "@/lib/atsAnalyzer";
@@ -2795,6 +2905,116 @@ const Editor = () => {
         "marvel-app-designer": MarvelAppDesignerPDF,
         "zeplin-handoff-specialist": ZeplinHandoffSpecialistPDF,
         "abstract-version-designer": AbstractVersionDesignerPDF,
+        // 2025 Batch 3 - Healthcare & Medical PDFs (15 templates)
+        "registered-nurse-pro": RegisteredNurseProPDF,
+        "physician-specialist": PhysicianSpecialistPDF,
+        "dental-professional": DentalProfessionalPDF,
+        "pharmacist-clinical": PharmacistClinicalPDF,
+        "physical-therapist": PhysicalTherapistPDF,
+        "medical-technologist": MedicalTechnologistPDF,
+        "radiology-technician": RadiologyTechnicianPDF,
+        "healthcare-administrator": HealthcareAdministratorPDF,
+        "mental-health-counselor": MentalHealthCounselorPDF,
+        "occupational-therapist": OccupationalTherapistPDF,
+        "speech-pathologist": SpeechPathologistPDF,
+        "veterinary-doctor": VeterinaryDoctorPDF,
+        "nutritionist-dietitian": NutritionistDietitianPDF,
+        "medical-assistant": MedicalAssistantPDF,
+        "paramedic-emt": ParamedicEMTPDF,
+        // 2025 Batch 3 - Engineering PDFs (15 templates)
+        "mechanical-engineer-pro": MechanicalEngineerProPDF,
+        "civil-engineer-pe": CivilEngineerPEPDF,
+        "electrical-engineer": ElectricalEngineerPDF,
+        "chemical-engineer-pro": ChemicalEngineerProPDF,
+        "aerospace-engineer": AerospaceEngineerPDF,
+        "biomedical-engineer": BiomedicalEngineerPDF,
+        "industrial-engineer": IndustrialEngineerPDF,
+        "environmental-engineer": EnvironmentalEngineerPDF,
+        "petroleum-engineer": PetroleumEngineerPDF,
+        "structural-engineer": StructuralEngineerPDF,
+        "manufacturing-engineer": ManufacturingEngineerPDF,
+        "quality-assurance-engineer": QualityAssuranceEngineerPDF,
+        "automation-engineer": AutomationEngineerPDF,
+        "robotics-engineer": RoboticsEngineerPDF,
+        "hvac-engineer": HVACEngineerPDF,
+        // 2025 Batch 3 - Sales & Marketing PDFs (15 templates)
+        "sales-executive-pro": SalesExecutiveProPDF,
+        "account-manager-enterprise": AccountManagerEnterprisePDF,
+        "digital-marketing-specialist": DigitalMarketingSpecialistPDF,
+        "brand-manager-strategic": BrandManagerStrategicPDF,
+        "seo-specialist-pro": SEOSpecialistProPDF,
+        "growth-marketing-manager": GrowthMarketingManagerPDF,
+        "email-marketing-specialist": EmailMarketingSpecialistPDF,
+        "product-marketing-manager": ProductMarketingManagerPDF,
+        "business-development-manager": BusinessDevelopmentManagerPDF,
+        "inside-sales-representative": InsideSalesRepresentativePDF,
+        "field-sales-specialist": FieldSalesSpecialistPDF,
+        "customer-success-manager": CustomerSuccessManagerPDF,
+        "marketing-analytics-manager": MarketingAnalyticsManagerPDF,
+        "ecommerce-manager": EcommerceManagerPDF,
+        "affiliate-marketing-manager": AffiliateMarketingManagerPDF,
+        // 2025 Batch 3 - Finance & Accounting PDFs (12 templates)
+        "financial-analyst-cfa": FinancialAnalystCFAPDF,
+        "investment-banker": InvestmentBankerPDF,
+        "certified-public-accountant": CertifiedPublicAccountantPDF,
+        "tax-specialist-pro": TaxSpecialistProPDF,
+        "financial-controller": FinancialControllerPDF,
+        "portfolio-manager": PortfolioManagerPDF,
+        "risk-management-analyst": RiskManagementAnalystPDF,
+        "treasury-analyst": TreasuryAnalystPDF,
+        "forensic-accountant": ForensicAccountantPDF,
+        "internal-auditor": InternalAuditorPDF,
+        "budget-analyst": BudgetAnalystPDF,
+        "equity-research-analyst": EquityResearchAnalystPDF,
+        // 2025 Batch 3 - Education & Teaching PDFs (10 templates)
+        "university-professor": UniversityProfessorPDF,
+        "elementary-teacher": ElementaryTeacherPDF,
+        "high-school-teacher": HighSchoolTeacherPDF,
+        "special-education-teacher": SpecialEducationTeacherPDF,
+        "esl-teacher-certified": ESLTeacherCertifiedPDF,
+        "curriculum-developer": CurriculumDeveloperPDF,
+        "instructional-designer": InstructionalDesignerPDF,
+        "academic-advisor": AcademicAdvisorPDF,
+        "online-course-instructor": OnlineCourseInstructorPDF,
+        "private-tutor-specialist": PrivateTutorSpecialistPDF,
+        // 2025 Batch 3 - Legal PDFs (8 templates)
+        "corporate-attorney": CorporateAttorneyPDF,
+        "litigation-attorney": LitigationAttorneyPDF,
+        "paralegal-certified": ParalegalCertifiedPDF,
+        "legal-consultant": LegalConsultantPDF,
+        "compliance-officer-legal": ComplianceOfficerLegalPDF,
+        "contract-specialist": ContractSpecialistPDF,
+        "intellectual-property-attorney": IntellectualPropertyAttorneyPDF,
+        "legal-operations-manager": LegalOperationsManagerPDF,
+        // 2025 Batch 3 - Human Resources PDFs (8 templates)
+        "hr-business-partner": HRBusinessPartnerPDF,
+        "talent-acquisition-specialist": TalentAcquisitionSpecialistPDF,
+        "compensation-benefits-manager": CompensationBenefitsManagerPDF,
+        "learning-development-manager": LearningDevelopmentManagerPDF,
+        "employee-relations-specialist": EmployeeRelationsSpecialistPDF,
+        "hr-analytics-manager": HRAnalyticsManagerPDF,
+        "organizational-development": OrganizationalDevelopmentPDF,
+        "diversity-inclusion-manager": DiversityInclusionManagerPDF,
+        // 2025 Batch 3 - Hospitality & Culinary PDFs (7 templates)
+        "executive-chef": ExecutiveChefPDF,
+        "hotel-manager-operations": HotelManagerOperationsPDF,
+        "restaurant-manager": RestaurantManagerPDF,
+        "event-planner-coordinator": EventPlannerCoordinatorPDF,
+        "sommelier-wine-specialist": SommelierWineSpecialistPDF,
+        "pastry-chef": PastryChefPDF,
+        "hospitality-director": HospitalityDirectorPDF,
+        // 2025 Batch 3 - Real Estate & Construction PDFs (7 templates)
+        "real-estate-broker": RealEstateBrokerPDF,
+        "property-manager-commercial": PropertyManagerCommercialPDF,
+        "construction-project-manager": ConstructionProjectManagerPDF,
+        "architect-registered": ArchitectRegisteredPDF,
+        "general-contractor": GeneralContractorPDF,
+        "estimator-cost-analyst": EstimatorCostAnalystPDF,
+        "real-estate-appraiser": RealEstateAppraiserPDF,
+        // 2025 Batch 3 - Operations & Logistics PDFs (3 templates)
+        "supply-chain-manager": SupplyChainManagerPDF,
+        "logistics-coordinator": LogisticsCoordinatorPDF,
+        "procurement-specialist": ProcurementSpecialistPDF,
       };
 
       const PDFTemplate =
