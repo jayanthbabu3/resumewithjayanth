@@ -976,13 +976,13 @@ import { BoldTypographyUniversalTemplate } from "@/components/resume/templates/B
 import { BootcampPortfolioTemplate } from "@/components/resume/templates/BootcampPortfolioTemplate";
 import { BorderFrameUniversalTemplate } from "@/components/resume/templates/BorderFrameUniversalTemplate";
 import { BoxedSectionsUniversalTemplate } from "@/components/resume/templates/BoxedSectionsUniversalTemplate";
-import { BrandDesignerTemplate } from "@/components/resume/templates/BrandDesignerTemplate";
+import { BrandDesignerTemplateTemplate } from "@/components/resume/templates/BrandDesignerTemplateTemplate";
 import { BrandIdentityTemplate } from "@/components/resume/templates/BrandIdentityTemplate";
 import { BrandManagerTemplate } from "@/components/resume/templates/BrandManagerTemplate";
 import { BrandedProfessionalTemplate } from "@/components/resume/templates/BrandedProfessionalTemplate";
 import { BrightGraduateTemplate } from "@/components/resume/templates/BrightGraduateTemplate";
 import { BusinessCleanLayoutTemplate } from "@/components/resume/templates/BusinessCleanLayoutTemplate";
-import { BusinessClearTemplate } from "@/components/resume/templates/BusinessClearTemplate";
+import { BusinessClearTemplateTemplate } from "@/components/resume/templates/BusinessClearTemplateTemplate";
 import { BusinessModernGridTemplate } from "@/components/resume/templates/BusinessModernGridTemplate";
 import { BusinessSidebarProTemplate } from "@/components/resume/templates/BusinessSidebarProTemplate";
 import { BusinessSimpleModernTemplate } from "@/components/resume/templates/BusinessSimpleModernTemplate";
@@ -1041,7 +1041,7 @@ import { CorporateLawTemplate } from "@/components/resume/templates/CorporateLaw
 import { CorporateLegalCounselTemplate } from "@/components/resume/templates/CorporateLegalCounselTemplate";
 import { CorporateMinimalistProTemplate } from "@/components/resume/templates/CorporateMinimalistProTemplate";
 import { CorporateMomentumTemplate } from "@/components/resume/templates/CorporateMomentumTemplate";
-import { CorporateSimpleTemplate } from "@/components/resume/templates/CorporateSimpleTemplate";
+import { CorporateSimpleTemplateTemplate } from "@/components/resume/templates/CorporateSimpleTemplateTemplate";
 import { CorporateVisionTemplate } from "@/components/resume/templates/CorporateVisionTemplate";
 import { CosmosProfessionalTemplate } from "@/components/resume/templates/CosmosProfessionalTemplate";
 import { CraftArtistTemplate } from "@/components/resume/templates/CraftArtistTemplate";
@@ -1112,7 +1112,7 @@ import { ExecutiveCleanSplitTemplate } from "@/components/resume/templates/Execu
 import { ExecutiveCoreTemplate } from "@/components/resume/templates/ExecutiveCoreTemplate";
 import { ExecutiveCornerAccentTemplate } from "@/components/resume/templates/ExecutiveCornerAccentTemplate";
 import { ExecutiveDirectLayoutTemplate } from "@/components/resume/templates/ExecutiveDirectLayoutTemplate";
-import { ExecutiveEasyTemplate } from "@/components/resume/templates/ExecutiveEasyTemplate";
+import { ExecutiveEasyTemplateTemplate } from "@/components/resume/templates/ExecutiveEasyTemplateTemplate";
 import { ExecutiveLeadershipTemplate } from "@/components/resume/templates/ExecutiveLeadershipTemplate";
 import { ExecutiveLetterheadUniversalTemplate } from "@/components/resume/templates/ExecutiveLetterheadUniversalTemplate";
 import { ExecutivePlainLayoutTemplate } from "@/components/resume/templates/ExecutivePlainLayoutTemplate";
@@ -1202,7 +1202,7 @@ import { InteractivePortfolioDesignerTemplate } from "@/components/resume/templa
 import { InterfaceMasterTemplate } from "@/components/resume/templates/InterfaceMasterTemplate";
 import { InternshipShowcaseTemplate } from "@/components/resume/templates/InternshipShowcaseTemplate";
 import { JAMStackDeveloperTemplate } from "@/components/resume/templates/JAMStackDeveloperTemplate";
-import { JavaEnterpriseTemplate } from "@/components/resume/templates/JavaEnterpriseTemplate";
+import { JavaEnterpriseTemplateTemplate } from "@/components/resume/templates/JavaEnterpriseTemplateTemplate";
 import { JsonResumeTemplate } from "@/components/resume/templates/JsonResumeTemplate";
 import { KafkaStreamingExpertTemplate } from "@/components/resume/templates/KafkaStreamingExpertTemplate";
 import { KaggleDataScientistTemplate } from "@/components/resume/templates/KaggleDataScientistTemplate";
@@ -1237,7 +1237,7 @@ import { MicroservicesExpertTemplate } from "@/components/resume/templates/Micro
 import { MilestoneGraduateTemplate } from "@/components/resume/templates/MilestoneGraduateTemplate";
 import { MinimalChicTemplate } from "@/components/resume/templates/MinimalChicTemplate";
 import { MinimalCorporateProTemplate } from "@/components/resume/templates/MinimalCorporateProTemplate";
-import { MinimalDirectTemplate } from "@/components/resume/templates/MinimalDirectTemplate";
+import { MinimalDirectTemplateTemplate } from "@/components/resume/templates/MinimalDirectTemplateTemplate";
 import { MinimalEleganceUniversalTemplate } from "@/components/resume/templates/MinimalEleganceUniversalTemplate";
 import { MinimalLinesUniversalTemplate } from "@/components/resume/templates/MinimalLinesUniversalTemplate";
 import { MinimalProLayoutTemplate } from "@/components/resume/templates/MinimalProLayoutTemplate";
@@ -1294,7 +1294,7 @@ import { PathwayGraduateTemplate } from "@/components/resume/templates/PathwayGr
 import { PatreonCreativeTemplate } from "@/components/resume/templates/PatreonCreativeTemplate";
 import { PhDCandidateTemplate } from "@/components/resume/templates/PhDCandidateTemplate";
 import { PhotographyLayoutTemplate } from "@/components/resume/templates/PhotographyLayoutTemplate";
-import { PhotographyProTemplate } from "@/components/resume/templates/PhotographyProTemplate";
+import { PhotographyProTemplateTemplate } from "@/components/resume/templates/PhotographyProTemplateTemplate";
 import { PinnacleEliteTemplate } from "@/components/resume/templates/PinnacleEliteTemplate";
 import { PinterestDesignerTemplate } from "@/components/resume/templates/PinterestDesignerTemplate";
 import { PioneerFresherTemplate } from "@/components/resume/templates/PioneerFresherTemplate";
@@ -1366,7 +1366,7 @@ import { SimpleClearBusinessTemplate } from "@/components/resume/templates/Simpl
 import { SimpleExecutiveLayoutTemplate } from "@/components/resume/templates/SimpleExecutiveLayoutTemplate";
 import { SimpleModernExecutiveTemplate } from "@/components/resume/templates/SimpleModernExecutiveTemplate";
 import { SimpleProfessionalCleanTemplate } from "@/components/resume/templates/SimpleProfessionalCleanTemplate";
-import { SimpleStructuredTemplate } from "@/components/resume/templates/SimpleStructuredTemplate";
+import { SimpleStructuredTemplateTemplate } from "@/components/resume/templates/SimpleStructuredTemplateTemplate";
 import { SketchExpertPortfolioTemplate } from "@/components/resume/templates/SketchExpertPortfolioTemplate";
 import { SocialCreativeInfluencerTemplate } from "@/components/resume/templates/SocialCreativeInfluencerTemplate";
 import { SocialExecutiveTemplate } from "@/components/resume/templates/SocialExecutiveTemplate";
@@ -1441,7 +1441,7 @@ import { VintagePosterTemplate } from "@/components/resume/templates/VintagePost
 import { VisionDesignerTemplate } from "@/components/resume/templates/VisionDesignerTemplate";
 import { VisionaryCreativeTemplate } from "@/components/resume/templates/VisionaryCreativeTemplate";
 import { VisualDesignerShowcaseTemplate } from "@/components/resume/templates/VisualDesignerShowcaseTemplate";
-import { VisualStorytellerTemplate } from "@/components/resume/templates/VisualStorytellerTemplate";
+import { VisualStorytellerTemplateTemplate } from "@/components/resume/templates/VisualStorytellerTemplateTemplate";
 import { VueJSDeveloperTemplate } from "@/components/resume/templates/VueJSDeveloperTemplate";
 import { WatermarkStyleUniversalTemplate } from "@/components/resume/templates/WatermarkStyleUniversalTemplate";
 import { WavePatternUniversalTemplate } from "@/components/resume/templates/WavePatternUniversalTemplate";
@@ -2608,13 +2608,13 @@ const displayTemplates: Record<string, any> = {
   "bootcamp-portfolio": BootcampPortfolioTemplate,
   "border-frame-universal": BorderFrameUniversalTemplate,
   "boxed-sections-universal": BoxedSectionsUniversalTemplate,
-  "brand-designer": BrandDesignerTemplate,
+  "brand-designer": BrandDesignerTemplateTemplate,
   "brand-identity": BrandIdentityTemplate,
   "brand-manager": BrandManagerTemplate,
   "branded-professional": BrandedProfessionalTemplate,
   "bright-graduate": BrightGraduateTemplate,
   "business-clean-layout": BusinessCleanLayoutTemplate,
-  "business-clear": BusinessClearTemplate,
+  "business-clear": BusinessClearTemplateTemplate,
   "business-modern-grid": BusinessModernGridTemplate,
   "business-sidebar-pro": BusinessSidebarProTemplate,
   "business-simple-modern": BusinessSimpleModernTemplate,
@@ -2673,7 +2673,7 @@ const displayTemplates: Record<string, any> = {
   "corporate-legal-counsel": CorporateLegalCounselTemplate,
   "corporate-minimalist-pro": CorporateMinimalistProTemplate,
   "corporate-momentum": CorporateMomentumTemplate,
-  "corporate-simple": CorporateSimpleTemplate,
+  "corporate-simple": CorporateSimpleTemplateTemplate,
   "corporate-vision": CorporateVisionTemplate,
   "cosmos-professional": CosmosProfessionalTemplate,
   "craft-artist": CraftArtistTemplate,
@@ -2744,7 +2744,7 @@ const displayTemplates: Record<string, any> = {
   "executive-core": ExecutiveCoreTemplate,
   "executive-corner-accent": ExecutiveCornerAccentTemplate,
   "executive-direct-layout": ExecutiveDirectLayoutTemplate,
-  "executive-easy": ExecutiveEasyTemplate,
+  "executive-easy": ExecutiveEasyTemplateTemplate,
   "executive-leadership": ExecutiveLeadershipTemplate,
   "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
   "executive-plain-layout": ExecutivePlainLayoutTemplate,
@@ -2834,7 +2834,7 @@ const displayTemplates: Record<string, any> = {
   "interface-master": InterfaceMasterTemplate,
   "internship-showcase": InternshipShowcaseTemplate,
   "jam-stack-developer": JAMStackDeveloperTemplate,
-  "java-enterprise": JavaEnterpriseTemplate,
+  "java-enterprise": JavaEnterpriseTemplateTemplate,
   "json-resume": JsonResumeTemplate,
   "kafka-streaming-expert": KafkaStreamingExpertTemplate,
   "kaggle-data-scientist": KaggleDataScientistTemplate,
@@ -2869,7 +2869,7 @@ const displayTemplates: Record<string, any> = {
   "milestone-graduate": MilestoneGraduateTemplate,
   "minimal-chic": MinimalChicTemplate,
   "minimal-corporate-pro": MinimalCorporateProTemplate,
-  "minimal-direct": MinimalDirectTemplate,
+  "minimal-direct": MinimalDirectTemplateTemplate,
   "minimal-elegance-universal": MinimalEleganceUniversalTemplate,
   "minimal-lines-universal": MinimalLinesUniversalTemplate,
   "minimal-pro-layout": MinimalProLayoutTemplate,
@@ -2926,7 +2926,7 @@ const displayTemplates: Record<string, any> = {
   "patreon-creative": PatreonCreativeTemplate,
   "ph-d-candidate": PhDCandidateTemplate,
   "photography-layout": PhotographyLayoutTemplate,
-  "photography-pro": PhotographyProTemplate,
+  "photography-pro": PhotographyProTemplateTemplate,
   "pinnacle-elite": PinnacleEliteTemplate,
   "pinterest-designer": PinterestDesignerTemplate,
   "pioneer-fresher": PioneerFresherTemplate,
@@ -2998,7 +2998,7 @@ const displayTemplates: Record<string, any> = {
   "simple-executive-layout": SimpleExecutiveLayoutTemplate,
   "simple-modern-executive": SimpleModernExecutiveTemplate,
   "simple-professional-clean": SimpleProfessionalCleanTemplate,
-  "simple-structured": SimpleStructuredTemplate,
+  "simple-structured": SimpleStructuredTemplateTemplate,
   "sketch-expert-portfolio": SketchExpertPortfolioTemplate,
   "social-creative-influencer": SocialCreativeInfluencerTemplate,
   "social-executive": SocialExecutiveTemplate,
@@ -3073,7 +3073,7 @@ const displayTemplates: Record<string, any> = {
   "vision-designer": VisionDesignerTemplate,
   "visionary-creative": VisionaryCreativeTemplate,
   "visual-designer-showcase": VisualDesignerShowcaseTemplate,
-  "visual-storyteller": VisualStorytellerTemplate,
+  "visual-storyteller": VisualStorytellerTemplateTemplate,
   "vue-js-developer": VueJSDeveloperTemplate,
   "watermark-style-universal": WatermarkStyleUniversalTemplate,
   "wave-pattern-universal": WavePatternUniversalTemplate,
