@@ -132,6 +132,107 @@ import { TechStackProPDF } from "@/components/resume/pdf/TechStackProPDF";
 import { TerminalThemePDF } from "@/components/resume/pdf/TerminalThemePDF";
 import { TimelineElegancePDF } from "@/components/resume/pdf/TimelineElegancePDF";
 import { TwoToneClassicPDF } from "@/components/resume/pdf/TwoToneClassicPDF";
+// 2025 New Templates (100 PDF imports)
+import { StrategicLeadershipPDF } from "@/components/resume/pdf/StrategicLeadershipPDF";
+import { CorporateExcellencePDF } from "@/components/resume/pdf/CorporateExcellencePDF";
+import { ExecutivePrestigePDF } from "@/components/resume/pdf/ExecutivePrestigePDF";
+import { GlobalExecutiveProPDF } from "@/components/resume/pdf/GlobalExecutiveProPDF";
+import { PremiumCorporateEdgePDF } from "@/components/resume/pdf/PremiumCorporateEdgePDF";
+import { EnterpriseLeaderPDF } from "@/components/resume/pdf/EnterpriseLeaderPDF";
+import { BoardroomReadyPDF } from "@/components/resume/pdf/BoardroomReadyPDF";
+import { CSuiteModernPDF } from "@/components/resume/pdf/CSuiteModernPDF";
+import { ExecutiveImpactPDF } from "@/components/resume/pdf/ExecutiveImpactPDF";
+import { CorporateVisionaryPDF } from "@/components/resume/pdf/CorporateVisionaryPDF";
+import { PlatinumExecutivePDF } from "@/components/resume/pdf/PlatinumExecutivePDF";
+import { GlobalLeadershipPDF } from "@/components/resume/pdf/GlobalLeadershipPDF";
+import { SeniorExecutiveProPDF } from "@/components/resume/pdf/SeniorExecutiveProPDF";
+import { CorporateElitePlusPDF } from "@/components/resume/pdf/CorporateElitePlusPDF";
+import { ExecutivePinnaclePDF } from "@/components/resume/pdf/ExecutivePinnaclePDF";
+import { CorporateDistinctionPDF } from "@/components/resume/pdf/CorporateDistinctionPDF";
+import { LeadershipSummitPDF } from "@/components/resume/pdf/LeadershipSummitPDF";
+import { ExecutiveAuthorityPDF } from "@/components/resume/pdf/ExecutiveAuthorityPDF";
+import { CorporatePremierPDF } from "@/components/resume/pdf/CorporatePremierPDF";
+import { GlobalEnterprisePDF } from "@/components/resume/pdf/GlobalEnterprisePDF";
+import { ExecutiveSignaturePDF } from "@/components/resume/pdf/ExecutiveSignaturePDF";
+import { CorporateApexPDF } from "@/components/resume/pdf/CorporateApexPDF";
+import { StrategicExecutivePlusPDF } from "@/components/resume/pdf/StrategicExecutivePlusPDF";
+import { CorporateParadigmPDF } from "@/components/resume/pdf/CorporateParadigmPDF";
+import { ExecutiveMagnitudePDF } from "@/components/resume/pdf/ExecutiveMagnitudePDF";
+import { CorporateSovereignPDF } from "@/components/resume/pdf/CorporateSovereignPDF";
+import { LeadershipZenithPDF } from "@/components/resume/pdf/LeadershipZenithPDF";
+import { ExecutiveNexusPDF } from "@/components/resume/pdf/ExecutiveNexusPDF";
+import { CorporateVanguardPDF } from "@/components/resume/pdf/CorporateVanguardPDF";
+import { ExecutiveAscendancyPDF } from "@/components/resume/pdf/ExecutiveAscendancyPDF";
+import { VueSpecialistPDF } from "@/components/resume/pdf/VueSpecialistPDF";
+import { SvelteDeveloperPDF } from "@/components/resume/pdf/SvelteDeveloperPDF";
+import { FlutterEngineerPDF } from "@/components/resume/pdf/FlutterEngineerPDF";
+import { SwiftIOSDeveloperPDF } from "@/components/resume/pdf/SwiftIOSDeveloperPDF";
+import { RustSystemsEngineerPDF } from "@/components/resume/pdf/RustSystemsEngineerPDF";
+import { ScalaBackendEngineerPDF } from "@/components/resume/pdf/ScalaBackendEngineerPDF";
+import { ElixirDeveloperPDF } from "@/components/resume/pdf/ElixirDeveloperPDF";
+import { GraphQLArchitectPDF } from "@/components/resume/pdf/GraphQLArchitectPDF";
+import { TypeScriptExpertPDF } from "@/components/resume/pdf/TypeScriptExpertPDF";
+import { NextJSFullstackPDF } from "@/components/resume/pdf/NextJSFullstackPDF";
+import { NestJSBackendPDF } from "@/components/resume/pdf/NestJSBackendPDF";
+import { DjangoFullstackPDF } from "@/components/resume/pdf/DjangoFullstackPDF";
+import { SpringBootDeveloperPDF } from "@/components/resume/pdf/SpringBootDeveloperPDF";
+import { PostgreSQLDBAPDF } from "@/components/resume/pdf/PostgreSQLDBAPDF";
+import { MongoDBSpecialistPDF } from "@/components/resume/pdf/MongoDBSpecialistPDF";
+import { RedisEngineerPDF } from "@/components/resume/pdf/RedisEngineerPDF";
+import { ElasticsearchExpertPDF } from "@/components/resume/pdf/ElasticsearchExpertPDF";
+import { TerraformDevOpsPDF } from "@/components/resume/pdf/TerraformDevOpsPDF";
+import { AnsibleAutomationPDF } from "@/components/resume/pdf/AnsibleAutomationPDF";
+import { JenkinsCICDPDF } from "@/components/resume/pdf/JenkinsCICDPDF";
+import { KafkaStreamingPDF } from "@/components/resume/pdf/KafkaStreamingPDF";
+import { RabbitMQSpecialistPDF } from "@/components/resume/pdf/RabbitMQSpecialistPDF";
+import { GRPCDeveloperPDF } from "@/components/resume/pdf/GRPCDeveloperPDF";
+import { WebAssemblyEngineerPDF } from "@/components/resume/pdf/WebAssemblyEngineerPDF";
+import { UnityGameDeveloperPDF } from "@/components/resume/pdf/UnityGameDeveloperPDF";
+import { AcademicAchieverPDF } from "@/components/resume/pdf/AcademicAchieverPDF";
+import { GraduateInnovatorPDF } from "@/components/resume/pdf/GraduateInnovatorPDF";
+import { CampusLeaderPDF } from "@/components/resume/pdf/CampusLeaderPDF";
+import { ScholarshipGraduatePDF } from "@/components/resume/pdf/ScholarshipGraduatePDF";
+import { HonorsStudentPDF } from "@/components/resume/pdf/HonorsStudentPDF";
+import { STEMGraduatePDF } from "@/components/resume/pdf/STEMGraduatePDF";
+import { InternshipReadyPDF } from "@/components/resume/pdf/InternshipReadyPDF";
+import { ResearchGraduatePDF } from "@/components/resume/pdf/ResearchGraduatePDF";
+import { EntrepreneurialGraduatePDF } from "@/components/resume/pdf/EntrepreneurialGraduatePDF";
+import { VolunteerLeaderPDF } from "@/components/resume/pdf/VolunteerLeaderPDF";
+import { CodingBootcampGradPDF } from "@/components/resume/pdf/CodingBootcampGradPDF";
+import { LiberalArtsGraduatePDF } from "@/components/resume/pdf/LiberalArtsGraduatePDF";
+import { BusinessGraduatePDF } from "@/components/resume/pdf/BusinessGraduatePDF";
+import { EngineeringFresherPDF } from "@/components/resume/pdf/EngineeringFresherPDF";
+import { DesignSchoolGradPDF } from "@/components/resume/pdf/DesignSchoolGradPDF";
+import { MastersGraduatePDF } from "@/components/resume/pdf/MastersGraduatePDF";
+import { PhDCandidatePDF } from "@/components/resume/pdf/PhDCandidatePDF";
+import { StudentAthletePDF } from "@/components/resume/pdf/StudentAthletePDF";
+import { StudyAbroadGraduatePDF } from "@/components/resume/pdf/StudyAbroadGraduatePDF";
+import { DualDegreeGraduatePDF } from "@/components/resume/pdf/DualDegreeGraduatePDF";
+import { PortfolioArtistPDF } from "@/components/resume/pdf/PortfolioArtistPDF";
+import { MotionDesignerPDF } from "@/components/resume/pdf/MotionDesignerPDF";
+import { BrandStrategistPDF } from "@/components/resume/pdf/BrandStrategistPDF";
+import { ContentCreatorPDF } from "@/components/resume/pdf/ContentCreatorPDF";
+import { IllustratorArtistPDF } from "@/components/resume/pdf/IllustratorArtistPDF";
+import { VideoProducerPDF } from "@/components/resume/pdf/VideoProducerPDF";
+import { CopywriterCreativePDF } from "@/components/resume/pdf/CopywriterCreativePDF";
+import { ArtDirectorProPDF } from "@/components/resume/pdf/ArtDirectorProPDF";
+import { PhotographerProPDF } from "@/components/resume/pdf/PhotographerProPDF";
+import { TypographerSpecialistPDF } from "@/components/resume/pdf/TypographerSpecialistPDF";
+import { DigitalArtistPDF } from "@/components/resume/pdf/DigitalArtistPDF";
+import { CreativeDirectorElitePDF } from "@/components/resume/pdf/CreativeDirectorElitePDF";
+import { SocialMediaCreativePDF } from "@/components/resume/pdf/SocialMediaCreativePDF";
+import { AnimationArtistPDF } from "@/components/resume/pdf/AnimationArtistPDF";
+import { MultimediaDesignerPDF } from "@/components/resume/pdf/MultimediaDesignerPDF";
+import { UXResearcherPDF } from "@/components/resume/pdf/UXResearcherPDF";
+import { UISpecialistPDF } from "@/components/resume/pdf/UISpecialistPDF";
+import { ProductDesignerProPDF } from "@/components/resume/pdf/ProductDesignerProPDF";
+import { InteractionDesignerPDF } from "@/components/resume/pdf/InteractionDesignerPDF";
+import { ServiceDesignerPDF } from "@/components/resume/pdf/ServiceDesignerPDF";
+import { DesignSystemsArchitectPDF } from "@/components/resume/pdf/DesignSystemsArchitectPDF";
+import { AccessibilityDesignerPDF } from "@/components/resume/pdf/AccessibilityDesignerPDF";
+import { DesignLeadPDF } from "@/components/resume/pdf/DesignLeadPDF";
+import { DesignStrategistPDF } from "@/components/resume/pdf/DesignStrategistPDF";
+import { VisualDesignerProPDF } from "@/components/resume/pdf/VisualDesignerProPDF";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { getTemplateDefaults, type ResumeData } from "@/pages/Editor";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
@@ -303,6 +404,107 @@ import { TechStackProTemplate } from "@/components/resume/templates/TechStackPro
 import { TerminalThemeTemplate } from "@/components/resume/templates/TerminalThemeTemplate";
 import { TimelineEleganceTemplate } from "@/components/resume/templates/TimelineEleganceTemplate";
 import { TwoToneClassicTemplate } from "@/components/resume/templates/TwoToneClassicTemplate";
+// 2025 New Templates (100 HTML imports)
+import { StrategicLeadershipTemplate } from "@/components/resume/templates/StrategicLeadershipTemplate";
+import { CorporateExcellenceTemplate } from "@/components/resume/templates/CorporateExcellenceTemplate";
+import { ExecutivePrestigeTemplate } from "@/components/resume/templates/ExecutivePrestigeTemplate";
+import { GlobalExecutiveProTemplate } from "@/components/resume/templates/GlobalExecutiveProTemplate";
+import { PremiumCorporateEdgeTemplate } from "@/components/resume/templates/PremiumCorporateEdgeTemplate";
+import { EnterpriseLeaderTemplate } from "@/components/resume/templates/EnterpriseLeaderTemplate";
+import { BoardroomReadyTemplate } from "@/components/resume/templates/BoardroomReadyTemplate";
+import { CSuiteModernTemplate } from "@/components/resume/templates/CSuiteModernTemplate";
+import { ExecutiveImpactTemplate } from "@/components/resume/templates/ExecutiveImpactTemplate";
+import { CorporateVisionaryTemplate } from "@/components/resume/templates/CorporateVisionaryTemplate";
+import { PlatinumExecutiveTemplate } from "@/components/resume/templates/PlatinumExecutiveTemplate";
+import { GlobalLeadershipTemplate } from "@/components/resume/templates/GlobalLeadershipTemplate";
+import { SeniorExecutiveProTemplate } from "@/components/resume/templates/SeniorExecutiveProTemplate";
+import { CorporateElitePlusTemplate } from "@/components/resume/templates/CorporateElitePlusTemplate";
+import { ExecutivePinnacleTemplate } from "@/components/resume/templates/ExecutivePinnacleTemplate";
+import { CorporateDistinctionTemplate } from "@/components/resume/templates/CorporateDistinctionTemplate";
+import { LeadershipSummitTemplate } from "@/components/resume/templates/LeadershipSummitTemplate";
+import { ExecutiveAuthorityTemplate } from "@/components/resume/templates/ExecutiveAuthorityTemplate";
+import { CorporatePremierTemplate } from "@/components/resume/templates/CorporatePremierTemplate";
+import { GlobalEnterpriseTemplate } from "@/components/resume/templates/GlobalEnterpriseTemplate";
+import { ExecutiveSignatureTemplate } from "@/components/resume/templates/ExecutiveSignatureTemplate";
+import { CorporateApexTemplate } from "@/components/resume/templates/CorporateApexTemplate";
+import { StrategicExecutivePlusTemplate } from "@/components/resume/templates/StrategicExecutivePlusTemplate";
+import { CorporateParadigmTemplate } from "@/components/resume/templates/CorporateParadigmTemplate";
+import { ExecutiveMagnitudeTemplate } from "@/components/resume/templates/ExecutiveMagnitudeTemplate";
+import { CorporateSovereignTemplate } from "@/components/resume/templates/CorporateSovereignTemplate";
+import { LeadershipZenithTemplate } from "@/components/resume/templates/LeadershipZenithTemplate";
+import { ExecutiveNexusTemplate } from "@/components/resume/templates/ExecutiveNexusTemplate";
+import { CorporateVanguardTemplate } from "@/components/resume/templates/CorporateVanguardTemplate";
+import { ExecutiveAscendancyTemplate } from "@/components/resume/templates/ExecutiveAscendancyTemplate";
+import { VueSpecialistTemplate } from "@/components/resume/templates/VueSpecialistTemplate";
+import { SvelteDeveloperTemplate } from "@/components/resume/templates/SvelteDeveloperTemplate";
+import { FlutterEngineerTemplate } from "@/components/resume/templates/FlutterEngineerTemplate";
+import { SwiftIOSDeveloperTemplate } from "@/components/resume/templates/SwiftIOSDeveloperTemplate";
+import { RustSystemsEngineerTemplate } from "@/components/resume/templates/RustSystemsEngineerTemplate";
+import { ScalaBackendEngineerTemplate } from "@/components/resume/templates/ScalaBackendEngineerTemplate";
+import { ElixirDeveloperTemplate } from "@/components/resume/templates/ElixirDeveloperTemplate";
+import { GraphQLArchitectTemplate } from "@/components/resume/templates/GraphQLArchitectTemplate";
+import { TypeScriptExpertTemplate } from "@/components/resume/templates/TypeScriptExpertTemplate";
+import { NextJSFullstackTemplate } from "@/components/resume/templates/NextJSFullstackTemplate";
+import { NestJSBackendTemplate } from "@/components/resume/templates/NestJSBackendTemplate";
+import { DjangoFullstackTemplate } from "@/components/resume/templates/DjangoFullstackTemplate";
+import { SpringBootDeveloperTemplate } from "@/components/resume/templates/SpringBootDeveloperTemplate";
+import { PostgreSQLDBATemplate } from "@/components/resume/templates/PostgreSQLDBATemplate";
+import { MongoDBSpecialistTemplate } from "@/components/resume/templates/MongoDBSpecialistTemplate";
+import { RedisEngineerTemplate } from "@/components/resume/templates/RedisEngineerTemplate";
+import { ElasticsearchExpertTemplate } from "@/components/resume/templates/ElasticsearchExpertTemplate";
+import { TerraformDevOpsTemplate } from "@/components/resume/templates/TerraformDevOpsTemplate";
+import { AnsibleAutomationTemplate } from "@/components/resume/templates/AnsibleAutomationTemplate";
+import { JenkinsCICDTemplate } from "@/components/resume/templates/JenkinsCICDTemplate";
+import { KafkaStreamingTemplate } from "@/components/resume/templates/KafkaStreamingTemplate";
+import { RabbitMQSpecialistTemplate } from "@/components/resume/templates/RabbitMQSpecialistTemplate";
+import { GRPCDeveloperTemplate } from "@/components/resume/templates/GRPCDeveloperTemplate";
+import { WebAssemblyEngineerTemplate } from "@/components/resume/templates/WebAssemblyEngineerTemplate";
+import { UnityGameDeveloperTemplate } from "@/components/resume/templates/UnityGameDeveloperTemplate";
+import { AcademicAchieverTemplate } from "@/components/resume/templates/AcademicAchieverTemplate";
+import { GraduateInnovatorTemplate } from "@/components/resume/templates/GraduateInnovatorTemplate";
+import { CampusLeaderTemplate } from "@/components/resume/templates/CampusLeaderTemplate";
+import { ScholarshipGraduateTemplate } from "@/components/resume/templates/ScholarshipGraduateTemplate";
+import { HonorsStudentTemplate } from "@/components/resume/templates/HonorsStudentTemplate";
+import { STEMGraduateTemplate } from "@/components/resume/templates/STEMGraduateTemplate";
+import { InternshipReadyTemplate } from "@/components/resume/templates/InternshipReadyTemplate";
+import { ResearchGraduateTemplate } from "@/components/resume/templates/ResearchGraduateTemplate";
+import { EntrepreneurialGraduateTemplate } from "@/components/resume/templates/EntrepreneurialGraduateTemplate";
+import { VolunteerLeaderTemplate } from "@/components/resume/templates/VolunteerLeaderTemplate";
+import { CodingBootcampGradTemplate } from "@/components/resume/templates/CodingBootcampGradTemplate";
+import { LiberalArtsGraduateTemplate } from "@/components/resume/templates/LiberalArtsGraduateTemplate";
+import { BusinessGraduateTemplate } from "@/components/resume/templates/BusinessGraduateTemplate";
+import { EngineeringFresherTemplate } from "@/components/resume/templates/EngineeringFresherTemplate";
+import { DesignSchoolGradTemplate } from "@/components/resume/templates/DesignSchoolGradTemplate";
+import { MastersGraduateTemplate } from "@/components/resume/templates/MastersGraduateTemplate";
+import { PhDCandidateTemplate } from "@/components/resume/templates/PhDCandidateTemplate";
+import { StudentAthleteTemplate } from "@/components/resume/templates/StudentAthleteTemplate";
+import { StudyAbroadGraduateTemplate } from "@/components/resume/templates/StudyAbroadGraduateTemplate";
+import { DualDegreeGraduateTemplate } from "@/components/resume/templates/DualDegreeGraduateTemplate";
+import { PortfolioArtistTemplate } from "@/components/resume/templates/PortfolioArtistTemplate";
+import { MotionDesignerTemplate } from "@/components/resume/templates/MotionDesignerTemplate";
+import { BrandStrategistTemplate } from "@/components/resume/templates/BrandStrategistTemplate";
+import { ContentCreatorTemplate } from "@/components/resume/templates/ContentCreatorTemplate";
+import { IllustratorArtistTemplate } from "@/components/resume/templates/IllustratorArtistTemplate";
+import { VideoProducerTemplate } from "@/components/resume/templates/VideoProducerTemplate";
+import { CopywriterCreativeTemplate } from "@/components/resume/templates/CopywriterCreativeTemplate";
+import { ArtDirectorProTemplate } from "@/components/resume/templates/ArtDirectorProTemplate";
+import { PhotographerProTemplate } from "@/components/resume/templates/PhotographerProTemplate";
+import { TypographerSpecialistTemplate } from "@/components/resume/templates/TypographerSpecialistTemplate";
+import { DigitalArtistTemplate } from "@/components/resume/templates/DigitalArtistTemplate";
+import { CreativeDirectorEliteTemplate } from "@/components/resume/templates/CreativeDirectorEliteTemplate";
+import { SocialMediaCreativeTemplate } from "@/components/resume/templates/SocialMediaCreativeTemplate";
+import { AnimationArtistTemplate } from "@/components/resume/templates/AnimationArtistTemplate";
+import { MultimediaDesignerTemplate } from "@/components/resume/templates/MultimediaDesignerTemplate";
+import { UXResearcherTemplate } from "@/components/resume/templates/UXResearcherTemplate";
+import { UISpecialistTemplate } from "@/components/resume/templates/UISpecialistTemplate";
+import { ProductDesignerProTemplate } from "@/components/resume/templates/ProductDesignerProTemplate";
+import { InteractionDesignerTemplate } from "@/components/resume/templates/InteractionDesignerTemplate";
+import { ServiceDesignerTemplate } from "@/components/resume/templates/ServiceDesignerTemplate";
+import { DesignSystemsArchitectTemplate } from "@/components/resume/templates/DesignSystemsArchitectTemplate";
+import { AccessibilityDesignerTemplate } from "@/components/resume/templates/AccessibilityDesignerTemplate";
+import { DesignLeadTemplate } from "@/components/resume/templates/DesignLeadTemplate";
+import { DesignStrategistTemplate } from "@/components/resume/templates/DesignStrategistTemplate";
+import { VisualDesignerProTemplate } from "@/components/resume/templates/VisualDesignerProTemplate";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
@@ -435,6 +637,107 @@ const pdfTemplates: Record<string, any> = {
   "terminal-theme": TerminalThemePDF,
   "timeline-elegance": TimelineElegancePDF,
   "two-tone-classic": TwoToneClassicPDF,
+  // 2025 New Templates (100 PDF map entries)
+  "strategic-leadership": StrategicLeadershipPDF,
+  "corporate-excellence": CorporateExcellencePDF,
+  "executive-prestige": ExecutivePrestigePDF,
+  "global-executive-pro": GlobalExecutiveProPDF,
+  "premium-corporate-edge": PremiumCorporateEdgePDF,
+  "enterprise-leader": EnterpriseLeaderPDF,
+  "boardroom-ready": BoardroomReadyPDF,
+  "c-suite-modern": CSuiteModernPDF,
+  "executive-impact": ExecutiveImpactPDF,
+  "corporate-visionary": CorporateVisionaryPDF,
+  "platinum-executive": PlatinumExecutivePDF,
+  "global-leadership": GlobalLeadershipPDF,
+  "senior-executive-pro": SeniorExecutiveProPDF,
+  "corporate-elite-plus": CorporateElitePlusPDF,
+  "executive-pinnacle": ExecutivePinnaclePDF,
+  "corporate-distinction": CorporateDistinctionPDF,
+  "leadership-summit": LeadershipSummitPDF,
+  "executive-authority": ExecutiveAuthorityPDF,
+  "corporate-premier": CorporatePremierPDF,
+  "global-enterprise": GlobalEnterprisePDF,
+  "executive-signature": ExecutiveSignaturePDF,
+  "corporate-apex": CorporateApexPDF,
+  "strategic-executive-plus": StrategicExecutivePlusPDF,
+  "corporate-paradigm": CorporateParadigmPDF,
+  "executive-magnitude": ExecutiveMagnitudePDF,
+  "corporate-sovereign": CorporateSovereignPDF,
+  "leadership-zenith": LeadershipZenithPDF,
+  "executive-nexus": ExecutiveNexusPDF,
+  "corporate-vanguard": CorporateVanguardPDF,
+  "executive-ascendancy": ExecutiveAscendancyPDF,
+  "vue-specialist": VueSpecialistPDF,
+  "svelte-developer": SvelteDeveloperPDF,
+  "flutter-engineer": FlutterEngineerPDF,
+  "swift-ios-developer": SwiftIOSDeveloperPDF,
+  "rust-systems-engineer": RustSystemsEngineerPDF,
+  "scala-backend-engineer": ScalaBackendEngineerPDF,
+  "elixir-developer": ElixirDeveloperPDF,
+  "graphql-architect": GraphQLArchitectPDF,
+  "typescript-expert": TypeScriptExpertPDF,
+  "nextjs-fullstack": NextJSFullstackPDF,
+  "nestjs-backend": NestJSBackendPDF,
+  "django-fullstack": DjangoFullstackPDF,
+  "spring-boot-developer": SpringBootDeveloperPDF,
+  "postgresql-dba": PostgreSQLDBAPDF,
+  "mongodb-specialist": MongoDBSpecialistPDF,
+  "redis-engineer": RedisEngineerPDF,
+  "elasticsearch-expert": ElasticsearchExpertPDF,
+  "terraform-devops": TerraformDevOpsPDF,
+  "ansible-automation": AnsibleAutomationPDF,
+  "jenkins-cicd": JenkinsCICDPDF,
+  "kafka-streaming": KafkaStreamingPDF,
+  "rabbitmq-specialist": RabbitMQSpecialistPDF,
+  "grpc-developer": GRPCDeveloperPDF,
+  "webassembly-engineer": WebAssemblyEngineerPDF,
+  "unity-game-developer": UnityGameDeveloperPDF,
+  "academic-achiever": AcademicAchieverPDF,
+  "graduate-innovator": GraduateInnovatorPDF,
+  "campus-leader": CampusLeaderPDF,
+  "scholarship-graduate": ScholarshipGraduatePDF,
+  "honors-student": HonorsStudentPDF,
+  "stem-graduate": STEMGraduatePDF,
+  "internship-ready": InternshipReadyPDF,
+  "research-graduate": ResearchGraduatePDF,
+  "entrepreneurial-graduate": EntrepreneurialGraduatePDF,
+  "volunteer-leader": VolunteerLeaderPDF,
+  "coding-bootcamp-grad": CodingBootcampGradPDF,
+  "liberal-arts-graduate": LiberalArtsGraduatePDF,
+  "business-graduate": BusinessGraduatePDF,
+  "engineering-fresher": EngineeringFresherPDF,
+  "design-school-grad": DesignSchoolGradPDF,
+  "masters-graduate": MastersGraduatePDF,
+  "phd-candidate": PhDCandidatePDF,
+  "student-athlete": StudentAthletePDF,
+  "study-abroad-graduate": StudyAbroadGraduatePDF,
+  "dual-degree-graduate": DualDegreeGraduatePDF,
+  "portfolio-artist": PortfolioArtistPDF,
+  "motion-designer": MotionDesignerPDF,
+  "brand-strategist": BrandStrategistPDF,
+  "content-creator": ContentCreatorPDF,
+  "illustrator-artist": IllustratorArtistPDF,
+  "video-producer": VideoProducerPDF,
+  "copywriter-creative": CopywriterCreativePDF,
+  "art-director-pro": ArtDirectorProPDF,
+  "photographer-pro": PhotographerProPDF,
+  "typographer-specialist": TypographerSpecialistPDF,
+  "digital-artist": DigitalArtistPDF,
+  "creative-director-elite": CreativeDirectorElitePDF,
+  "social-media-creative": SocialMediaCreativePDF,
+  "animation-artist": AnimationArtistPDF,
+  "multimedia-designer": MultimediaDesignerPDF,
+  "ux-researcher": UXResearcherPDF,
+  "ui-specialist": UISpecialistPDF,
+  "product-designer-pro": ProductDesignerProPDF,
+  "interaction-designer": InteractionDesignerPDF,
+  "service-designer": ServiceDesignerPDF,
+  "design-systems-architect": DesignSystemsArchitectPDF,
+  "accessibility-designer": AccessibilityDesignerPDF,
+  "design-lead": DesignLeadPDF,
+  "design-strategist": DesignStrategistPDF,
+  "visual-designer-pro": VisualDesignerProPDF,
 };
 
 // Templates that support inline editing
@@ -500,7 +803,42 @@ const inlineEditableTemplates = [
   "designer-showcase", "developer-grid", "devops-pro",
   "executive-minimal", "fullstack-modern", "geometric-modern", "github-style",
   "ml-engineer", "sidebar-accent", "tech-stack-pro",
-  "terminal-theme", "timeline-elegance", "two-tone-classic"
+  "terminal-theme", "timeline-elegance", "two-tone-classic",
+  // 2025 New Templates (100 inline editable entries)
+  "strategic-leadership", "corporate-excellence", "executive-prestige",
+  "global-executive-pro", "premium-corporate-edge", "enterprise-leader",
+  "boardroom-ready", "c-suite-modern", "executive-impact",
+  "corporate-visionary", "platinum-executive", "global-leadership",
+  "senior-executive-pro", "corporate-elite-plus", "executive-pinnacle",
+  "corporate-distinction", "leadership-summit", "executive-authority",
+  "corporate-premier", "global-enterprise", "executive-signature",
+  "corporate-apex", "strategic-executive-plus", "corporate-paradigm",
+  "executive-magnitude", "corporate-sovereign", "leadership-zenith",
+  "executive-nexus", "corporate-vanguard", "executive-ascendancy",
+  "vue-specialist", "svelte-developer", "flutter-engineer",
+  "swift-ios-developer", "rust-systems-engineer", "scala-backend-engineer",
+  "elixir-developer", "graphql-architect", "typescript-expert",
+  "nextjs-fullstack", "nestjs-backend", "django-fullstack",
+  "spring-boot-developer", "postgresql-dba", "mongodb-specialist",
+  "redis-engineer", "elasticsearch-expert", "terraform-devops",
+  "ansible-automation", "jenkins-cicd", "kafka-streaming",
+  "rabbitmq-specialist", "grpc-developer", "webassembly-engineer",
+  "unity-game-developer", "academic-achiever", "graduate-innovator",
+  "campus-leader", "scholarship-graduate", "honors-student",
+  "stem-graduate", "internship-ready", "research-graduate",
+  "entrepreneurial-graduate", "volunteer-leader", "coding-bootcamp-grad",
+  "liberal-arts-graduate", "business-graduate", "engineering-fresher",
+  "design-school-grad", "masters-graduate", "phd-candidate",
+  "student-athlete", "study-abroad-graduate", "dual-degree-graduate",
+  "portfolio-artist", "motion-designer", "brand-strategist",
+  "content-creator", "illustrator-artist", "video-producer",
+  "copywriter-creative", "art-director-pro", "photographer-pro",
+  "typographer-specialist", "digital-artist", "creative-director-elite",
+  "social-media-creative", "animation-artist", "multimedia-designer",
+  "ux-researcher", "ui-specialist", "product-designer-pro",
+  "interaction-designer", "service-designer", "design-systems-architect",
+  "accessibility-designer", "design-lead", "design-strategist",
+  "visual-designer-pro"
 ];
 
 const displayTemplates: Record<string, any> = {
@@ -670,6 +1008,107 @@ const displayTemplates: Record<string, any> = {
   "terminal-theme": TerminalThemeTemplate,
   "timeline-elegance": TimelineEleganceTemplate,
   "two-tone-classic": TwoToneClassicTemplate,
+  // 2025 New Templates (100 displayTemplates map entries)
+  "strategic-leadership": StrategicLeadershipTemplate,
+  "corporate-excellence": CorporateExcellenceTemplate,
+  "executive-prestige": ExecutivePrestigeTemplate,
+  "global-executive-pro": GlobalExecutiveProTemplate,
+  "premium-corporate-edge": PremiumCorporateEdgeTemplate,
+  "enterprise-leader": EnterpriseLeaderTemplate,
+  "boardroom-ready": BoardroomReadyTemplate,
+  "c-suite-modern": CSuiteModernTemplate,
+  "executive-impact": ExecutiveImpactTemplate,
+  "corporate-visionary": CorporateVisionaryTemplate,
+  "platinum-executive": PlatinumExecutiveTemplate,
+  "global-leadership": GlobalLeadershipTemplate,
+  "senior-executive-pro": SeniorExecutiveProTemplate,
+  "corporate-elite-plus": CorporateElitePlusTemplate,
+  "executive-pinnacle": ExecutivePinnacleTemplate,
+  "corporate-distinction": CorporateDistinctionTemplate,
+  "leadership-summit": LeadershipSummitTemplate,
+  "executive-authority": ExecutiveAuthorityTemplate,
+  "corporate-premier": CorporatePremierTemplate,
+  "global-enterprise": GlobalEnterpriseTemplate,
+  "executive-signature": ExecutiveSignatureTemplate,
+  "corporate-apex": CorporateApexTemplate,
+  "strategic-executive-plus": StrategicExecutivePlusTemplate,
+  "corporate-paradigm": CorporateParadigmTemplate,
+  "executive-magnitude": ExecutiveMagnitudeTemplate,
+  "corporate-sovereign": CorporateSovereignTemplate,
+  "leadership-zenith": LeadershipZenithTemplate,
+  "executive-nexus": ExecutiveNexusTemplate,
+  "corporate-vanguard": CorporateVanguardTemplate,
+  "executive-ascendancy": ExecutiveAscendancyTemplate,
+  "vue-specialist": VueSpecialistTemplate,
+  "svelte-developer": SvelteDeveloperTemplate,
+  "flutter-engineer": FlutterEngineerTemplate,
+  "swift-ios-developer": SwiftIOSDeveloperTemplate,
+  "rust-systems-engineer": RustSystemsEngineerTemplate,
+  "scala-backend-engineer": ScalaBackendEngineerTemplate,
+  "elixir-developer": ElixirDeveloperTemplate,
+  "graphql-architect": GraphQLArchitectTemplate,
+  "typescript-expert": TypeScriptExpertTemplate,
+  "nextjs-fullstack": NextJSFullstackTemplate,
+  "nestjs-backend": NestJSBackendTemplate,
+  "django-fullstack": DjangoFullstackTemplate,
+  "spring-boot-developer": SpringBootDeveloperTemplate,
+  "postgresql-dba": PostgreSQLDBATemplate,
+  "mongodb-specialist": MongoDBSpecialistTemplate,
+  "redis-engineer": RedisEngineerTemplate,
+  "elasticsearch-expert": ElasticsearchExpertTemplate,
+  "terraform-devops": TerraformDevOpsTemplate,
+  "ansible-automation": AnsibleAutomationTemplate,
+  "jenkins-cicd": JenkinsCICDTemplate,
+  "kafka-streaming": KafkaStreamingTemplate,
+  "rabbitmq-specialist": RabbitMQSpecialistTemplate,
+  "grpc-developer": GRPCDeveloperTemplate,
+  "webassembly-engineer": WebAssemblyEngineerTemplate,
+  "unity-game-developer": UnityGameDeveloperTemplate,
+  "academic-achiever": AcademicAchieverTemplate,
+  "graduate-innovator": GraduateInnovatorTemplate,
+  "campus-leader": CampusLeaderTemplate,
+  "scholarship-graduate": ScholarshipGraduateTemplate,
+  "honors-student": HonorsStudentTemplate,
+  "stem-graduate": STEMGraduateTemplate,
+  "internship-ready": InternshipReadyTemplate,
+  "research-graduate": ResearchGraduateTemplate,
+  "entrepreneurial-graduate": EntrepreneurialGraduateTemplate,
+  "volunteer-leader": VolunteerLeaderTemplate,
+  "coding-bootcamp-grad": CodingBootcampGradTemplate,
+  "liberal-arts-graduate": LiberalArtsGraduateTemplate,
+  "business-graduate": BusinessGraduateTemplate,
+  "engineering-fresher": EngineeringFresherTemplate,
+  "design-school-grad": DesignSchoolGradTemplate,
+  "masters-graduate": MastersGraduateTemplate,
+  "phd-candidate": PhDCandidateTemplate,
+  "student-athlete": StudentAthleteTemplate,
+  "study-abroad-graduate": StudyAbroadGraduateTemplate,
+  "dual-degree-graduate": DualDegreeGraduateTemplate,
+  "portfolio-artist": PortfolioArtistTemplate,
+  "motion-designer": MotionDesignerTemplate,
+  "brand-strategist": BrandStrategistTemplate,
+  "content-creator": ContentCreatorTemplate,
+  "illustrator-artist": IllustratorArtistTemplate,
+  "video-producer": VideoProducerTemplate,
+  "copywriter-creative": CopywriterCreativeTemplate,
+  "art-director-pro": ArtDirectorProTemplate,
+  "photographer-pro": PhotographerProTemplate,
+  "typographer-specialist": TypographerSpecialistTemplate,
+  "digital-artist": DigitalArtistTemplate,
+  "creative-director-elite": CreativeDirectorEliteTemplate,
+  "social-media-creative": SocialMediaCreativeTemplate,
+  "animation-artist": AnimationArtistTemplate,
+  "multimedia-designer": MultimediaDesignerTemplate,
+  "ux-researcher": UXResearcherTemplate,
+  "ui-specialist": UISpecialistTemplate,
+  "product-designer-pro": ProductDesignerProTemplate,
+  "interaction-designer": InteractionDesignerTemplate,
+  "service-designer": ServiceDesignerTemplate,
+  "design-systems-architect": DesignSystemsArchitectTemplate,
+  "accessibility-designer": AccessibilityDesignerTemplate,
+  "design-lead": DesignLeadTemplate,
+  "design-strategist": DesignStrategistTemplate,
+  "visual-designer-pro": VisualDesignerProTemplate,
 };
 
 const LiveEditor = () => {
