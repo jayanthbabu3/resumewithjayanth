@@ -938,7 +938,6 @@ import { ProcurementSpecialistTemplate } from "@/components/resume/templates/Pro
 import { AIEngineerTemplate } from "@/components/resume/templates/AIEngineerTemplate";
 import { APIDocTemplate } from "@/components/resume/templates/APIDocTemplate";
 import { AWSCloudEngineerTemplate } from "@/components/resume/templates/AWSCloudEngineerTemplate";
-import { AcademicEducatorTemplate } from "@/components/resume/templates/AcademicEducatorTemplate";
 import { AccessibilityUxTemplate } from "@/components/resume/templates/AccessibilityUxTemplate";
 import { AccountingProTemplate } from "@/components/resume/templates/AccountingProTemplate";
 import { AchieverFresherTemplate } from "@/components/resume/templates/AchieverFresherTemplate";
@@ -949,7 +948,6 @@ import { AgileflowDeveloperTemplate } from "@/components/resume/templates/Agilef
 import { AngularModernUniversalTemplate } from "@/components/resume/templates/AngularModernUniversalTemplate";
 import { ApigatewayArchitectTemplate } from "@/components/resume/templates/ApigatewayArchitectTemplate";
 import { ArtDirectorModernTemplate } from "@/components/resume/templates/ArtDirectorModernTemplate";
-import { ArtStationArtistTemplate } from "@/components/resume/templates/ArtStationArtistTemplate";
 import { ArtisanDesignerTemplate } from "@/components/resume/templates/ArtisanDesignerTemplate";
 import { ArtisticGridTemplate } from "@/components/resume/templates/ArtisticGridTemplate";
 import { ArtisticHorizonTemplate } from "@/components/resume/templates/ArtisticHorizonTemplate";
@@ -963,7 +961,6 @@ import { AtlasExecutiveTemplate } from "@/components/resume/templates/AtlasExecu
 import { AuditExpertTemplate } from "@/components/resume/templates/AuditExpertTemplate";
 import { AuroraMinimalTemplate } from "@/components/resume/templates/AuroraMinimalTemplate";
 import { AwwwardsDesignerTemplate } from "@/components/resume/templates/AwwwardsDesignerTemplate";
-import { AzureDevOpsProTemplate } from "@/components/resume/templates/AzureDevOpsProTemplate";
 import { AzureDevOpsSpecialistTemplate } from "@/components/resume/templates/AzureDevOpsSpecialistTemplate";
 import { BadgeStyleUniversalTemplate } from "@/components/resume/templates/BadgeStyleUniversalTemplate";
 import { BehancePortfolioTemplate } from "@/components/resume/templates/BehancePortfolioTemplate";
@@ -1070,11 +1067,7 @@ import { DevArchitectureTemplate } from "@/components/resume/templates/DevArchit
 import { DevEliteTemplate } from "@/components/resume/templates/DevEliteTemplate";
 import { DevMomentumTemplate } from "@/components/resume/templates/DevMomentumTemplate";
 import { DevOpsAutomationTemplate } from "@/components/resume/templates/DevOpsAutomationTemplate";
-import { DevOpsEngineerTemplate } from "@/components/resume/templates/DevOpsEngineerTemplate";
-import { DevOpsProTemplate } from "@/components/resume/templates/DevOpsProTemplate";
 import { DevPrimeTemplate } from "@/components/resume/templates/DevPrimeTemplate";
-import { DevSecOpsEngineerTemplate } from "@/components/resume/templates/DevSecOpsEngineerTemplate";
-import { DeviantArtCreatorTemplate } from "@/components/resume/templates/DeviantArtCreatorTemplate";
 import { DeviantartArtistTemplate } from "@/components/resume/templates/DeviantartArtistTemplate";
 import { DevtoContributorTemplate } from "@/components/resume/templates/DevtoContributorTemplate";
 import { DiagonalAccentUniversalTemplate } from "@/components/resume/templates/DiagonalAccentUniversalTemplate";
@@ -1092,8 +1085,6 @@ import { DirectorLevelTemplate } from "@/components/resume/templates/DirectorLev
 import { DjangoFrameworkProTemplate } from "@/components/resume/templates/DjangoFrameworkProTemplate";
 import { DockerContainerProTemplate } from "@/components/resume/templates/DockerContainerProTemplate";
 import { DockerhubPublisherTemplate } from "@/components/resume/templates/DockerhubPublisherTemplate";
-import { DotNetCoreDeveloperTemplate } from "@/components/resume/templates/DotNetCoreDeveloperTemplate";
-import { DotNetDeveloperTemplate } from "@/components/resume/templates/DotNetDeveloperTemplate";
 import { DottedGridUniversalTemplate } from "@/components/resume/templates/DottedGridUniversalTemplate";
 import { DribbbleShowcaseTemplate } from "@/components/resume/templates/DribbbleShowcaseTemplate";
 import { DualColumnModernUniversalTemplate } from "@/components/resume/templates/DualColumnModernUniversalTemplate";
@@ -1153,19 +1144,14 @@ import { FresherWaveHeaderTemplate } from "@/components/resume/templates/Fresher
 import { FreshersCraftedTemplate } from "@/components/resume/templates/FreshersCraftedTemplate";
 import { FreshersVisionTemplate } from "@/components/resume/templates/FreshersVisionTemplate";
 import { FullStackEngineerTemplate } from "@/components/resume/templates/FullStackEngineerTemplate";
-import { FullStackModernTemplate } from "@/components/resume/templates/FullStackModernTemplate";
 import { FullStackProTemplate } from "@/components/resume/templates/FullStackProTemplate";
-import { FullstackJavaScriptTemplate } from "@/components/resume/templates/FullstackJavaScriptTemplate";
 import { GCPArchitectTemplate } from "@/components/resume/templates/GCPArchitectTemplate";
 import { GalleryLayoutTemplate } from "@/components/resume/templates/GalleryLayoutTemplate";
 import { GenZGraduateTemplate } from "@/components/resume/templates/GenZGraduateTemplate";
 import { GenesisGraduateTemplate } from "@/components/resume/templates/GenesisGraduateTemplate";
 import { GeometricCreativeTemplate } from "@/components/resume/templates/GeometricCreativeTemplate";
 import { GeometricShapesUniversalTemplate } from "@/components/resume/templates/GeometricShapesUniversalTemplate";
-import { GitHubDeveloperTemplate } from "@/components/resume/templates/GitHubDeveloperTemplate";
 import { GitHubProfileTemplate } from "@/components/resume/templates/GitHubProfileTemplate";
-import { GitHubStudentDeveloperTemplate } from "@/components/resume/templates/GitHubStudentDeveloperTemplate";
-import { GitHubStyleTemplate } from "@/components/resume/templates/GitHubStyleTemplate";
 import { GitflowEngineerTemplate } from "@/components/resume/templates/GitflowEngineerTemplate";
 import { GithubPortfolioDevTemplate } from "@/components/resume/templates/GithubPortfolioDevTemplate";
 import { GithubStudentTemplate } from "@/components/resume/templates/GithubStudentTemplate";
@@ -1177,7 +1163,6 @@ import { GradientHeaderUniversalTemplate } from "@/components/resume/templates/G
 import { GraduateMomentumTemplate } from "@/components/resume/templates/GraduateMomentumTemplate";
 import { GraduatePrimeTemplate } from "@/components/resume/templates/GraduatePrimeTemplate";
 import { GraduateZenithTemplate } from "@/components/resume/templates/GraduateZenithTemplate";
-import { GraphQLArchitectTemplate } from "@/components/resume/templates/GraphQLArchitectTemplate";
 import { GraphQLDeveloperTemplate } from "@/components/resume/templates/GraphQLDeveloperTemplate";
 import { GraphdbSpecialistTemplate } from "@/components/resume/templates/GraphdbSpecialistTemplate";
 import { GraphicDesignProTemplate } from "@/components/resume/templates/GraphicDesignProTemplate";
@@ -1192,7 +1177,6 @@ import { IconBarUniversalTemplate } from "@/components/resume/templates/IconBarU
 import { IllustrationPortfolioTemplate } from "@/components/resume/templates/IllustrationPortfolioTemplate";
 import { ImaginativeDesignerTemplate } from "@/components/resume/templates/ImaginativeDesignerTemplate";
 import { ImpressionDesignerTemplate } from "@/components/resume/templates/ImpressionDesignerTemplate";
-import { InVisionPrototyperTemplate } from "@/components/resume/templates/InVisionPrototyperTemplate";
 import { InfinityLoopUniversalTemplate } from "@/components/resume/templates/InfinityLoopUniversalTemplate";
 import { InfluencerProfessionalTemplate } from "@/components/resume/templates/InfluencerProfessionalTemplate";
 import { InformationArchitectTemplate } from "@/components/resume/templates/InformationArchitectTemplate";
@@ -1201,13 +1185,11 @@ import { InstagramCreativeTemplate } from "@/components/resume/templates/Instagr
 import { InteractivePortfolioDesignerTemplate } from "@/components/resume/templates/InteractivePortfolioDesignerTemplate";
 import { InterfaceMasterTemplate } from "@/components/resume/templates/InterfaceMasterTemplate";
 import { InternshipShowcaseTemplate } from "@/components/resume/templates/InternshipShowcaseTemplate";
-import { JAMStackDeveloperTemplate } from "@/components/resume/templates/JAMStackDeveloperTemplate";
 import { JavaEnterpriseTemplateTemplate } from "@/components/resume/templates/JavaEnterpriseTemplateTemplate";
 import { JsonResumeTemplate } from "@/components/resume/templates/JsonResumeTemplate";
 import { KafkaStreamingExpertTemplate } from "@/components/resume/templates/KafkaStreamingExpertTemplate";
 import { KaggleDataScientistTemplate } from "@/components/resume/templates/KaggleDataScientistTemplate";
 import { KeystoneGraduateTemplate } from "@/components/resume/templates/KeystoneGraduateTemplate";
-import { KuberneteEngineerTemplate } from "@/components/resume/templates/KuberneteEngineerTemplate";
 import { KubernetesSpecialistTemplate } from "@/components/resume/templates/KubernetesSpecialistTemplate";
 import { LaunchpadGraduateTemplate } from "@/components/resume/templates/LaunchpadGraduateTemplate";
 import { LayeredCardsUniversalTemplate } from "@/components/resume/templates/LayeredCardsUniversalTemplate";
@@ -1216,8 +1198,6 @@ import { LeftAlignedProUniversalTemplate } from "@/components/resume/templates/L
 import { LeftBorderUniversalTemplate } from "@/components/resume/templates/LeftBorderUniversalTemplate";
 import { LegalAdvisorTemplate } from "@/components/resume/templates/LegalAdvisorTemplate";
 import { LinearProgressUniversalTemplate } from "@/components/resume/templates/LinearProgressUniversalTemplate";
-import { LinkedInReadyGraduateTemplate } from "@/components/resume/templates/LinkedInReadyGraduateTemplate";
-import { LinkedInTechProTemplate } from "@/components/resume/templates/LinkedInTechProTemplate";
 import { LinkedinGraduateTemplate } from "@/components/resume/templates/LinkedinGraduateTemplate";
 import { LinkedinOptimizedTemplate } from "@/components/resume/templates/LinkedinOptimizedTemplate";
 import { LinkedinTechExpertTemplate } from "@/components/resume/templates/LinkedinTechExpertTemplate";
@@ -1256,7 +1236,6 @@ import { ModernPlainProTemplate } from "@/components/resume/templates/ModernPlai
 import { ModernProfessionalBoxTemplate } from "@/components/resume/templates/ModernProfessionalBoxTemplate";
 import { ModernSimpleProTemplate } from "@/components/resume/templates/ModernSimpleProTemplate";
 import { MomentumFresherTemplate } from "@/components/resume/templates/MomentumFresherTemplate";
-import { MongoDBSpecialistTemplate } from "@/components/resume/templates/MongoDBSpecialistTemplate";
 import { MonochromeElegantUniversalTemplate } from "@/components/resume/templates/MonochromeElegantUniversalTemplate";
 import { MonospaceTechTemplate } from "@/components/resume/templates/MonospaceTechTemplate";
 import { MotionDesignerPortfolioTemplate } from "@/components/resume/templates/MotionDesignerPortfolioTemplate";
@@ -1266,16 +1245,13 @@ import { MultiPlatformArtistTemplate } from "@/components/resume/templates/Multi
 import { MuseCreativeTemplate } from "@/components/resume/templates/MuseCreativeTemplate";
 import { NarrativeCreativeTemplate } from "@/components/resume/templates/NarrativeCreativeTemplate";
 import { NeonArtistTemplate } from "@/components/resume/templates/NeonArtistTemplate";
-import { NestJSBackendTemplate } from "@/components/resume/templates/NestJSBackendTemplate";
 import { NetworkedExecutiveTemplate } from "@/components/resume/templates/NetworkedExecutiveTemplate";
 import { NetworkedGraduateTemplate } from "@/components/resume/templates/NetworkedGraduateTemplate";
 import { NeuralEngineerTemplate } from "@/components/resume/templates/NeuralEngineerTemplate";
 import { NewspaperStyleUniversalTemplate } from "@/components/resume/templates/NewspaperStyleUniversalTemplate";
-import { NextJSFullstackTemplate } from "@/components/resume/templates/NextJSFullstackTemplate";
 import { NextstepFresherTemplate } from "@/components/resume/templates/NextstepFresherTemplate";
 import { NexusEliteTemplate } from "@/components/resume/templates/NexusEliteTemplate";
 import { NodeBackendSpecialistTemplate } from "@/components/resume/templates/NodeBackendSpecialistTemplate";
-import { NodeJSDeveloperTemplate } from "@/components/resume/templates/NodeJSDeveloperTemplate";
 import { NpmPackageAuthorTemplate } from "@/components/resume/templates/NpmPackageAuthorTemplate";
 import { NursingSpecialistTemplate } from "@/components/resume/templates/NursingSpecialistTemplate";
 import { ObservabilityEngineerTemplate } from "@/components/resume/templates/ObservabilityEngineerTemplate";
@@ -1292,7 +1268,6 @@ import { ParallaxStyleUniversalTemplate } from "@/components/resume/templates/Pa
 import { PastelCreativeTemplate } from "@/components/resume/templates/PastelCreativeTemplate";
 import { PathwayGraduateTemplate } from "@/components/resume/templates/PathwayGraduateTemplate";
 import { PatreonCreativeTemplate } from "@/components/resume/templates/PatreonCreativeTemplate";
-import { PhDCandidateTemplate } from "@/components/resume/templates/PhDCandidateTemplate";
 import { PhotographyLayoutTemplate } from "@/components/resume/templates/PhotographyLayoutTemplate";
 import { PhotographyProTemplateTemplate } from "@/components/resume/templates/PhotographyProTemplateTemplate";
 import { PinnacleEliteTemplate } from "@/components/resume/templates/PinnacleEliteTemplate";
@@ -1307,7 +1282,6 @@ import { PortfolioMinimalistTemplate } from "@/components/resume/templates/Portf
 import { PortfolioProfessionalTemplate } from "@/components/resume/templates/PortfolioProfessionalTemplate";
 import { PortfolioShowcaseTemplate } from "@/components/resume/templates/PortfolioShowcaseTemplate";
 import { PortfolioWebsiteCreativeTemplate } from "@/components/resume/templates/PortfolioWebsiteCreativeTemplate";
-import { PostgreSQLDBATemplate } from "@/components/resume/templates/PostgreSQLDBATemplate";
 import { PostgreSQLExpertTemplate } from "@/components/resume/templates/PostgreSQLExpertTemplate";
 import { PotentialFresherTemplate } from "@/components/resume/templates/PotentialFresherTemplate";
 import { PrismProfessionalTemplate } from "@/components/resume/templates/PrismProfessionalTemplate";
@@ -1341,7 +1315,6 @@ import { PypiContributorTemplate } from "@/components/resume/templates/PypiContr
 import { PythonDeveloperProTemplate } from "@/components/resume/templates/PythonDeveloperProTemplate";
 import { QuantumCoderTemplate } from "@/components/resume/templates/QuantumCoderTemplate";
 import { QuantumProfessionalTemplate } from "@/components/resume/templates/QuantumProfessionalTemplate";
-import { RabbitMQSpecialistTemplate } from "@/components/resume/templates/RabbitMQSpecialistTemplate";
 import { RadianceCorporateTemplate } from "@/components/resume/templates/RadianceCorporateTemplate";
 import { ReactFrontendProTemplate } from "@/components/resume/templates/ReactFrontendProTemplate";
 import { ReactNativeExpertTemplate } from "@/components/resume/templates/ReactNativeExpertTemplate";
@@ -1353,9 +1326,6 @@ import { RoundedCornersUniversalTemplate } from "@/components/resume/templates/R
 import { RustDeveloperProTemplate } from "@/components/resume/templates/RustDeveloperProTemplate";
 import { SalesAchievementTemplate } from "@/components/resume/templates/SalesAchievementTemplate";
 import { ScalaEngineerTemplate } from "@/components/resume/templates/ScalaEngineerTemplate";
-import { SeniorDevOpsEngineerTemplate } from "@/components/resume/templates/SeniorDevOpsEngineerTemplate";
-import { SeniorDotNetDeveloperTemplate } from "@/components/resume/templates/SeniorDotNetDeveloperTemplate";
-import { SeniorFullStackDeveloperTemplate } from "@/components/resume/templates/SeniorFullStackDeveloperTemplate";
 import { SerenityMinimalTemplate } from "@/components/resume/templates/SerenityMinimalTemplate";
 import { ServerlessDeveloperTemplate } from "@/components/resume/templates/ServerlessDeveloperTemplate";
 import { ServerlessSpecialistTemplate } from "@/components/resume/templates/ServerlessSpecialistTemplate";
@@ -1377,7 +1347,6 @@ import { SocialSavvyTemplate } from "@/components/resume/templates/SocialSavvyTe
 import { SoftwareCraftsmanTemplate } from "@/components/resume/templates/SoftwareCraftsmanTemplate";
 import { SoftwareMasterTemplate } from "@/components/resume/templates/SoftwareMasterTemplate";
 import { SoftwareVisionTemplate } from "@/components/resume/templates/SoftwareVisionTemplate";
-import { SoundCloudProducerTemplate } from "@/components/resume/templates/SoundCloudProducerTemplate";
 import { SoundcloudArtistTemplate } from "@/components/resume/templates/SoundcloudArtistTemplate";
 import { SparkFresherTemplate } from "@/components/resume/templates/SparkFresherTemplate";
 import { SpectrumProfessionalTemplate } from "@/components/resume/templates/SpectrumProfessionalTemplate";
@@ -1408,10 +1377,8 @@ import { TechPioneerTemplate } from "@/components/resume/templates/TechPioneerTe
 import { TechVanguardTemplate } from "@/components/resume/templates/TechVanguardTemplate";
 import { TensorFlowMLEngineerTemplate } from "@/components/resume/templates/TensorFlowMLEngineerTemplate";
 import { TerminalConsoleTemplate } from "@/components/resume/templates/TerminalConsoleTemplate";
-import { TerraformDevOpsTemplate } from "@/components/resume/templates/TerraformDevOpsTemplate";
 import { ThinBorderUniversalTemplate } from "@/components/resume/templates/ThinBorderUniversalTemplate";
 import { ThreeDModelingArtistTemplate } from "@/components/resume/templates/ThreeDModelingArtistTemplate";
-import { TikTokCreatorTemplate } from "@/components/resume/templates/TikTokCreatorTemplate";
 import { TiktokContentCreatorTemplate } from "@/components/resume/templates/TiktokContentCreatorTemplate";
 import { TimelineVerticalUniversalTemplate } from "@/components/resume/templates/TimelineVerticalUniversalTemplate";
 import { TitanCorporateTemplate } from "@/components/resume/templates/TitanCorporateTemplate";
@@ -1420,7 +1387,6 @@ import { TriangularElementsUniversalTemplate } from "@/components/resume/templat
 import { TwitchStreamerCreativeTemplate } from "@/components/resume/templates/TwitchStreamerCreativeTemplate";
 import { TwitterDevTemplate } from "@/components/resume/templates/TwitterDevTemplate";
 import { TwoToneSplitUniversalTemplate } from "@/components/resume/templates/TwoToneSplitUniversalTemplate";
-import { TypeScriptExpertTemplate } from "@/components/resume/templates/TypeScriptExpertTemplate";
 import { TypewriterStyleTemplate } from "@/components/resume/templates/TypewriterStyleTemplate";
 import { UIUXDesignerProTemplate } from "@/components/resume/templates/UIUXDesignerProTemplate";
 import { UiuxPortfolioProTemplate } from "@/components/resume/templates/UiuxPortfolioProTemplate";
@@ -1445,7 +1411,6 @@ import { VisualStorytellerTemplateTemplate } from "@/components/resume/templates
 import { VueJSDeveloperTemplate } from "@/components/resume/templates/VueJSDeveloperTemplate";
 import { WatermarkStyleUniversalTemplate } from "@/components/resume/templates/WatermarkStyleUniversalTemplate";
 import { WavePatternUniversalTemplate } from "@/components/resume/templates/WavePatternUniversalTemplate";
-import { WebAssemblyEngineerTemplate } from "@/components/resume/templates/WebAssemblyEngineerTemplate";
 import { WebDesignerModernTemplate } from "@/components/resume/templates/WebDesignerModernTemplate";
 import { WebPortfolioGradTemplate } from "@/components/resume/templates/WebPortfolioGradTemplate";
 import { WebflowDesignerPortfolioTemplate } from "@/components/resume/templates/WebflowDesignerPortfolioTemplate";
@@ -1453,12 +1418,10 @@ import { WebpresenceExecutiveTemplate } from "@/components/resume/templates/Webp
 import { WebrtcEngineerTemplate } from "@/components/resume/templates/WebrtcEngineerTemplate";
 import { WideMarginUniversalTemplate } from "@/components/resume/templates/WideMarginUniversalTemplate";
 import { WireframeSpecialistTemplate } from "@/components/resume/templates/WireframeSpecialistTemplate";
-import { YouTubeEducatorTemplate } from "@/components/resume/templates/YouTubeEducatorTemplate";
 import { YoutubeCreatorTemplate } from "@/components/resume/templates/YoutubeCreatorTemplate";
 import { YoutubeDevEducatorTemplate } from "@/components/resume/templates/YoutubeDevEducatorTemplate";
 import { ZenithCorporateTemplate } from "@/components/resume/templates/ZenithCorporateTemplate";
 import { ZigzagBorderUniversalTemplate } from "@/components/resume/templates/ZigzagBorderUniversalTemplate";
-import { iOSSwiftEngineerTemplate } from "@/components/resume/templates/iOSSwiftEngineerTemplate";
 
 const pdfTemplates: Record<string, any> = {
   professional: ProfessionalPDF,
