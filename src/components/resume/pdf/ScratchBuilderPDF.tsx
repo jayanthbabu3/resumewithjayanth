@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Font,
-} from "@react-pdf/renderer";
+} from "@/lib/pdfRenderer";
 import type { ResumeData } from "@/types/resume";
 import { hasContent } from "@/lib/pdfConfig";
 

@@ -882,18 +882,39 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                       Clear All
                     </Button>
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="space-y-2">
                     {resumeData.skills.map((skill, index) => (
                       <div
                         key={skill.id}
-                        className="group inline-flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+                        className="flex items-center gap-3 rounded-lg border border-blue-100 bg-blue-50/70 px-3 py-2"
                       >
-                        <span className="truncate max-w-[120px]">{skill.name}</span>
+                        <span className="flex-1 truncate font-medium text-blue-800">{skill.name}</span>
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                          <span>Level</span>
+                          <Input
+                            type="number"
+                            inputMode="numeric"
+                            min={0}
+                            max={10}
+                            className="h-8 w-16 text-right"
+                            value={skill.level ?? ""}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const newSkills = [...resumeData.skills];
+                              newSkills[index] = {
+                                ...newSkills[index],
+                                level: value === "" ? undefined : Math.min(10, Math.max(0, Number(value))),
+                              };
+                              setResumeData({ ...resumeData, skills: newSkills });
+                            }}
+                            placeholder="0-10"
+                          />
+                        </div>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => removeSkill(index)}
-                          className="h-4 w-4 p-0 hover:bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                          className="h-7 w-7 p-0 text-destructive hover:bg-blue-100 rounded-full"
                         >
                           <X className="h-3 w-3" />
                         </Button>

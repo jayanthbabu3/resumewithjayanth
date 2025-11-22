@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Download, Loader2, ArrowLeft, Edit3, FileEdit, Save } from "lucide-react";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
@@ -2857,23 +2857,32 @@ const LiveEditor = () => {
   const { templateId, professionId } = useParams<{ templateId: string; professionId?: string }>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const navigationState = (location.state as { resumeData?: ResumeData; themeColor?: string } | null) || null;
   const resumeId = searchParams.get("resumeId");
   const { user } = useFirebaseAuth();
   const [resumeData, setResumeData] = useState<ResumeData>(() =>
-    getTemplateDefaults(templateId || "professional")
+    navigationState?.resumeData || getTemplateDefaults(templateId || "professional")
   );
 
   // Determine back navigation path based on whether we're in a nested route
   const backPath = professionId ? `/dashboard/${professionId}` : "/dashboard";
-  const [themeColor, setThemeColor] = useState("#7c3aed");
+  const [themeColor, setThemeColor] = useState(navigationState?.themeColor || "#7c3aed");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [editorMode, setEditorMode] = useState<"live" | "form">("live");
   const [isSaving, setIsSaving] = useState(false);
   const [currentResumeId, setCurrentResumeId] = useState<string | null>(resumeId);
 
   useEffect(() => {
-    setResumeData(getTemplateDefaults(templateId || "professional"));
-  }, [templateId]);
+    if (navigationState?.resumeData) {
+      setResumeData(navigationState.resumeData);
+      if (navigationState.themeColor) {
+        setThemeColor(navigationState.themeColor);
+      }
+    } else {
+      setResumeData(getTemplateDefaults(templateId || "professional"));
+    }
+  }, [templateId, navigationState]);
 
   // Load resume from Firestore if resumeId exists
   useEffect(() => {

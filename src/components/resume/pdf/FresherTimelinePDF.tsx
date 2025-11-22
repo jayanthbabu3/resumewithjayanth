@@ -8,7 +8,7 @@ import {
   Svg,
   Circle,
   Path,
-} from "@react-pdf/renderer";
+} from "@/lib/pdfRenderer";
 import type { ResumeData } from "@/pages/Editor";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";

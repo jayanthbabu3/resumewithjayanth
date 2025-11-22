@@ -5,7 +5,7 @@ import {
   View,
   StyleSheet,
   Font,
-} from "@react-pdf/renderer";
+} from "@/lib/pdfRenderer";
 import { ResumeData } from "@/pages/Editor";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 

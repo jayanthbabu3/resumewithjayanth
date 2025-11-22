@@ -5,7 +5,7 @@ import {
   Document,
   StyleSheet,
   Font,
-} from "@react-pdf/renderer";
+} from "@/lib/pdfRenderer";
 import type { ResumeData } from "@/pages/Editor";
 import { PDF_PAGE_MARGINS } from "@/lib/pdfConfig";
 

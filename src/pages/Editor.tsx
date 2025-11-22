@@ -4316,7 +4316,12 @@ const Editor = () => {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => navigate(professionId ? `/dashboard/${professionId}/live-editor/${templateId}` : `/live-editor/${templateId}`)}
+                onClick={() =>
+                  navigate(
+                    professionId ? `/dashboard/${professionId}/live-editor/${templateId}` : `/live-editor/${templateId}`,
+                    { state: { resumeData, themeColor } }
+                  )
+                }
               >
                 <Edit3 className="h-4 w-4 mr-2" />
                 Live
@@ -4378,7 +4383,16 @@ const Editor = () => {
 
             {/* Center Section - Tabs */}
             <div className="flex justify-center">
-              <Tabs value="form" onValueChange={(v) => v === "live" && navigate(professionId ? `/dashboard/${professionId}/live-editor/${templateId}` : `/live-editor/${templateId}`)}>
+              <Tabs
+                value="form"
+                onValueChange={(v) =>
+                  v === "live" &&
+                  navigate(
+                    professionId ? `/dashboard/${professionId}/live-editor/${templateId}` : `/live-editor/${templateId}`,
+                    { state: { resumeData, themeColor } }
+                  )
+                }
+              >
                 <TabsList className="bg-muted/50 border">
                   <TabsTrigger value="live" className="gap-2 text-sm">
                     <Edit3 className="h-4 w-4" />

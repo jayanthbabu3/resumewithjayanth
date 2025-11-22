@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Svg, Path, Image } from '@/lib/pdfRenderer';
 import type { ResumeData } from '@/pages/Editor';
 import { PDF_PAGE_MARGINS, hasContent } from '@/lib/pdfConfig';
 

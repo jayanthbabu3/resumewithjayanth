@@ -1,4 +1,4 @@
-import { Document, Page, View, Text, StyleSheet, Image } from '@react-pdf/renderer';
+import { Document, Page, View, Text, StyleSheet, Image } from '@/lib/pdfRenderer';
 import type { ResumeData } from '@/pages/Editor';
 
 const styles = StyleSheet.create({

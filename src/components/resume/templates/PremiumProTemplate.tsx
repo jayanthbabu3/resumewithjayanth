@@ -250,13 +250,22 @@ export const PremiumProTemplate = ({
                             className="text-[12.5px] font-medium text-gray-900"
                             as="span"
                           />
-                          {skill.level && (
-                            <span className="text-[11px] text-gray-500">
-                              {skill.level}/10
-                            </span>
+                          {skill.level !== undefined && skill.level !== null && (
+                            editable ? (
+                              <InlineEditableText
+                                path={`skills[${index}].level`}
+                                value={String(skill.level)}
+                                className="text-[11px] text-gray-500"
+                                placeholder="0-10"
+                              />
+                            ) : (
+                              <span className="text-[11px] text-gray-500">
+                                {skill.level}/10
+                              </span>
+                            )
                           )}
                         </div>
-                        {skill.level && (
+                        {skill.level !== undefined && skill.level !== null && (
                           <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
                             <div
                               className="h-full rounded-full transition-all"

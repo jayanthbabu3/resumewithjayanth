@@ -5,7 +5,7 @@ import {
   Text,
   StyleSheet,
   Image,
-} from "@react-pdf/renderer";
+} from "@/lib/pdfRenderer";
 import type { ResumeData } from "@/pages/Editor";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 import { registerPDFFonts } from "@/lib/pdfFonts";
@@ -26,6 +26,10 @@ export const PremiumProPDF = ({
       fontFamily: "Inter",
       backgroundColor: "#ffffff",
       flexDirection: "row",
+      paddingTop: PDF_PAGE_MARGINS.top,
+      paddingRight: PDF_PAGE_MARGINS.right,
+      paddingBottom: PDF_PAGE_MARGINS.bottom,
+      paddingLeft: PDF_PAGE_MARGINS.left,
     },
     accentPanel: {
       width: 8,
@@ -33,10 +37,7 @@ export const PremiumProPDF = ({
     },
     mainContent: {
       flex: 1,
-      paddingTop: PDF_PAGE_MARGINS.top,
-    paddingRight: PDF_PAGE_MARGINS.right,
-    paddingBottom: PDF_PAGE_MARGINS.bottom,
-    paddingLeft: PDF_PAGE_MARGINS.left,
+      paddingLeft: 18,
     },
     header: {
       marginBottom: 32,
@@ -104,15 +105,21 @@ export const PremiumProPDF = ({
     contentGrid: {
       flexDirection: "row",
       gap: 28,
+      flexWrap: "wrap",
     },
     leftColumn: {
       width: "33.333%",
+      minWidth: "33.333%",
+      paddingRight: 8,
     },
     rightColumn: {
       flex: 1,
+      minWidth: "60%",
     },
     section: {
       marginBottom: 24,
+      // help avoid awkward splits across pages
+      breakInside: "avoid",
     },
     sectionTitle: {
       fontSize: 10,
@@ -304,7 +311,7 @@ export const PremiumProPDF = ({
                       </Text>
                     </View>
                   ))}
-        )                </View>
+                </View>
               )}
 
               {/* Skills */}
@@ -331,7 +338,7 @@ export const PremiumProPDF = ({
                       )}
                     </View>
                   ))}
-        )                </View>
+                </View>
               )}
             </View>
 
@@ -364,11 +371,11 @@ export const PremiumProPDF = ({
                                 <Text style={styles.bulletText}>{point}</Text>
                               </View>
                             ))}
-        )                        </View>
+                        </View>
                       )}
                     </View>
                   ))}
-        )                </View>
+                </View>
               )}
 
               {/* Sections */}
@@ -379,7 +386,7 @@ export const PremiumProPDF = ({
                     <Text style={styles.sectionContent}>{section.content}</Text>
                   </View>
                 ))}
-        )            </View>
+            </View>
           </View>
         </View>
       </Page>

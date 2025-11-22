@@ -1,4 +1,4 @@
-import {Page,Text,View,Document,StyleSheet} from "@react-pdf/renderer";
+import {Page,Text,View,Document,StyleSheet} from "@/lib/pdfRenderer";
 import type{ResumeData}from"@/pages/Editor";
 import{PDF_PAGE_MARGINS}from"@/lib/pdfConfig";
 interface TerminalThemePDFProps{resumeData:ResumeData;themeColor?:string}

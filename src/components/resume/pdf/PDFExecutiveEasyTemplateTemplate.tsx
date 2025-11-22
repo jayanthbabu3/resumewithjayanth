@@ -1,4 +1,4 @@
-import { Document, Page, Text, View, StyleSheet, Font, Link } from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, Font, Link } from "@/lib/pdfRenderer";
 import { ResumeData } from "@/pages/Editor";
 
 // Register fonts for better typography

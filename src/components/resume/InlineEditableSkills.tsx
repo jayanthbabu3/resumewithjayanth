@@ -21,6 +21,7 @@ interface InlineEditableSkillsProps {
   renderSkill?: (skill: Skill, index: number) => React.ReactNode;
   editable?: boolean;
   themeColor?: string;
+  showLevel?: boolean;
 }
 
 export const InlineEditableSkills = ({
@@ -31,6 +32,7 @@ export const InlineEditableSkills = ({
   renderSkill,
   editable = true,
   themeColor,
+  showLevel = false,
 }: InlineEditableSkillsProps) => {
   const resolvedPath = (path ?? field)?.replace(/^resumeData\./, "");
   const canMutate = editable && Boolean(resolvedPath);
@@ -72,6 +74,19 @@ export const InlineEditableSkills = ({
   const handleAdd = () => {
     if (!canMutate) return;
     addArrayItem(resolvedPath, { name: "New Skill", id: Date.now().toString() });
+  };
+
+  const updateLevel = (index: number, raw: string) => {
+    if (!canMutate) return;
+    const value = raw.trim();
+    if (value === "") {
+      updateField(`${resolvedPath}[${index}].level`, undefined);
+      return;
+    }
+    const parsed = Math.min(10, Math.max(0, Number(value)));
+    if (!Number.isNaN(parsed)) {
+      updateField(`${resolvedPath}[${index}].level`, parsed);
+    }
   };
 
   return (
@@ -181,6 +196,26 @@ export const InlineEditableSkills = ({
                   </div>
                 )}
               </Badge>
+            )}
+            {showLevel && (
+              <div className="mt-1 flex items-center gap-1">
+                <span className="text-[10px] text-muted-foreground">Level:</span>
+                {canMutate ? (
+                  <InlineEditableText
+                    path={`${resolvedPath}[${index}].level`}
+                    value={
+                      skill.level !== undefined && skill.level !== null
+                        ? String(skill.level)
+                        : ""
+                    }
+                    onCustomUpdate={(val) => updateLevel(index, val)}
+                    className="text-[11px] px-1 py-0.5 min-w-[36px]"
+                    placeholder="0-10"
+                  />
+                ) : (
+                  <span className="text-[11px] text-muted-foreground">{skill.level ?? "-"}</span>
+                )}
+              </div>
             )}
           </div>
         ))}
