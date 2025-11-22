@@ -1096,7 +1096,6 @@ import { PDFModernEducatorProfessionTemplate } from "@/components/resume/pdf/PDF
 import { PDFModernMinimalistUniversalTemplate } from "@/components/resume/pdf/PDFModernMinimalistUniversalTemplate";
 import { PDFModernPlainProTemplate } from "@/components/resume/pdf/PDFModernPlainProTemplate";
 import { PDFModernProfessionalBoxTemplate } from "@/components/resume/pdf/PDFModernProfessionalBoxTemplate";
-import { PDFModernSidebarTemplate } from "@/components/resume/pdf/PDFModernSidebarTemplate";
 import { PDFModernSimpleProTemplate } from "@/components/resume/pdf/PDFModernSimpleProTemplate";
 import { PDFMongoDBSpecialistTemplate } from "@/components/resume/pdf/PDFMongoDBSpecialistTemplate";
 import { PDFMonochromeElegantUniversalTemplate } from "@/components/resume/pdf/PDFMonochromeElegantUniversalTemplate";

@@ -170,13 +170,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Creative",
     categorySlug: "all",
   },
-  "modern-sidebar": {
-    name: "Modern Sidebar",
-    description:
-      "Contemporary template with left sidebar, clean grid layout, and modern design perfect for all industries.",
-    category: "Universal",
-    categorySlug: "all",
-  },
   "minimalist-geometric": {
     name: "Minimalist Geometric",
     description:

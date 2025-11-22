@@ -23,7 +23,6 @@ import { AnalystTemplate } from "./resume/templates/AnalystTemplate";
 import { RefinedTemplate } from "./resume/templates/RefinedTemplate";
 import { SapphireExecutiveTemplate } from "./resume/templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "./resume/templates/CreativeAccentTemplate";
-import { ModernSidebarTemplate } from "./resume/templates/ModernSidebarTemplate";
 import { MinimalistGeometricTemplate } from "./resume/templates/MinimalistGeometricTemplate";
 import { BoldHeadlineTemplate } from "./resume/templates/BoldHeadlineTemplate";
 import { DualToneTemplate } from "./resume/templates/DualToneTemplate";
@@ -1670,8 +1669,8 @@ const getTemplateSpecificData = (templateId: string): ResumeData => {
     };
   }
 
-  // Tech/software templates (tech-grid, software, modern-sidebar, minimalist-geometric, etc.)
-  if (['tech-grid', 'software', 'modern-sidebar', 'minimalist-geometric', 'bold-headline', 'dual-tone', 'contemporary-split'].includes(templateId)) {
+  // Tech/software templates (tech-grid, software, minimalist-geometric, etc.)
+  if (['tech-grid', 'software', 'minimalist-geometric', 'bold-headline', 'dual-tone', 'contemporary-split'].includes(templateId)) {
     return {
       personalInfo: {
         fullName: "Alex Morgan",
@@ -1860,7 +1859,6 @@ const templates = {
   refined: RefinedTemplate,
   "sapphire-executive": SapphireExecutiveTemplate,
   "creative-accent": CreativeAccentTemplate,
-  "modern-sidebar": ModernSidebarTemplate,
   "minimalist-geometric": MinimalistGeometricTemplate,
   "bold-headline": BoldHeadlineTemplate,
   "dual-tone": DualToneTemplate,
