@@ -214,13 +214,13 @@ export const RefinedTemplate = ({
               <InlineEditableText
                 path="personalInfo.fullName"
                 value={resumeData.personalInfo.fullName}
-                className="mb-3 text-6xl font-normal tracking-tight leading-none"
+                className="mb-3 text-4xl font-normal tracking-tight leading-none"
                 as="h1"
                 style={{ color: themeColor }}
               />
             ) : (
               <h1
-                className="mb-3 text-6xl font-normal tracking-tight leading-none"
+                className="mb-3 text-4xl font-normal tracking-tight leading-none"
                 style={{ color: themeColor }}
               >
                 {resumeData.personalInfo.fullName}
@@ -243,12 +243,12 @@ export const RefinedTemplate = ({
                 <InlineEditableText
                   path="personalInfo.summary"
                   value={resumeData.personalInfo.summary}
-                  className="text-sm leading-relaxed text-gray-700 font-light"
+                  className="text-xs leading-relaxed text-gray-700 font-light"
                   as="p"
                   multiline
                 />
               ) : (
-                <p className="text-sm leading-relaxed text-gray-700 font-light">
+                <p className="text-xs leading-relaxed text-gray-700 font-light">
                   {resumeData.personalInfo.summary}
                 </p>
               )
@@ -258,7 +258,7 @@ export const RefinedTemplate = ({
           {/* Professional Experience */}
           {resumeData.experience.length > 0 && (
             <div className="mb-10">
-              <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b-2" style={{ borderColor: themeColor }}>
+              <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b" style={{ borderColor: themeColor }}>
                 Professional Experience
               </h3>
               {editable ? (
@@ -281,14 +281,14 @@ export const RefinedTemplate = ({
                         <InlineEditableText
                           path={`experience[${index}].position`}
                           value={exp.position}
-                          className="text-base font-semibold text-gray-900 mb-1"
+                          className="text-xs font-semibold text-gray-900 mb-1"
                           as="h4"
                         />
                         <div className="flex items-baseline justify-between">
                           <InlineEditableText
                             path={`experience[${index}].company`}
                             value={exp.company}
-                            className="text-sm font-medium"
+                            className="text-xs font-medium"
                             as="p"
                             style={{ color: themeColor }}
                           />
@@ -316,7 +316,7 @@ export const RefinedTemplate = ({
                       <InlineEditableText
                         path={`experience[${index}].description`}
                         value={exp.description}
-                        className="text-sm leading-relaxed text-gray-700 font-light"
+                        className="text-xs leading-relaxed text-gray-700 font-light"
                         as="div"
                         multiline
                       />
@@ -328,11 +328,11 @@ export const RefinedTemplate = ({
                   {resumeData.experience.map((exp) => (
                     <div key={exp.id}>
                       <div className="mb-3">
-                        <h4 className="text-base font-semibold text-gray-900 mb-1">
+                        <h4 className="text-xs font-semibold text-gray-900 mb-1">
                           {exp.position}
                         </h4>
                         <div className="flex items-baseline justify-between">
-                          <p className="text-sm font-medium" style={{ color: themeColor }}>
+                          <p className="text-xs font-medium" style={{ color: themeColor }}>
                             {exp.company}
                           </p>
                           <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
@@ -342,7 +342,7 @@ export const RefinedTemplate = ({
                       </div>
                       <div className="space-y-1.5">
                         {exp.description.split("\n").map((line, idx) => (
-                          <p key={idx} className="text-sm leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                          <p key={idx} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
                             {line}
                           </p>
                         ))}
@@ -370,14 +370,14 @@ export const RefinedTemplate = ({
                   <InlineEditableText
                     path={`sections[${index}].title`}
                     value={section.title}
-                    className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b-2"
+                    className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b"
                     as="h3"
                     style={{ borderColor: themeColor }}
                   />
                   <InlineEditableText
                     path={`sections[${index}].content`}
                     value={section.content}
-                    className="text-sm leading-relaxed text-gray-700 font-light"
+                    className="text-xs leading-relaxed text-gray-700 font-light"
                     as="div"
                     multiline
                   />
@@ -387,7 +387,7 @@ export const RefinedTemplate = ({
           ) : (
             resumeData.sections.map((section) => (
               <div key={section.id} className="mb-10">
-                <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b-2" style={{ borderColor: themeColor }}>
+                <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b" style={{ borderColor: themeColor }}>
                   {section.title}
                 </h3>
                 <div className="space-y-1.5">

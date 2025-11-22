@@ -26,7 +26,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     width: 200,
     backgroundColor: `${themeColor}15`,
     paddingTop: PDF_PAGE_MARGINS.top,
-    paddingRight: PDF_PAGE_MARGINS.right,
+    paddingRight: 20,
     paddingBottom: PDF_PAGE_MARGINS.bottom,
     paddingLeft: PDF_PAGE_MARGINS.left,
   },
@@ -35,7 +35,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     paddingTop: PDF_PAGE_MARGINS.top,
     paddingRight: PDF_PAGE_MARGINS.right,
     paddingBottom: PDF_PAGE_MARGINS.bottom,
-    paddingLeft: PDF_PAGE_MARGINS.left,
+    paddingLeft: 20,
   },
   photo: {
     width: 100,
@@ -107,7 +107,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 32,
   },
   name: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 300,
     letterSpacing: -0.5,
     color: themeColor,
@@ -115,7 +115,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     lineHeight: 1.2,
   },
   title: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 600,
     textTransform: "uppercase",
     letterSpacing: 1.5,
@@ -123,7 +123,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 16,
   },
   summary: {
-    fontSize: 9,
+    fontSize: 8,
     lineHeight: 1.6,
     color: "#374151",
     fontWeight: 300,
@@ -132,13 +132,13 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 28,
   },
   sectionTitle: {
-    fontSize: 8,
+    fontSize: 7,
     fontWeight: 700,
     textTransform: "uppercase",
     letterSpacing: 1.5,
     color: "#1f2937",
     paddingBottom: 6,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     borderBottomColor: themeColor,
     marginBottom: 16,
   },
@@ -149,7 +149,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 8,
   },
   position: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: 600,
     color: "#1f2937",
     marginBottom: 2,
@@ -160,7 +160,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     alignItems: "baseline",
   },
   company: {
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: 500,
     color: themeColor,
   },
@@ -172,7 +172,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     letterSpacing: 1,
   },
   bulletPoint: {
-    fontSize: 9,
+    fontSize: 8,
     color: "#374151",
     marginBottom: 4,
     lineHeight: 1.5,
