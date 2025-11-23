@@ -1259,12 +1259,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     categorySlug: "fresh-graduates",
   },
   // Missing Universal Professional Templates
-  "timeline-elegance": {
-    name: "Timeline Elegance",
-    description: "Elegant timeline-based professional template with refined aesthetics.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
   "executive-minimal": {
     name: "Executive Minimal",
     description: "Minimalist executive template focusing on leadership achievements.",

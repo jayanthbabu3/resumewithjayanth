@@ -19,7 +19,11 @@ const createStyles = (color: string) =>
       fontFamily: "Inter",
       fontSize: 10,
       backgroundColor: "#ffffff",
-      padding: PDF_PAGE_MARGINS,
+      paddingTop: PDF_PAGE_MARGINS.top,
+      paddingRight: PDF_PAGE_MARGINS.right,
+      paddingBottom: PDF_PAGE_MARGINS.bottom,
+      paddingLeft: PDF_PAGE_MARGINS.left,
+      flexDirection: "column",
     },
     header: {
       marginBottom: 24,
@@ -42,7 +46,6 @@ const createStyles = (color: string) =>
     contactBar: {
       flexDirection: "row",
       justifyContent: "center",
-      gap: 12,
       fontSize: 8,
       color: "#666",
       borderTopWidth: 1,
@@ -50,15 +53,19 @@ const createStyles = (color: string) =>
       borderColor: "#ccc",
       paddingVertical: 6,
     },
+    contactItem: {
+      marginRight: 12,
+    },
+    summaryContainer: {
+      marginBottom: 24,
+      alignItems: "center",
+    },
     summary: {
       textAlign: "center",
       color: "#444",
       fontSize: 9,
-      fontStyle: "italic",
       lineHeight: 1.6,
-      marginBottom: 24,
       maxWidth: 450,
-      marginHorizontal: "auto",
     },
     sectionTitle: {
       fontSize: 9,
@@ -73,11 +80,16 @@ const createStyles = (color: string) =>
     },
     section: {
       marginBottom: 24,
+      alignItems: "center",
+    },
+    experienceItemWrapper: {
+      alignItems: "center",
+      width: "100%",
     },
     experienceItem: {
       marginBottom: 16,
       maxWidth: 480,
-      marginHorizontal: "auto",
+      width: "100%",
     },
     experienceHeader: {
       flexDirection: "row",
@@ -107,19 +119,28 @@ const createStyles = (color: string) =>
     },
     descriptionItem: {
       flexDirection: "row",
-      gap: 6,
       marginBottom: 4,
+    },
+    bulletText: {
+      marginLeft: 6,
+      flex: 1,
     },
     bullet: {
       color: "#999",
+    },
+    skillsWrapper: {
+      alignItems: "center",
+      width: "100%",
     },
     skillsContainer: {
       flexDirection: "row",
       flexWrap: "wrap",
       justifyContent: "center",
-      gap: 8,
       maxWidth: 480,
-      marginHorizontal: "auto",
+      width: "100%",
+    },
+    skillItem: {
+      marginRight: 8,
     },
     skill: {
       fontSize: 9,
@@ -128,7 +149,7 @@ const createStyles = (color: string) =>
     },
     separator: {
       color: "#ccc",
-      marginHorizontal: 8,
+      marginLeft: 16,
     },
   });
 
@@ -149,15 +170,15 @@ export const ExecutiveMinimalPDF = ({
             <Text style={styles.title}>{personalInfo.title}</Text>
           )}
           <View style={styles.contactBar}>
-            {personalInfo.email && <Text>{personalInfo.email}</Text>}
-            {personalInfo.phone && <Text>{personalInfo.phone}</Text>}
+            {personalInfo.email && <Text style={styles.contactItem}>{personalInfo.email}</Text>}
+            {personalInfo.phone && <Text style={styles.contactItem}>{personalInfo.phone}</Text>}
             {personalInfo.location && <Text>{personalInfo.location}</Text>}
           </View>
         </View>
 
         {/* Summary */}
         {personalInfo.summary && (
-          <View style={{ marginBottom: 24 }}>
+          <View style={styles.summaryContainer}>
             <Text style={styles.summary}>{personalInfo.summary}</Text>
           </View>
         )}
@@ -167,26 +188,28 @@ export const ExecutiveMinimalPDF = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Experience</Text>
             {experience.map((exp, index) => (
-              <View key={index} style={styles.experienceItem}>
-                <View style={styles.experienceHeader}>
-                  <View>
-                    <Text style={styles.position}>{exp.position}</Text>
-                    <Text style={styles.company}>{exp.company}</Text>
+              <View key={index} style={styles.experienceItemWrapper}>
+                <View style={styles.experienceItem}>
+                  <View style={styles.experienceHeader}>
+                    <View>
+                      <Text style={styles.position}>{exp.position}</Text>
+                      <Text style={styles.company}>{exp.company}</Text>
+                    </View>
+                    <Text style={styles.dateRange}>
+                      {exp.startDate} - {exp.endDate || "Present"}
+                    </Text>
                   </View>
-                  <Text style={styles.dateRange}>
-                    {exp.startDate} - {exp.endDate || "Present"}
-                  </Text>
+                  {exp.description && (
+                    <View style={styles.description}>
+                      {exp.description.split("\n").map((item, i) => (
+                        <View key={i} style={styles.descriptionItem}>
+                          <Text style={styles.bullet}>—</Text>
+                          <Text style={styles.bulletText}>{item}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  )}
                 </View>
-                {exp.description && (
-                  <View style={styles.description}>
-                    {exp.description.split("\n").map((item, i) => (
-                      <View key={i} style={styles.descriptionItem}>
-                        <Text style={styles.bullet}>—</Text>
-                        <Text style={{ flex: 1 }}>{item}</Text>
-                      </View>
-                    ))}
-                  </View>
-                )}
               </View>
             ))}
           </View>
@@ -197,13 +220,15 @@ export const ExecutiveMinimalPDF = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Education</Text>
             {education.map((edu, index) => (
-              <View key={index} style={styles.experienceItem}>
-                <View style={styles.experienceHeader}>
-                  <View>
-                    <Text style={styles.position}>{edu.degree}</Text>
-                    <Text style={styles.company}>{edu.institution}</Text>
+              <View key={index} style={styles.experienceItemWrapper}>
+                <View style={styles.experienceItem}>
+                  <View style={styles.experienceHeader}>
+                    <View>
+                      <Text style={styles.position}>{edu.degree}</Text>
+                      <Text style={styles.company}>{edu.institution}</Text>
+                    </View>
+                    <Text style={styles.dateRange}>{edu.graduationDate}</Text>
                   </View>
-                  <Text style={styles.dateRange}>{edu.graduationDate}</Text>
                 </View>
               </View>
             ))}
@@ -214,15 +239,17 @@ export const ExecutiveMinimalPDF = ({
         {skills && skills.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Skills</Text>
-            <View style={styles.skillsContainer}>
-              {skills.map((skill, index) => (
-                <View key={index} style={{ flexDirection: "row" }}>
-                  <Text style={styles.skill}>{skill.name}</Text>
-                  {index < skills.length - 1 && (
-                    <Text style={styles.separator}>|</Text>
-                  )}
-                </View>
-              ))}
+            <View style={styles.skillsWrapper}>
+              <View style={styles.skillsContainer}>
+                {skills.map((skill, index) => (
+                  <View key={index} style={[styles.skillItem, { flexDirection: "row" }]}>
+                    <Text style={styles.skill}>{skill.name}</Text>
+                    {index < skills.length - 1 && (
+                      <Text style={styles.separator}>|</Text>
+                    )}
+                  </View>
+                ))}
+              </View>
             </View>
           </View>
         )}
@@ -232,7 +259,9 @@ export const ExecutiveMinimalPDF = ({
           sections.map((section, index) => (
             <View key={index} style={styles.section}>
               <Text style={styles.sectionTitle}>{section.title}</Text>
-              <Text style={styles.summary}>{section.content}</Text>
+              <View style={styles.summaryContainer}>
+                <Text style={styles.summary}>{section.content}</Text>
+              </View>
             </View>
           ))}
       </Page>

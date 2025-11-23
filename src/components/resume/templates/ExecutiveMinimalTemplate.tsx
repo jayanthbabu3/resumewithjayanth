@@ -236,7 +236,36 @@ export const ExecutiveMinimalTemplate = ({
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections &&
+      {editable ? (
+        <InlineEditableList
+          path="sections"
+          items={resumeData.sections || []}
+          defaultItem={{
+            id: Date.now().toString(),
+            title: "Certifications",
+            content: "Certification Name",
+          }}
+          addButtonLabel="Add Section"
+          renderItem={(section, index) => (
+            <div key={section.id} className="mb-12 max-w-4xl mx-auto">
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-xs font-bold tracking-widest uppercase mb-6 text-center border-b pb-2 block"
+                as="h2"
+              />
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap block"
+                multiline
+                as="div"
+              />
+            </div>
+          )}
+        />
+      ) : (
+        resumeData.sections &&
         resumeData.sections.map((section, index) => (
           <div key={index} className="mb-12 max-w-4xl mx-auto">
             <h2 className="text-xs font-bold tracking-widest uppercase mb-6 text-center border-b pb-2">
@@ -246,7 +275,8 @@ export const ExecutiveMinimalTemplate = ({
               {section.content}
             </div>
           </div>
-        ))}
+        ))
+      )}
     </div>
   );
 };

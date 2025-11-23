@@ -11,7 +11,16 @@ interface TemplateProps {
   editable?: boolean;
 }
 
+// Helper to create a lighter border color using rgba
+const getLightBorderColor = (hex: string) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, 0.25)`; // 25% opacity for lighter borders
+};
+
 export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", editable = false }: TemplateProps) => {
+  const lightBorderColor = getLightBorderColor(themeColor);
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");
@@ -24,7 +33,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
   return (
     <div className="w-full bg-white text-gray-900 p-8 text-[13px] leading-relaxed">
       {/* Header */}
-      <div className="mb-8 pb-4 border-b-2 border-gray-300">
+      <div className="mb-8 pb-4 border-b border-gray-300">
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
@@ -92,7 +101,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       {/* Summary */}
       {resumeData.personalInfo.summary && (
         <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: themeColor }}>
+          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
             PROFESSIONAL SUMMARY
           </h2>
           {editable ? (
@@ -114,7 +123,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       {/* Experience */}
       {resumeData.experience.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: themeColor }}>
+          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
             WORK EXPERIENCE
           </h2>
           {editable ? (
@@ -209,7 +218,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       {/* Skills */}
       {resumeData.skills.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: themeColor }}>
+          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
             KEY SKILLS
           </h2>
           {editable ? (
@@ -241,7 +250,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       {/* Education */}
       {resumeData.education.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: themeColor }}>
+          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
             EDUCATION
           </h2>
           {editable ? (
@@ -321,16 +330,47 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections.map((section) => (
-        <div key={section.id} className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: themeColor }}>
-            {section.title.toUpperCase()}
-          </h2>
-          <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
-            {section.content}
-          </p>
-        </div>
-      ))}
+      {editable ? (
+        <InlineEditableList
+          path="sections"
+          items={resumeData.sections || []}
+          defaultItem={{
+            id: Date.now().toString(),
+            title: "Certifications",
+            content: "Certification Name",
+          }}
+          addButtonLabel="Add Section"
+          renderItem={(section, index) => (
+            <div key={section.id} className="mb-8">
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-[14px] font-bold mb-3 pb-1 border-b block"
+                style={{ color: themeColor, borderColor: lightBorderColor }}
+                as="h2"
+              />
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line block"
+                multiline
+                as="p"
+              />
+            </div>
+          )}
+        />
+      ) : (
+        resumeData.sections.map((section) => (
+          <div key={section.id} className="mb-8">
+            <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
+              {section.title.toUpperCase()}
+            </h2>
+            <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
+              {section.content}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

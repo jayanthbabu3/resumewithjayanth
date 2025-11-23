@@ -2,7 +2,31 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import type { ResumeData } from "@/pages/Editor";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
-const createStyles = (themeColor: string) => StyleSheet.create({
+// Blend hex color with white to simulate opacity (React-PDF doesn't handle rgba well for borders)
+const hexToLightHex = (hex: string, opacity: number) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  // Blend with white (255, 255, 255) at given opacity
+  const newR = Math.round(r * opacity + 255 * (1 - opacity));
+  const newG = Math.round(g * opacity + 255 * (1 - opacity));
+  const newB = Math.round(b * opacity + 255 * (1 - opacity));
+  return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+};
+
+// Convert hex to rgba for background colors (React-PDF handles rgba for backgroundColor)
+const hexToRgba = (hex: string, opacity: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+};
+
+const createStyles = (themeColor: string) => {
+  const themeColor30 = hexToLightHex(themeColor, 0.3); // Light border color
+  const themeColor05 = hexToRgba(themeColor, 0.05); // Light background color
+  
+  return StyleSheet.create({
   page: {
     paddingTop: PDF_PAGE_MARGINS.top,
     paddingRight: PDF_PAGE_MARGINS.right,
@@ -41,7 +65,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     paddingLeft: 12,
     borderLeftWidth: 3,
     borderLeftColor: themeColor,
-    backgroundColor: `${themeColor}05`,
+    backgroundColor: themeColor05,
     padding: 12,
   },
   summary: {
@@ -66,7 +90,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 20,
     padding: 12,
     borderWidth: 1,
-    borderColor: `${themeColor}30`,
+    borderColor: themeColor30,
     borderRadius: 4,
   },
   experienceHeader: {
@@ -139,7 +163,8 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     fontSize: 9,
     color: '#6b7280',
   },
-});
+  });
+};
 
 const formatDate = (date: string) => {
   if (!date) return "";

@@ -129,7 +129,6 @@ import { MLEngineerPDF } from "@/components/resume/pdf/MLEngineerPDF";
 import { SidebarAccentPDF } from "@/components/resume/pdf/SidebarAccentPDF";
 import { TechStackProPDF } from "@/components/resume/pdf/TechStackProPDF";
 import { TerminalThemePDF } from "@/components/resume/pdf/TerminalThemePDF";
-import { TimelineElegancePDF } from "@/components/resume/pdf/TimelineElegancePDF";
 import { TwoToneClassicPDF } from "@/components/resume/pdf/TwoToneClassicPDF";
 import { CodeCraftsmanPDF } from "@/components/resume/pdf/CodeCraftsmanPDF";
 import { TechPioneerPDF } from "@/components/resume/pdf/TechPioneerPDF";
@@ -2876,7 +2875,6 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
 
   // For new templates without specific defaults, use professional template data
   const newTemplatesUsingProfessionalDefaults = [
-    "timeline-elegance",
     "executive-minimal",
     "sidebar-accent",
     "geometric-modern",
@@ -3468,7 +3466,6 @@ const Editor = () => {
         "sidebar-accent": SidebarAccentPDF,
         "tech-stack-pro": TechStackProPDF,
         "terminal-theme": TerminalThemePDF,
-        "timeline-elegance": TimelineElegancePDF,
         "two-tone-classic": TwoToneClassicPDF,
         "code-craftsman": CodeCraftsmanPDF,
         "tech-pioneer": TechPioneerPDF,

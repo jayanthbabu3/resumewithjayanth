@@ -24,7 +24,7 @@ export const ProfessionalClassicTemplate = ({ resumeData, themeColor = "#374151"
   return (
     <div className="w-full bg-white text-gray-900 p-8 text-[13px] leading-relaxed">
       {/* Header - Classic ATS-Friendly */}
-      <div className="mb-8 text-center">
+      <div className="mb-2 text-center">
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
@@ -97,7 +97,7 @@ export const ProfessionalClassicTemplate = ({ resumeData, themeColor = "#374151"
         </div>
       </div>
 
-      <div className="h-px w-full bg-gray-300 mb-8"></div>
+      <div className="h-px w-full bg-gray-300 mb-6"></div>
 
       {/* Summary */}
       {resumeData.personalInfo.summary && (
@@ -330,16 +330,47 @@ export const ProfessionalClassicTemplate = ({ resumeData, themeColor = "#374151"
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections.map((section) => (
-        <div key={section.id} className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 uppercase" style={{ color: themeColor }}>
-            {section.title}
-          </h2>
-          <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
-            {section.content}
-          </p>
-        </div>
-      ))}
+      {editable ? (
+        <InlineEditableList
+          path="sections"
+          items={resumeData.sections || []}
+          defaultItem={{
+            id: Date.now().toString(),
+            title: "Certifications",
+            content: "Certification Name",
+          }}
+          addButtonLabel="Add Section"
+          renderItem={(section, index) => (
+            <div key={section.id} className="mb-8">
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-[14px] font-bold mb-3 uppercase block"
+                style={{ color: themeColor }}
+                as="h2"
+              />
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line block"
+                multiline
+                as="p"
+              />
+            </div>
+          )}
+        />
+      ) : (
+        resumeData.sections.map((section) => (
+          <div key={section.id} className="mb-8">
+            <h2 className="text-[14px] font-bold mb-3 uppercase" style={{ color: themeColor }}>
+              {section.title}
+            </h2>
+            <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
+              {section.content}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

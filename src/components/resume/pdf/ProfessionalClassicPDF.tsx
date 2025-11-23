@@ -13,7 +13,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   header: {
-    marginBottom: 24,
+    marginBottom: 8,
     alignItems: 'center',
   },
   name: {
@@ -44,7 +44,8 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: '#d1d5db',
-    marginVertical: 24,
+    marginTop: 0,
+    marginBottom: 16,
   },
   section: {
     marginBottom: 24,

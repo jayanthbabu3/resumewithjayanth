@@ -208,8 +208,8 @@ export const BusinessEliteTemplate = ({ resumeData, themeColor = "#854d0e", edit
 
       {/* Skills */}
       {resumeData.skills.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wider" style={{ color: themeColor }}>
+        <div className="mb-8 -mt-4">
+          <h2 className="text-[15px] font-bold mb-3 uppercase tracking-wider" style={{ color: themeColor }}>
             Core Competencies
           </h2>
           {editable ? (
@@ -218,7 +218,7 @@ export const BusinessEliteTemplate = ({ resumeData, themeColor = "#854d0e", edit
               skills={resumeData.skills}
               renderSkill={(skill) => {
                 return skill.name ? (
-                  <div className="inline-block px-4 py-2 mr-3 mb-3 border-2 text-[12.5px] font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
+                  <div className="inline-block px-4 py-2 mr-3 mb-3 border text-[12.5px] font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </div>
                 ) : null;
@@ -321,16 +321,47 @@ export const BusinessEliteTemplate = ({ resumeData, themeColor = "#854d0e", edit
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections.map((section) => (
-        <div key={section.id} className="mb-8">
-          <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wider" style={{ color: themeColor }}>
-            {section.title}
-          </h2>
-          <p className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line">
-            {section.content}
-          </p>
-        </div>
-      ))}
+      {editable ? (
+        <InlineEditableList
+          path="sections"
+          items={resumeData.sections || []}
+          defaultItem={{
+            id: Date.now().toString(),
+            title: "Certifications",
+            content: "Certification Name",
+          }}
+          addButtonLabel="Add Section"
+          renderItem={(section, index) => (
+            <div key={section.id} className="mb-8">
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-[15px] font-bold mb-4 uppercase tracking-wider block"
+                style={{ color: themeColor }}
+                as="h2"
+              />
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line block"
+                multiline
+                as="p"
+              />
+            </div>
+          )}
+        />
+      ) : (
+        resumeData.sections.map((section) => (
+          <div key={section.id} className="mb-8">
+            <h2 className="text-[15px] font-bold mb-4 uppercase tracking-wider" style={{ color: themeColor }}>
+              {section.title}
+            </h2>
+            <p className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line">
+              {section.content}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 };

@@ -2,7 +2,30 @@ import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import type { ResumeData } from "@/pages/Editor";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
-const createStyles = (themeColor: string) => StyleSheet.create({
+// Blend hex color with white to simulate opacity (React-PDF doesn't handle rgba well for borders)
+const hexToLightHex = (hex: string, opacity: number) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const newR = Math.round(r * opacity + 255 * (1 - opacity));
+  const newG = Math.round(g * opacity + 255 * (1 - opacity));
+  const newB = Math.round(b * opacity + 255 * (1 - opacity));
+  return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+};
+
+// Convert hex to rgba for background colors (React-PDF handles rgba for backgroundColor)
+const hexToRgba = (hex: string, opacity: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+};
+
+const createStyles = (themeColor: string) => {
+  const themeColor10 = hexToRgba(themeColor, 0.1); // Background color
+  const themeColor20 = hexToLightHex(themeColor, 0.2); // Border color
+  
+  return StyleSheet.create({
   page: {
     paddingTop: PDF_PAGE_MARGINS.top,
     paddingRight: PDF_PAGE_MARGINS.right,
@@ -15,7 +38,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   header: {
     marginBottom: 24,
     padding: 20,
-    backgroundColor: `${themeColor}10`,
+    backgroundColor: themeColor10,
     borderLeftWidth: 4,
     borderLeftColor: themeColor,
   },
@@ -45,7 +68,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     fontSize: 12,
     fontWeight: 700,
     color: themeColor,
-    marginBottom: 12,
+    marginBottom: 8,
     textTransform: 'uppercase',
     letterSpacing: 1,
   },
@@ -58,7 +81,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: `${themeColor}20`,
+    borderBottomColor: themeColor20,
   },
   experienceHeader: {
     flexDirection: 'row',
@@ -95,7 +118,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   skillItem: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: themeColor,
     fontSize: 9.5,
     fontWeight: 600,
@@ -129,7 +152,8 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     fontSize: 9,
     color: '#6b7280',
   },
-});
+  });
+};
 
 const formatDate = (date: string) => {
   if (!date) return "";
@@ -187,7 +211,7 @@ export const BusinessElitePDF = ({ resumeData, themeColor = "#854d0e" }: Props) 
         )}
 
         {resumeData.skills.length > 0 && (
-          <View style={styles.section}>
+          <View style={[styles.section, { marginTop: -8 }]}>
             <Text style={styles.sectionTitle}>Core Competencies</Text>
             <View style={styles.skillsContainer}>
               {resumeData.skills.map((skill) => (

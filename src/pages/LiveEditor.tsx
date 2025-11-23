@@ -128,7 +128,6 @@ import { MLEngineerPDF } from "@/components/resume/pdf/MLEngineerPDF";
 import { SidebarAccentPDF } from "@/components/resume/pdf/SidebarAccentPDF";
 import { TechStackProPDF } from "@/components/resume/pdf/TechStackProPDF";
 import { TerminalThemePDF } from "@/components/resume/pdf/TerminalThemePDF";
-import { TimelineElegancePDF } from "@/components/resume/pdf/TimelineElegancePDF";
 import { TwoToneClassicPDF } from "@/components/resume/pdf/TwoToneClassicPDF";
 // 2025 New Templates (100 PDF imports)
 import { StrategicLeadershipPDF } from "@/components/resume/pdf/StrategicLeadershipPDF";
@@ -617,7 +616,6 @@ import { MLEngineerTemplate } from "@/components/resume/templates/MLEngineerTemp
 import { SidebarAccentTemplate } from "@/components/resume/templates/SidebarAccentTemplate";
 import { TechStackProTemplate } from "@/components/resume/templates/TechStackProTemplate";
 import { TerminalThemeTemplate } from "@/components/resume/templates/TerminalThemeTemplate";
-import { TimelineEleganceTemplate } from "@/components/resume/templates/TimelineEleganceTemplate";
 import { TwoToneClassicTemplate } from "@/components/resume/templates/TwoToneClassicTemplate";
 // 2025 New Templates (100 HTML imports)
 import { StrategicLeadershipTemplate } from "@/components/resume/templates/StrategicLeadershipTemplate";
@@ -1536,7 +1534,6 @@ const pdfTemplates: Record<string, any> = {
   "sidebar-accent": SidebarAccentPDF,
   "tech-stack-pro": TechStackProPDF,
   "terminal-theme": TerminalThemePDF,
-  "timeline-elegance": TimelineElegancePDF,
   "two-tone-classic": TwoToneClassicPDF,
   // 2025 New Templates (100 PDF map entries)
   "strategic-leadership": StrategicLeadershipPDF,
@@ -2013,7 +2010,6 @@ const displayTemplates: Record<string, any> = {
   "sidebar-accent": SidebarAccentTemplate,
   "tech-stack-pro": TechStackProTemplate,
   "terminal-theme": TerminalThemeTemplate,
-  "timeline-elegance": TimelineEleganceTemplate,
   "two-tone-classic": TwoToneClassicTemplate,
   // 2025 New Templates (100 displayTemplates map entries)
   "strategic-leadership": StrategicLeadershipTemplate,

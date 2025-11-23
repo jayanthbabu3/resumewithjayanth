@@ -158,7 +158,6 @@ import { MLEngineerTemplate } from "./resume/templates/MLEngineerTemplate";
 import { SidebarAccentTemplate } from "./resume/templates/SidebarAccentTemplate";
 import { TechStackProTemplate } from "./resume/templates/TechStackProTemplate";
 import { TerminalThemeTemplate } from "./resume/templates/TerminalThemeTemplate";
-import { TimelineEleganceTemplate } from "./resume/templates/TimelineEleganceTemplate";
 import { TwoToneClassicTemplate } from "./resume/templates/TwoToneClassicTemplate";
 // 2025 Universal Profile Templates
 import { SidebarProfessionalUniversalTemplate } from "./resume/templates/SidebarProfessionalUniversalTemplate";
@@ -1992,7 +1991,6 @@ const templates = {
   "sidebar-accent": SidebarAccentTemplate,
   "tech-stack-pro": TechStackProTemplate,
   "terminal-theme": TerminalThemeTemplate,
-  "timeline-elegance": TimelineEleganceTemplate,
   "two-tone-classic": TwoToneClassicTemplate,
   // 2025 Universal Profile Templates
   "sidebar-professional-universal": SidebarProfessionalUniversalTemplate,

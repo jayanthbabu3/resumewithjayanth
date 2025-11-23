@@ -249,7 +249,6 @@ import { FullStackModernTemplate } from "./templates/FullStackModernTemplate";
 import { DevOpsProTemplate } from "./templates/DevOpsProTemplate";
 import { MLEngineerTemplate } from "./templates/MLEngineerTemplate";
 // Missing Universal Professional Templates
-import { TimelineEleganceTemplate } from "./templates/TimelineEleganceTemplate";
 import { ExecutiveMinimalTemplate } from "./templates/ExecutiveMinimalTemplate";
 import { SidebarAccentTemplate } from "./templates/SidebarAccentTemplate";
 import { GeometricModernTemplate } from "./templates/GeometricModernTemplate";
@@ -618,7 +617,6 @@ export const ResumePreview = ({
     "professional-classic": ProfessionalClassicTemplate,
     "modern-business": ModernBusinessTemplate,
     // Missing Universal Professional Templates
-    "timeline-elegance": TimelineEleganceTemplate,
     "executive-minimal": ExecutiveMinimalTemplate,
     "sidebar-accent": SidebarAccentTemplate,
     "geometric-modern": GeometricModernTemplate,

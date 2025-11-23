@@ -42,11 +42,11 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
           <InlineEditableText
             path="personalInfo.title"
             value={resumeData.personalInfo.title || "Professional Title"}
-            className="text-[15px] text-gray-600 mb-4 block italic"
+            className="text-[15px] text-gray-600 mb-4 block"
             as="p"
           />
         ) : (
-          <p className="text-[15px] text-gray-600 mb-4 italic">
+          <p className="text-[15px] text-gray-600 mb-4">
             {resumeData.personalInfo.title || "Professional Title"}
           </p>
         )}
@@ -144,7 +144,7 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
                       <InlineEditableText
                         path={`experience[${index}].company`}
                         value={exp.company || "Company Name"}
-                        className="text-[13px] font-semibold italic block"
+                        className="text-[13px] font-semibold block"
                         style={{ color: themeColor }}
                         as="p"
                       />
@@ -188,7 +188,7 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
                   <div className="flex justify-between items-start mb-2 gap-4">
                     <div className="flex-1">
                       <h3 className="text-[15px] font-bold text-gray-900">{exp.position || "Position Title"}</h3>
-                      <p className="text-[13px] font-semibold italic" style={{ color: themeColor }}>{exp.company || "Company Name"}</p>
+                      <p className="text-[13px] font-semibold" style={{ color: themeColor }}>{exp.company || "Company Name"}</p>
                     </div>
                     <span className="text-[12px] text-gray-600 whitespace-nowrap">
                       {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
@@ -278,7 +278,7 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
                       <InlineEditableText
                         path={`education[${index}].school`}
                         value={edu.school}
-                        className="text-[12.5px] text-gray-700 block italic"
+                        className="text-[12.5px] text-gray-700 block"
                         as="p"
                       />
                     </div>
@@ -308,7 +308,7 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
                   <div className="flex-1">
                     <h3 className="text-[13px] font-semibold text-gray-900">{edu.degree}</h3>
                     {edu.field && <p className="text-[12px] text-gray-600">{edu.field}</p>}
-                    <p className="text-[12.5px] text-gray-700 italic">{edu.school}</p>
+                    <p className="text-[12.5px] text-gray-700">{edu.school}</p>
                   </div>
                   <span className="text-[12px] text-gray-500 whitespace-nowrap">
                     {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
@@ -321,16 +321,47 @@ export const ElegantProfessionalTemplate = ({ resumeData, themeColor = "#9333ea"
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections.map((section) => (
-        <div key={section.id} className="mb-8">
-          <h2 className="text-[15px] font-bold mb-4 text-center" style={{ color: themeColor }}>
-            {section.title}
-          </h2>
-          <p className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line">
-            {section.content}
-          </p>
-        </div>
-      ))}
+      {editable ? (
+        <InlineEditableList
+          path="sections"
+          items={resumeData.sections || []}
+          defaultItem={{
+            id: Date.now().toString(),
+            title: "Certifications",
+            content: "Certification Name",
+          }}
+          addButtonLabel="Add Section"
+          renderItem={(section, index) => (
+            <div key={section.id} className="mb-8">
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-[15px] font-bold mb-4 text-center block"
+                style={{ color: themeColor }}
+                as="h2"
+              />
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line block"
+                multiline
+                as="p"
+              />
+            </div>
+          )}
+        />
+      ) : (
+        resumeData.sections.map((section) => (
+          <div key={section.id} className="mb-8">
+            <h2 className="text-[15px] font-bold mb-4 text-center" style={{ color: themeColor }}>
+              {section.title}
+            </h2>
+            <p className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line">
+              {section.content}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 };
