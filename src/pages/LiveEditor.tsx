@@ -481,6 +481,12 @@ import { DualToneTemplate } from "@/components/resume/templates/DualToneTemplate
 import { ElegantSerifTemplate } from "@/components/resume/templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "@/components/resume/templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "@/components/resume/templates/ContemporarySplitTemplate";
+import { PDFSapphireExecutiveTemplate } from "@/components/resume/pdf/PDFSapphireExecutiveTemplate";
+import { PDFCreativeAccentTemplate } from "@/components/resume/pdf/PDFCreativeAccentTemplate";
+import { PDFBoldHeadlineTemplate } from "@/components/resume/pdf/PDFBoldHeadlineTemplate";
+import { PDFDualToneTemplate } from "@/components/resume/pdf/PDFDualToneTemplate";
+import { PDFElegantSerifTemplate } from "@/components/resume/pdf/PDFElegantSerifTemplate";
+import { PDFContemporarySplitTemplate } from "@/components/resume/pdf/PDFContemporarySplitTemplate";
 import { LuxuryTimelineTemplate } from "@/components/resume/templates/LuxuryTimelineTemplate";
 import { FresherMinimalGridTemplate } from "@/components/resume/templates/FresherMinimalGridTemplate";
 import { FresherDarkProfessionalTemplate } from "@/components/resume/templates/FresherDarkProfessionalTemplate";
@@ -1430,13 +1436,13 @@ const pdfTemplates: Record<string, any> = {
   "corporate-executive": CorporateExecutivePDF,
   refined: RefinedPDF,
   "premium-elite": PremiumElitePDF,
-  "sapphire-executive": SapphireExecutiveTemplate,
-  "creative-accent": CreativeAccentTemplate,
-  "bold-headline": BoldHeadlineTemplate,
-  "dual-tone": DualToneTemplate,
-  "elegant-serif": ElegantSerifTemplate,
+  "sapphire-executive": PDFSapphireExecutiveTemplate,
+  "creative-accent": PDFCreativeAccentTemplate,
+  "bold-headline": PDFBoldHeadlineTemplate,
+  "dual-tone": PDFDualToneTemplate,
+  "elegant-serif": PDFElegantSerifTemplate,
   "tech-grid": TechGridPDF,
-  "contemporary-split": ContemporarySplitTemplate,
+  "contemporary-split": PDFContemporarySplitTemplate,
   "luxury-timeline": LuxuryTimelineTemplate,
   "fresher-minimal-grid": FresherMinimalGridPDF,
   "fresher-dark-professional": FresherDarkProfessionalPDF,

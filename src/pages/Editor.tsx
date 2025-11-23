@@ -4021,6 +4021,12 @@ const Editor = () => {
         "motion-designer-portfolio": PDFMotionDesignerPortfolioTemplate,
         "visual-designer-showcase": PDFVisualDesignerShowcaseTemplate,
         "design-leader-portfolio": PDFDesignLeaderPortfolioTemplate,
+        "sapphire-executive": PDFSapphireExecutiveTemplate,
+        "creative-accent": PDFCreativeAccentTemplate,
+        "bold-headline": PDFBoldHeadlineTemplate,
+        "dual-tone": PDFDualToneTemplate,
+        "elegant-serif": PDFElegantSerifTemplate,
+        "contemporary-split": PDFContemporarySplitTemplate,
       };
 
       const PDFTemplate =
