@@ -15,9 +15,18 @@ export const TwoToneClassicTemplate = ({
   themeColor = "#334155",
   editable = false,
 }: TwoToneClassicTemplateProps) => {
+  const hexToRgba = (hex: string, alpha = 1) => {
+    const cleanedHex = hex.replace("#", "");
+    if (cleanedHex.length !== 6) {
+      return hex;
+    }
+    const r = parseInt(cleanedHex.slice(0, 2), 16);
+    const g = parseInt(cleanedHex.slice(2, 4), 16);
+    const b = parseInt(cleanedHex.slice(4, 6), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
 
-  // Calculate lighter tone (20% opacity for backgrounds)
-  const lightTone = `${themeColor}33`;
+  const lightTone = hexToRgba(themeColor, 0.08);
 
   return (
     <div className="w-full h-full bg-white text-gray-900">
@@ -169,9 +178,12 @@ export const TwoToneClassicTemplate = ({
                   {exp.description && (
                     <div className="text-gray-700 mt-3">
                       {editable ? (
-                        <InlineEditableList
+                        <InlineEditableText
                           path={`experience[${index}].description`}
-                          items={exp.description.split("\n")}
+                          value={exp.description}
+                          className="whitespace-pre-line"
+                          multiline
+                          as="div"
                         />
                       ) : (
                         <ul className="list-disc list-inside space-y-1">
@@ -255,9 +267,40 @@ export const TwoToneClassicTemplate = ({
         )}
 
         {/* Custom Sections */}
-        {resumeData.sections &&
+        {editable ? (
+          <InlineEditableList
+            path="sections"
+            items={resumeData.sections || []}
+            addButtonLabel="Add Section"
+            defaultItem={{
+              id: Date.now().toString(),
+              title: "Custom Section",
+              content: "Add details here",
+            }}
+            renderItem={(section, index) => (
+              <div key={section.id || index} className="mb-8">
+                <InlineEditableText
+                  path={`sections[${index}].title`}
+                  value={section.title}
+                  className="text-2xl font-bold mb-6 pb-2 border-b-2 block"
+                  style={{ color: themeColor, borderColor: themeColor }}
+                  as="h2"
+                />
+                <InlineEditableText
+                  path={`sections[${index}].content`}
+                  value={section.content}
+                  className="text-gray-700 leading-relaxed whitespace-pre-line block"
+                  multiline
+                  as="div"
+                />
+              </div>
+            )}
+          />
+        ) : (
+          resumeData.sections &&
+          resumeData.sections.length > 0 &&
           resumeData.sections.map((section, index) => (
-            <div key={index} className="mb-8">
+            <div key={section.id || index} className="mb-8">
               <h2 className="text-2xl font-bold mb-6 pb-2 border-b-2" style={{ color: themeColor, borderColor: themeColor }}>
                 {section.title}
               </h2>
@@ -265,7 +308,8 @@ export const TwoToneClassicTemplate = ({
                 {section.content}
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

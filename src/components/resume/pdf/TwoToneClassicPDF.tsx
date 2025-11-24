@@ -1,10 +1,4 @@
-import {
-  Page,
-  Text,
-  View,
-  Document,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { ResumeData } from "@/pages/Editor";
 import { PDF_PAGE_MARGINS } from "@/lib/pdfConfig";
 
@@ -13,17 +7,36 @@ interface TwoToneClassicPDFProps {
   themeColor?: string;
 }
 
+const hexToRgba = (hex: string, alpha = 1) => {
+  const cleanedHex = hex.replace("#", "");
+  if (cleanedHex.length !== 6) {
+    return hex;
+  }
+  const r = parseInt(cleanedHex.slice(0, 2), 16);
+  const g = parseInt(cleanedHex.slice(2, 4), 16);
+  const b = parseInt(cleanedHex.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 const createStyles = (color: string) =>
   StyleSheet.create({
     page: {
       fontFamily: "Inter",
       fontSize: 10,
       backgroundColor: "#ffffff",
+      paddingTop: PDF_PAGE_MARGINS.top,
+      paddingBottom: PDF_PAGE_MARGINS.bottom,
+      paddingHorizontal: PDF_PAGE_MARGINS.left,
     },
     header: {
       backgroundColor: color,
-      padding: 25,
+      paddingVertical: 25,
+      paddingHorizontal: 25,
       color: "#ffffff",
+      marginLeft: -PDF_PAGE_MARGINS.left,
+      marginRight: -PDF_PAGE_MARGINS.right,
+      marginTop: -PDF_PAGE_MARGINS.top,
+      marginBottom: 20,
     },
     name: {
       fontSize: 32,
@@ -38,12 +51,16 @@ const createStyles = (color: string) =>
     contactInfo: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 12,
       fontSize: 9,
       opacity: 0.9,
     },
+    contactInfoItem: {
+      marginRight: 12,
+      marginBottom: 6,
+    },
     content: {
-      padding: 25,
+      paddingHorizontal: 25,
+      paddingBottom: 25,
     },
     section: {
       marginBottom: 18,
@@ -58,7 +75,7 @@ const createStyles = (color: string) =>
       borderBottomColor: color,
     },
     lightBox: {
-      backgroundColor: `${color}20`,
+      backgroundColor: hexToRgba(color, 0.08),
       padding: 12,
       borderRadius: 4,
     },
@@ -91,6 +108,11 @@ const createStyles = (color: string) =>
       marginBottom: 2,
       paddingLeft: 10,
     },
+    skillsContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      marginHorizontal: -3,
+    },
     skillChip: {
       paddingHorizontal: 10,
       paddingVertical: 5,
@@ -99,6 +121,8 @@ const createStyles = (color: string) =>
       fontSize: 9,
       fontWeight: 500,
       borderRadius: 4,
+      marginHorizontal: 3,
+      marginBottom: 6,
     },
   });
 
@@ -119,9 +143,15 @@ export const TwoToneClassicPDF = ({
             <Text style={styles.title}>{personalInfo.title}</Text>
           )}
           <View style={styles.contactInfo}>
-            {personalInfo.email && <Text>✉ {personalInfo.email}</Text>}
-            {personalInfo.phone && <Text>☎ {personalInfo.phone}</Text>}
-            {personalInfo.location && <Text>📍 {personalInfo.location}</Text>}
+            {personalInfo.email && (
+              <Text style={styles.contactInfoItem}>✉ {personalInfo.email}</Text>
+            )}
+            {personalInfo.phone && (
+              <Text style={styles.contactInfoItem}>☎ {personalInfo.phone}</Text>
+            )}
+            {personalInfo.location && (
+              <Text style={styles.contactInfoItem}>📍 {personalInfo.location}</Text>
+            )}
           </View>
         </View>
 
@@ -184,7 +214,7 @@ export const TwoToneClassicPDF = ({
           {skills && skills.length > 0 && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Core Skills</Text>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+              <View style={styles.skillsContainer}>
                 {skills.map((skill, index) => (
                   <Text key={index} style={styles.skillChip}>{skill.name}</Text>
                 ))}
