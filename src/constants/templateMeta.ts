@@ -923,13 +923,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal",
     categorySlug: "all",
   },
-  "geometric-modern": {
-    name: "Geometric Modern",
-    description:
-      "Contemporary design featuring geometric shapes and clean lines for a modern professional look.",
-    category: "Universal",
-    categorySlug: "all",
-  },
   "two-tone-classic": {
     name: "Two-Tone Classic",
     description:

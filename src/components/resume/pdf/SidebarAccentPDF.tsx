@@ -48,10 +48,12 @@ const createStyles = (color: string) =>
     sidebarSectionTitle: {
       fontSize: 12,
       fontWeight: 700,
+      marginBottom: 4,
+    },
+    sidebarSectionBorder: {
+      height: 1,
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
       marginBottom: 8,
-      paddingBottom: 4,
-      borderBottomWidth: 1,
-      borderBottomColor: "rgba(255,255,255,0.3)",
     },
     contactItem: {
       fontSize: 8,
@@ -124,15 +126,31 @@ export const SidebarAccentPDF = ({
 
           {/* Contact */}
           <View style={styles.sidebarSection}>
-            {personalInfo.email && <Text style={styles.contactItem}>✉ {personalInfo.email}</Text>}
-            {personalInfo.phone && <Text style={styles.contactItem}>☎ {personalInfo.phone}</Text>}
-            {personalInfo.location && <Text style={styles.contactItem}>📍 {personalInfo.location}</Text>}
+            {personalInfo.email && (
+              <View style={{ flexDirection: "row", marginBottom: 6 }}>
+                <Text style={[styles.contactItem, { opacity: 0.8, marginRight: 6 }]}>Email:</Text>
+                <Text style={styles.contactItem}>{personalInfo.email}</Text>
+              </View>
+            )}
+            {personalInfo.phone && (
+              <View style={{ flexDirection: "row", marginBottom: 6 }}>
+                <Text style={[styles.contactItem, { opacity: 0.8, marginRight: 6 }]}>Phone:</Text>
+                <Text style={styles.contactItem}>{personalInfo.phone}</Text>
+              </View>
+            )}
+            {personalInfo.location && (
+              <View style={{ flexDirection: "row", marginBottom: 6 }}>
+                <Text style={[styles.contactItem, { opacity: 0.8, marginRight: 6 }]}>Location:</Text>
+                <Text style={styles.contactItem}>{personalInfo.location}</Text>
+              </View>
+            )}
           </View>
 
           {/* Skills */}
           {skills && skills.length > 0 && (
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarSectionTitle}>Skills</Text>
+              <View style={styles.sidebarSectionBorder} />
               {skills.map((skill, index) => (
                 <Text key={index} style={styles.skillChip}>{skill.name}</Text>
               ))}
@@ -143,6 +161,7 @@ export const SidebarAccentPDF = ({
           {education && education.length > 0 && (
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarSectionTitle}>Education</Text>
+              <View style={styles.sidebarSectionBorder} />
               {education.map((edu, index) => (
                 <View key={index} style={{ marginBottom: 10, fontSize: 9 }}>
                   <Text style={{ fontWeight: 600, marginBottom: 2 }}>{edu.degree}</Text>

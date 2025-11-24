@@ -251,7 +251,6 @@ import { MLEngineerTemplate } from "./templates/MLEngineerTemplate";
 // Missing Universal Professional Templates
 import { ExecutiveMinimalTemplate } from "./templates/ExecutiveMinimalTemplate";
 import { SidebarAccentTemplate } from "./templates/SidebarAccentTemplate";
-import { GeometricModernTemplate } from "./templates/GeometricModernTemplate";
 import { TwoToneClassicTemplate } from "./templates/TwoToneClassicTemplate";
 import { BorderedEleganceTemplate } from "./templates/BorderedEleganceTemplate";
 import { ColumnDivideTemplate } from "./templates/ColumnDivideTemplate";
@@ -619,7 +618,6 @@ export const ResumePreview = ({
     // Missing Universal Professional Templates
     "executive-minimal": ExecutiveMinimalTemplate,
     "sidebar-accent": SidebarAccentTemplate,
-    "geometric-modern": GeometricModernTemplate,
     "two-tone-classic": TwoToneClassicTemplate,
     "bordered-elegance": BorderedEleganceTemplate,
     "column-divide": ColumnDivideTemplate,

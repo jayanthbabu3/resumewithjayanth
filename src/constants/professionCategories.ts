@@ -186,7 +186,6 @@ export const professionCategories: ProfessionCategory[] = [
       // New Professional Templates (22 new templates)
       "executive-minimal",
       "sidebar-accent",
-      "geometric-modern",
       "two-tone-classic",
       "bordered-elegance",
       "column-divide",
@@ -1067,7 +1066,6 @@ export const professionCategories: ProfessionCategory[] = [
       // New Universal Templates
       "executive-minimal",
       "sidebar-accent",
-      "geometric-modern",
       "two-tone-classic",
       "bordered-elegance",
       "column-divide",

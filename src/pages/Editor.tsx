@@ -123,7 +123,6 @@ import { DeveloperGridPDF } from "@/components/resume/pdf/DeveloperGridPDF";
 import { DevOpsProPDF } from "@/components/resume/pdf/DevOpsProPDF";
 import { ExecutiveMinimalPDF } from "@/components/resume/pdf/ExecutiveMinimalPDF";
 import { FullStackModernPDF } from "@/components/resume/pdf/FullStackModernPDF";
-import { GeometricModernPDF } from "@/components/resume/pdf/GeometricModernPDF";
 import { GitHubStylePDF } from "@/components/resume/pdf/GitHubStylePDF";
 import { MLEngineerPDF } from "@/components/resume/pdf/MLEngineerPDF";
 import { SidebarAccentPDF } from "@/components/resume/pdf/SidebarAccentPDF";
@@ -2877,7 +2876,6 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
   const newTemplatesUsingProfessionalDefaults = [
     "executive-minimal",
     "sidebar-accent",
-    "geometric-modern",
     "two-tone-classic",
     "bordered-elegance",
     "column-divide",
@@ -3460,7 +3458,6 @@ const Editor = () => {
         "devops-pro": DevOpsProPDF,
         "executive-minimal": ExecutiveMinimalPDF,
         "fullstack-modern": FullStackModernPDF,
-        "geometric-modern": GeometricModernPDF,
         "github-style": GitHubStylePDF,
         "ml-engineer": MLEngineerPDF,
         "sidebar-accent": SidebarAccentPDF,

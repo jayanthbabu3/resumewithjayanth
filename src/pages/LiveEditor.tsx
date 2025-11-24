@@ -122,7 +122,6 @@ import { DeveloperGridPDF } from "@/components/resume/pdf/DeveloperGridPDF";
 import { DevOpsProPDF } from "@/components/resume/pdf/DevOpsProPDF";
 import { ExecutiveMinimalPDF } from "@/components/resume/pdf/ExecutiveMinimalPDF";
 import { FullStackModernPDF } from "@/components/resume/pdf/FullStackModernPDF";
-import { GeometricModernPDF } from "@/components/resume/pdf/GeometricModernPDF";
 import { GitHubStylePDF } from "@/components/resume/pdf/GitHubStylePDF";
 import { MLEngineerPDF } from "@/components/resume/pdf/MLEngineerPDF";
 import { SidebarAccentPDF } from "@/components/resume/pdf/SidebarAccentPDF";
@@ -610,7 +609,6 @@ import { DeveloperGridTemplate } from "@/components/resume/templates/DeveloperGr
 import { DevOpsProTemplate } from "@/components/resume/templates/DevOpsProTemplate";
 import { ExecutiveMinimalTemplate } from "@/components/resume/templates/ExecutiveMinimalTemplate";
 import { FullStackModernTemplate } from "@/components/resume/templates/FullStackModernTemplate";
-import { GeometricModernTemplate } from "@/components/resume/templates/GeometricModernTemplate";
 import { GitHubStyleTemplate } from "@/components/resume/templates/GitHubStyleTemplate";
 import { MLEngineerTemplate } from "@/components/resume/templates/MLEngineerTemplate";
 import { SidebarAccentTemplate } from "@/components/resume/templates/SidebarAccentTemplate";
@@ -1528,7 +1526,6 @@ const pdfTemplates: Record<string, any> = {
   "devops-pro": DevOpsProPDF,
   "executive-minimal": ExecutiveMinimalPDF,
   "fullstack-modern": FullStackModernPDF,
-  "geometric-modern": GeometricModernPDF,
   "github-style": GitHubStylePDF,
   "ml-engineer": MLEngineerPDF,
   "sidebar-accent": SidebarAccentPDF,
@@ -2004,7 +2001,6 @@ const displayTemplates: Record<string, any> = {
   "devops-pro": DevOpsProTemplate,
   "executive-minimal": ExecutiveMinimalTemplate,
   "fullstack-modern": FullStackModernTemplate,
-  "geometric-modern": GeometricModernTemplate,
   "github-style": GitHubStyleTemplate,
   "ml-engineer": MLEngineerTemplate,
   "sidebar-accent": SidebarAccentTemplate,

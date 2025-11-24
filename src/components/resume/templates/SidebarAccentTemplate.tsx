@@ -58,7 +58,7 @@ export const SidebarAccentTemplate = ({
         <div className="mb-8 space-y-3 text-sm">
           {resumeData.personalInfo.email && (
             <div className="flex items-start gap-2">
-              <span className="opacity-80">✉</span>
+              <span className="opacity-80">Email:</span>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.email"
@@ -73,7 +73,7 @@ export const SidebarAccentTemplate = ({
           )}
           {resumeData.personalInfo.phone && (
             <div className="flex items-start gap-2">
-              <span className="opacity-80">☎</span>
+              <span className="opacity-80">Phone:</span>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.phone"
@@ -88,7 +88,7 @@ export const SidebarAccentTemplate = ({
           )}
           {resumeData.personalInfo.location && (
             <div className="flex items-start gap-2">
-              <span className="opacity-80">📍</span>
+              <span className="opacity-80">Location:</span>
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.location"
@@ -227,9 +227,12 @@ export const SidebarAccentTemplate = ({
                   {exp.description && (
                     <div className="text-gray-700 mt-3">
                       {editable ? (
-                        <InlineEditableList
+                        <InlineEditableText
                           path={`experience[${index}].description`}
-                          items={exp.description.split("\n")}
+                          value={exp.description}
+                          className="whitespace-pre-line"
+                          multiline
+                          as="div"
                         />
                       ) : (
                         <ul className="list-disc list-inside space-y-1">
@@ -247,7 +250,36 @@ export const SidebarAccentTemplate = ({
         )}
 
         {/* Custom Sections */}
-        {resumeData.sections &&
+        {editable ? (
+          <InlineEditableList
+            path="sections"
+            items={resumeData.sections || []}
+            defaultItem={{
+              id: Date.now().toString(),
+              title: "Certifications",
+              content: "Certification Name",
+            }}
+            addButtonLabel="Add Section"
+            renderItem={(section, index) => (
+              <div key={section.id} className="mb-8">
+                <InlineEditableText
+                  path={`sections[${index}].title`}
+                  value={section.title}
+                  className="text-xl font-bold mb-4 text-gray-800 block"
+                  as="h2"
+                />
+                <InlineEditableText
+                  path={`sections[${index}].content`}
+                  value={section.content}
+                  className="text-gray-700 leading-relaxed whitespace-pre-wrap block"
+                  multiline
+                  as="div"
+                />
+              </div>
+            )}
+          />
+        ) : (
+          resumeData.sections &&
           resumeData.sections.map((section, index) => (
             <div key={index} className="mb-8">
               <h2 className="text-xl font-bold mb-4 text-gray-800">
@@ -257,7 +289,8 @@ export const SidebarAccentTemplate = ({
                 {section.content}
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

@@ -152,7 +152,6 @@ import { DeveloperGridTemplate } from "./resume/templates/DeveloperGridTemplate"
 import { DevOpsProTemplate } from "./resume/templates/DevOpsProTemplate";
 import { ExecutiveMinimalTemplate } from "./resume/templates/ExecutiveMinimalTemplate";
 import { FullStackModernTemplate } from "./resume/templates/FullStackModernTemplate";
-import { GeometricModernTemplate } from "./resume/templates/GeometricModernTemplate";
 import { GitHubStyleTemplate } from "./resume/templates/GitHubStyleTemplate";
 import { MLEngineerTemplate } from "./resume/templates/MLEngineerTemplate";
 import { SidebarAccentTemplate } from "./resume/templates/SidebarAccentTemplate";
@@ -1985,7 +1984,6 @@ const templates = {
   "devops-pro": DevOpsProTemplate,
   "executive-minimal": ExecutiveMinimalTemplate,
   "fullstack-modern": FullStackModernTemplate,
-  "geometric-modern": GeometricModernTemplate,
   "github-style": GitHubStyleTemplate,
   "ml-engineer": MLEngineerTemplate,
   "sidebar-accent": SidebarAccentTemplate,
