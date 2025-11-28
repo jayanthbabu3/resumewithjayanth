@@ -56,7 +56,9 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     borderLeftWidth: 1,
     borderLeftColor: '#059669',
-    marginBottom: 24,
+  },
+  experienceItemSpacing: {
+    paddingBottom: 20,
   },
   timelineDot: {
     position: 'absolute',
@@ -176,21 +178,31 @@ export const ProfessionalTimelinePDF = ({ resumeData, themeColor = "#059669" }: 
         {resumeData.experience.length > 0 && (
           <View style={styles.section}>
             <Text style={[styles.sectionTitle, { color: themeColor }]}>Career Timeline</Text>
-            {resumeData.experience.map((exp) => (
-              <View key={exp.id} style={[styles.experienceItem, { borderLeftColor: themeColor }]}>
-                <View style={[styles.timelineDot, { borderColor: themeColor }]} />
-                <View style={styles.experienceHeader}>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.position}>{exp.position || "Position Title"}</Text>
-                    <Text style={[styles.company, { color: themeColor }]}>{exp.company || "Company Name"}</Text>
+            {resumeData.experience.map((exp, index) => {
+              const isLast = index === resumeData.experience.length - 1;
+              return (
+                <View
+                  key={exp.id}
+                  style={[
+                    styles.experienceItem,
+                    !isLast ? { paddingBottom: 20 } : null,
+                    { borderLeftColor: themeColor },
+                  ]}
+                >
+                  <View style={[styles.timelineDot, { borderColor: themeColor }]} />
+                  <View style={styles.experienceHeader}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={styles.position}>{exp.position || "Position Title"}</Text>
+                      <Text style={[styles.company, { color: themeColor }]}>{exp.company || "Company Name"}</Text>
+                    </View>
+                    <Text style={styles.experienceDate}>
+                      {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
+                    </Text>
                   </View>
-                  <Text style={styles.experienceDate}>
-                    {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
-                  </Text>
+                  {hasContent(exp.description) && <Text style={styles.description}>{exp.description}</Text>}
                 </View>
-                {hasContent(exp.description) && <Text style={styles.description}>{exp.description}</Text>}
-              </View>
-            ))}
+              );
+            })}
           </View>
         )}
 

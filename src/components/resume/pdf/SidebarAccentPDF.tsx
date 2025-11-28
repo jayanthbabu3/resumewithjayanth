@@ -22,14 +22,16 @@ const createStyles = (color: string) =>
       flexDirection: "row",
     },
     sidebar: {
-      width: "35%",
+      width: "33%",
       backgroundColor: color,
-      padding: 20,
+      paddingHorizontal: 18,
+      paddingVertical: 24,
       color: "#ffffff",
     },
     mainContent: {
-      width: "65%",
-      padding: 25,
+      width: "67%",
+      paddingHorizontal: 22,
+      paddingVertical: 24,
       backgroundColor: "#f9fafb",
     },
     sidebarName: {
@@ -166,7 +168,9 @@ export const SidebarAccentPDF = ({
                 <View key={index} style={{ marginBottom: 10, fontSize: 9 }}>
                   <Text style={{ fontWeight: 600, marginBottom: 2 }}>{edu.degree}</Text>
                   <Text style={{ opacity: 0.9, marginBottom: 2 }}>{edu.school}</Text>
-                  <Text style={{ fontSize: 8, opacity: 0.75 }}>{edu.graduationDate}</Text>
+                  <Text style={{ fontSize: 8, opacity: 0.75 }}>
+                    {edu.startDate} - {edu.endDate}
+                  </Text>
                 </View>
               ))}
             </View>

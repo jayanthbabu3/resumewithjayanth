@@ -20,20 +20,20 @@ export const SidebarAccentTemplate = ({
     <div className="w-full h-full bg-white flex">
       {/* Left Sidebar - 35% */}
       <div
-        className="w-[35%] text-white p-8"
+        className="w-[33%] text-white px-7 py-8"
         style={{ backgroundColor: themeColor }}
       >
         {/* Header in Sidebar */}
-        <div className="mb-8">
+        <div className="mb-6">
           {editable ? (
             <InlineEditableText
               path="personalInfo.fullName"
               value={resumeData.personalInfo.fullName}
-              className="text-3xl font-bold mb-3"
+              className="text-[20px] font-bold mb-2"
               as="h1"
             />
           ) : (
-            <h1 className="text-3xl font-bold mb-3">
+            <h1 className="text-[20px] font-bold mb-2">
               {resumeData.personalInfo.fullName}
             </h1>
           )}
@@ -44,18 +44,18 @@ export const SidebarAccentTemplate = ({
                 <InlineEditableText
                   path="personalInfo.title"
                   value={resumeData.personalInfo.title}
-                  className="text-sm opacity-90"
+                  className="text-[10px] opacity-90"
                   as="p"
                 />
               ) : (
-                <p className="text-sm opacity-90">{resumeData.personalInfo.title}</p>
+                <p className="text-[10px] opacity-90">{resumeData.personalInfo.title}</p>
               )}
             </div>
           )}
         </div>
 
         {/* Contact Info in Sidebar */}
-        <div className="mb-8 space-y-3 text-sm">
+        <div className="mb-6 space-y-2 text-[10px]">
           {resumeData.personalInfo.email && (
             <div className="flex items-start gap-2">
               <span className="opacity-80">Email:</span>
@@ -105,18 +105,18 @@ export const SidebarAccentTemplate = ({
 
         {/* Skills in Sidebar */}
         {resumeData.skills && resumeData.skills.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+          <div className="mb-6">
+            <h2 className="text-[12px] font-bold mb-3 border-b border-white/30 pb-2">
               Skills
             </h2>
             {editable ? (
               <InlineEditableSkills path="skills" skills={resumeData.skills} />
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {resumeData.skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="text-sm bg-white/10 px-3 py-2 rounded"
+                    className="text-[9px] bg-white/10 px-2.5 py-1.5 rounded"
                   >
                     {skill.name}
                   </div>
@@ -129,12 +129,12 @@ export const SidebarAccentTemplate = ({
         {/* Education in Sidebar */}
         {resumeData.education && resumeData.education.length > 0 && (
           <div>
-            <h2 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+            <h2 className="text-[12px] font-bold mb-3 border-b border-white/30 pb-2">
               Education
             </h2>
             <div className="space-y-4">
               {resumeData.education.map((edu, index) => (
-                <div key={index} className="text-sm">
+                <div key={index} className="text-[9px]">
                   {editable ? (
                     <InlineEditableText
                       path={`education[${index}].degree`}
@@ -155,7 +155,9 @@ export const SidebarAccentTemplate = ({
                   ) : (
                     <div className="opacity-90 mb-1">{edu.school}</div>
                   )}
-                  <div className="text-xs opacity-75">{edu.graduationDate}</div>
+                  <div className="text-[8px] opacity-75">
+                    {edu.startDate} - {edu.endDate}
+                  </div>
                 </div>
               ))}
             </div>
@@ -164,68 +166,68 @@ export const SidebarAccentTemplate = ({
       </div>
 
       {/* Right Content - 65% */}
-      <div className="w-[65%] p-12 bg-gray-50">
+      <div className="w-[67%] px-8 py-8 bg-gray-50 text-[10px] leading-relaxed">
         {/* Summary */}
         {resumeData.personalInfo.summary && (
-          <div className="mb-10">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">
+          <div className="mb-8">
+            <h2 className="text-[14px] font-bold mb-3 text-gray-800">
               Professional Summary
             </h2>
             {editable ? (
               <InlineEditableText
                 path="personalInfo.summary"
                 value={resumeData.personalInfo.summary}
-                className="text-gray-700 leading-relaxed"
+                className="text-gray-700 leading-relaxed text-[10px]"
                 as="p"
               />
             ) : (
-              <p className="text-gray-700 leading-relaxed">{resumeData.personalInfo.summary}</p>
+              <p className="text-gray-700 leading-relaxed text-[10px]">{resumeData.personalInfo.summary}</p>
             )}
           </div>
         )}
 
         {/* Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
-          <div className="mb-10">
-            <h2 className="text-xl font-bold mb-6 text-gray-800">
+          <div className="mb-8">
+            <h2 className="text-[14px] font-bold mb-4 text-gray-800">
               Experience
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-5">
               {resumeData.experience.map((exp, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
+                <div key={index} className="bg-white p-5 rounded-lg shadow-sm text-[10px]">
                   <div className="flex justify-between items-start mb-2">
                     <div className="flex-1">
                       {editable ? (
                         <InlineEditableText
                           path={`experience[${index}].position`}
                           value={exp.position}
-                          className="text-lg font-bold text-gray-900"
+                          className="text-[12px] font-bold text-gray-900"
                           as="h3"
                         />
                       ) : (
-                        <h3 className="text-lg font-bold text-gray-900">{exp.position}</h3>
+                        <h3 className="text-[12px] font-bold text-gray-900">{exp.position}</h3>
                       )}
                       {editable ? (
                         <InlineEditableText
                           path={`experience[${index}].company`}
                           value={exp.company}
-                          className="font-medium"
+                          className="font-medium text-[10px]"
                           as="p"
                           style={{ color: themeColor }}
                         />
                       ) : (
-                        <p className="font-medium" style={{ color: themeColor }}>
+                        <p className="font-medium text-[10px]" style={{ color: themeColor }}>
                           {exp.company}
                         </p>
                       )}
                     </div>
-                    <div className="text-sm text-gray-500 ml-4 whitespace-nowrap">
+                    <div className="text-[9px] text-gray-500 ml-4 whitespace-nowrap">
                       {exp.startDate} - {exp.endDate || "Present"}
                     </div>
                   </div>
 
                   {exp.description && (
-                    <div className="text-gray-700 mt-3">
+                    <div className="text-gray-700 mt-3 text-[10px]">
                       {editable ? (
                         <InlineEditableText
                           path={`experience[${index}].description`}
@@ -265,13 +267,13 @@ export const SidebarAccentTemplate = ({
                 <InlineEditableText
                   path={`sections[${index}].title`}
                   value={section.title}
-                  className="text-xl font-bold mb-4 text-gray-800 block"
+                  className="text-[14px] font-bold mb-3 text-gray-800 block"
                   as="h2"
                 />
                 <InlineEditableText
                   path={`sections[${index}].content`}
                   value={section.content}
-                  className="text-gray-700 leading-relaxed whitespace-pre-wrap block"
+                  className="text-gray-700 leading-relaxed whitespace-pre-wrap block text-[10px]"
                   multiline
                   as="div"
                 />
@@ -282,10 +284,10 @@ export const SidebarAccentTemplate = ({
           resumeData.sections &&
           resumeData.sections.map((section, index) => (
             <div key={index} className="mb-8">
-              <h2 className="text-xl font-bold mb-4 text-gray-800">
+              <h2 className="text-[14px] font-bold mb-3 text-gray-800">
                 {section.title}
               </h2>
-              <div className="text-gray-700 leading-relaxed whitespace-pre-wrap">
+              <div className="text-gray-700 leading-relaxed whitespace-pre-wrap text-[10px]">
                 {section.content}
               </div>
             </div>

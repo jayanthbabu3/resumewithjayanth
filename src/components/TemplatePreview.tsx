@@ -165,11 +165,6 @@ import { DiagonalAccentUniversalTemplate } from "./resume/templates/DiagonalAcce
 import { BorderFrameUniversalTemplate } from "./resume/templates/BorderFrameUniversalTemplate";
 import { TimelineVerticalUniversalTemplate } from "./resume/templates/TimelineVerticalUniversalTemplate";
 import { BadgeStyleUniversalTemplate } from "./resume/templates/BadgeStyleUniversalTemplate";
-import { LinearProgressUniversalTemplate } from "./resume/templates/LinearProgressUniversalTemplate";
-import { CardLayoutUniversalTemplate } from "./resume/templates/CardLayoutUniversalTemplate";
-import { BoxedSectionsUniversalTemplate } from "./resume/templates/BoxedSectionsUniversalTemplate";
-import { LeftBorderUniversalTemplate } from "./resume/templates/LeftBorderUniversalTemplate";
-import { FloatingHeaderUniversalTemplate } from "./resume/templates/FloatingHeaderUniversalTemplate";
 import { MonochromeElegantUniversalTemplate } from "./resume/templates/MonochromeElegantUniversalTemplate";
 import { GradientHeaderUniversalTemplate } from "./resume/templates/GradientHeaderUniversalTemplate";
 import { SplitPaneUniversalTemplate } from "./resume/templates/SplitPaneUniversalTemplate";
@@ -1989,11 +1984,6 @@ const templates = {
   "border-frame-universal": BorderFrameUniversalTemplate,
   "timeline-vertical-universal": TimelineVerticalUniversalTemplate,
   "badge-style-universal": BadgeStyleUniversalTemplate,
-  "linear-progress-universal": LinearProgressUniversalTemplate,
-  "card-layout-universal": CardLayoutUniversalTemplate,
-  "boxed-sections-universal": BoxedSectionsUniversalTemplate,
-  "left-border-universal": LeftBorderUniversalTemplate,
-  "floating-header-universal": FloatingHeaderUniversalTemplate,
   "monochrome-elegant-universal": MonochromeElegantUniversalTemplate,
   "gradient-header-universal": GradientHeaderUniversalTemplate,
   "split-pane-universal": SplitPaneUniversalTemplate,

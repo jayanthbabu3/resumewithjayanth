@@ -1313,42 +1313,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal Professional",
     categorySlug: "universal-professional",
   },
-  "linear-progress-universal": {
-    name: "Linear Progress",
-    description: "Linear progress bars visualizing skills and competencies.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "card-layout-universal": {
-    name: "Card Layout",
-    description: "Card-based layout with modern sectioning and spacing.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "": {
-    name: "Ribbon Header",
-    description: "Distinctive ribbon-style header creating strong first impression.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "boxed-sections-universal": {
-    name: "Boxed Sections",
-    description: "Boxed sections clearly delineating different content areas.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "left-border-universal": {
-    name: "Left Border",
-    description: "Left border accent providing visual structure and hierarchy.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "floating-header-universal": {
-    name: "Floating Header",
-    description: "Floating header design with modern spacing and elevation.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
   "monochrome-elegant-universal": {
     name: "Monochrome Elegant",
     description: "Monochromatic color scheme with elegant typography.",

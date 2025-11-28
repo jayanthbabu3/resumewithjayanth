@@ -59,11 +59,23 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   section: {
     marginBottom: 20,
   },
-  sectionTitle: {
-    fontSize: 11,
+  sectionRow: {
+    flexDirection: "row",
+    gap: 0,
+    marginBottom: 18,
+  },
+  sectionLabel: {
+    width: 120,
+    paddingRight: 16,
+  },
+  sectionLabelText: {
+    fontSize: 9,
     fontWeight: 700,
+    letterSpacing: 1,
     color: themeColor,
-    marginBottom: 8,
+  },
+  sectionContent: {
+    flex: 1,
   },
   experienceItem: {
     marginBottom: 12,
@@ -105,6 +117,11 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     fontSize: 8,
     marginBottom: 2,
   },
+  bodyText: {
+    fontSize: 9,
+    lineHeight: 1.5,
+    color: "#374151",
+  },
 });
 
 export const PDFSwissStyleUniversalTemplate = ({
@@ -135,68 +152,89 @@ export const PDFSwissStyleUniversalTemplate = ({
           </View>
 
           {resumeData.personalInfo.summary && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>SUMMARY</Text>
-              <Text style={{ fontSize: 9, lineHeight: 1.5, color: "#374151" }}>{resumeData.personalInfo.summary}</Text>
+            <View style={styles.sectionRow}>
+              <View style={styles.sectionLabel}>
+                <Text style={styles.sectionLabelText}>SUMMARY</Text>
+              </View>
+              <View style={styles.sectionContent}>
+                <Text style={styles.bodyText}>{resumeData.personalInfo.summary}</Text>
+              </View>
             </View>
           )}
 
           {resumeData.experience && resumeData.experience.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>EXPERIENCE</Text>
-              {resumeData.experience.map((exp, index) => {
-                const bulletPoints = (exp.description || "").split("\n").filter(Boolean);
-                return (
-                  <View key={index} style={styles.experienceItem}>
-                    <View style={styles.experienceHeader}>
-                      <View style={{ flex: 1 }}>
-                        <Text style={styles.position}>{exp.position}</Text>
-                        <Text style={styles.company}>{exp.company}</Text>
+            <View style={styles.sectionRow}>
+              <View style={styles.sectionLabel}>
+                <Text style={styles.sectionLabelText}>EXPERIENCE</Text>
+              </View>
+              <View style={styles.sectionContent}>
+                {resumeData.experience.map((exp, index) => {
+                  const bulletPoints = (exp.description || "").split("\n").map(line => line.trim()).filter(Boolean);
+                  return (
+                    <View key={index} style={styles.experienceItem}>
+                      <View style={styles.experienceHeader}>
+                        <View style={{ flex: 1 }}>
+                          <Text style={styles.position}>{exp.position}</Text>
+                          <Text style={styles.company}>{exp.company}</Text>
+                        </View>
+                        <Text style={styles.dateRange}>{exp.startDate} — {exp.current ? "Present" : exp.endDate}</Text>
                       </View>
-                      <Text style={styles.dateRange}>{exp.startDate} - {exp.endDate || "Present"}</Text>
+                      {bulletPoints.length > 0 && (
+                        <View style={styles.description}>
+                          {bulletPoints.map((point, i) => (
+                            <Text key={i} style={styles.descriptionItem}>• {point}</Text>
+                          ))}
+                        </View>
+                      )}
                     </View>
-                    {bulletPoints.length > 0 && (
-                      <View style={styles.description}>
-                        {bulletPoints.map((point, i) => (
-                          <Text key={i} style={styles.descriptionItem}>• {point}</Text>
-                        ))}
-                      </View>
-                    )}
-                  </View>
-                );
-              })}
+                  );
+                })}
+              </View>
             </View>
           )}
 
           {resumeData.education && resumeData.education.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>EDUCATION</Text>
-              {resumeData.education.map((edu, index) => (
-                <View key={index} style={styles.educationItem}>
-                  <Text style={styles.position}>
-                    {edu.degree} {edu.field && `in ${edu.field}`}
-                  </Text>
-                  <Text style={styles.company}>{edu.school}</Text>
-                  <Text style={styles.dateRange}>{edu.startDate} - {edu.endDate}</Text>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {resumeData.skills && resumeData.skills.length > 0 && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>SKILLS</Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                {resumeData.skills.map((skill, index) => (
-                  <Text key={index} style={styles.skillItem}>{skill.name}{index < resumeData.skills.length - 1 ? " • " : ""}</Text>
+            <View style={styles.sectionRow}>
+              <View style={styles.sectionLabel}>
+                <Text style={styles.sectionLabelText}>EDUCATION</Text>
+              </View>
+              <View style={styles.sectionContent}>
+                {resumeData.education.map((edu, index) => (
+                  <View key={index} style={styles.educationItem}>
+                    <Text style={styles.position}>
+                      {edu.degree} {edu.field && `in ${edu.field}`}
+                    </Text>
+                    <Text style={styles.company}>{edu.school}</Text>
+                    <Text style={styles.dateRange}>{edu.startDate} — {edu.endDate}</Text>
+                  </View>
                 ))}
               </View>
             </View>
           )}
+
+          {resumeData.skills && resumeData.skills.length > 0 && (
+            <View style={styles.sectionRow}>
+              <View style={styles.sectionLabel}>
+                <Text style={styles.sectionLabelText}>SKILLS</Text>
+              </View>
+              <View style={[styles.sectionContent, { flexDirection: "row", flexWrap: "wrap" }] }>
+                {resumeData.skills.map((skill, index) => (
+                  <Text key={index} style={styles.skillItem}>
+                    • {skill.name}
+                  </Text>
+                ))}
+              </View>
+            </View>
+          )}
+
           {resumeData.sections && resumeData.sections.map((section, index) => (
-            <View key={index} style={styles.section}>
-              <Text style={styles.sectionTitle}>{section.title.toUpperCase()}</Text>
-              <Text style={{ fontSize: 9, lineHeight: 1.5, color: "#374151" }}>{section.content}</Text>
+            <View key={index} style={styles.sectionRow}>
+              <View style={styles.sectionLabel}>
+                <Text style={styles.sectionLabelText}>{section.title.toUpperCase()}</Text>
+              </View>
+              <View style={styles.sectionContent}>
+                <Text style={styles.bodyText}>{section.content}</Text>
+              </View>
             </View>
           ))}
         </View>

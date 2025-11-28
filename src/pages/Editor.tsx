@@ -910,7 +910,6 @@ import { PDFBoldSectionHeadersUniversalTemplate } from "@/components/resume/pdf/
 import { PDFBoldTypographyTemplate } from "@/components/resume/pdf/PDFBoldTypographyTemplate";
 import { PDFBoldTypographyUniversalTemplate } from "@/components/resume/pdf/PDFBoldTypographyUniversalTemplate";
 import { PDFBorderFrameUniversalTemplate } from "@/components/resume/pdf/PDFBorderFrameUniversalTemplate";
-import { PDFBoxedSectionsUniversalTemplate } from "@/components/resume/pdf/PDFBoxedSectionsUniversalTemplate";
 import { PDFBrandDesignerTemplate } from "@/components/resume/pdf/PDFBrandDesignerTemplate";
 import { PDFBrandIdentityTemplate } from "@/components/resume/pdf/PDFBrandIdentityTemplate";
 import { PDFBrandManagerTemplate } from "@/components/resume/pdf/PDFBrandManagerTemplate";
@@ -922,7 +921,6 @@ import { PDFBusinessSimpleModernTemplate } from "@/components/resume/pdf/PDFBusi
 import { PDFCEOProfileTemplate } from "@/components/resume/pdf/PDFCEOProfileTemplate";
 import { PDFCICDPipelineEngineerTemplate } from "@/components/resume/pdf/PDFCICDPipelineEngineerTemplate";
 import { PDFCPAProfessionalTemplate } from "@/components/resume/pdf/PDFCPAProfessionalTemplate";
-import { PDFCardLayoutUniversalTemplate } from "@/components/resume/pdf/PDFCardLayoutUniversalTemplate";
 import { PDFChevronAccentUniversalTemplate } from "@/components/resume/pdf/PDFChevronAccentUniversalTemplate";
 import { PDFCircularElementsUniversalTemplate } from "@/components/resume/pdf/PDFCircularElementsUniversalTemplate";
 import { PDFClassicSerifUniversalTemplate } from "@/components/resume/pdf/PDFClassicSerifUniversalTemplate";
@@ -994,7 +992,6 @@ import { PDFExecutiveTimelineModernTemplate } from "@/components/resume/pdf/PDFE
 import { PDFFinanceAnalystTemplate } from "@/components/resume/pdf/PDFFinanceAnalystTemplate";
 import { PDFFinanceTwoColumnTemplate } from "@/components/resume/pdf/PDFFinanceTwoColumnTemplate";
 import { PDFFinancialAnalystTemplate } from "@/components/resume/pdf/PDFFinancialAnalystTemplate";
-import { PDFFloatingHeaderUniversalTemplate } from "@/components/resume/pdf/PDFFloatingHeaderUniversalTemplate";
 import { PDFFlutterMobileDevTemplate } from "@/components/resume/pdf/PDFFlutterMobileDevTemplate";
 import { PDFFresherTemplate } from "@/components/resume/pdf/PDFFresherTemplate";
 import { PDFFresherAcademicStyleTemplate } from "@/components/resume/pdf/PDFFresherAcademicStyleTemplate";
@@ -1051,11 +1048,9 @@ import { PDFKafkaStreamingExpertTemplate } from "@/components/resume/pdf/PDFKafk
 import { PDFKuberneteEngineerTemplate } from "@/components/resume/pdf/PDFKuberneteEngineerTemplate";
 import { PDFKubernetesSpecialistTemplate } from "@/components/resume/pdf/PDFKubernetesSpecialistTemplate";
 import { PDFLayeredCardsUniversalTemplate } from "@/components/resume/pdf/PDFLayeredCardsUniversalTemplate";
-import { PDFLeftBorderUniversalTemplate } from "@/components/resume/pdf/PDFLeftBorderUniversalTemplate";
 import { PDFLegalAdvisorTemplate } from "@/components/resume/pdf/PDFLegalAdvisorTemplate";
 import { PDFLegalCounselTemplate } from "@/components/resume/pdf/PDFLegalCounselTemplate";
 import { PDFLegalExecutiveTemplate } from "@/components/resume/pdf/PDFLegalExecutiveTemplate";
-import { PDFLinearProgressUniversalTemplate } from "@/components/resume/pdf/PDFLinearProgressUniversalTemplate";
 import { PDFLinkedInReadyGraduateTemplate } from "@/components/resume/pdf/PDFLinkedInReadyGraduateTemplate";
 import { PDFLinkedInTechProTemplate } from "@/components/resume/pdf/PDFLinkedInTechProTemplate";
 import { PDFLuxuryTimelineTemplate } from "@/components/resume/pdf/PDFLuxuryTimelineTemplate";

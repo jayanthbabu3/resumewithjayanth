@@ -262,11 +262,6 @@ import { DiagonalAccentUniversalTemplate } from "./templates/DiagonalAccentUnive
 import { BorderFrameUniversalTemplate } from "./templates/BorderFrameUniversalTemplate";
 import { TimelineVerticalUniversalTemplate } from "./templates/TimelineVerticalUniversalTemplate";
 import { BadgeStyleUniversalTemplate } from "./templates/BadgeStyleUniversalTemplate";
-import { LinearProgressUniversalTemplate } from "./templates/LinearProgressUniversalTemplate";
-import { CardLayoutUniversalTemplate } from "./templates/CardLayoutUniversalTemplate";
-import { BoxedSectionsUniversalTemplate } from "./templates/BoxedSectionsUniversalTemplate";
-import { LeftBorderUniversalTemplate } from "./templates/LeftBorderUniversalTemplate";
-import { FloatingHeaderUniversalTemplate } from "./templates/FloatingHeaderUniversalTemplate";
 import { MonochromeElegantUniversalTemplate } from "./templates/MonochromeElegantUniversalTemplate";
 // Second Batch Universal Profile Templates
 import { GradientHeaderUniversalTemplate } from "./templates/GradientHeaderUniversalTemplate";
@@ -732,11 +727,6 @@ export const ResumePreview = ({
     "border-frame-universal": BorderFrameUniversalTemplate,
     "timeline-vertical-universal": TimelineVerticalUniversalTemplate,
     "badge-style-universal": BadgeStyleUniversalTemplate,
-    "linear-progress-universal": LinearProgressUniversalTemplate,
-    "card-layout-universal": CardLayoutUniversalTemplate,
-    "boxed-sections-universal": BoxedSectionsUniversalTemplate,
-    "left-border-universal": LeftBorderUniversalTemplate,
-    "floating-header-universal": FloatingHeaderUniversalTemplate,
     "monochrome-elegant-universal": MonochromeElegantUniversalTemplate,
     // Second Batch Universal Profile Templates
     "gradient-header-universal": GradientHeaderUniversalTemplate,

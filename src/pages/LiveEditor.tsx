@@ -973,7 +973,6 @@ import { BoldTypographyTemplate } from "@/components/resume/templates/BoldTypogr
 import { BoldTypographyUniversalTemplate } from "@/components/resume/templates/BoldTypographyUniversalTemplate";
 import { BootcampPortfolioTemplate } from "@/components/resume/templates/BootcampPortfolioTemplate";
 import { BorderFrameUniversalTemplate } from "@/components/resume/templates/BorderFrameUniversalTemplate";
-import { BoxedSectionsUniversalTemplate } from "@/components/resume/templates/BoxedSectionsUniversalTemplate";
 import { BrandDesignerTemplateTemplate } from "@/components/resume/templates/BrandDesignerTemplateTemplate";
 import { BrandIdentityTemplate } from "@/components/resume/templates/BrandIdentityTemplate";
 import { BrandManagerTemplate } from "@/components/resume/templates/BrandManagerTemplate";
@@ -990,7 +989,6 @@ import { CICDPipelineEngineerTemplate } from "@/components/resume/templates/CICD
 import { CampusInfluencerTemplate } from "@/components/resume/templates/CampusInfluencerTemplate";
 import { CanvasArtistTemplate } from "@/components/resume/templates/CanvasArtistTemplate";
 import { CarbonmadeDesignerTemplate } from "@/components/resume/templates/CarbonmadeDesignerTemplate";
-import { CardLayoutUniversalTemplate } from "@/components/resume/templates/CardLayoutUniversalTemplate";
 import { CasestudyDesignerTemplate } from "@/components/resume/templates/CasestudyDesignerTemplate";
 import { CatalystFresherTemplate } from "@/components/resume/templates/CatalystFresherTemplate";
 import { ChevronAccentUniversalTemplate } from "@/components/resume/templates/ChevronAccentUniversalTemplate";
@@ -1109,7 +1107,6 @@ import { ExecutiveTimelineModernTemplate } from "@/components/resume/templates/E
 import { ExpressionArtistTemplate } from "@/components/resume/templates/ExpressionArtistTemplate";
 import { FigmaDesignerPortfolioTemplate } from "@/components/resume/templates/FigmaDesignerPortfolioTemplate";
 import { FinancialAnalystTemplate } from "@/components/resume/templates/FinancialAnalystTemplate";
-import { FloatingHeaderUniversalTemplate } from "@/components/resume/templates/FloatingHeaderUniversalTemplate";
 import { FlutterMobileDevTemplate } from "@/components/resume/templates/FlutterMobileDevTemplate";
 import { FluxExecutiveTemplate } from "@/components/resume/templates/FluxExecutiveTemplate";
 import { FoundationGraduateTemplate } from "@/components/resume/templates/FoundationGraduateTemplate";
@@ -1185,9 +1182,7 @@ import { KubernetesSpecialistTemplate } from "@/components/resume/templates/Kube
 import { LaunchpadGraduateTemplate } from "@/components/resume/templates/LaunchpadGraduateTemplate";
 import { LayeredCardsUniversalTemplate } from "@/components/resume/templates/LayeredCardsUniversalTemplate";
 import { LeetcodeChampionTemplate } from "@/components/resume/templates/LeetcodeChampionTemplate";
-import { LeftBorderUniversalTemplate } from "@/components/resume/templates/LeftBorderUniversalTemplate";
 import { LegalAdvisorTemplate } from "@/components/resume/templates/LegalAdvisorTemplate";
-import { LinearProgressUniversalTemplate } from "@/components/resume/templates/LinearProgressUniversalTemplate";
 import { LinkedinGraduateTemplate } from "@/components/resume/templates/LinkedinGraduateTemplate";
 import { LinkedinOptimizedTemplate } from "@/components/resume/templates/LinkedinOptimizedTemplate";
 import { LinkedinTechExpertTemplate } from "@/components/resume/templates/LinkedinTechExpertTemplate";
@@ -2362,7 +2357,6 @@ const displayTemplates: Record<string, any> = {
   "bold-typography-universal": BoldTypographyUniversalTemplate,
   "bootcamp-portfolio": BootcampPortfolioTemplate,
   "border-frame-universal": BorderFrameUniversalTemplate,
-  "boxed-sections-universal": BoxedSectionsUniversalTemplate,
   "brand-designer": BrandDesignerTemplateTemplate,
   "brand-identity": BrandIdentityTemplate,
   "brand-manager": BrandManagerTemplate,
@@ -2379,7 +2373,6 @@ const displayTemplates: Record<string, any> = {
   "campus-influencer": CampusInfluencerTemplate,
   "canvas-artist": CanvasArtistTemplate,
   "carbonmade-designer": CarbonmadeDesignerTemplate,
-  "card-layout-universal": CardLayoutUniversalTemplate,
   "casestudy-designer": CasestudyDesignerTemplate,
   "catalyst-fresher": CatalystFresherTemplate,
   "chevron-accent-universal": ChevronAccentUniversalTemplate,
@@ -2504,7 +2497,6 @@ const displayTemplates: Record<string, any> = {
   "expression-artist": ExpressionArtistTemplate,
   "figma-designer-portfolio": FigmaDesignerPortfolioTemplate,
   "financial-analyst": FinancialAnalystTemplate,
-  "floating-header-universal": FloatingHeaderUniversalTemplate,
   "flutter-mobile-dev": FlutterMobileDevTemplate,
   "flux-executive": FluxExecutiveTemplate,
   "foundation-graduate": FoundationGraduateTemplate,
@@ -2589,9 +2581,7 @@ const displayTemplates: Record<string, any> = {
   "launchpad-graduate": LaunchpadGraduateTemplate,
   "layered-cards-universal": LayeredCardsUniversalTemplate,
   "leetcode-champion": LeetcodeChampionTemplate,
-  "left-border-universal": LeftBorderUniversalTemplate,
   "legal-advisor": LegalAdvisorTemplate,
-  "linear-progress-universal": LinearProgressUniversalTemplate,
   "linked-in-ready-graduate": LinkedInReadyGraduateTemplate,
   "linked-in-tech-pro": LinkedInTechProTemplate,
   "linkedin-graduate": LinkedinGraduateTemplate,
