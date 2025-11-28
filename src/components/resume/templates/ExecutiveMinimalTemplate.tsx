@@ -194,12 +194,12 @@ export const ExecutiveMinimalTemplate = ({
                   {editable ? (
                     <InlineEditableText
                       path={`education[${index}].institution`}
-                      value={edu.institution}
+                      value={edu.school}
                       className="text-sm text-gray-600 font-light"
                       as="p"
                     />
                   ) : (
-                    <p className="text-sm text-gray-600 font-light">{edu.institution}</p>
+                    <p className="text-sm text-gray-600 font-light">{edu.school}</p>
                   )}
                 </div>
                 <div className="text-xs text-gray-500 ml-4">{edu.graduationDate}</div>

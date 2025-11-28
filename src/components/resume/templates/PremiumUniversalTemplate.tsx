@@ -35,7 +35,7 @@ export const PremiumUniversalTemplate = ({
   return (
     <div className="w-full h-full bg-white text-gray-900 p-12 text-[13px] leading-relaxed">
       {/* Header */}
-      <div className="mb-8 pb-5 border-b-2" style={{ borderColor: accent }}>
+      <div className="mb-8 pb-5 border-b" style={{ borderColor: accent }}>
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"

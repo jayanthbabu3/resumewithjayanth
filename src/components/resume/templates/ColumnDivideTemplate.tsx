@@ -285,13 +285,13 @@ export const ColumnDivideTemplate = ({
                     )}
                     {editable ? (
                       <InlineEditableText
-                        path={`education[${index}].institution`}
-                        value={edu.institution}
+                        path={`education[${index}].school`}
+                        value={edu.school}
                         className="text-gray-700"
                         as="p"
                       />
                     ) : (
-                      <p className="text-gray-700">{edu.institution}</p>
+                      <p className="text-gray-700">{edu.school}</p>
                     )}
                     {editable ? (
                       <InlineEditableText

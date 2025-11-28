@@ -148,12 +148,12 @@ export const SidebarAccentTemplate = ({
                   {editable ? (
                     <InlineEditableText
                       path={`education[${index}].institution`}
-                      value={edu.institution}
+                      value={edu.school}
                       className="opacity-90 mb-1"
                       as="div"
                     />
                   ) : (
-                    <div className="opacity-90 mb-1">{edu.institution}</div>
+                    <div className="opacity-90 mb-1">{edu.school}</div>
                   )}
                   <div className="text-xs opacity-75">{edu.graduationDate}</div>
                 </div>

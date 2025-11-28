@@ -201,7 +201,7 @@ export const BorderedElegancePDF = ({
               {education.map((edu, index) => (
                 <View key={index} style={styles.educationItem}>
                   <Text style={styles.position}>{edu.degree}</Text>
-                  <Text style={[styles.company, { fontStyle: "italic" }]}>{edu.institution}</Text>
+                  <Text style={[styles.company, { fontStyle: "italic" }]}>{edu.school}</Text>
                   <Text style={styles.dateRange}>{edu.graduationDate}</Text>
                 </View>
               ))}

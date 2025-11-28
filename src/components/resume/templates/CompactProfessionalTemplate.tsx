@@ -161,9 +161,12 @@ export const CompactProfessionalTemplate = ({
                 {exp.description && (
                   <div className="text-xs text-gray-700 leading-snug">
                     {editable ? (
-                      <InlineEditableList
+                      <InlineEditableText
                         path={`experience[${index}].description`}
-                        items={exp.description.split("\n")}
+                        value={exp.description}
+                        className="whitespace-pre-line"
+                        multiline
+                        as="div"
                       />
                     ) : (
                       <ul className="list-disc list-inside space-y-0.5 ml-2">
@@ -209,34 +212,48 @@ export const CompactProfessionalTemplate = ({
           <h2 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: themeColor }}>
             Education
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {resumeData.education.map((edu, index) => (
-              <div key={index} className="flex justify-between items-baseline">
-                <div className="flex-1">
-                  {editable ? (
+              <div key={index}>
+                <div className="flex justify-between items-baseline mb-1">
+                  <div className="flex-1">
+                    {editable ? (
+                      <InlineEditableText
+                        path={`education[${index}].degree`}
+                        value={edu.degree}
+                        className="text-sm font-bold text-gray-900"
+                        as="h3"
+                      />
+                    ) : (
+                      <h3 className="text-sm font-bold text-gray-900">{edu.degree}</h3>
+                    )}
+                  </div>
+                  <div className="text-xs text-gray-500 ml-3 whitespace-nowrap">
+                    {edu.startDate && edu.endDate ? `${edu.startDate} - ${edu.endDate}` : edu.graduationDate}
+                  </div>
+                </div>
+                {editable ? (
+                  <InlineEditableText
+                    path={`education[${index}].school`}
+                    value={edu.school}
+                    className="text-xs text-gray-700 block"
+                    as="p"
+                  />
+                ) : (
+                  <p className="text-xs text-gray-700">{edu.school}</p>
+                )}
+                {edu.field && (
+                  editable ? (
                     <InlineEditableText
-                      path={`education[${index}].degree`}
-                      value={edu.degree}
-                      className="text-sm font-bold text-gray-900"
-                      as="h3"
-                    />
-                  ) : (
-                    <h3 className="text-sm font-bold text-gray-900">{edu.degree}</h3>
-                  )}
-                  {editable ? (
-                    <InlineEditableText
-                      path={`education[${index}].institution`}
-                      value={edu.institution}
-                      className="text-xs text-gray-700"
+                      path={`education[${index}].field`}
+                      value={edu.field}
+                      className="text-xs text-gray-600 block"
                       as="p"
                     />
                   ) : (
-                    <p className="text-xs text-gray-700">{edu.institution}</p>
-                  )}
-                </div>
-                <div className="text-xs text-gray-500 ml-3">
-                  {edu.graduationDate}
-                </div>
+                    <p className="text-xs text-gray-600">{edu.field}</p>
+                  )
+                )}
               </div>
             ))}
           </div>
@@ -247,12 +264,32 @@ export const CompactProfessionalTemplate = ({
       {resumeData.sections &&
         resumeData.sections.map((section, index) => (
           <div key={index} className="mb-6">
-            <h2 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: themeColor }}>
-              {section.title}
-            </h2>
-            <div className="text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">
-              {section.content}
-            </div>
+            {editable ? (
+              <InlineEditableText
+                path={`sections[${index}].title`}
+                value={section.title}
+                className="text-sm font-bold uppercase tracking-wide mb-3 block"
+                style={{ color: themeColor }}
+                as="h2"
+              />
+            ) : (
+              <h2 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: themeColor }}>
+                {section.title}
+              </h2>
+            )}
+            {editable ? (
+              <InlineEditableText
+                path={`sections[${index}].content`}
+                value={section.content}
+                className="text-xs text-gray-700 leading-relaxed whitespace-pre-line block"
+                multiline
+                as="div"
+              />
+            ) : (
+              <div className="text-xs text-gray-700 leading-relaxed whitespace-pre-wrap">
+                {section.content}
+              </div>
+            )}
           </div>
         ))}
     </div>

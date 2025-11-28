@@ -128,6 +128,11 @@ import { SidebarAccentPDF } from "@/components/resume/pdf/SidebarAccentPDF";
 import { TechStackProPDF } from "@/components/resume/pdf/TechStackProPDF";
 import { TerminalThemePDF } from "@/components/resume/pdf/TerminalThemePDF";
 import { TwoToneClassicPDF } from "@/components/resume/pdf/TwoToneClassicPDF";
+// Universal Professional PDF Templates
+import { PDFSwissStyleUniversalTemplate } from "@/components/resume/pdf/PDFSwissStyleUniversalTemplate";
+import { PDFExecutiveLetterheadUniversalTemplate } from "@/components/resume/pdf/PDFExecutiveLetterheadUniversalTemplate";
+import { PDFDiagonalAccentUniversalTemplate } from "@/components/resume/pdf/PDFDiagonalAccentUniversalTemplate";
+import { PDFBorderFrameUniversalTemplate } from "@/components/resume/pdf/PDFBorderFrameUniversalTemplate";
 // 2025 New Templates (100 PDF imports)
 import { StrategicLeadershipPDF } from "@/components/resume/pdf/StrategicLeadershipPDF";
 import { CorporateExcellencePDF } from "@/components/resume/pdf/CorporateExcellencePDF";
@@ -988,10 +993,8 @@ import { CarbonmadeDesignerTemplate } from "@/components/resume/templates/Carbon
 import { CardLayoutUniversalTemplate } from "@/components/resume/templates/CardLayoutUniversalTemplate";
 import { CasestudyDesignerTemplate } from "@/components/resume/templates/CasestudyDesignerTemplate";
 import { CatalystFresherTemplate } from "@/components/resume/templates/CatalystFresherTemplate";
-import { CenteredMinimalUniversalTemplate } from "@/components/resume/templates/CenteredMinimalUniversalTemplate";
 import { ChevronAccentUniversalTemplate } from "@/components/resume/templates/ChevronAccentUniversalTemplate";
 import { ChromaticCreativeTemplate } from "@/components/resume/templates/ChromaticCreativeTemplate";
-import { CircleIconUniversalTemplate } from "@/components/resume/templates/CircleIconUniversalTemplate";
 import { CircularElementsUniversalTemplate } from "@/components/resume/templates/CircularElementsUniversalTemplate";
 import { ClassicSerifUniversalTemplate } from "@/components/resume/templates/ClassicSerifUniversalTemplate";
 import { CleanBasicExecutiveTemplate } from "@/components/resume/templates/CleanBasicExecutiveTemplate";
@@ -1081,7 +1084,6 @@ import { DockerContainerProTemplate } from "@/components/resume/templates/Docker
 import { DockerhubPublisherTemplate } from "@/components/resume/templates/DockerhubPublisherTemplate";
 import { DottedGridUniversalTemplate } from "@/components/resume/templates/DottedGridUniversalTemplate";
 import { DribbbleShowcaseTemplate } from "@/components/resume/templates/DribbbleShowcaseTemplate";
-import { DualColumnModernUniversalTemplate } from "@/components/resume/templates/DualColumnModernUniversalTemplate";
 import { EclipseProfessionalTemplate } from "@/components/resume/templates/EclipseProfessionalTemplate";
 import { EdgecomputeDeveloperTemplate } from "@/components/resume/templates/EdgecomputeDeveloperTemplate";
 import { EditorialArtistTemplate } from "@/components/resume/templates/EditorialArtistTemplate";
@@ -1183,7 +1185,6 @@ import { KubernetesSpecialistTemplate } from "@/components/resume/templates/Kube
 import { LaunchpadGraduateTemplate } from "@/components/resume/templates/LaunchpadGraduateTemplate";
 import { LayeredCardsUniversalTemplate } from "@/components/resume/templates/LayeredCardsUniversalTemplate";
 import { LeetcodeChampionTemplate } from "@/components/resume/templates/LeetcodeChampionTemplate";
-import { LeftAlignedProUniversalTemplate } from "@/components/resume/templates/LeftAlignedProUniversalTemplate";
 import { LeftBorderUniversalTemplate } from "@/components/resume/templates/LeftBorderUniversalTemplate";
 import { LegalAdvisorTemplate } from "@/components/resume/templates/LegalAdvisorTemplate";
 import { LinearProgressUniversalTemplate } from "@/components/resume/templates/LinearProgressUniversalTemplate";
@@ -1198,7 +1199,6 @@ import { MedicalResearchTemplate } from "@/components/resume/templates/MedicalRe
 import { MediumTechWriterTemplate } from "@/components/resume/templates/MediumTechWriterTemplate";
 import { MediumWriterCreativeTemplate } from "@/components/resume/templates/MediumWriterCreativeTemplate";
 import { MeridianCorporateTemplate } from "@/components/resume/templates/MeridianCorporateTemplate";
-import { MetroModernUniversalTemplate } from "@/components/resume/templates/MetroModernUniversalTemplate";
 import { MicroarchEngineerTemplate } from "@/components/resume/templates/MicroarchEngineerTemplate";
 import { MicrointeractionDesignerTemplate } from "@/components/resume/templates/MicrointeractionDesignerTemplate";
 import { MicroservicesDevTemplate } from "@/components/resume/templates/MicroservicesDevTemplate";
@@ -1306,7 +1306,6 @@ import { ReactNativeExpertTemplate } from "@/components/resume/templates/ReactNa
 import { RedisCacheSpecialistTemplate } from "@/components/resume/templates/RedisCacheSpecialistTemplate";
 import { ResponsiveUxTemplate } from "@/components/resume/templates/ResponsiveUxTemplate";
 import { RetroProfessionalUniversalTemplate } from "@/components/resume/templates/RetroProfessionalUniversalTemplate";
-import { RibbonHeaderUniversalTemplate } from "@/components/resume/templates/RibbonHeaderUniversalTemplate";
 import { RoundedCornersUniversalTemplate } from "@/components/resume/templates/RoundedCornersUniversalTemplate";
 import { RustDeveloperProTemplate } from "@/components/resume/templates/RustDeveloperProTemplate";
 import { SalesAchievementTemplate } from "@/components/resume/templates/SalesAchievementTemplate";
@@ -1315,7 +1314,6 @@ import { SerenityMinimalTemplate } from "@/components/resume/templates/SerenityM
 import { ServerlessDeveloperTemplate } from "@/components/resume/templates/ServerlessDeveloperTemplate";
 import { ServerlessSpecialistTemplate } from "@/components/resume/templates/ServerlessSpecialistTemplate";
 import { ServicedesignSpecialistTemplate } from "@/components/resume/templates/ServicedesignSpecialistTemplate";
-import { SidebarProfessionalUniversalTemplate } from "@/components/resume/templates/SidebarProfessionalUniversalTemplate";
 import { SimpleBusinessCleanTemplate } from "@/components/resume/templates/SimpleBusinessCleanTemplate";
 import { SimpleClearBusinessTemplate } from "@/components/resume/templates/SimpleClearBusinessTemplate";
 import { SimpleExecutiveLayoutTemplate } from "@/components/resume/templates/SimpleExecutiveLayoutTemplate";
@@ -1374,7 +1372,6 @@ import { TwoToneSplitUniversalTemplate } from "@/components/resume/templates/Two
 import { TypewriterStyleTemplate } from "@/components/resume/templates/TypewriterStyleTemplate";
 import { UIUXDesignerProTemplate } from "@/components/resume/templates/UIUXDesignerProTemplate";
 import { UiuxPortfolioProTemplate } from "@/components/resume/templates/UiuxPortfolioProTemplate";
-import { UnderlineAccentUniversalTemplate } from "@/components/resume/templates/UnderlineAccentUniversalTemplate";
 import { UrbanDesignerTemplate } from "@/components/resume/templates/UrbanDesignerTemplate";
 import { UserflowDesignerTemplate } from "@/components/resume/templates/UserflowDesignerTemplate";
 import { UserresearchSpecialistTemplate } from "@/components/resume/templates/UserresearchSpecialistTemplate";
@@ -1532,6 +1529,11 @@ const pdfTemplates: Record<string, any> = {
   "tech-stack-pro": TechStackProPDF,
   "terminal-theme": TerminalThemePDF,
   "two-tone-classic": TwoToneClassicPDF,
+  // Universal Professional PDF Templates
+  "swiss-style-universal": PDFSwissStyleUniversalTemplate,
+  "executive-letterhead-universal": PDFExecutiveLetterheadUniversalTemplate,
+  "diagonal-accent-universal": PDFDiagonalAccentUniversalTemplate,
+  "border-frame-universal": PDFBorderFrameUniversalTemplate,
   // 2025 New Templates (100 PDF map entries)
   "strategic-leadership": StrategicLeadershipPDF,
   "corporate-excellence": CorporateExcellencePDF,
@@ -2380,10 +2382,8 @@ const displayTemplates: Record<string, any> = {
   "card-layout-universal": CardLayoutUniversalTemplate,
   "casestudy-designer": CasestudyDesignerTemplate,
   "catalyst-fresher": CatalystFresherTemplate,
-  "centered-minimal-universal": CenteredMinimalUniversalTemplate,
   "chevron-accent-universal": ChevronAccentUniversalTemplate,
   "chromatic-creative": ChromaticCreativeTemplate,
-  "circle-icon-universal": CircleIconUniversalTemplate,
   "circular-elements-universal": CircularElementsUniversalTemplate,
   "classic-serif-universal": ClassicSerifUniversalTemplate,
   "clean-basic-executive": CleanBasicExecutiveTemplate,
@@ -2479,7 +2479,6 @@ const displayTemplates: Record<string, any> = {
   "dot-net-developer": DotNetDeveloperTemplate,
   "dotted-grid-universal": DottedGridUniversalTemplate,
   "dribbble-showcase": DribbbleShowcaseTemplate,
-  "dual-column-modern-universal": DualColumnModernUniversalTemplate,
   "eclipse-professional": EclipseProfessionalTemplate,
   "edgecompute-developer": EdgecomputeDeveloperTemplate,
   "editorial-artist": EditorialArtistTemplate,
@@ -2590,7 +2589,6 @@ const displayTemplates: Record<string, any> = {
   "launchpad-graduate": LaunchpadGraduateTemplate,
   "layered-cards-universal": LayeredCardsUniversalTemplate,
   "leetcode-champion": LeetcodeChampionTemplate,
-  "left-aligned-pro-universal": LeftAlignedProUniversalTemplate,
   "left-border-universal": LeftBorderUniversalTemplate,
   "legal-advisor": LegalAdvisorTemplate,
   "linear-progress-universal": LinearProgressUniversalTemplate,
@@ -2607,7 +2605,6 @@ const displayTemplates: Record<string, any> = {
   "medium-tech-writer": MediumTechWriterTemplate,
   "medium-writer-creative": MediumWriterCreativeTemplate,
   "meridian-corporate": MeridianCorporateTemplate,
-  "metro-modern-universal": MetroModernUniversalTemplate,
   "microarch-engineer": MicroarchEngineerTemplate,
   "microinteraction-designer": MicrointeractionDesignerTemplate,
   "microservices-dev": MicroservicesDevTemplate,
@@ -2722,7 +2719,6 @@ const displayTemplates: Record<string, any> = {
   "redis-cache-specialist": RedisCacheSpecialistTemplate,
   "responsive-ux": ResponsiveUxTemplate,
   "retro-professional-universal": RetroProfessionalUniversalTemplate,
-  "ribbon-header-universal": RibbonHeaderUniversalTemplate,
   "rounded-corners-universal": RoundedCornersUniversalTemplate,
   "rust-developer-pro": RustDeveloperProTemplate,
   "sales-achievement": SalesAchievementTemplate,
@@ -2734,7 +2730,6 @@ const displayTemplates: Record<string, any> = {
   "serverless-developer": ServerlessDeveloperTemplate,
   "serverless-specialist": ServerlessSpecialistTemplate,
   "servicedesign-specialist": ServicedesignSpecialistTemplate,
-  "sidebar-professional-universal": SidebarProfessionalUniversalTemplate,
   "simple-business-clean": SimpleBusinessCleanTemplate,
   "simple-clear-business": SimpleClearBusinessTemplate,
   "simple-executive-layout": SimpleExecutiveLayoutTemplate,
@@ -2797,7 +2792,6 @@ const displayTemplates: Record<string, any> = {
   "typewriter-style": TypewriterStyleTemplate,
   "uiux-designer-pro": UIUXDesignerProTemplate,
   "uiux-portfolio-pro": UiuxPortfolioProTemplate,
-  "underline-accent-universal": UnderlineAccentUniversalTemplate,
   "urban-designer": UrbanDesignerTemplate,
   "userflow-designer": UserflowDesignerTemplate,
   "userresearch-specialist": UserresearchSpecialistTemplate,

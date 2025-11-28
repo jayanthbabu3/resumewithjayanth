@@ -208,13 +208,13 @@ export const BorderedEleganceTemplate = ({
                     )}
                     {editable ? (
                       <InlineEditableText
-                        path={`education[${index}].institution`}
-                        value={edu.institution}
+                        path={`education[${index}].school`}
+                        value={edu.school}
                         className="text-gray-700 italic"
                         as="p"
                       />
                     ) : (
-                      <p className="text-gray-700 italic">{edu.institution}</p>
+                      <p className="text-gray-700 italic">{edu.school}</p>
                     )}
                     <p className="text-sm text-gray-500">{edu.graduationDate}</p>
                   </div>

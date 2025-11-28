@@ -201,7 +201,7 @@ export const TwoToneClassicPDF = ({
                   <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <View>
                       <Text style={styles.position}>{edu.degree}</Text>
-                      <Text style={[styles.company, { color: "#4b5563" }]}>{edu.institution}</Text>
+                      <Text style={[styles.company, { color: "#4b5563" }]}>{edu.school}</Text>
                     </View>
                     <Text style={styles.dateRange}>{edu.graduationDate}</Text>
                   </View>

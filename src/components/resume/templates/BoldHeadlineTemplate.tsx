@@ -134,7 +134,7 @@ export const BoldHeadlineTemplate = ({
         {/* Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b-3" style={{ borderColor: accent }}>
+            <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b" style={{ borderColor: accent }}>
               Work Experience
             </h2>
             {editable ? (
@@ -236,7 +236,7 @@ export const BoldHeadlineTemplate = ({
           {/* Education */}
           {resumeData.education && resumeData.education.length > 0 && (
             <div>
-              <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b-3" style={{ borderColor: accent }}>
+              <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b" style={{ borderColor: accent }}>
                 Education
               </h2>
               {editable ? (
@@ -317,7 +317,7 @@ export const BoldHeadlineTemplate = ({
           {/* Skills */}
           {resumeData.skills && resumeData.skills.length > 0 && (
             <div>
-              <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b-3" style={{ borderColor: accent }}>
+              <h2 className="text-[16px] font-black uppercase tracking-wider mb-5 text-gray-900 pb-3 border-b" style={{ borderColor: accent }}>
                 Skills
               </h2>
               {editable ? (
@@ -359,7 +359,7 @@ export const BoldHeadlineTemplate = ({
                 <InlineEditableText
                   path={`sections[${index}].title`}
                   value={section.title}
-                  className="text-[16px] font-black uppercase tracking-wider mb-4 text-gray-900 pb-3 border-b-3"
+                  className="text-[16px] font-black uppercase tracking-wider mb-4 text-gray-900 pb-3 border-b"
                   as="h2"
                   style={{ borderColor: accent }}
                 />
@@ -377,7 +377,7 @@ export const BoldHeadlineTemplate = ({
           resumeData.sections &&
           resumeData.sections.map((section, index) => (
             <div key={index} className="mt-8">
-              <h2 className="text-[16px] font-black uppercase tracking-wider mb-4 text-gray-900 pb-3 border-b-3" style={{ borderColor: accent }}>
+              <h2 className="text-[16px] font-black uppercase tracking-wider mb-4 text-gray-900 pb-3 border-b" style={{ borderColor: accent }}>
                 {section.title}
               </h2>
               <div className="text-[12.5px] text-gray-700 leading-[1.8] whitespace-pre-line">

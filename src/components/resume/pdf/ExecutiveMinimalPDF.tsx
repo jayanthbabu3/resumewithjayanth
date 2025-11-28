@@ -225,7 +225,7 @@ export const ExecutiveMinimalPDF = ({
                   <View style={styles.experienceHeader}>
                     <View>
                       <Text style={styles.position}>{edu.degree}</Text>
-                      <Text style={styles.company}>{edu.institution}</Text>
+                      <Text style={styles.company}>{edu.school}</Text>
                     </View>
                     <Text style={styles.dateRange}>{edu.graduationDate}</Text>
                   </View>

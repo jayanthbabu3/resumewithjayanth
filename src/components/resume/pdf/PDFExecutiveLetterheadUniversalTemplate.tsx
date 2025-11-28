@@ -25,26 +25,36 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     backgroundColor: "#ffffff",
     
   },
-  header: {
+  letterheadHeader: {
+    padding: 32,
+    paddingBottom: 24,
+    borderBottomWidth: 4,
+    borderBottomColor: themeColor,
+    textAlign: 'center',
     marginBottom: 40,
   },
   name: {
-    fontSize: 13,
+    fontSize: 28,
     fontWeight: 700,
     color: themeColor,
     marginBottom: 8,
     textAlign: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   title: {
-    fontSize: 15,
-    color: "#374151",
-    marginBottom: 20,
+    fontSize: 13,
+    color: "#4b5563",
+    fontWeight: 600,
+    marginBottom: 16,
     textAlign: 'center',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
   },
   contactInfo: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 24,
+    marginRight: 24,
     fontSize: 12,
     color: "#6b7280",
     justifyContent: 'center',
@@ -70,14 +80,15 @@ export const PDFExecutiveLetterheadUniversalTemplate = ({
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-          <View style={styles.header}>
+          {/* Letterhead Header */}
+          <View style={styles.letterheadHeader}>
             <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
             {resumeData.personalInfo.title && (
               <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
             )}
             <View style={styles.contactInfo}>
-              {resumeData.personalInfo.email && <Text>{resumeData.personalInfo.email}</Text>}
-              {resumeData.personalInfo.phone && <Text>{resumeData.personalInfo.phone}</Text>}
+              {resumeData.personalInfo.email && <Text style={{ marginHorizontal: 24 }}>{resumeData.personalInfo.email}</Text>}
+              {resumeData.personalInfo.phone && <Text style={{ marginHorizontal: 24 }}>{resumeData.personalInfo.phone}</Text>}
               {resumeData.personalInfo.location && <Text>{resumeData.personalInfo.location}</Text>}
             </View>
           </View>
@@ -137,7 +148,7 @@ export const PDFExecutiveLetterheadUniversalTemplate = ({
           {resumeData.skills && resumeData.skills.length > 0 && (
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Skills</Text>
-              <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+              <View style={{ flexDirection: "row", flexWrap: "wrap", marginRight: 8 }}>
                 {resumeData.skills.map((skill, index) => (
                   <Text key={index} style={{ fontSize: 13, color: "#111827", marginRight: 4 }}>{skill.name}</Text>
                 ))}

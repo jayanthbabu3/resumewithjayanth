@@ -23,28 +23,35 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     lineHeight: 1.6,
     color: "#1f2937",
     backgroundColor: "#ffffff",
-    
   },
   header: {
     marginBottom: 40,
+    position: 'relative',
+  },
+  accentElement: {
+    position: 'absolute',
+    top: -20,
+    right: -20,
+    width: 120,
+    height: 120,
+    backgroundColor: `${themeColor}10`,
+    transform: 'rotate(45deg)',
   },
   name: {
-    fontSize: 13,
+    fontSize: 32,
     fontWeight: 700,
     color: themeColor,
     marginBottom: 8,
-    
   },
   title: {
     fontSize: 15,
-    color: "#374151",
-    marginBottom: 20,
-    
+    color: "#4b5563",
+    marginBottom: 16,
   },
   contactInfo: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 24,
+    marginRight: 24,
     fontSize: 12,
     color: "#6b7280",
     
@@ -60,7 +67,7 @@ const createStyles = (themeColor: string) => StyleSheet.create({
   },
   twoColumnGrid: {
     flexDirection: "row",
-    gap: 40,
+    marginRight: 40,
   },
   column: {
     flex: 1,
@@ -145,7 +152,7 @@ export const PDFDiagonalAccentUniversalTemplate = ({
             {resumeData.skills && resumeData.skills.length > 0 && (
               <View style={styles.column}>
                 <Text style={styles.sectionTitle}>Skills</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", marginRight: 8 }}>
                   {resumeData.skills.map((skill, index) => (
                     <Text key={index} style={{ fontSize: 13, color: "#111827", marginRight: 4 }}>{skill.name}</Text>
                   ))}

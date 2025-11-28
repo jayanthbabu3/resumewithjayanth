@@ -17,53 +17,93 @@ interface PDFSwissStyleUniversalTemplateProps {
 
 const createStyles = (themeColor: string) => StyleSheet.create({
   page: {
-    padding: 48,
+    paddingTop: 40,
+    paddingRight: 40,
+    paddingBottom: 40,
+    paddingLeft: 40,
     fontFamily: "Inter",
-    fontSize: 13,
-    lineHeight: 1.6,
+    fontSize: 10,
+    lineHeight: 1.5,
     color: "#1f2937",
     backgroundColor: "#ffffff",
-    
   },
-  header: {
-    marginBottom: 40,
+  headerGrid: {
+    flexDirection: "row",
+    marginBottom: 24,
+  },
+  headerLeft: {
+    flex: 1,
+    marginRight: 32,
+  },
+  headerRight: {
+    flex: 1,
   },
   name: {
-    fontSize: 13,
+    fontSize: 22,
+    fontWeight: 700,
+    lineHeight: 1,
+    marginBottom: 4,
+  },
+  title: {
+    fontSize: 10,
+    color: "#6b7280",
+    marginTop: 4,
+  },
+  contactInfo: {
+    fontSize: 9,
+    color: "#4b5563",
+  },
+  contactItem: {
+    marginBottom: 2,
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 11,
     fontWeight: 700,
     color: themeColor,
     marginBottom: 8,
-    
   },
-  title: {
-    fontSize: 15,
+  experienceItem: {
+    marginBottom: 12,
+  },
+  experienceHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 4,
+  },
+  position: {
+    fontSize: 10,
+    fontWeight: 600,
+    color: "#111827",
+  },
+  company: {
+    fontSize: 9,
     color: "#374151",
-    marginBottom: 20,
-    
+    marginTop: 1,
   },
-  contactInfo: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 24,
-    fontSize: 12,
+  dateRange: {
+    fontSize: 8,
     color: "#6b7280",
-    
   },
-  section: {
-    marginBottom: 40,
+  description: {
+    fontSize: 8,
+    color: "#4b5563",
+    lineHeight: 1.4,
+    marginTop: 4,
   },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: 700,
-    color: themeColor,
-    marginBottom: 16,
+  descriptionItem: {
+    marginBottom: 1,
+    paddingLeft: 8,
   },
-  twoColumnGrid: {
-    flexDirection: "row",
-    gap: 40,
+  educationItem: {
+    marginBottom: 8,
   },
-  column: {
-    flex: 1,
+  skillItem: {
+    fontSize: 8,
+    marginBottom: 2,
   },
 });
 
@@ -77,46 +117,48 @@ export const PDFSwissStyleUniversalTemplate = ({
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-          <View style={styles.header}>
-            <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
-            {resumeData.personalInfo.title && (
-              <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
-            )}
-            <View style={styles.contactInfo}>
-              {resumeData.personalInfo.email && <Text>{resumeData.personalInfo.email}</Text>}
-              {resumeData.personalInfo.phone && <Text>{resumeData.personalInfo.phone}</Text>}
-              {resumeData.personalInfo.location && <Text>{resumeData.personalInfo.location}</Text>}
+          {/* Swiss Grid Layout - Name on left, contact on right */}
+          <View style={styles.headerGrid}>
+            <View style={styles.headerLeft}>
+              <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
+              {resumeData.personalInfo.title && (
+                <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
+              )}
+            </View>
+            <View style={styles.headerRight}>
+              <View style={styles.contactInfo}>
+                {resumeData.personalInfo.email && <Text style={styles.contactItem}>{resumeData.personalInfo.email}</Text>}
+                {resumeData.personalInfo.phone && <Text style={styles.contactItem}>{resumeData.personalInfo.phone}</Text>}
+                {resumeData.personalInfo.location && <Text style={styles.contactItem}>{resumeData.personalInfo.location}</Text>}
+              </View>
             </View>
           </View>
 
           {resumeData.personalInfo.summary && (
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Professional Summary</Text>
-              <Text style={{ fontSize: 13, lineHeight: 1.7, color: "#374151" }}>{resumeData.personalInfo.summary}</Text>
+              <Text style={styles.sectionTitle}>SUMMARY</Text>
+              <Text style={{ fontSize: 9, lineHeight: 1.5, color: "#374151" }}>{resumeData.personalInfo.summary}</Text>
             </View>
           )}
 
           {resumeData.experience && resumeData.experience.length > 0 && (
             <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Professional Experience</Text>
+              <Text style={styles.sectionTitle}>EXPERIENCE</Text>
               {resumeData.experience.map((exp, index) => {
                 const bulletPoints = (exp.description || "").split("\n").filter(Boolean);
                 return (
-                  <View key={index} style={{ marginBottom: 24 }}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 8 }}>
+                  <View key={index} style={styles.experienceItem}>
+                    <View style={styles.experienceHeader}>
                       <View style={{ flex: 1 }}>
-                        <Text style={{ fontSize: 14, fontWeight: 600, color: "#111827", marginBottom: 4 }}>{exp.position}</Text>
-                        <Text style={{ fontSize: 13, color: "#374151" }}>{exp.company}</Text>
+                        <Text style={styles.position}>{exp.position}</Text>
+                        <Text style={styles.company}>{exp.company}</Text>
                       </View>
-                      <Text style={{ fontSize: 11, color: "#6b7280" }}>{exp.startDate} - {exp.current ? "Present" : exp.endDate}</Text>
+                      <Text style={styles.dateRange}>{exp.startDate} - {exp.endDate || "Present"}</Text>
                     </View>
                     {bulletPoints.length > 0 && (
-                      <View style={{ marginLeft: 20, marginTop: 8 }}>
+                      <View style={styles.description}>
                         {bulletPoints.map((point, i) => (
-                          <View key={i} style={{ flexDirection: "row", marginBottom: 4 }}>
-                            <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: "#374151", marginRight: 8, marginTop: 6 }} />
-                            <Text style={{ flex: 1, fontSize: 12.5, lineHeight: 1.7, color: "#374151" }}>{point}</Text>
-                          </View>
+                          <Text key={i} style={styles.descriptionItem}>• {point}</Text>
                         ))}
                       </View>
                     )}
@@ -126,37 +168,35 @@ export const PDFSwissStyleUniversalTemplate = ({
             </View>
           )}
 
-          <View style={styles.twoColumnGrid}>
-            {resumeData.education && resumeData.education.length > 0 && (
-              <View style={styles.column}>
-                <Text style={styles.sectionTitle}>Education</Text>
-                {resumeData.education.map((edu, index) => (
-                  <View key={index} style={{ marginBottom: 16 }}>
-                    <Text style={{ fontSize: 14, fontWeight: 600, color: "#111827", marginBottom: 4 }}>
-                      {edu.degree} {edu.field && `in ${edu.field}`}
-                    </Text>
-                    <Text style={{ fontSize: 13, color: "#374151", marginBottom: 2 }}>{edu.school}</Text>
-                    <Text style={{ fontSize: 11, color: "#6b7280" }}>{edu.startDate} - {edu.endDate}</Text>
-                  </View>
+          {resumeData.education && resumeData.education.length > 0 && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>EDUCATION</Text>
+              {resumeData.education.map((edu, index) => (
+                <View key={index} style={styles.educationItem}>
+                  <Text style={styles.position}>
+                    {edu.degree} {edu.field && `in ${edu.field}`}
+                  </Text>
+                  <Text style={styles.company}>{edu.school}</Text>
+                  <Text style={styles.dateRange}>{edu.startDate} - {edu.endDate}</Text>
+                </View>
+              ))}
+            </View>
+          )}
+
+          {resumeData.skills && resumeData.skills.length > 0 && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>SKILLS</Text>
+              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                {resumeData.skills.map((skill, index) => (
+                  <Text key={index} style={styles.skillItem}>{skill.name}{index < resumeData.skills.length - 1 ? " • " : ""}</Text>
                 ))}
               </View>
-            )}
-
-            {resumeData.skills && resumeData.skills.length > 0 && (
-              <View style={styles.column}>
-                <Text style={styles.sectionTitle}>Skills</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
-                  {resumeData.skills.map((skill, index) => (
-                    <Text key={index} style={{ fontSize: 13, color: "#111827", marginRight: 4 }}>{skill.name}</Text>
-                  ))}
-                </View>
-              </View>
-            )}
-          </View>
+            </View>
+          )}
           {resumeData.sections && resumeData.sections.map((section, index) => (
             <View key={index} style={styles.section}>
-              <Text style={styles.sectionTitle}>{section.title}</Text>
-              <Text style={{ fontSize: 13, lineHeight: 1.7, color: "#374151" }}>{section.content}</Text>
+              <Text style={styles.sectionTitle}>{section.title.toUpperCase()}</Text>
+              <Text style={{ fontSize: 9, lineHeight: 1.5, color: "#374151" }}>{section.content}</Text>
             </View>
           ))}
         </View>

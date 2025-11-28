@@ -30,7 +30,7 @@ export const BorderFrameUniversalTemplate = ({
     <div className="w-full h-full bg-white text-gray-900 p-8 text-[13px] leading-relaxed">
       <div className="border-4 p-10" style={{ borderColor: accent }}>
         {/* Header - Centered */}
-        <div className="text-center mb-10 pb-6 border-b-2" style={{ borderColor: accent }}>
+        <div className="text-center mb-10 pb-6 border-b" style={{ borderColor: accent }}>
           {editable ? (
             <>
               <InlineEditableText

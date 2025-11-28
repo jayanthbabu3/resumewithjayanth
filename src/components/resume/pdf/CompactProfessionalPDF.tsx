@@ -101,7 +101,6 @@ const createStyles = (color: string) =>
     skillsGrid: {
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 4,
     },
     skillChip: {
       fontSize: 8,
@@ -109,6 +108,8 @@ const createStyles = (color: string) =>
       paddingVertical: 3,
       backgroundColor: "#f3f4f6",
       borderRadius: 3,
+      marginRight: 4,
+      marginBottom: 4,
     },
   });
 
@@ -182,12 +183,19 @@ export const CompactProfessionalPDF = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Education</Text>
             {education.map((edu, index) => (
-              <View key={index} style={{ marginBottom: 6, flexDirection: 'row', justifyContent: 'space-between' }}>
-                <View>
+              <View key={index} style={{ marginBottom: 8 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 2 }}>
                   <Text style={styles.position}>{edu.degree}</Text>
-                  <Text style={[styles.company, { color: "#4b5563" }]}>{edu.institution}</Text>
+                  <Text style={styles.dateRange}>
+                    {edu.startDate && edu.endDate ? `${edu.startDate} - ${edu.endDate}` : edu.graduationDate}
+                  </Text>
                 </View>
-                <Text style={styles.dateRange}>{edu.graduationDate}</Text>
+                <Text style={[styles.company, { color: "#4b5563" }]}>
+                  {edu.school}
+                </Text>
+                {edu.field && (
+                  <Text style={[styles.dateRange, { color: "#6b7280" }]}>{edu.field}</Text>
+                )}
               </View>
             ))}
           </View>

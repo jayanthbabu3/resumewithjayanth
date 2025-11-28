@@ -923,9 +923,7 @@ import { PDFCEOProfileTemplate } from "@/components/resume/pdf/PDFCEOProfileTemp
 import { PDFCICDPipelineEngineerTemplate } from "@/components/resume/pdf/PDFCICDPipelineEngineerTemplate";
 import { PDFCPAProfessionalTemplate } from "@/components/resume/pdf/PDFCPAProfessionalTemplate";
 import { PDFCardLayoutUniversalTemplate } from "@/components/resume/pdf/PDFCardLayoutUniversalTemplate";
-import { PDFCenteredMinimalUniversalTemplate } from "@/components/resume/pdf/PDFCenteredMinimalUniversalTemplate";
 import { PDFChevronAccentUniversalTemplate } from "@/components/resume/pdf/PDFChevronAccentUniversalTemplate";
-import { PDFCircleIconUniversalTemplate } from "@/components/resume/pdf/PDFCircleIconUniversalTemplate";
 import { PDFCircularElementsUniversalTemplate } from "@/components/resume/pdf/PDFCircularElementsUniversalTemplate";
 import { PDFClassicSerifUniversalTemplate } from "@/components/resume/pdf/PDFClassicSerifUniversalTemplate";
 import { PDFCleanBasicExecutiveTemplate } from "@/components/resume/pdf/PDFCleanBasicExecutiveTemplate";
@@ -976,7 +974,6 @@ import { PDFDockerContainerProTemplate } from "@/components/resume/pdf/PDFDocker
 import { PDFDotNetCoreDeveloperTemplate } from "@/components/resume/pdf/PDFDotNetCoreDeveloperTemplate";
 import { PDFDotNetDeveloperTemplate } from "@/components/resume/pdf/PDFDotNetDeveloperTemplate";
 import { PDFDottedGridUniversalTemplate } from "@/components/resume/pdf/PDFDottedGridUniversalTemplate";
-import { PDFDualColumnModernUniversalTemplate } from "@/components/resume/pdf/PDFDualColumnModernUniversalTemplate";
 import { PDFDualToneTemplate } from "@/components/resume/pdf/PDFDualToneTemplate";
 import { PDFEditorialStyleTemplate } from "@/components/resume/pdf/PDFEditorialStyleTemplate";
 import { PDFEducatorModernTemplate } from "@/components/resume/pdf/PDFEducatorModernTemplate";
@@ -1054,7 +1051,6 @@ import { PDFKafkaStreamingExpertTemplate } from "@/components/resume/pdf/PDFKafk
 import { PDFKuberneteEngineerTemplate } from "@/components/resume/pdf/PDFKuberneteEngineerTemplate";
 import { PDFKubernetesSpecialistTemplate } from "@/components/resume/pdf/PDFKubernetesSpecialistTemplate";
 import { PDFLayeredCardsUniversalTemplate } from "@/components/resume/pdf/PDFLayeredCardsUniversalTemplate";
-import { PDFLeftAlignedProUniversalTemplate } from "@/components/resume/pdf/PDFLeftAlignedProUniversalTemplate";
 import { PDFLeftBorderUniversalTemplate } from "@/components/resume/pdf/PDFLeftBorderUniversalTemplate";
 import { PDFLegalAdvisorTemplate } from "@/components/resume/pdf/PDFLegalAdvisorTemplate";
 import { PDFLegalCounselTemplate } from "@/components/resume/pdf/PDFLegalCounselTemplate";
@@ -3464,6 +3460,11 @@ const Editor = () => {
         "tech-stack-pro": TechStackProPDF,
         "terminal-theme": TerminalThemePDF,
         "two-tone-classic": TwoToneClassicPDF,
+        // Universal Professional PDF Templates
+        "swiss-style-universal": PDFSwissStyleUniversalTemplate,
+        "executive-letterhead-universal": PDFExecutiveLetterheadUniversalTemplate,
+        "diagonal-accent-universal": PDFDiagonalAccentUniversalTemplate,
+        "border-frame-universal": PDFBorderFrameUniversalTemplate,
         "code-craftsman": CodeCraftsmanPDF,
         "tech-pioneer": TechPioneerPDF,
         "dev-architecture": DevArchitecturePDF,

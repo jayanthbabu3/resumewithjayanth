@@ -35,7 +35,7 @@ export const PremiumUniversalPDF = ({
     header: {
       marginBottom: 20,
       paddingBottom: 16,
-      borderBottomWidth: 2,
+      borderBottomWidth: 1,
       borderBottomColor: themeColor,
     },
     name: {

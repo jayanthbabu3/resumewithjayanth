@@ -159,22 +159,14 @@ import { TechStackProTemplate } from "./resume/templates/TechStackProTemplate";
 import { TerminalThemeTemplate } from "./resume/templates/TerminalThemeTemplate";
 import { TwoToneClassicTemplate } from "./resume/templates/TwoToneClassicTemplate";
 // 2025 Universal Profile Templates
-import { SidebarProfessionalUniversalTemplate } from "./resume/templates/SidebarProfessionalUniversalTemplate";
-import { MetroModernUniversalTemplate } from "./resume/templates/MetroModernUniversalTemplate";
 import { SwissStyleUniversalTemplate } from "./resume/templates/SwissStyleUniversalTemplate";
 import { ExecutiveLetterheadUniversalTemplate } from "./resume/templates/ExecutiveLetterheadUniversalTemplate";
 import { DiagonalAccentUniversalTemplate } from "./resume/templates/DiagonalAccentUniversalTemplate";
 import { BorderFrameUniversalTemplate } from "./resume/templates/BorderFrameUniversalTemplate";
-import { CenteredMinimalUniversalTemplate } from "./resume/templates/CenteredMinimalUniversalTemplate";
-import { LeftAlignedProUniversalTemplate } from "./resume/templates/LeftAlignedProUniversalTemplate";
-import { DualColumnModernUniversalTemplate } from "./resume/templates/DualColumnModernUniversalTemplate";
 import { TimelineVerticalUniversalTemplate } from "./resume/templates/TimelineVerticalUniversalTemplate";
 import { BadgeStyleUniversalTemplate } from "./resume/templates/BadgeStyleUniversalTemplate";
-import { UnderlineAccentUniversalTemplate } from "./resume/templates/UnderlineAccentUniversalTemplate";
-import { CircleIconUniversalTemplate } from "./resume/templates/CircleIconUniversalTemplate";
 import { LinearProgressUniversalTemplate } from "./resume/templates/LinearProgressUniversalTemplate";
 import { CardLayoutUniversalTemplate } from "./resume/templates/CardLayoutUniversalTemplate";
-import { RibbonHeaderUniversalTemplate } from "./resume/templates/RibbonHeaderUniversalTemplate";
 import { BoxedSectionsUniversalTemplate } from "./resume/templates/BoxedSectionsUniversalTemplate";
 import { LeftBorderUniversalTemplate } from "./resume/templates/LeftBorderUniversalTemplate";
 import { FloatingHeaderUniversalTemplate } from "./resume/templates/FloatingHeaderUniversalTemplate";
@@ -1991,22 +1983,14 @@ const templates = {
   "terminal-theme": TerminalThemeTemplate,
   "two-tone-classic": TwoToneClassicTemplate,
   // 2025 Universal Profile Templates
-  "sidebar-professional-universal": SidebarProfessionalUniversalTemplate,
-  "metro-modern-universal": MetroModernUniversalTemplate,
   "swiss-style-universal": SwissStyleUniversalTemplate,
   "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
   "diagonal-accent-universal": DiagonalAccentUniversalTemplate,
   "border-frame-universal": BorderFrameUniversalTemplate,
-  "centered-minimal-universal": CenteredMinimalUniversalTemplate,
-  "left-aligned-pro-universal": LeftAlignedProUniversalTemplate,
-  "dual-column-modern-universal": DualColumnModernUniversalTemplate,
   "timeline-vertical-universal": TimelineVerticalUniversalTemplate,
   "badge-style-universal": BadgeStyleUniversalTemplate,
-  "underline-accent-universal": UnderlineAccentUniversalTemplate,
-  "circle-icon-universal": CircleIconUniversalTemplate,
   "linear-progress-universal": LinearProgressUniversalTemplate,
   "card-layout-universal": CardLayoutUniversalTemplate,
-  "ribbon-header-universal": RibbonHeaderUniversalTemplate,
   "boxed-sections-universal": BoxedSectionsUniversalTemplate,
   "left-border-universal": LeftBorderUniversalTemplate,
   "floating-header-universal": FloatingHeaderUniversalTemplate,

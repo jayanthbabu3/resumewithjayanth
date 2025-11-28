@@ -213,7 +213,7 @@ export const ColumnDividePDF = ({
                   <View key={index} style={{ marginBottom: 10 }}>
                     <Text style={styles.position}>{edu.degree}</Text>
                     <Text style={[styles.company, { color: "#4b5563" }]}>
-                      {edu.institution || edu.school}
+                      {edu.school}
                     </Text>
                     {edu.field && <Text style={styles.educationField}>{edu.field}</Text>}
                     <Text style={styles.dateRange}>

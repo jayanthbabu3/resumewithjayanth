@@ -224,12 +224,12 @@ export const TwoToneClassicTemplate = ({
                       {editable ? (
                         <InlineEditableText
                           path={`education[${index}].institution`}
-                          value={edu.institution}
+                          value={edu.school}
                           className="text-gray-700"
                           as="p"
                         />
                       ) : (
-                        <p className="text-gray-700">{edu.institution}</p>
+                        <p className="text-gray-700">{edu.school}</p>
                       )}
                     </div>
                     <div className="text-sm text-gray-500 ml-4">

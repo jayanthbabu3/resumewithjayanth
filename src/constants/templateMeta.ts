@@ -1259,18 +1259,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     categorySlug: "universal-professional",
   },
   // 2025 Universal Profile Templates - Batch 1
-  "sidebar-professional-universal": {
-    name: "Professional Sidebar",
-    description: "Clean sidebar layout with professional structure for any industry.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "metro-modern-universal": {
-    name: "Metro Modern",
-    description: "Contemporary metro-inspired design with clean lines and modern typography.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
   "swiss-style-universal": {
     name: "Swiss Style",
     description: "Swiss design principles with grid-based layout and minimalist aesthetic.",
@@ -1295,19 +1283,7 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal Professional",
     categorySlug: "universal-professional",
   },
-  "centered-minimal-universal": {
-    name: "Centered Minimal",
-    description: "Center-aligned minimalist design for maximum readability.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "left-aligned-pro-universal": {
-    name: "Left Aligned Pro",
-    description: "Traditional left-aligned professional layout with modern touches.",
-    category: "Universal Professional",
-    categorySlug: "universal-professional",
-  },
-  "dual-column-modern-universal": {
+  "": {
     name: "Dual Column Modern",
     description: "Modern dual-column layout balancing content and visual appeal.",
     category: "Universal Professional",
@@ -1325,13 +1301,13 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal Professional",
     categorySlug: "universal-professional",
   },
-  "underline-accent-universal": {
+  "": {
     name: "Underline Accent",
     description: "Subtle underline accents emphasizing important sections.",
     category: "Universal Professional",
     categorySlug: "universal-professional",
   },
-  "circle-icon-universal": {
+  "": {
     name: "Circle Icon",
     description: "Circular icons and elements adding visual rhythm to content.",
     category: "Universal Professional",
@@ -1349,7 +1325,7 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal Professional",
     categorySlug: "universal-professional",
   },
-  "ribbon-header-universal": {
+  "": {
     name: "Ribbon Header",
     description: "Distinctive ribbon-style header creating strong first impression.",
     category: "Universal Professional",

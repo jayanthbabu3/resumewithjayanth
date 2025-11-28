@@ -17,53 +17,60 @@ interface PDFBorderFrameUniversalTemplateProps {
 
 const createStyles = (themeColor: string) => StyleSheet.create({
   page: {
-    padding: 48,
+    padding: 32,
     fontFamily: "Inter",
     fontSize: 13,
     lineHeight: 1.6,
     color: "#1f2937",
     backgroundColor: "#ffffff",
-    
+  },
+  borderFrame: {
+    borderWidth: 4,
+    borderColor: themeColor,
+    padding: 40,
+    height: "100%",
   },
   header: {
     marginBottom: 40,
+    paddingBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: themeColor,
+    textAlign: "center",
   },
   name: {
-    fontSize: 13,
+    fontSize: 32,
     fontWeight: 700,
     color: themeColor,
     marginBottom: 8,
     textAlign: 'center',
   },
   title: {
-    fontSize: 15,
-    color: "#374151",
-    marginBottom: 20,
+    fontSize: 14,
+    color: "#4b5563",
+    fontWeight: 500,
+    marginBottom: 16,
     textAlign: 'center',
   },
   contactInfo: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 24,
     fontSize: 12,
     color: "#6b7280",
     justifyContent: 'center',
+  },
+  contactItem: {
+    marginHorizontal: 12,
+    marginBottom: 4,
   },
   section: {
     marginBottom: 40,
   },
   sectionTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 700,
     color: themeColor,
     marginBottom: 16,
-  },
-  twoColumnGrid: {
-    flexDirection: "row",
-    gap: 40,
-  },
-  column: {
-    flex: 1,
+    textAlign: 'center',
   },
 });
 
@@ -76,16 +83,16 @@ export const PDFBorderFrameUniversalTemplate = ({
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View>
+        <View style={styles.borderFrame}>
           <View style={styles.header}>
             <Text style={styles.name}>{resumeData.personalInfo.fullName}</Text>
             {resumeData.personalInfo.title && (
               <Text style={styles.title}>{resumeData.personalInfo.title}</Text>
             )}
             <View style={styles.contactInfo}>
-              {resumeData.personalInfo.email && <Text>{resumeData.personalInfo.email}</Text>}
-              {resumeData.personalInfo.phone && <Text>{resumeData.personalInfo.phone}</Text>}
-              {resumeData.personalInfo.location && <Text>{resumeData.personalInfo.location}</Text>}
+              {resumeData.personalInfo.email && <Text style={styles.contactItem}>{resumeData.personalInfo.email}</Text>}
+              {resumeData.personalInfo.phone && <Text style={styles.contactItem}>{resumeData.personalInfo.phone}</Text>}
+              {resumeData.personalInfo.location && <Text style={styles.contactItem}>{resumeData.personalInfo.location}</Text>}
             </View>
           </View>
 
@@ -145,7 +152,7 @@ export const PDFBorderFrameUniversalTemplate = ({
             {resumeData.skills && resumeData.skills.length > 0 && (
               <View style={styles.column}>
                 <Text style={styles.sectionTitle}>Skills</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8 }}>
+                <View style={{ flexDirection: "row", flexWrap: "wrap", marginRight: 8 }}>
                   {resumeData.skills.map((skill, index) => (
                     <Text key={index} style={{ fontSize: 13, color: "#111827", marginRight: 4 }}>{skill.name}</Text>
                   ))}

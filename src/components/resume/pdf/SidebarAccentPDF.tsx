@@ -165,7 +165,7 @@ export const SidebarAccentPDF = ({
               {education.map((edu, index) => (
                 <View key={index} style={{ marginBottom: 10, fontSize: 9 }}>
                   <Text style={{ fontWeight: 600, marginBottom: 2 }}>{edu.degree}</Text>
-                  <Text style={{ opacity: 0.9, marginBottom: 2 }}>{edu.institution}</Text>
+                  <Text style={{ opacity: 0.9, marginBottom: 2 }}>{edu.school}</Text>
                   <Text style={{ fontSize: 8, opacity: 0.75 }}>{edu.graduationDate}</Text>
                 </View>
               ))}

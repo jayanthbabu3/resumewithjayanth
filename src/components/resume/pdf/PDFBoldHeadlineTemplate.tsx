@@ -140,7 +140,7 @@ export const PDFBoldHeadlineTemplate = ({
       color: "#111827",
       marginBottom: 12,
       paddingBottom: 8,
-      borderBottomWidth: 2,
+      borderBottomWidth: 1,
       borderBottomColor: accent,
     },
     experienceItem: {
