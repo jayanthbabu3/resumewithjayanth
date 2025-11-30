@@ -85,62 +85,58 @@ export const sanitizeResumeData = (data: any): ResumeData => {
   };
 };
 
-const buildSkills = (
+export const generateSkills = (
   templateId: string,
   names: string[],
-  levels?: number[],
+  levels?: string[],
 ): ResumeData["skills"] =>
   names.map((name, index) => ({
     id: `${templateId}-skill-${index}`,
     name,
-    level: levels?.[index] ?? Math.max(1, Math.min(10, 10 - index)),
+    rating: levels?.[index] ?? Math.max(1, Math.min(10, 10 - index)).toString(),
     category: index < 6 ? "core" : "toolbox",
   }));
 
-export const getTemplateDefaults = (templateId: string): ResumeData => {
-  const professionalDefaults: ResumeData = {
+export const getTemplateDefaults = (templateId: string): Partial<ResumeData> => {
+  const professionalDefaults: Partial<ResumeData> = {
     personalInfo: {
-      fullName: "Sarah Johnson",
-      email: "sarah.johnson@email.com",
+      fullName: "John Doe",
+      email: "john.doe@example.com",
       phone: "+1 (555) 123-4567",
-      location: "New York, NY",
-      title: "Senior Financial Analyst",
-      summary:
-        "Results-driven financial analyst with 8+ years of experience in corporate finance, financial modeling, and strategic planning. Proven track record of delivering actionable insights that drive business growth and operational efficiency.",
-      photo: "",
-      linkedin: "https://linkedin.com/in/sarahjohnson",
-      portfolio: "https://sarahjohnson-portfolio.com",
-      github: "https://github.com/sarahjohnson",
+      location: "San Francisco, CA",
+      title: "Senior Software Engineer",
+      linkedin: "linkedin.com/in/johndoe",
+      github: "github.com/johndoe",
+      summary: "Experienced software engineer with expertise in full-stack development, system architecture, and team leadership. Passionate about building scalable solutions and mentoring junior developers.",
     },
     includeSocialLinks: true,
     experience: [
       {
         id: "1",
-        company: "Goldman Sachs",
-        position: "Senior Financial Analyst",
-        startDate: "2020-03",
-        endDate: "",
-        current: true,
-        description: "",
-        bulletPoints: [
-          "Led financial planning and analysis for $500M portfolio, delivering actionable insights that drove 15% revenue growth",
-          "Developed complex financial models to support strategic decision-making, improving forecast accuracy by 25%",
-          "Presented quarterly business reviews to C-suite executives, influencing $100M+ investment decisions",
-          "Managed and mentored team of 3 junior analysts, improving team productivity by 40%"
-        ],
-      },
-      {
-        id: "2",
-        company: "JPMorgan Chase",
-        position: "Financial Analyst",
-        startDate: "2016-06",
-        endDate: "2020-02",
+        company: "Tech Company",
+        position: "Senior Software Engineer",
+        startDate: "2020-01",
+        endDate: "2024-01",
+        description: "Led development of enterprise applications",
         current: false,
-        description: "",
         bulletPoints: [
           "Conducted comprehensive financial analysis and forecasting for 5 business units, supporting $2B in annual revenue",
           "Streamlined reporting processes, reducing monthly close time by 30% and saving 40 hours per month",
           "Collaborated with cross-functional teams on budgeting initiatives, identifying $5M in cost savings"
+        ],
+      },
+      {
+        id: "2",
+        company: "Digital Solutions Inc",
+        position: "Software Engineer",
+        startDate: "2018-06",
+        endDate: "2020-01",
+        description: "Developed scalable web applications and APIs",
+        current: false,
+        bulletPoints: [
+          "Built and maintained RESTful APIs serving 100K+ daily users",
+          "Implemented automated testing reducing bugs by 40%",
+          "Led migration to microservices architecture improving system scalability"
         ],
       },
     ],
@@ -164,7 +160,7 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
         gpa: "3.9/4.0",
       },
     ],
-    skills: buildSkills(
+    skills: generateSkills(
       "professional",
       [
         "Financial Modeling",
@@ -176,7 +172,7 @@ export const getTemplateDefaults = (templateId: string): ResumeData => {
         "Bloomberg Terminal",
         "Financial Reporting",
       ],
-      [9, 9, 8, 8, 8, 8, 7, 7],
+      ["9", "9", "8", "8", "8", "8", "7", "7"],
     ),
     sections: [
       {

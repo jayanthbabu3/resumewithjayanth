@@ -1,9 +1,13 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
-import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSkillsWithRating } from "@/components/resume/InlineEditableSkillsWithRating";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
+import { Button } from "@/components/ui/button";
+import { Plus, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PremiumEliteTemplateProps {
   resumeData: ResumeData;
@@ -16,6 +20,7 @@ export const PremiumEliteTemplate = ({
   themeColor = "#8b5cf6",
   editable = false,
 }: PremiumEliteTemplateProps) => {
+  const { addBulletPoint, removeBulletPoint } = useInlineEdit();
   const photo = resumeData.personalInfo.photo;
   const accent = themeColor;
   const accentLight = `${accent}15`;
@@ -154,11 +159,12 @@ export const PremiumEliteTemplate = ({
                     items={resumeData.education}
                     defaultItem={{
                       id: Date.now().toString(),
-                      degree: "Degree",
-                      school: "School Name",
+                      school: "University Name",
+                      degree: "Degree Title",
                       field: "Field of Study",
                       startDate: "2020-01",
                       endDate: "2024-01",
+                      gpa: "",
                     }}
                     addButtonLabel="Add Education"
                     renderItem={(edu, index) => (
@@ -188,28 +194,38 @@ export const PremiumEliteTemplate = ({
                           as="p"
                           style={{ color: accent }}
                         />
-                        <p className="text-[10.5px] text-gray-500 mt-1 font-medium">
+                        <div className="text-[10.5px] text-gray-500 mt-1 font-medium">
                           <div className="text-xs text-gray-500 flex items-center gap-1">
                             <InlineEditableDate
                               path={`education[${index}].startDate`}
                               value={edu.startDate}
                               className="inline-block"
                             />
-                            <span> - </span>
+                            <span> — </span>
                             <InlineEditableDate
                               path={`education[${index}].endDate`}
                               value={edu.endDate}
                               className="inline-block"
                             />
                           </div>
-                        </p>
+                        </div>
+                        {edu.gpa && (
+                          <div className="text-[10.5px] text-gray-500 mt-1">
+                            GPA: <InlineEditableText
+                              path={`education[${index}].gpa`}
+                              value={edu.gpa}
+                              className="inline-block"
+                              as="span"
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                   />
                 ) : (
                   <div className="space-y-5">
                     {resumeData.education.map((edu, index) => (
-                      <div key={index} className="relative pl-4 border-l-2" style={{ borderColor: accentLight }}>
+                      <div key={edu.id} className="relative pl-4 border-l-2" style={{ borderColor: accentLight }}>
                         <div
                           className="absolute -left-[5px] top-1 w-2 h-2 rounded-full"
                           style={{ backgroundColor: accent }}
@@ -226,6 +242,11 @@ export const PremiumEliteTemplate = ({
                         <p className="text-[10.5px] text-gray-500 mt-1 font-medium">
                           {edu.startDate} - {edu.endDate}
                         </p>
+                        {edu.gpa && (
+                          <p className="text-[10.5px] text-gray-500 mt-1">
+                            GPA: {edu.gpa}
+                          </p>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -243,9 +264,11 @@ export const PremiumEliteTemplate = ({
                   Skills & Expertise
                 </h2>
                 {editable ? (
-                  <InlineEditableSkills
+                  <InlineEditableSkillsWithRating
                     path="skills"
                     skills={resumeData.skills}
+                    showRating={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
+                    verticalLayout={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
                     renderSkill={(skill, index) => (
                       <span
                         className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
@@ -255,22 +278,48 @@ export const PremiumEliteTemplate = ({
                         }}
                       >
                         {skill.name}
+                        {skill.rating && skill.rating.trim() !== "" && (
+                          <span className="ml-2 text-xs opacity-75">({skill.rating})</span>
+                        )}
                       </span>
                     )}
                   />
                 ) : (
-                  <div className="flex flex-wrap gap-2">
-                    {resumeData.skills.map((skill) => (
-                      <span
-                        key={skill.id}
-                        className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
-                        style={{
-                          backgroundColor: accentLight,
-                          color: accent
-                        }}
-                      >
-                        {skill.name}
-                      </span>
+                  <div className={cn(
+                    resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? "space-y-2" : "flex flex-wrap gap-2"
+                  )}>
+                    {resumeData.skills.map((skill, index) => (
+                      resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
+                        // Vertical layout with ratings
+                        <div key={skill.id} className="flex items-center justify-between">
+                          <span
+                            className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
+                            style={{
+                              backgroundColor: accentLight,
+                              color: accent
+                            }}
+                          >
+                            {skill.name}
+                          </span>
+                          {skill.rating && skill.rating.trim() !== "" && (
+                            <span className="text-[10px] text-gray-600 ml-3">
+                              {skill.rating}
+                            </span>
+                          )}
+                        </div>
+                      ) : (
+                        // Horizontal layout without ratings
+                        <span
+                          key={skill.id}
+                          className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
+                          style={{
+                            backgroundColor: accentLight,
+                            color: accent
+                          }}
+                        >
+                          {skill.name}
+                        </span>
+                      )
                     ))}
                   </div>
                 )}
@@ -300,6 +349,7 @@ export const PremiumEliteTemplate = ({
                       startDate: "2023-01",
                       endDate: "2024-01",
                       description: "Job description",
+                      bulletPoints: [],
                       current: false,
                     }}
                     addButtonLabel="Add Experience"
@@ -328,13 +378,13 @@ export const PremiumEliteTemplate = ({
                               color: 'white'
                             }}
                           >
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                            <div className="text-xs text-white flex items-center gap-1">
                               <InlineEditableDate
                                 path={`experience[${index}].startDate`}
                                 value={exp.startDate}
                                 className="inline-block"
                               />
-                              <span> - </span>
+                              <span> — </span>
                               {exp.current ? (
                                 <span>Present</span>
                               ) : (
@@ -347,22 +397,53 @@ export const PremiumEliteTemplate = ({
                             </div>
                           </div>
                         </div>
-                        {exp.description && (
-                          <InlineEditableText
-                            path={`experience[${index}].description`}
-                            value={exp.description}
-                            className="ml-5 list-disc space-y-1.5 text-[12px] text-gray-700 leading-[1.7]"
-                            as="div"
-                            multiline
-                          />
-                        )}
+                        <div className="space-y-1.5">
+                          {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                            exp.bulletPoints.map((bullet, bulletIndex) => (
+                              <div key={bulletIndex} className="flex items-start gap-2 group">
+                                <div className="flex-1">
+                                  <InlineEditableText
+                                    path={`experience[${index}].bulletPoints[${bulletIndex}]`}
+                                    value={bullet}
+                                    className="text-[12px] text-gray-700 leading-[1.7] ml-5 list-disc"
+                                    placeholder="Enter bullet point..."
+                                    as="div"
+                                    multiline
+                                  />
+                                </div>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => removeBulletPoint(exp.id, bulletIndex)}
+                                  className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50 hover:text-red-600"
+                                  disabled={exp.bulletPoints.length <= 1}
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="text-[12px] text-gray-700 leading-[1.7] ml-5 list-disc">
+                              No bullet points yet. Click "Add Bullet Point" to add one.
+                            </div>
+                          )}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => addBulletPoint(exp.id)}
+                            className="h-7 px-2 text-xs border-dashed w-full justify-start"
+                          >
+                            <Plus className="h-3 w-3 mr-1" />
+                            Add Bullet Point
+                          </Button>
+                        </div>
                       </div>
                     )}
                   />
                 ) : (
                   <div className="space-y-6">
                     {resumeData.experience.map((exp, index) => (
-                      <div key={index} className="relative">
+                      <div key={exp.id} className="relative">
                         <div className="flex justify-between items-start mb-2.5">
                           <div className="flex-1">
                             <h3 className="text-[14px] font-bold text-gray-900">
@@ -385,16 +466,24 @@ export const PremiumEliteTemplate = ({
                             {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                           </div>
                         </div>
-                        {exp.description && (
+                        {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
                           <ul className="ml-5 list-disc space-y-1.5 text-[12px] text-gray-700 leading-[1.7]">
-                            {exp.description
-                              .split("\n")
-                              .map((line) => line.trim())
-                              .filter(Boolean)
-                              .map((line, i) => (
-                                <li key={i} className="pl-1">{line}</li>
-                              ))}
+                            {exp.bulletPoints.map((bullet, bulletIndex) => (
+                              <li key={bulletIndex} className="pl-1">{bullet}</li>
+                            ))}
                           </ul>
+                        ) : (
+                          exp.description && (
+                            <ul className="ml-5 list-disc space-y-1.5 text-[12px] text-gray-700 leading-[1.7]">
+                              {exp.description
+                                .split("\n")
+                                .map((line) => line.trim())
+                                .filter(Boolean)
+                                .map((line, i) => (
+                                  <li key={i} className="pl-1">{line}</li>
+                                ))}
+                            </ul>
+                          )
                         )}
                       </div>
                     ))}

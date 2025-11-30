@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
@@ -95,10 +95,7 @@ export const PremiumElitePDF = ({
     },
     summaryBox: {
       backgroundColor: `${themeColor}15`,
-      paddingTop: PDF_PAGE_MARGINS.top,
-    paddingRight: PDF_PAGE_MARGINS.right,
-    paddingBottom: PDF_PAGE_MARGINS.bottom,
-    paddingLeft: PDF_PAGE_MARGINS.left,
+      padding: 20,
       borderRadius: 12,
       marginBottom: 28,
     },
@@ -179,6 +176,12 @@ export const PremiumElitePDF = ({
       marginTop: 4,
       fontWeight: 600,
     },
+    gpaText: {
+      fontSize: 8,
+      color: "#6b7280",
+      marginTop: 2,
+      fontWeight: 500,
+    },
     skillsContainer: {
       flexDirection: "row",
       flexWrap: "wrap",
@@ -191,9 +194,21 @@ export const PremiumElitePDF = ({
       borderRadius: 8,
     },
     skillBadgeText: {
-      fontSize: 9.5,
+      fontSize: 8,
       fontWeight: 600,
       color: themeColor,
+    },
+    skillWithRating: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 4,
+      width: "100%",
+    },
+    skillRatingText: {
+      fontSize: 7,
+      fontWeight: 500,
+      color: "#6b7280",
     },
     experienceItem: {
       marginBottom: 20,
@@ -319,9 +334,14 @@ export const PremiumElitePDF = ({
                       <Text style={styles.dateText}>
                         {edu.startDate} - {edu.endDate}
                       </Text>
+                      {edu.gpa && (
+                        <Text style={styles.gpaText}>
+                          GPA: {edu.gpa}
+                        </Text>
+                      )}
                     </View>
                   ))}
-        )                </View>
+                </View>
               )}
 
               {/* Skills */}
@@ -330,11 +350,24 @@ export const PremiumElitePDF = ({
                   <Text style={styles.sectionTitle}>Skills & Expertise</Text>
                   <View style={styles.skillsContainer}>
                     {resumeData.skills.map((skill) => (
-                      <View key={skill.id} style={styles.skillBadge}>
-                        <Text style={styles.skillBadgeText}>{skill.name}</Text>
-                      </View>
+                      resumeData.skills.some(s => s.rating && s.rating.trim() !== "") ? (
+                        // Vertical layout with ratings
+                        <View key={skill.id} style={styles.skillWithRating}>
+                          <View style={styles.skillBadge}>
+                            <Text style={styles.skillBadgeText}>{skill.name}</Text>
+                          </View>
+                          {skill.rating && skill.rating.trim() !== "" && (
+                            <Text style={styles.skillRatingText}>{skill.rating}</Text>
+                          )}
+                        </View>
+                      ) : (
+                        // Horizontal layout without ratings
+                        <View key={skill.id} style={styles.skillBadge}>
+                          <Text style={styles.skillBadgeText}>{skill.name}</Text>
+                        </View>
+                      )
                     ))}
-        )                  </View>
+                  </View>
                 </View>
               )}
             </View>
@@ -356,7 +389,16 @@ export const PremiumElitePDF = ({
                           {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                         </Text>
                       </View>
-                      {hasContent(exp.description) && (
+                      {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                        <View style={styles.bulletList}>
+                          {exp.bulletPoints.map((point, bulletIndex) => (
+                            <View key={bulletIndex} style={styles.bulletItem}>
+                              <View style={styles.bulletDot} />
+                              <Text style={styles.bulletText}>{point}</Text>
+                            </View>
+                          ))}
+                        </View>
+                      ) : hasContent(exp.description) && (
                         <View style={styles.bulletList}>
                           {exp.description
                             .split("\n")
@@ -368,11 +410,11 @@ export const PremiumElitePDF = ({
                                 <Text style={styles.bulletText}>{point}</Text>
                               </View>
                             ))}
-        )                        </View>
+                        </View>
                       )}
                     </View>
                   ))}
-        )                </View>
+                </View>
               )}
 
               {/* Additional Sections */}

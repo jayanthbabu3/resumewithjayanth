@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
@@ -143,6 +143,11 @@ export const PremiumProPDF = ({
       fontWeight: 600,
       color: themeColor,
       marginTop: 4,
+    },
+    gpa: {
+      fontSize: 7,
+      color: "#6b7280",
+      marginTop: 2,
     },
     dateText: {
       fontSize: 8,
@@ -295,10 +300,11 @@ export const PremiumProPDF = ({
                 <View style={styles.section}>
                   <Text style={styles.sectionTitle}>Education</Text>
                   {resumeData.education.map((edu, index) => (
-                    <View key={index} style={styles.educationItem}>
+                    <View key={edu.id || index} style={styles.educationItem}>
                       <Text style={styles.degree}>{edu.degree}</Text>
                       {hasContent(edu.field) && <Text style={styles.field}>{edu.field}</Text>}
                       <Text style={styles.school}>{edu.school}</Text>
+                      {edu.gpa && <Text style={styles.gpa}>Grade: {edu.gpa}</Text>}
                       <Text style={styles.dateText}>
                         {edu.startDate} - {edu.endDate}
                       </Text>
@@ -311,26 +317,41 @@ export const PremiumProPDF = ({
               {resumeData.skills && resumeData.skills.length > 0 && (
                 <View style={styles.section}>
                   <Text style={styles.sectionTitle}>Skills</Text>
-                  {resumeData.skills.map((skill) => (
-                    <View key={skill.id} style={styles.skillItem}>
-                      <View style={styles.skillHeader}>
-                        <Text style={styles.skillName}>{skill.name}</Text>
-                        {skill.level && (
-                          <Text style={styles.skillLevel}>{skill.level}/10</Text>
+                  {resumeData.skills.map((skill) => {
+                    // Parse rating string to number (1-10)
+                    const parseRating = (ratingStr: string | undefined): number | null => {
+                      if (!ratingStr || !ratingStr.trim()) return null;
+                      const match = ratingStr.trim().match(/^(\d+(?:\.\d+)?)/);
+                      if (match) {
+                        const num = parseFloat(match[1]);
+                        return Math.max(1, Math.min(10, Math.round(num)));
+                      }
+                      return null;
+                    };
+                    
+                    const skillLevel = parseRating(skill.rating);
+                    
+                    return (
+                      <View key={skill.id} style={styles.skillItem}>
+                        <View style={styles.skillHeader}>
+                          <Text style={styles.skillName}>{skill.name}</Text>
+                          {skillLevel !== null && (
+                            <Text style={styles.skillLevel}>{skillLevel}/10</Text>
+                          )}
+                        </View>
+                        {skillLevel !== null && (
+                          <View style={styles.skillBar}>
+                            <View
+                              style={[
+                                styles.skillBarFill,
+                                { width: `${skillLevel * 10}%` },
+                              ]}
+                            />
+                          </View>
                         )}
                       </View>
-                      {skill.level && (
-                        <View style={styles.skillBar}>
-                          <View
-                            style={[
-                              styles.skillBarFill,
-                              { width: `${skill.level * 10}%` },
-                            ]}
-                          />
-                        </View>
-                      )}
-                    </View>
-                  ))}
+                    );
+                  })}
         )                </View>
               )}
             </View>
@@ -342,7 +363,7 @@ export const PremiumProPDF = ({
                 <View style={styles.section}>
                   <Text style={styles.sectionTitle}>Professional Experience</Text>
                   {resumeData.experience.map((exp, index) => (
-                    <View key={index} style={styles.experienceItem}>
+                    <View key={exp.id || index} style={styles.experienceItem}>
                       <View style={styles.experienceHeader}>
                         <View style={styles.experienceLeft}>
                           <Text style={styles.position}>{exp.position}</Text>
@@ -352,20 +373,35 @@ export const PremiumProPDF = ({
                           {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                         </Text>
                       </View>
-                      {hasContent(exp.description) && (
+                      {/* Bullet Points - Use bulletPoints array if available, fallback to description */}
+                      {exp.bulletPoints && exp.bulletPoints.length > 0 && (
                         <View style={styles.bulletList}>
-                          {exp.description
-                            .split("\n")
-                            .map((line) => line.trim())
-                            .filter(Boolean)
-                            .map((point, bulletIndex) => (
+                          {exp.bulletPoints.map((point, bulletIndex) => (
+                            point && point.trim() && (
                               <View key={bulletIndex} style={styles.bulletItem}>
                                 <View style={styles.bulletDot} />
                                 <Text style={styles.bulletText}>{point}</Text>
                               </View>
-                            ))}
-        )                        </View>
+                            )
+                          ))}
+                        </View>
                       )}
+                      {!exp.bulletPoints || exp.bulletPoints.length === 0 ? (
+                        hasContent(exp.description) && (
+                          <View style={styles.bulletList}>
+                            {exp.description
+                              .split("\n")
+                              .map((line) => line.trim())
+                              .filter(Boolean)
+                              .map((point, bulletIndex) => (
+                                <View key={bulletIndex} style={styles.bulletItem}>
+                                  <View style={styles.bulletDot} />
+                                  <Text style={styles.bulletText}>{point}</Text>
+                                </View>
+                              ))}
+                          </View>
+                        )
+                      ) : null}
                     </View>
                   ))}
         )                </View>

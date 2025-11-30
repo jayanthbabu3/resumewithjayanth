@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Font,
 } from "@react-pdf/renderer";
-import { ResumeData } from "@/pages/Editor";
+import { ResumeData } from "@/types/resume";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
 registerPDFFonts();
@@ -165,6 +165,18 @@ export const PremiumUniversalPDF = ({
       borderColor: "#d1d5db",
       borderRadius: 4,
     },
+    skillWithRatingVertical: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 4,
+    },
+    skillRating: {
+      fontSize: 7,
+      fontFamily: "Inter",
+      color: "#6b7280",
+      marginLeft: 8,
+    },
     certificationItem: {
       marginBottom: 12,
     },
@@ -250,7 +262,7 @@ export const PremiumUniversalPDF = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Professional Experience</Text>
             {resumeData.experience.map((exp, index) => (
-              <View key={index} style={styles.experienceItem}>
+              <View key={exp.id || index} style={styles.experienceItem}>
                 <View style={styles.experienceHeader}>
                   <View>
                     <Text style={styles.positionTitle}>{exp.position}</Text>
@@ -262,20 +274,35 @@ export const PremiumUniversalPDF = ({
                     </Text>
                   </View>
                 </View>
-                {hasContent(exp.description) && (
+                {/* Bullet Points - Use bulletPoints array if available, fallback to description */}
+                {exp.bulletPoints && exp.bulletPoints.length > 0 && (
                   <View style={styles.bulletList}>
-                    {exp.description
-                      .split("\n")
-                      .map((line) => line.trim())
-                      .filter(Boolean)
-                      .map((point, bulletIndex) => (
+                    {exp.bulletPoints.map((point, bulletIndex) => (
+                      point && point.trim() && (
                         <View key={bulletIndex} style={styles.bulletItem}>
                           <View style={styles.bulletDot} />
                           <Text style={styles.bulletText}>{point}</Text>
                         </View>
-                      ))}
-        )                  </View>
+                      )
+                    ))}
+                  </View>
                 )}
+                {!exp.bulletPoints || exp.bulletPoints.length === 0 ? (
+                  hasContent(exp.description) && (
+                    <View style={styles.bulletList}>
+                      {exp.description
+                        .split("\n")
+                        .map((line) => line.trim())
+                        .filter(Boolean)
+                        .map((point, bulletIndex) => (
+                          <View key={bulletIndex} style={styles.bulletItem}>
+                            <View style={styles.bulletDot} />
+                            <Text style={styles.bulletText}>{point}</Text>
+                          </View>
+                        ))}
+                    </View>
+                  )
+                ) : null}
               </View>
             ))}
         )          </View>
@@ -286,13 +313,16 @@ export const PremiumUniversalPDF = ({
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Education</Text>
             {resumeData.education.map((edu, index) => (
-              <View key={index} style={styles.educationItem}>
+              <View key={edu.id || index} style={styles.educationItem}>
                 <View style={styles.educationHeader}>
                   <View>
                     <Text style={styles.degree}>
                       {edu.degree} {hasContent(edu.field) && `in ${edu.field}`}
                     </Text>
                     <Text style={styles.institution}>{edu.school}</Text>
+                    {edu.gpa && (
+                      <Text style={styles.gpa}>Grade: {edu.gpa}</Text>
+                    )}
                   </View>
                   <View>
                     <Text style={styles.dateLocation}>
@@ -311,11 +341,26 @@ export const PremiumUniversalPDF = ({
             <Text style={styles.sectionTitle}>Skills</Text>
             <View style={styles.skillsContainer}>
               {resumeData.skills.map((skill, index) => (
-                <Text key={index} style={styles.skillChip}>
-                  {skill.name}
-                </Text>
+                resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
+                  // Vertical layout with ratings
+                  <View key={index} style={styles.skillWithRatingVertical}>
+                    <Text style={styles.skillChip}>
+                      {skill.name}
+                    </Text>
+                    {skill.rating && skill.rating.trim() !== "" && (
+                      <Text style={styles.skillRating}>
+                        {skill.rating}
+                      </Text>
+                    )}
+                  </View>
+                ) : (
+                  // Horizontal layout without ratings
+                  <Text key={index} style={styles.skillChip}>
+                    {skill.name}
+                  </Text>
+                )
               ))}
-        )            </View>
+            </View>
           </View>
         )}
 

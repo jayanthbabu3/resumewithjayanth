@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import { Upload, X, Plus, Star, StarOff, Trash2, Briefcase, GraduationCap, Code, FileText, Sparkles, Camera, Search, Tag, Share2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import { SkillRating } from "./SkillRating";
+import { cn } from "@/lib/utils";
 import {
   Accordion,
   AccordionItem,
@@ -11,7 +15,6 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Trash2, Briefcase, GraduationCap, Code, FileText, Sparkles, Camera, X, Search, Tag, Share2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import type { ResumeData } from "@/types/resume";
 
@@ -30,6 +33,9 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
   const [skillInput, setSkillInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [includeSocialLinks, setIncludeSocialLinks] = useState(resumeData.includeSocialLinks || false);
+  const [showSkillRatings, setShowSkillRatings] = useState(
+    Array.isArray(resumeData.skills) && resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")
+  );
 
   // Update resumeData when includeSocialLinks changes
   useEffect(() => {
@@ -235,7 +241,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         {
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
           name: "",
-          level: 7,
+          rating: showSkillRatings ? "" : undefined,
           category: "core",
         },
       ],
@@ -252,7 +258,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
           {
             id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
             name: skillName,
-            level: 7,
+            rating: showSkillRatings ? "" : undefined,
             category: "core",
           },
         ],
@@ -330,6 +336,25 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
     const newSkills = [...resumeData.skills];
     newSkills[index] = { ...newSkills[index], name: value };
     setResumeData({ ...resumeData, skills: newSkills });
+  };
+
+  const updateSkillLevel = (index: number, rating: string) => {
+    const newSkills = [...resumeData.skills];
+    newSkills[index] = { ...newSkills[index], rating: rating.trim() };
+    setResumeData({ ...resumeData, skills: newSkills });
+  };
+
+  const toggleSkillRatings = () => {
+    const newShowRatings = !showSkillRatings;
+    setShowSkillRatings(newShowRatings);
+    
+    // Update existing skills to add or remove ratings
+    const updatedSkills = resumeData.skills.map(skill => ({
+      ...skill,
+      rating: newShowRatings ? (skill.rating || "") : undefined,
+    }));
+    
+    setResumeData({ ...resumeData, skills: updatedSkills });
   };
 
 
@@ -419,10 +444,10 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         </AccordionTrigger>
         <AccordionContent className="px-0 pb-6 pt-0">
           <Card className="border-0 bg-transparent shadow-none">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-3">
               <CardDescription>Your basic contact details and professional title</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="fullName">Full Name</Label>
@@ -473,14 +498,15 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                   placeholder="San Francisco, CA"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <Label htmlFor="summary">Professional Summary</Label>
                 <Textarea
                   id="summary"
                   value={resumeData.personalInfo.summary}
                   onChange={(e) => updatePersonalInfo("summary", e.target.value)}
                   placeholder="Brief overview of your professional background and key achievements..."
-                  rows={4}
+                  rows={3}
+                  className="resize-none"
                 />
               </div>
             </CardContent>
@@ -699,7 +725,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm">
               <Briefcase className="h-4 w-4" />
             </span>
-            Work Experience
+            Professional Experience
           </span>
           <span className="ml-auto flex items-center">
             <span className="hidden sm:inline-flex items-center rounded-full border border-border/40 bg-muted/15 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground capitalize leading-tight shadow-[0_1px_2px_rgba(15,23,42,0.06)] transition-all group-hover:translate-x-0.5 group-data-[state=open]:border-primary/50 group-data-[state=open]:text-primary/90 mr-2">
@@ -709,7 +735,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         </AccordionTrigger>
         <AccordionContent className="px-0 pb-6 pt-0">
           <Card className="border-0 bg-transparent shadow-none">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardDescription>Your professional work history</CardDescription>
                 <Button onClick={addExperience} size="xs" className="gap-1.5">
@@ -883,7 +909,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         </AccordionTrigger>
         <AccordionContent className="px-0 pb-6 pt-0">
           <Card className="border-0 bg-transparent shadow-none">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardDescription>Your academic background</CardDescription>
                 <Button onClick={addEducation} size="xs" className="gap-1.5">
@@ -997,7 +1023,7 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
         </AccordionTrigger>
         <AccordionContent className="px-0 pb-6 pt-0">
           <Card className="border-0 bg-transparent shadow-none">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-3">
               <CardDescription>Add your technical skills and competencies</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6" ref={skillsContainerRef}>
@@ -1061,9 +1087,29 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
               {resumeData.skills.length > 0 && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-medium text-foreground">
-                      Added Skills ({resumeData.skills.length})
-                    </h4>
+                    <div className="flex items-center gap-3">
+                      <h4 className="text-sm font-medium text-foreground">
+                        Added Skills ({resumeData.skills.length})
+                      </h4>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={toggleSkillRatings}
+                        className="text-xs h-7 px-2 text-muted-foreground hover:text-foreground"
+                      >
+                        {showSkillRatings ? (
+                          <>
+                            <StarOff className="h-3 w-3 mr-1" />
+                            Hide Ratings
+                          </>
+                        ) : (
+                          <>
+                            <Star className="h-3 w-3 mr-1" />
+                            Add Ratings
+                          </>
+                        )}
+                      </Button>
+                    </div>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -1075,24 +1121,74 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                       Clear All
                     </Button>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {resumeData.skills.map((skill, index) => (
-                      <div
-                        key={skill.id}
-                        className="group inline-flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
-                      >
-                        <span className="truncate max-w-[120px]">{skill.name}</span>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeSkill(index)}
-                          className="h-4 w-4 p-0 hover:bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <X className="h-3 w-3" />
-                        </Button>
+                  {showSkillRatings ? (
+                    // Vertical layout with ratings
+                    <div className="space-y-2">
+                      {resumeData.skills.map((skill, index) => (
+                        <div key={skill.id} className="flex items-center gap-3 group">
+                          <div className="flex items-center gap-2 flex-1">
+                            <span className="text-sm font-medium text-gray-900 min-w-0 flex-1">
+                              {skill.name}
+                            </span>
+                            <div className="flex items-center gap-1">
+                              <Input
+                                type="text"
+                                value={skill.rating || ""}
+                                onChange={(e) => {
+                                  // Allow numbers, decimals, and "/10" format
+                                  const value = e.target.value;
+                                  // Allow empty, numbers, decimals, and "/10" suffix
+                                  if (value === "" || /^(\d+(?:\.\d+)?)(\/10)?$/.test(value) || /^\d*$/.test(value)) {
+                                    updateSkillLevel(index, value);
+                                  }
+                                }}
+                                placeholder="1-10"
+                                className="h-7 text-xs w-20 border-gray-300 text-center"
+                                title="Enter a number from 1-10 (e.g., 9 or 9/10)"
+                              />
+                              <span className="text-xs text-muted-foreground">/10</span>
+                            </div>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => removeSkill(index)}
+                            className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-destructive"
+                          >
+                            <X className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      ))}
+                      <p className="text-xs text-muted-foreground mt-2 px-1">
+                        💡 Tip: Enter a number from 1-10 (e.g., "9" or "9/10") to show skill level with progress bars
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Horizontal layout without ratings */}
+                      <div className="flex flex-wrap gap-2">
+                        {resumeData.skills.map((skill, index) => (
+                          <div
+                            key={skill.id}
+                            className="group inline-flex items-center gap-2 px-3 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-medium text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition-all duration-200"
+                          >
+                            <span className="truncate max-w-[120px]">{skill.name}</span>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeSkill(index)}
+                              className="h-4 w-4 p-0 hover:bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                      <p className="text-xs text-muted-foreground mt-2 px-1">
+                        💡 Tip: Click "Show Ratings" above to add skill levels (1-10) with progress bars
+                      </p>
+                    </>
+                  )}
                 </div>
               )}
 

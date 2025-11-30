@@ -1,19 +1,24 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
+import { Plus, X } from "lucide-react";
 
 interface PremiumProTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
   editable?: boolean;
+  onAddBulletPoint?: (expId: string) => void;
+  onRemoveBulletPoint?: (expId: string, bulletIndex: number) => void;
 }
 
 export const PremiumProTemplate = ({
   resumeData,
   themeColor = "#0f766e",
   editable = false,
+  onAddBulletPoint,
+  onRemoveBulletPoint,
 }: PremiumProTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
   const accent = themeColor;
@@ -196,13 +201,21 @@ export const PremiumProTemplate = ({
                             />
                           </div>
                         </p>
+                        {edu.gpa && (
+                          <InlineEditableText
+                            path={`education[${index}].gpa`}
+                            value={`Grade: ${edu.gpa}`}
+                            className="text-[10px] text-gray-600 mt-1"
+                            as="p"
+                          />
+                        )}
                       </div>
                     )}
                   />
                 ) : (
                   <div className="space-y-4">
                     {resumeData.education.map((edu, index) => (
-                      <div key={index}>
+                      <div key={edu.id}>
                         <h3 className="text-[13px] font-semibold text-gray-900">
                           {edu.degree}
                         </h3>
@@ -212,6 +225,9 @@ export const PremiumProTemplate = ({
                         <p className="text-[11px] font-semibold mt-1" style={{ color: accent }}>
                           {edu.school}
                         </p>
+                        {edu.gpa && (
+                          <p className="text-[10px] text-gray-600 mt-1">Grade: {edu.gpa}</p>
+                        )}
                         <p className="text-[10px] text-gray-500 mt-1">
                           {edu.startDate} - {edu.endDate}
                         </p>
@@ -238,65 +254,103 @@ export const PremiumProTemplate = ({
                     defaultItem={{
                       id: Date.now().toString(),
                       name: "New Skill",
-                      level: 5,
+                      rating: "",
                     }}
                     addButtonLabel="Add Skill"
-                    renderItem={(skill, index) => (
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <InlineEditableText
-                            path={`skills[${index}].name`}
-                            value={skill.name}
-                            className="text-[12.5px] font-medium text-gray-900"
-                            as="span"
-                          />
-                          {skill.level && (
-                            <span className="text-[11px] text-gray-500">
-                              {skill.level}/10
-                            </span>
+                    renderItem={(skill, index) => {
+                      // Parse rating string to number (1-10)
+                      // Handles "9", "9/10", "9.5", etc.
+                      const parseRating = (ratingStr: string | undefined): number | null => {
+                        if (!ratingStr || !ratingStr.trim()) return null;
+                        // Extract first number from string (handles "9", "9/10", "9.5", etc.)
+                        const match = ratingStr.trim().match(/^(\d+(?:\.\d+)?)/);
+                        if (match) {
+                          const num = parseFloat(match[1]);
+                          // Clamp between 1 and 10
+                          return Math.max(1, Math.min(10, Math.round(num)));
+                        }
+                        return null;
+                      };
+                      
+                      const skillLevel = parseRating(skill.rating);
+                      
+                      return (
+                        <div>
+                          <div className="flex items-center justify-between mb-1 gap-2">
+                            <InlineEditableText
+                              path={`skills[${index}].name`}
+                              value={skill.name}
+                              className="text-[12.5px] font-medium text-gray-900 flex-1"
+                              as="span"
+                            />
+                            <div className="flex items-center gap-1 flex-shrink-0">
+                              <InlineEditableText
+                                path={`skills[${index}].rating`}
+                                value={skill.rating || ""}
+                                placeholder="1-10"
+                                className="text-[11px] text-gray-500 w-12 text-right border border-dashed border-gray-300 rounded px-1"
+                                as="span"
+                              />
+                              <span className="text-[11px] text-gray-400">/10</span>
+                            </div>
+                          </div>
+                          {skillLevel !== null && (
+                            <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full transition-all"
+                                style={{
+                                  width: `${skillLevel * 10}%`,
+                                  backgroundColor: accent,
+                                }}
+                              />
+                            </div>
                           )}
                         </div>
-                        {skill.level && (
-                          <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                            <div
-                              className="h-full rounded-full transition-all"
-                              style={{
-                                width: `${skill.level * 10}%`,
-                                backgroundColor: accent,
-                              }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    )}
+                      );
+                    }}
                   />
                 ) : (
                   <div className="space-y-3">
-                    {resumeData.skills.map((skill) => (
-                      <div key={skill.id}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[12.5px] font-medium text-gray-900">
-                            {skill.name}
-                          </span>
-                          {skill.level && (
-                            <span className="text-[11px] text-gray-500">
-                              {skill.level}/10
+                    {resumeData.skills.map((skill) => {
+                      // Parse rating string to number (1-10)
+                      const parseRating = (ratingStr: string | undefined): number | null => {
+                        if (!ratingStr || !ratingStr.trim()) return null;
+                        const match = ratingStr.trim().match(/^(\d+(?:\.\d+)?)/);
+                        if (match) {
+                          const num = parseFloat(match[1]);
+                          return Math.max(1, Math.min(10, Math.round(num)));
+                        }
+                        return null;
+                      };
+                      
+                      const skillLevel = parseRating(skill.rating);
+                      
+                      return (
+                        <div key={skill.id}>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-[12.5px] font-medium text-gray-900">
+                              {skill.name}
                             </span>
+                            {skill.rating && skill.rating.trim() && (
+                              <span className="text-[11px] text-gray-500">
+                                {skillLevel !== null ? `${skillLevel}/10` : skill.rating}
+                              </span>
+                            )}
+                          </div>
+                          {skillLevel !== null && (
+                            <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                              <div
+                                className="h-full rounded-full transition-all"
+                                style={{
+                                  width: `${skillLevel * 10}%`,
+                                  backgroundColor: accent,
+                                }}
+                              />
+                            </div>
                           )}
                         </div>
-                        {skill.level && (
-                          <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                            <div
-                              className="h-full rounded-full transition-all"
-                              style={{
-                                width: `${skill.level * 10}%`,
-                                backgroundColor: accent,
-                              }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -381,13 +435,74 @@ export const PremiumProTemplate = ({
                             multiline
                           />
                         )}
+                        {/* Bullet Points - Editable Mode */}
+                        {(!exp.bulletPoints || exp.bulletPoints.length === 0) && onAddBulletPoint && exp.id && (
+                          <div className="mt-3">
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                if (onAddBulletPoint && exp.id) {
+                                  onAddBulletPoint(exp.id);
+                                }
+                              }}
+                              className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium"
+                            >
+                              <Plus className="h-3 w-3" />
+                              Add Achievement
+                            </button>
+                          </div>
+                        )}
+                        {exp.bulletPoints && exp.bulletPoints.length > 0 && (
+                          <div className="mt-3">
+                            <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
+                              {exp.bulletPoints.map((bullet, bulletIndex) => (
+                                <li key={bulletIndex} className="flex items-start group">
+                                  <div className="flex-1 flex items-center gap-2">
+                                    <InlineEditableText
+                                      path={`experience[${index}].bulletPoints[${bulletIndex}]`}
+                                      value={bullet || ""}
+                                      placeholder="Click to add achievement..."
+                                      className="text-[12.5px] text-gray-700 leading-[1.7] flex-1 min-h-[1.2rem] border border-dashed border-gray-300 rounded px-1"
+                                      multiline
+                                      as="span"
+                                    />
+                                    {onRemoveBulletPoint && (
+                                      <button
+                                        onClick={() => onRemoveBulletPoint(exp.id, bulletIndex)}
+                                        className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-100 rounded"
+                                      >
+                                        <X className="h-3 w-3 text-red-500" />
+                                      </button>
+                                    )}
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                            {onAddBulletPoint && exp.id && (
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  if (onAddBulletPoint && exp.id) {
+                                    onAddBulletPoint(exp.id);
+                                  }
+                                }}
+                                className="mt-2 flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium"
+                              >
+                                <Plus className="h-3 w-3" />
+                                Add Achievement
+                              </button>
+                            )}
+                          </div>
+                        )}
                       </div>
                     )}
                   />
                 ) : (
                   <div className="space-y-6">
                     {resumeData.experience.map((exp, index) => (
-                      <div key={index}>
+                      <div key={exp.id}>
                         <div className="flex justify-between items-start mb-2">
                           <div className="flex-1">
                             <h3 className="text-[14px] font-semibold text-gray-900">
@@ -410,17 +525,29 @@ export const PremiumProTemplate = ({
                             {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                           </div>
                         </div>
-                        {exp.description && (
+                        {/* Bullet Points - Non-Editable Mode */}
+                        {exp.bulletPoints && exp.bulletPoints.length > 0 && (
                           <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
-                            {exp.description
-                              .split("\n")
-                              .map((line) => line.trim())
-                              .filter(Boolean)
-                              .map((line, i) => (
-                                <li key={i}>{line}</li>
-                              ))}
+                            {exp.bulletPoints.map((bullet, bulletIndex) => (
+                              bullet && bullet.trim() && (
+                                <li key={bulletIndex}>{bullet}</li>
+                              )
+                            ))}
                           </ul>
                         )}
+                        {!exp.bulletPoints || exp.bulletPoints.length === 0 ? (
+                          exp.description && (
+                            <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
+                              {exp.description
+                                .split("\n")
+                                .map((line) => line.trim())
+                                .filter(Boolean)
+                                .map((line, i) => (
+                                  <li key={i}>{line}</li>
+                                ))}
+                            </ul>
+                          )
+                        ) : null}
                       </div>
                     ))}
                   </div>

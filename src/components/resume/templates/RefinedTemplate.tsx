@@ -1,9 +1,13 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
-import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSkillsWithRating } from "@/components/resume/InlineEditableSkillsWithRating";
+import { cn } from "@/lib/utils";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
+import { Button } from "@/components/ui/button";
+import { Plus, Trash2 } from "lucide-react";
 
 interface RefinedTemplateProps {
   resumeData: ResumeData;
@@ -16,6 +20,7 @@ export const RefinedTemplate = ({
   themeColor = "#4f46e5",
   editable = false,
 }: RefinedTemplateProps) => {
+  const { addBulletPoint, removeBulletPoint } = useInlineEdit();
 
   return (
     <div className="mx-auto bg-white font-sans text-gray-900">
@@ -96,24 +101,46 @@ export const RefinedTemplate = ({
                 Skills
               </h3>
               {editable ? (
-                <InlineEditableSkills
+                <InlineEditableSkillsWithRating
                   path="skills"
                   skills={resumeData.skills}
+                  showRating={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
+                  verticalLayout={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
                   renderSkill={(skill, index) => (
                     <div className="text-xs font-light text-gray-700 leading-relaxed">
                       {skill.name}
+                      {skill.rating && skill.rating.trim() !== "" && (
+                        <span className="ml-2 text-gray-500">({skill.rating})</span>
+                      )}
                     </div>
                   )}
                 />
               ) : (
-                <div className="space-y-2">
-                  {resumeData.skills.map((skill) => (
-                    <div
-                      key={skill.id}
-                      className="text-xs font-light text-gray-700 leading-relaxed"
-                    >
-                      {skill.name}
-                    </div>
+                <div className={cn(
+                  resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? "space-y-1" : "space-y-2"
+                )}>
+                  {resumeData.skills.map((skill, index) => (
+                    resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
+                      // Vertical layout with ratings
+                      <div key={skill.id} className="flex items-center justify-between">
+                        <div className="text-xs font-light text-gray-700 leading-relaxed">
+                          {skill.name}
+                        </div>
+                        {skill.rating && skill.rating.trim() !== "" && (
+                          <span className="text-xs text-gray-500 ml-2">
+                            {skill.rating}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      // Horizontal layout without ratings
+                      <div
+                        key={skill.id}
+                        className="text-xs font-light text-gray-700 leading-relaxed"
+                      >
+                        {skill.name}
+                      </div>
+                    )
                   ))}
                 </div>
               )}
@@ -176,6 +203,16 @@ export const RefinedTemplate = ({
                             className="inline-block"
                           />
                         </div>
+                        {edu.gpa && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            GPA: <InlineEditableText
+                              path={`education[${index}].gpa`}
+                              value={edu.gpa}
+                              className="inline-block"
+                              as="span"
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -197,6 +234,11 @@ export const RefinedTemplate = ({
                       </div>
                       <div className="text-xs font-light text-gray-600">
                         {edu.startDate} — {edu.endDate}
+                        {edu.gpa && (
+                          <div className="text-xs text-gray-500 mt-1">
+                            GPA: {edu.gpa}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -272,6 +314,7 @@ export const RefinedTemplate = ({
                     startDate: "2023-01",
                     endDate: "2024-01",
                     description: "Job description",
+                    bulletPoints: [],
                     current: false,
                   }}
                   addButtonLabel="Add Experience"
@@ -313,13 +356,65 @@ export const RefinedTemplate = ({
                           </span>
                         </div>
                       </div>
-                      <InlineEditableText
-                        path={`experience[${index}].description`}
-                        value={exp.description}
-                        className="text-xs leading-relaxed text-gray-700 font-light"
-                        as="div"
-                        multiline
-                      />
+                      <div className="space-y-1.5">
+                        {editable ? (
+                          <>
+                            {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                              exp.bulletPoints.map((bullet, bulletIndex) => (
+                                <div key={bulletIndex} className="flex items-start gap-2 group">
+                                  <div className="flex-1">
+                                    <InlineEditableText
+                                      path={`experience[${index}].bulletPoints[${bulletIndex}]`}
+                                      value={bullet}
+                                      className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative"
+                                      placeholder="Enter bullet point..."
+                                      as="div"
+                                      multiline
+                                    />
+                                  </div>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => removeBulletPoint(exp.id, bulletIndex)}
+                                    className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50 hover:text-red-600"
+                                    disabled={exp.bulletPoints.length <= 1}
+                                  >
+                                    <Trash2 className="h-3 w-3" />
+                                  </Button>
+                                </div>
+                              ))
+                            ) : (
+                              <div className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0">
+                                No bullet points yet. Click "Add Bullet Point" to add one.
+                              </div>
+                            )}
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => addBulletPoint(exp.id)}
+                              className="h-7 px-2 text-xs border-dashed w-full justify-start"
+                            >
+                              <Plus className="h-3 w-3 mr-1" />
+                              Add Bullet Point
+                            </Button>
+                          </>
+                        ) : (
+                          // Non-editable mode (read-only)
+                          (exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                            exp.bulletPoints.map((bullet, bulletIndex) => (
+                              <p key={bulletIndex} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                                {bullet}
+                              </p>
+                            ))
+                          ) : (
+                            exp.description && (
+                              <p className="text-xs leading-relaxed text-gray-700 font-light">
+                                {exp.description}
+                              </p>
+                            )
+                          )
+                        )}
+                      </div>
                     </div>
                   )}
                 />
@@ -341,11 +436,19 @@ export const RefinedTemplate = ({
                         </div>
                       </div>
                       <div className="space-y-1.5">
-                        {exp.description.split("\n").map((line, idx) => (
-                          <p key={idx} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
-                            {line}
-                          </p>
-                        ))}
+                        {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                          exp.bulletPoints.map((bullet, bulletIndex) => (
+                            <p key={bulletIndex} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                              {bullet}
+                            </p>
+                          ))
+                        ) : (
+                          exp.description && exp.description.split("\n").map((line, idx) => (
+                            <p key={idx} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                              {line}
+                            </p>
+                          ))
+                        )}
                       </div>
                     </div>
                   ))}

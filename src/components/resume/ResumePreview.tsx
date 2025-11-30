@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfessionalTemplate } from "./templates/ProfessionalTemplate";
 import { ModernTemplate } from "./templates/ModernTemplate";
 import { MinimalTemplate } from "./templates/MinimalTemplate";
@@ -922,7 +922,7 @@ export const ResumePreview = ({
       id="resume-preview"
     >
       <div className="relative w-full max-w-[210mm] rounded-lg bg-white shadow-2xl">
-        <Template resumeData={resumeData} themeColor={themeColor} />
+        <Template resumeData={resumeData} themeColor={themeColor} editable={false} />
       </div>
     </div>
   );

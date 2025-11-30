@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
 interface RefinedPDFProps {
@@ -77,6 +77,17 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 6,
     lineHeight: 1.4,
   },
+  skillWithRating: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 4,
+  },
+  skillRating: {
+    fontSize: 7,
+    fontWeight: 300,
+    color: "#6b7280",
+  },
   educationItem: {
     marginBottom: 12,
   },
@@ -102,6 +113,12 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     fontSize: 8,
     fontWeight: 300,
     color: "#4b5563",
+  },
+  educationGPA: {
+    fontSize: 8,
+    fontWeight: 300,
+    color: "#4b5563",
+    marginTop: 2,
   },
   header: {
     marginBottom: 32,
@@ -132,15 +149,17 @@ const createStyles = (themeColor: string) => StyleSheet.create({
     marginBottom: 28,
   },
   sectionTitle: {
-    fontSize: 7,
+    fontSize: 10,
     fontWeight: 700,
     textTransform: "uppercase",
     letterSpacing: 1.5,
     color: "#1f2937",
-    paddingBottom: 6,
+    marginBottom: 16,
+    paddingBottom: 8,
     borderBottomWidth: 1,
     borderBottomColor: themeColor,
-    marginBottom: 16,
+    borderBottomStyle: "solid",
+    borderBottomOpacity: 0.2,
   },
   experienceItem: {
     marginBottom: 16,
@@ -230,9 +249,24 @@ export const RefinedPDF = ({
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarTitle}>Skills</Text>
               {skills.map((skill) => (
-                <Text key={skill.id} style={styles.skillItem}>
-                  {skill.name}
-                </Text>
+                skills.some(s => s.rating && s.rating.trim() !== "") ? (
+                  // Vertical layout with ratings
+                  <View key={skill.id} style={styles.skillWithRating}>
+                    <Text style={styles.skillItem}>
+                      {skill.name}
+                    </Text>
+                    {skill.rating && skill.rating.trim() !== "" && (
+                      <Text style={styles.skillRating}>
+                        {skill.rating}
+                      </Text>
+                    )}
+                  </View>
+                ) : (
+                  // Horizontal layout without ratings
+                  <Text key={skill.id} style={styles.skillItem}>
+                    {skill.name}
+                  </Text>
+                )
               ))}
         )            </View>
           )}
@@ -251,6 +285,11 @@ export const RefinedPDF = ({
                   <Text style={styles.educationDate}>
                     {edu.startDate} — {edu.endDate}
                   </Text>
+                  {edu.gpa && (
+                    <Text style={styles.educationGPA}>
+                      GPA: {edu.gpa}
+                    </Text>
+                  )}
                 </View>
               ))}
         )            </View>
@@ -283,11 +322,19 @@ export const RefinedPDF = ({
                       </Text>
                     </View>
                   </View>
-                  {exp.description.split("\n").map((line, idx) => (
-                    <Text key={idx} style={styles.bulletPoint}>
-                      • {line}
-                    </Text>
-                  ))}
+                  {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                    exp.bulletPoints.map((bullet, bulletIndex) => (
+                      <Text key={bulletIndex} style={styles.bulletPoint}>
+                        • {bullet}
+                      </Text>
+                    ))
+                  ) : (
+                    exp.description && exp.description.split("\n").map((line, idx) => (
+                      <Text key={idx} style={styles.bulletPoint}>
+                        • {line}
+                      </Text>
+                    ))
+                  )}
         )                </View>
               ))}
         )            </View>
