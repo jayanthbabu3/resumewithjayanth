@@ -97,8 +97,8 @@ export const generateSkills = (
     category: index < 6 ? "core" : "toolbox",
   }));
 
-export const getTemplateDefaults = (templateId: string): Partial<ResumeData> => {
-  const professionalDefaults: Partial<ResumeData> = {
+export const getTemplateDefaults = (templateId: string): ResumeData => {
+  const professionalDefaults: ResumeData = {
     personalInfo: {
       fullName: "John Doe",
       email: "john.doe@example.com",
@@ -174,14 +174,8 @@ export const getTemplateDefaults = (templateId: string): Partial<ResumeData> => 
       ],
       ["9", "9", "8", "8", "8", "8", "7", "7"],
     ),
-    sections: [
-      {
-        id: "1",
-        title: "Certifications",
-        content:
-          "Chartered Financial Analyst (CFA) - Level III Candidate\nFinancial Risk Manager (FRM) Certified",
-      },
-    ],
+    sections: [],
+    dynamicSections: [],
   };
 
   const templates: Record<string, ResumeData> = {

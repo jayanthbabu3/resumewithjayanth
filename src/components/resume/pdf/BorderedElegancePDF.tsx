@@ -5,7 +5,7 @@ import {
   Document,
   StyleSheet,
 } from "@react-pdf/renderer";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS } from "@/lib/pdfConfig";
 
 interface BorderedElegancePDFProps {
@@ -76,7 +76,6 @@ const createStyles = (color: string) =>
       textAlign: "center",
       color: "#4b5563",
       lineHeight: 1.6,
-      fontStyle: "italic",
     },
     experienceItem: {
       marginBottom: 12,
@@ -91,7 +90,6 @@ const createStyles = (color: string) =>
     },
     company: {
       fontSize: 11,
-      fontStyle: "italic",
       color: color,
       marginTop: 2,
     },
@@ -201,8 +199,8 @@ export const BorderedElegancePDF = ({
               {education.map((edu, index) => (
                 <View key={index} style={styles.educationItem}>
                   <Text style={styles.position}>{edu.degree}</Text>
-                  <Text style={[styles.company, { fontStyle: "italic" }]}>{edu.school}</Text>
-                  <Text style={styles.dateRange}>{edu.graduationDate}</Text>
+                  <Text style={styles.company}>{edu.school}</Text>
+                  <Text style={styles.dateRange}>{edu.endDate}</Text>
                 </View>
               ))}
             </View>

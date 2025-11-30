@@ -96,7 +96,6 @@ import { SiteReliabilityEngineerPDF } from "@/components/resume/pdf/SiteReliabil
 import { BackendAPISpecialistPDF } from "@/components/resume/pdf/BackendAPISpecialistPDF";
 import { FrontendArchitectPDF } from "@/components/resume/pdf/FrontendArchitectPDF";
 // New Universal Professional Templates
-import { ExecutiveModernPDF } from "@/components/resume/pdf/ExecutiveModernPDF";
 import { CorporateBluePDF } from "@/components/resume/pdf/CorporateBluePDF";
 import { MinimalistProPDF } from "@/components/resume/pdf/MinimalistProPDF";
 import { ClassicElegantPDF } from "@/components/resume/pdf/ClassicElegantPDF";
@@ -974,7 +973,6 @@ import { PDFDockerContainerProTemplate } from "@/components/resume/pdf/PDFDocker
 import { PDFDotNetCoreDeveloperTemplate } from "@/components/resume/pdf/PDFDotNetCoreDeveloperTemplate";
 import { PDFDotNetDeveloperTemplate } from "@/components/resume/pdf/PDFDotNetDeveloperTemplate";
 import { PDFDottedGridUniversalTemplate } from "@/components/resume/pdf/PDFDottedGridUniversalTemplate";
-import { PDFDualToneTemplate } from "@/components/resume/pdf/PDFDualToneTemplate";
 import { PDFEditorialStyleTemplate } from "@/components/resume/pdf/PDFEditorialStyleTemplate";
 import { PDFEducatorModernTemplate } from "@/components/resume/pdf/PDFEducatorModernTemplate";
 import { PDFElasticsearchDevTemplate } from "@/components/resume/pdf/PDFElasticsearchDevTemplate";
@@ -1412,7 +1410,6 @@ const Editor = () => {
         "backend-api-specialist": BackendAPISpecialistPDF,
         "frontend-architect": FrontendArchitectPDF,
         // New Universal Professional Templates
-        "executive-modern": ExecutiveModernPDF,
         "corporate-blue": CorporateBluePDF,
         "minimalist-pro": MinimalistProPDF,
         "classic-elegant": ClassicElegantPDF,
@@ -2004,7 +2001,6 @@ const Editor = () => {
         "sapphire-executive": PDFSapphireExecutiveTemplate,
         "creative-accent": PDFCreativeAccentTemplate,
         "bold-headline": PDFBoldHeadlineTemplate,
-        "dual-tone": PDFDualToneTemplate,
         "elegant-serif": PDFElegantSerifTemplate,
         "contemporary-split": PDFContemporarySplitTemplate,
       };

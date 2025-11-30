@@ -92,7 +92,6 @@ import { BackendAPISpecialistPDF } from "@/components/resume/pdf/BackendAPISpeci
 import { FrontendArchitectPDF } from "@/components/resume/pdf/FrontendArchitectPDF";
 import { TechGridPDF } from "@/components/resume/pdf/TechGridPDF";
 // New Universal Professional Templates
-import { ExecutiveModernPDF } from "@/components/resume/pdf/ExecutiveModernPDF";
 import { CorporateBluePDF } from "@/components/resume/pdf/CorporateBluePDF";
 import { MinimalistProPDF } from "@/components/resume/pdf/MinimalistProPDF";
 import { ClassicElegantPDF } from "@/components/resume/pdf/ClassicElegantPDF";
@@ -480,14 +479,12 @@ import { SeniorBackendTemplate } from "@/components/resume/templates/SeniorBacke
 import { SapphireExecutiveTemplate } from "@/components/resume/templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "@/components/resume/templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "@/components/resume/templates/BoldHeadlineTemplate";
-import { DualToneTemplate } from "@/components/resume/templates/DualToneTemplate";
 import { ElegantSerifTemplate } from "@/components/resume/templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "@/components/resume/templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "@/components/resume/templates/ContemporarySplitTemplate";
 import { PDFSapphireExecutiveTemplate } from "@/components/resume/pdf/PDFSapphireExecutiveTemplate";
 import { PDFCreativeAccentTemplate } from "@/components/resume/pdf/PDFCreativeAccentTemplate";
 import { PDFBoldHeadlineTemplate } from "@/components/resume/pdf/PDFBoldHeadlineTemplate";
-import { PDFDualToneTemplate } from "@/components/resume/pdf/PDFDualToneTemplate";
 import { PDFElegantSerifTemplate } from "@/components/resume/pdf/PDFElegantSerifTemplate";
 import { PDFContemporarySplitTemplate } from "@/components/resume/pdf/PDFContemporarySplitTemplate";
 import { LuxuryTimelineTemplate } from "@/components/resume/templates/LuxuryTimelineTemplate";
@@ -586,7 +583,6 @@ import { SiteReliabilityEngineerTemplate } from "@/components/resume/templates/S
 import { BackendAPISpecialistTemplate } from "@/components/resume/templates/BackendAPISpecialistTemplate";
 import { FrontendArchitectTemplate } from "@/components/resume/templates/FrontendArchitectTemplate";
 // New Universal Professional Templates
-import { ExecutiveModernTemplate } from "@/components/resume/templates/ExecutiveModernTemplate";
 import { CorporateBlueTemplate } from "@/components/resume/templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "@/components/resume/templates/MinimalistProTemplate";
 import { ClassicElegantTemplate } from "@/components/resume/templates/ClassicElegantTemplate";
@@ -1426,7 +1422,6 @@ const pdfTemplates: Record<string, any> = {
   "sapphire-executive": PDFSapphireExecutiveTemplate,
   "creative-accent": PDFCreativeAccentTemplate,
   "bold-headline": PDFBoldHeadlineTemplate,
-  "dual-tone": PDFDualToneTemplate,
   "elegant-serif": PDFElegantSerifTemplate,
   "tech-grid": TechGridPDF,
   "contemporary-split": PDFContemporarySplitTemplate,
@@ -1490,7 +1485,6 @@ const pdfTemplates: Record<string, any> = {
   "backend-api-specialist": BackendAPISpecialistPDF,
   "frontend-architect": FrontendArchitectPDF,
   // New Universal Professional Templates
-  "executive-modern": ExecutiveModernPDF,
   "corporate-blue": CorporateBluePDF,
   "minimalist-pro": MinimalistProPDF,
   "classic-elegant": ClassicElegantPDF,
@@ -1871,7 +1865,6 @@ const displayTemplates: Record<string, any> = {
   "sapphire-executive": SapphireExecutiveTemplate,
   "creative-accent": CreativeAccentTemplate,
   "bold-headline": BoldHeadlineTemplate,
-  "dual-tone": DualToneTemplate,
   "elegant-serif": ElegantSerifTemplate,
   "tech-grid": TechGridTemplate,
   "contemporary-split": ContemporarySplitTemplate,
@@ -1971,7 +1964,6 @@ const displayTemplates: Record<string, any> = {
   "backend-api-specialist": BackendAPISpecialistTemplate,
   "frontend-architect": FrontendArchitectTemplate,
   // New Universal Professional Templates
-  "executive-modern": ExecutiveModernTemplate,
   "corporate-blue": CorporateBlueTemplate,
   "minimalist-pro": MinimalistProTemplate,
   "classic-elegant": ClassicElegantTemplate,
@@ -2837,8 +2829,16 @@ const LiveEditor = () => {
   useEffect(() => {
     if (templateId) {
       setTemplateId(templateId);
+      
+      // If no resumeId is provided, reset to template defaults
+      // This ensures new templates load with their specific default data
+      if (!resumeId) {
+        const defaultData = getTemplateDefaults(templateId);
+        setResumeData(defaultData);
+        console.log("🔄 LiveEditor: Reset to template defaults for", templateId);
+      }
     }
-  }, [templateId, setTemplateId]);
+  }, [templateId, setTemplateId, resumeId, setResumeData]);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const [editorMode, setEditorMode] = useState<"live" | "form">("live");
   const [isSaving, setIsSaving] = useState(false);
@@ -2950,16 +2950,57 @@ const LiveEditor = () => {
   const handleAddCustomSection = () => {
     const newSection = {
       id: Date.now().toString(),
+      type: 'custom' as const,
+      order: (resumeData.dynamicSections?.length || 0) + 1,
+      enabled: true,
       title: "Custom Section",
-      content: "Add your content here"
+      data: {
+        type: 'custom' as const,
+        content: "Add your content here"
+      }
     };
     
     setResumeData({
       ...resumeData,
-      sections: [...(resumeData.sections || []), newSection]
+      dynamicSections: [...(resumeData.dynamicSections || []), newSection]
     });
     
     toast.success("Custom section added");
+  };
+
+  const handleAddCertificationsSection = () => {
+    // Check if certifications section already exists
+    const existingCertSection = resumeData.dynamicSections?.find(s => s.type === 'certifications');
+    if (existingCertSection) {
+      toast.error("Certifications section already exists");
+      return;
+    }
+
+    const certificationsSection = {
+      id: Date.now().toString(),
+      type: 'certifications' as const,
+      order: (resumeData.dynamicSections?.length || 0) + 1,
+      enabled: true,
+      title: "Certifications",
+      data: {
+        type: 'certifications' as const,
+        certifications: [
+          {
+            id: Date.now().toString(),
+            name: "Example Certification",
+            issuer: "Issuing Organization",
+            date: "2024-01"
+          }
+        ]
+      }
+    };
+    
+    setResumeData({
+      ...resumeData,
+      dynamicSections: [...(resumeData.dynamicSections || []), certificationsSection]
+    });
+    
+    toast.success("Certifications section added");
   };
 
   const addBulletPoint = useCallback((expId: string) => {
@@ -3045,6 +3086,88 @@ const LiveEditor = () => {
       };
     });
     toast.success("Bullet point removed");
+  }, [setResumeData]);
+
+  // Dynamic section management functions
+  const addSectionItem = useCallback((sectionType: string, sectionOrder: number) => {
+    setResumeData((currentData) => {
+      const dynamicSections = currentData.dynamicSections || [];
+      const sectionIndex = dynamicSections.findIndex(s => s.order === sectionOrder);
+      
+      if (sectionIndex === -1) {
+        toast.error("Section not found");
+        return currentData;
+      }
+
+      const updatedSections = [...dynamicSections];
+      const section = updatedSections[sectionIndex];
+
+      switch (sectionType) {
+        case 'certifications':
+          const currentCertifications = (section.data as any).certifications || [];
+          const newCertification = {
+            id: Date.now().toString(),
+            name: "New Certification",
+            issuer: "Issuing Organization",
+            date: "2024-01",
+          };
+          (section.data as any).certifications = [...currentCertifications, newCertification];
+          break;
+        
+        default:
+          // For basic content sections, add a new line
+          const currentContent = section.data.content || '';
+          section.data.content = typeof currentContent === 'string' 
+            ? currentContent + '\nNew item'
+            : [...(Array.isArray(currentContent) ? currentContent : []), 'New item'];
+          break;
+      }
+
+      return {
+        ...currentData,
+        dynamicSections: updatedSections,
+      };
+    });
+    toast.success("Item added to section");
+  }, [setResumeData]);
+
+  const removeSectionItem = useCallback((sectionType: string, sectionOrder: number, itemIndex: number) => {
+    setResumeData((currentData) => {
+      const dynamicSections = currentData.dynamicSections || [];
+      const sectionIndex = dynamicSections.findIndex(s => s.order === sectionOrder);
+      
+      if (sectionIndex === -1) {
+        toast.error("Section not found");
+        return currentData;
+      }
+
+      const updatedSections = [...dynamicSections];
+      const section = updatedSections[sectionIndex];
+
+      switch (sectionType) {
+        case 'certifications':
+          const currentCertifications = (section.data as any).certifications || [];
+          (section.data as any).certifications = currentCertifications.filter((_: any, i: number) => i !== itemIndex);
+          break;
+        
+        default:
+          // For basic content sections, remove the line
+          if (typeof section.data.content === 'string') {
+            const lines = section.data.content.split('\n');
+            lines.splice(itemIndex, 1);
+            section.data.content = lines.join('\n');
+          } else if (Array.isArray(section.data.content)) {
+            section.data.content = section.data.content.filter((_: any, i: number) => i !== itemIndex);
+          }
+          break;
+      }
+
+      return {
+        ...currentData,
+        dynamicSections: updatedSections,
+      };
+    });
+    toast.success("Item removed from section");
   }, [setResumeData]);
 
   return (
@@ -3231,6 +3354,8 @@ const LiveEditor = () => {
                       editable={true} 
                       onAddBulletPoint={addBulletPoint}
                       onRemoveBulletPoint={removeBulletPoint}
+                      onAddSectionItem={addSectionItem}
+                      onRemoveSectionItem={removeSectionItem}
                     />
                   </InlineEditProvider>
                 );
@@ -3248,10 +3373,14 @@ const LiveEditor = () => {
                 </div>
               );
             })()}
-            <div className="p-8 border-t border-gray-100 flex justify-center print:hidden">
+            <div className="p-8 border-t border-gray-100 flex justify-center gap-4 print:hidden">
               <Button onClick={handleAddCustomSection} variant="ghost" className="gap-2 text-muted-foreground hover:text-primary">
                 <Plus className="h-4 w-4" />
                 Add Custom Section
+              </Button>
+              <Button onClick={handleAddCertificationsSection} variant="ghost" className="gap-2 text-muted-foreground hover:text-primary">
+                <Plus className="h-4 w-4" />
+                Add Certifications
               </Button>
             </div>
           </div>

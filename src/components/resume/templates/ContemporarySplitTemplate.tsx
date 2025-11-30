@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
@@ -9,6 +9,8 @@ interface ContemporarySplitTemplateProps {
   resumeData: ResumeData;
   themeColor?: string;
   editable?: boolean;
+  onAddBulletPoint?: (expId: string) => void;
+  onRemoveBulletPoint?: (expId: string, bulletIndex: number) => void;
 }
 
 // Helper to convert hex color with opacity to rgba
@@ -23,6 +25,8 @@ export const ContemporarySplitTemplate = ({
   resumeData,
   themeColor = "#f59e0b",
   editable = false,
+  onAddBulletPoint,
+  onRemoveBulletPoint,
 }: ContemporarySplitTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
   const accent = themeColor;
@@ -34,14 +38,12 @@ export const ContemporarySplitTemplate = ({
       <div className="w-[50%] bg-[#1f2937] text-white pt-10 pb-10 pl-10 pr-5">
         {/* Photo */}
         {photo && (
-          <div className="mb-8">
-            <div className="w-36 h-36 mx-auto rounded-2xl overflow-hidden border shadow-2xl" style={{ borderColor: accent }}>
-              <ProfilePhoto
-                src={photo}
-                borderClass=""
-                className="rounded-2xl"
-              />
-            </div>
+          <div className="mb-12 flex justify-center">
+            <ProfilePhoto
+              src={photo}
+              borderClass=""
+              className="rounded-2xl"
+            />
           </div>
         )}
 
@@ -78,7 +80,7 @@ export const ContemporarySplitTemplate = ({
 
           {/* Summary */}
           {resumeData.personalInfo.summary && (
-            <div className="mt-6 pt-6 border-t border-white/20">
+            <div className="mt-6 pt-6 border-t-[0.5px] border-white/20">
               {editable ? (
                 <InlineEditableText
                   path="personalInfo.summary"
@@ -97,7 +99,7 @@ export const ContemporarySplitTemplate = ({
         </div>
 
         {/* Contact Info */}
-        <div className="mb-8 pb-8 border-b border-white/20">
+        <div className="mb-8 pb-8 border-b-[0.5px] border-white/20">
           <h2 className="text-[13px] font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
             Contact
           </h2>
@@ -149,22 +151,23 @@ export const ContemporarySplitTemplate = ({
 
         {/* Skills */}
         {resumeData.skills && resumeData.skills.length > 0 && (
-          <div className="mb-8 pb-8 border-b border-white/20">
+          <div className="mb-8 pb-8 border-b-[0.5px] border-white/20">
             <h2 className="text-[13px] font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
               Skills
             </h2>
             {editable ? (
-              <InlineEditableSkills
-                path="skills"
-                skills={resumeData.skills}
-                renderSkill={(skill, index) => (
-                  <div className="mb-3">
-                    <span className="text-[12px] font-medium text-white/90 block">
-                      {skill.name}
-                    </span>
+              <div className="space-y-3">
+                {resumeData.skills.map((skill, index) => (
+                  <div key={skill.id}>
+                    <InlineEditableText
+                      path={`skills[${index}].name`}
+                      value={skill.name}
+                      className="text-[12px] font-medium text-white/90 block"
+                      as="span"
+                    />
                   </div>
-                )}
-              />
+                ))}
+              </div>
             ) : (
               <div className="space-y-3">
                 {resumeData.skills.map((skill) => (
@@ -263,25 +266,13 @@ export const ContemporarySplitTemplate = ({
         {/* Professional Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-[14px] font-bold uppercase tracking-wider mb-5 pb-2 border-b text-gray-900" style={{ borderColor: accent }}>
+            <h2 className="text-[14px] font-bold uppercase tracking-wider mb-5 pb-2 border-b-[0.5px] text-gray-900" style={{ borderColor: accent }}>
               Professional Experience
             </h2>
             {editable ? (
-              <InlineEditableList
-                path="experience"
-                items={resumeData.experience}
-                defaultItem={{
-                  id: Date.now().toString(),
-                  company: "Company Name",
-                  position: "Position Title",
-                  startDate: "2023-01",
-                  endDate: "2024-01",
-                  description: "Job description",
-                  current: false,
-                }}
-                addButtonLabel="Add Experience"
-                renderItem={(exp, index) => (
-                  <div className="mb-6 last:mb-0 pb-6 border-b border-gray-200 last:border-0">
+              <div className="space-y-6">
+                {resumeData.experience.map((exp, index) => (
+                  <div key={exp.id} className="mb-6 last:mb-0 pb-6 border-b-[0.5px] border-gray-200 last:border-0">
                     <div className="flex justify-between items-start mb-2">
                       <InlineEditableText
                         path={`experience[${index}].position`}
@@ -316,22 +307,69 @@ export const ContemporarySplitTemplate = ({
                       as="p"
                       style={{ color: accent }}
                     />
-                    {exp.description && (
-                      <InlineEditableText
-                        path={`experience[${index}].description`}
-                        value={exp.description}
-                        className="text-[12px] text-gray-700 leading-[1.75]"
-                        as="div"
-                        multiline
-                      />
-                    )}
+                    {/* Bullet Points Section */}
+                    <div className="space-y-2">
+                      {(exp.bulletPoints && exp.bulletPoints.length > 0) || exp.description ? (
+                        <>
+                          {(exp.bulletPoints && exp.bulletPoints.length > 0 ? exp.bulletPoints : exp.description.split('\n').filter(Boolean)).map((point, bulletIndex) => (
+                            <div key={bulletIndex} className="flex items-start gap-2 group">
+                              <span className="text-[12px] text-gray-400 mt-1">•</span>
+                              <div className="flex-1">
+                                <InlineEditableText
+                                  path={exp.bulletPoints ? `experience[${index}].bulletPoints[${bulletIndex}]` : `experience[${index}].description`}
+                                  value={point}
+                                  className="text-[12px] text-gray-700 leading-[1.75]"
+                                  as="div"
+                                  multiline
+                                />
+                              </div>
+                              {onAddBulletPoint && onRemoveBulletPoint && exp.bulletPoints && (
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                                  <button
+                                    onClick={() => onAddBulletPoint(exp.id)}
+                                    className="text-[10px] px-1 py-0.5 bg-green-100 text-green-600 rounded hover:bg-green-200"
+                                  >
+                                    +
+                                  </button>
+                                  {bulletIndex > 0 && (
+                                    <button
+                                      onClick={() => onRemoveBulletPoint(exp.id, bulletIndex)}
+                                      className="text-[10px] px-1 py-0.5 bg-red-100 text-red-600 rounded hover:bg-red-200"
+                                    >
+                                      -
+                                    </button>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                          {onAddBulletPoint && exp.bulletPoints && (
+                            <button
+                              onClick={() => onAddBulletPoint(exp.id)}
+                              className="text-[11px] px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200 mt-2"
+                            >
+                              + Add Bullet Point
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        onAddBulletPoint && (
+                          <button
+                            onClick={() => onAddBulletPoint(exp.id)}
+                            className="text-[11px] px-2 py-1 bg-blue-100 text-blue-600 rounded hover:bg-blue-200"
+                          >
+                            + Add Bullet Points
+                          </button>
+                        )
+                      )}
+                    </div>
                   </div>
-                )}
-              />
+                ))}
+              </div>
             ) : (
               <div className="space-y-6">
-                {resumeData.experience.map((exp, index) => (
-                  <div key={index} className="pb-6 border-b border-gray-200 last:border-0">
+                {resumeData.experience.map((exp) => (
+                  <div key={exp.id} className="pb-6 border-b-[0.5px] border-gray-200 last:border-0">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="text-[14.5px] font-bold text-gray-900">
                         {exp.position}
@@ -343,17 +381,19 @@ export const ContemporarySplitTemplate = ({
                     <p className="text-[13px] font-semibold mb-2" style={{ color: accent }}>
                       {exp.company}
                     </p>
-                    {exp.description && (
+                    {(exp.bulletPoints && exp.bulletPoints.length > 0) || exp.description ? (
                       <ul className="list-disc ml-5 space-y-1.5 text-[12px] text-gray-700 leading-[1.75]">
-                        {exp.description
-                          .split("\n")
-                          .map((line) => line.trim())
-                          .filter(Boolean)
-                          .map((line, i) => (
-                            <li key={i} className="pl-1">{line}</li>
-                          ))}
+                        {(exp.bulletPoints && exp.bulletPoints.length > 0 
+                          ? exp.bulletPoints 
+                          : exp.description
+                              .split("\n")
+                              .map((line) => line.trim())
+                              .filter(Boolean)
+                        ).map((line, i) => (
+                          <li key={i} className="pl-1">{line}</li>
+                        ))}
                       </ul>
-                    )}
+                    ) : null}
                   </div>
                 ))}
               </div>
@@ -377,7 +417,7 @@ export const ContemporarySplitTemplate = ({
                 <InlineEditableText
                   path={`sections[${index}].title`}
                   value={section.title}
-                  className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b text-gray-900"
+                  className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b-[0.5px] text-gray-900"
                   as="h2"
                   style={{ borderColor: accent }}
                 />
@@ -395,7 +435,7 @@ export const ContemporarySplitTemplate = ({
           resumeData.sections &&
           resumeData.sections.map((section, index) => (
             <div key={index} className="mb-8">
-              <h2 className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b text-gray-900" style={{ borderColor: accent }}>
+              <h2 className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b-[0.5px] text-gray-900" style={{ borderColor: accent }}>
                 {section.title}
               </h2>
               <div className="text-[12px] text-gray-700 leading-[1.75] whitespace-pre-line">

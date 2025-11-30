@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
 import { ProfessionalTemplate } from "./resume/templates/ProfessionalTemplate";
 import { ModernTemplate } from "./resume/templates/ModernTemplate";
@@ -24,7 +24,6 @@ import { RefinedTemplate } from "./resume/templates/RefinedTemplate";
 import { SapphireExecutiveTemplate } from "./resume/templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "./resume/templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./resume/templates/BoldHeadlineTemplate";
-import { DualToneTemplate } from "./resume/templates/DualToneTemplate";
 import { ElegantSerifTemplate } from "./resume/templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "./resume/templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./resume/templates/ContemporarySplitTemplate";
@@ -123,7 +122,6 @@ import { SiteReliabilityEngineerTemplate } from "./resume/templates/SiteReliabil
 import { BackendAPISpecialistTemplate } from "./resume/templates/BackendAPISpecialistTemplate";
 import { FrontendArchitectTemplate } from "./resume/templates/FrontendArchitectTemplate";
 // New Universal Professional Templates
-import { ExecutiveModernTemplate } from "./resume/templates/ExecutiveModernTemplate";
 import { CorporateBlueTemplate } from "./resume/templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "./resume/templates/MinimalistProTemplate";
 import { ClassicElegantTemplate } from "./resume/templates/ClassicElegantTemplate";
@@ -1653,7 +1651,7 @@ const getTemplateSpecificData = (templateId: string): ResumeData => {
   }
 
   // Tech/software templates (tech-grid, software, etc.)
-  if (['tech-grid', 'software', 'bold-headline', 'dual-tone', 'contemporary-split'].includes(templateId)) {
+  if (['tech-grid', 'software', 'bold-headline', 'contemporary-split'].includes(templateId)) {
     return {
       personalInfo: {
         fullName: "Alex Morgan",
@@ -1843,7 +1841,6 @@ const templates = {
   "sapphire-executive": SapphireExecutiveTemplate,
   "creative-accent": CreativeAccentTemplate,
   "bold-headline": BoldHeadlineTemplate,
-  "dual-tone": DualToneTemplate,
   "elegant-serif": ElegantSerifTemplate,
   "tech-grid": TechGridTemplate,
   "contemporary-split": ContemporarySplitTemplate,
@@ -1942,7 +1939,6 @@ const templates = {
   "backend-api-specialist": BackendAPISpecialistTemplate,
   "frontend-architect": FrontendArchitectTemplate,
   // New Universal Professional Templates
-  "executive-modern": ExecutiveModernTemplate,
   "corporate-blue": CorporateBlueTemplate,
   "minimalist-pro": MinimalistProTemplate,
   "classic-elegant": ClassicElegantTemplate,

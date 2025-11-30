@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
 const styles = StyleSheet.create({
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     color: '#6b7280',
     marginBottom: 12,
     textAlign: 'center',
-    fontStyle: 'italic',
   },
   contactContainer: {
     flexDirection: 'row',
@@ -80,7 +79,6 @@ const styles = StyleSheet.create({
   company: {
     fontSize: 10,
     color: '#7c2d12',
-    fontStyle: 'italic',
     textAlign: 'center',
     marginBottom: 4,
   },
@@ -126,7 +124,6 @@ const styles = StyleSheet.create({
   educationSchool: {
     fontSize: 9.5,
     color: '#374151',
-    fontStyle: 'italic',
     textAlign: 'center',
     marginBottom: 4,
   },

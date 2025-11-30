@@ -8,7 +8,7 @@ import {
   Svg,
   Path,
 } from "@react-pdf/renderer";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 13,
     fontWeight: 600,
-    fontStyle: "italic",
     color: "#A855F7",
     textAlign: "center",
     marginBottom: 16,

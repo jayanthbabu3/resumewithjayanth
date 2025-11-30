@@ -177,13 +177,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     category: "Universal",
     categorySlug: "all",
   },
-  "dual-tone": {
-    name: "Dual Tone",
-    description:
-      "Modern two-tone template with accent sidebar, card-style skills, and clean sectioning for contemporary professionals.",
-    category: "Universal",
-    categorySlug: "all",
-  },
   "elegant-serif": {
     name: "Elegant Serif",
     description:
@@ -816,13 +809,6 @@ export const templateMetaMap: Record<string, TemplateMeta> = {
     categorySlug: "software",
   },
   // New Universal Professional Templates
-  "executive-modern": {
-    name: "Executive Modern",
-    description:
-      "Clean modern executive design with two-column layout and professional timeline for experience.",
-    category: "Universal",
-    categorySlug: "all",
-  },
   "corporate-blue": {
     name: "Corporate Blue",
     description:

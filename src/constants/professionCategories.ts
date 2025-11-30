@@ -48,7 +48,6 @@ export const professionCategories: ProfessionCategory[] = [
       "refined",
       "premium-elite",
       "bold-headline",
-      "dual-tone",
       "contemporary-split",
       // Fresh Graduates Templates
       "graduate",
@@ -169,7 +168,6 @@ export const professionCategories: ProfessionCategory[] = [
       "agile-scrum",
       "operations-two-column",
       // New Universal Professional Templates
-      "executive-modern",
       "corporate-blue",
       "minimalist-pro",
       "classic-elegant",
@@ -1033,10 +1031,8 @@ export const professionCategories: ProfessionCategory[] = [
       "refined",
       "premium-elite",
       "bold-headline",
-      "dual-tone",
       "contemporary-split",
       // New Universal Professional Templates
-      "executive-modern",
       "corporate-blue",
       "minimalist-pro",
       "classic-elegant",

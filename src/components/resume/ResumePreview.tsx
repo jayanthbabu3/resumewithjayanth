@@ -24,7 +24,6 @@ import { PremiumEliteTemplate } from "./templates/PremiumEliteTemplate";
 import { SapphireExecutiveTemplate } from "./templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "./templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./templates/BoldHeadlineTemplate";
-import { DualToneTemplate } from "./templates/DualToneTemplate";
 import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
@@ -123,7 +122,6 @@ import { SiteReliabilityEngineerTemplate } from "./templates/SiteReliabilityEngi
 import { BackendAPISpecialistTemplate } from "./templates/BackendAPISpecialistTemplate";
 import { FrontendArchitectTemplate } from "./templates/FrontendArchitectTemplate";
 // New Universal Professional Templates
-import { ExecutiveModernTemplate } from "./templates/ExecutiveModernTemplate";
 import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "./templates/MinimalistProTemplate";
 import { ClassicElegantTemplate } from "./templates/ClassicElegantTemplate";
@@ -489,7 +487,6 @@ export const ResumePreview = ({
     "sapphire-executive": SapphireExecutiveTemplate,
     "creative-accent": CreativeAccentTemplate,
     "bold-headline": BoldHeadlineTemplate,
-    "dual-tone": DualToneTemplate,
     "elegant-serif": ElegantSerifTemplate,
     "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
@@ -588,7 +585,6 @@ export const ResumePreview = ({
     "backend-api-specialist": BackendAPISpecialistTemplate,
     "frontend-architect": FrontendArchitectTemplate,
     // New Universal Professional Templates
-    "executive-modern": ExecutiveModernTemplate,
     "corporate-blue": CorporateBlueTemplate,
     "minimalist-pro": MinimalistProTemplate,
     "classic-elegant": ClassicElegantTemplate,

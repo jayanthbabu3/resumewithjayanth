@@ -209,16 +209,16 @@ export function ScratchBuilderPDF({
                     </View>
                   )}
 
-                  {/* Career Objective - italic style */}
+                  {/* Career Objective - normal style */}
                   {section.data.variantId === "career-objective" && section.data.content && (
-                    <Text style={[styles.sectionContent, { fontStyle: "italic", textAlign: section.contentAlignment || 'left' }]}>
+                    <Text style={[styles.sectionContent, { textAlign: section.contentAlignment || 'left' }]}>
                       {section.data.content}
                     </Text>
                   )}
 
-                  {/* About Me - casual style */}
+                  {/* About Me - normal style */}
                   {section.data.variantId === "about-me" && section.data.content && (
-                    <Text style={[styles.sectionContent, { fontStyle: "italic", lineHeight: 1.7, textAlign: section.contentAlignment || 'left' }]}>
+                    <Text style={[styles.sectionContent, { lineHeight: 1.7, textAlign: section.contentAlignment || 'left' }]}>
                       {section.data.content}
                     </Text>
                   )}
@@ -501,7 +501,7 @@ export function ScratchBuilderPDF({
                           <Text
                             style={[
                               styles.itemDescription,
-                              { marginTop: 3, fontStyle: "italic" },
+                              { marginTop: 3 },
                             ]}
                           >
                             Tech: {project.techStack.join(", ")}

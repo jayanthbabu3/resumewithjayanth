@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
-import { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
@@ -66,10 +66,8 @@ export const PDFContemporarySplitTemplate = ({
       width: 144,
       height: 144,
       borderRadius: 16,
-      borderWidth: 1,
-      borderColor: accent,
       overflow: "hidden",
-      marginBottom: 32,
+      marginBottom: 48,
       alignSelf: "center",
     },
     photo: {
@@ -94,9 +92,10 @@ export const PDFContemporarySplitTemplate = ({
     },
     summarySection: {
       marginTop: 0,
+      marginBottom: 24,
     },
     summaryBorderLine: {
-      height: 1,
+      height: 0.5,
       backgroundColor: "#4c545f",
       marginBottom: 16,
     },
@@ -106,89 +105,89 @@ export const PDFContemporarySplitTemplate = ({
       color: "rgba(255, 255, 255, 0.9)",
     },
     sidebarSection: {
-      marginBottom: 24,
+      marginBottom: 20,
     },
     lastSidebarSection: {
       marginBottom: 0,
       paddingBottom: 0,
     },
     sidebarBorderLine: {
-      height: 1,
+      height: 0.5,
       backgroundColor: "#4c545f",
       marginTop: 0,
     },
     sidebarTitle: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 700,
       textTransform: "uppercase",
       letterSpacing: 0.5,
       color: accent,
-      marginBottom: 16,
+      marginBottom: 12,
     },
     contactItem: {
-      marginBottom: 12,
+      marginBottom: 8,
     },
     contactText: {
       fontSize: 10,
       color: "rgba(255, 255, 255, 0.9)",
     },
     skillItem: {
-      marginBottom: 12,
+      marginBottom: 8,
     },
     skillText: {
-      fontSize: 10,
+      fontSize: 9,
       fontWeight: 500,
       color: "rgba(255, 255, 255, 0.9)",
     },
     educationItem: {
-      marginBottom: 20,
+      marginBottom: 16,
     },
     degree: {
       fontSize: 10,
       fontWeight: 700,
       color: "#ffffff",
-      marginBottom: 4,
+      marginBottom: 3,
     },
     field: {
-      fontSize: 10,
+      fontSize: 9,
       color: "rgba(255, 255, 255, 0.9)",
-      marginTop: 4,
+      marginTop: 3,
     },
     school: {
       fontSize: 9,
       color: "rgba(255, 255, 255, 0.8)",
-      marginTop: 4,
+      marginTop: 3,
     },
     educationDate: {
-      fontSize: 9,
+      fontSize: 8,
       color: "rgba(255, 255, 255, 0.7)",
-      marginTop: 4,
+      marginTop: 3,
     },
     section: {
-      marginBottom: 10,
+      marginBottom: 20,
     },
     sectionTitle: {
-      fontSize: 12,
+      fontSize: 11,
       fontWeight: 700,
       textTransform: "uppercase",
       letterSpacing: 0.5,
       color: "#111827",
-      marginBottom: 20,
-      paddingBottom: 8,
-      borderBottomWidth: 1,
+      marginBottom: 16,
+      paddingBottom: 6,
+      borderBottomWidth: 0.5,
       borderBottomColor: accent,
     },
     experienceItem: {
-      marginBottom: 24,
-      paddingBottom: 24,
-      borderBottomWidth: 1,
+      marginBottom: 20,
+      paddingBottom: 16,
+      borderBottomWidth: 0.5,
       borderBottomColor: "#e5e7eb",
     },
     experienceHeader: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "flex-start",
-      marginBottom: 8,
+      marginBottom: 6,
     },
     experienceLeft: {
       flex: 1,
@@ -335,14 +334,17 @@ export const PDFContemporarySplitTemplate = ({
             {resumeData.experience && resumeData.experience.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Professional Experience</Text>
-                {resumeData.experience.map((exp, index) => {
-                  const bulletPoints = (exp.description || "")
-                    .split("\n")
-                    .map((line) => line.trim())
-                    .filter(Boolean);
+                {resumeData.experience.map((exp) => {
+                  // Use bulletPoints array if available, otherwise split description
+                  const bulletPoints = exp.bulletPoints && exp.bulletPoints.length > 0 
+                    ? exp.bulletPoints 
+                    : (exp.description || "")
+                        .split("\n")
+                        .map((line) => line.trim())
+                        .filter(Boolean);
 
                   return (
-                    <View key={index} style={styles.experienceItem}>
+                    <View key={exp.id} style={styles.experienceItem}>
                       <View style={styles.experienceHeader}>
                         <View style={styles.experienceLeft}>
                           <Text style={styles.position}>{exp.position}</Text>

@@ -1,4 +1,4 @@
-import { type ResumeData } from "@/pages/Editor";
+import { type ResumeData } from "@/types/resume";
 import { EditableField } from "./EditableField";
 import { ProfessionalTemplate } from "./templates/ProfessionalTemplate";
 import { ModernTemplate } from "./templates/ModernTemplate";
@@ -25,7 +25,6 @@ import { PremiumEliteTemplate } from "./templates/PremiumEliteTemplate";
 import { SapphireExecutiveTemplate } from "./templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "./templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./templates/BoldHeadlineTemplate";
-import { DualToneTemplate } from "./templates/DualToneTemplate";
 import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
@@ -124,7 +123,6 @@ import { SiteReliabilityEngineerTemplate } from "./templates/SiteReliabilityEngi
 import { BackendAPISpecialistTemplate } from "./templates/BackendAPISpecialistTemplate";
 import { FrontendArchitectTemplate } from "./templates/FrontendArchitectTemplate";
 // New Universal Professional Templates
-import { ExecutiveModernTemplate } from "./templates/ExecutiveModernTemplate";
 import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "./templates/MinimalistProTemplate";
 import { ClassicElegantTemplate } from "./templates/ClassicElegantTemplate";
@@ -310,7 +308,6 @@ export const EditableResumePreview = ({
     "sapphire-executive": SapphireExecutiveTemplate,
     "creative-accent": CreativeAccentTemplate,
     "bold-headline": BoldHeadlineTemplate,
-    "dual-tone": DualToneTemplate,
     "elegant-serif": ElegantSerifTemplate,
     "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
@@ -409,7 +406,6 @@ export const EditableResumePreview = ({
     "backend-api-specialist": BackendAPISpecialistTemplate,
     "frontend-architect": FrontendArchitectTemplate,
     // New Universal Professional Templates
-    "executive-modern": ExecutiveModernTemplate,
     "corporate-blue": CorporateBlueTemplate,
     "minimalist-pro": MinimalistProTemplate,
     "classic-elegant": ClassicElegantTemplate,

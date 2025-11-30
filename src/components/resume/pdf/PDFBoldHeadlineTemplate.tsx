@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
-import { ResumeData } from "@/pages/Editor";
+import { ResumeData } from "@/types/resume";
 import { PDF_PAGE_MARGINS, hasContent } from "@/lib/pdfConfig";
 import { registerPDFFonts } from "@/lib/pdfFonts";
 
@@ -238,9 +238,15 @@ export const PDFBoldHeadlineTemplate = ({
       color: "#6b7280",
       marginTop: 2,
     },
+    gpaText: {
+      fontSize: 9,
+      color: "#6b7280",
+      marginTop: 1,
+    },
     skillsContainer: {
       flexDirection: "row",
       flexWrap: "wrap",
+      gap: 8,
     },
     skillBadge: {
       fontSize: 9,
@@ -250,8 +256,17 @@ export const PDFBoldHeadlineTemplate = ({
       paddingHorizontal: 12,
       paddingVertical: 6,
       borderRadius: 4,
-      marginRight: 6,
-      marginBottom: 6,
+    },
+    skillWithRating: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 4,
+      width: "100%",
+    },
+    skillRatingText: {
+      fontSize: 8,
+      color: "#6b7280",
     },
     sectionContent: {
       fontSize: 9,
@@ -310,13 +325,15 @@ export const PDFBoldHeadlineTemplate = ({
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Work Experience</Text>
               {resumeData.experience.map((exp, index) => {
-                const bulletPoints = (exp.description || "")
-                  .split("\n")
-                  .map((line) => line.trim())
-                  .filter(Boolean);
+                const bulletPoints = (exp.bulletPoints && exp.bulletPoints.length > 0) 
+                  ? exp.bulletPoints 
+                  : (exp.description || "")
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .filter(Boolean);
 
                 return (
-                  <View key={index} style={styles.experienceItem}>
+                  <View key={exp.id} style={styles.experienceItem}>
                     <View style={styles.experienceHeader}>
                       <View style={styles.experienceLeft}>
                         <Text style={styles.position}>{exp.position}</Text>
@@ -349,7 +366,7 @@ export const PDFBoldHeadlineTemplate = ({
               <View style={styles.columnLeft}>
                 <Text style={styles.sectionTitle}>Education</Text>
                 {resumeData.education.map((edu, index) => (
-                  <View key={index} style={styles.educationItem}>
+                  <View key={edu.id} style={styles.educationItem}>
                     <Text style={styles.degree}>{edu.degree}</Text>
                     {hasContent(edu.field) && (
                       <Text style={styles.field}>{edu.field}</Text>
@@ -358,6 +375,11 @@ export const PDFBoldHeadlineTemplate = ({
                     <Text style={styles.educationDate}>
                       {edu.startDate} - {edu.endDate}
                     </Text>
+                    {edu.gpa && (
+                      <Text style={styles.gpaText}>
+                        GPA: {edu.gpa}
+                      </Text>
+                    )}
                   </View>
                 ))}
               </View>
@@ -369,9 +391,20 @@ export const PDFBoldHeadlineTemplate = ({
                 <Text style={styles.sectionTitle}>Skills</Text>
                 <View style={styles.skillsContainer}>
                   {resumeData.skills.map((skill) => (
-                    <Text key={skill.id} style={styles.skillBadge}>
-                      {skill.name}
-                    </Text>
+                    resumeData.skills.some(s => s.rating && s.rating.trim() !== "") ? (
+                      // Vertical layout with ratings
+                      <View key={skill.id} style={styles.skillWithRating}>
+                        <Text style={styles.skillBadge}>{skill.name}</Text>
+                        {skill.rating && skill.rating.trim() !== "" && (
+                          <Text style={styles.skillRatingText}>{skill.rating}</Text>
+                        )}
+                      </View>
+                    ) : (
+                      // Horizontal layout without ratings
+                      <Text key={skill.id} style={styles.skillBadge}>
+                        {skill.name}
+                      </Text>
+                    )
                   ))}
                 </View>
               </View>

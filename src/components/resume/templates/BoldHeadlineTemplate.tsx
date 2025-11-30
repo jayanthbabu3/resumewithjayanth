@@ -1,9 +1,13 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
-import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSkillsWithRating } from "@/components/resume/InlineEditableSkillsWithRating";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
+import { Button } from "@/components/ui/button";
+import { Plus, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BoldHeadlineTemplateProps {
   resumeData: ResumeData;
@@ -16,6 +20,7 @@ export const BoldHeadlineTemplate = ({
   themeColor = "#dc2626",
   editable = false,
 }: BoldHeadlineTemplateProps) => {
+  const { addBulletPoint, removeBulletPoint } = useInlineEdit();
   const photo = resumeData.personalInfo.photo;
   const accent = themeColor;
   const accentLight = `${accent}10`;
@@ -148,6 +153,7 @@ export const BoldHeadlineTemplate = ({
                   startDate: "2023-01",
                   endDate: "2024-01",
                   description: "Job description",
+                  bulletPoints: [],
                   current: false,
                 }}
                 addButtonLabel="Add Experience"
@@ -187,22 +193,53 @@ export const BoldHeadlineTemplate = ({
                       as="p"
                       style={{ color: accent }}
                     />
-                    {exp.description && (
-                      <InlineEditableText
-                        path={`experience[${index}].description`}
-                        value={exp.description}
-                        className="text-[12.5px] text-gray-700 leading-[1.8]"
-                        as="div"
-                        multiline
-                      />
-                    )}
+                    <div className="space-y-1.5">
+                      {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
+                        exp.bulletPoints.map((bullet, bulletIndex) => (
+                          <div key={bulletIndex} className="flex items-start gap-2 group">
+                            <div className="flex-1">
+                              <InlineEditableText
+                                path={`experience[${index}].bulletPoints[${bulletIndex}]`}
+                                value={bullet}
+                                className="text-[12.5px] text-gray-700 leading-[1.8]"
+                                placeholder="Enter bullet point..."
+                                as="div"
+                                multiline
+                              />
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeBulletPoint(exp.id, bulletIndex)}
+                              className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-50 hover:text-red-600"
+                              disabled={exp.bulletPoints.length <= 1}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="text-[12.5px] text-gray-700 leading-[1.8]">
+                          No bullet points yet. Click "Add Bullet Point" to add one.
+                        </div>
+                      )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => addBulletPoint(exp.id)}
+                        className="h-7 px-2 text-xs border-dashed w-full justify-start"
+                      >
+                        <Plus className="h-3 w-3 mr-1" />
+                        Add Bullet Point
+                      </Button>
+                    </div>
                   </div>
                 )}
               />
             ) : (
               <div className="space-y-6">
                 {resumeData.experience.map((exp, index) => (
-                  <div key={index}>
+                  <div key={exp.id}>
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="text-[15px] font-bold text-gray-900">
                         {exp.position}
@@ -214,16 +251,24 @@ export const BoldHeadlineTemplate = ({
                     <p className="text-[13px] font-bold mb-3" style={{ color: accent }}>
                       {exp.company}
                     </p>
-                    {exp.description && (
+                    {(exp.bulletPoints && exp.bulletPoints.length > 0) ? (
                       <ul className="list-disc ml-5 space-y-1.5 text-[12.5px] text-gray-700 leading-[1.8]">
-                        {exp.description
-                          .split("\n")
-                          .map((line) => line.trim())
-                          .filter(Boolean)
-                          .map((line, i) => (
-                            <li key={i}>{line}</li>
-                          ))}
+                        {exp.bulletPoints.map((bullet, bulletIndex) => (
+                          <li key={bulletIndex}>{bullet}</li>
+                        ))}
                       </ul>
+                    ) : (
+                      exp.description && (
+                        <ul className="list-disc ml-5 space-y-1.5 text-[12.5px] text-gray-700 leading-[1.8]">
+                          {exp.description
+                            .split("\n")
+                            .map((line) => line.trim())
+                            .filter(Boolean)
+                            .map((line, i) => (
+                              <li key={i}>{line}</li>
+                            ))}
+                        </ul>
+                      )
                     )}
                   </div>
                 ))}
@@ -250,6 +295,7 @@ export const BoldHeadlineTemplate = ({
                     field: "Field of Study",
                     startDate: "2020-01",
                     endDate: "2024-01",
+                    gpa: "",
                   }}
                   addButtonLabel="Add Education"
                   renderItem={(edu, index) => (
@@ -288,13 +334,23 @@ export const BoldHeadlineTemplate = ({
                           className="inline-block"
                         />
                       </div>
+                      {edu.gpa && (
+                        <div className="text-[11px] text-gray-500 mt-0.5">
+                          GPA: <InlineEditableText
+                            path={`education[${index}].gpa`}
+                            value={edu.gpa}
+                            className="inline-block"
+                            as="span"
+                          />
+                        </div>
+                      )}
                     </div>
                   )}
                 />
               ) : (
                 <div className="space-y-4">
                   {resumeData.education.map((edu, index) => (
-                    <div key={index}>
+                    <div key={edu.id}>
                       <h3 className="text-[13px] font-bold text-gray-900">
                         {edu.degree}
                       </h3>
@@ -307,6 +363,11 @@ export const BoldHeadlineTemplate = ({
                       <p className="text-[11px] text-gray-500 mt-0.5">
                         {edu.startDate} - {edu.endDate}
                       </p>
+                      {edu.gpa && (
+                        <p className="text-[11px] text-gray-500 mt-0.5">
+                          GPA: {edu.gpa}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -321,21 +382,43 @@ export const BoldHeadlineTemplate = ({
                 Skills
               </h2>
               {editable ? (
-                <InlineEditableSkills
+                <InlineEditableSkillsWithRating
                   path="skills"
                   skills={resumeData.skills}
+                  showRating={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
+                  verticalLayout={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
                   renderSkill={(skill, index) => (
                     <span className="inline-block text-[11.5px] font-bold px-4 py-2 rounded-md mr-2 mb-2 text-white" style={{ backgroundColor: accent }}>
                       {skill.name}
+                      {skill.rating && skill.rating.trim() !== "" && (
+                        <span className="ml-2 text-xs opacity-75">({skill.rating})</span>
+                      )}
                     </span>
                   )}
                 />
               ) : (
-                <div className="flex flex-wrap gap-2">
-                  {resumeData.skills.map((skill) => (
-                    <span key={skill.id} className="inline-block text-[11.5px] font-bold px-4 py-2 rounded-md text-white" style={{ backgroundColor: accent }}>
-                      {skill.name}
-                    </span>
+                <div className={cn(
+                  resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? "space-y-2" : "flex flex-wrap gap-2"
+                )}>
+                  {resumeData.skills.map((skill, index) => (
+                    resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
+                      // Vertical layout with ratings
+                      <div key={skill.id} className="flex items-center justify-between">
+                        <span className="inline-block text-[11.5px] font-bold px-4 py-2 rounded-md text-white" style={{ backgroundColor: accent }}>
+                          {skill.name}
+                        </span>
+                        {skill.rating && skill.rating.trim() !== "" && (
+                          <span className="text-[10px] text-gray-600 ml-3">
+                            {skill.rating}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      // Horizontal layout without ratings
+                      <span key={skill.id} className="inline-block text-[11.5px] font-bold px-4 py-2 rounded-md text-white" style={{ backgroundColor: accent }}>
+                        {skill.name}
+                      </span>
+                    )
                   ))}
                 </div>
               )}
