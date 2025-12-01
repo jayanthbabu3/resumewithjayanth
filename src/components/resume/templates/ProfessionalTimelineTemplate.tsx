@@ -4,6 +4,8 @@ import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSectionItems } from "@/components/resume/InlineEditableSectionItems";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
 import { Plus, X, Linkedin, Globe, Github } from "lucide-react";
 
 interface TemplateProps {
@@ -469,47 +471,101 @@ export const ProfessionalTimelineTemplate = ({ resumeData, themeColor = "#059669
       )}
 
       {/* Custom Sections */}
-      {editable ? (
-        <InlineEditableList
-          path="sections"
-          items={resumeData.sections || []}
-          defaultItem={{
-            id: Date.now().toString(),
-            title: "Certifications",
-            content: "Certification Name",
-          }}
-          addButtonLabel="Add Section"
-          renderItem={(section, index) => (
-            <div key={section.id} className="mb-8">
-              <InlineEditableText
-                path={`sections[${index}].title`}
-                value={section.title}
-                className="text-[15px] font-bold mb-4 block"
-                style={{ color: themeColor }}
-                as="h2"
-              />
-              <InlineEditableText
-                path={`sections[${index}].content`}
-                value={section.content}
-                className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line block"
-                multiline
-                as="p"
-              />
-            </div>
-          )}
-        />
-      ) : (
-        resumeData.sections.map((section) => (
-          <div key={section.id} className="mb-8">
-            <h2 className="text-[15px] font-bold mb-4" style={{ color: themeColor }}>
-              {section.title}
-            </h2>
-            <p className="text-[13px] text-gray-700 leading-[1.7] whitespace-pre-line">
-              {section.content}
-            </p>
-          </div>
-        ))
-      )}
+      <ProfessionalTimelineCustomSections 
+        sections={resumeData.sections}
+        editable={editable}
+        themeColor={themeColor}
+      />
     </div>
+  );
+};
+
+// Separate component for Custom Sections to use hooks
+const ProfessionalTimelineCustomSections = ({ 
+  sections, 
+  editable, 
+  themeColor 
+}: { 
+  sections: ResumeData['sections']; 
+  editable: boolean; 
+  themeColor?: string;
+}) => {
+  const inlineEditContext = useInlineEdit();
+  const addArrayItem = inlineEditContext?.addArrayItem;
+  const removeArrayItem = inlineEditContext?.removeArrayItem;
+
+  const handleAddSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!addArrayItem) return;
+    addArrayItem('sections', {
+      id: Date.now().toString(),
+      title: 'New Section',
+      content: '',
+      items: ['Sample item 1', 'Sample item 2'],
+    });
+  };
+
+  const handleRemoveSection = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!removeArrayItem) return;
+    removeArrayItem('sections', index);
+  };
+
+  const accent = themeColor || "#2563eb";
+
+  return (
+    <>
+      {sections && sections.map((section, index) => (
+        <div key={section.id} className="mb-8 group/section" style={{ pageBreakInside: 'avoid' }}>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[15px] font-bold mb-4 flex-1" style={{ color: themeColor }}>
+              {editable ? (
+                <InlineEditableText
+                  path={`sections[${index}].title`}
+                  value={section.title}
+                  className="inline-block"
+                />
+              ) : section.title}
+            </h2>
+            {editable && (
+              <button
+                onClick={(e) => handleRemoveSection(e, index)}
+                className="opacity-0 group-hover/section:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                style={{ color: '#ef4444' }}
+                title="Remove Section"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+          
+          <InlineEditableSectionItems
+            sectionIndex={index}
+            items={section.items || []}
+            content={section.content || ""}
+            editable={editable}
+            itemStyle={{ fontSize: '13px', color: '#374151', lineHeight: '1.7' }}
+            addButtonLabel="Add Item"
+            placeholder="Click to add item..."
+            accentColor={accent}
+            showBullets={false}
+          />
+        </div>
+      ))}
+
+      {/* Add Section Button */}
+      {editable && (
+        <button
+          onClick={handleAddSection}
+          className="mt-4 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border-2 border-dashed hover:bg-gray-50 transition-colors"
+          style={{ color: accent, borderColor: accent }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Section
+        </button>
+      )}
+    </>
   );
 };

@@ -10,6 +10,14 @@
  * - Full CSS support: Gradients, shadows, flexbox, everything works
  */
 
+import { 
+  PDF_STYLES, 
+  type PDFStyleConfig,
+  SINGLE_COLUMN_CONFIG,
+  TWO_COLUMN_CONFIG,
+  COMPACT_CONFIG
+} from './pdfStyles';
+
 /**
  * Captures the resume preview HTML with all styles inlined
  */
@@ -84,10 +92,71 @@ function captureResumeHTML(element: HTMLElement): string {
 /**
  * Alternative: Capture HTML with Tailwind CSS included
  * This method includes the actual stylesheet for better compatibility
+ * 
+ * @param element - The HTML element to capture
+ * @param config - Optional PDF style configuration (defaults to SINGLE_COLUMN_CONFIG)
+ * @param themeColor - Optional theme color override
  */
-function captureResumeHTMLWithStyles(element: HTMLElement): string {
+function captureResumeHTMLWithStyles(
+  element: HTMLElement,
+  config: PDFStyleConfig = SINGLE_COLUMN_CONFIG,
+  themeColor?: string
+): string {
   // Clone the element to avoid modifying the original
   const clone = element.cloneNode(true) as HTMLElement;
+  
+  // Remove editing UI elements that shouldn't appear in PDF
+  const removeEditingElements = (el: HTMLElement) => {
+    // Selectors for elements to remove
+    const selectorsToRemove = [
+      // Add buttons (border-dashed buttons)
+      'button.border-dashed',
+      'button[class*="border-dashed"]',
+      // Delete/destructive buttons
+      'button[class*="destructive"]',
+      // Hover-only elements (delete buttons that appear on hover)
+      '[class*="group-hover:opacity"]',
+      // Any element with data-no-pdf attribute
+      '[data-no-pdf]',
+      '[data-pdf-hide]',
+      // Lucide icons that are part of editing UI (Plus, Trash, etc.)
+      'button svg.lucide-plus',
+      'button svg.lucide-trash',
+      'button svg.lucide-trash-2',
+      // Elements marked for print hiding
+      '.no-print',
+      '.print\\:hidden',
+      '[class*="no-print"]',
+    ];
+    
+    selectorsToRemove.forEach(selector => {
+      try {
+        const elements = el.querySelectorAll(selector);
+        elements.forEach(elem => elem.remove());
+      } catch (e) {
+        // Ignore invalid selectors
+      }
+    });
+    
+    // Also remove buttons that contain "Add" text (Add Experience, Add Education, etc.)
+    const allButtons = el.querySelectorAll('button');
+    allButtons.forEach(button => {
+      const text = button.textContent?.toLowerCase() || '';
+      const classList = button.className || '';
+      
+      // Remove add buttons
+      if (text.includes('add ') || classList.includes('border-dashed')) {
+        button.remove();
+      }
+      
+      // Remove small icon-only buttons (likely delete buttons)
+      if (button.classList.contains('h-6') && button.classList.contains('w-6')) {
+        button.remove();
+      }
+    });
+  };
+  
+  removeEditingElements(clone);
   
   // Remove any transform styles that might scale the element
   const removeTransforms = (el: HTMLElement) => {
@@ -117,7 +186,7 @@ function captureResumeHTMLWithStyles(element: HTMLElement): string {
   clone.style.margin = '0';
   clone.style.padding = clone.style.padding || '0';
   
-  // Get all stylesheets
+  // Get all stylesheets from the page
   const styleSheets = Array.from(document.styleSheets);
   let cssText = '';
   
@@ -132,6 +201,10 @@ function captureResumeHTMLWithStyles(element: HTMLElement): string {
     }
   });
   
+  // Generate PDF-specific CSS variables and base styles
+  const pdfCSSVariables = PDF_STYLES.generateCSSVariables(config, themeColor);
+  const pdfBaseStyles = PDF_STYLES.generateBasePDFStyles(config);
+  
   const html = `
     <!DOCTYPE html>
     <html>
@@ -140,23 +213,109 @@ function captureResumeHTMLWithStyles(element: HTMLElement): string {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <style>
+          /* PDF Style Configuration Variables */
+          ${pdfCSSVariables}
+          
+          /* PDF Base Styles */
+          ${pdfBaseStyles}
+          
+          /* Page Styles from Application */
           ${cssText}
           
+          /* PDF-Specific Overrides */
           * {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
           html, body {
-            width: 210mm;
-            min-height: 297mm;
+            width: ${config.layout.pageWidth};
+            min-height: ${config.layout.pageHeight};
+            font-family: ${config.fonts.primary};
           }
           @page {
             size: A4;
             margin: 0;
           }
+          
           /* Remove any transforms that might affect the PDF */
           [style*="transform"] {
             transform: none !important;
+          }
+          
+          /* Hide editing UI elements in PDF */
+          button.border-dashed,
+          button[class*="border-dashed"],
+          button[class*="destructive"],
+          [class*="group-hover:opacity"],
+          [data-no-pdf],
+          [data-pdf-hide],
+          .no-print,
+          [class*="no-print"] {
+            display: none !important;
+          }
+          
+          /* Hide dotted borders from editable fields in PDF */
+          .border-dashed,
+          [class*="border-dashed"],
+          .border-dotted,
+          [class*="border-dotted"] {
+            border: none !important;
+            border-style: solid !important;
+          }
+          
+          /* Hide borders from bullet point editable fields but keep content */
+          span[class*="border"][class*="dashed"],
+          .min-h\\[1\\.2rem\\].border,
+          [class*="min-h"][class*="border-dashed"] {
+            border: none !important;
+            background: transparent !important;
+            padding: 0 !important;
+          }
+          
+          /* Ensure bullet point list items are visible */
+          ul li,
+          ul li span,
+          ul li div {
+            display: list-item !important;
+            visibility: visible !important;
+          }
+          
+          ul li div {
+            display: block !important;
+          }
+          
+          /* Ensure list bullets are visible */
+          ul {
+            list-style-type: disc !important;
+            list-style-position: outside !important;
+            padding-left: 20px !important;
+          }
+          
+          ul li {
+            display: list-item !important;
+            list-style-type: disc !important;
+          }
+          
+          /* Hide any remaining add/delete buttons */
+          button:has(svg.lucide-plus),
+          button:has(svg.lucide-trash),
+          button:has(svg.lucide-trash-2) {
+            display: none !important;
+          }
+          
+          /* Ensure icons are visible in PDFs */
+          svg, svg * {
+            fill: none !important;
+            stroke: currentColor !important;
+            color: inherit !important;
+          }
+          
+          /* Contact icons specific styling */
+          svg[class*="lucide"] {
+            width: 16px !important;
+            height: 16px !important;
+            flex-shrink: 0 !important;
+            stroke-width: 2 !important;
           }
         </style>
       </head>
@@ -170,14 +329,28 @@ function captureResumeHTMLWithStyles(element: HTMLElement): string {
 }
 
 /**
+ * PDF Generation Options
+ */
+export interface PDFGenerationOptions {
+  /** PDF style configuration (defaults to single-column) */
+  config?: PDFStyleConfig;
+  /** Theme color override */
+  themeColor?: string;
+  /** Layout type shortcut (alternative to full config) */
+  layoutType?: 'single-column' | 'two-column' | 'compact';
+}
+
+/**
  * Generate PDF using Netlify Function
  * 
  * @param previewElementId - ID of the resume preview element in DOM
  * @param filename - Output filename for the PDF
+ * @param options - Optional PDF generation options
  */
 export async function generatePDFFromPreview(
   previewElementId: string = 'resume-preview',
-  filename: string = 'resume.pdf'
+  filename: string = 'resume.pdf',
+  options: PDFGenerationOptions = {}
 ): Promise<void> {
   // Find the preview element
   const previewElement = document.getElementById(previewElementId);
@@ -185,12 +358,15 @@ export async function generatePDFFromPreview(
     throw new Error(`Preview element with ID "${previewElementId}" not found`);
   }
   
+  // Determine the config to use
+  const config = options.config || PDF_STYLES.getDefault(options.layoutType);
+  
   // Use the element directly - it should contain the resume template
   // The captureResumeHTMLWithStyles function will handle transforms and sizing
   const resumeContent = previewElement;
   
-  // Capture HTML with styles
-  const html = captureResumeHTMLWithStyles(resumeContent);
+  // Capture HTML with styles using the config
+  const html = captureResumeHTMLWithStyles(resumeContent, config, options.themeColor);
   
   // Send to Netlify function
   const response = await fetch('/.netlify/functions/generate-pdf', {
@@ -249,3 +425,6 @@ export async function generatePDFFromHTML(
   return response.blob();
 }
 
+// Re-export PDF styles for use in templates
+export { PDF_STYLES, SINGLE_COLUMN_CONFIG, TWO_COLUMN_CONFIG, COMPACT_CONFIG } from './pdfStyles';
+export type { PDFStyleConfig, FontConfig, SpacingConfig, PDFLayoutConfig } from './pdfStyles';

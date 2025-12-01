@@ -21,9 +21,13 @@ import type { ResumeData } from "@/types/resume";
 interface ResumeFormProps {
   resumeData: ResumeData;
   setResumeData: (data: ResumeData) => void;
+  templateId?: string;
 }
 
-export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
+// Only premium-pro template supports skill ratings
+const TEMPLATES_WITH_SKILL_RATINGS = ['premium-pro'];
+
+export const ResumeForm = ({ resumeData, setResumeData, templateId }: ResumeFormProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const experienceContainerRef = useRef<HTMLDivElement>(null);
   const educationContainerRef = useRef<HTMLDivElement>(null);
@@ -33,8 +37,10 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
   const [skillInput, setSkillInput] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [includeSocialLinks, setIncludeSocialLinks] = useState(resumeData.includeSocialLinks || false);
+  // Only show skill ratings for templates that support them
+  const supportsSkillRatings = templateId ? TEMPLATES_WITH_SKILL_RATINGS.includes(templateId) : false;
   const [showSkillRatings, setShowSkillRatings] = useState(
-    Array.isArray(resumeData.skills) && resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")
+    supportsSkillRatings && Array.isArray(resumeData.skills) && resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")
   );
 
   // Update resumeData when includeSocialLinks changes
@@ -1105,24 +1111,26 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                       <h4 className="text-sm font-medium text-foreground">
                         Added Skills ({resumeData.skills.length})
                       </h4>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={toggleSkillRatings}
-                        className="text-xs h-7 px-2 text-muted-foreground hover:text-foreground"
-                      >
-                        {showSkillRatings ? (
-                          <>
-                            <StarOff className="h-3 w-3 mr-1" />
-                            Hide Ratings
-                          </>
-                        ) : (
-                          <>
-                            <Star className="h-3 w-3 mr-1" />
-                            Add Ratings
-                          </>
-                        )}
-                      </Button>
+                      {supportsSkillRatings && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={toggleSkillRatings}
+                          className="text-xs h-7 px-2 text-muted-foreground hover:text-foreground"
+                        >
+                          {showSkillRatings ? (
+                            <>
+                              <StarOff className="h-3 w-3 mr-1" />
+                              Hide Ratings
+                            </>
+                          ) : (
+                            <>
+                              <Star className="h-3 w-3 mr-1" />
+                              Add Ratings
+                            </>
+                          )}
+                        </Button>
+                      )}
                     </div>
                     <Button
                       variant="ghost"
@@ -1198,9 +1206,11 @@ export const ResumeForm = ({ resumeData, setResumeData }: ResumeFormProps) => {
                         </div>
                       ))}
                     </div>
-                      <p className="text-xs text-muted-foreground mt-2 px-1">
-                        💡 Tip: Click "Show Ratings" above to add skill levels (1-10) with progress bars
-                      </p>
+                      {supportsSkillRatings && (
+                        <p className="text-xs text-muted-foreground mt-2 px-1">
+                          💡 Tip: Click "Add Ratings" above to add skill levels (1-10) with progress bars
+                        </p>
+                      )}
                     </>
                   )}
                 </div>

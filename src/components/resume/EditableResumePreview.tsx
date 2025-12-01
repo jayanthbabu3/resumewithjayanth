@@ -688,7 +688,14 @@ export const EditableResumePreview = ({
 
       {/* Resume Preview */}
       <div className="col-span-8 overflow-auto rounded-lg bg-gray-100 p-6">
-        <div className="mx-auto w-full max-w-[210mm] rounded-lg bg-white shadow-2xl">
+        <div 
+          className="mx-auto rounded-lg bg-white shadow-2xl"
+          style={{ 
+            width: '210mm', 
+            minHeight: '297mm',
+            maxWidth: '100%',
+          }}
+        >
           <Template resumeData={resumeData} themeColor={themeColor} />
         </div>
       </div>

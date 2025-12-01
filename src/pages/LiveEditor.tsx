@@ -2326,8 +2326,16 @@ const LiveEditor = () => {
       </div>
 
       <div className="flex-1 overflow-auto md:p-8">
-        <div className="mx-auto" style={{ maxWidth: '210mm', width: '100%' }}>
-          <div id="resume-preview" className="bg-white shadow-none md:shadow-2xl rounded-none md:rounded-lg overflow-hidden">
+        <div className="mx-auto flex justify-center">
+          <div 
+            id="resume-preview" 
+            className="bg-white shadow-none md:shadow-2xl rounded-none md:rounded-lg overflow-hidden"
+            style={{ 
+              width: '210mm', 
+              minHeight: '297mm',
+              maxWidth: '100%',
+            }}
+          >
             {(() => {
               const currentTemplateId = templateId || "professional";
               const TemplateComponent = displayTemplates[currentTemplateId];
@@ -2339,10 +2347,6 @@ const LiveEditor = () => {
 
               // Wrap with InlineEditProvider only for templates that support it
               if (supportsInlineEdit) {
-                // Templates that support skill ratings (only enable for specific templates)
-                const templatesWithSkillRatings = ['premium-pro', 'premium-elite', 'refined'];
-                const showSkillRatings = templatesWithSkillRatings.includes(currentTemplateId);
-                
                 return (
                   <InlineEditProvider resumeData={resumeData} setResumeData={setResumeData}>
                     <TemplateComponent 
@@ -2353,7 +2357,6 @@ const LiveEditor = () => {
                       onRemoveBulletPoint={removeBulletPoint}
                       onAddSectionItem={addSectionItem}
                       onRemoveSectionItem={removeSectionItem}
-                      showSkillRatings={showSkillRatings}
                     />
                   </InlineEditProvider>
                 );

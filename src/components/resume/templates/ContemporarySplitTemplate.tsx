@@ -4,6 +4,10 @@ import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSectionItems } from "@/components/resume/InlineEditableSectionItems";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
+import { Plus, X } from "lucide-react";
+import { SINGLE_COLUMN_CONFIG } from "@/lib/pdfStyles";
 
 interface ContemporarySplitTemplateProps {
   resumeData: ResumeData;
@@ -29,13 +33,21 @@ export const ContemporarySplitTemplate = ({
   onRemoveBulletPoint,
 }: ContemporarySplitTemplateProps) => {
   const photo = resumeData.personalInfo.photo;
-  const accent = themeColor;
+  const styles = SINGLE_COLUMN_CONFIG;
+  const accent = themeColor || styles.colors.primary;
   const accentLight = hexToRgba(accent, 0.15);
 
   return (
-    <div className="w-full h-full bg-white text-gray-900 flex">
+    <div
+      className="w-full h-full bg-white flex"
+      style={{
+        fontFamily: styles.fonts.primary,
+        color: styles.colors.text.primary,
+        lineHeight: styles.spacing.lineHeight,
+      }}
+    >
       {/* Left Side - Dark Background 50% */}
-      <div className="w-[50%] bg-[#1f2937] text-white pt-10 pb-10 pl-10 pr-5">
+      <div className="w-[50%] text-white pt-10 pb-10 pl-10 pr-5" style={{ backgroundColor: styles.colors.text.primary }}>
         {/* Photo */}
         {photo && (
           <div className="mb-12 flex justify-center">
@@ -53,11 +65,25 @@ export const ContemporarySplitTemplate = ({
             <InlineEditableText
               path="personalInfo.fullName"
               value={resumeData.personalInfo.fullName}
-              className="text-[38px] font-bold mb-3 tracking-tight text-white"
+              className="mb-3 tracking-tight"
               as="h1"
+              style={{
+                fontSize: styles.header.name.size,
+                fontWeight: styles.header.name.weight,
+                lineHeight: styles.header.name.lineHeight,
+                color: styles.colors.text.light,
+              }}
             />
           ) : (
-            <h1 className="text-[38px] font-bold mb-3 tracking-tight text-white">
+            <h1
+              className="mb-3 tracking-tight"
+              style={{
+                fontSize: styles.header.name.size,
+                fontWeight: styles.header.name.weight,
+                lineHeight: styles.header.name.lineHeight,
+                color: styles.colors.text.light,
+              }}
+            >
               {resumeData.personalInfo.fullName}
             </h1>
           )}
@@ -67,12 +93,23 @@ export const ContemporarySplitTemplate = ({
               <InlineEditableText
                 path="personalInfo.title"
                 value={resumeData.personalInfo.title}
-                className="text-[15px] font-semibold uppercase tracking-wider mb-6"
+                className="uppercase tracking-wider mb-6"
                 as="p"
-                style={{ color: accent }}
+                style={{
+                  fontSize: styles.header.title.size,
+                  fontWeight: styles.header.title.weight,
+                  color: accent,
+                }}
               />
             ) : (
-              <p className="text-[15px] font-semibold uppercase tracking-wider mb-6" style={{ color: accent }}>
+              <p
+                className="uppercase tracking-wider mb-6"
+                style={{
+                  fontSize: styles.header.title.size,
+                  fontWeight: styles.header.title.weight,
+                  color: accent,
+                }}
+              >
                 {resumeData.personalInfo.title}
               </p>
             )
@@ -85,12 +122,24 @@ export const ContemporarySplitTemplate = ({
                 <InlineEditableText
                   path="personalInfo.summary"
                   value={resumeData.personalInfo.summary}
-                  className="text-[12.5px] text-white/90 leading-[1.8]"
+                  className="font-light"
+                  style={{
+                    fontSize: styles.itemDescription.size,
+                    color: styles.colors.text.light,
+                    lineHeight: styles.itemDescription.lineHeight,
+                  }}
                   as="p"
                   multiline
                 />
               ) : (
-                <p className="text-[12.5px] text-white/90 leading-[1.8]">
+                <p
+                  className="font-light"
+                  style={{
+                    fontSize: styles.itemDescription.size,
+                    color: styles.colors.text.light,
+                    lineHeight: styles.itemDescription.lineHeight,
+                  }}
+                >
                   {resumeData.personalInfo.summary}
                 </p>
               )}
@@ -100,17 +149,25 @@ export const ContemporarySplitTemplate = ({
 
         {/* Contact Info */}
         <div className="mb-8 pb-8 border-b-[0.5px] border-white/20">
-          <h2 className="text-[13px] font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
+          <h2
+            className="uppercase tracking-wider mb-4"
+            style={{
+              fontSize: styles.sectionHeading.size,
+              fontWeight: styles.sectionHeading.weight,
+              color: accent,
+            }}
+          >
             Contact
           </h2>
-          <div className="space-y-3 text-[11.5px]">
+          <div className="space-y-3" style={{ fontSize: styles.header.contact.size, color: styles.header.contact.color }}>
             {resumeData.personalInfo.email && (
               <div className="break-words">
                 {editable ? (
                   <InlineEditableText
                     path="personalInfo.email"
                     value={resumeData.personalInfo.email}
-                    className="text-[11.5px] text-white/90"
+                    className="text-white/90"
+                    style={{ fontSize: styles.header.contact.size }}
                     as="p"
                   />
                 ) : (
@@ -124,7 +181,8 @@ export const ContemporarySplitTemplate = ({
                   <InlineEditableText
                     path="personalInfo.phone"
                     value={resumeData.personalInfo.phone}
-                    className="text-[11.5px] text-white/90"
+                    className="text-white/90"
+                    style={{ fontSize: styles.header.contact.size }}
                     as="p"
                   />
                 ) : (
@@ -138,7 +196,8 @@ export const ContemporarySplitTemplate = ({
                   <InlineEditableText
                     path="personalInfo.location"
                     value={resumeData.personalInfo.location}
-                    className="text-[11.5px] text-white/90"
+                    className="text-white/90"
+                    style={{ fontSize: styles.header.contact.size }}
                     as="p"
                   />
                 ) : (
@@ -152,7 +211,14 @@ export const ContemporarySplitTemplate = ({
         {/* Skills */}
         {resumeData.skills && resumeData.skills.length > 0 && (
           <div className="mb-8 pb-8 border-b-[0.5px] border-white/20">
-            <h2 className="text-[13px] font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
+            <h2
+              className="uppercase tracking-wider mb-4"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: accent,
+              }}
+            >
               Skills
             </h2>
             {editable ? (
@@ -162,7 +228,8 @@ export const ContemporarySplitTemplate = ({
                     <InlineEditableText
                       path={`skills[${index}].name`}
                       value={skill.name}
-                      className="text-[12px] font-medium text-white/90 block"
+                      className="font-medium text-white/90 block"
+                      style={{ fontSize: styles.itemDescription.size }}
                       as="span"
                     />
                   </div>
@@ -172,7 +239,10 @@ export const ContemporarySplitTemplate = ({
               <div className="space-y-3">
                 {resumeData.skills.map((skill) => (
                   <div key={skill.id}>
-                    <span className="text-[12px] font-medium text-white/90 block">
+                    <span
+                      className="font-medium text-white/90 block"
+                      style={{ fontSize: styles.itemDescription.size }}
+                    >
                       {skill.name}
                     </span>
                   </div>
@@ -185,7 +255,14 @@ export const ContemporarySplitTemplate = ({
         {/* Education */}
         {resumeData.education && resumeData.education.length > 0 && (
           <div>
-            <h2 className="text-[13px] font-bold uppercase tracking-wider mb-4" style={{ color: accent }}>
+            <h2
+              className="uppercase tracking-wider mb-4"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: accent,
+              }}
+            >
               Education
             </h2>
             {editable ? (
@@ -206,21 +283,27 @@ export const ContemporarySplitTemplate = ({
                     <InlineEditableText
                       path={`education[${index}].degree`}
                       value={edu.degree}
-                      className="text-[12.5px] font-bold text-white block"
+                      className="text-white block"
                       as="h3"
+                      style={{
+                        fontSize: styles.itemTitle.size,
+                        fontWeight: styles.itemTitle.weight,
+                      }}
                     />
                     {edu.field && (
                       <InlineEditableText
                         path={`education[${index}].field`}
                         value={edu.field}
-                        className="text-[11.5px] text-white/90 block mt-1"
+                        className="text-white/90 block mt-1"
+                        style={{ fontSize: styles.itemDescription.size }}
                         as="p"
                       />
                     )}
                     <InlineEditableText
                       path={`education[${index}].school`}
                       value={edu.school}
-                      className="text-[11px] text-white/80 block mt-1"
+                      className="text-white/80 block mt-1"
+                      style={{ fontSize: styles.itemDescription.size }}
                       as="p"
                     />
                     <div className="text-[10.5px] text-white/70 mt-1 flex items-center gap-1">
@@ -243,14 +326,21 @@ export const ContemporarySplitTemplate = ({
               <div className="space-y-5">
                 {resumeData.education.map((edu, index) => (
                   <div key={index}>
-                    <h3 className="text-[12.5px] font-bold text-white">
+                    <h3
+                      className="text-white"
+                      style={{ fontSize: styles.itemTitle.size, fontWeight: styles.itemTitle.weight }}
+                    >
                       {edu.degree}
                     </h3>
                     {edu.field && (
-                      <p className="text-[11.5px] text-white/90 mt-1">{edu.field}</p>
+                      <p className="text-white/90 mt-1" style={{ fontSize: styles.itemDescription.size }}>
+                        {edu.field}
+                      </p>
                     )}
-                    <p className="text-[11px] text-white/80 mt-1">{edu.school}</p>
-                    <p className="text-[10.5px] text-white/70 mt-1">
+                    <p className="text-white/80 mt-1" style={{ fontSize: styles.itemDescription.size }}>
+                      {edu.school}
+                    </p>
+                    <p className="text-white/70 mt-1" style={{ fontSize: styles.itemDate.size }}>
                       {edu.startDate} - {edu.endDate}
                     </p>
                   </div>
@@ -266,7 +356,17 @@ export const ContemporarySplitTemplate = ({
         {/* Professional Experience */}
         {resumeData.experience && resumeData.experience.length > 0 && (
           <div className="mb-8">
-            <h2 className="text-[14px] font-bold uppercase tracking-wider mb-5 pb-2 border-b-[0.5px] text-gray-900" style={{ borderColor: accent }}>
+            <h2
+              className="uppercase tracking-wider"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: styles.colors.text.primary,
+                borderBottom: `1px solid ${accent}`,
+                paddingBottom: "8px",
+                marginBottom: styles.spacing.itemGap,
+              }}
+            >
               Professional Experience
             </h2>
             {editable ? (
@@ -277,8 +377,12 @@ export const ContemporarySplitTemplate = ({
                       <InlineEditableText
                         path={`experience[${index}].position`}
                         value={exp.position}
-                        className="text-[14.5px] font-bold text-gray-900"
+                        className="text-gray-900"
                         as="h3"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                        }}
                       />
                       <div className="text-[11px] font-semibold px-3 py-1 rounded-md" style={{ backgroundColor: accentLight, color: accent }}>
                         <div className="flex items-center gap-1 whitespace-nowrap">
@@ -303,9 +407,13 @@ export const ContemporarySplitTemplate = ({
                     <InlineEditableText
                       path={`experience[${index}].company`}
                       value={exp.company}
-                      className="text-[13px] font-semibold mb-2"
+                      className="mb-2"
                       as="p"
-                      style={{ color: accent }}
+                      style={{
+                        fontSize: styles.itemSubtitle.size,
+                        fontWeight: styles.itemSubtitle.weight,
+                        color: accent,
+                      }}
                     />
                     {/* Bullet Points Section */}
                     <div className="space-y-2">
@@ -313,12 +421,16 @@ export const ContemporarySplitTemplate = ({
                         <>
                           {(exp.bulletPoints && exp.bulletPoints.length > 0 ? exp.bulletPoints : exp.description.split('\n').filter(Boolean)).map((point, bulletIndex) => (
                             <div key={bulletIndex} className="flex items-start gap-2 group">
-                              <span className="text-[12px] text-gray-400 mt-1">•</span>
+                              <span className="text-gray-400 mt-1" style={{ fontSize: styles.itemDescription.size }}>•</span>
                               <div className="flex-1">
                                 <InlineEditableText
                                   path={exp.bulletPoints ? `experience[${index}].bulletPoints[${bulletIndex}]` : `experience[${index}].description`}
                                   value={point}
-                                  className="text-[12px] text-gray-700 leading-[1.75]"
+                                  className="text-gray-700"
+                                  style={{
+                                    fontSize: styles.itemDescription.size,
+                                    lineHeight: styles.itemDescription.lineHeight,
+                                  }}
                                   as="div"
                                   multiline
                                 />
@@ -382,7 +494,14 @@ export const ContemporarySplitTemplate = ({
                       {exp.company}
                     </p>
                     {(exp.bulletPoints && exp.bulletPoints.length > 0) || exp.description ? (
-                      <ul className="list-disc ml-5 space-y-1.5 text-[12px] text-gray-700 leading-[1.75]">
+                      <ul
+                        className="list-disc ml-5 space-y-1.5"
+                        style={{
+                          fontSize: styles.itemDescription.size,
+                          color: styles.colors.text.secondary,
+                          lineHeight: styles.itemDescription.lineHeight,
+                        }}
+                      >
                         {(exp.bulletPoints && exp.bulletPoints.length > 0 
                           ? exp.bulletPoints 
                           : exp.description
@@ -402,49 +521,117 @@ export const ContemporarySplitTemplate = ({
         )}
 
         {/* Additional Sections */}
-        {editable ? (
-          <InlineEditableList
-            path="sections"
-            items={resumeData.sections || []}
-            defaultItem={{
-              id: Date.now().toString(),
-              title: "Section Title",
-              content: "Section content",
-            }}
-            addButtonLabel="Add Section"
-            renderItem={(section, index) => (
-              <div className="mb-8">
+        <ContemporarySplitCustomSections 
+          sections={resumeData.sections}
+          editable={editable}
+          accent={accent}
+          styles={styles}
+        />
+      </div>
+    </div>
+  );
+};
+
+// Separate component for Custom Sections to use hooks
+const ContemporarySplitCustomSections = ({ 
+  sections, 
+  editable, 
+  accent,
+  styles
+}: { 
+  sections: ResumeData['sections']; 
+  editable: boolean; 
+  accent: string;
+  styles: typeof SINGLE_COLUMN_CONFIG;
+}) => {
+  const inlineEditContext = useInlineEdit();
+  const addArrayItem = inlineEditContext?.addArrayItem;
+  const removeArrayItem = inlineEditContext?.removeArrayItem;
+
+  const handleAddSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!addArrayItem) return;
+    addArrayItem('sections', {
+      id: Date.now().toString(),
+      title: 'New Section',
+      content: '',
+      items: ['Sample item 1', 'Sample item 2'],
+    });
+  };
+
+  const handleRemoveSection = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!removeArrayItem) return;
+    removeArrayItem('sections', index);
+  };
+
+  return (
+    <>
+      {sections && sections.map((section, index) => (
+        <div key={section.id || index} className="mb-8 group/section">
+          <div className="flex items-center gap-2">
+            <h2
+              className="uppercase tracking-wider flex-1"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: styles.colors.text.primary,
+                borderBottom: `1px solid ${accent}`,
+                paddingBottom: "8px",
+                marginBottom: styles.spacing.itemGap,
+              }}
+            >
+              {editable ? (
                 <InlineEditableText
                   path={`sections[${index}].title`}
                   value={section.title}
-                  className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b-[0.5px] text-gray-900"
-                  as="h2"
-                  style={{ borderColor: accent }}
+                  className="inline-block"
                 />
-                <InlineEditableText
-                  path={`sections[${index}].content`}
-                  value={section.content}
-                  className="text-[12px] text-gray-700 leading-[1.75] whitespace-pre-line"
-                  as="div"
-                  multiline
-                />
-              </div>
+              ) : section.title}
+            </h2>
+            {editable && (
+              <button
+                onClick={(e) => handleRemoveSection(e, index)}
+                className="opacity-0 group-hover/section:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                style={{ color: '#ef4444' }}
+                title="Remove Section"
+              >
+                <X className="h-4 w-4" />
+              </button>
             )}
+          </div>
+          
+          <InlineEditableSectionItems
+            sectionIndex={index}
+            items={section.items || []}
+            content={section.content || ""}
+            editable={editable}
+            itemStyle={{
+              fontSize: styles.itemDescription.size,
+              color: styles.colors.text.secondary,
+              lineHeight: styles.itemDescription.lineHeight,
+            }}
+            addButtonLabel="Add Item"
+            placeholder="Click to add item..."
+            accentColor={accent}
+            showBullets={false}
           />
-        ) : (
-          resumeData.sections &&
-          resumeData.sections.map((section, index) => (
-            <div key={index} className="mb-8">
-              <h2 className="text-[14px] font-bold uppercase tracking-wider mb-4 pb-2 border-b-[0.5px] text-gray-900" style={{ borderColor: accent }}>
-                {section.title}
-              </h2>
-              <div className="text-[12px] text-gray-700 leading-[1.75] whitespace-pre-line">
-                {section.content}
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
+        </div>
+      ))}
+
+      {/* Add Section Button */}
+      {editable && (
+        <button
+          onClick={handleAddSection}
+          className="mt-4 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border-2 border-dashed hover:bg-gray-50 transition-colors"
+          style={{ color: accent, borderColor: accent }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Section
+        </button>
+      )}
+    </>
   );
 };

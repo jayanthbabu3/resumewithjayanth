@@ -3,11 +3,13 @@ import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
-import { InlineEditableSkillsWithRating } from "@/components/resume/InlineEditableSkillsWithRating";
+import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSectionItems } from "@/components/resume/InlineEditableSectionItems";
 import { cn } from "@/lib/utils";
 import { useInlineEdit } from "@/contexts/InlineEditContext";
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
+import { SINGLE_COLUMN_CONFIG } from "@/lib/pdfStyles";
 
 interface RefinedTemplateProps {
   resumeData: ResumeData;
@@ -21,12 +23,30 @@ export const RefinedTemplate = ({
   editable = false,
 }: RefinedTemplateProps) => {
   const { addBulletPoint, removeBulletPoint } = useInlineEdit();
+  const styles = SINGLE_COLUMN_CONFIG;
+  const accent = themeColor || styles.colors.primary;
+  const sidebarBg = `${accent}15`;
 
   return (
-    <div className="mx-auto bg-white font-sans text-gray-900">
-      <div className="grid grid-cols-[280px,1fr]">
+    <div
+      className="mx-auto bg-white min-h-full"
+      style={{
+        fontFamily: styles.fonts.primary,
+        color: styles.colors.text.primary,
+        lineHeight: styles.spacing.lineHeight,
+        minHeight: '297mm', // A4 height
+      }}
+    >
+      <div className="grid grid-cols-[280px,1fr] h-full" style={{ minHeight: '297mm' }}>
         {/* Left Sidebar */}
-        <div className="px-8 py-12" style={{ backgroundColor: `${themeColor}15` }}>
+        <div
+          className="px-8 py-12"
+          style={{
+            backgroundColor: sidebarBg,
+            fontSize: styles.itemDescription.size,
+            minHeight: '100%',
+          }}
+        >
           {/* Photo */}
           {resumeData.personalInfo.photo && (
             <div className="mb-8">
@@ -36,58 +56,75 @@ export const RefinedTemplate = ({
 
           {/* Contact */}
           <div className="mb-8">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-900">
+            <h3
+              className="uppercase tracking-widest"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: styles.colors.text.primary,
+                marginBottom: "12px",
+              }}
+            >
               Contact
             </h3>
-            <div className="space-y-3 text-xs text-gray-700">
+            <div className="space-y-3" style={{ color: styles.colors.text.secondary }}>
               {resumeData.personalInfo.email && (
                 <div className="break-words">
-                  <div className="mb-1 font-semibold" style={{ color: themeColor }}>
+                  <div className="mb-1 font-semibold" style={{ color: accent }}>
                     Email
                   </div>
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.email"
                       value={resumeData.personalInfo.email}
-                      className="font-light text-xs text-gray-700"
+                      className="font-light"
+                      style={{ fontSize: styles.header.contact.size, color: styles.colors.text.secondary }}
                       as="div"
                     />
                   ) : (
-                    <div className="font-light">{resumeData.personalInfo.email}</div>
+                    <div className="font-light" style={{ fontSize: styles.header.contact.size }}>
+                      {resumeData.personalInfo.email}
+                    </div>
                   )}
                 </div>
               )}
               {resumeData.personalInfo.phone && (
                 <div>
-                  <div className="mb-1 font-semibold" style={{ color: themeColor }}>
+                  <div className="mb-1 font-semibold" style={{ color: accent }}>
                     Phone
                   </div>
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.phone"
                       value={resumeData.personalInfo.phone}
-                      className="font-light text-xs text-gray-700"
+                      className="font-light"
+                      style={{ fontSize: styles.header.contact.size, color: styles.colors.text.secondary }}
                       as="div"
                     />
                   ) : (
-                    <div className="font-light">{resumeData.personalInfo.phone}</div>
+                    <div className="font-light" style={{ fontSize: styles.header.contact.size }}>
+                      {resumeData.personalInfo.phone}
+                    </div>
                   )}
                 </div>
               )}
               {resumeData.personalInfo.location && (
                 <div>
-                  <div className="mb-1 font-semibold" style={{ color: themeColor }}>
+                  <div className="mb-1 font-semibold" style={{ color: accent }}>
                     Location
                   </div>
                   {editable ? (
                     <InlineEditableText
                       path="personalInfo.location"
                       value={resumeData.personalInfo.location}
-                      className="font-light text-xs text-gray-700"
+                      className="font-light"
+                      style={{ fontSize: styles.header.contact.size, color: styles.colors.text.secondary }}
                       as="div"
                     />
                   ) : (
-                    <div className="font-light">{resumeData.personalInfo.location}</div>
+                    <div className="font-light" style={{ fontSize: styles.header.contact.size }}>
+                      {resumeData.personalInfo.location}
+                    </div>
                   )}
                 </div>
               )}
@@ -97,50 +134,46 @@ export const RefinedTemplate = ({
           {/* Skills */}
           {resumeData.skills.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-900">
+              <h3
+                className="uppercase tracking-widest"
+                style={{
+                  fontSize: styles.sectionHeading.size,
+                  fontWeight: styles.sectionHeading.weight,
+                  color: styles.colors.text.primary,
+                  marginBottom: "12px",
+                }}
+              >
                 Skills
               </h3>
               {editable ? (
-                <InlineEditableSkillsWithRating
+                <InlineEditableSkills
                   path="skills"
                   skills={resumeData.skills}
-                  showRating={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
-                  verticalLayout={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
                   renderSkill={(skill, index) => (
-                    <div className="text-xs font-light text-gray-700 leading-relaxed">
+                    <div
+                      className="font-light"
+                      style={{
+                        fontSize: styles.itemDescription.size,
+                        color: styles.colors.text.secondary,
+                      }}
+                    >
                       {skill.name}
-                      {skill.rating && skill.rating.trim() !== "" && (
-                        <span className="ml-2 text-gray-500">({skill.rating})</span>
-                      )}
                     </div>
                   )}
                 />
               ) : (
-                <div className={cn(
-                  resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? "space-y-1" : "space-y-2"
-                )}>
+                <div className="space-y-2">
                   {resumeData.skills.map((skill, index) => (
-                    resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
-                      // Vertical layout with ratings
-                      <div key={skill.id} className="flex items-center justify-between">
-                        <div className="text-xs font-light text-gray-700 leading-relaxed">
-                          {skill.name}
-                        </div>
-                        {skill.rating && skill.rating.trim() !== "" && (
-                          <span className="text-xs text-gray-500 ml-2">
-                            {skill.rating}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      // Horizontal layout without ratings
-                      <div
-                        key={skill.id}
-                        className="text-xs font-light text-gray-700 leading-relaxed"
-                      >
-                        {skill.name}
-                      </div>
-                    )
+                    <div
+                      key={skill.id}
+                      className="font-light"
+                      style={{
+                        fontSize: styles.itemDescription.size,
+                        color: styles.colors.text.secondary,
+                      }}
+                    >
+                      {skill.name}
+                    </div>
                   ))}
                 </div>
               )}
@@ -150,7 +183,15 @@ export const RefinedTemplate = ({
           {/* Education */}
           {resumeData.education.length > 0 && (
             <div className="mb-8">
-              <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-900">
+              <h3
+                className="uppercase tracking-widest"
+                style={{
+                  fontSize: styles.sectionHeading.size,
+                  fontWeight: styles.sectionHeading.weight,
+                  color: styles.colors.text.primary,
+                  marginBottom: "12px",
+                }}
+              >
                 Education
               </h3>
               {editable ? (
@@ -171,26 +212,36 @@ export const RefinedTemplate = ({
                       <InlineEditableText
                         path={`education[${index}].degree`}
                         value={edu.degree}
-                        className="text-xs font-semibold text-gray-900 mb-1"
+                        className="mb-1"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                          color: styles.colors.text.primary,
+                        }}
                         as="div"
                       />
                       {edu.field && (
                         <InlineEditableText
                           path={`education[${index}].field`}
                           value={edu.field}
-                          className="text-xs font-light text-gray-700 mb-1"
+                          className="mb-1"
+                          style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.secondary }}
                           as="div"
                         />
                       )}
                       <InlineEditableText
                         path={`education[${index}].school`}
                         value={edu.school}
-                        className="text-xs font-medium mb-1"
+                        className="mb-1"
                         as="div"
-                        style={{ color: themeColor }}
+                        style={{
+                          fontSize: styles.itemSubtitle.size,
+                          fontWeight: styles.itemSubtitle.weight,
+                          color: accent,
+                        }}
                       />
-                      <div className="text-xs font-light text-gray-600">
-                        <div className="text-xs text-gray-500 flex items-center gap-1">
+                      <div style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
+                        <div className="flex items-center gap-1">
                           <InlineEditableDate
                             path={`education[${index}].startDate`}
                             value={edu.startDate}
@@ -204,11 +255,12 @@ export const RefinedTemplate = ({
                           />
                         </div>
                         {edu.gpa && (
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="mt-1">
                             GPA: <InlineEditableText
                               path={`education[${index}].gpa`}
                               value={edu.gpa}
                               className="inline-block"
+                              style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}
                               as="span"
                             />
                           </div>
@@ -221,21 +273,30 @@ export const RefinedTemplate = ({
                 <div className="space-y-4">
                   {resumeData.education.map((edu) => (
                     <div key={edu.id}>
-                      <div className="text-xs font-semibold text-gray-900 mb-1">
+                      <div
+                        className="mb-1"
+                        style={{ fontSize: styles.itemTitle.size, fontWeight: styles.itemTitle.weight }}
+                      >
                         {edu.degree}
                       </div>
                       {edu.field && (
-                        <div className="text-xs font-light text-gray-700 mb-1">
+                        <div
+                          className="mb-1"
+                          style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.secondary }}
+                        >
                           {edu.field}
                         </div>
                       )}
-                      <div className="text-xs font-medium mb-1" style={{ color: themeColor }}>
+                      <div
+                        className="mb-1"
+                        style={{ fontSize: styles.itemSubtitle.size, fontWeight: styles.itemSubtitle.weight, color: accent }}
+                      >
                         {edu.school}
                       </div>
-                      <div className="text-xs font-light text-gray-600">
+                      <div style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                         {edu.startDate} — {edu.endDate}
                         {edu.gpa && (
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="mt-1">
                             GPA: {edu.gpa}
                           </div>
                         )}
@@ -249,21 +310,34 @@ export const RefinedTemplate = ({
         </div>
 
         {/* Main Content */}
-        <div className="px-12 py-12">
+        <div
+          className="px-12 py-12"
+          style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.primary }}
+        >
           {/* Header */}
           <div className="mb-10">
             {editable ? (
               <InlineEditableText
                 path="personalInfo.fullName"
                 value={resumeData.personalInfo.fullName}
-                className="mb-3 text-4xl font-normal tracking-tight leading-none"
+                className="mb-3"
                 as="h1"
-                style={{ color: themeColor }}
+                style={{
+                  fontSize: styles.header.name.size,
+                  fontWeight: styles.header.name.weight,
+                  lineHeight: styles.header.name.lineHeight,
+                  color: accent,
+                }}
               />
             ) : (
               <h1
-                className="mb-3 text-4xl font-normal tracking-tight leading-none"
-                style={{ color: themeColor }}
+                className="mb-3"
+                style={{
+                  fontSize: styles.header.name.size,
+                  fontWeight: styles.header.name.weight,
+                  lineHeight: styles.header.name.lineHeight,
+                  color: accent,
+                }}
               >
                 {resumeData.personalInfo.fullName}
               </h1>
@@ -272,11 +346,23 @@ export const RefinedTemplate = ({
               <InlineEditableText
                 path="personalInfo.title"
                 value={resumeData.personalInfo.title}
-                className="mb-6 text-lg font-semibold uppercase tracking-wider text-gray-700"
+                className="mb-6 uppercase tracking-wider"
                 as="h2"
+                style={{
+                  fontSize: styles.header.title.size,
+                  fontWeight: styles.header.title.weight,
+                  color: styles.colors.text.secondary,
+                }}
               />
             ) : (
-              <h2 className="mb-6 text-lg font-semibold uppercase tracking-wider text-gray-700">
+              <h2
+                className="mb-6 uppercase tracking-wider"
+                style={{
+                  fontSize: styles.header.title.size,
+                  fontWeight: styles.header.title.weight,
+                  color: styles.colors.text.secondary,
+                }}
+              >
                 {resumeData.personalInfo.title}
               </h2>
             )}
@@ -285,12 +371,24 @@ export const RefinedTemplate = ({
                 <InlineEditableText
                   path="personalInfo.summary"
                   value={resumeData.personalInfo.summary}
-                  className="text-xs leading-relaxed text-gray-700 font-light"
+                  className="font-light"
+                  style={{
+                    fontSize: styles.itemDescription.size,
+                    color: styles.colors.text.secondary,
+                    lineHeight: styles.itemDescription.lineHeight,
+                  }}
                   as="p"
                   multiline
                 />
               ) : (
-                <p className="text-xs leading-relaxed text-gray-700 font-light">
+                <p
+                  className="font-light"
+                  style={{
+                    fontSize: styles.itemDescription.size,
+                    color: styles.colors.text.secondary,
+                    lineHeight: styles.itemDescription.lineHeight,
+                  }}
+                >
                   {resumeData.personalInfo.summary}
                 </p>
               )
@@ -299,8 +397,18 @@ export const RefinedTemplate = ({
 
           {/* Professional Experience */}
           {resumeData.experience.length > 0 && (
-            <div className="mb-10">
-              <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b" style={{ borderColor: themeColor }}>
+            <div style={{ marginBottom: styles.spacing.sectionGap }}>
+              <h3
+                className="uppercase tracking-widest"
+                style={{
+                  fontSize: styles.sectionHeading.size,
+                  fontWeight: styles.sectionHeading.weight,
+                  color: styles.colors.text.primary,
+                  borderBottom: `1px solid ${accent}`,
+                  paddingBottom: "8px",
+                  marginBottom: styles.spacing.itemGap,
+                }}
+              >
                 Professional Experience
               </h3>
               {editable ? (
@@ -319,12 +427,17 @@ export const RefinedTemplate = ({
                   }}
                   addButtonLabel="Add Experience"
                   renderItem={(exp, index) => (
-                    <div>
+                    <div style={{ marginBottom: styles.spacing.itemGap }}>
                       <div className="mb-3">
                         <InlineEditableText
                           path={`experience[${index}].position`}
                           value={exp.position}
-                          className="text-xs font-semibold text-gray-900 mb-1"
+                          className="mb-1"
+                          style={{
+                            fontSize: styles.itemTitle.size,
+                            fontWeight: styles.itemTitle.weight,
+                            color: styles.colors.text.primary,
+                          }}
                           as="h4"
                         />
                         <div className="flex items-baseline justify-between">
@@ -333,10 +446,17 @@ export const RefinedTemplate = ({
                             value={exp.company}
                             className="text-xs font-medium"
                             as="p"
-                            style={{ color: themeColor }}
+                            style={{
+                              fontSize: styles.itemSubtitle.size,
+                              fontWeight: styles.itemSubtitle.weight,
+                              color: accent,
+                            }}
                           />
-                          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                          <span
+                            className="uppercase tracking-wide"
+                            style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}
+                          >
+                            <div className="flex items-center gap-1">
                               <InlineEditableDate
                                 path={`experience[${index}].startDate`}
                                 value={exp.startDate}
@@ -366,7 +486,12 @@ export const RefinedTemplate = ({
                                     <InlineEditableText
                                       path={`experience[${index}].bulletPoints[${bulletIndex}]`}
                                       value={bullet}
-                                      className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative"
+                                      className="font-light pl-4 relative"
+                                      style={{
+                                        fontSize: styles.itemDescription.size,
+                                        color: styles.colors.text.secondary,
+                                        lineHeight: styles.itemDescription.lineHeight,
+                                      }}
                                       placeholder="Enter bullet point..."
                                       as="div"
                                       multiline
@@ -384,7 +509,14 @@ export const RefinedTemplate = ({
                                 </div>
                               ))
                             ) : (
-                              <div className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0">
+                              <div
+                                className="font-light pl-4 relative before:content-['•'] before:absolute before:left-0"
+                                style={{
+                                  fontSize: styles.itemDescription.size,
+                                  color: styles.colors.text.secondary,
+                                  lineHeight: styles.itemDescription.lineHeight,
+                                }}
+                              >
                                 No bullet points yet. Click "Add Bullet Point" to add one.
                               </div>
                             )}
@@ -402,13 +534,28 @@ export const RefinedTemplate = ({
                           // Non-editable mode (read-only)
                           (exp.bulletPoints && exp.bulletPoints.length > 0) ? (
                             exp.bulletPoints.map((bullet, bulletIndex) => (
-                              <p key={bulletIndex} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                              <p
+                                key={bulletIndex}
+                                className="font-light pl-4 relative before:content-['•'] before:absolute before:left-0"
+                                style={{
+                                  fontSize: styles.itemDescription.size,
+                                  color: styles.colors.text.secondary,
+                                  lineHeight: styles.itemDescription.lineHeight,
+                                }}
+                              >
                                 {bullet}
                               </p>
                             ))
                           ) : (
                             exp.description && (
-                              <p className="text-xs leading-relaxed text-gray-700 font-light">
+                              <p
+                                className="font-light"
+                                style={{
+                                  fontSize: styles.itemDescription.size,
+                                  color: styles.colors.text.secondary,
+                                  lineHeight: styles.itemDescription.lineHeight,
+                                }}
+                              >
                                 {exp.description}
                               </p>
                             )
@@ -423,14 +570,23 @@ export const RefinedTemplate = ({
                   {resumeData.experience.map((exp) => (
                     <div key={exp.id}>
                       <div className="mb-3">
-                        <h4 className="text-xs font-semibold text-gray-900 mb-1">
+                        <h4
+                          className="mb-1"
+                          style={{ fontSize: styles.itemTitle.size, fontWeight: styles.itemTitle.weight }}
+                        >
                           {exp.position}
                         </h4>
                         <div className="flex items-baseline justify-between">
-                          <p className="text-xs font-medium" style={{ color: themeColor }}>
+                          <p
+                            className="font-medium"
+                            style={{ fontSize: styles.itemSubtitle.size, color: accent }}
+                          >
                             {exp.company}
                           </p>
-                          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                          <span
+                            className="uppercase tracking-wide"
+                            style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}
+                          >
                             {exp.startDate} — {exp.current ? "Present" : exp.endDate}
                           </span>
                         </div>
@@ -444,7 +600,15 @@ export const RefinedTemplate = ({
                           ))
                         ) : (
                           exp.description && exp.description.split("\n").map((line, idx) => (
-                            <p key={idx} className="text-xs leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0" style={{ color: 'inherit' }}>
+                            <p
+                              key={idx}
+                              className="font-light pl-4 relative before:content-['•'] before:absolute before:left-0"
+                              style={{
+                                fontSize: styles.itemDescription.size,
+                                color: styles.colors.text.secondary,
+                                lineHeight: styles.itemDescription.lineHeight,
+                              }}
+                            >
                               {line}
                             </p>
                           ))
@@ -458,53 +622,120 @@ export const RefinedTemplate = ({
           )}
 
           {/* Custom Sections */}
-          {editable ? (
-            <InlineEditableList
-              path="sections"
-              items={resumeData.sections}
-              defaultItem={{
-                id: Date.now().toString(),
-                title: "Section Title",
-                content: "Section content",
-              }}
-              addButtonLabel="Add Section"
-              renderItem={(section, index) => (
-                <div className="mb-10">
-                  <InlineEditableText
-                    path={`sections[${index}].title`}
-                    value={section.title}
-                    className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b"
-                    as="h3"
-                    style={{ borderColor: themeColor }}
-                  />
-                  <InlineEditableText
-                    path={`sections[${index}].content`}
-                    value={section.content}
-                    className="text-xs leading-relaxed text-gray-700 font-light"
-                    as="div"
-                    multiline
-                  />
-                </div>
-              )}
-            />
-          ) : (
-            resumeData.sections.map((section) => (
-              <div key={section.id} className="mb-10">
-                <h3 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-900 pb-2 border-b" style={{ borderColor: themeColor }}>
-                  {section.title}
-                </h3>
-                <div className="space-y-1.5">
-                  {section.content.split("\n").map((line, idx) => (
-                    <p key={idx} className="text-sm leading-relaxed text-gray-700 font-light pl-4 relative before:content-['•'] before:absolute before:left-0">
-                      {line}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            ))
-          )}
+          <RefinedCustomSections 
+            sections={resumeData.sections}
+            editable={editable}
+            accent={accent}
+            styles={styles}
+          />
         </div>
       </div>
     </div>
+  );
+};
+
+// Separate component for Custom Sections to use hooks
+const RefinedCustomSections = ({ 
+  sections, 
+  editable, 
+  accent,
+  styles
+}: { 
+  sections: ResumeData['sections']; 
+  editable: boolean; 
+  accent: string;
+  styles: typeof SINGLE_COLUMN_CONFIG;
+}) => {
+  const inlineEditContext = useInlineEdit();
+  const addArrayItem = inlineEditContext?.addArrayItem;
+  const removeArrayItem = inlineEditContext?.removeArrayItem;
+
+  const handleAddSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!addArrayItem) return;
+    addArrayItem('sections', {
+      id: Date.now().toString(),
+      title: 'New Section',
+      content: '',
+      items: ['Sample item 1', 'Sample item 2'],
+    });
+  };
+
+  const handleRemoveSection = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!removeArrayItem) return;
+    removeArrayItem('sections', index);
+  };
+
+  return (
+    <>
+      {sections.map((section, index) => (
+        <div key={section.id} style={{ marginBottom: styles.spacing.sectionGap, pageBreakInside: 'avoid' }} className="group/section">
+          <div className="flex items-center gap-2">
+            <h3
+              className="uppercase tracking-widest flex-1"
+              style={{
+                fontSize: styles.sectionHeading.size,
+                fontWeight: styles.sectionHeading.weight,
+                color: styles.colors.text.primary,
+                borderBottom: `1px solid ${accent}`,
+                paddingBottom: "8px",
+                marginBottom: styles.spacing.itemGap,
+              }}
+            >
+              {editable ? (
+                <InlineEditableText
+                  path={`sections[${index}].title`}
+                  value={section.title}
+                  className="inline-block"
+                />
+              ) : section.title}
+            </h3>
+            {editable && (
+              <button
+                onClick={(e) => handleRemoveSection(e, index)}
+                className="opacity-0 group-hover/section:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                style={{ color: '#ef4444' }}
+                title="Remove Section"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+          
+          {/* Use InlineEditableSectionItems for dynamic content */}
+          <InlineEditableSectionItems
+            sectionIndex={index}
+            items={section.items || []}
+            content={section.content || ""}
+            editable={editable}
+            itemStyle={{
+              fontSize: styles.itemDescription.size,
+              color: styles.colors.text.secondary,
+              lineHeight: styles.itemDescription.lineHeight,
+              fontWeight: '300',
+            }}
+            addButtonLabel="Add Item"
+            placeholder="Click to add item..."
+            accentColor={accent}
+            showBullets={true}
+          />
+        </div>
+      ))}
+
+      {/* Add Section Button */}
+      {editable && (
+        <button
+          onClick={handleAddSection}
+          className="mt-4 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border-2 border-dashed hover:bg-gray-50 transition-colors"
+          style={{ color: accent, borderColor: accent }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Section
+        </button>
+      )}
+    </>
   );
 };

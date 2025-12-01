@@ -3,8 +3,14 @@ import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
-import { Plus, X } from "lucide-react";
+import { InlineEditableSectionItems } from "@/components/resume/InlineEditableSectionItems";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
+import { Plus, X, Mail, Phone, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SINGLE_COLUMN_CONFIG } from "@/lib/pdfStyles";
+
+// Use centralized PDF config for consistent styling
+const styles = SINGLE_COLUMN_CONFIG;
 
 interface PremiumUniversalTemplateProps {
   resumeData: ResumeData;
@@ -60,75 +66,123 @@ export const PremiumUniversalTemplate = ({
   const accent = normalizeHex(themeColor) ?? "#2563eb";
   const accentBorder = withOpacity(accent, "33") ?? "#c7d2fe";
   return (
-    <div className="w-full h-full bg-white text-gray-900 p-12 text-[13px] leading-relaxed">
+    <div 
+      className="w-full h-full bg-white text-gray-900 leading-relaxed"
+      style={{ 
+        padding: '40px 48px',
+        fontSize: styles.itemDescription.size,
+        lineHeight: styles.spacing.lineHeight,
+        fontFamily: styles.fonts.primary,
+        color: styles.colors.text.primary,
+      }}
+    >
       {/* Header */}
-      <div className="mb-8 pb-5 border-b" style={{ borderColor: accent }}>
+      <div style={{ 
+        marginBottom: styles.spacing.sectionGap, 
+        paddingBottom: '20px', 
+        borderBottom: `1px solid ${accent}`,
+      }}>
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
             value={resumeData.personalInfo.fullName}
-            className="text-[30px] font-bold mb-2 block"
-            style={{ color: accent }}
+            className="block mb-2"
+            style={{ 
+              fontSize: styles.header.name.size,
+              fontWeight: styles.header.name.weight,
+              lineHeight: styles.header.name.lineHeight,
+              letterSpacing: styles.header.name.letterSpacing,
+              color: accent,
+            }}
             as="h1"
           />
         ) : (
-          <h1 className="text-[30px] font-bold mb-2" style={{ color: accent }}>
+          <h1 className="mb-2" style={{ 
+            fontSize: styles.header.name.size,
+            fontWeight: styles.header.name.weight,
+            lineHeight: styles.header.name.lineHeight,
+            letterSpacing: styles.header.name.letterSpacing,
+            color: accent,
+          }}>
             {resumeData.personalInfo.fullName}
           </h1>
         )}
-        <div className="flex flex-wrap gap-x-6 gap-y-1 text-[12px] text-gray-600">
+        <div className="flex flex-wrap gap-x-6 gap-y-1" style={{ fontSize: styles.header.contact.size, color: styles.colors.text.secondary }}>
           {resumeData.personalInfo.email && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.email"
-                value={resumeData.personalInfo.email}
-                className="inline-block"
-              />
-            ) : (
-              <span>{resumeData.personalInfo.email}</span>
-            )
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2 }} />
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.email"
+                  value={resumeData.personalInfo.email}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.email}</span>
+              )}
+            </div>
           )}
           {resumeData.personalInfo.phone && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.phone"
-                value={resumeData.personalInfo.phone}
-                className="inline-block"
-              />
-            ) : (
-              <span>{resumeData.personalInfo.phone}</span>
-            )
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2 }} />
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.phone"
+                  value={resumeData.personalInfo.phone}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.phone}</span>
+              )}
+            </div>
           )}
           {resumeData.personalInfo.location && (
-            editable ? (
-              <InlineEditableText
-                path="personalInfo.location"
-                value={resumeData.personalInfo.location}
-                className="inline-block"
-              />
-            ) : (
-              <span>{resumeData.personalInfo.location}</span>
-            )
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 2 }} />
+              {editable ? (
+                <InlineEditableText
+                  path="personalInfo.location"
+                  value={resumeData.personalInfo.location}
+                  className="inline-block"
+                />
+              ) : (
+                <span>{resumeData.personalInfo.location}</span>
+              )}
+            </div>
           )}
         </div>
       </div>
 
       {/* Professional Summary */}
       {resumeData.personalInfo.summary && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-semibold mb-3 uppercase tracking-wide" style={{ color: accent }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 className="uppercase tracking-wide" style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: accent,
+            marginBottom: '12px',
+          }}>
             Professional Summary
           </h2>
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
               value={resumeData.personalInfo.summary}
-              className="text-[12.5px] text-gray-700 leading-[1.7] block"
+              className="block"
+              style={{
+                fontSize: styles.itemDescription.size,
+                color: styles.colors.text.secondary,
+                lineHeight: styles.itemDescription.lineHeight,
+              }}
               multiline
               as="p"
             />
           ) : (
-            <p className="text-[12.5px] text-gray-700 leading-[1.7]">
+            <p style={{
+              fontSize: styles.itemDescription.size,
+              color: styles.colors.text.secondary,
+              lineHeight: styles.itemDescription.lineHeight,
+            }}>
               {resumeData.personalInfo.summary}
             </p>
           )}
@@ -137,8 +191,13 @@ export const PremiumUniversalTemplate = ({
 
       {/* Experience */}
       {resumeData.experience && resumeData.experience.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-semibold mb-3 uppercase tracking-wide" style={{ color: accent }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 className="uppercase tracking-wide" style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: accent,
+            marginBottom: '12px',
+          }}>
             Professional Experience
           </h2>
           {editable ? (
@@ -156,25 +215,35 @@ export const PremiumUniversalTemplate = ({
               }}
               addButtonLabel="Add Experience"
               renderItem={(exp, index) => (
-                <div className="mb-6 last:mb-0">
-                  <div className="flex justify-between items-start mb-2">
+                <div style={{ marginBottom: styles.spacing.itemGap }}>
+                  <div className="flex justify-between items-start" style={{ marginBottom: '8px' }}>
                     <div>
                       <InlineEditableText
                         path={`experience[${index}].position`}
                         value={exp.position}
-                        className="text-[14px] font-semibold text-gray-900 block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                          color: styles.colors.text.primary,
+                        }}
                         as="h3"
                       />
                       <InlineEditableText
                         path={`experience[${index}].company`}
                         value={exp.company}
-                        className="text-[12.5px] text-gray-700 font-medium block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemSubtitle.size,
+                          fontWeight: styles.itemSubtitle.weight,
+                          color: styles.colors.text.secondary,
+                        }}
                         as="p"
                       />
                     </div>
-                    <div className="text-right text-[11px] text-gray-600">
+                    <div className="text-right" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                       <p>
-                        <div className="text-xs text-gray-500 flex items-center gap-1">
+                        <div className="flex items-center gap-1">
                           <InlineEditableDate
                             path={`experience[${index}].startDate`}
                             value={exp.startDate}
@@ -198,14 +267,19 @@ export const PremiumUniversalTemplate = ({
                     <InlineEditableText
                       path={`experience[${index}].description`}
                       value={exp.description}
-                      className="text-[12.5px] text-gray-700 leading-[1.7] block"
+                      className="block"
+                      style={{
+                        fontSize: styles.itemDescription.size,
+                        color: styles.colors.text.secondary,
+                        lineHeight: styles.itemDescription.lineHeight,
+                      }}
                       multiline
                       as="div"
                     />
                   )}
                   {/* Bullet Points - Editable Mode */}
                   {(!exp.bulletPoints || exp.bulletPoints.length === 0) && onAddBulletPoint && exp.id && (
-                    <div className="mt-3">
+                    <div style={{ marginTop: '12px' }}>
                       <button
                         onClick={(e) => {
                           e.preventDefault();
@@ -222,16 +296,21 @@ export const PremiumUniversalTemplate = ({
                     </div>
                   )}
                   {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                    <div className="mt-3">
-                      <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
+                    <div style={{ marginTop: '12px' }}>
+                      <ul className="ml-5 space-y-1" style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.secondary, lineHeight: styles.itemDescription.lineHeight, listStyleType: 'disc', paddingLeft: '20px' }}>
                         {exp.bulletPoints.map((bullet, bulletIndex) => (
-                          <li key={bulletIndex} className="flex items-start group">
-                            <div className="flex-1 flex items-center gap-2">
+                          <li key={bulletIndex} className="group" style={{ display: 'list-item' }}>
+                            <div className="flex items-center gap-2">
                               <InlineEditableText
                                 path={`experience[${index}].bulletPoints[${bulletIndex}]`}
                                 value={bullet || ""}
                                 placeholder="Click to add achievement..."
-                                className="text-[12.5px] text-gray-700 leading-[1.7] flex-1 min-h-[1.2rem] border border-dashed border-gray-300 rounded px-1"
+                                className="flex-1 min-h-[1.2rem] border border-dashed border-gray-300 rounded px-1"
+                                style={{
+                                  fontSize: styles.itemDescription.size,
+                                  color: styles.colors.text.secondary,
+                                  lineHeight: styles.itemDescription.lineHeight,
+                                }}
                                 multiline
                                 as="span"
                               />
@@ -269,99 +348,38 @@ export const PremiumUniversalTemplate = ({
             />
           ) : (
             resumeData.experience.map((exp, index) => (
-              <div key={exp.id} className="mb-6 last:mb-0">
-                <div className="flex justify-between items-start mb-2">
+              <div key={exp.id} style={{ marginBottom: styles.spacing.itemGap }}>
+                <div className="flex justify-between items-start" style={{ marginBottom: '8px' }}>
                   <div>
-                    <h3 className="text-[14px] font-semibold text-gray-900">
+                    <h3 style={{
+                      fontSize: styles.itemTitle.size,
+                      fontWeight: styles.itemTitle.weight,
+                      color: styles.colors.text.primary,
+                    }}>
                       {exp.position}
                     </h3>
-                    <p className="text-[12.5px] text-gray-700 font-medium">
+                    <p style={{
+                      fontSize: styles.itemSubtitle.size,
+                      fontWeight: styles.itemSubtitle.weight,
+                      color: styles.colors.text.secondary,
+                    }}>
                       {exp.company}
                     </p>
                   </div>
-                  <div className="text-right text-[11px] text-gray-600">
-                    <p>
-                      {exp.startDate} - {exp.current ? "Present" : exp.endDate}
-                    </p>
+                  <div className="text-right" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
+                    {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                   </div>
                 </div>
                 
-                {/* Bullet Points - Editable Mode */}
-                {editable ? (
-                  <>
-                    {(!exp.bulletPoints || exp.bulletPoints.length === 0) && onAddBulletPoint && exp.id && (
-                      <div className="mt-3">
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (onAddBulletPoint && exp.id) {
-                              onAddBulletPoint(exp.id);
-                            }
-                          }}
-                          className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium"
-                        >
-                          <Plus className="h-3 w-3" />
-                          Add Achievement
-                        </button>
-                      </div>
-                    )}
-                    {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                      <div className="mt-3">
-                        <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
-                          {exp.bulletPoints.map((bullet, bulletIndex) => (
-                            <li key={bulletIndex} className="flex items-start group">
-                              <span className="mr-2">•</span>
-                              <div className="flex-1 flex items-center gap-2">
-                                <InlineEditableText
-                                  path={`experience[${index}].bulletPoints[${bulletIndex}]`}
-                                  value={bullet || ""}
-                                  placeholder="Click to add achievement..."
-                                  className="text-[12.5px] text-gray-700 leading-[1.7] flex-1 min-h-[1.2rem] border border-dashed border-gray-300 rounded px-1"
-                                  multiline
-                                  as="span"
-                                />
-                                {onRemoveBulletPoint && (
-                                  <button
-                                    onClick={() => onRemoveBulletPoint(exp.id, bulletIndex)}
-                                    className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-100 rounded"
-                                  >
-                                    <X className="h-3 w-3 text-red-500" />
-                                  </button>
-                                )}
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                        {onAddBulletPoint && exp.id && (
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              if (onAddBulletPoint && exp.id) {
-                                onAddBulletPoint(exp.id);
-                              }
-                            }}
-                            className="mt-2 flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium"
-                          >
-                            <Plus className="h-3 w-3" />
-                            Add Achievement
-                          </button>
-                        )}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  /* Bullet Points - Non-Editable Mode */
-                  exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                    <ul className="ml-5 list-disc space-y-1 text-[12.5px] text-gray-700 leading-[1.7]">
-                      {exp.bulletPoints.map((bullet, bulletIndex) => (
-                        bullet && (
-                          <li key={bulletIndex}>{bullet}</li>
-                        )
-                      ))}
-                    </ul>
-                  )
+                {/* Bullet Points - Non-Editable Mode */}
+                {exp.bulletPoints && exp.bulletPoints.length > 0 && (
+                  <ul className="ml-5 list-disc space-y-1" style={{ marginTop: '12px', fontSize: styles.itemDescription.size, color: styles.colors.text.secondary, lineHeight: styles.itemDescription.lineHeight }}>
+                    {exp.bulletPoints.map((bullet, bulletIndex) => (
+                      bullet && (
+                        <li key={bulletIndex}>{bullet}</li>
+                      )
+                    ))}
+                  </ul>
                 )}
               </div>
             ))
@@ -371,8 +389,13 @@ export const PremiumUniversalTemplate = ({
 
       {/* Education */}
       {resumeData.education && resumeData.education.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-semibold mb-3 uppercase tracking-wide" style={{ color: accent }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 className="uppercase tracking-wide" style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: accent,
+            marginBottom: '12px',
+          }}>
             Education
           </h2>
           {editable ? (
@@ -389,31 +412,44 @@ export const PremiumUniversalTemplate = ({
               }}
               addButtonLabel="Add Education"
               renderItem={(edu, index) => (
-                <div className="mb-4 last:mb-0">
+                <div style={{ marginBottom: styles.spacing.itemGap }}>
                   <div className="flex justify-between items-start">
                     <div>
                       <InlineEditableText
                         path={`education[${index}].degree`}
                         value={`${edu.degree}${edu.field ? ` in ${edu.field}` : ""}`}
-                        className="text-[14px] font-semibold text-gray-900 block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                          color: styles.colors.text.primary,
+                        }}
                         as="h3"
                       />
                       <InlineEditableText
                         path={`education[${index}].school`}
                         value={edu.school}
-                        className="text-[12.5px] text-gray-700 block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemSubtitle.size,
+                          color: styles.colors.text.secondary,
+                        }}
                         as="p"
                       />
                       {edu.gpa && (
                         <InlineEditableText
                           path={`education[${index}].gpa`}
                           value={`Grade: ${edu.gpa}`}
-                          className="text-[11.5px] text-gray-600 block"
+                          className="block"
+                          style={{
+                            fontSize: styles.itemDate.size,
+                            color: styles.colors.text.secondary,
+                          }}
                           as="p"
                         />
                       )}
                     </div>
-                    <div className="text-right text-[11px] text-gray-600">
+                    <div className="text-right" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                       <p>
                         {edu.startDate} - {edu.endDate}
                       </p>
@@ -424,18 +460,26 @@ export const PremiumUniversalTemplate = ({
             />
           ) : (
             resumeData.education.map((edu, index) => (
-              <div key={edu.id} className="mb-4 last:mb-0">
+              <div key={edu.id} style={{ marginBottom: styles.spacing.itemGap }}>
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-[14px] font-semibold text-gray-900">
+                    <h3 style={{
+                      fontSize: styles.itemTitle.size,
+                      fontWeight: styles.itemTitle.weight,
+                      color: styles.colors.text.primary,
+                    }}>
                       {edu.degree} {edu.field && `in ${edu.field}`}
                     </h3>
-                    <p className="text-[12.5px] text-gray-700">{edu.school}</p>
+                    <p style={{ fontSize: styles.itemSubtitle.size, color: styles.colors.text.secondary }}>
+                      {edu.school}
+                    </p>
                     {edu.gpa && (
-                      <p className="text-[11.5px] text-gray-600">Grade: {edu.gpa}</p>
+                      <p style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
+                        Grade: {edu.gpa}
+                      </p>
                     )}
                   </div>
-                  <div className="text-right text-[11px] text-gray-600">
+                  <div className="text-right" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                     <p>
                       {edu.startDate} - {edu.endDate}
                     </p>
@@ -449,8 +493,13 @@ export const PremiumUniversalTemplate = ({
 
       {/* Skills */}
       {resumeData.skills && resumeData.skills.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[15px] font-semibold mb-3 uppercase tracking-wide" style={{ color: accent }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 className="uppercase tracking-wide" style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: accent,
+            marginBottom: '12px',
+          }}>
             Skills
           </h2>
           {editable ? (
@@ -459,8 +508,13 @@ export const PremiumUniversalTemplate = ({
               skills={resumeData.skills}
               renderSkill={(skill, index) => (
                 <span
-                  className="px-4 py-1.5 text-[12px] font-medium text-gray-900 rounded"
-                  style={{ border: `1px solid ${accentBorder}` }}
+                  className="font-medium rounded"
+                  style={{
+                    padding: styles.skills.tag.padding,
+                    fontSize: styles.skills.tag.size,
+                    color: styles.colors.text.primary,
+                    border: `1px solid ${accentBorder}`,
+                  }}
                 >
                   {skill.name}
                 </span>
@@ -471,8 +525,13 @@ export const PremiumUniversalTemplate = ({
               {resumeData.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-4 py-1.5 text-[12px] font-medium text-gray-900 rounded"
-                    style={{ border: `1px solid ${accentBorder}` }}
+                    className="font-medium rounded"
+                    style={{
+                      padding: styles.skills.tag.padding,
+                      fontSize: styles.skills.tag.size,
+                      color: styles.colors.text.primary,
+                      border: `1px solid ${accentBorder}`,
+                    }}
                   >
                     {skill.name}
                   </span>
@@ -483,53 +542,112 @@ export const PremiumUniversalTemplate = ({
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections && resumeData.sections.length > 0 && (
-        editable ? (
-          <InlineEditableList
-            path="sections"
-            items={resumeData.sections}
-            defaultItem={{
-              id: Date.now().toString(),
-              title: "New Section",
-              content: "Section content here",
-            }}
-            addButtonLabel="Add Section"
-            renderItem={(section, sectionIndex) => (
-              <div className="mb-8">
+      <PremiumUniversalCustomSections 
+        sections={resumeData.sections}
+        editable={editable}
+        accent={accent}
+        styles={styles}
+      />
+    </div>
+  );
+};
+
+// Separate component for Custom Sections to use hooks
+const PremiumUniversalCustomSections = ({ 
+  sections, 
+  editable, 
+  accent,
+  styles
+}: { 
+  sections: ResumeData['sections']; 
+  editable: boolean; 
+  accent: string;
+  styles: typeof SINGLE_COLUMN_CONFIG;
+}) => {
+  const inlineEditContext = useInlineEdit();
+  const addArrayItem = inlineEditContext?.addArrayItem;
+  const removeArrayItem = inlineEditContext?.removeArrayItem;
+
+  const handleAddSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!addArrayItem) return;
+    addArrayItem('sections', {
+      id: Date.now().toString(),
+      title: 'New Section',
+      content: '',
+      items: ['Sample item 1', 'Sample item 2'],
+    });
+  };
+
+  const handleRemoveSection = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!removeArrayItem) return;
+    removeArrayItem('sections', index);
+  };
+
+  return (
+    <>
+      {sections && sections.map((section, sectionIndex) => (
+        <div key={section.id || sectionIndex} style={{ marginBottom: styles.spacing.sectionGap, pageBreakInside: 'avoid' }} className="group/section">
+          <div className="flex items-center gap-2">
+            <h2 className="uppercase tracking-wide flex-1" style={{
+              fontSize: styles.sectionHeading.size,
+              fontWeight: styles.sectionHeading.weight,
+              color: accent,
+              marginBottom: '12px',
+            }}>
+              {editable ? (
                 <InlineEditableText
                   path={`sections[${sectionIndex}].title`}
                   value={section.title}
-                  className="text-[15px] font-semibold mb-3 uppercase tracking-wide block"
-                  style={{ color: accent }}
-                  as="h2"
+                  className="inline-block"
                 />
-                <InlineEditableText
-                  path={`sections[${sectionIndex}].content`}
-                  value={section.content}
-                  className="text-[12.5px] text-gray-700 leading-[1.7] block whitespace-pre-line"
-                  multiline
-                  as="div"
-                />
-              </div>
+              ) : section.title}
+            </h2>
+            {editable && (
+              <button
+                onClick={(e) => handleRemoveSection(e, sectionIndex)}
+                className="opacity-0 group-hover/section:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                style={{ color: '#ef4444' }}
+                title="Remove Section"
+              >
+                <X className="h-4 w-4" />
+              </button>
             )}
+          </div>
+          
+          {/* Use InlineEditableSectionItems for dynamic content */}
+          <InlineEditableSectionItems
+            sectionIndex={sectionIndex}
+            items={section.items || []}
+            content={section.content || ""}
+            editable={editable}
+            itemStyle={{
+              fontSize: styles.itemDescription.size,
+              color: styles.colors.text.secondary,
+              lineHeight: styles.itemDescription.lineHeight,
+            }}
+            addButtonLabel="Add Item"
+            placeholder="Click to add item..."
+            accentColor={accent}
+            showBullets={false}
           />
-        ) : (
-          resumeData.sections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="mb-8">
-              <h2 className="text-[15px] font-semibold mb-3 uppercase tracking-wide" style={{ color: accent }}>
-                {section.title}
-              </h2>
-              <div className="text-[12.5px] text-gray-700 leading-[1.7]">
-                {section.content.split("\n").map((line, i) => (
-                  <p key={i} className="mb-1">
-                    {line}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))
-        )
+        </div>
+      ))}
+
+      {/* Add Section Button */}
+      {editable && (
+        <button
+          onClick={handleAddSection}
+          className="mt-4 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border-2 border-dashed hover:bg-gray-50 transition-colors"
+          style={{ color: accent, borderColor: accent }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Section
+        </button>
       )}
-    </div>
+    </>
   );
 };

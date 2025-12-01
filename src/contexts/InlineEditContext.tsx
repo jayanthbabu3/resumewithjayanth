@@ -16,9 +16,7 @@ const InlineEditContext = createContext<InlineEditContextType | undefined>(undef
 
 export const useInlineEdit = () => {
   const context = useContext(InlineEditContext);
-  if (!context) {
-    throw new Error("useInlineEdit must be used within InlineEditProvider");
-  }
+  // Return undefined if not within provider (for non-editable mode)
   return context;
 };
 

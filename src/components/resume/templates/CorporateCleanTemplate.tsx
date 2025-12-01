@@ -5,6 +5,7 @@ import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
 import { Plus, X, Linkedin, Globe, Github } from "lucide-react";
+import { SINGLE_COLUMN_CONFIG } from "@/lib/pdfStyles";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -13,6 +14,9 @@ interface TemplateProps {
   onAddBulletPoint?: (expId: string) => void;
   onRemoveBulletPoint?: (expId: string, bulletIndex: number) => void;
 }
+
+// Use centralized PDF config for consistent styling
+const styles = SINGLE_COLUMN_CONFIG;
 
 // Helper to create a lighter border color using rgba
 const getLightBorderColor = (hex: string) => {
@@ -34,18 +38,40 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
   const photo = resumeData.personalInfo.photo;
 
   return (
-    <div className="w-full bg-white text-gray-900 p-8 text-[13px] leading-relaxed">
+    <div 
+      className="w-full bg-white text-gray-900 leading-relaxed"
+      style={{ 
+        padding: '32px 40px',
+        fontSize: styles.itemDescription.size,
+        lineHeight: styles.spacing.lineHeight,
+        fontFamily: styles.fonts.primary,
+      }}
+    >
       {/* Header */}
-      <div className="mb-8 pb-4 border-b border-gray-300">
+      <div style={{ marginBottom: styles.spacing.sectionGap, paddingBottom: '16px', borderBottom: '1px solid #d1d5db' }}>
         {editable ? (
           <InlineEditableText
             path="personalInfo.fullName"
             value={resumeData.personalInfo.fullName || "Your Name"}
-            className="text-[38px] font-bold mb-2 block text-gray-900"
+            className="block mb-2"
+            style={{ 
+              fontSize: styles.header.name.size,
+              fontWeight: styles.header.name.weight,
+              lineHeight: styles.header.name.lineHeight,
+              letterSpacing: styles.header.name.letterSpacing,
+              color: styles.colors.text.primary,
+            }}
             as="h1"
           />
         ) : (
-          <h1 className="text-[38px] font-bold mb-2 text-gray-900">
+          <h1 style={{ 
+            fontSize: styles.header.name.size,
+            fontWeight: styles.header.name.weight,
+            lineHeight: styles.header.name.lineHeight,
+            letterSpacing: styles.header.name.letterSpacing,
+            color: styles.colors.text.primary,
+            marginBottom: '8px',
+          }}>
             {resumeData.personalInfo.fullName || "Your Name"}
           </h1>
         )}
@@ -53,18 +79,27 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
           <InlineEditableText
             path="personalInfo.title"
             value={resumeData.personalInfo.title || "Professional Title"}
-            className="text-[15px] mb-4 block font-semibold"
-            style={{ color: themeColor }}
+            className="block mb-4"
+            style={{ 
+              fontSize: styles.header.title.size,
+              fontWeight: styles.header.title.weight,
+              color: themeColor,
+            }}
             as="p"
           />
         ) : (
-          <p className="text-[15px] mb-4 font-semibold" style={{ color: themeColor }}>
+          <p style={{ 
+            fontSize: styles.header.title.size,
+            fontWeight: styles.header.title.weight,
+            color: themeColor,
+            marginBottom: '16px',
+          }}>
             {resumeData.personalInfo.title || "Professional Title"}
           </p>
         )}
 
         {/* Contact */}
-        <div className="flex gap-x-6 text-[12.5px] text-gray-600 flex-wrap">
+        <div className="flex flex-wrap" style={{ gap: '24px', fontSize: styles.header.contact.size, color: styles.colors.text.secondary }}>
           {resumeData.personalInfo.email && (
             editable ? (
               <InlineEditableText
@@ -103,20 +138,36 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
 
       {/* Summary */}
       {resumeData.personalInfo.summary && (
-        <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: themeColor,
+            borderBottom: `1px solid ${lightBorderColor}`,
+            paddingBottom: '4px',
+            marginBottom: '12px',
+          }}>
             PROFESSIONAL SUMMARY
           </h2>
           {editable ? (
             <InlineEditableText
               path="personalInfo.summary"
               value={resumeData.personalInfo.summary}
-              className="text-[13px] text-gray-700 leading-[1.7] block"
+              className="block"
+              style={{
+                fontSize: styles.itemDescription.size,
+                color: styles.colors.text.secondary,
+                lineHeight: styles.itemDescription.lineHeight,
+              }}
               multiline
               as="p"
             />
           ) : (
-            <p className="text-[13px] text-gray-700 leading-[1.7]">
+            <p style={{
+              fontSize: styles.itemDescription.size,
+              color: styles.colors.text.secondary,
+              lineHeight: styles.itemDescription.lineHeight,
+            }}>
               {resumeData.personalInfo.summary}
             </p>
           )}
@@ -184,8 +235,15 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
 
       {/* Experience */}
       {resumeData.experience.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: themeColor,
+            borderBottom: `1px solid ${lightBorderColor}`,
+            paddingBottom: '4px',
+            marginBottom: '12px',
+          }}>
             WORK EXPERIENCE
           </h2>
           {editable ? (
@@ -203,24 +261,33 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               }}
               addButtonLabel="Add Experience"
               renderItem={(exp, index) => (
-                <div className="mb-5 group">
-                  <div className="flex justify-between items-start mb-2 gap-4">
+                <div className="group" style={{ marginBottom: styles.spacing.itemGap }}>
+                  <div className="flex justify-between items-start gap-4" style={{ marginBottom: '8px' }}>
                     <div className="flex-1">
                       <InlineEditableText
                         path={`experience[${index}].position`}
                         value={exp.position || "Position Title"}
-                        className="text-[14px] font-bold text-gray-900 block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                          color: styles.colors.text.primary,
+                        }}
                         as="h3"
                       />
                       <InlineEditableText
                         path={`experience[${index}].company`}
                         value={exp.company || "Company Name"}
-                        className="text-[12.5px] font-semibold block"
-                        style={{ color: themeColor }}
+                        className="block"
+                        style={{ 
+                          fontSize: styles.itemSubtitle.size,
+                          fontWeight: styles.itemSubtitle.weight,
+                          color: themeColor,
+                        }}
                         as="p"
                       />
                     </div>
-                    <div className="text-[12px] text-gray-600 whitespace-nowrap flex items-center gap-1">
+                    <div className="whitespace-nowrap flex items-center gap-1" style={{ fontSize: styles.itemDate.size, color: themeColor }}>
                       <InlineEditableDate
                         path={`experience[${index}].startDate`}
                         value={exp.startDate}
@@ -244,7 +311,12 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                     <InlineEditableText
                       path={`experience[${index}].description`}
                       value={exp.description}
-                      className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line block"
+                      className="whitespace-pre-line block"
+                      style={{
+                        fontSize: styles.itemDescription.size,
+                        color: styles.colors.text.secondary,
+                        lineHeight: styles.itemDescription.lineHeight,
+                      }}
                       multiline
                       as="p"
                     />
@@ -252,9 +324,14 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                   
                   {/* Bullet Points */}
                   {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                    <ul className="mt-3 space-y-2 list-none">
+                    <ul className="list-none" style={{ marginTop: '12px' }}>
                       {exp.bulletPoints.map((bullet, bulletIndex) => (
-                        <li key={bulletIndex} className="text-[12.5px] text-gray-700 leading-[1.7] flex items-start">
+                        <li key={bulletIndex} className="flex items-start" style={{ 
+                          fontSize: styles.itemDescription.size,
+                          color: styles.colors.text.secondary,
+                          lineHeight: styles.itemDescription.lineHeight,
+                          marginBottom: styles.spacing.bulletGap,
+                        }}>
                           <span className="mr-2" style={{ color: themeColor }}>•</span>
                           {editable ? (
                             <InlineEditableText
@@ -301,30 +378,47 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               )}
             />
           ) : (
-            <div className="space-y-5">
+            <div>
               {resumeData.experience.map((exp) => (
-                <div key={exp.id} className="group">
-                  <div className="flex justify-between items-start mb-2 gap-4">
+                <div key={exp.id} className="group" style={{ marginBottom: styles.spacing.itemGap }}>
+                  <div className="flex justify-between items-start gap-4" style={{ marginBottom: '8px' }}>
                     <div className="flex-1">
-                      <h3 className="text-[14px] font-bold text-gray-900">{exp.position || "Position Title"}</h3>
-                      <p className="text-[12.5px] font-semibold" style={{ color: themeColor }}>{exp.company || "Company Name"}</p>
+                      <h3 style={{
+                        fontSize: styles.itemTitle.size,
+                        fontWeight: styles.itemTitle.weight,
+                        color: styles.colors.text.primary,
+                      }}>{exp.position || "Position Title"}</h3>
+                      <p style={{ 
+                        fontSize: styles.itemSubtitle.size,
+                        fontWeight: styles.itemSubtitle.weight,
+                        color: themeColor,
+                      }}>{exp.company || "Company Name"}</p>
                     </div>
-                    <span className="text-[12px] text-gray-600 whitespace-nowrap">
+                    <span className="whitespace-nowrap" style={{ fontSize: styles.itemDate.size, color: themeColor }}>
                       {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
                     </span>
                   </div>
                   {exp.description && (
-                    <p className="text-[12.5px] text-gray-700 leading-[1.7] whitespace-pre-line">
+                    <p className="whitespace-pre-line" style={{
+                      fontSize: styles.itemDescription.size,
+                      color: styles.colors.text.secondary,
+                      lineHeight: styles.itemDescription.lineHeight,
+                    }}>
                       {exp.description}
                     </p>
                   )}
                   
                   {/* Bullet Points */}
                   {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                    <ul className="mt-3 space-y-2 list-none">
+                    <ul className="list-none" style={{ marginTop: '12px' }}>
                       {exp.bulletPoints.map((bullet, bulletIndex) => (
                         bullet && (
-                          <li key={bulletIndex} className="text-[12.5px] text-gray-700 leading-[1.7] flex items-start">
+                          <li key={bulletIndex} className="flex items-start" style={{ 
+                            fontSize: styles.itemDescription.size,
+                            color: styles.colors.text.secondary,
+                            lineHeight: styles.itemDescription.lineHeight,
+                            marginBottom: styles.spacing.bulletGap,
+                          }}>
                             <span className="mr-2" style={{ color: themeColor }}>•</span>
                             <span>{bullet}</span>
                           </li>
@@ -341,8 +435,15 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
 
       {/* Skills */}
       {resumeData.skills.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: themeColor,
+            borderBottom: `1px solid ${lightBorderColor}`,
+            paddingBottom: '4px',
+            marginBottom: '12px',
+          }}>
             KEY SKILLS
           </h2>
           {editable ? (
@@ -351,7 +452,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               skills={resumeData.skills}
               renderSkill={(skill) => {
                 return skill.name ? (
-                  <span className="inline-block mr-4 mb-2 text-[12.5px] text-gray-700">
+                  <span className="inline-block mr-4 mb-2" style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.secondary }}>
                     • {skill.name}
                   </span>
                 ) : null;
@@ -361,7 +462,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
             <div className="flex flex-wrap">
               {resumeData.skills.map((skill) => (
                 skill.name ? (
-                  <span key={skill.id} className="mr-4 mb-2 text-[12.5px] text-gray-700">
+                  <span key={skill.id} className="mr-4 mb-2" style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.secondary }}>
                     • {skill.name}
                   </span>
                 ) : null
@@ -373,8 +474,15 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
 
       {/* Education */}
       {resumeData.education.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-[14px] font-bold mb-3 pb-1 border-b" style={{ color: themeColor, borderColor: lightBorderColor }}>
+        <div style={{ marginBottom: styles.spacing.sectionGap }}>
+          <h2 style={{ 
+            fontSize: styles.sectionHeading.size,
+            fontWeight: styles.sectionHeading.weight,
+            color: themeColor,
+            borderBottom: `1px solid ${lightBorderColor}`,
+            paddingBottom: '4px',
+            marginBottom: '12px',
+          }}>
             EDUCATION
           </h2>
           {editable ? (
@@ -391,39 +499,47 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               }}
               addButtonLabel="Add Education"
               renderItem={(edu, index) => (
-                <div className="mb-4">
+                <div style={{ marginBottom: styles.spacing.itemGap }}>
                   <div className="flex justify-between items-start gap-4">
                     <div className="flex-1">
                       <InlineEditableText
                         path={`education[${index}].degree`}
                         value={edu.degree}
-                        className="text-[13px] font-semibold text-gray-900 block"
+                        className="block"
+                        style={{
+                          fontSize: styles.itemTitle.size,
+                          fontWeight: styles.itemTitle.weight,
+                          color: styles.colors.text.primary,
+                        }}
                         as="h3"
                       />
                       {edu.field && (
                         <InlineEditableText
                           path={`education[${index}].field`}
                           value={edu.field}
-                          className="text-[12px] text-gray-600 block"
+                          className="block"
+                          style={{ fontSize: styles.itemSubtitle.size, color: styles.colors.text.secondary }}
                           as="p"
                         />
                       )}
                       <InlineEditableText
                         path={`education[${index}].school`}
                         value={edu.school}
-                        className="text-[12px] text-gray-700 block"
+                        className="block"
+                        style={{ fontSize: styles.itemSubtitle.size, color: themeColor }}
                         as="p"
                       />
                       {edu.gpa && (
                         <InlineEditableText
                           path={`education[${index}].gpa`}
                           value={`GPA: ${edu.gpa}`}
-                          className="text-[11px] text-gray-500 block mt-0.5"
+                          className="block"
+                          style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary, marginTop: '2px' }}
                           as="p"
                         />
                       )}
                     </div>
-                    <div className="text-[11px] text-gray-500 whitespace-nowrap flex items-center gap-1">
+                    <div className="whitespace-nowrap flex items-center gap-1" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                       <InlineEditableDate
                         path={`education[${index}].startDate`}
                         value={edu.startDate}
@@ -443,16 +559,20 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               )}
             />
           ) : (
-            <div className="space-y-4">
+            <div>
               {resumeData.education.map((edu) => (
-                <div key={edu.id} className="flex justify-between items-start gap-4">
+                <div key={edu.id} className="flex justify-between items-start gap-4" style={{ marginBottom: styles.spacing.itemGap }}>
                   <div className="flex-1">
-                    <h3 className="text-[13px] font-semibold text-gray-900">{edu.degree}</h3>
-                    {edu.field && <p className="text-[12px] text-gray-600">{edu.field}</p>}
-                    <p className="text-[12px] text-gray-700">{edu.school}</p>
-                    {edu.gpa && <p className="text-[11px] text-gray-500 mt-0.5">GPA: {edu.gpa}</p>}
+                    <h3 style={{
+                      fontSize: styles.itemTitle.size,
+                      fontWeight: styles.itemTitle.weight,
+                      color: styles.colors.text.primary,
+                    }}>{edu.degree}</h3>
+                    {edu.field && <p style={{ fontSize: styles.itemSubtitle.size, color: styles.colors.text.secondary }}>{edu.field}</p>}
+                    <p style={{ fontSize: styles.itemSubtitle.size, color: themeColor }}>{edu.school}</p>
+                    {edu.gpa && <p style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary, marginTop: '2px' }}>GPA: {edu.gpa}</p>}
                   </div>
-                  <span className="text-[11px] text-gray-500 whitespace-nowrap">
+                  <span className="whitespace-nowrap" style={{ fontSize: styles.itemDate.size, color: styles.colors.text.secondary }}>
                     {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
                   </span>
                 </div>

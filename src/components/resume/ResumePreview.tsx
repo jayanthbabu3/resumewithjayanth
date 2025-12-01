@@ -905,7 +905,14 @@ export const ResumePreview = ({
       className="flex h-full w-full items-start justify-center overflow-auto bg-gray-100 p-3 sm:p-4"
       id="resume-preview"
     >
-      <div className="relative w-full max-w-[210mm] rounded-lg bg-white shadow-2xl">
+      <div 
+        className="relative bg-white shadow-2xl rounded-lg"
+        style={{ 
+          width: '210mm', 
+          minHeight: '297mm',
+          maxWidth: '100%',
+        }}
+      >
         <Template resumeData={resumeData} themeColor={themeColor} editable={false} />
       </div>
     </div>

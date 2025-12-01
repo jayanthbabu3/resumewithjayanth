@@ -646,7 +646,7 @@ const Editor = () => {
             <div className="space-y-2">
               <h2 className="text-lg font-bold">Edit Your Resume</h2>
             </div>
-            <ResumeForm resumeData={resumeData} setResumeData={setResumeData} />
+            <ResumeForm resumeData={resumeData} setResumeData={setResumeData} templateId={templateId} />
           </div>
 
           {/* Preview Section */}
@@ -655,7 +655,7 @@ const Editor = () => {
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold">Live Preview</h2>
               </div>
-              <div id="resume-preview" className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white">
+              <div id="resume-preview" className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white" style={{ width: '210mm', minHeight: '297mm', maxWidth: '100%' }}>
                 <InlineEditProvider resumeData={resumeData} setResumeData={setResumeData}>
                   <ResumePreview
                     resumeData={resumeData}

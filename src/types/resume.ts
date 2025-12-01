@@ -60,6 +60,7 @@ export interface CustomSection {
   id: string;
   title: string;
   content: string;
+  items?: string[]; // Array of items for list-style content (like certifications)
 }
 
 // Dynamic Section Types

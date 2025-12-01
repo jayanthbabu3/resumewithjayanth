@@ -3,10 +3,11 @@ import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
-import { InlineEditableSkillsWithRating } from "@/components/resume/InlineEditableSkillsWithRating";
+import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineEditableSectionItems } from "@/components/resume/InlineEditableSectionItems";
 import { useInlineEdit } from "@/contexts/InlineEditContext";
 import { Button } from "@/components/ui/button";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PremiumEliteTemplateProps {
@@ -264,11 +265,9 @@ export const PremiumEliteTemplate = ({
                   Skills & Expertise
                 </h2>
                 {editable ? (
-                  <InlineEditableSkillsWithRating
+                  <InlineEditableSkills
                     path="skills"
                     skills={resumeData.skills}
-                    showRating={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
-                    verticalLayout={resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "")}
                     renderSkill={(skill, index) => (
                       <span
                         className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
@@ -278,48 +277,22 @@ export const PremiumEliteTemplate = ({
                         }}
                       >
                         {skill.name}
-                        {skill.rating && skill.rating.trim() !== "" && (
-                          <span className="ml-2 text-xs opacity-75">({skill.rating})</span>
-                        )}
                       </span>
                     )}
                   />
                 ) : (
-                  <div className={cn(
-                    resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? "space-y-2" : "flex flex-wrap gap-2"
-                  )}>
+                  <div className="flex flex-wrap gap-2">
                     {resumeData.skills.map((skill, index) => (
-                      resumeData.skills.some(skill => skill.rating && skill.rating.trim() !== "") ? (
-                        // Vertical layout with ratings
-                        <div key={skill.id} className="flex items-center justify-between">
-                          <span
-                            className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
-                            style={{
-                              backgroundColor: accentLight,
-                              color: accent
-                            }}
-                          >
-                            {skill.name}
-                          </span>
-                          {skill.rating && skill.rating.trim() !== "" && (
-                            <span className="text-[10px] text-gray-600 ml-3">
-                              {skill.rating}
-                            </span>
-                          )}
-                        </div>
-                      ) : (
-                        // Horizontal layout without ratings
-                        <span
-                          key={skill.id}
-                          className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
-                          style={{
-                            backgroundColor: accentLight,
-                            color: accent
-                          }}
-                        >
-                          {skill.name}
-                        </span>
-                      )
+                      <span
+                        key={skill.id}
+                        className="text-[11.5px] font-medium px-3 py-1.5 rounded-lg"
+                        style={{
+                          backgroundColor: accentLight,
+                          color: accent
+                        }}
+                      >
+                        {skill.name}
+                      </span>
                     ))}
                   </div>
                 )}
@@ -493,54 +466,105 @@ export const PremiumEliteTemplate = ({
             )}
 
             {/* Additional Sections */}
-            {editable ? (
-              <InlineEditableList
-                path="sections"
-                items={resumeData.sections || []}
-                defaultItem={{
-                  id: Date.now().toString(),
-                  title: "Section Title",
-                  content: "Section content",
-                }}
-                addButtonLabel="Add Section"
-                renderItem={(section, index) => (
-                  <div>
-                    <InlineEditableText
-                      path={`sections[${index}].title`}
-                      value={section.title}
-                      className="text-[13px] font-bold uppercase tracking-wide mb-4 pb-2.5 border-b-2"
-                      as="h2"
-                      style={{ color: accent, borderColor: accent }}
-                    />
-                    <InlineEditableText
-                      path={`sections[${index}].content`}
-                      value={section.content}
-                      className="text-[12px] text-gray-700 leading-[1.7] whitespace-pre-line"
-                      as="div"
-                      multiline
-                    />
-                  </div>
-                )}
-              />
-            ) : (
-              resumeData.sections &&
-              resumeData.sections.map((section, index) => (
-                <div key={index}>
-                  <h2
-                    className="text-[13px] font-bold uppercase tracking-wide mb-4 pb-2.5 border-b-2"
-                    style={{ color: accent, borderColor: accent }}
-                  >
-                    {section.title}
-                  </h2>
-                  <div className="text-[12px] text-gray-700 leading-[1.7] whitespace-pre-line">
-                    {section.content}
-                  </div>
-                </div>
-              ))
-            )}
+            <PremiumEliteCustomSections 
+              sections={resumeData.sections}
+              editable={editable}
+              accent={accent}
+            />
           </div>
         </div>
       </div>
     </div>
+  );
+};
+
+// Separate component for Custom Sections to use hooks
+const PremiumEliteCustomSections = ({ 
+  sections, 
+  editable, 
+  accent
+}: { 
+  sections: ResumeData['sections']; 
+  editable: boolean; 
+  accent: string;
+}) => {
+  const inlineEditContext = useInlineEdit();
+  const addArrayItem = inlineEditContext?.addArrayItem;
+  const removeArrayItem = inlineEditContext?.removeArrayItem;
+
+  const handleAddSection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!addArrayItem) return;
+    addArrayItem('sections', {
+      id: Date.now().toString(),
+      title: 'New Section',
+      content: '',
+      items: ['Sample item 1', 'Sample item 2'],
+    });
+  };
+
+  const handleRemoveSection = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!removeArrayItem) return;
+    removeArrayItem('sections', index);
+  };
+
+  return (
+    <>
+      {sections && sections.map((section, index) => (
+        <div key={section.id || index} className="group/section mb-6">
+          <div className="flex items-center gap-2">
+            <h2
+              className="text-[13px] font-bold uppercase tracking-wide mb-4 pb-2.5 border-b-2 flex-1"
+              style={{ color: accent, borderColor: accent }}
+            >
+              {editable ? (
+                <InlineEditableText
+                  path={`sections[${index}].title`}
+                  value={section.title}
+                  className="inline-block"
+                />
+              ) : section.title}
+            </h2>
+            {editable && (
+              <button
+                onClick={(e) => handleRemoveSection(e, index)}
+                className="opacity-0 group-hover/section:opacity-100 transition-opacity p-1 rounded hover:bg-red-50"
+                style={{ color: '#ef4444' }}
+                title="Remove Section"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+          
+          <InlineEditableSectionItems
+            sectionIndex={index}
+            items={section.items || []}
+            content={section.content || ""}
+            editable={editable}
+            itemStyle={{ fontSize: '12px', color: '#374151', lineHeight: '1.7' }}
+            addButtonLabel="Add Item"
+            placeholder="Click to add item..."
+            accentColor={accent}
+            showBullets={false}
+          />
+        </div>
+      ))}
+
+      {/* Add Section Button */}
+      {editable && (
+        <button
+          onClick={handleAddSection}
+          className="mt-4 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md border-2 border-dashed hover:bg-gray-50 transition-colors"
+          style={{ color: accent, borderColor: accent }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Section
+        </button>
+      )}
+    </>
   );
 };
