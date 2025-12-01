@@ -135,16 +135,22 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       }
     } else {
       // Production: use puppeteer-core with @sparticuz/chromium
-      puppeteer = await import("puppeteer-core");
-      const chromium = await import("@sparticuz/chromium");
+      const puppeteerCore = await import("puppeteer-core");
+      puppeteer = puppeteerCore.default || puppeteerCore;
       
-      chromium.setGraphicsMode(false);
+      const chromiumModule = await import("@sparticuz/chromium");
+      const chromium = chromiumModule.default || chromiumModule;
+      
+      // Disable WebGL for better compatibility
+      chromium.setGraphicsMode = false;
+      
+      const executablePath = await chromium.executablePath();
       
       launchOptions = {
         args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
+        defaultViewport: { width: 794, height: 1123 },
+        executablePath: executablePath,
+        headless: "shell",
       };
     }
 
@@ -196,6 +202,11 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    
+    // Log error for Netlify function logs
+    console.error("PDF generation error:", errorMessage);
+    console.error("Stack:", errorStack);
 
     return {
       statusCode: 500,
@@ -206,6 +217,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       body: JSON.stringify({
         error: "Failed to generate PDF",
         details: errorMessage,
+        stack: errorStack,
       }),
     };
   } finally {
