@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { pdf } from "@react-pdf/renderer";
+import { generatePDFFromPreview } from "@/lib/pdfGenerator";
 import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
 import { MinimalPDF } from "@/components/resume/pdf/MinimalPDF";
@@ -1318,7 +1319,76 @@ const Editor = () => {
     }
   };
 
+  // New HTML-to-PDF download using Netlify Function (no separate PDF templates needed!)
+  const handleDownloadNew = async () => {
+    setIsDownloading(true);
+    try {
+      const filename = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+      await generatePDFFromPreview("resume-preview", filename);
+      toast.success("Resume downloaded successfully!");
+    } catch (error) {
+      console.error("Download error:", error);
+      toast.error("Failed to download resume. Falling back to legacy method...");
+      // Fallback to legacy method
+      await handleDownloadLegacy();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  // Legacy download using @react-pdf/renderer (keeping for fallback)
+  const handleDownloadLegacy = async () => {
+    try {
+      // Sanitize resume data to ensure all arrays are valid before PDF generation
+      const sanitizedData = sanitizeResumeData(resumeData);
+
+      // Select the appropriate PDF template
+      const pdfTemplates = {
+        professional: ProfessionalPDF,
+        modern: ModernPDF,
+        minimal: MinimalPDF,
+        executive: ExecutivePDF,
+        frontend: FrontendPDF,
+        fullstack: FullstackPDF,
+        backend: BackendPDF,
+        graduate: GraduatePDF,
+        starter: StarterPDF,
+        fresher: FresherPDF,
+        // ... add more as needed for fallback
+      };
+
+      const PDFTemplate =
+        pdfTemplates[templateId as keyof typeof pdfTemplates] ||
+        ProfessionalPDF;
+
+      const blob = await pdf(
+        <PDFTemplate resumeData={sanitizedData} themeColor={themeColor} />,
+      ).toBlob();
+
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${sanitizedData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Legacy download error:", error);
+      throw error;
+    }
+  };
+
+  // Main download handler - uses new Netlify Function method
+  // Set USE_NEW_PDF_METHOD to true to use HTML-to-PDF (recommended)
+  // Set to false to use legacy @react-pdf/renderer method
+  const USE_NEW_PDF_METHOD = true;
+
   const handleDownload = async () => {
+    if (USE_NEW_PDF_METHOD) {
+      await handleDownloadNew();
+      return;
+    }
+    
+    // Legacy method below (keeping for backward compatibility)
     setIsDownloading(true);
     try {
       // Sanitize resume data to ensure all arrays are valid before PDF generation
@@ -2527,7 +2597,7 @@ const Editor = () => {
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold">Live Preview</h2>
               </div>
-              <div className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white">
+              <div id="resume-preview" className="border-2 border-border rounded-xl overflow-hidden shadow-premium bg-white">
                 <InlineEditProvider resumeData={resumeData} setResumeData={setResumeData}>
                   <ResumePreview
                     resumeData={resumeData}

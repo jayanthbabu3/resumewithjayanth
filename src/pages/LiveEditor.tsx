@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { pdf } from "@react-pdf/renderer";
+import { generatePDFFromPreview } from "@/lib/pdfGenerator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfessionalPDF } from "@/components/resume/pdf/ProfessionalPDF";
 import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
@@ -2883,34 +2884,45 @@ const LiveEditor = () => {
     }
   }, [user, templateId, resumeData, currentResumeId, themeColor]);
 
+  // Toggle this to switch between new HTML-to-PDF method and legacy @react-pdf/renderer
+  const USE_NEW_PDF_METHOD = true;
+
   const handleDownloadPDF = useCallback(async () => {
     if (!templateId) return;
 
+    setIsGeneratingPDF(true);
+    toast.info("Generating PDF...");
+
     try {
-      setIsGeneratingPDF(true);
-      toast.info("Generating PDF...");
+      if (USE_NEW_PDF_METHOD) {
+        // New method: Capture HTML from preview and generate PDF via Netlify Function
+        const filename = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+        await generatePDFFromPreview("resume-preview", filename);
+        toast.success("PDF downloaded successfully!");
+      } else {
+        // Legacy method: Use @react-pdf/renderer
+        await registerPDFFonts();
 
-      await registerPDFFonts();
+        const PDFComponent = pdfTemplates[templateId];
+        if (!PDFComponent) {
+          throw new Error("Template not found");
+        }
 
-      const PDFComponent = pdfTemplates[templateId];
-      if (!PDFComponent) {
-        throw new Error("Template not found");
+        const blob = await pdf(
+          <PDFComponent resumeData={resumeData} themeColor={themeColor} />
+        ).toBlob();
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        toast.success("PDF downloaded successfully!");
       }
-
-      const blob = await pdf(
-        <PDFComponent resumeData={resumeData} themeColor={themeColor} />
-      ).toBlob();
-
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `${resumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      toast.success("PDF downloaded successfully!");
     } catch (error) {
       console.error("PDF generation error:", error);
       toast.error("Failed to generate PDF. Please try again.");
@@ -3267,7 +3279,7 @@ const LiveEditor = () => {
 
       <div className="flex-1 overflow-auto md:p-8">
         <div className="mx-auto" style={{ maxWidth: '210mm', width: '100%' }}>
-          <div className="bg-white shadow-none md:shadow-2xl rounded-none md:rounded-lg overflow-hidden">
+          <div id="resume-preview" className="bg-white shadow-none md:shadow-2xl rounded-none md:rounded-lg overflow-hidden">
             {(() => {
               const currentTemplateId = templateId || "professional";
               const TemplateComponent = displayTemplates[currentTemplateId];
