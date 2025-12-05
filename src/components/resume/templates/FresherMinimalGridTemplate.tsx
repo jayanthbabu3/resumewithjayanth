@@ -128,9 +128,9 @@ export const FresherMinimalGridTemplate = ({
                 value={resumeData.personalInfo.summary}
                 className="text-[13px] text-gray-700 leading-relaxed block"
                 style={{
-                  fontSize: styles.text.size,
-                  lineHeight: styles.spacing.lineHeight,
-                  color: styles.colors.text.primary,
+                  fontSize: styles.itemDescription.size,
+                  lineHeight: styles.itemDescription.lineHeight,
+                  color: styles.itemDescription.color,
                 }}
                 multiline
                 as="p"
@@ -139,9 +139,9 @@ export const FresherMinimalGridTemplate = ({
               <p 
                 className="text-[13px] text-gray-700 leading-relaxed"
                 style={{
-                  fontSize: styles.text.size,
-                  lineHeight: styles.spacing.lineHeight,
-                  color: styles.colors.text.primary,
+                  fontSize: styles.itemDescription.size,
+                  lineHeight: styles.itemDescription.lineHeight,
+                  color: styles.itemDescription.color,
                 }}
               >
                 {resumeData.personalInfo.summary}
@@ -212,12 +212,11 @@ export const FresherMinimalGridTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
-                path="sections"
                 containerClassName="space-y-6"
                 itemStyle={{
-                  fontSize: styles.text.size,
-                  lineHeight: styles.spacing.lineHeight,
-                  color: styles.colors.text.primary,
+                  fontSize: styles.itemDescription.size,
+                  lineHeight: styles.itemDescription.lineHeight,
+                  color: styles.itemDescription.color,
                 }}
                 renderHeader={(title) => (
                   <h2 className="text-sm font-bold uppercase tracking-wider mb-4 pb-2 border-b-2" style={{ color: themeColor, borderBottomColor: themeColor }}>

@@ -1,4 +1,4 @@
-import { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
@@ -410,7 +410,7 @@ export const DigitalProfessionalTemplate = ({
       {resumeData.sections && resumeData.sections.length > 0 && (
         editable ? (
           <InlineEditableList
-            path="sections"
+            
             items={resumeData.sections}
             defaultItem={{
               id: Date.now().toString(),

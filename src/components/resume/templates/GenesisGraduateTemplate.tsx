@@ -205,7 +205,7 @@ export const GenesisGraduateTemplate = ({
         sections={resumeData.sections}
         editable={editable}
         accentColor={accent}
-        path="sections"
+        
         containerClassName="mb-8"
         itemStyle={{
           fontSize: SINGLE_COLUMN_CONFIG.text.size,

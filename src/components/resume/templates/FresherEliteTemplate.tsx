@@ -129,9 +129,9 @@ export const FresherEliteTemplate = ({
                     className="text-[13px] text-gray-700 leading-relaxed"
                     as="p"
                     style={{
-                      fontSize: styles.text.size,
-                      lineHeight: styles.spacing.lineHeight,
-                      color: styles.colors.text.primary,
+                      fontSize: styles.itemDescription.size,
+                      lineHeight: styles.itemDescription.lineHeight,
+                      color: styles.itemDescription.color,
                     }}
                     multiline
                   />
@@ -139,9 +139,9 @@ export const FresherEliteTemplate = ({
                   <p 
                     className="text-[13px] text-gray-700 leading-relaxed"
                     style={{
-                      fontSize: styles.text.size,
-                      lineHeight: styles.spacing.lineHeight,
-                      color: styles.colors.text.primary,
+                      fontSize: styles.itemDescription.size,
+                      lineHeight: styles.itemDescription.lineHeight,
+                      color: styles.itemDescription.color,
                     }}
                   >
                     {resumeData.personalInfo.summary}
@@ -253,12 +253,12 @@ export const FresherEliteTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
-                path="sections"
+                
                 containerClassName="space-y-6"
                 itemStyle={{
-                  fontSize: styles.text.size,
-                  lineHeight: styles.spacing.lineHeight,
-                  color: styles.colors.text.primary,
+                  fontSize: styles.itemDescription.size,
+                  lineHeight: styles.itemDescription.lineHeight,
+                  color: styles.itemDescription.color,
                 }}
                 renderHeader={(title) => (
                   <h2

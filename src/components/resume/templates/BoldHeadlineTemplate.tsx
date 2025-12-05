@@ -33,15 +33,15 @@ export const BoldHeadlineTemplate = ({
       className="w-full h-full bg-white"
       style={{
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
-        lineHeight: styles.spacing.lineHeight,
+        color: styles.itemDescription.color,
+        lineHeight: styles.itemDescription.lineHeight,
       }}
     >
       {/* Bold Header Section */}
       <div
         className="text-white"
         style={{
-          backgroundColor: styles.colors.text.primary,
+          backgroundColor: styles.itemDescription.color,
           padding: styles.header.spacing.padding,
         }}
       >
@@ -171,7 +171,7 @@ export const BoldHeadlineTemplate = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 marginBottom: "12px",
               }}
             >
@@ -213,7 +213,7 @@ export const BoldHeadlineTemplate = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 borderBottom: `1px solid ${accent}`,
                 paddingBottom: "8px",
                 marginBottom: styles.spacing.itemGap,
@@ -409,7 +409,7 @@ export const BoldHeadlineTemplate = ({
                 style={{
                   fontSize: styles.sectionHeading.size,
                   fontWeight: styles.sectionHeading.weight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                   borderBottom: `1px solid ${accent}`,
                   paddingBottom: "8px",
                   marginBottom: styles.spacing.itemGap,
@@ -545,7 +545,7 @@ export const BoldHeadlineTemplate = ({
                 style={{
                   fontSize: styles.sectionHeading.size,
                   fontWeight: styles.sectionHeading.weight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                   borderBottom: `1px solid ${accent}`,
                   paddingBottom: "8px",
                   marginBottom: styles.spacing.itemGap,
@@ -652,7 +652,7 @@ const BoldHeadlineCustomSections = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 borderBottom: `1px solid ${accent}`,
                 paddingBottom: "8px",
                 marginBottom: styles.spacing.itemGap,

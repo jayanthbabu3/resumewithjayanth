@@ -406,7 +406,7 @@ export const GradientHeaderUniversalTemplate = ({
         {/* Custom Sections */}
         {editable ? (
           <InlineEditableList
-            path="sections"
+            
             items={resumeData.sections || []}
             addButtonLabel="Add Section"
             defaultItem={{

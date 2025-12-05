@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import type { ResumeSection } from "@/types/resume";
 import { Mail, Phone, MapPin, Linkedin, Github, Globe, Twitter } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";

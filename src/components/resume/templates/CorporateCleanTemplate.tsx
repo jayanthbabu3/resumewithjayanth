@@ -43,7 +43,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       style={{ 
         padding: '32px 40px',
         fontSize: styles.itemDescription.size,
-        lineHeight: styles.spacing.lineHeight,
+        lineHeight: styles.itemDescription.lineHeight,
         fontFamily: styles.fonts.primary,
       }}
     >
@@ -59,7 +59,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
               fontWeight: styles.header.name.weight,
               lineHeight: styles.header.name.lineHeight,
               letterSpacing: styles.header.name.letterSpacing,
-              color: styles.colors.text.primary,
+              color: styles.itemDescription.color,
             }}
             as="h1"
           />
@@ -69,7 +69,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
             fontWeight: styles.header.name.weight,
             lineHeight: styles.header.name.lineHeight,
             letterSpacing: styles.header.name.letterSpacing,
-            color: styles.colors.text.primary,
+            color: styles.itemDescription.color,
             marginBottom: '8px',
           }}>
             {resumeData.personalInfo.fullName || "Your Name"}
@@ -271,7 +271,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="h3"
                       />
@@ -386,7 +386,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                       <h3 style={{
                         fontSize: styles.itemTitle.size,
                         fontWeight: styles.itemTitle.weight,
-                        color: styles.colors.text.primary,
+                        color: styles.itemDescription.color,
                       }}>{exp.position || "Position Title"}</h3>
                       <p style={{ 
                         fontSize: styles.itemSubtitle.size,
@@ -509,7 +509,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="h3"
                       />
@@ -566,7 +566,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
                     <h3 style={{
                       fontSize: styles.itemTitle.size,
                       fontWeight: styles.itemTitle.weight,
-                      color: styles.colors.text.primary,
+                      color: styles.itemDescription.color,
                     }}>{edu.degree}</h3>
                     {edu.field && <p style={{ fontSize: styles.itemSubtitle.size, color: styles.colors.text.secondary }}>{edu.field}</p>}
                     <p style={{ fontSize: styles.itemSubtitle.size, color: themeColor }}>{edu.school}</p>
@@ -585,7 +585,7 @@ export const CorporateCleanTemplate = ({ resumeData, themeColor = "#0369a1", edi
       {/* Custom Sections */}
       {editable ? (
         <InlineEditableList
-          path="sections"
+          
           items={resumeData.sections || []}
           defaultItem={{
             id: Date.now().toString(),

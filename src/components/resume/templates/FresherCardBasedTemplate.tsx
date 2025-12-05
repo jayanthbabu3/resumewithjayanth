@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin, Calendar, GraduationCap, Briefcase, Code } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
@@ -180,7 +180,7 @@ export const FresherCardBasedTemplate = ({
           <div className="mb-6 space-y-6">
             {editable ? (
               <InlineEditableList
-                path="sections"
+                
                 items={resumeData.sections}
                 defaultItem={{
                   id: Date.now().toString(),

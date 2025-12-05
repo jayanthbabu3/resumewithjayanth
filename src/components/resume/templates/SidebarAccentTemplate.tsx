@@ -403,7 +403,7 @@ export const SidebarAccentTemplate = ({
         {/* Custom Sections */}
         {editable ? (
           <InlineEditableList
-            path="sections"
+            
             items={resumeData.sections || []}
             defaultItem={{
               id: Date.now().toString(),

@@ -30,7 +30,7 @@ export const MinimalistProTemplate = ({ resumeData, themeColor = "#475569", edit
     fontSize: styles.sectionHeading.size,
     fontWeight: styles.sectionHeading.weight,
     letterSpacing: styles.sectionHeading.letterSpacing,
-    color: styles.colors.text.primary,
+    color: styles.itemDescription.color,
     marginBottom: styles.spacing.itemGap,
   };
 
@@ -43,21 +43,21 @@ export const MinimalistProTemplate = ({ resumeData, themeColor = "#475569", edit
   const itemTitleStyle = {
     fontSize: styles.itemTitle.size,
     fontWeight: styles.itemTitle.weight,
-    lineHeight: styles.itemTitle.lineHeight ?? styles.spacing.lineHeight,
-    color: styles.colors.text.primary,
+    lineHeight: styles.itemTitle.lineHeight ?? styles.itemDescription.lineHeight,
+    color: styles.itemDescription.color,
   };
 
   const itemSubtitleStyle = {
     fontSize: styles.itemSubtitle.size,
     fontWeight: styles.itemSubtitle.weight,
-    lineHeight: styles.itemSubtitle.lineHeight ?? styles.spacing.lineHeight,
+    lineHeight: styles.itemSubtitle.lineHeight ?? styles.itemDescription.lineHeight,
     color: accent,
   };
 
   const itemDateStyle = {
     fontSize: styles.itemDate.size,
     fontWeight: styles.itemDate.weight,
-    lineHeight: styles.itemDate.lineHeight ?? styles.spacing.lineHeight,
+    lineHeight: styles.itemDate.lineHeight ?? styles.itemDescription.lineHeight,
     color: styles.colors.text.secondary,
   };
 
@@ -75,7 +75,7 @@ export const MinimalistProTemplate = ({ resumeData, themeColor = "#475569", edit
 
   const skillTagStyle = {
     display: "inline-block",
-    color: styles.colors.text.primary,
+    color: styles.itemDescription.color,
     fontSize: styles.skills.tag.size,
     fontWeight: styles.skills.tag.weight,
     lineHeight: styles.skills.tag.lineHeight,
@@ -103,8 +103,8 @@ export const MinimalistProTemplate = ({ resumeData, themeColor = "#475569", edit
       className="w-full h-full bg-white"
       style={{
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
-        lineHeight: styles.spacing.lineHeight,
+        color: styles.itemDescription.color,
+        lineHeight: styles.itemDescription.lineHeight,
         padding: "40px 48px",
         pageBreakAfter: "auto",
       }}

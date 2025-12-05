@@ -66,9 +66,9 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
       style={{ 
         padding: '40px 48px',
         fontSize: styles.itemDescription.size,
-        lineHeight: styles.spacing.lineHeight,
+        lineHeight: styles.itemDescription.lineHeight,
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
+        color: styles.itemDescription.color,
         pageBreakAfter: 'auto',
       }}
     >
@@ -76,7 +76,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
       <div style={{ 
         marginBottom: styles.spacing.sectionGap, 
         paddingBottom: '24px', 
-        borderBottom: `1.5px solid ${styles.colors.text.primary}`,
+        borderBottom: `1.5px solid ${styles.itemDescription.color}`,
         pageBreakAfter: 'avoid', 
         pageBreakInside: 'avoid',
       }}>
@@ -92,7 +92,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
                     fontSize: styles.header.name.size,
                     fontWeight: styles.header.name.weight,
                     lineHeight: styles.header.name.lineHeight,
-                    color: styles.colors.text.primary,
+                    color: styles.itemDescription.color,
                   }}
                   as="h1"
                 />
@@ -116,7 +116,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
                   fontSize: styles.header.name.size,
                   fontWeight: styles.header.name.weight,
                   lineHeight: styles.header.name.lineHeight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                 }}>
                   {resumeData.personalInfo.fullName || "Your Name"}
                 </h1>
@@ -186,7 +186,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
           <h2 className="uppercase tracking-wide" style={{ 
             fontSize: styles.sectionHeading.size,
             fontWeight: styles.sectionHeading.weight,
-            color: styles.colors.text.primary,
+            color: styles.itemDescription.color,
             borderBottom: `1px solid ${styles.colors.border}`,
             paddingBottom: '8px',
             marginBottom: '12px',
@@ -284,7 +284,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
           <h2 className="uppercase tracking-wide" style={{ 
             fontSize: styles.sectionHeading.size,
             fontWeight: styles.sectionHeading.weight,
-            color: styles.colors.text.primary,
+            color: styles.itemDescription.color,
             borderBottom: `1px solid ${styles.colors.border}`,
             paddingBottom: '8px',
             marginBottom: '16px',
@@ -317,7 +317,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="h3"
                       />
@@ -452,7 +452,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
                       <h3 style={{
                         fontSize: styles.itemTitle.size,
                         fontWeight: styles.itemTitle.weight,
-                        color: styles.colors.text.primary,
+                        color: styles.itemDescription.color,
                       }}>
                         {exp.position || "Position Title"}
                       </h3>
@@ -511,7 +511,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
           <h2 className="uppercase tracking-wide" style={{ 
             fontSize: styles.sectionHeading.size,
             fontWeight: styles.sectionHeading.weight,
-            color: styles.colors.text.primary,
+            color: styles.itemDescription.color,
             borderBottom: `1px solid ${styles.colors.border}`,
             paddingBottom: '8px',
             marginBottom: '16px',
@@ -623,7 +623,7 @@ export const ProfessionalTemplate = ({ resumeData, themeColor, editable = false,
           <h2 className="uppercase tracking-wide" style={{ 
             fontSize: styles.sectionHeading.size,
             fontWeight: styles.sectionHeading.weight,
-            color: styles.colors.text.primary,
+            color: styles.itemDescription.color,
             borderBottom: `1px solid ${styles.colors.border}`,
             paddingBottom: '8px',
             marginBottom: '12px',

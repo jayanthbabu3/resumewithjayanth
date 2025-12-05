@@ -108,9 +108,9 @@ export const PremiumFresherTemplate = ({
               value={resumeData.personalInfo.summary}
               className="text-[13px] text-gray-700 leading-relaxed block"
               style={{
-                fontSize: styles.text.size,
-                lineHeight: styles.spacing.lineHeight,
-                color: styles.colors.text.primary,
+                fontSize: styles.itemDescription.size,
+                lineHeight: styles.itemDescription.lineHeight,
+                color: styles.itemDescription.color,
               }}
               multiline
               as="p"
@@ -119,9 +119,9 @@ export const PremiumFresherTemplate = ({
             <p 
               className="text-[13px] text-gray-700 leading-relaxed"
               style={{
-                fontSize: styles.text.size,
-                lineHeight: styles.spacing.lineHeight,
-                color: styles.colors.text.primary,
+                fontSize: styles.itemDescription.size,
+                lineHeight: styles.itemDescription.lineHeight,
+                color: styles.itemDescription.color,
               }}
             >
               {resumeData.personalInfo.summary}
@@ -225,12 +225,12 @@ export const PremiumFresherTemplate = ({
             sections={resumeData.sections}
             editable={editable}
             accentColor={themeColor}
-            path="sections"
+            
             containerClassName="space-y-6"
             itemStyle={{
-              fontSize: styles.text.size,
-              lineHeight: styles.spacing.lineHeight,
-              color: styles.colors.text.primary,
+              fontSize: styles.itemDescription.size,
+              lineHeight: styles.itemDescription.lineHeight,
+              color: styles.itemDescription.color,
             }}
             renderHeader={(title) => (
               <h2 className="text-base font-bold mb-3" style={{ color: themeColor }}>

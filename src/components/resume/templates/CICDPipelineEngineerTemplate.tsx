@@ -1,5 +1,5 @@
 import React from "react";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";

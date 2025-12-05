@@ -138,9 +138,9 @@ export const FresherTemplate = ({
                   value={resumeData.personalInfo.summary}
                   className="text-[13px] leading-relaxed text-gray-700 pl-4 block"
                   style={{
-                    fontSize: styles.text.size,
-                    lineHeight: styles.spacing.lineHeight,
-                    color: styles.colors.text.primary,
+                    fontSize: styles.itemDescription.size,
+                    lineHeight: styles.itemDescription.lineHeight,
+                    color: styles.itemDescription.color,
                   }}
                   multiline
                   as="p"
@@ -149,9 +149,9 @@ export const FresherTemplate = ({
                 <p 
                   className="text-[13px] leading-relaxed text-gray-700 pl-4"
                   style={{
-                    fontSize: styles.text.size,
-                    lineHeight: styles.spacing.lineHeight,
-                    color: styles.colors.text.primary,
+                    fontSize: styles.itemDescription.size,
+                    lineHeight: styles.itemDescription.lineHeight,
+                    color: styles.itemDescription.color,
                   }}
                 >
                   {resumeData.personalInfo.summary}
@@ -251,12 +251,11 @@ export const FresherTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
-                path="sections"
                 containerClassName="space-y-8"
                 itemStyle={{
-                  fontSize: styles.text.size,
-                  lineHeight: styles.spacing.lineHeight,
-                  color: styles.colors.text.primary,
+                  fontSize: styles.itemDescription.size,
+                  lineHeight: styles.itemDescription.lineHeight,
+                  color: styles.itemDescription.color,
                 }}
                 renderHeader={(title) => (
                   <div className="flex items-center gap-3 mb-4">

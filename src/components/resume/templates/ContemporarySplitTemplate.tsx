@@ -42,12 +42,12 @@ export const ContemporarySplitTemplate = ({
       className="w-full h-full bg-white flex"
       style={{
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
-        lineHeight: styles.spacing.lineHeight,
+        color: styles.itemDescription.color,
+        lineHeight: styles.itemDescription.lineHeight,
       }}
     >
       {/* Left Side - Dark Background 50% */}
-      <div className="w-[50%] text-white pt-10 pb-10 pl-10 pr-5" style={{ backgroundColor: styles.colors.text.primary }}>
+      <div className="w-[50%] text-white pt-10 pb-10 pl-10 pr-5" style={{ backgroundColor: styles.itemDescription.color }}>
         {/* Photo */}
         {photo && (
           <div className="mb-12 flex justify-center">
@@ -361,7 +361,7 @@ export const ContemporarySplitTemplate = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 borderBottom: `1px solid ${accent}`,
                 paddingBottom: "8px",
                 marginBottom: styles.spacing.itemGap,
@@ -577,7 +577,7 @@ const ContemporarySplitCustomSections = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 borderBottom: `1px solid ${accent}`,
                 paddingBottom: "8px",
                 marginBottom: styles.spacing.itemGap,

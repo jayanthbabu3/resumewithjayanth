@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
@@ -289,7 +289,7 @@ export const SeniorFrontendTemplate = ({
         {additionalSections?.length ? (
           editable ? (
             <InlineEditableList
-              path="sections"
+              
               items={additionalSections}
               defaultItem={{
                 id: Date.now().toString(),

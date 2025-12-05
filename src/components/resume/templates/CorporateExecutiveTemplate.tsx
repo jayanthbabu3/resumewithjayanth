@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
@@ -301,7 +301,7 @@ export const CorporateExecutiveTemplate = ({
             {/* Custom Sections in Main Column */}
             {editable ? (
               <InlineEditableList
-                path="sections"
+                
                 items={resumeData.sections.slice(0, Math.ceil(resumeData.sections.length / 2))}
                 defaultItem={{
                   id: Date.now().toString(),
@@ -511,7 +511,7 @@ export const CorporateExecutiveTemplate = ({
             {/* Remaining Custom Sections */}
             {editable ? (
               <InlineEditableList
-                path="sections"
+                
                 items={resumeData.sections.slice(Math.ceil(resumeData.sections.length / 2))}
                 defaultItem={{
                   id: Date.now().toString(),

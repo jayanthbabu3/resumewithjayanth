@@ -10,6 +10,7 @@ import { Header } from "@/components/Header";
 import {
   professionCategories,
 } from "@/constants/professionCategories";
+import { templateMetaMap } from "@/constants/templateMeta";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ const Dashboard = () => {
                               color: allCategory.color,
                             }}
                           >
-                            {allCategory.templateIds.length}
+                            {allCategory.templateIds.filter((id) => templateMetaMap[id]?.name).length}
                           </span>
                         </div>
                         <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
@@ -165,7 +166,7 @@ const Dashboard = () => {
                                 color: category.color,
                               }}
                             >
-                              {category.templateIds.length} templates
+                              {category.templateIds.filter((id) => templateMetaMap[id]?.name).length} templates
                             </span>
                             <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
                           </div>

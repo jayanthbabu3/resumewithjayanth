@@ -414,7 +414,7 @@ export const FresherTimelineTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
-                path="sections"
+                
                 containerClassName="space-y-8"
                 renderHeader={(title) => (
                   <h2 className="text-sm font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>

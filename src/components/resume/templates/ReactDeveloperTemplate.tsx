@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "../InlineEditableText";
@@ -383,7 +383,7 @@ export const ReactDeveloperTemplate = ({ resumeData, themeColor = "#61DAFB", edi
         {/* Custom Sections */}
         {editable ? (
           <InlineEditableList
-            path="sections"
+            
             items={resumeData.sections || []}
             defaultItem={{
               title: "Certifications",

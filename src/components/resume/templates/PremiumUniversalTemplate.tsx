@@ -71,9 +71,9 @@ export const PremiumUniversalTemplate = ({
       style={{ 
         padding: '40px 48px',
         fontSize: styles.itemDescription.size,
-        lineHeight: styles.spacing.lineHeight,
+        lineHeight: styles.itemDescription.lineHeight,
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
+        color: styles.itemDescription.color,
       }}
     >
       {/* Header */}
@@ -225,7 +225,7 @@ export const PremiumUniversalTemplate = ({
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="h3"
                       />
@@ -354,7 +354,7 @@ export const PremiumUniversalTemplate = ({
                     <h3 style={{
                       fontSize: styles.itemTitle.size,
                       fontWeight: styles.itemTitle.weight,
-                      color: styles.colors.text.primary,
+                      color: styles.itemDescription.color,
                     }}>
                       {exp.position}
                     </h3>
@@ -422,7 +422,7 @@ export const PremiumUniversalTemplate = ({
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="h3"
                       />
@@ -466,7 +466,7 @@ export const PremiumUniversalTemplate = ({
                     <h3 style={{
                       fontSize: styles.itemTitle.size,
                       fontWeight: styles.itemTitle.weight,
-                      color: styles.colors.text.primary,
+                      color: styles.itemDescription.color,
                     }}>
                       {edu.degree} {edu.field && `in ${edu.field}`}
                     </h3>
@@ -512,7 +512,7 @@ export const PremiumUniversalTemplate = ({
                   style={{
                     padding: styles.skills.tag.padding,
                     fontSize: styles.skills.tag.size,
-                    color: styles.colors.text.primary,
+                    color: styles.itemDescription.color,
                     border: `1px solid ${accentBorder}`,
                   }}
                 >
@@ -529,7 +529,7 @@ export const PremiumUniversalTemplate = ({
                     style={{
                       padding: styles.skills.tag.padding,
                       fontSize: styles.skills.tag.size,
-                      color: styles.colors.text.primary,
+                      color: styles.itemDescription.color,
                       border: `1px solid ${accentBorder}`,
                     }}
                   >

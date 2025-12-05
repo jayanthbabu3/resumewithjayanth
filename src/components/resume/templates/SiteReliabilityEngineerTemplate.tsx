@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "../InlineEditableText";
@@ -95,7 +95,7 @@ export const SiteReliabilityEngineerTemplate = ({ resumeData, themeColor = "#dc2
           </div>
         )}
 
-        {editable ? <InlineEditableList path="sections" items={resumeData.sections || []} defaultItem={{ title: "Certifications", content: "Google Cloud Professional SRE\nCKA & CKS\nAWS Certified DevOps", id: Date.now().toString() }} renderItem={(section, index) => <div className="mb-10"><h2 className="text-[15px] font-bold mb-5 text-gray-900 uppercase tracking-wider pb-2 border-b-2" style={{ borderColor: accent }}><InlineEditableText path={`sections[${index}].title`} value={section.title} placeholder="Section Title" as="span" /></h2><div className="text-[13px] text-gray-700 leading-[1.8] whitespace-pre-wrap"><InlineEditableText path={`sections[${index}].content`} value={section.content} placeholder="Content..." multiline as="div" /></div></div>} addButtonLabel="Add Section" /> : resumeData.sections && resumeData.sections.map((section, index) => <div key={index} className="mb-10"><h2 className="text-[15px] font-bold mb-5 text-gray-900 uppercase tracking-wider pb-2 border-b-2" style={{ borderColor: accent }}>{section.title}</h2><div className="text-[13px] text-gray-700 leading-[1.8] whitespace-pre-wrap">{section.content}</div></div>)}
+        {editable ? <InlineEditableList  items={resumeData.sections || []} defaultItem={{ title: "Certifications", content: "Google Cloud Professional SRE\nCKA & CKS\nAWS Certified DevOps", id: Date.now().toString() }} renderItem={(section, index) => <div className="mb-10"><h2 className="text-[15px] font-bold mb-5 text-gray-900 uppercase tracking-wider pb-2 border-b-2" style={{ borderColor: accent }}><InlineEditableText path={`sections[${index}].title`} value={section.title} placeholder="Section Title" as="span" /></h2><div className="text-[13px] text-gray-700 leading-[1.8] whitespace-pre-wrap"><InlineEditableText path={`sections[${index}].content`} value={section.content} placeholder="Content..." multiline as="div" /></div></div>} addButtonLabel="Add Section" /> : resumeData.sections && resumeData.sections.map((section, index) => <div key={index} className="mb-10"><h2 className="text-[15px] font-bold mb-5 text-gray-900 uppercase tracking-wider pb-2 border-b-2" style={{ borderColor: accent }}>{section.title}</h2><div className="text-[13px] text-gray-700 leading-[1.8] whitespace-pre-wrap">{section.content}</div></div>)}
       </div>
     </div>
   );

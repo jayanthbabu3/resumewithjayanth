@@ -1,9 +1,11 @@
 import React from "react";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineExperienceSection } from "@/components/resume/sections/InlineExperienceSection";
+import { InlineCustomSections } from "@/components/resume/sections/InlineCustomSections";
 
 interface FresherTimelineDotsTemplateProps {
   resumeData: ResumeData;
@@ -124,43 +126,105 @@ export const FresherTimelineDotsTemplate = ({
       {/* Experience - Timeline with Dots */}
       {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-[16px] font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>
-            Experience
-          </h2>
+          <InlineExperienceSection
+            items={resumeData.experience}
+            editable={editable}
+            accentColor={accent}
+            title="Experience"
+            renderHeader={(title) => (
+              <h2 className="text-[16px] font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>
+                {title}
+              </h2>
+            )}
+            renderItem={(exp, index, isEditable) => {
+              const bulletPoints = exp.bulletPoints && exp.bulletPoints.length > 0
+                ? exp.bulletPoints
+                : (exp.description || "")
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .filter(Boolean);
+
+              if (isEditable) {
+                return (
+                  <div className="mb-8 last:mb-0 relative pl-10">
+                    <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-4 border-white" style={{ backgroundColor: accent }}></div>
+                    <div className="flex justify-between items-baseline mb-1">
+                      <InlineEditableText
+                        path={`experience[${index}].position`}
+                        value={exp.position || ""}
+                        className="text-[15px] font-bold"
+                        style={{ color: accent }}
+                        as="h3"
+                      />
+                      <div className="text-[12px] text-gray-600 flex items-center gap-1">
+                        <InlineEditableDate
+                          path={`experience[${index}].startDate`}
+                          value={exp.startDate}
+                          className="inline-block"
+                        />
+                        <span>-</span>
+                        {exp.current ? (
+                          <span>Present</span>
+                        ) : (
+                          <InlineEditableDate
+                            path={`experience[${index}].endDate`}
+                            value={exp.endDate}
+                            className="inline-block"
+                          />
+                        )}
+                      </div>
+                    </div>
+                    <InlineEditableText
+                      path={`experience[${index}].company`}
+                      value={exp.company || ""}
+                      className="text-[14px] font-semibold text-gray-700 mb-2"
+                      as="p"
+                    />
+                    {bulletPoints.length > 0 && (
+                      <ul className="ml-4 list-disc space-y-1 text-[13px] text-gray-700">
+                        {bulletPoints.map((point, i) => (
+                          <li key={i}>
+                            <InlineEditableText
+                              path={`experience[${index}].bulletPoints[${i}]`}
+                              value={point || ""}
+                              className="inline-block"
+                              placeholder="Click to add achievement..."
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <div className="mb-8 last:mb-0 relative pl-10">
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-4 border-white" style={{ backgroundColor: accent }}></div>
+                  <div className="flex justify-between items-baseline mb-1">
+                    <h3 className="text-[15px] font-bold" style={{ color: accent }}>
+                      {exp.position}
+                    </h3>
+                    <div className="text-[12px] text-gray-600">
+                      {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                    </div>
+                  </div>
+                  <p className="text-[14px] font-semibold text-gray-700 mb-2">
+                    {exp.company}
+                  </p>
+                  {bulletPoints.length > 0 && (
+                    <ul className="ml-4 list-disc space-y-1 text-[13px] text-gray-700">
+                      {bulletPoints.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            }}
+          />
           <div className="relative">
             <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-            {resumeData.experience.map((exp, index) => (
-              <div key={exp.id} className="mb-8 last:mb-0 relative pl-10">
-                <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-4 border-white" style={{ backgroundColor: accent }}></div>
-                <div className="flex justify-between items-baseline mb-1">
-                  <InlineEditableText
-                    text={exp.position}
-                    className="text-[15px] font-bold"
-                    style={{ color: accent }}
-                    editable={editable}
-                    field={`resumeData.experience[${index}].position`}
-                  />
-                  <InlineEditableDate
-                    date={`${exp.startDate} - ${exp.current ? "Present" : exp.endDate}`}
-                    className="text-[12px] text-gray-600"
-                    editable={editable}
-                    field={`resumeData.experience[${index}].startDate`}
-                  />
-                </div>
-                <InlineEditableText
-                  text={exp.company}
-                  className="text-[14px] font-semibold text-gray-700 mb-2"
-                  editable={editable}
-                  field={`resumeData.experience[${index}].company`}
-                />
-                <InlineEditableList
-                  items={exp.description.split("\n").filter((item) => item.trim())}
-                  className="text-[13px] text-gray-700 space-y-1"
-                  editable={editable}
-                  field={`resumeData.experience[${index}].description`}
-                />
-              </div>
-            ))}
           </div>
         </div>
       )}
@@ -176,51 +240,19 @@ export const FresherTimelineDotsTemplate = ({
       )}
 
       {/* Custom Sections */}
-      {resumeData.sections &&
-        resumeData.sections.map((section, sectionIndex) => (
-          <div key={section.id} className="mb-8 last:mb-0">
+      {resumeData.sections && resumeData.sections.length > 0 && (
+        <InlineCustomSections
+          sections={resumeData.sections}
+          editable={editable}
+          accentColor={accent}
+          containerClassName="mb-8"
+          renderHeader={(title) => (
             <h2 className="text-[16px] font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>
-              <InlineEditableText
-                text={section.title}
-                editable={editable}
-                field={`resumeData.sections[${sectionIndex}].title`}
-              />
+              {title}
             </h2>
-            <div className="relative">
-              <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-              {section.items?.map((item, itemIndex) => (
-                <div key={item.id} className="mb-8 last:mb-0 relative pl-10">
-                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-4 border-white" style={{ backgroundColor: accent }}></div>
-                  {item.title && (
-                    <InlineEditableText
-                      text={item.title}
-                      className="text-[15px] font-bold mb-1"
-                      style={{ color: accent }}
-                      editable={editable}
-                      field={`resumeData.sections[${sectionIndex}].items[${itemIndex}].title`}
-                    />
-                  )}
-                  {item.subtitle && (
-                    <InlineEditableText
-                      text={item.subtitle}
-                      className="text-[14px] font-semibold text-gray-700 mb-1"
-                      editable={editable}
-                      field={`resumeData.sections[${sectionIndex}].items[${itemIndex}].subtitle`}
-                    />
-                  )}
-                  {item.description && (
-                    <InlineEditableList
-                      items={item.description.split("\n").filter((line) => line.trim())}
-                      className="text-[13px] text-gray-700 space-y-1"
-                      editable={editable}
-                      field={`resumeData.sections[${sectionIndex}].items[${itemIndex}].description`}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+          )}
+        />
+      )}
     </div>
   );
 };

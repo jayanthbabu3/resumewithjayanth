@@ -115,9 +115,9 @@ export const CatalystFresherTemplate = ({
               value={resumeData.personalInfo.summary}
               className="text-[13px] text-gray-700 leading-[1.8] block"
               style={{
-                fontSize: styles.text.size,
-                lineHeight: styles.spacing.lineHeight,
-                color: styles.colors.text.primary,
+                fontSize: styles.itemDescription.size,
+                lineHeight: styles.itemDescription.lineHeight,
+                color: styles.itemDescription.color,
               }}
               multiline
               as="p"
@@ -126,9 +126,9 @@ export const CatalystFresherTemplate = ({
             <p 
               className="text-[13px] text-gray-700 leading-[1.8]"
               style={{
-                fontSize: styles.text.size,
-                lineHeight: styles.spacing.lineHeight,
-                color: styles.colors.text.primary,
+                fontSize: styles.itemDescription.size,
+                lineHeight: styles.itemDescription.lineHeight,
+                color: styles.itemDescription.color,
               }}
             >
               {resumeData.personalInfo.summary}
@@ -212,12 +212,12 @@ export const CatalystFresherTemplate = ({
         sections={resumeData.sections}
         editable={editable}
         accentColor={accent}
-        path="sections"
+        
         containerClassName="mb-8"
         itemStyle={{
-          fontSize: styles.text.size,
-          lineHeight: styles.spacing.lineHeight,
-          color: styles.colors.text.primary,
+          fontSize: styles.itemDescription.size,
+          lineHeight: styles.itemDescription.lineHeight,
+          color: styles.itemDescription.color,
         }}
         renderHeader={(title) => (
           <h2 className="text-[16px] font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { useStyleOptions, defaultStyleOptions } from '@/contexts/StyleOptionsContext';
 
 interface StyleOptionsWrapperProps {
@@ -54,6 +54,10 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
 
     return `
       /* Section Header Case - ONLY h2 elements (section headings), NOT h1 (name) */
+      /* For capitalize to work on already-uppercase text, normalize to lowercase first */
+      ${styleOptions.headerCase === 'capitalize' 
+        ? `.style-options-wrapper h2 { text-transform: lowercase !important; }` 
+        : ''}
       .style-options-wrapper h2 {
         text-transform: ${headerTransform} !important;
       }
@@ -97,8 +101,46 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
     `;
   }, [styleOptions]);
 
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  // Apply text transformation for capitalize option (needs JS since CSS can't lowercase then capitalize)
+  // Only transform h2 elements that are section headings (not h1 name)
+  useEffect(() => {
+    if (styleOptions.headerCase === 'capitalize' && wrapperRef.current) {
+      const h2Elements = wrapperRef.current.querySelectorAll('h2:not([data-no-transform])');
+      h2Elements.forEach((h2) => {
+        // Skip if it's an editable field (has data attributes or is inside an editable component)
+        if (h2.closest('[contenteditable="true"]') || h2.hasAttribute('data-editable')) {
+          return;
+        }
+        
+        // Only transform if the text is already uppercase (to avoid double transformation)
+        const text = h2.textContent || '';
+        if (text && text === text.toUpperCase() && text !== text.toLowerCase()) {
+          // Transform: lowercase first, then capitalize each word
+          const transformed = text
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+          if (h2.textContent !== transformed) {
+            // Store original to avoid re-transforming
+            h2.setAttribute('data-transformed', 'true');
+            h2.textContent = transformed;
+          }
+        }
+      });
+    } else if (styleOptions.headerCase !== 'capitalize' && wrapperRef.current) {
+      // Reset transformed state when switching away from capitalize
+      const h2Elements = wrapperRef.current.querySelectorAll('h2[data-transformed="true"]');
+      h2Elements.forEach((h2) => {
+        h2.removeAttribute('data-transformed');
+      });
+    }
+  }, [styleOptions.headerCase]);
+
   return (
-    <div className={`style-options-wrapper relative ${className || ''}`}>
+    <div ref={wrapperRef} className={`style-options-wrapper relative ${className || ''}`}>
       <style>{dynamicCSS}</style>
       {children}
     </div>

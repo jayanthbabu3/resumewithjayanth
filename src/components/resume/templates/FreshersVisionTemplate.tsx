@@ -1,8 +1,11 @@
 import React from "react";
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
+import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineExperienceSection } from "@/components/resume/sections/InlineExperienceSection";
+import { InlineCustomSections } from "@/components/resume/sections/InlineCustomSections";
 
 interface TemplateProps {
   resumeData: ResumeData;
@@ -64,43 +67,105 @@ export const FreshersVisionTemplate = ({
       {/* Experience */}
       {resumeData.experience && resumeData.experience.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-xl font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
-            Experience
-          </h2>
-          {resumeData.experience.map((exp, index) => (
-            <div key={exp.id} className="mb-6 last:mb-0">
-              <div className="flex justify-between items-baseline mb-2">
-                <div className="flex-1">
-                  <InlineEditableText
-                    text={exp.position}
-                    className="text-lg font-bold"
-                    style={{ color: themeColor }}
-                    editable={editable}
-                    field={`resumeData.experience[${index}].position`}
-                  />
-                  <InlineEditableText
-                    text={exp.company}
-                    className="text-base font-semibold text-gray-700"
-                    editable={editable}
-                    field={`resumeData.experience[${index}].company`}
-                  />
+          <InlineExperienceSection
+            items={resumeData.experience}
+            editable={editable}
+            accentColor={themeColor}
+            title="Experience"
+            renderHeader={(title) => (
+              <h2 className="text-xl font-bold mb-4 uppercase tracking-wide" style={{ color: themeColor }}>
+                {title}
+              </h2>
+            )}
+            renderItem={(exp, index, isEditable) => {
+              const bulletPoints = exp.bulletPoints && exp.bulletPoints.length > 0
+                ? exp.bulletPoints
+                : (exp.description || "")
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .filter(Boolean);
+
+              if (isEditable) {
+                return (
+                  <div className="mb-6 last:mb-0">
+                    <div className="flex justify-between items-baseline mb-2">
+                      <div className="flex-1">
+                        <InlineEditableText
+                          path={`experience[${index}].position`}
+                          value={exp.position || ""}
+                          className="text-lg font-bold"
+                          style={{ color: themeColor }}
+                          as="h3"
+                        />
+                        <InlineEditableText
+                          path={`experience[${index}].company`}
+                          value={exp.company || ""}
+                          className="text-base font-semibold text-gray-700"
+                          as="p"
+                        />
+                      </div>
+                      <div className="text-sm text-gray-600 font-medium flex items-center gap-1">
+                        <InlineEditableDate
+                          path={`experience[${index}].startDate`}
+                          value={exp.startDate}
+                          className="inline-block"
+                        />
+                        <span>-</span>
+                        {exp.current ? (
+                          <span>Present</span>
+                        ) : (
+                          <InlineEditableDate
+                            path={`experience[${index}].endDate`}
+                            value={exp.endDate}
+                            className="inline-block"
+                          />
+                        )}
+                      </div>
+                    </div>
+                    {bulletPoints.length > 0 && (
+                      <ul className="ml-4 list-disc space-y-1.5 text-sm text-gray-700">
+                        {bulletPoints.map((point, i) => (
+                          <li key={i}>
+                            <InlineEditableText
+                              path={`experience[${index}].bulletPoints[${i}]`}
+                              value={point || ""}
+                              className="inline-block"
+                              placeholder="Click to add achievement..."
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <div className="mb-6 last:mb-0">
+                  <div className="flex justify-between items-baseline mb-2">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold" style={{ color: themeColor }}>
+                        {exp.position}
+                      </h3>
+                      <p className="text-base font-semibold text-gray-700">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">
+                      {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                    </div>
+                  </div>
+                  {bulletPoints.length > 0 && (
+                    <ul className="ml-4 list-disc space-y-1.5 text-sm text-gray-700">
+                      {bulletPoints.map((point, i) => (
+                        <li key={i}>{point}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                <div className="text-sm text-gray-600 font-medium">
-                  <InlineEditableText
-                    text={`${exp.startDate} - ${exp.current ? "Present" : exp.endDate}`}
-                    editable={editable}
-                    field={`resumeData.experience[${index}].startDate`}
-                  />
-                </div>
-              </div>
-              <InlineEditableList
-                items={exp.description.split("\n").filter((item) => item.trim())}
-                className="text-sm text-gray-700 space-y-1.5"
-                editable={editable}
-                field={`resumeData.experience[${index}].description`}
-              />
-            </div>
-          ))}
+              );
+            }}
+          />
         </div>
       )}
 
@@ -165,23 +230,19 @@ export const FreshersVisionTemplate = ({
       </div>
 
       {/* Additional Sections */}
-      {resumeData.sections && resumeData.sections.length > 0 && resumeData.sections.map((section, index) => (
-        <div key={section.id} className="mt-8">
-          <h2 className="text-xl font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
-            <InlineEditableText
-              text={section.title}
-              editable={editable}
-              field={`resumeData.sections.${index}.title`}
-            />
-          </h2>
-          <InlineEditableText
-            text={section.content}
-            className="text-gray-700"
-            editable={editable}
-            field={`resumeData.sections.${index}.content`}
-          />
-        </div>
-      ))}
+      {resumeData.sections && resumeData.sections.length > 0 && (
+        <InlineCustomSections
+          sections={resumeData.sections}
+          editable={editable}
+          accentColor={themeColor}
+          containerClassName="mt-8"
+          renderHeader={(title) => (
+            <h2 className="text-xl font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
+              {title}
+            </h2>
+          )}
+        />
+      )}
     </div>
   );
 };

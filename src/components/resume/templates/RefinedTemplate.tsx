@@ -32,8 +32,8 @@ export const RefinedTemplate = ({
       className="mx-auto bg-white min-h-full"
       style={{
         fontFamily: styles.fonts.primary,
-        color: styles.colors.text.primary,
-        lineHeight: styles.spacing.lineHeight,
+        color: styles.itemDescription.color,
+        lineHeight: styles.itemDescription.lineHeight,
         minHeight: '297mm', // A4 height
       }}
     >
@@ -61,7 +61,7 @@ export const RefinedTemplate = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 marginBottom: "12px",
               }}
             >
@@ -139,7 +139,7 @@ export const RefinedTemplate = ({
                 style={{
                   fontSize: styles.sectionHeading.size,
                   fontWeight: styles.sectionHeading.weight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                   marginBottom: "12px",
                 }}
               >
@@ -188,7 +188,7 @@ export const RefinedTemplate = ({
                 style={{
                   fontSize: styles.sectionHeading.size,
                   fontWeight: styles.sectionHeading.weight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                   marginBottom: "12px",
                 }}
               >
@@ -216,7 +216,7 @@ export const RefinedTemplate = ({
                         style={{
                           fontSize: styles.itemTitle.size,
                           fontWeight: styles.itemTitle.weight,
-                          color: styles.colors.text.primary,
+                          color: styles.itemDescription.color,
                         }}
                         as="div"
                       />
@@ -312,7 +312,7 @@ export const RefinedTemplate = ({
         {/* Main Content */}
         <div
           className="px-12 py-12"
-          style={{ fontSize: styles.itemDescription.size, color: styles.colors.text.primary }}
+          style={{ fontSize: styles.itemDescription.size, color: styles.itemDescription.color }}
         >
           {/* Header */}
           <div className="mb-10">
@@ -403,7 +403,7 @@ export const RefinedTemplate = ({
                 style={{
                   fontSize: styles.sectionHeading.size,
                   fontWeight: styles.sectionHeading.weight,
-                  color: styles.colors.text.primary,
+                  color: styles.itemDescription.color,
                   borderBottom: `1px solid ${accent}`,
                   paddingBottom: "8px",
                   marginBottom: styles.spacing.itemGap,
@@ -436,7 +436,7 @@ export const RefinedTemplate = ({
                           style={{
                             fontSize: styles.itemTitle.size,
                             fontWeight: styles.itemTitle.weight,
-                            color: styles.colors.text.primary,
+                            color: styles.itemDescription.color,
                           }}
                           as="h4"
                         />
@@ -679,7 +679,7 @@ const RefinedCustomSections = ({
               style={{
                 fontSize: styles.sectionHeading.size,
                 fontWeight: styles.sectionHeading.weight,
-                color: styles.colors.text.primary,
+                color: styles.itemDescription.color,
                 borderBottom: `1px solid ${accent}`,
                 paddingBottom: "8px",
                 marginBottom: styles.spacing.itemGap,

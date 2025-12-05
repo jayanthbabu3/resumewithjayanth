@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
@@ -362,7 +362,7 @@ export const AnalystTemplate = ({
       {/* Custom Sections */}
       {editable ? (
         <InlineEditableList
-          path="sections"
+          
           items={resumeData.sections}
           defaultItem={{
             id: Date.now().toString(),

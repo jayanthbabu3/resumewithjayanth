@@ -1,10 +1,12 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { Mail, Phone, MapPin, Calendar, Hexagon } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineExperienceSection } from "@/components/resume/sections/InlineExperienceSection";
+import { InlineCustomSections } from "@/components/resume/sections/InlineCustomSections";
 
 interface FresherGeometricTemplateProps {
   resumeData: ResumeData;
@@ -294,132 +296,103 @@ export const FresherGeometricTemplate = ({
 
             {/* Custom Sections - Most Important for Freshers */}
             {resumeData.sections && resumeData.sections.length > 0 && (
-              editable ? (
-                <InlineEditableList
-                  path="sections"
-                  items={resumeData.sections}
-                  defaultItem={{
-                    id: Date.now().toString(),
-                    title: "Projects",
-                    content: "Project details here...",
-                  }}
-                  addButtonLabel="Add Section"
-                  renderItem={(section, index) => (
-                    <section className="mb-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
-                        <InlineEditableText
-                          path={`sections[${index}].title`}
-                          value={section.title}
-                          className="text-sm font-bold uppercase tracking-wider inline-block"
-                          style={{ color: themeColor }}
-                          as="h2"
-                        />
-                      </div>
-                      <InlineEditableText
-                        path={`sections[${index}].content`}
-                        value={section.content}
-                        className="text-sm leading-relaxed text-gray-700 whitespace-pre-line block"
-                        multiline
-                        as="div"
-                      />
-                    </section>
-                  )}
-                />
-              ) : (
-                <>
-                  {resumeData.sections.map((section, index) => (
-                    <section key={index} className="mb-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
-                        <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
-                          {section.title}
-                        </h2>
-                      </div>
-                      <div className="text-sm leading-relaxed text-gray-700 whitespace-pre-line">
-                        {section.content}
-                      </div>
-                    </section>
-                  ))}
-                </>
-              )
+              <InlineCustomSections
+                sections={resumeData.sections}
+                editable={editable}
+                accentColor={themeColor}
+                containerClassName="space-y-8"
+                renderHeader={(title) => (
+                  <div className="flex items-center gap-3 mb-4">
+                    <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
+                    <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
+                      {title}
+                    </h2>
+                  </div>
+                )}
+              />
             )}
 
             {/* Internship Experience - Optional for Freshers */}
             {resumeData.experience && resumeData.experience.length > 0 && (
               <section>
-                <div className="flex items-center gap-3 mb-4">
-                  <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
-                  <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
-                    Internship Experience
-                  </h2>
-                </div>
-                {editable ? (
-                  <InlineEditableList
-                    path="experience"
-                    items={resumeData.experience}
-                    defaultItem={{
-                      id: Date.now().toString(),
-                      company: "Company Name",
-                      position: "Position Title",
-                      startDate: "2023-01",
-                      endDate: "2024-01",
-                      description: "Job description here",
-                      current: false,
-                    }}
-                    addButtonLabel="Add Experience"
-                    renderItem={(exp, index) => (
-                      <div className="mb-6 relative pl-6">
-                        <div className="absolute left-0 top-2 w-3 h-3 border-2 rounded-full bg-white" style={{ borderColor: themeColor }} />
-                        <InlineEditableText
-                          path={`experience[${index}].position`}
-                          value={exp.position}
-                          className="font-semibold text-sm text-gray-900 block"
-                          as="h3"
-                        />
-                        <InlineEditableText
-                          path={`experience[${index}].company`}
-                          value={exp.company}
-                          className="text-xs font-medium mt-1 block"
-                          style={{ color: themeColor }}
-                          as="p"
-                        />
-                        <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
-                          <Calendar className="h-3 w-3" />
-                          <InlineEditableDate
-                            path={`experience[${index}].startDate`}
-                            value={exp.startDate}
-                            formatDisplay={formatDate}
-                            className="inline-block"
+                <InlineExperienceSection
+                  items={resumeData.experience}
+                  editable={editable}
+                  accentColor={themeColor}
+                  title="Internship Experience"
+                  renderHeader={(title) => (
+                    <div className="flex items-center gap-3 mb-4">
+                      <Hexagon className="h-4 w-4" style={{ color: themeColor, fill: themeColor, opacity: 0.3 }} />
+                      <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: themeColor }}>
+                        {title}
+                      </h2>
+                    </div>
+                  )}
+                  renderItem={(exp, index, isEditable) => {
+                    const bulletPoints = exp.bulletPoints && exp.bulletPoints.length > 0
+                      ? exp.bulletPoints
+                      : (exp.description || "")
+                          .split("\n")
+                          .map((line) => line.trim())
+                          .filter(Boolean);
+
+                    if (isEditable) {
+                      return (
+                        <div className="mb-6 relative pl-6">
+                          <div className="absolute left-0 top-2 w-3 h-3 border-2 rounded-full bg-white" style={{ borderColor: themeColor }} />
+                          <InlineEditableText
+                            path={`experience[${index}].position`}
+                            value={exp.position || ""}
+                            className="font-semibold text-sm text-gray-900 block"
+                            as="h3"
                           />
-                          <span> - </span>
-                          {exp.current ? (
-                            <span>Present</span>
-                          ) : (
+                          <InlineEditableText
+                            path={`experience[${index}].company`}
+                            value={exp.company || ""}
+                            className="text-xs font-medium mt-1 block"
+                            style={{ color: themeColor }}
+                            as="p"
+                          />
+                          <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                            <Calendar className="h-3 w-3" />
                             <InlineEditableDate
-                              path={`experience[${index}].endDate`}
-                              value={exp.endDate}
+                              path={`experience[${index}].startDate`}
+                              value={exp.startDate}
                               formatDisplay={formatDate}
                               className="inline-block"
                             />
+                            <span> - </span>
+                            {exp.current ? (
+                              <span>Present</span>
+                            ) : (
+                              <InlineEditableDate
+                                path={`experience[${index}].endDate`}
+                                value={exp.endDate}
+                                formatDisplay={formatDate}
+                                className="inline-block"
+                              />
+                            )}
+                          </div>
+                          {bulletPoints.length > 0 && (
+                            <ul className="ml-4 list-disc space-y-1 text-sm leading-relaxed text-gray-600 mt-2">
+                              {bulletPoints.map((point, i) => (
+                                <li key={i}>
+                                  <InlineEditableText
+                                    path={`experience[${index}].bulletPoints[${i}]`}
+                                    value={point || ""}
+                                    className="inline-block"
+                                    placeholder="Click to add achievement..."
+                                  />
+                                </li>
+                              ))}
+                            </ul>
                           )}
                         </div>
-                        {exp.description && (
-                          <InlineEditableText
-                            path={`experience[${index}].description`}
-                            value={exp.description}
-                            className="text-sm leading-relaxed text-gray-600 mt-2 whitespace-pre-line block"
-                            multiline
-                            as="div"
-                          />
-                        )}
-                      </div>
-                    )}
-                  />
-                ) : (
-                  <div className="space-y-6">
-                    {resumeData.experience.map((exp, index) => (
-                      <div key={index} className="relative pl-6">
+                      );
+                    }
+
+                    return (
+                      <div className="mb-6 relative pl-6">
                         <div className="absolute left-0 top-2 w-3 h-3 border-2 rounded-full bg-white" style={{ borderColor: themeColor }} />
                         <h3 className="font-semibold text-sm text-gray-900">
                           {exp.position}
@@ -431,15 +404,17 @@ export const FresherGeometricTemplate = ({
                           <Calendar className="h-3 w-3" />
                           {formatDate(exp.startDate)} - {exp.current ? "Present" : formatDate(exp.endDate)}
                         </div>
-                        {exp.description && (
-                          <div className="text-sm leading-relaxed text-gray-600 mt-2 whitespace-pre-line">
-                            {exp.description}
-                          </div>
+                        {bulletPoints.length > 0 && (
+                          <ul className="ml-4 list-disc space-y-1 text-sm leading-relaxed text-gray-600 mt-2">
+                            {bulletPoints.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
                         )}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    );
+                  }}
+                />
               </section>
             )}
           </div>

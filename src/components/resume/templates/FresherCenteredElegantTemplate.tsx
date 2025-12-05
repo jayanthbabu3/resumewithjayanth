@@ -1,10 +1,13 @@
-import type { ResumeData } from "@/pages/Editor";
-import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import type { ResumeData } from "@/types/resume";
+import { Mail, Phone, MapPin, Calendar, Plus, X } from "lucide-react";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
 import { InlineEditableList } from "@/components/resume/InlineEditableList";
 import { InlineEditableSkills } from "@/components/resume/InlineEditableSkills";
+import { InlineExperienceSection } from "@/components/resume/sections/InlineExperienceSection";
+import { InlineCustomSections } from "@/components/resume/sections/InlineCustomSections";
+import { useInlineEdit } from "@/contexts/InlineEditContext";
 
 interface FresherCenteredElegantTemplateProps {
   resumeData: ResumeData;
@@ -17,6 +20,9 @@ export const FresherCenteredElegantTemplate = ({
   themeColor = "#A855F7",
   editable = false,
 }: FresherCenteredElegantTemplateProps) => {
+  const inlineEdit = useInlineEdit();
+  const { addBulletPoint, removeBulletPoint } = inlineEdit || {};
+
   const formatDate = (date: string) => {
     if (!date) return "";
     const [year, month] = date.split("-");
@@ -262,124 +268,129 @@ export const FresherCenteredElegantTemplate = ({
 
         {/* Custom Sections - Centered - Most Important for Freshers */}
         {resumeData.sections && resumeData.sections.length > 0 && (
-          editable ? (
-            <InlineEditableList
-              path="sections"
-              items={resumeData.sections}
-              defaultItem={{
-                id: Date.now().toString(),
-                title: "Projects",
-                content: "Project details here...",
-              }}
-              addButtonLabel="Add Section"
-              renderItem={(section, index) => (
-                <section className="mb-10">
-                  <InlineEditableText
-                    path={`sections[${index}].title`}
-                    value={section.title}
-                    className="text-xl font-serif font-bold text-center mb-6 inline-block"
-                    style={{ color: themeColor }}
-                    as="h2"
-                  />
-                  <InlineEditableText
-                    path={`sections[${index}].content`}
-                    value={section.content}
-                    className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line block font-serif"
-                    multiline
-                    as="div"
-                  />
-                </section>
-              )}
-            />
-          ) : (
-            <>
-              {resumeData.sections.map((section, index) => (
-                <section key={index} className="mb-10">
-                  <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
-                    {section.title}
-                  </h2>
-                  <div className="text-sm leading-relaxed text-gray-700 max-w-2xl mx-auto text-center whitespace-pre-line font-serif">
-                    {section.content}
-                  </div>
-                </section>
-              ))}
-            </>
-          )
+          <InlineCustomSections
+            sections={resumeData.sections}
+            editable={editable}
+            accentColor={themeColor}
+            containerClassName="mb-10"
+            renderHeader={(title) => (
+              <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
+                {title}
+              </h2>
+            )}
+            itemStyle={{
+              textAlign: "center",
+              maxWidth: "42rem",
+              margin: "0 auto",
+            }}
+          />
         )}
 
         {/* Internship Experience - Centered - Optional for Freshers */}
         {resumeData.experience && resumeData.experience.length > 0 && (
-          <section className="mb-10">
-            <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
-              Internship Experience
-            </h2>
-            {editable ? (
-              <InlineEditableList
-                path="experience"
-                items={resumeData.experience}
-                defaultItem={{
-                  id: Date.now().toString(),
-                  company: "Company Name",
-                  position: "Position Title",
-                  startDate: "2023-01",
-                  endDate: "2024-01",
-                  description: "Job description here",
-                  current: false,
-                }}
-                addButtonLabel="Add Experience"
-                renderItem={(exp, index) => (
-                  <div className="mb-8 max-w-2xl mx-auto">
-                    <div className="text-center mb-3">
-                      <InlineEditableText
-                        path={`experience[${index}].position`}
-                        value={exp.position}
-                        className="font-serif font-semibold text-base text-gray-900 block"
-                        as="h3"
-                      />
-                      <InlineEditableText
-                        path={`experience[${index}].company`}
-                        value={exp.company}
-                        className="text-sm font-medium mt-1 block"
-                        style={{ color: themeColor }}
-                        as="p"
-                      />
-                      <div className="text-xs text-gray-500 mt-1">
-                        <InlineEditableDate
-                          path={`experience[${index}].startDate`}
-                          value={exp.startDate}
-                          formatDisplay={formatDate}
-                          className="inline-block"
+          <div className="mb-10">
+            <InlineExperienceSection
+              items={resumeData.experience}
+              editable={editable}
+              accentColor={themeColor}
+              title="Internship Experience"
+              className="max-w-2xl mx-auto"
+              renderHeader={(title) => (
+                <h2 className="text-xl font-serif font-bold text-center mb-6" style={{ color: themeColor }}>
+                  {title}
+                </h2>
+              )}
+              renderItem={(exp, index, isEditable) => {
+                const bulletPoints = exp.bulletPoints && exp.bulletPoints.length > 0
+                  ? exp.bulletPoints
+                  : (exp.description || "")
+                      .split("\n")
+                      .map((line) => line.trim())
+                      .filter(Boolean);
+
+                if (isEditable) {
+                  return (
+                    <div className="mb-8 text-center">
+                      <div className="mb-3">
+                        <InlineEditableText
+                          path={`experience[${index}].position`}
+                          value={exp.position || ""}
+                          className="font-serif font-semibold text-base text-gray-900 block"
+                          as="h3"
                         />
-                        <span> – </span>
-                        {exp.current ? (
-                          <span>Present</span>
-                        ) : (
+                        <InlineEditableText
+                          path={`experience[${index}].company`}
+                          value={exp.company || ""}
+                          className="text-sm font-medium mt-1 block"
+                          style={{ color: themeColor }}
+                          as="p"
+                        />
+                        <div className="text-xs text-gray-500 mt-1 flex items-center justify-center gap-1">
                           <InlineEditableDate
-                            path={`experience[${index}].endDate`}
-                            value={exp.endDate}
+                            path={`experience[${index}].startDate`}
+                            value={exp.startDate}
                             formatDisplay={formatDate}
                             className="inline-block"
                           />
-                        )}
+                          <span>–</span>
+                          {exp.current ? (
+                            <span>Present</span>
+                          ) : (
+                            <InlineEditableDate
+                              path={`experience[${index}].endDate`}
+                              value={exp.endDate}
+                              formatDisplay={formatDate}
+                              className="inline-block"
+                            />
+                          )}
+                        </div>
                       </div>
+                      {bulletPoints.length > 0 && (
+                        <ul className="text-sm leading-relaxed text-gray-600 text-center font-serif space-y-1 list-none">
+                          {bulletPoints.map((point, i) => (
+                            <li key={i} className="group flex items-center justify-center gap-2">
+                              <InlineEditableText
+                                path={`experience[${index}].bulletPoints[${i}]`}
+                                value={point || ""}
+                                className="inline-block flex-1"
+                                placeholder="Click to add achievement..."
+                                multiline
+                              />
+                              {editable && removeBulletPoint && (
+                                <button
+                                  type="button"
+                                  onClick={() => removeBulletPoint(exp.id, i)}
+                                  className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-50 rounded text-red-500"
+                                  disabled={bulletPoints.length <= 1}
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {editable && addBulletPoint && (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            addBulletPoint(exp.id);
+                          }}
+                          className="mt-2 flex items-center justify-center gap-1 text-xs text-purple-600 hover:text-purple-800 font-medium mx-auto"
+                        >
+                          <Plus className="h-3 w-3" />
+                          Add Achievement
+                        </button>
+                      )}
                     </div>
-                    {exp.description && (
-                      <InlineEditableText
-                        path={`experience[${index}].description`}
-                        value={exp.description}
-                        className="text-sm leading-relaxed text-gray-600 text-center whitespace-pre-line block font-serif"
-                        multiline
-                        as="div"
-                      />
-                    )}
-                  </div>
-                )}
-              />
-            ) : (
-              <div className="space-y-8">
-                {resumeData.experience.map((exp, index) => (
-                  <div key={index} className="max-w-2xl mx-auto">
-                    <div className="text-center mb-3">
+                  );
+                }
+
+                return (
+                  <div className="mb-8 text-center">
+                    <div className="mb-3">
                       <h3 className="font-serif font-semibold text-base text-gray-900">
                         {exp.position}
                       </h3>
@@ -390,16 +401,18 @@ export const FresherCenteredElegantTemplate = ({
                         {formatDate(exp.startDate)} – {exp.current ? "Present" : formatDate(exp.endDate)}
                       </div>
                     </div>
-                    {exp.description && (
-                      <div className="text-sm leading-relaxed text-gray-600 text-center whitespace-pre-line font-serif">
-                        {exp.description}
-                      </div>
+                    {bulletPoints.length > 0 && (
+                      <ul className="text-sm leading-relaxed text-gray-600 text-center font-serif space-y-1 list-none">
+                        {bulletPoints.map((point, i) => (
+                          <li key={i}>{point}</li>
+                        ))}
+                      </ul>
                     )}
                   </div>
-                ))}
-              </div>
-            )}
-          </section>
+                );
+              }}
+            />
+          </div>
         )}
       </div>
     </div>

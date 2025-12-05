@@ -465,7 +465,7 @@ export const ProfessionalClassicTemplate = ({ resumeData, themeColor = "#374151"
       {/* Custom Sections */}
       {editable ? (
         <InlineEditableList
-          path="sections"
+          
           items={resumeData.sections || []}
           defaultItem={{
             id: Date.now().toString(),

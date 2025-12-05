@@ -134,7 +134,7 @@ export const FresherModernTwoColumnTemplate = ({ resumeData, themeColor = "#2563
           sections={resumeData.sections.filter(s => s.title !== "Projects")}
           editable={editable}
           accentColor={themeColor}
-          path="sections"
+          
           containerClassName="mb-6"
           renderHeader={(title) => (
             <h2 className="text-[14px] font-bold mb-3 uppercase tracking-wide" style={{ color: themeColor }}>
@@ -203,7 +203,7 @@ export const FresherModernTwoColumnTemplate = ({ resumeData, themeColor = "#2563
           sections={resumeData.sections.filter(s => s.title === "Projects")}
           editable={editable}
           accentColor={themeColor}
-          path="sections"
+          
           containerClassName="mb-8"
           renderHeader={(title) => (
             <h2 className="text-[15px] font-bold mb-4 pb-2 border-b-2" style={{ color: themeColor, borderColor: themeColor }}>

@@ -1,4 +1,4 @@
-import type { ResumeData } from "@/pages/Editor";
+import type { ResumeData } from "@/types/resume";
 import { ProfilePhoto } from "./ProfilePhoto";
 import { InlineEditableText } from "@/components/resume/InlineEditableText";
 import { InlineEditableDate } from "@/components/resume/InlineEditableDate";
@@ -110,7 +110,7 @@ export const ClinicalMinimalTemplate = ({
       {/* Licenses & Certifications */}
       {editable ? (
         <InlineEditableList
-          path="sections"
+          
           items={resumeData.sections.filter(s => s.title === "Licenses & Certifications")}
           defaultItem={{
             id: Date.now().toString(),
@@ -358,7 +358,7 @@ export const ClinicalMinimalTemplate = ({
       {/* Custom Sections */}
       {editable ? (
         <InlineEditableList
-          path="sections"
+          
           items={resumeData.sections}
           defaultItem={{
             id: Date.now().toString(),

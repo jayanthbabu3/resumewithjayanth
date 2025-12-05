@@ -399,7 +399,7 @@ export const SwissStyleUniversalTemplate = ({
       {resumeData.sections && resumeData.sections.length > 0 && (
         editable ? (
           <InlineEditableList
-            path="sections"
+            
             items={resumeData.sections}
             defaultItem={{
               id: Date.now().toString(),
