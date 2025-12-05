@@ -101,7 +101,7 @@ export const AngularModernUniversalTemplate = ({
           <h2 className="text-[16px] font-bold mb-4" style={{ color: accent }}>Skills</h2>
           <div className="flex flex-wrap gap-3">
             {resumeData.skills.map((skill, idx) => (
-              <span key={idx} className="px-4 py-1.5 text-[12px] font-medium border-2 rounded" style={{ borderColor: accent, color: accent }}>
+              <span key={idx} className="px-4 py-1.5 text-xs font-medium border-2 rounded" style={{ borderColor: accent, color: accent }}>
                 {skill.name}
               </span>
             ))}

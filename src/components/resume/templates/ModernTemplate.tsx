@@ -218,7 +218,7 @@ export const ModernTemplate = ({ resumeData, themeColor = "#7c3aed", editable = 
                   const color = colors[index % colors.length];
                   return skill.name ? (
                     <span
-                      className="px-4 py-1.5 text-[12px] font-medium rounded-full inline-block"
+                      className="px-4 py-1.5 text-xs font-medium rounded-full inline-block"
                       style={{
                         color: color,
                         backgroundColor: `${color}15`,
@@ -240,7 +240,7 @@ export const ModernTemplate = ({ resumeData, themeColor = "#7c3aed", editable = 
                   return skill.name ? (
                     <span
                       key={skill.id}
-                      className="px-4 py-1.5 text-[12px] font-medium rounded-full"
+                      className="px-4 py-1.5 text-xs font-medium rounded-full"
                       style={{ 
                         color: color,
                         backgroundColor: `${color}15`,

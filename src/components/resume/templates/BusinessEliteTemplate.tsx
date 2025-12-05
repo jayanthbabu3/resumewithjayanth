@@ -344,7 +344,7 @@ export const BusinessEliteTemplate = ({ resumeData, themeColor = "#854d0e", edit
               skills={resumeData.skills}
               renderSkill={(skill) => {
                 return skill.name ? (
-                  <div className="inline-block px-4 py-2 mr-3 mb-3 border text-[12.5px] font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
+                  <div className="inline-block px-4 py-1.5 mr-3 mb-3 border text-xs font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </div>
                 ) : null;
@@ -354,7 +354,7 @@ export const BusinessEliteTemplate = ({ resumeData, themeColor = "#854d0e", edit
             <div className="flex flex-wrap">
               {resumeData.skills.map((skill) => (
                 skill.name ? (
-                  <div key={skill.id} className="px-4 py-2 mr-3 mb-3 border-2 text-[12.5px] font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
+                  <div key={skill.id} className="px-4 py-1.5 mr-3 mb-3 border-2 text-xs font-semibold" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </div>
                 ) : null

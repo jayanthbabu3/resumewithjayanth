@@ -369,7 +369,7 @@ export const BusinessModernTemplate = ({ resumeData, themeColor = "#1f2937", edi
               skills={resumeData.skills}
               renderSkill={(skill) => {
                 return skill.name ? (
-                  <div className="inline-block px-4 py-2 mr-3 mb-3 bg-gray-100 rounded text-[12.5px] font-medium text-gray-800">
+                  <div className="inline-block px-4 py-1.5 mr-3 mb-3 bg-gray-100 rounded text-xs font-medium text-gray-800">
                     {skill.name}
                   </div>
                 ) : null;
@@ -379,7 +379,7 @@ export const BusinessModernTemplate = ({ resumeData, themeColor = "#1f2937", edi
             <div className="flex flex-wrap">
               {resumeData.skills.map((skill) => (
                 skill.name ? (
-                  <div key={skill.id} className="px-4 py-2 mr-3 mb-3 bg-gray-100 rounded text-[12.5px] font-medium text-gray-800">
+                  <div key={skill.id} className="px-4 py-1.5 mr-3 mb-3 bg-gray-100 rounded text-xs font-medium text-gray-800">
                     {skill.name}
                   </div>
                 ) : null

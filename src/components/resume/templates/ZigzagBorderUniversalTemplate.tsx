@@ -101,7 +101,7 @@ export const ZigzagBorderUniversalTemplate = ({
           <h2 className="text-[16px] font-bold mb-4" style={{ color: accent }}>Skills</h2>
           <div className="flex flex-wrap gap-2">
             {resumeData.skills.map((skill, idx) => (
-              <span key={idx} className="px-4 py-2 text-[12px] font-medium rounded-lg" style={{ backgroundColor: accentLight, color: accent }}>
+              <span key={idx} className="px-4 py-1.5 text-xs font-medium rounded-lg" style={{ backgroundColor: accentLight, color: accent }}>
                 {skill.name}
               </span>
             ))}

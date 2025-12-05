@@ -127,7 +127,7 @@ export const FresherCreativeEdgeTemplate = ({ resumeData, themeColor = "#ec4899"
                 path="skills"
                 skills={resumeData.skills}
                 renderSkill={(skill) => (
-                  <span className="inline-block px-5 py-2.5 mr-3 mb-3 rounded-lg text-[13px] font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
+                  <span className="inline-block px-4 py-1.5 mr-3 mb-3 rounded-lg text-xs font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
                     {skill.name}
                   </span>
                 )}
@@ -135,7 +135,7 @@ export const FresherCreativeEdgeTemplate = ({ resumeData, themeColor = "#ec4899"
             ) : (
               <div className="flex flex-wrap">
                 {resumeData.skills.map((skill) => (
-                  <span key={skill.id} className="px-5 py-2.5 mr-3 mb-3 rounded-lg text-[13px] font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
+                  <span key={skill.id} className="px-4 py-1.5 mr-3 mb-3 rounded-lg text-xs font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
                     {skill.name}
                   </span>
                 ))}

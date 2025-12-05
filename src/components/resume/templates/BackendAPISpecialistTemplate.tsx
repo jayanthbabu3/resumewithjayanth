@@ -76,7 +76,7 @@ export const BackendAPISpecialistTemplate = ({ resumeData, themeColor = "#059669
         {((resumeData.skills && resumeData.skills.length > 0) || editable) && (
           <div className="mb-10">
             <h2 className="text-[15px] font-bold mb-4 text-gray-900 uppercase tracking-wider pb-2 border-b-2" style={{ borderColor: accent }}>Technical Skills</h2>
-            {editable ? <InlineEditableSkills path="skills" skills={resumeData.skills || []} className="text-[13px]" /> : <div className="flex flex-wrap gap-2.5">{resumeData.skills.map((skill, index) => <span key={index} className="px-4 py-2 text-[12.5px] font-semibold rounded-lg" style={{ backgroundColor: accentLight, color: accent, border: `2px solid ${accentBorder}` }}>{skill.name}</span>)}</div>}
+            {editable ? <InlineEditableSkills path="skills" skills={resumeData.skills || []} className="text-[13px]" /> : <div className="flex flex-wrap gap-2.5">{resumeData.skills.map((skill, index) => <span key={index} className="px-4 py-1.5 text-xs font-semibold rounded-lg" style={{ backgroundColor: accentLight, color: accent, border: `2px solid ${accentBorder}` }}>{skill.name}</span>)}</div>}
           </div>
         )}
 

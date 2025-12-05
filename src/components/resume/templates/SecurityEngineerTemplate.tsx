@@ -181,7 +181,7 @@ export const SecurityEngineerTemplate = ({ resumeData, themeColor = "#DD0031", e
                 {resumeData.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-3.5 py-2 text-[12px] font-semibold rounded-sm border"
+                    className="px-3.5 py-1.5 text-xs font-semibold rounded-sm border"
                     style={{
                       backgroundColor: accentLight,
                       borderColor: accent,

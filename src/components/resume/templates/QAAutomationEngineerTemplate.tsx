@@ -176,7 +176,7 @@ export const QAAutomationEngineerTemplate = ({ resumeData, themeColor = "#00A95C
                   {resumeData.skills.map((skill, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 px-3 py-2 text-[12px] font-medium rounded"
+                      className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded"
                       style={{
                         backgroundColor: accentLight,
                         borderLeft: `3px solid ${accent}`

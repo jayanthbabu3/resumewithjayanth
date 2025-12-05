@@ -66,14 +66,7 @@ const Editor = (props: EditorProps = {}) => {
   const [searchParams] = useSearchParams();
   const routeResumeId = searchParams.get("resumeId");
   const { user } = useFirebaseAuth();
-  const {
-    resumeData: contextResumeData,
-    setResumeData: setContextResumeData,
-    themeColor: contextThemeColor,
-    setThemeColor: setContextThemeColor,
-    templateId: contextTemplateId,
-    setTemplateId,
-  } = useResumeData();
+  const { resumeData: contextResumeData, setResumeData: setContextResumeData, themeColor: contextThemeColor, setThemeColor: setContextThemeColor, setTemplateId } = useResumeData();
 
   // Use props if provided, otherwise fall back to context/route values
   const templateId = props.initialTemplateId || routeTemplateId;
@@ -95,17 +88,12 @@ const Editor = (props: EditorProps = {}) => {
     setContextThemeColor(color);
   };
 
-  // Ensure context template/data lines up with route when opening the form editor directly
+  // Update template ID in context when route changes
   useEffect(() => {
-    if (!templateId) return;
-
-    if (!resumeId && !props.initialData && contextTemplateId !== templateId) {
-      const defaultData = getTemplateDefaults(templateId);
-      setResumeData(defaultData);
+    if (templateId) {
+      setTemplateId(templateId);
     }
-
-    setTemplateId(templateId);
-  }, [templateId, resumeId, props.initialData, contextTemplateId, setTemplateId]);
+  }, [templateId, setTemplateId]);
   
   const [atsReport, setAtsReport] = useState<AtsReport | null>(null);
   const [atsDialogOpen, setAtsDialogOpen] = useState(false);

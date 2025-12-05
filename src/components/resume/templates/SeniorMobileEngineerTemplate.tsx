@@ -170,7 +170,7 @@ export const SeniorMobileEngineerTemplate = ({ resumeData, themeColor = "#3DDC84
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12.5px] font-semibold rounded-full"
+                      className="px-4 py-1.5 text-xs font-semibold rounded-full"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

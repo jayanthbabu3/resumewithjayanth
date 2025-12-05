@@ -310,7 +310,7 @@ export const SterlingExecutiveTemplate = ({
               renderSkill={(skill, index) => (
                 <span
                   key={index}
-                  className="px-4 py-1.5 text-[12px] font-medium text-gray-900 rounded-md"
+                  className="px-4 py-1.5 text-xs font-medium text-gray-900 rounded-md"
                   style={{ border: `1.5px solid ${accentBorder}`, backgroundColor: accentLight }}
                 >
                   {skill.name}
@@ -322,7 +322,7 @@ export const SterlingExecutiveTemplate = ({
               {resumeData.skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-4 py-1.5 text-[12px] font-medium text-gray-900 rounded-md"
+                  className="px-4 py-1.5 text-xs font-medium text-gray-900 rounded-md"
                   style={{ border: `1.5px solid ${accentBorder}`, backgroundColor: accentLight }}
                 >
                   {skill.name}

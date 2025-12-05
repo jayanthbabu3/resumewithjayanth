@@ -353,10 +353,10 @@ export const FresherTechModernTemplate = ({ resumeData, themeColor = "#0369a1", 
           Certifications
         </h2>
         <div className="flex flex-wrap gap-3">
-          <span className="px-4 py-2 border-2 rounded-lg text-[12.5px] font-medium" style={{ borderColor: themeColor, color: themeColor }}>
+          <span className="px-4 py-1.5 border-2 rounded-lg text-xs font-medium" style={{ borderColor: themeColor, color: themeColor }}>
             AWS Certified Cloud Practitioner
           </span>
-          <span className="px-4 py-2 border-2 rounded-lg text-[12.5px] font-medium" style={{ borderColor: themeColor, color: themeColor }}>
+          <span className="px-4 py-1.5 border-2 rounded-lg text-xs font-medium" style={{ borderColor: themeColor, color: themeColor }}>
             Google IT Support
           </span>
         </div>

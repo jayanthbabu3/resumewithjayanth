@@ -138,9 +138,9 @@ export const FresherTemplate = ({
                   value={resumeData.personalInfo.summary}
                   className="text-[13px] leading-relaxed text-gray-700 pl-4 block"
                   style={{
-                    fontSize: styles.itemDescription.size,
-                    lineHeight: styles.itemDescription.lineHeight,
-                    color: styles.itemDescription.color,
+                    fontSize: styles.text.size,
+                    lineHeight: styles.spacing.lineHeight,
+                    color: styles.colors.text.primary,
                   }}
                   multiline
                   as="p"
@@ -149,9 +149,9 @@ export const FresherTemplate = ({
                 <p 
                   className="text-[13px] leading-relaxed text-gray-700 pl-4"
                   style={{
-                    fontSize: styles.itemDescription.size,
-                    lineHeight: styles.itemDescription.lineHeight,
-                    color: styles.itemDescription.color,
+                    fontSize: styles.text.size,
+                    lineHeight: styles.spacing.lineHeight,
+                    color: styles.colors.text.primary,
                   }}
                 >
                   {resumeData.personalInfo.summary}
@@ -251,12 +251,24 @@ export const FresherTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
+                path="sections"
                 containerClassName="space-y-8"
                 itemStyle={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
+                  fontSize: styles.text.size,
+                  lineHeight: styles.spacing.lineHeight,
+                  color: styles.colors.text.primary,
                 }}
+                renderHeader={(title) => (
+                  <div className="flex items-center gap-3 mb-4">
+                    <h2
+                      className="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded text-white"
+                      style={{ backgroundColor: themeColor }}
+                    >
+                      {title}
+                    </h2>
+                    <div className="flex-1 h-px bg-gray-200" />
+                  </div>
+                )}
               />
 
               {/* Experience/Internships */}

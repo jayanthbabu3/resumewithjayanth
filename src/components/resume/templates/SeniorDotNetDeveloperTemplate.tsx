@@ -180,7 +180,7 @@ export const SeniorDotNetDeveloperTemplate = ({ resumeData, themeColor = "#512bd
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12.5px] font-semibold rounded-lg shadow-sm"
+                      className="px-4 py-1.5 text-xs font-semibold rounded-lg shadow-sm"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

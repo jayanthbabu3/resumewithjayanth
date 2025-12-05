@@ -173,7 +173,7 @@ export const DevOpsEngineerTemplate = ({ resumeData, themeColor = "#326ce5", edi
                 {resumeData.skills.map((skill, index) => (
                   <span
                     key={index}
-                    className="px-3.5 py-2 text-[12px] font-medium border-2 rounded-md"
+                    className="px-3.5 py-1.5 text-xs font-medium border-2 rounded-md"
                     style={{
                       borderColor: accent,
                       color: accent,

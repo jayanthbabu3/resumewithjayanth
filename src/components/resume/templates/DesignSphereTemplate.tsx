@@ -251,7 +251,7 @@ export const DesignSphereTemplate = ({
                 skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
-                    <div className="px-4 py-2 rounded-full text-[12px] font-medium text-center" style={{
+                    <div className="px-4 py-1.5 rounded-full text-xs font-medium text-center" style={{
                       backgroundColor: `${themeColor}15`,
                       color: themeColor,
                       border: `1px solid ${themeColor}30`
@@ -265,7 +265,7 @@ export const DesignSphereTemplate = ({
               <div className="flex flex-wrap gap-2 justify-center">
                 {resumeData.skills.map((skill) =>
                   skill.name ? (
-                    <div key={skill.id} className="px-4 py-2 rounded-full text-[12px] font-medium text-center" style={{
+                    <div key={skill.id} className="px-4 py-1.5 rounded-full text-xs font-medium text-center" style={{
                       backgroundColor: `${themeColor}15`,
                       color: themeColor,
                       border: `1px solid ${themeColor}30`

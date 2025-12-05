@@ -149,7 +149,7 @@ export const ArtisticVisionTemplate = ({
                   skills={resumeData.skills}
                   renderSkill={(skill) =>
                     skill.name ? (
-                      <div className="relative mb-2 px-3 py-2 text-[12px] font-medium" style={{
+                      <div className="relative mb-2 px-3.5 py-1.5 text-xs font-medium" style={{
                         backgroundColor: `${themeColor}10`,
                         clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)',
                         color: themeColor
@@ -163,7 +163,7 @@ export const ArtisticVisionTemplate = ({
                 <div className="space-y-2">
                   {resumeData.skills.map((skill) =>
                     skill.name ? (
-                      <div key={skill.id} className="relative px-3 py-2 text-[12px] font-medium" style={{
+                      <div key={skill.id} className="relative px-3.5 py-1.5 text-xs font-medium" style={{
                         backgroundColor: `${themeColor}10`,
                         clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)',
                         color: themeColor

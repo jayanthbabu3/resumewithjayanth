@@ -175,7 +175,7 @@ export const MobileDeveloperTemplate = ({ resumeData, themeColor = "#3DDC84", ed
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12.5px] font-medium rounded-full"
+                      className="px-4 py-1.5 text-xs font-medium rounded-full"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

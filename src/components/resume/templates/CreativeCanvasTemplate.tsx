@@ -257,7 +257,7 @@ export const CreativeCanvasTemplate = ({
                   const color = colors[index % colors.length];
                   return skill.name ? (
                     <span
-                      className="px-4 py-2 text-[12px] font-medium rounded-md inline-block border-2"
+                      className="px-4 py-1.5 text-xs font-medium rounded-md inline-block border-2"
                       style={{
                         borderColor: color,
                         color: color,
@@ -277,7 +277,7 @@ export const CreativeCanvasTemplate = ({
                   return skill.name ? (
                     <span
                       key={skill.id}
-                      className="px-4 py-2 text-[12px] font-medium rounded-md border-2"
+                      className="px-4 py-1.5 text-xs font-medium rounded-md border-2"
                       style={{
                         borderColor: color,
                         color: color,

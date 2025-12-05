@@ -252,7 +252,7 @@ export const CreativeCraftedTemplate = ({
                 skills={resumeData.skills}
                 renderSkill={(skill) =>
                   skill.name ? (
-                    <div className="px-3 py-2 text-[12px] font-medium border-2" style={{
+                    <div className="px-3.5 py-1.5 text-xs font-medium border-2" style={{
                       borderColor: themeColor,
                       color: themeColor,
                       backgroundColor: 'white'
@@ -266,7 +266,7 @@ export const CreativeCraftedTemplate = ({
               <div className="flex flex-wrap gap-2">
                 {resumeData.skills.map((skill) =>
                   skill.name ? (
-                    <div key={skill.id} className="px-3 py-2 text-[12px] font-medium border-2" style={{
+                    <div key={skill.id} className="px-3.5 py-1.5 text-xs font-medium border-2" style={{
                       borderColor: themeColor,
                       color: themeColor,
                       backgroundColor: 'white'

@@ -175,7 +175,7 @@ export const DataEngineerTemplate = ({ resumeData, themeColor = "#00758F", edita
                 {resumeData.skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="px-3 py-2.5 text-[12px] font-medium text-center rounded-md"
+                    className="px-3.5 py-1.5 text-xs font-medium text-center rounded-md"
                     style={{
                       backgroundColor: accentLight,
                       borderLeft: `3px solid ${accent}`,

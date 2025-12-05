@@ -252,7 +252,7 @@ export const DesignMaestroTemplate = ({
               skills={resumeData.skills}
               renderSkill={(skill) =>
                 skill.name ? (
-                  <div className="px-4 py-2.5 rounded-full border-2 text-[12px] font-medium text-center transition-all hover:shadow-md" style={{ borderColor: themeColor, color: themeColor }}>
+                  <div className="px-4 py-1.5 rounded-full border-2 text-xs font-medium text-center transition-all hover:shadow-md" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </div>
                 ) : null
@@ -262,7 +262,7 @@ export const DesignMaestroTemplate = ({
             <div className="flex flex-wrap gap-3 justify-center">
               {resumeData.skills.map((skill) =>
                 skill.name ? (
-                  <div key={skill.id} className="px-4 py-2.5 rounded-full border-2 text-[12px] font-medium text-center" style={{ borderColor: themeColor, color: themeColor }}>
+                  <div key={skill.id} className="px-4 py-1.5 rounded-full border-2 text-xs font-medium text-center" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </div>
                 ) : null

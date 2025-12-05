@@ -180,7 +180,7 @@ export const JavaDeveloperTemplate = ({ resumeData, themeColor = "#f89820", edit
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1.5 text-[12px] font-medium rounded"
+                      className="px-3.5 py-1.5 text-xs font-medium rounded"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

@@ -354,7 +354,7 @@ export const ProfessionalGridTemplate = ({ resumeData, themeColor = "#dc2626", e
             <div className="grid grid-cols-3 gap-3">
               {resumeData.skills.map((skill) => (
                 skill.name ? (
-                  <div key={skill.id} className="px-3 py-1.5 bg-gray-100 text-[12px] font-medium text-gray-800">
+                  <div key={skill.id} className="px-3 py-1 bg-gray-100 text-[11px] font-medium text-gray-800">
                     {skill.name}
                   </div>
                 ) : null

@@ -185,7 +185,7 @@ export const SeniorJavaDeveloperTemplate = ({ resumeData, themeColor = "#f89820"
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12.5px] font-semibold rounded-md"
+                      className="px-4 py-1.5 text-xs font-semibold rounded-md"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

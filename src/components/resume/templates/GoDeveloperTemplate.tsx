@@ -170,7 +170,7 @@ export const GoDeveloperTemplate = ({ resumeData, themeColor = "#00ADD8", editab
                 {resumeData.skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="px-3 py-2.5 text-[12px] font-medium text-center rounded"
+                    className="px-3.5 py-1.5 text-xs font-medium text-center rounded"
                     style={{
                       backgroundColor: accentLight,
                       color: accent,

@@ -169,7 +169,7 @@ export const PrincipalSoftwareEngineerTemplate = ({ resumeData, themeColor = "#0
                   {resumeData.skills.map((skill, index) => (
                     <div
                       key={index}
-                      className="px-3 py-2.5 text-[12px] font-semibold text-center rounded border-2"
+                      className="px-3.5 py-1.5 text-xs font-semibold text-center rounded border-2"
                       style={{
                         borderColor: accent,
                         color: accent

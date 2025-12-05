@@ -278,12 +278,18 @@ export const NetworkedGraduateTemplate = ({
         sections={resumeData.sections}
         editable={editable}
         accentColor={accent}
+        path="sections"
         containerClassName="mb-8"
         itemStyle={{
-          fontSize: SINGLE_COLUMN_CONFIG.itemDescription.size,
-          lineHeight: SINGLE_COLUMN_CONFIG.itemDescription.lineHeight,
-          color: SINGLE_COLUMN_CONFIG.itemDescription.color,
+          fontSize: SINGLE_COLUMN_CONFIG.text.size,
+          lineHeight: SINGLE_COLUMN_CONFIG.spacing.lineHeight,
+          color: SINGLE_COLUMN_CONFIG.colors.text.primary,
         }}
+        renderHeader={(title) => (
+          <h2 className="text-[16px] font-bold mb-4 uppercase tracking-wider" style={{ color: accent }}>
+            {title}
+          </h2>
+        )}
       />
     </div>
   );

@@ -181,7 +181,7 @@ export const LeadFrontendEngineerTemplate = ({ resumeData, themeColor = "#0ea5e9
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12.5px] font-semibold rounded-full shadow-sm"
+                      className="px-4 py-1.5 text-xs font-semibold rounded-full shadow-sm"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

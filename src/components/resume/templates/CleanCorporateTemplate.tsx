@@ -360,7 +360,7 @@ export const CleanCorporateTemplate = ({ resumeData, themeColor = "#6366f1", edi
               skills={resumeData.skills}
               renderSkill={(skill) => {
                 return skill.name ? (
-                  <div className="inline-block px-2.5 py-1 mr-2 mb-2 rounded text-[12px] font-medium" style={{ border: `0.5px solid ${themeColor}`, color: themeColor }}>
+                  <div className="inline-block px-3 py-1 mr-2 mb-2 rounded text-[11px] font-medium" style={{ border: `0.5px solid ${themeColor}`, color: themeColor }}>
                     {skill.name}
                    
                   </div>
@@ -371,7 +371,7 @@ export const CleanCorporateTemplate = ({ resumeData, themeColor = "#6366f1", edi
             <div className="flex flex-wrap">
               {resumeData.skills.map((skill) => (
                 skill.name ? (
-                  <div key={skill.id} className="px-2.5 py-1 mr-2 mb-2 rounded text-[12px] font-medium" style={{ border: `0.5px solid ${themeColor}`, color: themeColor }}>
+                  <div key={skill.id} className="px-3 py-1 mr-2 mb-2 rounded text-[11px] font-medium" style={{ border: `0.5px solid ${themeColor}`, color: themeColor }}>
                     {skill.name}
                     {showSkillRatings && skill.rating && <span className="ml-1 text-xs text-gray-500">({skill.rating})</span>}
                   </div>

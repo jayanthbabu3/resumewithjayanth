@@ -237,7 +237,7 @@ export const ArtisticHorizonTemplate = ({
                   skills={resumeData.skills}
                   renderSkill={(skill) =>
                     skill.name ? (
-                      <div className="px-3 py-1.5 text-[12px] font-medium" style={{
+                      <div className="px-3.5 py-1.5 text-xs font-medium" style={{
                         backgroundColor: `${themeColor}10`,
                         borderLeft: `3px solid ${themeColor}`,
                         color: themeColor
@@ -251,7 +251,7 @@ export const ArtisticHorizonTemplate = ({
                 <div className="grid grid-cols-2 gap-2">
                   {resumeData.skills.map((skill) =>
                     skill.name ? (
-                      <div key={skill.id} className="px-3 py-1.5 text-[12px] font-medium" style={{
+                      <div key={skill.id} className="px-3.5 py-1.5 text-xs font-medium" style={{
                         backgroundColor: `${themeColor}10`,
                         borderLeft: `3px solid ${themeColor}`,
                         color: themeColor

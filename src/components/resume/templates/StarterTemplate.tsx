@@ -108,9 +108,9 @@ export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9", editable =
                 value={resumeData.personalInfo.summary}
                 className="text-[13px] leading-relaxed text-gray-700 block"
                 style={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
+                  fontSize: styles.text.size,
+                  lineHeight: styles.spacing.lineHeight,
+                  color: styles.colors.text.primary,
                 }}
                 multiline
                 as="p"
@@ -119,9 +119,9 @@ export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9", editable =
               <p 
                 className="text-[13px] leading-relaxed text-gray-700"
                 style={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
+                  fontSize: styles.text.size,
+                  lineHeight: styles.spacing.lineHeight,
+                  color: styles.colors.text.primary,
                 }}
               >
                 {resumeData.personalInfo.summary}
@@ -183,7 +183,13 @@ export const StarterTemplate = ({ resumeData, themeColor = "#0EA5E9", editable =
           sections={resumeData.sections}
           editable={editable}
           accentColor={themeColor}
+          path="sections"
           containerClassName="space-y-6"
+          renderHeader={(title) => (
+            <h2 className="text-sm font-bold uppercase tracking-wide text-gray-900 mb-2">
+              {title}
+            </h2>
+          )}
         />
 
         {/* Experience/Internships */}

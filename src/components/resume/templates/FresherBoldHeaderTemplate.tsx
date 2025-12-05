@@ -209,7 +209,7 @@ export const FresherBoldHeaderTemplate = ({ resumeData, themeColor = "#dc2626", 
                 path="skills"
                 skills={resumeData.skills}
                 renderSkill={(skill) => (
-                  <span className="inline-block px-4 py-2 mr-3 mb-3 rounded-md text-[13px] font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
+                  <span className="inline-block px-4 py-1.5 mr-3 mb-3 rounded-md text-xs font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </span>
                 )}
@@ -217,7 +217,7 @@ export const FresherBoldHeaderTemplate = ({ resumeData, themeColor = "#dc2626", 
             ) : (
               <div className="flex flex-wrap">
                 {resumeData.skills.map((skill) => (
-                  <span key={skill.id} className="px-4 py-2 mr-3 mb-3 rounded-md text-[13px] font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
+                  <span key={skill.id} className="px-4 py-1.5 mr-3 mb-3 rounded-md text-xs font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
                     {skill.name}
                   </span>
                 ))}

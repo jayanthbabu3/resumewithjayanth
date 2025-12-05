@@ -181,7 +181,7 @@ export const NodeJSDeveloperTemplate = ({ resumeData, themeColor = "#339933", ed
                   {resumeData.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="px-4 py-2 text-[12px] font-medium rounded-lg"
+                      className="px-4 py-1.5 text-xs font-medium rounded-lg"
                       style={{
                         backgroundColor: accentLight,
                         color: accent,

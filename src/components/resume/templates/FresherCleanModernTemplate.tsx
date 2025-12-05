@@ -129,7 +129,7 @@ export const FresherCleanModernTemplate = ({ resumeData, themeColor = "#6366f1",
               path="skills"
               skills={resumeData.skills}
               renderSkill={(skill) => (
-                <span className="inline-block px-5 py-2.5 mr-3 mb-3 rounded-full text-[12.5px] font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
+                <span className="inline-block px-4 py-1.5 mr-3 mb-3 rounded-full text-xs font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
                   {skill.name}
                 </span>
               )}
@@ -137,7 +137,7 @@ export const FresherCleanModernTemplate = ({ resumeData, themeColor = "#6366f1",
           ) : (
             <div className="flex flex-wrap justify-center">
               {resumeData.skills.map((skill) => (
-                <span key={skill.id} className="px-5 py-2.5 mr-3 mb-3 rounded-full text-[12.5px] font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
+                <span key={skill.id} className="px-4 py-1.5 mr-3 mb-3 rounded-full text-xs font-medium text-white shadow-md" style={{ backgroundColor: themeColor }}>
                   {skill.name}
                 </span>
               ))}
@@ -337,7 +337,7 @@ export const FresherCleanModernTemplate = ({ resumeData, themeColor = "#6366f1",
           Certifications
         </h2>
         <div className="flex flex-wrap justify-center gap-3">
-          <span className="px-4 py-2 rounded-lg text-[12.5px] font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
+          <span className="px-4 py-1.5 rounded-lg text-xs font-medium border-2" style={{ borderColor: themeColor, color: themeColor }}>
             Certification Name - Issuer
           </span>
         </div>

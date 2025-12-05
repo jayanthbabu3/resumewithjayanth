@@ -22,8 +22,8 @@ export const FresherEliteTemplate = ({
   const photo = resumeData.personalInfo.photo;
 
   return (
-    <div className="w-full h-full bg-gray-50">
-      <div className="max-w-[900px] mx-auto bg-white shadow-sm overflow-hidden">
+    <div className="w-full h-full bg-gray-50 p-8">
+      <div className="max-w-[900px] mx-auto bg-white rounded-2xl shadow-sm overflow-hidden">
         {/* Header with colored background */}
         <div 
           className="px-10 py-8"
@@ -129,20 +129,20 @@ export const FresherEliteTemplate = ({
                     className="text-[13px] text-gray-700 leading-relaxed"
                     as="p"
                     style={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
-                }}
+                      fontSize: styles.text.size,
+                      lineHeight: styles.spacing.lineHeight,
+                      color: styles.colors.text.primary,
+                    }}
                     multiline
                   />
                 ) : (
                   <p 
                     className="text-[13px] text-gray-700 leading-relaxed"
                     style={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
-                }}
+                      fontSize: styles.text.size,
+                      lineHeight: styles.spacing.lineHeight,
+                      color: styles.colors.text.primary,
+                    }}
                   >
                     {resumeData.personalInfo.summary}
                   </p>
@@ -253,12 +253,22 @@ export const FresherEliteTemplate = ({
                 sections={resumeData.sections}
                 editable={editable}
                 accentColor={themeColor}
+                path="sections"
                 containerClassName="space-y-6"
                 itemStyle={{
-                  fontSize: styles.itemDescription.size,
-                  lineHeight: styles.itemDescription.lineHeight,
-                  color: styles.itemDescription.color,
+                  fontSize: styles.text.size,
+                  lineHeight: styles.spacing.lineHeight,
+                  color: styles.colors.text.primary,
                 }}
+                renderHeader={(title) => (
+                  <h2
+                    className="text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-2"
+                    style={{ color: themeColor }}
+                  >
+                    <span className="w-1 h-3.5 rounded-full" style={{ backgroundColor: themeColor }} />
+                    {title}
+                  </h2>
+                )}
               />
 
               {/* Internship Experience */}
