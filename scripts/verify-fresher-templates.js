@@ -464,3 +464,4 @@ if (templateName === 'all') {
   process.exit(result.issues.length > 0 ? 1 : 0);
 }
 
+

@@ -130,3 +130,4 @@ interface InlineEditableSkillsProps {
 2. Update documentation
 3. Migrate templates to use variants
 4. Remove custom renderSkill overrides where possible
+

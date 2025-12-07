@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TemplatePreview } from "@/components/TemplatePreview";
-import { ExecutiveTemplate } from "@/components/resume/templates/ExecutiveTemplate";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
+import { ProfessionalTemplate } from "@/components/resume/templates/ProfessionalTemplate";
 import { generatePDFFromPreview } from "@/lib/pdfGenerator";
 import { cn } from "@/lib/utils";
 import { useAppStats } from "@/hooks/useAppStats";
@@ -1425,7 +1425,7 @@ const Hero = () => {
                               key={JSON.stringify(liveResumeData)}
                             >
                               <div id="hero-live-preview" ref={previewContentRef} className="w-[816px]">
-                                <ExecutiveTemplate
+                                <ProfessionalTemplate
                                   resumeData={liveResumeData}
                                   themeColor="#3b82f6"
                                 />
@@ -1555,7 +1555,7 @@ const Hero = () => {
                           >
                             <div id="hero-live-editor-preview" ref={livePreviewContentRef} className="w-[816px]">
                               <InlineEditProvider resumeData={liveResumeData} setResumeData={setLiveResumeData}>
-                                <ExecutiveTemplate
+                                <ProfessionalTemplate
                                   resumeData={liveResumeData}
                                   themeColor="#059669"
                                   editable={true}

@@ -243,3 +243,4 @@ When fixing templates:
 3. Update custom sections to NOT render button
 4. Add visual separation at bottom
 5. Test in browser to verify position
+

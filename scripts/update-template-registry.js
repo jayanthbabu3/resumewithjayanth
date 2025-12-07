@@ -187,12 +187,24 @@ function main() {
   }`)
     .join(',\n');
   
+  // Extract existing categoryLabelMap if it exists
+  const categoryLabelMapMatch = existingMetaContent.match(/export const categoryLabelMap[^}]+};/s);
+  const categoryLabelMapSection = categoryLabelMapMatch ? categoryLabelMapMatch[0] : `export const categoryLabelMap: Record<string, string> = {
+  software: "Software Development",
+  freshers: "Freshers & Entry Level",
+  accountants: "Accounting & Finance",
+  teaching: "Teaching & Education",
+  all: "All Professions",
+};`;
+
   const newMetaContent = `export interface TemplateMeta {
   name: string;
   description: string;
   category: string;
   categorySlug: string;
 }
+
+${categoryLabelMapSection}
 
 // Auto-generated template metadata
 // Total: ${Object.keys(completeMeta).length} templates

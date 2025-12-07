@@ -352,3 +352,4 @@ See section 1 above for full code.
 - Reference Template: `src/components/resume/templates/MinimalTemplate.tsx`
 - PDF Standards: `src/lib/pdfstandards.ts`
 - Components: `src/components/resume/`
+

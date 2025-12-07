@@ -89,3 +89,4 @@ All content text now uses inline styles instead of Tailwind classes to ensure ex
 - [ ] Experience bullet points use `#1a1a1a` color
 - [ ] Custom sections use `#1a1a1a` color
 - [ ] No RGB color values in content text
+

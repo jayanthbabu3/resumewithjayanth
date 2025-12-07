@@ -3,7 +3,6 @@ import { EditableField } from "./EditableField";
 import { ProfessionalTemplate } from "./templates/ProfessionalTemplate";
 import { ModernTemplate } from "./templates/ModernTemplate";
 import { MinimalTemplate } from "./templates/MinimalTemplate";
-import { ExecutiveTemplate } from "./templates/ExecutiveTemplate";
 import { FrontendTemplate } from "./templates/FrontendTemplate";
 import { FullstackTemplate } from "./templates/FullstackTemplate";
 import { BackendTemplate } from "./templates/BackendTemplate";
@@ -18,17 +17,13 @@ import { SoftwareTemplate } from "./templates/SoftwareTemplate";
 import { PremiumUniversalTemplate } from "./templates/PremiumUniversalTemplate";
 import { PremiumProTemplate } from "./templates/PremiumProTemplate";
 import { FresherEliteTemplate } from "./templates/FresherEliteTemplate";
-import { AnalystTemplate } from "./templates/AnalystTemplate";
-import { CorporateExecutiveTemplate } from "./templates/CorporateExecutiveTemplate";
 import { RefinedTemplate } from "./templates/RefinedTemplate";
 import { PremiumEliteTemplate } from "./templates/PremiumEliteTemplate";
-import { SapphireExecutiveTemplate } from "./templates/SapphireExecutiveTemplate";
 import { CreativeAccentTemplate } from "./templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./templates/BoldHeadlineTemplate";
 import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
 import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
-import { LuxuryTimelineTemplate } from "./templates/LuxuryTimelineTemplate";
 import { FresherMinimalGridTemplate } from "./templates/FresherMinimalGridTemplate";
 import { FresherDarkProfessionalTemplate } from "./templates/FresherDarkProfessionalTemplate";
 import { FresherColorAccentTemplate } from "./templates/FresherColorAccentTemplate";
@@ -56,41 +51,11 @@ import { FresherTechModernTemplate } from "./templates/FresherTechModernTemplate
 import { FresherProfessionalMinimalTemplate } from "./templates/FresherProfessionalMinimalTemplate";
 import { GradientHeaderUniversalTemplate } from "./templates/GradientHeaderUniversalTemplate";
 // Healthcare & Medical Templates
-import { MedicalProfessionalTemplate } from "./templates/MedicalProfessionalTemplate";
-import { HealthcareTwoColumnTemplate } from "./templates/HealthcareTwoColumnTemplate";
-import { NurseSpecialistTemplate } from "./templates/NurseSpecialistTemplate";
-import { MedicalExecutiveTemplate } from "./templates/MedicalExecutiveTemplate";
-import { ClinicalMinimalTemplate } from "./templates/ClinicalMinimalTemplate";
 // Education & Teaching Templates
-import { TeacherProfessionalTemplate } from "./templates/TeacherProfessionalTemplate";
-import { AcademicEducatorTemplate } from "./templates/AcademicEducatorTemplate";
-import { EducatorModernTemplate } from "./templates/EducatorModernTemplate";
-import { TeachingCertifiedTemplate } from "./templates/TeachingCertifiedTemplate";
-import { StudentEducatorTemplate } from "./templates/StudentEducatorTemplate";
 // Finance & Accounting Templates
-import { CPAProfessionalTemplate } from "./templates/CPAProfessionalTemplate";
-import { FinanceAnalystTemplate } from "./templates/FinanceAnalystTemplate";
-import { AccountingExecutiveTemplate } from "./templates/AccountingExecutiveTemplate";
-import { AuditorTemplate } from "./templates/AuditorTemplate";
-import { FinanceTwoColumnTemplate } from "./templates/FinanceTwoColumnTemplate";
 // Sales & Marketing Templates
-import { SalesExecutiveTemplate } from "./templates/SalesExecutiveTemplate";
-import { MarketingProfessionalTemplate } from "./templates/MarketingProfessionalTemplate";
-import { SalesMarketingHybridTemplate } from "./templates/SalesMarketingHybridTemplate";
-import { DigitalMarketerTemplate } from "./templates/DigitalMarketerTemplate";
-import { SalesManagerTemplate } from "./templates/SalesManagerTemplate";
 // Legal & Consulting Templates
-import { AttorneyProfessionalTemplate } from "./templates/AttorneyProfessionalTemplate";
-import { LegalCounselTemplate } from "./templates/LegalCounselTemplate";
-import { ConsultantTemplate } from "./templates/ConsultantTemplate";
-import { LegalExecutiveTemplate } from "./templates/LegalExecutiveTemplate";
-import { ParalegalTemplate } from "./templates/ParalegalTemplate";
 // Operations & Project Management Templates
-import { ProjectManagerPMPTemplate } from "./templates/ProjectManagerPMPTemplate";
-import { OperationsManagerTemplate } from "./templates/OperationsManagerTemplate";
-import { PMExecutiveTemplate } from "./templates/PMExecutiveTemplate";
-import { AgileScrumTemplate } from "./templates/AgileScrumTemplate";
-import { OperationsTwoColumnTemplate } from "./templates/OperationsTwoColumnTemplate";
 // New Software Development Templates
 import { JavaDeveloperTemplate } from "./templates/JavaDeveloperTemplate";
 import { DotNetDeveloperTemplate } from "./templates/DotNetDeveloperTemplate";
@@ -106,14 +71,10 @@ import { PythonDeveloperTemplate } from "./templates/PythonDeveloperTemplate";
 import { NodeJSDeveloperTemplate } from "./templates/NodeJSDeveloperTemplate";
 import { ReactDeveloperTemplate } from "./templates/ReactDeveloperTemplate";
 import { GoDeveloperTemplate } from "./templates/GoDeveloperTemplate";
-import { KuberneteEngineerTemplate } from "./templates/KuberneteEngineerTemplate";
 // Senior/Lead Software Engineering Templates
 import { SeniorJavaDeveloperTemplate } from "./templates/SeniorJavaDeveloperTemplate";
-import { SeniorDotNetDeveloperTemplate } from "./templates/SeniorDotNetDeveloperTemplate";
-import { SeniorDevOpsEngineerTemplate } from "./templates/SeniorDevOpsEngineerTemplate";
 import { LeadBackendEngineerTemplate } from "./templates/LeadBackendEngineerTemplate";
 import { LeadFrontendEngineerTemplate } from "./templates/LeadFrontendEngineerTemplate";
-import { SeniorFullStackDeveloperTemplate } from "./templates/SeniorFullStackDeveloperTemplate";
 import { PrincipalSoftwareEngineerTemplate } from "./templates/PrincipalSoftwareEngineerTemplate";
 import { StaffEngineerTemplate } from "./templates/StaffEngineerTemplate";
 import { EngineeringManagerTemplate } from "./templates/EngineeringManagerTemplate";
@@ -121,7 +82,6 @@ import { SolutionsArchitectTemplate } from "./templates/SolutionsArchitectTempla
 import { SeniorMobileEngineerTemplate } from "./templates/SeniorMobileEngineerTemplate";
 import { PlatformEngineerTemplate } from "./templates/PlatformEngineerTemplate";
 import { SiteReliabilityEngineerTemplate } from "./templates/SiteReliabilityEngineerTemplate";
-import { BackendAPISpecialistTemplate } from "./templates/BackendAPISpecialistTemplate";
 import { FrontendArchitectTemplate } from "./templates/FrontendArchitectTemplate";
 // New Universal Professional Templates
 import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
@@ -289,7 +249,6 @@ export const EditableResumePreview = ({
     professional: ProfessionalTemplate,
     modern: ModernTemplate,
     minimal: MinimalTemplate,
-    executive: ExecutiveTemplate,
     frontend: FrontendTemplate,
     fullstack: FullstackTemplate,
     backend: BackendTemplate,
@@ -304,18 +263,14 @@ export const EditableResumePreview = ({
     "premium-universal": PremiumUniversalTemplate,
     "premium-pro": PremiumProTemplate,
     "fresher-elite": FresherEliteTemplate,
-    analyst: AnalystTemplate,
-    "corporate-executive": CorporateExecutiveTemplate,
     refined: RefinedTemplate,
     "premium-elite": PremiumEliteTemplate,
-    "sapphire-executive": SapphireExecutiveTemplate,
-    "creative-accent": CreativeAccentTemplate,
+        "creative-accent": CreativeAccentTemplate,
     "bold-headline": BoldHeadlineTemplate,
     "elegant-serif": ElegantSerifTemplate,
     "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
-    "luxury-timeline": LuxuryTimelineTemplate,
-    "fresher-minimal-grid": FresherMinimalGridTemplate,
+        "fresher-minimal-grid": FresherMinimalGridTemplate,
     "fresher-dark-professional": FresherDarkProfessionalTemplate,
     "fresher-color-accent": FresherColorAccentTemplate,
     "fresher-timeline": FresherTimelineTemplate,
@@ -341,42 +296,12 @@ export const EditableResumePreview = ({
     "fresher-tech-modern": FresherTechModernTemplate,
     "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
     // Healthcare & Medical
-    "medical-professional": MedicalProfessionalTemplate,
-    "healthcare-two-column": HealthcareTwoColumnTemplate,
-    "nurse-specialist": NurseSpecialistTemplate,
-    "medical-executive": MedicalExecutiveTemplate,
-    "clinical-minimal": ClinicalMinimalTemplate,
-    // Education & Teaching
-    "teacher-professional": TeacherProfessionalTemplate,
-    "academic-scholar": AcademicEducatorTemplate,
-    "educator-modern": EducatorModernTemplate,
-    "teaching-certified": TeachingCertifiedTemplate,
-    "student-educator": StudentEducatorTemplate,
-    // Finance & Accounting
-    "cpa-professional": CPAProfessionalTemplate,
-    "finance-analyst": FinanceAnalystTemplate,
-    "accounting-executive": AccountingExecutiveTemplate,
-    "auditor": AuditorTemplate,
-    "finance-two-column": FinanceTwoColumnTemplate,
-    // Sales & Marketing
-    "sales-executive": SalesExecutiveTemplate,
-    "marketing-professional": MarketingProfessionalTemplate,
-    "sales-marketing-hybrid": SalesMarketingHybridTemplate,
-    "digital-marketer": DigitalMarketerTemplate,
-    "sales-manager": SalesManagerTemplate,
-    // Legal & Consulting
-    "attorney-professional": AttorneyProfessionalTemplate,
-    "legal-counsel": LegalCounselTemplate,
-    "consultant": ConsultantTemplate,
-    "legal-executive": LegalExecutiveTemplate,
-    "paralegal": ParalegalTemplate,
-    // Operations & Project Management
-    "project-manager-pmp": ProjectManagerPMPTemplate,
-    "operations-manager": OperationsManagerTemplate,
-    "pm-executive": PMExecutiveTemplate,
-    "agile-scrum": AgileScrumTemplate,
-    "operations-two-column": OperationsTwoColumnTemplate,
-    // New Software Development Templates
+                        // Education & Teaching
+                        // Finance & Accounting
+                        // Sales & Marketing
+                        // Legal & Consulting
+                        // Operations & Project Management
+                        // New Software Development Templates
     "java-developer": JavaDeveloperTemplate,
     "dotnet-developer": DotNetDeveloperTemplate,
     "devops-engineer": DevOpsEngineerTemplate,
@@ -391,23 +316,18 @@ export const EditableResumePreview = ({
     "nodejs-developer": NodeJSDeveloperTemplate,
     "react-developer": ReactDeveloperTemplate,
     "go-developer": GoDeveloperTemplate,
-    "kubernetes-engineer": KuberneteEngineerTemplate,
-    // Senior/Lead Software Engineering Templates
+        // Senior/Lead Software Engineering Templates
     "senior-java-developer": SeniorJavaDeveloperTemplate,
-    "senior-dotnet-developer": SeniorDotNetDeveloperTemplate,
-    "senior-devops-engineer": SeniorDevOpsEngineerTemplate,
-    "lead-backend-engineer": LeadBackendEngineerTemplate,
+            "lead-backend-engineer": LeadBackendEngineerTemplate,
     "lead-frontend-engineer": LeadFrontendEngineerTemplate,
-    "senior-fullstack-developer": SeniorFullStackDeveloperTemplate,
-    "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
+        "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
     "staff-engineer": StaffEngineerTemplate,
     "engineering-manager": EngineeringManagerTemplate,
     "solutions-architect": SolutionsArchitectTemplate,
     "senior-mobile-engineer": SeniorMobileEngineerTemplate,
     "platform-engineer": PlatformEngineerTemplate,
     "site-reliability-engineer": SiteReliabilityEngineerTemplate,
-    "backend-api-specialist": BackendAPISpecialistTemplate,
-    "frontend-architect": FrontendArchitectTemplate,
+        "frontend-architect": FrontendArchitectTemplate,
     // New Universal Professional Templates
     "corporate-blue": CorporateBlueTemplate,
     "minimalist-pro": MinimalistProTemplate,
