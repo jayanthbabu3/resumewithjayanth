@@ -28,20 +28,17 @@ import { BackendTemplate } from "@/components/resume/templates/BackendTemplate";
 import { GraduateTemplate } from "@/components/resume/templates/GraduateTemplate";
 import { StarterTemplate } from "@/components/resume/templates/StarterTemplate";
 import { FresherTemplate } from "@/components/resume/templates/FresherTemplate";
-import { PremiumFresherTemplate } from "@/components/resume/templates/PremiumFresherTemplate";
 import { SeniorTemplate } from "@/components/resume/templates/SeniorTemplate";
 import { SeniorFrontendTemplate } from "@/components/resume/templates/SeniorFrontendTemplate";
+import { SeniorBackendTemplate } from "@/components/resume/templates/SeniorBackendTemplate";
 import { SoftwareTemplate } from "@/components/resume/templates/SoftwareTemplate";
 import { PremiumUniversalTemplate } from "@/components/resume/templates/PremiumUniversalTemplate";
 import { PremiumProTemplate } from "@/components/resume/templates/PremiumProTemplate";
-import { FresherEliteTemplate } from "@/components/resume/templates/FresherEliteTemplate";
 import { RefinedTemplate } from "@/components/resume/templates/RefinedTemplate";
 import { PremiumEliteTemplate } from "@/components/resume/templates/PremiumEliteTemplate";
-import { SeniorBackendTemplate } from "@/components/resume/templates/SeniorBackendTemplate";
 import { CreativeAccentTemplate } from "@/components/resume/templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "@/components/resume/templates/BoldHeadlineTemplate";
 import { ElegantSerifTemplate } from "@/components/resume/templates/ElegantSerifTemplate";
-import { TechGridTemplate } from "@/components/resume/templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "@/components/resume/templates/ContemporarySplitTemplate";
 import { FresherMinimalGridTemplate } from "@/components/resume/templates/FresherMinimalGridTemplate";
 import { FresherDarkProfessionalTemplate } from "@/components/resume/templates/FresherDarkProfessionalTemplate";
@@ -53,7 +50,6 @@ import { FresherTwoToneTemplate } from "@/components/resume/templates/FresherTwo
 import { FresherCenteredElegantTemplate } from "@/components/resume/templates/FresherCenteredElegantTemplate";
 import { FresherGeometricTemplate } from "@/components/resume/templates/FresherGeometricTemplate";
 import { FresherAchievementTemplate } from "@/components/resume/templates/FresherAchievementTemplate";
-// New Fresher Templates
 import { FresherModernTwoColumnTemplate } from "@/components/resume/templates/FresherModernTwoColumnTemplate";
 import { FresherProfessionalSidebarTemplate } from "@/components/resume/templates/FresherProfessionalSidebarTemplate";
 import { FresherCleanModernTemplate } from "@/components/resume/templates/FresherCleanModernTemplate";
@@ -69,44 +65,16 @@ import { FresherCompactProTemplate } from "@/components/resume/templates/Fresher
 import { FresherElegantSidebarTemplate } from "@/components/resume/templates/FresherElegantSidebarTemplate";
 import { FresherTechModernTemplate } from "@/components/resume/templates/FresherTechModernTemplate";
 import { FresherProfessionalMinimalTemplate } from "@/components/resume/templates/FresherProfessionalMinimalTemplate";
-// Healthcare & Medical Templates
-// Education & Teaching Templates
-// Finance & Accounting Templates
-// Sales & Marketing Templates
-// Legal & Consulting Templates
-// Operations & Project Management Templates
-// New Software Development Templates
-import { JavaDeveloperTemplate } from "@/components/resume/templates/JavaDeveloperTemplate";
-import { DotNetDeveloperTemplate } from "@/components/resume/templates/DotNetDeveloperTemplate";
-import { DevOpsEngineerTemplate } from "@/components/resume/templates/DevOpsEngineerTemplate";
-import { CloudArchitectTemplate } from "@/components/resume/templates/CloudArchitectTemplate";
-import { MobileDeveloperTemplate } from "@/components/resume/templates/MobileDeveloperTemplate";
-import { ReactNativeDeveloperTemplate } from "@/components/resume/templates/ReactNativeDeveloperTemplate";
-import { DataEngineerTemplate } from "@/components/resume/templates/DataEngineerTemplate";
-import { MachineLearningEngineerTemplate } from "@/components/resume/templates/MachineLearningEngineerTemplate";
-import { QAAutomationEngineerTemplate } from "@/components/resume/templates/QAAutomationEngineerTemplate";
-import { SecurityEngineerTemplate } from "@/components/resume/templates/SecurityEngineerTemplate";
-import { PythonDeveloperTemplate } from "@/components/resume/templates/PythonDeveloperTemplate";
-import { NodeJSDeveloperTemplate } from "@/components/resume/templates/NodeJSDeveloperTemplate";
-import { ReactDeveloperTemplate } from "@/components/resume/templates/ReactDeveloperTemplate";
-import { GoDeveloperTemplate } from "@/components/resume/templates/GoDeveloperTemplate";
-// Senior/Lead Software Engineering Templates
-import { SeniorJavaDeveloperTemplate } from "@/components/resume/templates/SeniorJavaDeveloperTemplate";
 import { LeadBackendEngineerTemplate } from "@/components/resume/templates/LeadBackendEngineerTemplate";
 import { LeadFrontendEngineerTemplate } from "@/components/resume/templates/LeadFrontendEngineerTemplate";
 import { PrincipalSoftwareEngineerTemplate } from "@/components/resume/templates/PrincipalSoftwareEngineerTemplate";
-import { StaffEngineerTemplate } from "@/components/resume/templates/StaffEngineerTemplate";
 import { EngineeringManagerTemplate } from "@/components/resume/templates/EngineeringManagerTemplate";
 import { SolutionsArchitectTemplate } from "@/components/resume/templates/SolutionsArchitectTemplate";
 import { SeniorMobileEngineerTemplate } from "@/components/resume/templates/SeniorMobileEngineerTemplate";
-import { PlatformEngineerTemplate } from "@/components/resume/templates/PlatformEngineerTemplate";
-import { SiteReliabilityEngineerTemplate } from "@/components/resume/templates/SiteReliabilityEngineerTemplate";
 import { FrontendArchitectTemplate } from "@/components/resume/templates/FrontendArchitectTemplate";
-// New Universal Professional Templates
 import { CorporateBlueTemplate } from "@/components/resume/templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "@/components/resume/templates/MinimalistProTemplate";
 import { BusinessModernTemplate } from "@/components/resume/templates/BusinessModernTemplate";
-import { ProfessionalTimelineTemplate } from "@/components/resume/templates/ProfessionalTimelineTemplate";
 import { CleanCorporateTemplate } from "@/components/resume/templates/CleanCorporateTemplate";
 import { ModernProfessionalTemplate } from "@/components/resume/templates/ModernProfessionalTemplate";
 import { ElegantProfessionalTemplate } from "@/components/resume/templates/ElegantProfessionalTemplate";
@@ -115,41 +83,11 @@ import { BusinessEliteTemplate } from "@/components/resume/templates/BusinessEli
 import { CorporateCleanTemplate } from "@/components/resume/templates/CorporateCleanTemplate";
 import { ProfessionalClassicTemplate } from "@/components/resume/templates/ProfessionalClassicTemplate";
 import { ModernBusinessTemplate } from "@/components/resume/templates/ModernBusinessTemplate";
-// New Professional HTML Templates (22 new imports)
-import { AlgoEngineerTemplate } from "@/components/resume/templates/AlgoEngineerTemplate";
-import { ArtisticBoldTemplate } from "@/components/resume/templates/ArtisticBoldTemplate";
-import { AsymmetricCreativeTemplate } from "@/components/resume/templates/AsymmetricCreativeTemplate";
 import { BorderedEleganceTemplate } from "@/components/resume/templates/BorderedEleganceTemplate";
-import { CodeMinimalTemplate } from "@/components/resume/templates/CodeMinimalTemplate";
-import { ColorfulModernTemplate } from "@/components/resume/templates/ColorfulModernTemplate";
 import { ColumnDivideTemplate } from "@/components/resume/templates/ColumnDivideTemplate";
 import { CompactProfessionalTemplate } from "@/components/resume/templates/CompactProfessionalTemplate";
-import { CreativeTimelineTemplate } from "@/components/resume/templates/CreativeTimelineTemplate";
-import { DesignerShowcaseTemplate } from "@/components/resume/templates/DesignerShowcaseTemplate";
-import { DeveloperGridTemplate } from "@/components/resume/templates/DeveloperGridTemplate";
-import { DevOpsProTemplate } from "@/components/resume/templates/DevOpsProTemplate";
 import { ExecutiveMinimalTemplate } from "@/components/resume/templates/ExecutiveMinimalTemplate";
-import { MLEngineerTemplate } from "@/components/resume/templates/MLEngineerTemplate";
 import { SidebarAccentTemplate } from "@/components/resume/templates/SidebarAccentTemplate";
-import { TechStackProTemplate } from "@/components/resume/templates/TechStackProTemplate";
-import { TerminalThemeTemplate } from "@/components/resume/templates/TerminalThemeTemplate";
-import { TwoToneClassicTemplate } from "@/components/resume/templates/TwoToneClassicTemplate";
-// 2025 New Templates (100 HTML imports)
-// 2025 Batch 2 - Universal Professional Templates (30 templates)
-// 2025 Batch 2 - Software & Technology Templates (25 templates)
-// 2025 Batch 2 - Fresh Graduates Templates (20 templates)
-// 2025 Batch 2 - Creative Templates (15 templates)
-// 2025 Batch 2 - Design Templates (10 templates)
-// 2025 Batch 3 - Healthcare & Medical Templates (15 templates)
-// 2025 Batch 3 - Engineering Templates (15 templates)
-// 2025 Batch 3 - Sales & Marketing Templates (15 templates)
-// 2025 Batch 3 - Finance & Accounting Templates (12 templates)
-// 2025 Batch 3 - Education & Teaching Templates (10 templates)
-// 2025 Batch 3 - Legal Templates (8 templates)
-// 2025 Batch 3 - Human Resources Templates (8 templates)
-// 2025 Batch 3 - Hospitality & Culinary Templates (7 templates)
-// 2025 Batch 3 - Real Estate & Construction Templates (7 templates)
-// 2025 Batch 3 - Operations & Logistics Templates (3 templates)
 import { ArtisticVisionTemplate } from "@/components/resume/templates/ArtisticVisionTemplate";
 import { BorderFrameUniversalTemplate } from "@/components/resume/templates/BorderFrameUniversalTemplate";
 import { CodeCraftsmanTemplate } from "@/components/resume/templates/CodeCraftsmanTemplate";
@@ -162,10 +100,8 @@ import { DesignSphereTemplate } from "@/components/resume/templates/DesignSphere
 import { DevArchitectureTemplate } from "@/components/resume/templates/DevArchitectureTemplate";
 import { ExecutiveLetterheadUniversalTemplate } from "@/components/resume/templates/ExecutiveLetterheadUniversalTemplate";
 import { GradientHeaderUniversalTemplate } from "@/components/resume/templates/GradientHeaderUniversalTemplate";
-import { MagazineCreativeTemplate } from "@/components/resume/templates/MagazineCreativeTemplate";
-import { PortfolioShowcaseTemplate } from "@/components/resume/templates/PortfolioShowcaseTemplate";
 import { SwissStyleUniversalTemplate } from "@/components/resume/templates/SwissStyleUniversalTemplate";
-import { TechPioneerTemplate } from "@/components/resume/templates/TechPioneerTemplate";
+
 const displayTemplates: Record<string, any> = {
   professional: ProfessionalTemplate,
   modern: ModernTemplate,
@@ -176,22 +112,19 @@ const displayTemplates: Record<string, any> = {
   graduate: GraduateTemplate,
   starter: StarterTemplate,
   fresher: FresherTemplate,
-  "premium-fresher": PremiumFresherTemplate,
   senior: SeniorTemplate,
   "senior-frontend": SeniorFrontendTemplate,
   "senior-backend": SeniorBackendTemplate,
   software: SoftwareTemplate,
   "premium-universal": PremiumUniversalTemplate,
   "premium-pro": PremiumProTemplate,
-  "fresher-elite": FresherEliteTemplate,
-    refined: RefinedTemplate,
+  refined: RefinedTemplate,
   "premium-elite": PremiumEliteTemplate,
-    "creative-accent": CreativeAccentTemplate,
+  "creative-accent": CreativeAccentTemplate,
   "bold-headline": BoldHeadlineTemplate,
   "elegant-serif": ElegantSerifTemplate,
-  "tech-grid": TechGridTemplate,
   "contemporary-split": ContemporarySplitTemplate,
-    "fresher-minimal-grid": FresherMinimalGridTemplate,
+  "fresher-minimal-grid": FresherMinimalGridTemplate,
   "fresher-dark-professional": FresherDarkProfessionalTemplate,
   "fresher-color-accent": FresherColorAccentTemplate,
   "fresher-timeline": FresherTimelineTemplate,
@@ -201,7 +134,6 @@ const displayTemplates: Record<string, any> = {
   "fresher-centered-elegant": FresherCenteredElegantTemplate,
   "fresher-geometric": FresherGeometricTemplate,
   "fresher-achievement": FresherAchievementTemplate,
-  // New Fresher Templates
   "fresher-modern-two-column": FresherModernTwoColumnTemplate,
   "fresher-professional-sidebar": FresherProfessionalSidebarTemplate,
   "fresher-clean-modern": FresherCleanModernTemplate,
@@ -217,44 +149,16 @@ const displayTemplates: Record<string, any> = {
   "fresher-elegant-sidebar": FresherElegantSidebarTemplate,
   "fresher-tech-modern": FresherTechModernTemplate,
   "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
-  // Healthcare & Medical
-            // Education & Teaching
-            // Finance & Accounting
-            // Sales & Marketing
-            // Legal & Consulting
-            // Operations & Project Management
-            // New Software Development Templates
-  "java-developer": JavaDeveloperTemplate,
-  "dotnet-developer": DotNetDeveloperTemplate,
-  "devops-engineer": DevOpsEngineerTemplate,
-  "cloud-architect": CloudArchitectTemplate,
-  "mobile-developer": MobileDeveloperTemplate,
-  "react-native-developer": ReactNativeDeveloperTemplate,
-  "data-engineer": DataEngineerTemplate,
-  "machine-learning-engineer": MachineLearningEngineerTemplate,
-  "qa-automation-engineer": QAAutomationEngineerTemplate,
-  "security-engineer": SecurityEngineerTemplate,
-  "python-developer": PythonDeveloperTemplate,
-  "nodejs-developer": NodeJSDeveloperTemplate,
-  "react-developer": ReactDeveloperTemplate,
-  "go-developer": GoDeveloperTemplate,
-    // Senior/Lead Software Engineering Templates
-  "senior-java-developer": SeniorJavaDeveloperTemplate,
-      "lead-backend-engineer": LeadBackendEngineerTemplate,
+  "lead-backend-engineer": LeadBackendEngineerTemplate,
   "lead-frontend-engineer": LeadFrontendEngineerTemplate,
-    "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
-  "staff-engineer": StaffEngineerTemplate,
+  "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
   "engineering-manager": EngineeringManagerTemplate,
   "solutions-architect": SolutionsArchitectTemplate,
   "senior-mobile-engineer": SeniorMobileEngineerTemplate,
-  "platform-engineer": PlatformEngineerTemplate,
-  "site-reliability-engineer": SiteReliabilityEngineerTemplate,
-    "frontend-architect": FrontendArchitectTemplate,
-  // New Universal Professional Templates
+  "frontend-architect": FrontendArchitectTemplate,
   "corporate-blue": CorporateBlueTemplate,
   "minimalist-pro": MinimalistProTemplate,
   "business-modern": BusinessModernTemplate,
-  "professional-timeline": ProfessionalTimelineTemplate,
   "clean-corporate": CleanCorporateTemplate,
   "modern-professional": ModernProfessionalTemplate,
   "elegant-professional": ElegantProfessionalTemplate,
@@ -263,55 +167,25 @@ const displayTemplates: Record<string, any> = {
   "corporate-clean": CorporateCleanTemplate,
   "professional-classic": ProfessionalClassicTemplate,
   "modern-business": ModernBusinessTemplate,
-  // New Professional Templates (22 new registrations)
-  "algo-engineer": AlgoEngineerTemplate,
-  "artistic-bold": ArtisticBoldTemplate,
-  "asymmetric-creative": AsymmetricCreativeTemplate,
   "bordered-elegance": BorderedEleganceTemplate,
-  "code-minimal": CodeMinimalTemplate,
-  "colorful-modern": ColorfulModernTemplate,
   "column-divide": ColumnDivideTemplate,
   "compact-professional": CompactProfessionalTemplate,
-  "creative-timeline": CreativeTimelineTemplate,
-  "designer-showcase": DesignerShowcaseTemplate,
-  "developer-grid": DeveloperGridTemplate,
-  "devops-pro": DevOpsProTemplate,
   "executive-minimal": ExecutiveMinimalTemplate,
-      "ml-engineer": MLEngineerTemplate,
   "sidebar-accent": SidebarAccentTemplate,
-  "tech-stack-pro": TechStackProTemplate,
-  "terminal-theme": TerminalThemeTemplate,
-  "two-tone-classic": TwoToneClassicTemplate,
-  // 2025 New Templates (100 displayTemplates map entries)
-                                                                                                                                                                                                          // 2025 Batch 2 - New Display Templates (100 templates)
-                                                                                                                                                                                                          // 2025 Batch 3 - Healthcare & Medical Templates (15 templates)
-                                // 2025 Batch 3 - Engineering Templates (15 templates)
-                                // 2025 Batch 3 - Sales & Marketing Templates (15 templates)
-                                // 2025 Batch 3 - Finance & Accounting Templates (12 templates)
-                          // 2025 Batch 3 - Education & Teaching Templates (10 templates)
-                      // 2025 Batch 3 - Legal Templates (8 templates)
-                  // 2025 Batch 3 - Human Resources Templates (8 templates)
-                  // 2025 Batch 3 - Hospitality & Culinary Templates (7 templates)
-                // 2025 Batch 3 - Real Estate & Construction Templates (7 templates)
-                // 2025 Batch 3 - Operations & Logistics Templates (3 templates)
-      
-                                        "artistic-vision": ArtisticVisionTemplate,
-                                      "border-frame-universal": BorderFrameUniversalTemplate,
-                                                                  "code-craftsman": CodeCraftsmanTemplate,
-                                                                "creative-canvas": CreativeCanvasTemplate,
+  "artistic-vision": ArtisticVisionTemplate,
+  "border-frame-universal": BorderFrameUniversalTemplate,
+  "code-craftsman": CodeCraftsmanTemplate,
+  "creative-canvas": CreativeCanvasTemplate,
   "creative-crafted": CreativeCraftedTemplate,
   "creative-horizon": CreativeHorizonTemplate,
-                  "design-maestro": DesignMaestroTemplate,
+  "design-maestro": DesignMaestroTemplate,
   "design-pinnacle": DesignPinnacleTemplate,
   "design-sphere": DesignSphereTemplate,
-                "dev-architecture": DevArchitectureTemplate,
-                                                                                          "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
-                                                                                                            "gradient-header-universal": GradientHeaderUniversalTemplate,
-                                                                                          "magazine-creative": MagazineCreativeTemplate,
-                                                                                                                                                                    "portfolio-showcase": PortfolioShowcaseTemplate,
-                                                                                                                                                                        "swiss-style-universal": SwissStyleUniversalTemplate,
-                "tech-pioneer": TechPioneerTemplate,
-                                                                                                      };
+  "dev-architecture": DevArchitectureTemplate,
+  "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
+  "gradient-header-universal": GradientHeaderUniversalTemplate,
+  "swiss-style-universal": SwissStyleUniversalTemplate,
+};
 
 // Templates that support inline editing (all display templates)
 const inlineEditableTemplates = Object.keys(displayTemplates);

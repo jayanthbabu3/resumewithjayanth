@@ -22,7 +22,7 @@ export const useInlineEdit = () => {
 
 interface InlineEditProviderProps {
   resumeData: ResumeData;
-  setResumeData: (data: ResumeData) => void;
+  setResumeData: (data: ResumeData | ((prev: ResumeData) => ResumeData)) => void;
   children: React.ReactNode;
 }
 

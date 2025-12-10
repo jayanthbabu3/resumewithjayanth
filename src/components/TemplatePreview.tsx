@@ -1,6 +1,5 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import type { ResumeData } from "@/types/resume";
-import { InlineEditProvider } from "@/contexts/InlineEditContext";
 
 // Import all valid templates
 import { ArtisticVisionTemplate } from "./resume/templates/ArtisticVisionTemplate";
@@ -61,7 +60,6 @@ import { FrontendTemplate } from "./resume/templates/FrontendTemplate";
 import { FullstackTemplate } from "./resume/templates/FullstackTemplate";
 import { GradientHeaderUniversalTemplate } from "./resume/templates/GradientHeaderUniversalTemplate";
 import { GraduateTemplate } from "./resume/templates/GraduateTemplate";
-import { JavaDeveloperTemplate } from "./resume/templates/JavaDeveloperTemplate";
 import { LeadBackendEngineerTemplate } from "./resume/templates/LeadBackendEngineerTemplate";
 import { LeadFrontendEngineerTemplate } from "./resume/templates/LeadFrontendEngineerTemplate";
 import { MinimalTemplate } from "./resume/templates/MinimalTemplate";
@@ -69,23 +67,16 @@ import { MinimalistProTemplate } from "./resume/templates/MinimalistProTemplate"
 import { ModernBusinessTemplate } from "./resume/templates/ModernBusinessTemplate";
 import { ModernProfessionalTemplate } from "./resume/templates/ModernProfessionalTemplate";
 import { ModernTemplate } from "./resume/templates/ModernTemplate";
-import { PlatformEngineerTemplate } from "./resume/templates/PlatformEngineerTemplate";
 import { PremiumEliteTemplate } from "./resume/templates/PremiumEliteTemplate";
-import { PremiumFresherTemplate } from "./resume/templates/PremiumFresherTemplate";
 import { PremiumProTemplate } from "./resume/templates/PremiumProTemplate";
 import { PremiumUniversalTemplate } from "./resume/templates/PremiumUniversalTemplate";
 import { PrincipalSoftwareEngineerTemplate } from "./resume/templates/PrincipalSoftwareEngineerTemplate";
 import { ProfessionalClassicTemplate } from "./resume/templates/ProfessionalClassicTemplate";
 import { ProfessionalGridTemplate } from "./resume/templates/ProfessionalGridTemplate";
 import { ProfessionalTemplate } from "./resume/templates/ProfessionalTemplate";
-import { ProfessionalTimelineTemplate } from "./resume/templates/ProfessionalTimelineTemplate";
-import { PythonDeveloperTemplate } from "./resume/templates/PythonDeveloperTemplate";
-import { QAAutomationEngineerTemplate } from "./resume/templates/QAAutomationEngineerTemplate";
-import { ReactDeveloperTemplate } from "./resume/templates/ReactDeveloperTemplate";
 import { RefinedTemplate } from "./resume/templates/RefinedTemplate";
 import { SeniorBackendTemplate } from "./resume/templates/SeniorBackendTemplate";
 import { SeniorFrontendTemplate } from "./resume/templates/SeniorFrontendTemplate";
-import { SeniorJavaDeveloperTemplate } from "./resume/templates/SeniorJavaDeveloperTemplate";
 import { SeniorMobileEngineerTemplate } from "./resume/templates/SeniorMobileEngineerTemplate";
 import { SeniorTemplate } from "./resume/templates/SeniorTemplate";
 import { SidebarAccentTemplate } from "./resume/templates/SidebarAccentTemplate";
@@ -215,7 +206,6 @@ const templateMap: Record<string, React.ComponentType<any>> = {
   'fullstack': FullstackTemplate,
   'gradient-header-universal': GradientHeaderUniversalTemplate,
   'graduate': GraduateTemplate,
-  'java-developer': JavaDeveloperTemplate,
   'lead-backend-engineer': LeadBackendEngineerTemplate,
   'lead-frontend-engineer': LeadFrontendEngineerTemplate,
   'minimal': MinimalTemplate,
@@ -223,23 +213,16 @@ const templateMap: Record<string, React.ComponentType<any>> = {
   'modern-business': ModernBusinessTemplate,
   'modern-professional': ModernProfessionalTemplate,
   'modern': ModernTemplate,
-  'platform-engineer': PlatformEngineerTemplate,
   'premium-elite': PremiumEliteTemplate,
-  'premium-fresher': PremiumFresherTemplate,
   'premium-pro': PremiumProTemplate,
   'premium-universal': PremiumUniversalTemplate,
   'principal-software-engineer': PrincipalSoftwareEngineerTemplate,
   'professional-classic': ProfessionalClassicTemplate,
   'professional-grid': ProfessionalGridTemplate,
   'professional': ProfessionalTemplate,
-  'professional-timeline': ProfessionalTimelineTemplate,
-  'python-developer': PythonDeveloperTemplate,
-  'qa-automation-engineer': QAAutomationEngineerTemplate,
-  'react-developer': ReactDeveloperTemplate,
   'refined': RefinedTemplate,
   'senior-backend': SeniorBackendTemplate,
   'senior-frontend': SeniorFrontendTemplate,
-  'senior-java-developer': SeniorJavaDeveloperTemplate,
   'senior-mobile-engineer': SeniorMobileEngineerTemplate,
   'senior': SeniorTemplate,
   'sidebar-accent': SidebarAccentTemplate,
@@ -263,13 +246,11 @@ const TemplatePreviewBase = ({
 
   return (
     <div className={`w-full h-full ${className}`}>
-      <InlineEditProvider initialData={data} onUpdate={() => {}}>
-        <TemplateComponent
-          resumeData={data}
-          themeColor={themeColor}
-          editable={false}
-        />
-      </InlineEditProvider>
+      <TemplateComponent
+        resumeData={data}
+        themeColor={themeColor}
+        editable={false}
+      />
     </div>
   );
 };
