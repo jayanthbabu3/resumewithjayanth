@@ -60,7 +60,6 @@ export function SkillsEditor({ items, onChange }: SkillsEditorProps) {
       const newSkill: SkillItem = {
         id: `skill-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
         name: skillName,
-        level: 7,
         category: 'core',
       };
       onChange([...items, newSkill]);
