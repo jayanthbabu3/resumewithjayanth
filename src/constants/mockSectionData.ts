@@ -73,12 +73,12 @@ export function getMockSectionData(type: SectionType): SectionData {
       return {
         type: 'skills',
         items: [
-          { id: generateId(), name: 'JavaScript', level: 90, category: 'core' },
-          { id: generateId(), name: 'React', level: 85, category: 'core' },
-          { id: generateId(), name: 'TypeScript', level: 80, category: 'core' },
-          { id: generateId(), name: 'Node.js', level: 75, category: 'toolbox' },
-          { id: generateId(), name: 'Python', level: 70, category: 'toolbox' },
-          { id: generateId(), name: 'SQL', level: 65, category: 'toolbox' },
+          { id: generateId(), name: 'JavaScript', rating: '90', category: 'core' },
+          { id: generateId(), name: 'React', rating: '85', category: 'core' },
+          { id: generateId(), name: 'TypeScript', rating: '80', category: 'core' },
+          { id: generateId(), name: 'Node.js', rating: '75', category: 'toolbox' },
+          { id: generateId(), name: 'Python', rating: '70', category: 'toolbox' },
+          { id: generateId(), name: 'SQL', rating: '65', category: 'toolbox' },
         ] as SkillItem[],
       };
 

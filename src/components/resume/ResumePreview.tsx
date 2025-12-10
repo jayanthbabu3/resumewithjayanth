@@ -8,20 +8,17 @@ import { BackendTemplate } from "./templates/BackendTemplate";
 import { GraduateTemplate } from "./templates/GraduateTemplate";
 import { StarterTemplate } from "./templates/StarterTemplate";
 import { FresherTemplate } from "./templates/FresherTemplate";
-import { PremiumFresherTemplate } from "./templates/PremiumFresherTemplate";
 import { SeniorTemplate } from "./templates/SeniorTemplate";
 import { SeniorFrontendTemplate } from "./templates/SeniorFrontendTemplate";
 import { SeniorBackendTemplate } from "./templates/SeniorBackendTemplate";
 import { SoftwareTemplate } from "./templates/SoftwareTemplate";
 import { PremiumUniversalTemplate } from "./templates/PremiumUniversalTemplate";
 import { PremiumProTemplate } from "./templates/PremiumProTemplate";
-import { FresherEliteTemplate } from "./templates/FresherEliteTemplate";
 import { RefinedTemplate } from "./templates/RefinedTemplate";
 import { PremiumEliteTemplate } from "./templates/PremiumEliteTemplate";
 import { CreativeAccentTemplate } from "./templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./templates/BoldHeadlineTemplate";
 import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
-import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
 import { FresherMinimalGridTemplate } from "./templates/FresherMinimalGridTemplate";
 import { FresherDarkProfessionalTemplate } from "./templates/FresherDarkProfessionalTemplate";
@@ -48,44 +45,17 @@ import { FresherCompactProTemplate } from "./templates/FresherCompactProTemplate
 import { FresherElegantSidebarTemplate } from "./templates/FresherElegantSidebarTemplate";
 import { FresherTechModernTemplate } from "./templates/FresherTechModernTemplate";
 import { FresherProfessionalMinimalTemplate } from "./templates/FresherProfessionalMinimalTemplate";
-// Healthcare & Medical Templates
-// Education & Teaching Templates
-// Finance & Accounting Templates
-// Sales & Marketing Templates
-// Legal & Consulting Templates
-// Operations & Project Management Templates
-// New Software Development Templates
-import { JavaDeveloperTemplate } from "./templates/JavaDeveloperTemplate";
-import { DotNetDeveloperTemplate } from "./templates/DotNetDeveloperTemplate";
-import { DevOpsEngineerTemplate } from "./templates/DevOpsEngineerTemplate";
-import { CloudArchitectTemplate } from "./templates/CloudArchitectTemplate";
-import { MobileDeveloperTemplate } from "./templates/MobileDeveloperTemplate";
-import { ReactNativeDeveloperTemplate } from "./templates/ReactNativeDeveloperTemplate";
-import { DataEngineerTemplate } from "./templates/DataEngineerTemplate";
-import { MachineLearningEngineerTemplate } from "./templates/MachineLearningEngineerTemplate";
-import { QAAutomationEngineerTemplate } from "./templates/QAAutomationEngineerTemplate";
-import { SecurityEngineerTemplate } from "./templates/SecurityEngineerTemplate";
-import { PythonDeveloperTemplate } from "./templates/PythonDeveloperTemplate";
-import { NodeJSDeveloperTemplate } from "./templates/NodeJSDeveloperTemplate";
-import { ReactDeveloperTemplate } from "./templates/ReactDeveloperTemplate";
-import { GoDeveloperTemplate } from "./templates/GoDeveloperTemplate";
-// Senior/Lead Software Engineering Templates
-import { SeniorJavaDeveloperTemplate } from "./templates/SeniorJavaDeveloperTemplate";
+import { GradientHeaderUniversalTemplate } from "./templates/GradientHeaderUniversalTemplate";
 import { LeadBackendEngineerTemplate } from "./templates/LeadBackendEngineerTemplate";
 import { LeadFrontendEngineerTemplate } from "./templates/LeadFrontendEngineerTemplate";
 import { PrincipalSoftwareEngineerTemplate } from "./templates/PrincipalSoftwareEngineerTemplate";
-import { StaffEngineerTemplate } from "./templates/StaffEngineerTemplate";
 import { EngineeringManagerTemplate } from "./templates/EngineeringManagerTemplate";
 import { SolutionsArchitectTemplate } from "./templates/SolutionsArchitectTemplate";
 import { SeniorMobileEngineerTemplate } from "./templates/SeniorMobileEngineerTemplate";
-import { PlatformEngineerTemplate } from "./templates/PlatformEngineerTemplate";
-import { SiteReliabilityEngineerTemplate } from "./templates/SiteReliabilityEngineerTemplate";
 import { FrontendArchitectTemplate } from "./templates/FrontendArchitectTemplate";
-// New Universal Professional Templates
 import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "./templates/MinimalistProTemplate";
 import { BusinessModernTemplate } from "./templates/BusinessModernTemplate";
-import { ProfessionalTimelineTemplate } from "./templates/ProfessionalTimelineTemplate";
 import { CleanCorporateTemplate } from "./templates/CleanCorporateTemplate";
 import { ModernProfessionalTemplate } from "./templates/ModernProfessionalTemplate";
 import { ElegantProfessionalTemplate } from "./templates/ElegantProfessionalTemplate";
@@ -94,14 +64,13 @@ import { BusinessEliteTemplate } from "./templates/BusinessEliteTemplate";
 import { CorporateCleanTemplate } from "./templates/CorporateCleanTemplate";
 import { ProfessionalClassicTemplate } from "./templates/ProfessionalClassicTemplate";
 import { ModernBusinessTemplate } from "./templates/ModernBusinessTemplate";
+import { ExecutiveMinimalTemplate } from "./templates/ExecutiveMinimalTemplate";
+import { SidebarAccentTemplate } from "./templates/SidebarAccentTemplate";
+import { BorderedEleganceTemplate } from "./templates/BorderedEleganceTemplate";
+import { ColumnDivideTemplate } from "./templates/ColumnDivideTemplate";
+import { CompactProfessionalTemplate } from "./templates/CompactProfessionalTemplate";
 import { CodeCraftsmanTemplate } from "./templates/CodeCraftsmanTemplate";
-import { TechPioneerTemplate } from "./templates/TechPioneerTemplate";
 import { DevArchitectureTemplate } from "./templates/DevArchitectureTemplate";
-import { ArtisticBoldTemplate } from "./templates/ArtisticBoldTemplate";
-import { DesignerShowcaseTemplate } from "./templates/DesignerShowcaseTemplate";
-import { CreativeTimelineTemplate } from "./templates/CreativeTimelineTemplate";
-import { ColorfulModernTemplate } from "./templates/ColorfulModernTemplate";
-import { AsymmetricCreativeTemplate } from "./templates/AsymmetricCreativeTemplate";
 import { CreativeCanvasTemplate } from "./templates/CreativeCanvasTemplate";
 import { DesignMaestroTemplate } from "./templates/DesignMaestroTemplate";
 import { ArtisticVisionTemplate } from "./templates/ArtisticVisionTemplate";
@@ -109,45 +78,9 @@ import { DesignPinnacleTemplate } from "./templates/DesignPinnacleTemplate";
 import { CreativeCraftedTemplate } from "./templates/CreativeCraftedTemplate";
 import { DesignSphereTemplate } from "./templates/DesignSphereTemplate";
 import { CreativeHorizonTemplate } from "./templates/CreativeHorizonTemplate";
-// 2025 New Fresher Templates
-// 2025 New Software/Tech Templates
-// 2025 New Creative Templates
-import { MagazineCreativeTemplate } from "./templates/MagazineCreativeTemplate";
-import { PortfolioShowcaseTemplate } from "./templates/PortfolioShowcaseTemplate";
-// Missing Software Engineering Templates
-import { CodeMinimalTemplate } from "./templates/CodeMinimalTemplate";
-import { TechStackProTemplate } from "./templates/TechStackProTemplate";
-import { DeveloperGridTemplate } from "./templates/DeveloperGridTemplate";
-import { TerminalThemeTemplate } from "./templates/TerminalThemeTemplate";
-import { AlgoEngineerTemplate } from "./templates/AlgoEngineerTemplate";
-import { DevOpsProTemplate } from "./templates/DevOpsProTemplate";
-import { MLEngineerTemplate } from "./templates/MLEngineerTemplate";
-// Missing Universal Professional Templates
-import { ExecutiveMinimalTemplate } from "./templates/ExecutiveMinimalTemplate";
-import { SidebarAccentTemplate } from "./templates/SidebarAccentTemplate";
-import { TwoToneClassicTemplate } from "./templates/TwoToneClassicTemplate";
-import { BorderedEleganceTemplate } from "./templates/BorderedEleganceTemplate";
-import { ColumnDivideTemplate } from "./templates/ColumnDivideTemplate";
-import { CompactProfessionalTemplate } from "./templates/CompactProfessionalTemplate";
-// New Universal Profile Templates
 import { SwissStyleUniversalTemplate } from "./templates/SwissStyleUniversalTemplate";
 import { ExecutiveLetterheadUniversalTemplate } from "./templates/ExecutiveLetterheadUniversalTemplate";
 import { BorderFrameUniversalTemplate } from "./templates/BorderFrameUniversalTemplate";
-// Second Batch Universal Profile Templates
-import { GradientHeaderUniversalTemplate } from "./templates/GradientHeaderUniversalTemplate";
-// Third Batch Universal Profile Templates
-// 2025 New Profession-Specific Templates - Healthcare
-// 2025 New Profession-Specific Templates - Education
-// 2025 New Profession-Specific Templates - Finance
-// 2025 New Profession-Specific Templates - Sales & Marketing
-// 2025 New Profession-Specific Templates - Legal
-// 2025 New Profession-Specific Templates - Operations/PM
-// 2025 New Profession-Specific Templates - Business Leadership
-// 2025 New Universal Professional Templates (Batch 5)
-// 2025 New Software/Tech Templates (Batch 3)
-// 2025 New Software/Tech Templates (Batch 4)
-// 2025 New Creative/Design Templates (Batch 2)
-// 2025 Simple Universal Professional Templates (Batch 6)
 
 interface ResumePreviewProps {
   resumeData: ResumeData;
@@ -160,7 +93,7 @@ export const ResumePreview = ({
   templateId,
   themeColor = "#2563eb",
 }: ResumePreviewProps) => {
-  const templates = {
+  const templates: Record<string, React.ComponentType<any>> = {
     professional: ProfessionalTemplate,
     modern: ModernTemplate,
     minimal: MinimalTemplate,
@@ -170,22 +103,19 @@ export const ResumePreview = ({
     graduate: GraduateTemplate,
     starter: StarterTemplate,
     fresher: FresherTemplate,
-    "premium-fresher": PremiumFresherTemplate,
     senior: SeniorTemplate,
     "senior-frontend": SeniorFrontendTemplate,
     "senior-backend": SeniorBackendTemplate,
     software: SoftwareTemplate,
     "premium-universal": PremiumUniversalTemplate,
     "premium-pro": PremiumProTemplate,
-    "fresher-elite": FresherEliteTemplate,
-        refined: RefinedTemplate,
+    refined: RefinedTemplate,
     "premium-elite": PremiumEliteTemplate,
-        "creative-accent": CreativeAccentTemplate,
+    "creative-accent": CreativeAccentTemplate,
     "bold-headline": BoldHeadlineTemplate,
     "elegant-serif": ElegantSerifTemplate,
-    "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
-        "fresher-minimal-grid": FresherMinimalGridTemplate,
+    "fresher-minimal-grid": FresherMinimalGridTemplate,
     "fresher-dark-professional": FresherDarkProfessionalTemplate,
     "fresher-color-accent": FresherColorAccentTemplate,
     "fresher-timeline": FresherTimelineTemplate,
@@ -210,44 +140,16 @@ export const ResumePreview = ({
     "fresher-elegant-sidebar": FresherElegantSidebarTemplate,
     "fresher-tech-modern": FresherTechModernTemplate,
     "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
-    // Healthcare & Medical
-                        // Education & Teaching
-                        // Finance & Accounting
-                        // Sales & Marketing
-                        // Legal & Consulting
-                        // Operations & Project Management
-                        // New Software Development Templates
-    "java-developer": JavaDeveloperTemplate,
-    "dotnet-developer": DotNetDeveloperTemplate,
-    "devops-engineer": DevOpsEngineerTemplate,
-    "cloud-architect": CloudArchitectTemplate,
-    "mobile-developer": MobileDeveloperTemplate,
-    "react-native-developer": ReactNativeDeveloperTemplate,
-    "data-engineer": DataEngineerTemplate,
-    "machine-learning-engineer": MachineLearningEngineerTemplate,
-    "qa-automation-engineer": QAAutomationEngineerTemplate,
-    "security-engineer": SecurityEngineerTemplate,
-    "python-developer": PythonDeveloperTemplate,
-    "nodejs-developer": NodeJSDeveloperTemplate,
-    "react-developer": ReactDeveloperTemplate,
-    "go-developer": GoDeveloperTemplate,
-        // Senior/Lead Software Engineering Templates
-    "senior-java-developer": SeniorJavaDeveloperTemplate,
-            "lead-backend-engineer": LeadBackendEngineerTemplate,
+    "lead-backend-engineer": LeadBackendEngineerTemplate,
     "lead-frontend-engineer": LeadFrontendEngineerTemplate,
-        "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
-    "staff-engineer": StaffEngineerTemplate,
+    "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
     "engineering-manager": EngineeringManagerTemplate,
     "solutions-architect": SolutionsArchitectTemplate,
     "senior-mobile-engineer": SeniorMobileEngineerTemplate,
-    "platform-engineer": PlatformEngineerTemplate,
-    "site-reliability-engineer": SiteReliabilityEngineerTemplate,
-        "frontend-architect": FrontendArchitectTemplate,
-    // New Universal Professional Templates
+    "frontend-architect": FrontendArchitectTemplate,
     "corporate-blue": CorporateBlueTemplate,
     "minimalist-pro": MinimalistProTemplate,
     "business-modern": BusinessModernTemplate,
-    "professional-timeline": ProfessionalTimelineTemplate,
     "clean-corporate": CleanCorporateTemplate,
     "modern-professional": ModernProfessionalTemplate,
     "elegant-professional": ElegantProfessionalTemplate,
@@ -256,74 +158,35 @@ export const ResumePreview = ({
     "corporate-clean": CorporateCleanTemplate,
     "professional-classic": ProfessionalClassicTemplate,
     "modern-business": ModernBusinessTemplate,
-    // Missing Universal Professional Templates
     "executive-minimal": ExecutiveMinimalTemplate,
     "sidebar-accent": SidebarAccentTemplate,
-    "two-tone-classic": TwoToneClassicTemplate,
     "bordered-elegance": BorderedEleganceTemplate,
     "column-divide": ColumnDivideTemplate,
     "compact-professional": CompactProfessionalTemplate,
     "code-craftsman": CodeCraftsmanTemplate,
-    "tech-pioneer": TechPioneerTemplate,
     "dev-architecture": DevArchitectureTemplate,
-                                                    // Missing Software Templates
-    "code-minimal": CodeMinimalTemplate,
-    "tech-stack-pro": TechStackProTemplate,
-        "developer-grid": DeveloperGridTemplate,
-    "terminal-theme": TerminalThemeTemplate,
-    "algo-engineer": AlgoEngineerTemplate,
-        "devops-pro": DevOpsProTemplate,
-    "ml-engineer": MLEngineerTemplate,
-    "artistic-bold": ArtisticBoldTemplate,
-    "designer-showcase": DesignerShowcaseTemplate,
-    "creative-timeline": CreativeTimelineTemplate,
-    "colorful-modern": ColorfulModernTemplate,
-    "asymmetric-creative": AsymmetricCreativeTemplate,
     "creative-canvas": CreativeCanvasTemplate,
     "design-maestro": DesignMaestroTemplate,
     "artistic-vision": ArtisticVisionTemplate,
-        "design-pinnacle": DesignPinnacleTemplate,
-        "creative-crafted": CreativeCraftedTemplate,
+    "design-pinnacle": DesignPinnacleTemplate,
+    "creative-crafted": CreativeCraftedTemplate,
     "design-sphere": DesignSphereTemplate,
-        "creative-horizon": CreativeHorizonTemplate,
-                                    // 2025 New Fresher Templates
-                                                                                    // 2025 New Software/Tech Templates
-                                                                                    // 2025 New Creative Templates
-    "magazine-creative": MagazineCreativeTemplate,
-    "portfolio-showcase": PortfolioShowcaseTemplate,
-                                                                            // New Universal Profile Templates
+    "creative-horizon": CreativeHorizonTemplate,
     "swiss-style-universal": SwissStyleUniversalTemplate,
     "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
     "border-frame-universal": BorderFrameUniversalTemplate,
-    // Second Batch Universal Profile Templates
     "gradient-header-universal": GradientHeaderUniversalTemplate,
-                                                                                // Third Batch Universal Profile Templates
-                                                                                // 2025 New Profession-Specific Templates
-                                                                                                                                                // 2025 New Universal Professional Templates (Batch 5)
-                                                                                    // 2025 New Software/Tech Templates (Batch 3)
-                                                                                    // 2025 New Software/Tech Templates (Batch 4)
-                                                                // 2025 New Creative/Design Templates (Batch 2)
-                                                                // 2025 Simple Universal Professional Templates (Batch 6)
-                                                                                                                          };
+  };
 
-  const Template =
-    templates[templateId as keyof typeof templates] || ProfessionalTemplate;
+  const Template = templates[templateId] || ProfessionalTemplate;
 
   return (
-    <div
-      className="flex h-full w-full items-start justify-center overflow-auto bg-gray-100"
-      id="resume-preview"
-    >
-      <div 
-        className="relative bg-white shadow-2xl rounded-lg"
-        style={{ 
-          width: '210mm', 
-          minHeight: '297mm',
-          maxWidth: '100%',
-        }}
-      >
-        <Template resumeData={resumeData} themeColor={themeColor} editable={false} />
-      </div>
+    <div className="w-full h-full bg-white">
+      <Template
+        resumeData={resumeData}
+        themeColor={themeColor}
+        editable={false}
+      />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { type ResumeData } from "@/types/resume";
-import { EditableField } from "./EditableField";
 import { ProfessionalTemplate } from "./templates/ProfessionalTemplate";
 import { ModernTemplate } from "./templates/ModernTemplate";
 import { MinimalTemplate } from "./templates/MinimalTemplate";
@@ -9,20 +8,17 @@ import { BackendTemplate } from "./templates/BackendTemplate";
 import { GraduateTemplate } from "./templates/GraduateTemplate";
 import { StarterTemplate } from "./templates/StarterTemplate";
 import { FresherTemplate } from "./templates/FresherTemplate";
-import { PremiumFresherTemplate } from "./templates/PremiumFresherTemplate";
 import { SeniorTemplate } from "./templates/SeniorTemplate";
 import { SeniorFrontendTemplate } from "./templates/SeniorFrontendTemplate";
 import { SeniorBackendTemplate } from "./templates/SeniorBackendTemplate";
 import { SoftwareTemplate } from "./templates/SoftwareTemplate";
 import { PremiumUniversalTemplate } from "./templates/PremiumUniversalTemplate";
 import { PremiumProTemplate } from "./templates/PremiumProTemplate";
-import { FresherEliteTemplate } from "./templates/FresherEliteTemplate";
 import { RefinedTemplate } from "./templates/RefinedTemplate";
 import { PremiumEliteTemplate } from "./templates/PremiumEliteTemplate";
 import { CreativeAccentTemplate } from "./templates/CreativeAccentTemplate";
 import { BoldHeadlineTemplate } from "./templates/BoldHeadlineTemplate";
 import { ElegantSerifTemplate } from "./templates/ElegantSerifTemplate";
-import { TechGridTemplate } from "./templates/TechGridTemplate";
 import { ContemporarySplitTemplate } from "./templates/ContemporarySplitTemplate";
 import { FresherMinimalGridTemplate } from "./templates/FresherMinimalGridTemplate";
 import { FresherDarkProfessionalTemplate } from "./templates/FresherDarkProfessionalTemplate";
@@ -50,44 +46,16 @@ import { FresherElegantSidebarTemplate } from "./templates/FresherElegantSidebar
 import { FresherTechModernTemplate } from "./templates/FresherTechModernTemplate";
 import { FresherProfessionalMinimalTemplate } from "./templates/FresherProfessionalMinimalTemplate";
 import { GradientHeaderUniversalTemplate } from "./templates/GradientHeaderUniversalTemplate";
-// Healthcare & Medical Templates
-// Education & Teaching Templates
-// Finance & Accounting Templates
-// Sales & Marketing Templates
-// Legal & Consulting Templates
-// Operations & Project Management Templates
-// New Software Development Templates
-import { JavaDeveloperTemplate } from "./templates/JavaDeveloperTemplate";
-import { DotNetDeveloperTemplate } from "./templates/DotNetDeveloperTemplate";
-import { DevOpsEngineerTemplate } from "./templates/DevOpsEngineerTemplate";
-import { CloudArchitectTemplate } from "./templates/CloudArchitectTemplate";
-import { MobileDeveloperTemplate } from "./templates/MobileDeveloperTemplate";
-import { ReactNativeDeveloperTemplate } from "./templates/ReactNativeDeveloperTemplate";
-import { DataEngineerTemplate } from "./templates/DataEngineerTemplate";
-import { MachineLearningEngineerTemplate } from "./templates/MachineLearningEngineerTemplate";
-import { QAAutomationEngineerTemplate } from "./templates/QAAutomationEngineerTemplate";
-import { SecurityEngineerTemplate } from "./templates/SecurityEngineerTemplate";
-import { PythonDeveloperTemplate } from "./templates/PythonDeveloperTemplate";
-import { NodeJSDeveloperTemplate } from "./templates/NodeJSDeveloperTemplate";
-import { ReactDeveloperTemplate } from "./templates/ReactDeveloperTemplate";
-import { GoDeveloperTemplate } from "./templates/GoDeveloperTemplate";
-// Senior/Lead Software Engineering Templates
-import { SeniorJavaDeveloperTemplate } from "./templates/SeniorJavaDeveloperTemplate";
 import { LeadBackendEngineerTemplate } from "./templates/LeadBackendEngineerTemplate";
 import { LeadFrontendEngineerTemplate } from "./templates/LeadFrontendEngineerTemplate";
 import { PrincipalSoftwareEngineerTemplate } from "./templates/PrincipalSoftwareEngineerTemplate";
-import { StaffEngineerTemplate } from "./templates/StaffEngineerTemplate";
 import { EngineeringManagerTemplate } from "./templates/EngineeringManagerTemplate";
 import { SolutionsArchitectTemplate } from "./templates/SolutionsArchitectTemplate";
 import { SeniorMobileEngineerTemplate } from "./templates/SeniorMobileEngineerTemplate";
-import { PlatformEngineerTemplate } from "./templates/PlatformEngineerTemplate";
-import { SiteReliabilityEngineerTemplate } from "./templates/SiteReliabilityEngineerTemplate";
 import { FrontendArchitectTemplate } from "./templates/FrontendArchitectTemplate";
-// New Universal Professional Templates
 import { CorporateBlueTemplate } from "./templates/CorporateBlueTemplate";
 import { MinimalistProTemplate } from "./templates/MinimalistProTemplate";
 import { BusinessModernTemplate } from "./templates/BusinessModernTemplate";
-import { ProfessionalTimelineTemplate } from "./templates/ProfessionalTimelineTemplate";
 import { CleanCorporateTemplate } from "./templates/CleanCorporateTemplate";
 import { ModernProfessionalTemplate } from "./templates/ModernProfessionalTemplate";
 import { ElegantProfessionalTemplate } from "./templates/ElegantProfessionalTemplate";
@@ -98,7 +66,21 @@ import { ProfessionalClassicTemplate } from "./templates/ProfessionalClassicTemp
 import { ModernBusinessTemplate } from "./templates/ModernBusinessTemplate";
 import { ExecutiveMinimalTemplate } from "./templates/ExecutiveMinimalTemplate";
 import { SidebarAccentTemplate } from "./templates/SidebarAccentTemplate";
-import { TwoToneClassicTemplate } from "./templates/TwoToneClassicTemplate";
+import { BorderedEleganceTemplate } from "./templates/BorderedEleganceTemplate";
+import { ColumnDivideTemplate } from "./templates/ColumnDivideTemplate";
+import { CompactProfessionalTemplate } from "./templates/CompactProfessionalTemplate";
+import { CodeCraftsmanTemplate } from "./templates/CodeCraftsmanTemplate";
+import { DevArchitectureTemplate } from "./templates/DevArchitectureTemplate";
+import { CreativeCanvasTemplate } from "./templates/CreativeCanvasTemplate";
+import { DesignMaestroTemplate } from "./templates/DesignMaestroTemplate";
+import { ArtisticVisionTemplate } from "./templates/ArtisticVisionTemplate";
+import { DesignPinnacleTemplate } from "./templates/DesignPinnacleTemplate";
+import { CreativeCraftedTemplate } from "./templates/CreativeCraftedTemplate";
+import { DesignSphereTemplate } from "./templates/DesignSphereTemplate";
+import { CreativeHorizonTemplate } from "./templates/CreativeHorizonTemplate";
+import { SwissStyleUniversalTemplate } from "./templates/SwissStyleUniversalTemplate";
+import { ExecutiveLetterheadUniversalTemplate } from "./templates/ExecutiveLetterheadUniversalTemplate";
+import { BorderFrameUniversalTemplate } from "./templates/BorderFrameUniversalTemplate";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
@@ -245,7 +227,7 @@ export const EditableResumePreview = ({
     });
   };
 
-  const templates = {
+  const templates: Record<string, React.ComponentType<any>> = {
     professional: ProfessionalTemplate,
     modern: ModernTemplate,
     minimal: MinimalTemplate,
@@ -255,22 +237,19 @@ export const EditableResumePreview = ({
     graduate: GraduateTemplate,
     starter: StarterTemplate,
     fresher: FresherTemplate,
-    "premium-fresher": PremiumFresherTemplate,
     senior: SeniorTemplate,
     "senior-frontend": SeniorFrontendTemplate,
     "senior-backend": SeniorBackendTemplate,
     software: SoftwareTemplate,
     "premium-universal": PremiumUniversalTemplate,
     "premium-pro": PremiumProTemplate,
-    "fresher-elite": FresherEliteTemplate,
-        refined: RefinedTemplate,
+    refined: RefinedTemplate,
     "premium-elite": PremiumEliteTemplate,
-        "creative-accent": CreativeAccentTemplate,
+    "creative-accent": CreativeAccentTemplate,
     "bold-headline": BoldHeadlineTemplate,
     "elegant-serif": ElegantSerifTemplate,
-    "tech-grid": TechGridTemplate,
     "contemporary-split": ContemporarySplitTemplate,
-        "fresher-minimal-grid": FresherMinimalGridTemplate,
+    "fresher-minimal-grid": FresherMinimalGridTemplate,
     "fresher-dark-professional": FresherDarkProfessionalTemplate,
     "fresher-color-accent": FresherColorAccentTemplate,
     "fresher-timeline": FresherTimelineTemplate,
@@ -295,44 +274,16 @@ export const EditableResumePreview = ({
     "fresher-elegant-sidebar": FresherElegantSidebarTemplate,
     "fresher-tech-modern": FresherTechModernTemplate,
     "fresher-professional-minimal": FresherProfessionalMinimalTemplate,
-    // Healthcare & Medical
-                        // Education & Teaching
-                        // Finance & Accounting
-                        // Sales & Marketing
-                        // Legal & Consulting
-                        // Operations & Project Management
-                        // New Software Development Templates
-    "java-developer": JavaDeveloperTemplate,
-    "dotnet-developer": DotNetDeveloperTemplate,
-    "devops-engineer": DevOpsEngineerTemplate,
-    "cloud-architect": CloudArchitectTemplate,
-    "mobile-developer": MobileDeveloperTemplate,
-    "react-native-developer": ReactNativeDeveloperTemplate,
-    "data-engineer": DataEngineerTemplate,
-    "machine-learning-engineer": MachineLearningEngineerTemplate,
-    "qa-automation-engineer": QAAutomationEngineerTemplate,
-    "security-engineer": SecurityEngineerTemplate,
-    "python-developer": PythonDeveloperTemplate,
-    "nodejs-developer": NodeJSDeveloperTemplate,
-    "react-developer": ReactDeveloperTemplate,
-    "go-developer": GoDeveloperTemplate,
-        // Senior/Lead Software Engineering Templates
-    "senior-java-developer": SeniorJavaDeveloperTemplate,
-            "lead-backend-engineer": LeadBackendEngineerTemplate,
+    "lead-backend-engineer": LeadBackendEngineerTemplate,
     "lead-frontend-engineer": LeadFrontendEngineerTemplate,
-        "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
-    "staff-engineer": StaffEngineerTemplate,
+    "principal-software-engineer": PrincipalSoftwareEngineerTemplate,
     "engineering-manager": EngineeringManagerTemplate,
     "solutions-architect": SolutionsArchitectTemplate,
     "senior-mobile-engineer": SeniorMobileEngineerTemplate,
-    "platform-engineer": PlatformEngineerTemplate,
-    "site-reliability-engineer": SiteReliabilityEngineerTemplate,
-        "frontend-architect": FrontendArchitectTemplate,
-    // New Universal Professional Templates
+    "frontend-architect": FrontendArchitectTemplate,
     "corporate-blue": CorporateBlueTemplate,
     "minimalist-pro": MinimalistProTemplate,
     "business-modern": BusinessModernTemplate,
-    "professional-timeline": ProfessionalTimelineTemplate,
     "clean-corporate": CleanCorporateTemplate,
     "modern-professional": ModernProfessionalTemplate,
     "elegant-professional": ElegantProfessionalTemplate,
@@ -343,12 +294,25 @@ export const EditableResumePreview = ({
     "modern-business": ModernBusinessTemplate,
     "executive-minimal": ExecutiveMinimalTemplate,
     "sidebar-accent": SidebarAccentTemplate,
-    "two-tone-classic": TwoToneClassicTemplate,
+    "bordered-elegance": BorderedEleganceTemplate,
+    "column-divide": ColumnDivideTemplate,
+    "compact-professional": CompactProfessionalTemplate,
+    "code-craftsman": CodeCraftsmanTemplate,
+    "dev-architecture": DevArchitectureTemplate,
+    "creative-canvas": CreativeCanvasTemplate,
+    "design-maestro": DesignMaestroTemplate,
+    "artistic-vision": ArtisticVisionTemplate,
+    "design-pinnacle": DesignPinnacleTemplate,
+    "creative-crafted": CreativeCraftedTemplate,
+    "design-sphere": DesignSphereTemplate,
+    "creative-horizon": CreativeHorizonTemplate,
+    "swiss-style-universal": SwissStyleUniversalTemplate,
+    "executive-letterhead-universal": ExecutiveLetterheadUniversalTemplate,
+    "border-frame-universal": BorderFrameUniversalTemplate,
     "gradient-header-universal": GradientHeaderUniversalTemplate,
   };
 
-  const Template =
-    templates[templateId as keyof typeof templates] || ProfessionalTemplate;
+  const Template = templates[templateId] || ProfessionalTemplate;
 
   return (
     <div className="grid h-full grid-cols-12 gap-6 p-6">
@@ -407,71 +371,61 @@ export const EditableResumePreview = ({
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Experience</h2>
             <Button size="sm" onClick={addExperience}>
-              <Plus className="h-4 w-4" />
+              <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {resumeData.experience.map((exp, index) => (
-              <div key={exp.id} className="space-y-3 rounded-lg border p-4">
-                <div className="flex justify-between">
-                  <Label className="text-xs">Experience {index + 1}</Label>
+              <div key={exp.id} className="rounded border p-4">
+                <div className="mb-2 flex justify-end">
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => removeExperience(index)}
                   >
-                    <Trash2 className="h-3 w-3" />
+                    <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </div>
-                <Input
-                  placeholder="Company"
-                  value={exp.company}
-                  onChange={(e) =>
-                    updateExperience(index, "company", e.target.value)
-                  }
-                />
-                <Input
-                  placeholder="Position"
-                  value={exp.position}
-                  onChange={(e) =>
-                    updateExperience(index, "position", e.target.value)
-                  }
-                />
-                <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
                   <Input
-                    placeholder="Start Date"
-                    value={exp.startDate}
+                    placeholder="Company"
+                    value={exp.company}
                     onChange={(e) =>
-                      updateExperience(index, "startDate", e.target.value)
+                      updateExperience(index, "company", e.target.value)
                     }
                   />
                   <Input
-                    placeholder="End Date"
-                    value={exp.endDate}
+                    placeholder="Position"
+                    value={exp.position}
                     onChange={(e) =>
-                      updateExperience(index, "endDate", e.target.value)
+                      updateExperience(index, "position", e.target.value)
                     }
-                    disabled={exp.current}
+                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <Input
+                      placeholder="Start Date"
+                      value={exp.startDate}
+                      onChange={(e) =>
+                        updateExperience(index, "startDate", e.target.value)
+                      }
+                    />
+                    <Input
+                      placeholder="End Date"
+                      value={exp.endDate}
+                      onChange={(e) =>
+                        updateExperience(index, "endDate", e.target.value)
+                      }
+                    />
+                  </div>
+                  <Textarea
+                    placeholder="Description"
+                    value={exp.description}
+                    onChange={(e) =>
+                      updateExperience(index, "description", e.target.value)
+                    }
+                    rows={3}
                   />
                 </div>
-                <label className="flex items-center gap-2 text-sm">
-                  <input
-                    type="checkbox"
-                    checked={exp.current}
-                    onChange={(e) =>
-                      updateExperience(index, "current", e.target.checked)
-                    }
-                  />
-                  Currently working here
-                </label>
-                <Textarea
-                  placeholder="Description"
-                  value={exp.description}
-                  onChange={(e) =>
-                    updateExperience(index, "description", e.target.value)
-                  }
-                  rows={3}
-                />
               </div>
             ))}
           </div>
@@ -481,58 +435,59 @@ export const EditableResumePreview = ({
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Education</h2>
             <Button size="sm" onClick={addEducation}>
-              <Plus className="h-4 w-4" />
+              <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {resumeData.education.map((edu, index) => (
-              <div key={edu.id} className="space-y-3 rounded-lg border p-4">
-                <div className="flex justify-between">
-                  <Label className="text-xs">Education {index + 1}</Label>
+              <div key={edu.id} className="rounded border p-4">
+                <div className="mb-2 flex justify-end">
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => removeEducation(index)}
                   >
-                    <Trash2 className="h-3 w-3" />
+                    <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </div>
-                <Input
-                  placeholder="School"
-                  value={edu.school}
-                  onChange={(e) =>
-                    updateEducation(index, "school", e.target.value)
-                  }
-                />
-                <Input
-                  placeholder="Degree"
-                  value={edu.degree}
-                  onChange={(e) =>
-                    updateEducation(index, "degree", e.target.value)
-                  }
-                />
-                <Input
-                  placeholder="Field"
-                  value={edu.field}
-                  onChange={(e) =>
-                    updateEducation(index, "field", e.target.value)
-                  }
-                />
-                <div className="grid grid-cols-2 gap-2">
+                <div className="space-y-2">
                   <Input
-                    placeholder="Start Date"
-                    value={edu.startDate}
+                    placeholder="School"
+                    value={edu.school}
                     onChange={(e) =>
-                      updateEducation(index, "startDate", e.target.value)
+                      updateEducation(index, "school", e.target.value)
                     }
                   />
                   <Input
-                    placeholder="End Date"
-                    value={edu.endDate}
+                    placeholder="Degree"
+                    value={edu.degree}
                     onChange={(e) =>
-                      updateEducation(index, "endDate", e.target.value)
+                      updateEducation(index, "degree", e.target.value)
                     }
                   />
+                  <Input
+                    placeholder="Field of Study"
+                    value={edu.field}
+                    onChange={(e) =>
+                      updateEducation(index, "field", e.target.value)
+                    }
+                  />
+                  <div className="grid grid-cols-2 gap-2">
+                    <Input
+                      placeholder="Start Date"
+                      value={edu.startDate}
+                      onChange={(e) =>
+                        updateEducation(index, "startDate", e.target.value)
+                      }
+                    />
+                    <Input
+                      placeholder="End Date"
+                      value={edu.endDate}
+                      onChange={(e) =>
+                        updateEducation(index, "endDate", e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -543,23 +498,26 @@ export const EditableResumePreview = ({
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Skills</h2>
             <Button size="sm" onClick={addSkill}>
-              <Plus className="h-4 w-4" />
+              <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-wrap gap-2">
             {resumeData.skills.map((skill, index) => (
-              <div key={skill.id} className="flex items-center gap-2">
+              <div
+                key={skill.id}
+                className="flex items-center gap-1 rounded-full border px-3 py-1"
+              >
                 <Input
+                  className="h-6 w-24 border-0 p-0 text-sm"
                   value={skill.name}
                   onChange={(e) => updateSkill(index, e.target.value)}
                 />
-                <Button
-                  size="sm"
-                  variant="ghost"
+                <button
                   onClick={() => removeSkill(index)}
+                  className="text-destructive hover:text-destructive/80"
                 >
-                  <Trash2 className="h-3 w-3" />
-                </Button>
+                  ×
+                </button>
               </div>
             ))}
           </div>
@@ -567,57 +525,53 @@ export const EditableResumePreview = ({
 
         <div>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Additional Sections</h2>
+            <h2 className="text-lg font-semibold">Custom Sections</h2>
             <Button size="sm" onClick={addSection}>
-              <Plus className="h-4 w-4" />
+              <Plus className="mr-1 h-4 w-4" /> Add
             </Button>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4">
             {resumeData.sections.map((section, index) => (
-              <div key={section.id} className="space-y-3 rounded-lg border p-4">
-                <div className="flex justify-between">
-                  <Label className="text-xs">Section {index + 1}</Label>
+              <div key={section.id} className="rounded border p-4">
+                <div className="mb-2 flex justify-end">
                   <Button
                     size="sm"
                     variant="ghost"
                     onClick={() => removeSection(index)}
                   >
-                    <Trash2 className="h-3 w-3" />
+                    <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>
                 </div>
-                <Input
-                  placeholder="Section Title"
-                  value={section.title}
-                  onChange={(e) =>
-                    updateSection(index, "title", e.target.value)
-                  }
-                />
-                <Textarea
-                  placeholder="Section Content"
-                  value={section.content}
-                  onChange={(e) =>
-                    updateSection(index, "content", e.target.value)
-                  }
-                  rows={3}
-                />
+                <div className="space-y-2">
+                  <Input
+                    placeholder="Section Title"
+                    value={section.title}
+                    onChange={(e) =>
+                      updateSection(index, "title", e.target.value)
+                    }
+                  />
+                  <Textarea
+                    placeholder="Content"
+                    value={section.content}
+                    onChange={(e) =>
+                      updateSection(index, "content", e.target.value)
+                    }
+                    rows={3}
+                  />
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Resume Preview */}
-      <div className="col-span-8 overflow-auto rounded-lg bg-gray-100 p-6">
-        <div 
-          className="mx-auto rounded-lg bg-white shadow-2xl"
-          style={{ 
-            width: '210mm', 
-            minHeight: '297mm',
-            maxWidth: '100%',
-          }}
-        >
-          <Template resumeData={resumeData} themeColor={themeColor} />
-        </div>
+      {/* Preview Panel */}
+      <div className="col-span-8 overflow-auto rounded-lg border bg-white p-6">
+        <Template
+          resumeData={resumeData}
+          themeColor={themeColor}
+          editable={false}
+        />
       </div>
     </div>
   );
