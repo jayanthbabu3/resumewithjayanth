@@ -5,57 +5,35 @@ import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type AdvancedListProps = {
-  path: string;
+export interface InlineEditableListProps {
   items: any[];
-  defaultItem: any;
-  renderItem: (item: any, index: number) => React.ReactNode;
+  path?: string;
+  field?: string;
+  defaultItem?: any;
+  renderItem?: (item: any, index: number) => React.ReactNode;
   addButtonLabel?: string;
   className?: string;
   editable?: boolean;
-};
+}
 
-type SimpleListProps = {
-  items: any[];
-  field?: string; // legacy prop name used across many templates
-  editable?: boolean;
-  className?: string;
-  addButtonLabel?: string;
-  defaultItem?: any; // optional legacy default
-  renderItem?: never;
-  path?: never;
-};
-
-type InlineEditableListProps = AdvancedListProps | SimpleListProps;
-
-// Support both the new (render-prop) API and the older "just render a bullet list" API.
-export const InlineEditableList = (props: InlineEditableListProps) => {
-  const {
-    addArrayItem,
-    removeArrayItem,
-    updateField,
-  } = useInlineEdit();
+export const InlineEditableList = ({
+  items,
+  path,
+  field,
+  defaultItem,
+  renderItem,
+  addButtonLabel = "Add Item",
+  className,
+  editable = true,
+}: InlineEditableListProps) => {
+  const { addArrayItem, removeArrayItem, updateField } = useInlineEdit();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const safeItems = Array.isArray(items) ? items : [];
+  const isAdvancedMode = typeof renderItem === "function" && Boolean(path);
+
   // Advanced mode: render-prop based list with add/remove via InlineEditContext arrays.
-  const isAdvancedMode =
-    typeof (props as AdvancedListProps).renderItem === "function" &&
-    Boolean((props as AdvancedListProps).path);
-
   if (isAdvancedMode) {
-    const {
-      path,
-      items,
-      defaultItem,
-      renderItem,
-      addButtonLabel = "Add Item",
-      className,
-      editable = true,
-    } = props as AdvancedListProps;
-
-    const safeItems = Array.isArray(items) ? items : [];
-    const canMutate = Boolean(editable);
-
     return (
       <div className={cn("space-y-4", className)}>
         {safeItems.map((item, index) => (
@@ -65,16 +43,16 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            {renderItem(item, index)}
+            {renderItem!(item, index)}
 
-            {canMutate && hoveredIndex === index && (
+            {editable && hoveredIndex === index && (
               <Button
                 size="sm"
                 variant="destructive"
                 className="absolute -right-2 -top-2 h-6 w-6 p-0 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 onClick={(e) => {
                   e.stopPropagation();
-                  removeArrayItem(path, index);
+                  removeArrayItem(path!, index);
                 }}
                 title="Delete"
               >
@@ -84,17 +62,16 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
           </div>
         ))}
 
-        {canMutate && (
+        {editable && (
           <Button
             size="sm"
             variant="outline"
             onClick={() => {
-              // Ensure education items always have GPA field
               let itemToAdd = defaultItem;
               if (path === "education" && defaultItem && !defaultItem.gpa) {
                 itemToAdd = { ...defaultItem, gpa: "" };
               }
-              addArrayItem(path, itemToAdd);
+              addArrayItem(path!, itemToAdd);
             }}
             className="w-full border-dashed"
           >
@@ -106,22 +83,12 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
     );
   }
 
-  // Simple/legacy mode: show a bullet list and allow inline editing by rewriting
-  // the underlying newline-separated field.
-  const {
-    items,
-    field,
-    editable = false,
-    className,
-    addButtonLabel = "Add Item",
-    defaultItem,
-  } = props as SimpleListProps;
-  const safeItems = Array.isArray(items)
-    ? items.map((item) => (item === null || item === undefined ? "" : String(item)))
-    : [];
+  // Simple/legacy mode: show a bullet list
+  const stringItems = safeItems.map((item) =>
+    item === null || item === undefined ? "" : String(item)
+  );
 
-  // Some templates still pass `resumeData.` prefixed paths; strip it for compatibility.
-  const fieldPath = field?.replace(/^resumeData\./, "");
+  const fieldPath = (path || field)?.replace(/^resumeData\./, "");
   const canMutate = editable && Boolean(fieldPath);
 
   const updateList = (nextItems: string[]) => {
@@ -130,7 +97,7 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
   };
 
   const handleItemUpdate = (index: number, value: string) => {
-    const nextItems = [...safeItems];
+    const nextItems = [...stringItems];
     nextItems[index] = value;
     updateList(nextItems);
   };
@@ -142,11 +109,11 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
         : typeof defaultItem === "number"
           ? String(defaultItem)
           : "New item";
-    updateList([...safeItems, value]);
+    updateList([...stringItems, value]);
   };
 
   const handleRemove = (index: number) => {
-    const nextItems = [...safeItems];
+    const nextItems = [...stringItems];
     nextItems.splice(index, 1);
     updateList(nextItems);
   };
@@ -154,7 +121,7 @@ export const InlineEditableList = (props: InlineEditableListProps) => {
   return (
     <div className={cn("space-y-2", className)}>
       <ul className="list-disc list-inside space-y-1">
-        {safeItems.map((item, index) => (
+        {stringItems.map((item, index) => (
           <li
             key={index}
             className="relative group"
