@@ -10,6 +10,10 @@ import type { TemplateDefinition, TemplateRegistry, TemplateComponentProps } fro
 // Import templates
 import { executiveSplitTemplate } from './executive-split';
 import { minimalTemplate } from './minimal';
+import { seniorFrontendProTemplate } from './senior-frontend-pro';
+import { dataProTemplate } from './data-pro';
+import { boldHeadlineTemplate } from './bold-headline';
+import { accountantProTemplate } from './accountant-pro';
 
 // ============================================================================
 // TEMPLATE REGISTRY
@@ -18,6 +22,10 @@ import { minimalTemplate } from './minimal';
 export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'executive-split-v2': executiveSplitTemplate,
   'minimal-v2': minimalTemplate,
+  'senior-frontend-pro-v2': seniorFrontendProTemplate,
+  'data-pro-v2': dataProTemplate,
+  'bold-headline-v2': boldHeadlineTemplate,
+  'accountant-pro-v2': accountantProTemplate,
 };
 
 // ============================================================================
@@ -85,3 +93,7 @@ export {
 // Export individual templates
 export { executiveSplitTemplate } from './executive-split';
 export { minimalTemplate } from './minimal';
+export { seniorFrontendProTemplate } from './senior-frontend-pro';
+export { dataProTemplate } from './data-pro';
+export { boldHeadlineTemplate } from './bold-headline';
+export { accountantProTemplate } from './accountant-pro';

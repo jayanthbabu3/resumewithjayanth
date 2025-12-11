@@ -28,6 +28,7 @@ import {
 import { toast } from 'sonner';
 import { Header } from '@/components/Header';
 import { generatePDFFromPreview } from '@/lib/pdfGenerator';
+import { PDF_STYLES } from '@/lib/pdfStyles';
 import { InlineEditProvider } from '@/contexts/InlineEditContext';
 import { StyleOptionsProvider } from '@/contexts/StyleOptionsContext';
 import { StyleOptionsWrapper } from '@/components/resume/StyleOptionsWrapper';
@@ -330,10 +331,33 @@ export const BuilderV2: React.FC = () => {
     try {
       // Use the hidden PDF preview element which always renders with editable={false}
       // This ensures clean output without editing UI or placeholders
+      // Create custom PDF config for this template
+      const pdfConfig = PDF_STYLES.merge({
+        skills: {
+          label: {
+            family: 'inherit',
+            size: '13px',
+            weight: 500,
+            lineHeight: 1.4,
+            color: '#191d24',
+          },
+          tag: {
+            family: 'inherit',
+            size: '11px',
+            weight: 500,
+            lineHeight: 1.4,
+            color: '#4b5563',
+            padding: '3px 10px', // Match template config
+            borderRadius: '0', // Match template config
+            background: 'transparent', // Match template config
+          },
+        },
+      });
+
       await generatePDFFromPreview(
         'resume-preview-pdf-v2',
         `${resumeData.personalInfo.fullName || 'Resume'}.pdf`,
-        { themeColor }
+        { themeColor, config: pdfConfig }
       );
       toast.success('Resume downloaded successfully!');
     } catch (error) {

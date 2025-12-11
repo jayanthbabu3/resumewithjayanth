@@ -142,7 +142,7 @@ export const seniorFrontendProConfig: TemplateConfig = createTemplateConfig({
     showRatings: false,
     badge: {
       fontSize: '11px',
-      padding: '0',
+      padding: '3px 10px',
       borderRadius: '0',
       backgroundColor: 'transparent',
       textColor: '#4b5563',
