@@ -7,6 +7,7 @@
  * - list: Comma-separated list
  * - grouped: Grouped by category
  * - columns: Multi-column list
+ * - inline: Inline text with separator
  */
 
 import React from 'react';
@@ -48,6 +49,24 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
 
   // Render based on variant
   const renderSkills = () => {
+    // Handle inline variant separately - just plain text with separator
+    if (variant === 'inline') {
+      const separator = skills.separator || ' | ';
+      const textColor = skills.badge?.textColor || typography.body.color;
+      const fontSize = skills.badge?.fontSize || typography.body.fontSize;
+      
+      return (
+        <p style={{ 
+          fontSize, 
+          color: textColor, 
+          lineHeight: typography.body.lineHeight,
+          margin: 0,
+        }}>
+          {items.map(s => s.name).join(separator)}
+        </p>
+      );
+    }
+    
     // Map v2 variants to existing InlineEditableSkills variants
     const editableVariant = variant === 'pills' ? 'pill' : variant === 'tags' ? 'tag' : 'badge';
     

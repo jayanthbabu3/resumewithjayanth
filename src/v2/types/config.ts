@@ -163,7 +163,8 @@ export type SkillsVariant =
   | 'grouped'        // Grouped by category
   | 'bars'           // Progress bars
   | 'dots'           // Dot rating system
-  | 'columns';       // Multi-column list
+  | 'columns'        // Multi-column list
+  | 'inline';        // Inline text with separator
 
 export interface SkillsConfig {
   /** Display variant */
@@ -172,6 +173,8 @@ export interface SkillsConfig {
   columns?: number;
   /** Show skill ratings */
   showRatings?: boolean;
+  /** Separator for inline variant */
+  separator?: string;
   /** Badge/pill style */
   badge?: {
     fontSize: string;
