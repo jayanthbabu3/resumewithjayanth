@@ -17,6 +17,8 @@ import {
   ExperienceSection,
   EducationSection,
   SkillsSection,
+  AchievementsSection,
+  StrengthsSection,
   CustomSection,
 } from './sections';
 import { Target, Award, Star, Zap, Trophy, CheckCircle2 } from 'lucide-react';
@@ -111,18 +113,21 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   const isSectionEnabled = (sectionId: string): boolean => {
     // Check styleOptions visibility toggles first
     if (styleOptionsContext?.styleOptions) {
-      const { showStrengths, showSections } = styleOptionsContext.styleOptions;
+      const { showStrengths, showSections, showAchievements } = styleOptionsContext.styleOptions;
       
       // Check if this is a strengths section
-      if (sectionId === 'strengths' || sectionId.toLowerCase().includes('strength')) {
-        if (!showStrengths) return false;
+      if (sectionId === 'strengths') {
+        if (showStrengths === false) return false;
       }
       
-      // Check if this is a custom section (not a built-in type)
+      // Check if this is an achievements section
+      if (sectionId === 'achievements') {
+        if (showAchievements === false) return false;
+      }
+      
+      // Check if this is a custom section (type === 'custom')
       const section = config.sections.find(s => s.id === sectionId);
-      const isBuiltInType = section?.type && ['header', 'summary', 'experience', 'education', 'skills'].includes(section.type);
-      if (!isBuiltInType && sectionId !== 'strengths' && !sectionId.toLowerCase().includes('strength')) {
-        // This is a custom section, check showSections
+      if (section?.type === 'custom') {
         if (!showSections) return false;
       }
     }
@@ -288,6 +293,28 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
           />
         );
 
+      case 'achievements':
+        return wrap('achievements',
+          <AchievementsSection
+            key={section.id}
+            items={resumeData.achievements || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+          />
+        );
+
+      case 'strengths':
+        return wrap('strengths',
+          <StrengthsSection
+            key={section.id}
+            items={resumeData.strengths || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+          />
+        );
+
       case 'custom':
         // Find the custom section data - match by id, partial id, or title
         const customSection = resumeData.sections.find(
@@ -306,32 +333,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
                s.title.toLowerCase() === section.title.toLowerCase()
         );
 
-        // Determine if this is a "card" style section (like Strengths)
-        const isCardStyle = section.id === 'strengths' || section.title.toLowerCase().includes('strength');
-
         const actualSectionIndex = sectionIndex >= 0 ? sectionIndex : resumeData.sections.length;
-        
-        // For card-style sections (like Strengths), use callbacks for add/remove
-        // For regular list sections (like Achievements), use InlineEditableSectionItems which handles it via context
-        const useCallbacks = isCardStyle && editable;
-        
-        // Get dynamic icon based on section id/title
-        const getSectionIcon = () => {
-          const sectionIdLower = section.id.toLowerCase();
-          const titleLower = section.title.toLowerCase();
-          
-          // Check for exact matches first
-          if (SECTION_ICONS[sectionIdLower]) return SECTION_ICONS[sectionIdLower];
-          
-          // Check for partial matches in title
-          for (const [key, icon] of Object.entries(SECTION_ICONS)) {
-            if (titleLower.includes(key) || sectionIdLower.includes(key)) {
-              return icon;
-            }
-          }
-          
-          return undefined;
-        };
         
         return wrap('custom',
           <CustomSection
@@ -340,10 +342,9 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             sectionIndex={actualSectionIndex}
             config={config}
             editable={editable}
-            showAsCards={isCardStyle}
-            icon={isCardStyle ? getSectionIcon() : undefined}
-            onAddItem={useCallbacks && onAddCustomSectionItem ? () => onAddCustomSectionItem(actualSectionIndex) : undefined}
-            onRemoveItem={useCallbacks && onRemoveCustomSectionItem ? (itemIndex: number) => onRemoveCustomSectionItem(actualSectionIndex, itemIndex) : undefined}
+            showAsCards={false}
+            onAddItem={onAddCustomSectionItem ? () => onAddCustomSectionItem(actualSectionIndex) : undefined}
+            onRemoveItem={onRemoveCustomSectionItem ? (itemIndex: number) => onRemoveCustomSectionItem(actualSectionIndex, itemIndex) : undefined}
           />
         );
 

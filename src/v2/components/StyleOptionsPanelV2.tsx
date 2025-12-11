@@ -356,6 +356,8 @@ export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
                   { key: 'showExperience', label: 'Experience', icon: Briefcase },
                   { key: 'showEducation', label: 'Education', icon: GraduationCap },
                   { key: 'showSkills', label: 'Skills', icon: Lightbulb },
+                  { key: 'showAchievements', label: 'Achievements', icon: Trophy },
+                  { key: 'showStrengths', label: 'Strengths', icon: Target },
                 ].map((item) => {
                   const Icon = item.icon;
                   const isChecked = styleOptions[item.key as keyof typeof styleOptions] as boolean;

@@ -20,9 +20,24 @@ export interface ResumeData {
   experience: ExperienceItem[];
   education: EducationItem[];
   skills: SkillItem[];
-  sections: CustomSection[];
+  sections: CustomSection[]; // User-added custom sections only
+  // Built-in optional sections
+  achievements?: AchievementItem[];
+  strengths?: StrengthItem[];
   // New dynamic sections feature
   dynamicSections?: ResumeSection[]; // Optional for backward compatibility
+}
+
+export interface AchievementItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface StrengthItem {
+  id: string;
+  title: string;
+  description: string;
 }
 
 export interface ExperienceItem {
