@@ -12,6 +12,9 @@ import { boldHeadlineConfig } from './bold-headline';
 import { dataProConfig } from './data-pro';
 import { accountantProConfig } from './accountant-pro';
 import { seniorFrontendProConfig } from './senior-frontend-pro';
+import { centeredPhotoConfig } from './centered-photo';
+import { creativeSplitConfig } from './creative-split';
+import { classicMinimalConfig } from './classic-minimal';
 
 // Registry of all available templates
 export const TEMPLATE_REGISTRY: Record<string, TemplateConfig> = {
@@ -21,6 +24,9 @@ export const TEMPLATE_REGISTRY: Record<string, TemplateConfig> = {
   'data-pro-v2': dataProConfig,
   'accountant-pro-v2': accountantProConfig,
   'senior-frontend-pro-v2': seniorFrontendProConfig,
+  'centered-photo-v2': centeredPhotoConfig,
+  'creative-split-v2': creativeSplitConfig,
+  'classic-minimal-v2': classicMinimalConfig,
 };
 
 // Get template by ID
@@ -39,4 +45,4 @@ export function getTemplatesByCategory(category: TemplateConfig['category']): Te
 }
 
 // Export individual templates
-export { executiveSplitConfig, minimalConfig, boldHeadlineConfig, dataProConfig, accountantProConfig, seniorFrontendProConfig };
+export { executiveSplitConfig, minimalConfig, boldHeadlineConfig, dataProConfig, accountantProConfig, seniorFrontendProConfig, centeredPhotoConfig, creativeSplitConfig, classicMinimalConfig };
