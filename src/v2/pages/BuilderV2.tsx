@@ -632,7 +632,12 @@ export const BuilderV2: React.FC = () => {
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent align="end" className="w-96 p-0 shadow-xl border-gray-200 max-h-[85vh] overflow-y-auto">
-                            <StyleOptionsPanelV2 inPopover={true} />
+                            <StyleOptionsPanelV2 
+                              inPopover={true} 
+                              resumeData={resumeData}
+                              enabledSections={enabledSections}
+                              onToggleSection={handleToggleSection}
+                            />
                           </PopoverContent>
                         </Popover>
                       </div>

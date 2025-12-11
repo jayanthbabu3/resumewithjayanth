@@ -35,17 +35,77 @@ import {
   LayoutGrid,
   AlignLeft,
   Target,
+  Trophy,
+  Award,
+  Star,
+  Zap,
+  CheckCircle2,
+  Heart,
+  Globe,
+  Code,
+  FolderOpen,
+  LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { ResumeData } from '@/types/resume';
+
+// Icon mapping for different section types
+const SECTION_ICONS: Record<string, LucideIcon> = {
+  strengths: Target,
+  strength: Target,
+  achievements: Trophy,
+  achievement: Trophy,
+  awards: Award,
+  award: Award,
+  highlights: Star,
+  highlight: Star,
+  competencies: Zap,
+  competency: Zap,
+  qualifications: CheckCircle2,
+  qualification: CheckCircle2,
+  interests: Heart,
+  interest: Heart,
+  hobbies: Heart,
+  hobby: Heart,
+  languages: Globe,
+  language: Globe,
+  projects: FolderOpen,
+  project: FolderOpen,
+  certifications: Award,
+  certification: Award,
+  skills: Lightbulb,
+  skill: Lightbulb,
+  technical: Code,
+};
+
+const getSectionIcon = (sectionId: string, title: string): LucideIcon => {
+  const idLower = sectionId.toLowerCase();
+  const titleLower = title.toLowerCase();
+  
+  // Check for exact matches first
+  for (const [key, icon] of Object.entries(SECTION_ICONS)) {
+    if (idLower.includes(key) || titleLower.includes(key)) {
+      return icon;
+    }
+  }
+  
+  return LayoutGrid; // Default icon
+};
 
 interface StyleOptionsPanelV2Props {
   inPopover?: boolean;
   className?: string;
+  resumeData?: ResumeData;
+  enabledSections?: string[];
+  onToggleSection?: (sectionId: string) => void;
 }
 
 export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
   inPopover = false,
   className,
+  resumeData,
+  enabledSections = [],
+  onToggleSection,
 }) => {
   const { styleOptions, updateStyleOption, resetStyleOptions } = useStyleOptions();
   const [activeTab, setActiveTab] = useState('style');
@@ -53,6 +113,9 @@ export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
   const containerClass = inPopover 
     ? 'p-0 bg-white' 
     : 'p-0 bg-white rounded-lg border shadow-sm';
+
+  // Get custom sections from resumeData
+  const customSections = resumeData?.sections || [];
 
   return (
     <div className={cn(containerClass, className)}>
@@ -283,7 +346,7 @@ export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
             <div className="space-y-2.5">
               <div className="flex items-center gap-1.5 pb-1">
                 <Eye className="w-3.5 h-3.5 text-primary" />
-                <Label className="text-xs font-semibold text-gray-800">Content Sections</Label>
+                <Label className="text-xs font-semibold text-gray-800">Built-in Sections</Label>
               </div>
               
               <div className="space-y-0.5 bg-gray-50/50 rounded-lg p-1.5 border border-gray-100">
@@ -293,8 +356,6 @@ export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
                   { key: 'showExperience', label: 'Experience', icon: Briefcase },
                   { key: 'showEducation', label: 'Education', icon: GraduationCap },
                   { key: 'showSkills', label: 'Skills', icon: Lightbulb },
-                  { key: 'showStrengths', label: 'Strengths', icon: Target },
-                  { key: 'showSections', label: 'Custom Sections', icon: LayoutGrid },
                 ].map((item) => {
                   const Icon = item.icon;
                   const isChecked = styleOptions[item.key as keyof typeof styleOptions] as boolean;
@@ -329,6 +390,52 @@ export const StyleOptionsPanelV2: React.FC<StyleOptionsPanelV2Props> = ({
                   );
                 })}
               </div>
+              
+              {/* Custom Sections - Dynamic from resumeData */}
+              {customSections.length > 0 && (
+                <>
+                  <div className="flex items-center gap-1.5 pb-1 pt-3">
+                    <LayoutGrid className="w-3.5 h-3.5 text-primary" />
+                    <Label className="text-xs font-semibold text-gray-800">Custom Sections</Label>
+                  </div>
+                  
+                  <div className="space-y-0.5 bg-gray-50/50 rounded-lg p-1.5 border border-gray-100">
+                    {customSections.map((section) => {
+                      const Icon = getSectionIcon(section.id, section.title);
+                      const isChecked = enabledSections.includes(section.id);
+                      return (
+                        <div 
+                          key={section.id} 
+                          className={cn(
+                            "flex items-center justify-between py-2 px-2.5 rounded-md transition-all duration-200 group cursor-pointer",
+                            isChecked ? "bg-white shadow-sm" : "hover:bg-white/50"
+                          )}
+                          onClick={() => onToggleSection?.(section.id)}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <Icon className={cn(
+                              "w-3.5 h-3.5 transition-colors duration-200",
+                              isChecked ? "text-primary" : "text-gray-400 group-hover:text-gray-600"
+                            )} />
+                            <Label className={cn(
+                              "text-xs font-medium cursor-pointer transition-colors",
+                              isChecked ? "text-gray-900" : "text-gray-600 group-hover:text-gray-800"
+                            )}>
+                              {section.title}
+                            </Label>
+                          </div>
+                          <Switch
+                            checked={isChecked}
+                            onCheckedChange={() => onToggleSection?.(section.id)}
+                            className="data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-primary data-[state=checked]:to-cyan-600"
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              )}
             </div>
           </TabsContent>
         </div>
