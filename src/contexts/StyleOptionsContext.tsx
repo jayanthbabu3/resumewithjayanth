@@ -18,6 +18,7 @@ export interface StyleOptions {
   showExperience: boolean;
   showEducation: boolean;
   showSkills: boolean;
+  showAchievements: boolean;
   showStrengths: boolean;
   showSections: boolean;
 }
@@ -33,6 +34,7 @@ export const defaultStyleOptions: StyleOptions = {
   showExperience: true,
   showEducation: true,
   showSkills: true,
+  showAchievements: true,
   showStrengths: true,
   showSections: true,
 };

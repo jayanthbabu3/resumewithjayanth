@@ -288,6 +288,8 @@ export type SectionType =
   | 'experience'
   | 'education'
   | 'skills'
+  | 'achievements'
+  | 'strengths'
   | 'projects'
   | 'certifications'
   | 'languages'

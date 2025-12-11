@@ -97,34 +97,43 @@ export const MOCK_RESUME_DATA: ResumeData = {
     { id: 'skill-10', name: '5G' },
     { id: 'skill-11', name: 'Cloud' },
   ],
-  sections: [
+  // Built-in sections with proper data structure
+  achievements: [
     {
-      id: 'section-strengths',
-      title: 'Strengths',
-      content: '',
-      items: [
-        'Strategic Planning - Led a team of 20+ in developing and executing strategic plans, resulting in a 35% increase in efficiency.',
-        'Collaboration - Worked closely with cross-functional teams to drive project success, leading to a 45% increase in team productivity.',
-        'Media Relations - Established strong relationships with top-tier technology and business outlets, increasing brand visibility by 50%.',
-      ],
+      id: 'ach-1',
+      title: 'Client Retention Rate',
+      description: 'Achieved a client retention rate of over 90% throughout my career, demonstrating my commitment to client satisfaction.',
     },
     {
-      id: 'section-achievements',
-      title: 'Achievements',
-      content: '',
-      items: [
-        'Client Retention Rate - Achieved a client retention rate of over 90% throughout my career, demonstrating my commitment to client satisfaction.',
-        'Team Leadership - Successfully led diverse teams in high-pressure environments, fostering collaboration and boosting productivity.',
-        'Brand Visibility - Increased brand visibility for clients by securing coverage in top-tier media outlets.',
-      ],
+      id: 'ach-2',
+      title: 'Team Leadership',
+      description: 'Successfully led diverse teams in high-pressure environments, fostering collaboration and boosting productivity.',
     },
     {
-      id: 'section-philosophy',
-      title: 'My Life Philosophy',
-      content: 'Technology, like art, is a soaring exercise of the human imagination.\n\n— Daniel Bell',
-      items: [],
+      id: 'ach-3',
+      title: 'Brand Visibility',
+      description: 'Increased brand visibility for clients by securing coverage in top-tier media outlets.',
     },
   ],
+  strengths: [
+    {
+      id: 'str-1',
+      title: 'Strategic Planning',
+      description: 'Led a team of 20+ in developing and executing strategic plans, resulting in a 35% increase in efficiency.',
+    },
+    {
+      id: 'str-2',
+      title: 'Collaboration',
+      description: 'Worked closely with cross-functional teams to drive project success, leading to a 45% increase in team productivity.',
+    },
+    {
+      id: 'str-3',
+      title: 'Media Relations',
+      description: 'Established strong relationships with top-tier technology and business outlets, increasing brand visibility by 50%.',
+    },
+  ],
+  // Custom sections - empty by default (user adds them)
+  sections: [],
 };
 
 // Empty resume data for new resumes
