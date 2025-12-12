@@ -68,7 +68,7 @@ export const classicMinimalConfig: TemplateConfig = createTemplateConfig({
       color: '#666666',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#888888',
@@ -126,7 +126,7 @@ export const classicMinimalConfig: TemplateConfig = createTemplateConfig({
     padding: '0 0 20px 0',
     contactIcons: {
       show: false,
-      size: '10px',
+      size: '11px',
       color: '#666666',
     },
     showSocialLinks: true,
@@ -134,16 +134,17 @@ export const classicMinimalConfig: TemplateConfig = createTemplateConfig({
   },
 
   skills: {
-    variant: 'pills',
-    columns: 2,
+    variant: 'inline',
+    columns: 1,
     showRatings: false,
+    separator: ' • ',
     badge: {
       fontSize: '11px',
-      padding: '4px 12px',
-      borderRadius: '9999px',
-      borderWidth: '1px',
+      padding: '0',
+      borderRadius: '0',
+      borderWidth: '0',
       backgroundColor: 'transparent',
-      textColor: '#1a1a1a',
+      textColor: '#333333',
     },
   },
 
