@@ -51,25 +51,25 @@ export const dataProConfig: TemplateConfig = createTemplateConfig({
       color: '#e97316', // Orange for company name
     },
     dates: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 600,
       lineHeight: 1.4,
       color: '#1e3a5f', // Navy blue
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#374151',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#374151',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',

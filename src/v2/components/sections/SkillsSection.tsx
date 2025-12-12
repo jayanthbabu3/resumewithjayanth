@@ -63,7 +63,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           themeColor={accent}
           variant="inline"
           path="skills"
-          fontSize={typography.body.fontSize}
+          fontSize={typography.body.fontSize || '12px'}
           separator={separatorType}
         />
       );
@@ -78,7 +78,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
           themeColor={accent}
           variant="list"
           path="skills"
-          fontSize={typography.body.fontSize}
+          fontSize={typography.body.fontSize || '12px'}
         />
       );
     }
@@ -95,7 +95,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
         themeColor={accent}
         variant={editableVariant}
         path="skills"
-        fontSize={typography.body.fontSize}
+        fontSize={typography.body.fontSize || '12px'}
       />
     );
   };
