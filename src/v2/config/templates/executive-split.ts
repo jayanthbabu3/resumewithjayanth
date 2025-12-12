@@ -65,7 +65,7 @@ export const executiveSplitConfig: TemplateConfig = createTemplateConfig({
       color: '#374151',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#374151',

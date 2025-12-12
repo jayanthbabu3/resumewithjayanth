@@ -51,25 +51,25 @@ export const accountantProConfig: TemplateConfig = createTemplateConfig({
       color: '#2563eb', // Blue for company name
     },
     dates: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280', // Gray
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.55,
       color: '#4b5563',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#4b5563',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',
@@ -140,7 +140,7 @@ export const accountantProConfig: TemplateConfig = createTemplateConfig({
     showRatings: false,
     separator: ' | ',
     badge: {
-      fontSize: '11px',
+      fontSize: '12px',
       padding: '0',
       borderRadius: '0',
       borderWidth: '0',

@@ -50,25 +50,25 @@ export const centeredPhotoConfig: TemplateConfig = createTemplateConfig({
       color: '#6366f1',
     },
     dates: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.6,
       color: '#374151',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#4b5563',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',
@@ -140,7 +140,7 @@ export const centeredPhotoConfig: TemplateConfig = createTemplateConfig({
     columns: 3,
     showRatings: false,
     badge: {
-      fontSize: '10px',
+      fontSize: '12px',
       padding: '4px 10px',
       borderRadius: '12px',
       borderWidth: '1px',

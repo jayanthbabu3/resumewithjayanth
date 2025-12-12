@@ -51,25 +51,25 @@ export const seniorFrontendProConfig: TemplateConfig = createTemplateConfig({
       color: '#6b7280', // Muted gray
     },
     dates: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#4b5563',
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.6,
       color: '#4b5563',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#d1d5db', // Light gray for dark header
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',

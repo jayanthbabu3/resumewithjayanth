@@ -173,18 +173,74 @@ export const InlineEditableSkills = ({
   // Handle inline variant differently (needs different container)
   if (variant === 'inline') {
     const separatorChar = separator === 'comma' ? ', ' : separator === 'pipe' ? ' | ' : ' • ';
-    const skillFontSize = fontSize || '13px';
+    const skillFontSize = fontSize || '12px';
     
     return (
       <div className={cn("relative group", className)}>
-        <p style={{ fontSize: skillFontSize, color: '#1a1a1a' }}>
+        <div style={{ fontSize: skillFontSize, color: '#1a1a1a' }}>
           {normalizedSkills.map((skill, index) => (
-            <span key={skill.id || index}>
-              {skill.name}
-              {index < normalizedSkills.length - 1 && separatorChar}
+            <span key={skill.id || index} className="group/skill inline">
+              {canMutate && isEditing && editingIndex === index ? (
+                <span className="inline-flex items-center gap-1">
+                  <Input
+                    value={editValue}
+                    onChange={(e) => setEditValue(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSave(index);
+                      if (e.key === "Escape") {
+                        setEditingIndex(null);
+                        setIsEditing(false);
+                      }
+                    }}
+                    className="h-6 w-24 text-xs inline"
+                    autoFocus
+                  />
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-5 w-5 p-0"
+                    onClick={() => handleSave(index)}
+                  >
+                    <Check className="h-3 w-3" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="h-5 w-5 p-0"
+                    onClick={() => {
+                      setEditingIndex(null);
+                      setIsEditing(false);
+                    }}
+                  >
+                    <X className="h-3 w-3" />
+                  </Button>
+                </span>
+              ) : (
+                <span className="relative inline-flex items-center">
+                  <span 
+                    className={canMutate ? "cursor-pointer hover:bg-gray-100 rounded px-0.5 -mx-0.5 transition-colors" : ""}
+                    onClick={() => canMutate && handleEdit(index, skill.name)}
+                  >
+                    {skill.name}
+                  </span>
+                  {canMutate && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(index);
+                      }}
+                      className="ml-0.5 opacity-0 group-hover/skill:opacity-100 transition-opacity text-red-500 hover:text-red-700 inline-flex items-center"
+                      title="Remove skill"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  )}
+                </span>
+              )}
+              {!isEditing || editingIndex !== index ? (index < normalizedSkills.length - 1 && separatorChar) : null}
             </span>
           ))}
-        </p>
+        </div>
         {canMutate && (
           <button
             onClick={handleAdd}

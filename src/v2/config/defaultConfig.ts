@@ -40,7 +40,7 @@ export const DEFAULT_TYPOGRAPHY: TypographyConfig = {
     color: '#000000',
   },
   itemSubtitle: {
-    fontSize: '13px',
+    fontSize: '12px',
     fontWeight: 500,
     lineHeight: 1.4,
     color: '#2563eb', // Accent color
@@ -52,7 +52,7 @@ export const DEFAULT_TYPOGRAPHY: TypographyConfig = {
     color: '#6b7280',
   },
   body: {
-    fontSize: '13px',
+    fontSize: '12px',
     fontWeight: 400,
     lineHeight: 1.6,
     color: '#1a1a1a',
