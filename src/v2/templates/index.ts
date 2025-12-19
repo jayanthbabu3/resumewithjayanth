@@ -19,6 +19,7 @@ import { creativeSplitTemplate } from './creative-split';
 import { classicMinimalTemplate } from './classic-minimal';
 import { professionalBlueTemplate } from './professional-blue';
 import { elegantAtsTemplate } from './elegant-ats';
+import { refinedPortraitTemplate } from './refined-portrait';
 
 // ============================================================================
 // TEMPLATE REGISTRY
@@ -36,6 +37,7 @@ export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'classic-minimal-v2': classicMinimalTemplate,
   'professional-blue-v2': professionalBlueTemplate,
   'elegant-ats-v2': elegantAtsTemplate,
+  'refined-portrait-v2': refinedPortraitTemplate,
 };
 
 // ============================================================================
@@ -112,3 +114,4 @@ export { creativeSplitTemplate } from './creative-split';
 export { classicMinimalTemplate } from './classic-minimal';
 export { professionalBlueTemplate } from './professional-blue';
 export { elegantAtsTemplate } from './elegant-ats';
+export { refinedPortraitTemplate } from './refined-portrait';
