@@ -5,8 +5,7 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, EducationVariant } from '../../types';
-import type { EducationItem } from '@/types/resume';
+import type { TemplateConfig, EducationVariant, EducationItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { InlineEditableDate } from '@/components/resume/InlineEditableDate';

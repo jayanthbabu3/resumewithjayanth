@@ -4,4 +4,5 @@
  * Exports all experience variant renderers.
  */
 
-export { ExperienceVariantRenderer, type ExperienceVariantProps } from './ExperienceVariantRenderer';
+export { ExperienceVariantRenderer } from './ExperienceVariantRenderer';
+export type { ExperienceVariantProps, ExperienceVariant } from './types';

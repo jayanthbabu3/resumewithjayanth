@@ -8,8 +8,7 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, SectionConfig } from '../../types';
-import type { ResumeData } from '@/types/resume';
+import type { TemplateConfig, SectionConfig, V2ResumeData } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { getSectionDefinition } from '../../registry/sectionRegistry';
 
@@ -26,7 +25,7 @@ interface SectionRendererProps {
   /** Section configuration */
   section: SectionConfig;
   /** Resume data */
-  resumeData: ResumeData;
+  resumeData: V2ResumeData;
   /** Template configuration */
   config: TemplateConfig;
   /** Enable inline editing */

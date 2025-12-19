@@ -10,14 +10,13 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, HeaderVariant } from '../../types';
-import type { ResumeData } from '@/types/resume';
+import type { TemplateConfig, HeaderVariant, V2ResumeData } from '../../types';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { Mail, Phone, MapPin, Linkedin, Globe, Github } from 'lucide-react';
 import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 
 interface HeaderSectionProps {
-  resumeData: ResumeData;
+  resumeData: V2ResumeData;
   config: TemplateConfig;
   editable?: boolean;
   variantOverride?: HeaderVariant;
@@ -29,7 +28,8 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
   editable = false,
   variantOverride,
 }) => {
-  const { personalInfo, includeSocialLinks } = resumeData;
+  const { personalInfo, settings } = resumeData;
+  const includeSocialLinks = settings?.includeSocialLinks ?? true;
   const { typography, colors, header, spacing } = config;
   const variant = variantOverride || header.variant;
   const accent = colors.primary;

@@ -45,7 +45,12 @@ export const InlineEditProvider = ({
         sections: currentResumeData.sections
       });
       
-      const pathParts = path.split(".");
+      // Parse path, handling both dot notation and bracket notation
+      // e.g., "skills[0].name" -> ["skills", "0", "name"]
+      const pathParts = path
+        .replace(/\[(\d+)\]/g, '.$1')  // Convert bracket notation to dot notation
+        .split(".")
+        .filter(part => part !== '');  // Remove empty parts
       const newData = JSON.parse(JSON.stringify(currentResumeData));
       
       let current: any = newData;
@@ -163,9 +168,11 @@ export const InlineEditProvider = ({
       }
       
       const targetSectionIndex = pathParts[1] ? parseInt(pathParts[1]) : null;
+      // Support both V1 sections and V2 customSections
+      const sectionsArray = newData.sections || newData.customSections || [];
       console.log('[InlineEditContext] Returning updated data from functional update', { 
-        newDataSections: newData.sections?.length,
-        newDataSectionsItems: newData.sections?.map((s: any, i: number) => ({ 
+        newDataSections: sectionsArray?.length,
+        newDataSectionsItems: sectionsArray?.map((s: any, i: number) => ({ 
           index: i, 
           id: s.id, 
           title: s.title, 
@@ -173,8 +180,8 @@ export const InlineEditProvider = ({
           items: s.items
         })),
         targetSectionIndex,
-        targetSectionItems: targetSectionIndex !== null ? newData.sections[targetSectionIndex]?.items : null,
-        targetSectionItemsLength: targetSectionIndex !== null ? newData.sections[targetSectionIndex]?.items?.length : null
+        targetSectionItems: targetSectionIndex !== null ? sectionsArray[targetSectionIndex]?.items : null,
+        targetSectionItemsLength: targetSectionIndex !== null ? sectionsArray[targetSectionIndex]?.items?.length : null
       });
       
       return newData;
@@ -184,7 +191,11 @@ export const InlineEditProvider = ({
 
   const addArrayItem = (path: string, defaultItem: any) => {
     const newData = JSON.parse(JSON.stringify(resumeData));
-    const pathParts = path.split(".");
+    // Parse path, handling both dot notation and bracket notation
+    const pathParts = path
+      .replace(/\[(\d+)\]/g, '.$1')
+      .split(".")
+      .filter(part => part !== '');
 
     let current = newData;
     for (const part of pathParts) {
@@ -212,7 +223,11 @@ export const InlineEditProvider = ({
 
   const removeArrayItem = (path: string, itemIndex: number) => {
     const newData = JSON.parse(JSON.stringify(resumeData));
-    const pathParts = path.split(".");
+    // Parse path, handling both dot notation and bracket notation
+    const pathParts = path
+      .replace(/\[(\d+)\]/g, '.$1')
+      .split(".")
+      .filter(part => part !== '');
 
     let current = newData;
     for (const part of pathParts) {

@@ -5,8 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import type { TemplateConfig } from '../../types';
-import type { LanguageItem } from '@/types/resume';
+import type { TemplateConfig, LanguageItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { Plus, X, ChevronDown } from 'lucide-react';

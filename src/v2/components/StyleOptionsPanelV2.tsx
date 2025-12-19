@@ -47,7 +47,7 @@ import {
   LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { ResumeData } from '@/types/resume';
+import type { V2ResumeData } from '../types';
 
 // Icon mapping for different section types
 const SECTION_ICONS: Record<string, LucideIcon> = {
@@ -95,7 +95,7 @@ const getSectionIcon = (sectionId: string, title: string): LucideIcon => {
 interface StyleOptionsPanelV2Props {
   inPopover?: boolean;
   className?: string;
-  resumeData?: ResumeData;
+  resumeData?: V2ResumeData;
   enabledSections?: string[];
   onToggleSection?: (sectionId: string) => void;
 }

@@ -336,8 +336,11 @@ export type SectionType =
   | 'awards'
   | 'publications'
   | 'volunteer'
+  | 'speaking'
+  | 'patents'
   | 'interests'
   | 'references'
+  | 'courses'
   | 'custom';
 
 export interface SectionConfig {

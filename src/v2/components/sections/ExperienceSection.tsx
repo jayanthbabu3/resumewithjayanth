@@ -10,8 +10,7 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, ExperienceVariant } from '../../types';
-import type { ExperienceItem } from '@/types/resume';
+import type { TemplateConfig, ExperienceVariant, ExperienceItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { InlineEditableDate } from '@/components/resume/InlineEditableDate';

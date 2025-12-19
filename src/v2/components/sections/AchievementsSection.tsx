@@ -5,11 +5,10 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, AchievementsVariant } from '../../types';
-import type { AchievementItem } from '@/types/resume';
+import type { TemplateConfig, AchievementsVariant, AchievementItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
-import { Trophy, Award, Star } from 'lucide-react';
+import { Trophy, Award, Star, X, Plus } from 'lucide-react';
 
 interface AchievementsSectionProps {
   items: AchievementItem[];
@@ -42,17 +41,48 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
       <button
         onClick={onAddItem}
         style={{
-          marginTop: '8px',
-          padding: '4px 8px',
-          fontSize: '11px',
+          marginTop: '12px',
+          padding: '6px 12px',
+          fontSize: '12px',
           color: colors.primary,
           background: 'transparent',
           border: `1px dashed ${colors.primary}`,
           borderRadius: '4px',
           cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px',
         }}
       >
-        + Add Achievement
+        <Plus style={{ width: '12px', height: '12px' }} />
+        Add Achievement
+      </button>
+    );
+  };
+
+  const renderDeleteButton = (itemId: string) => {
+    if (!editable || !onRemoveItem) return null;
+    return (
+      <button
+        onClick={() => onRemoveItem(itemId)}
+        style={{
+          padding: '4px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          color: '#ef4444',
+          opacity: 0.6,
+          transition: 'opacity 0.2s',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '4px',
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+        onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
+        title="Remove achievement"
+      >
+        <X style={{ width: '14px', height: '14px' }} />
       </button>
     );
   };
@@ -68,23 +98,29 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             fontSize: typography.body.fontSize,
             lineHeight: typography.body.lineHeight,
             color: typography.body.color,
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '8px',
           }}
         >
-          {editable ? (
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
-              <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>
-                <InlineEditableText value={item.title} path={`achievements.${index}.title`} placeholder="Title" />
-              </span>
-              <span> - </span>
-              <InlineEditableText value={item.description} path={`achievements.${index}.description`} placeholder="Description" multiline />
-            </div>
-          ) : (
-            <>
-              <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>{item.title}</span>
-              <span> - </span>
-              <span>{item.description}</span>
-            </>
-          )}
+          <div style={{ flex: 1 }}>
+            {editable ? (
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px' }}>
+                <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>
+                  <InlineEditableText value={item.title} path={`achievements.${index}.title`} placeholder="Title" />
+                </span>
+                <span> - </span>
+                <InlineEditableText value={item.description} path={`achievements.${index}.description`} placeholder="Description" multiline />
+              </div>
+            ) : (
+              <>
+                <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>{item.title}</span>
+                <span> - </span>
+                <span>{item.description}</span>
+              </>
+            )}
+          </div>
+          {renderDeleteButton(item.id)}
         </div>
       ))}
       {renderAddButton()}
@@ -97,6 +133,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
       {(items || []).map((item, index) => (
         <div
           key={item.id}
+          className="group relative"
           style={{
             display: 'flex',
             alignItems: 'flex-start',
@@ -110,7 +147,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
           {showIndicators && (
             <Trophy style={{ width: '14px', height: '14px', color: colors.primary, flexShrink: 0, marginTop: '2px' }} />
           )}
-          <div>
+          <div style={{ flex: 1 }}>
             <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>
               {editable ? (
                 <InlineEditableText value={item.title} path={`achievements.${index}.title`} placeholder="Title" />
@@ -129,6 +166,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
               </>
             )}
           </div>
+          {renderDeleteButton(item.id)}
         </div>
       ))}
       {renderAddButton()}
@@ -141,6 +179,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
       {(items || []).map((item, index) => (
         <div
           key={item.id}
+          className="group relative"
           style={{
             padding: '10px 12px',
             marginBottom: spacing.itemGap,
@@ -149,6 +188,11 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             borderLeft: `3px solid ${colors.primary}`,
           }}
         >
+          {editable && onRemoveItem && (
+            <div style={{ position: 'absolute', top: '8px', right: '8px' }}>
+              {renderDeleteButton(item.id)}
+            </div>
+          )}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -157,6 +201,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({
             fontSize: typography.itemTitle.fontSize,
             color: typography.itemTitle.color,
             marginBottom: '4px',
+            paddingRight: editable ? '24px' : '0',
           }}>
             {showIndicators && <Award style={{ width: '14px', height: '14px', color: colors.primary }} />}
             {editable ? (

@@ -5,14 +5,15 @@
  * Contains realistic data for different software roles.
  */
 
-import type { ResumeData } from '@/types/resume';
+import type { V2ResumeData } from '../types';
 
 // ============================================================================
 // ROLE-SPECIFIC MOCK DATA
 // ============================================================================
 
 // Senior Frontend Developer - for senior-frontend-pro-v2
-export const SENIOR_FRONTEND_DATA: ResumeData = {
+export const SENIOR_FRONTEND_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Alexandra Chen',
     email: 'alex.chen@techcorp.com',
@@ -24,8 +25,7 @@ export const SENIOR_FRONTEND_DATA: ResumeData = {
     portfolio: 'alexandrachen.dev',
     github: 'github.com/alexchen',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'TechCorp Solutions',
@@ -122,11 +122,11 @@ export const SENIOR_FRONTEND_DATA: ResumeData = {
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
     { id: 'lang-2', language: 'Mandarin', proficiency: 'Fluent' as const },
   ],
-  sections: [],
 };
 
 // Data Scientist - for data-pro-v2
-export const DATA_SCIENTIST_DATA: ResumeData = {
+export const DATA_SCIENTIST_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Dr. Marcus Rodriguez',
     email: 'm.rodriguez@datatech.com',
@@ -138,8 +138,7 @@ export const DATA_SCIENTIST_DATA: ResumeData = {
     portfolio: 'marcusdatascience.com',
     github: 'github.com/marcusr',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'DataTech Analytics',
@@ -254,11 +253,11 @@ export const DATA_SCIENTIST_DATA: ResumeData = {
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
     { id: 'lang-2', language: 'Spanish', proficiency: 'Fluent' as const },
   ],
-  sections: [],
 };
 
 // Executive CTO - for executive-split-v2
-export const EXECUTIVE_CTO_DATA: ResumeData = {
+export const EXECUTIVE_CTO_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Robert Thompson',
     email: 'r.thompson@techexec.com',
@@ -270,8 +269,7 @@ export const EXECUTIVE_CTO_DATA: ResumeData = {
     portfolio: '',
     github: '',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'GlobalTech Enterprises',
@@ -406,11 +404,11 @@ export const EXECUTIVE_CTO_DATA: ResumeData = {
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
     { id: 'lang-2', language: 'French', proficiency: 'Professional' as const },
   ],
-  sections: [],
 };
 
 // Full Stack Developer - for minimal-v2
-export const FULL_STACK_DATA: ResumeData = {
+export const FULL_STACK_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Sarah Kim',
     email: 'sarah.kim@devstudio.com',
@@ -422,8 +420,7 @@ export const FULL_STACK_DATA: ResumeData = {
     portfolio: 'sarahkim.dev',
     github: 'github.com/sarahkim',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'DevStudio Solutions',
@@ -521,11 +518,11 @@ export const FULL_STACK_DATA: ResumeData = {
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
     { id: 'lang-2', language: 'Korean', proficiency: 'Fluent' as const },
   ],
-  sections: [],
 };
 
 // DevOps Engineer - for bold-headline-v2
-export const DEVOPS_DATA: ResumeData = {
+export const DEVOPS_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Michael Foster',
     email: 'm.foster@cloudops.com',
@@ -537,8 +534,7 @@ export const DEVOPS_DATA: ResumeData = {
     portfolio: 'michaelfoster.dev',
     github: 'github.com/mfoster',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'CloudOps Solutions',
@@ -635,11 +631,11 @@ export const DEVOPS_DATA: ResumeData = {
   languages: [
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
   ],
-  sections: [],
 };
 
 // Software Engineer - for accountant-pro-v2 (adapted for tech)
-export const SOFTWARE_ENGINEER_DATA: ResumeData = {
+export const SOFTWARE_ENGINEER_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Jennifer Martinez',
     email: 'j.martinez@softdev.com',
@@ -651,8 +647,7 @@ export const SOFTWARE_ENGINEER_DATA: ResumeData = {
     portfolio: 'jennifermartinez.dev',
     github: 'github.com/jennmartinez',
   },
-  includeSocialLinks: true,
-  experience: [
+    experience: [
     {
       id: 'exp-1',
       company: 'Software Development Co',
@@ -750,17 +745,17 @@ export const SOFTWARE_ENGINEER_DATA: ResumeData = {
     { id: 'lang-1', language: 'English', proficiency: 'Native' as const },
     { id: 'lang-2', language: 'Spanish', proficiency: 'Fluent' as const },
   ],
-  sections: [],
 };
 
 // ============================================================================
 // LEGACY MOCK DATA (for backward compatibility)
 // ============================================================================
 
-export const MOCK_RESUME_DATA: ResumeData = SENIOR_FRONTEND_DATA;
+export const MOCK_RESUME_DATA: V2ResumeData = SENIOR_FRONTEND_DATA;
 
 // Empty resume data for new resumes
-export const EMPTY_RESUME_DATA: ResumeData = {
+export const EMPTY_RESUME_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: '',
     email: '',
@@ -772,15 +767,14 @@ export const EMPTY_RESUME_DATA: ResumeData = {
     portfolio: '',
     github: '',
   },
-  includeSocialLinks: true,
   experience: [],
   education: [],
   skills: [],
-  sections: [],
 };
 
 // Minimal resume data for quick start
-export const MINIMAL_RESUME_DATA: ResumeData = {
+export const MINIMAL_RESUME_DATA: V2ResumeData = {
+  version: '2.0',
   personalInfo: {
     fullName: 'Your Name',
     email: 'email@example.com',
@@ -792,7 +786,6 @@ export const MINIMAL_RESUME_DATA: ResumeData = {
     portfolio: '',
     github: '',
   },
-  includeSocialLinks: false,
   experience: [
     {
       id: 'exp-1',
@@ -801,7 +794,6 @@ export const MINIMAL_RESUME_DATA: ResumeData = {
       startDate: '2020-01',
       endDate: '',
       current: true,
-      description: '',
       bulletPoints: [
         'Key achievement or responsibility',
         'Another important accomplishment',
@@ -823,5 +815,4 @@ export const MINIMAL_RESUME_DATA: ResumeData = {
     { id: 'skill-2', name: 'Skill 2' },
     { id: 'skill-3', name: 'Skill 3' },
   ],
-  sections: [],
 };

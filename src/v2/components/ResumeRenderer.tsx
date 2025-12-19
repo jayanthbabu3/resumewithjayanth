@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, SectionConfig } from '../types';
-import type { ResumeData } from '@/types/resume';
+import type { TemplateConfig, SectionConfig, V2ResumeData } from '../types';
 import { useTemplateConfig } from '../hooks/useTemplateConfig';
 import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 import {
@@ -21,6 +20,16 @@ import {
   StrengthsSection,
   CustomSection,
   LanguagesSection,
+  ProjectsSection,
+  CertificationsSection,
+  AwardsSection,
+  PublicationsSection,
+  VolunteerSection,
+  SpeakingSection,
+  PatentsSection,
+  InterestsSection,
+  ReferencesSection,
+  CoursesSection,
 } from './sections';
 import { Target, Award, Star, Zap, Trophy, CheckCircle2 } from 'lucide-react';
 
@@ -36,7 +45,7 @@ const SECTION_ICONS: Record<string, React.ReactNode> = {
 
 interface ResumeRendererProps {
   /** Resume data to render */
-  resumeData: ResumeData;
+  resumeData: V2ResumeData;
   /** Template ID to use */
   templateId: string;
   /** Theme color override */
@@ -73,6 +82,54 @@ interface ResumeRendererProps {
   onRemoveLanguage?: (langId: string) => void;
   /** Callback for updating language */
   onUpdateLanguage?: (langId: string, field: string, value: string) => void;
+  /** Callback for adding strength */
+  onAddStrength?: () => void;
+  /** Callback for removing strength */
+  onRemoveStrength?: (id: string) => void;
+  /** Callback for adding achievement */
+  onAddAchievement?: () => void;
+  /** Callback for removing achievement */
+  onRemoveAchievement?: (id: string) => void;
+  /** Callback for adding project */
+  onAddProject?: () => void;
+  /** Callback for removing project */
+  onRemoveProject?: (id: string) => void;
+  /** Callback for adding certification */
+  onAddCertification?: () => void;
+  /** Callback for removing certification */
+  onRemoveCertification?: (id: string) => void;
+  /** Callback for adding award */
+  onAddAward?: () => void;
+  /** Callback for removing award */
+  onRemoveAward?: (id: string) => void;
+  /** Callback for adding publication */
+  onAddPublication?: () => void;
+  /** Callback for removing publication */
+  onRemovePublication?: (id: string) => void;
+  /** Callback for adding volunteer */
+  onAddVolunteer?: () => void;
+  /** Callback for removing volunteer */
+  onRemoveVolunteer?: (id: string) => void;
+  /** Callback for adding speaking */
+  onAddSpeaking?: () => void;
+  /** Callback for removing speaking */
+  onRemoveSpeaking?: (id: string) => void;
+  /** Callback for adding patent */
+  onAddPatent?: () => void;
+  /** Callback for removing patent */
+  onRemovePatent?: (id: string) => void;
+  /** Callback for adding interest */
+  onAddInterest?: () => void;
+  /** Callback for removing interest */
+  onRemoveInterest?: (id: string) => void;
+  /** Callback for adding reference */
+  onAddReference?: () => void;
+  /** Callback for removing reference */
+  onRemoveReference?: (id: string) => void;
+  /** Callback for adding course */
+  onAddCourse?: () => void;
+  /** Callback for removing course */
+  onRemoveCourse?: (id: string) => void;
   /** Additional className */
   className?: string;
 }
@@ -97,6 +154,30 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   onAddLanguage,
   onRemoveLanguage,
   onUpdateLanguage,
+  onAddStrength,
+  onRemoveStrength,
+  onAddAchievement,
+  onRemoveAchievement,
+  onAddProject,
+  onRemoveProject,
+  onAddCertification,
+  onRemoveCertification,
+  onAddAward,
+  onRemoveAward,
+  onAddPublication,
+  onRemovePublication,
+  onAddVolunteer,
+  onRemoveVolunteer,
+  onAddSpeaking,
+  onRemoveSpeaking,
+  onAddPatent,
+  onRemovePatent,
+  onAddInterest,
+  onRemoveInterest,
+  onAddReference,
+  onRemoveReference,
+  onAddCourse,
+  onRemoveCourse,
   className = '',
 }) => {
   // Get template configuration
@@ -171,21 +252,20 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
       return (fromBase.length ? Math.max(...fromBase) : 0);
     };
 
-    // Append any resumeData sections not present in config (dynamic custom sections)
+    // Append any customSections not present in config (dynamic custom sections)
     const configIds = new Set(config.sections.map(s => s.id));
     const configTitles = new Set(config.sections.map(s => (s.title || s.id).toLowerCase()));
 
     const blockedTitles = new Set(['my life philosophy']);
 
     const dynamicSections: SectionConfig[] = [];
-    (resumeData.sections || []).forEach((s, idx) => {
+    (resumeData.customSections || []).forEach((s, idx) => {
       const titleLower = (s.title || s.id || '').toLowerCase();
       if (blockedTitles.has(titleLower)) return;
       if (configIds.has(s.id)) return;
       if (configTitles.has(titleLower)) return;
       // Heuristic: send strengths/achievements to sidebar by default
       const inferredColumn: 'main' | 'sidebar' =
-        (s as any).column ||
         (titleLower.includes('strength') || titleLower.includes('achievement'))
           ? 'sidebar'
           : 'main';
@@ -311,6 +391,8 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             config={config}
             editable={editable}
             sectionTitle={title}
+            onAddItem={onAddAchievement}
+            onRemoveItem={onRemoveAchievement}
           />
         );
 
@@ -322,14 +404,14 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             config={config}
             editable={editable}
             sectionTitle={title}
+            onAddItem={onAddStrength}
+            onRemoveItem={onRemoveStrength}
           />
         );
 
       case 'languages':
-        // Get languages - prefer direct languages array, fallback to dynamicSections
-        const languageItems = resumeData.languages || 
-          resumeData.dynamicSections?.find(s => s.type === 'languages')?.data?.items || 
-          [];
+        // Get languages from V2 data
+        const languageItems = resumeData.languages || [];
         return wrap('languages',
           <LanguagesSection
             key={section.id}
@@ -345,7 +427,8 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
       case 'custom':
         // Find the custom section data - match by id, partial id, or title
-        const customSection = resumeData.sections.find(
+        const customSections = resumeData.customSections || [];
+        const customSection = customSections.find(
           s => s.id === section.id || 
                s.id === `section-${section.id}` ||
                s.id.includes(section.id) ||
@@ -354,19 +437,19 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         
         if (!customSection && !editable) return null;
 
-        const sectionIndex = resumeData.sections.findIndex(
+        const sectionIndex = customSections.findIndex(
           s => s.id === section.id || 
                s.id === `section-${section.id}` ||
                s.id.includes(section.id) ||
                s.title.toLowerCase() === section.title.toLowerCase()
         );
 
-        const actualSectionIndex = sectionIndex >= 0 ? sectionIndex : resumeData.sections.length;
+        const actualSectionIndex = sectionIndex >= 0 ? sectionIndex : customSections.length;
         
         return wrap('custom',
           <CustomSection
             key={section.id}
-            section={customSection || { id: section.id, title: title, content: '', items: [] }}
+            section={customSection || { id: section.id, title: title, items: [] }}
             sectionIndex={actualSectionIndex}
             config={config}
             editable={editable}
@@ -376,7 +459,136 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
           />
         );
 
-      // TODO: Add more section types (projects, certifications, etc.)
+      case 'projects':
+        return wrap('projects',
+          <ProjectsSection
+            key={section.id}
+            items={resumeData.projects || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddProject}
+            onRemoveItem={onRemoveProject}
+          />
+        );
+
+      case 'certifications':
+        return wrap('certifications',
+          <CertificationsSection
+            key={section.id}
+            items={resumeData.certifications || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddCertification}
+            onRemoveItem={onRemoveCertification}
+          />
+        );
+
+      case 'awards':
+        return wrap('awards',
+          <AwardsSection
+            key={section.id}
+            items={resumeData.awards || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddAward}
+            onRemoveItem={onRemoveAward}
+          />
+        );
+
+      case 'publications':
+        return wrap('publications',
+          <PublicationsSection
+            key={section.id}
+            items={resumeData.publications || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddPublication}
+            onRemoveItem={onRemovePublication}
+          />
+        );
+
+      case 'volunteer':
+        return wrap('volunteer',
+          <VolunteerSection
+            key={section.id}
+            items={resumeData.volunteer || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddVolunteer}
+            onRemoveItem={onRemoveVolunteer}
+          />
+        );
+
+      case 'speaking':
+        return wrap('speaking',
+          <SpeakingSection
+            key={section.id}
+            items={resumeData.speaking || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddSpeaking}
+            onRemoveItem={onRemoveSpeaking}
+          />
+        );
+
+      case 'patents':
+        return wrap('patents',
+          <PatentsSection
+            key={section.id}
+            items={resumeData.patents || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddPatent}
+            onRemoveItem={onRemovePatent}
+          />
+        );
+
+      case 'interests':
+        return wrap('interests',
+          <InterestsSection
+            key={section.id}
+            items={resumeData.interests || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddInterest}
+            onRemoveItem={onRemoveInterest}
+          />
+        );
+
+      case 'references':
+        return wrap('references',
+          <ReferencesSection
+            key={section.id}
+            items={resumeData.references || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddReference}
+            onRemoveItem={onRemoveReference}
+          />
+        );
+
+      case 'courses':
+        return wrap('courses',
+          <CoursesSection
+            key={section.id}
+            items={resumeData.courses || []}
+            config={config}
+            editable={editable}
+            sectionTitle={title}
+            onAddItem={onAddCourse}
+            onRemoveItem={onRemoveCourse}
+          />
+        );
+
       default:
         return null;
     }

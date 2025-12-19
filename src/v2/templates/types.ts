@@ -5,8 +5,7 @@
  */
 
 import type { FC } from 'react';
-import type { TemplateConfig } from '../types';
-import type { ResumeData } from '@/types/resume';
+import type { TemplateConfig, V2ResumeData } from '../types';
 
 // ============================================================================
 // TEMPLATE COMPONENT PROPS
@@ -14,7 +13,7 @@ import type { ResumeData } from '@/types/resume';
 
 export interface TemplateComponentProps {
   /** Resume data to render */
-  resumeData: ResumeData;
+  resumeData: V2ResumeData;
   /** Template configuration (auto-injected) */
   config: TemplateConfig;
   /** Enable inline editing */
@@ -51,7 +50,7 @@ export interface TemplateDefinition {
   /** Template component */
   component: FC<TemplateComponentProps>;
   /** Mock data for preview */
-  mockData: ResumeData;
+  mockData: V2ResumeData;
   /** Template metadata */
   meta: TemplateMeta;
 }

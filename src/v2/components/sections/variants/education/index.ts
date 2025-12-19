@@ -4,4 +4,5 @@
  * Exports all education variant renderers.
  */
 
-export { EducationVariantRenderer, type EducationVariantProps } from './EducationVariantRenderer';
+export { EducationVariantRenderer } from './EducationVariantRenderer';
+export type { EducationVariantProps, EducationVariant } from './types';

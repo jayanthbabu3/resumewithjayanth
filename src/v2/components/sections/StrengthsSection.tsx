@@ -5,11 +5,10 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, StrengthsVariant } from '../../types';
-import type { StrengthItem } from '@/types/resume';
+import type { TemplateConfig, StrengthsVariant, StrengthItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
-import { Target, Star, Zap, CheckCircle2 } from 'lucide-react';
+import { Target, Star, Zap, CheckCircle2, X, Plus } from 'lucide-react';
 
 interface StrengthsSectionProps {
   items: StrengthItem[];
@@ -42,17 +41,48 @@ export const StrengthsSection: React.FC<StrengthsSectionProps> = ({
       <button
         onClick={onAddItem}
         style={{
-          marginTop: '8px',
-          padding: '4px 8px',
-          fontSize: '11px',
+          marginTop: '12px',
+          padding: '6px 12px',
+          fontSize: '12px',
           color: colors.primary,
           background: 'transparent',
           border: `1px dashed ${colors.primary}`,
           borderRadius: '4px',
           cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '4px',
         }}
       >
-        + Add Strength
+        <Plus style={{ width: '12px', height: '12px' }} />
+        Add Strength
+      </button>
+    );
+  };
+
+  const renderDeleteButton = (itemId: string) => {
+    if (!editable || !onRemoveItem) return null;
+    return (
+      <button
+        onClick={() => onRemoveItem(itemId)}
+        style={{
+          padding: '4px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          color: '#ef4444',
+          opacity: 0.6,
+          transition: 'opacity 0.2s',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '4px',
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+        onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}
+        title="Remove strength"
+      >
+        <X style={{ width: '14px', height: '14px' }} />
       </button>
     );
   };
@@ -69,8 +99,14 @@ export const StrengthsSection: React.FC<StrengthsSectionProps> = ({
             backgroundColor: colors.background.accent || '#f8fafc',
             borderRadius: '6px',
             borderLeft: `3px solid ${colors.primary}`,
+            position: 'relative',
           }}
         >
+          {editable && onRemoveItem && (
+            <div style={{ position: 'absolute', top: '8px', right: '8px' }}>
+              {renderDeleteButton(item.id)}
+            </div>
+          )}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -79,6 +115,7 @@ export const StrengthsSection: React.FC<StrengthsSectionProps> = ({
             fontSize: typography.itemTitle.fontSize,
             color: typography.itemTitle.color,
             marginBottom: '4px',
+            paddingRight: editable ? '24px' : '0',
           }}>
             {showIcons && (
               <Target style={{ width: '14px', height: '14px', color: colors.primary, flexShrink: 0 }} />

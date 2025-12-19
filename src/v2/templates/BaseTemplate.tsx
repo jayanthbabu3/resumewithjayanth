@@ -21,6 +21,16 @@ import {
   CustomSection,
   LanguagesSection,
   SectionHeading,
+  ProjectsSection,
+  CertificationsSection,
+  AwardsSection,
+  PublicationsSection,
+  VolunteerSection,
+  SpeakingSection,
+  PatentsSection,
+  InterestsSection,
+  ReferencesSection,
+  CoursesSection,
 } from '../components/sections';
 
 // ============================================================================
@@ -226,25 +236,126 @@ export const TemplateSectionRenderer: React.FC<SectionRendererProps> = ({
       );
 
     case 'custom':
-      const customSection = resumeData.sections?.find(
+      const customSections = resumeData.customSections || [];
+      const customSection = customSections.find(
         s => s.id === section.id || 
              s.title?.toLowerCase() === section.title?.toLowerCase()
       );
       if (!customSection && !editable) return null;
       
-      const sectionIndex = resumeData.sections?.findIndex(
+      const sectionIndex = customSections.findIndex(
         s => s.id === section.id || 
              s.title?.toLowerCase() === section.title?.toLowerCase()
-      ) ?? -1;
+      );
 
       return wrapSection(
         <CustomSection
-          section={customSection || { id: section.id, title: title, content: '', items: [] }}
-          sectionIndex={sectionIndex >= 0 ? sectionIndex : resumeData.sections?.length || 0}
+          section={customSection || { id: section.id, title: title, items: [] }}
+          sectionIndex={sectionIndex >= 0 ? sectionIndex : customSections.length}
           config={config}
           editable={editable}
           onAddItem={onAddCustomSectionItem ? () => onAddCustomSectionItem(sectionIndex) : undefined}
           onRemoveItem={onRemoveCustomSectionItem ? (itemIndex: number) => onRemoveCustomSectionItem(sectionIndex, itemIndex) : undefined}
+        />
+      );
+
+    case 'projects':
+      return wrapSection(
+        <ProjectsSection
+          items={resumeData.projects || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'certifications':
+      return wrapSection(
+        <CertificationsSection
+          items={resumeData.certifications || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'awards':
+      return wrapSection(
+        <AwardsSection
+          items={resumeData.awards || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'publications':
+      return wrapSection(
+        <PublicationsSection
+          items={resumeData.publications || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'volunteer':
+      return wrapSection(
+        <VolunteerSection
+          items={resumeData.volunteer || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'speaking':
+      return wrapSection(
+        <SpeakingSection
+          items={resumeData.speaking || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'patents':
+      return wrapSection(
+        <PatentsSection
+          items={resumeData.patents || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'interests':
+      return wrapSection(
+        <InterestsSection
+          items={resumeData.interests || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'references':
+      return wrapSection(
+        <ReferencesSection
+          items={resumeData.references || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
+        />
+      );
+
+    case 'courses':
+      return wrapSection(
+        <CoursesSection
+          items={resumeData.courses || []}
+          config={config}
+          editable={editable}
+          sectionTitle={title}
         />
       );
 

@@ -11,8 +11,7 @@
  */
 
 import React from 'react';
-import type { TemplateConfig, SkillsVariant } from '../../types';
-import type { SkillItem } from '@/types/resume';
+import type { TemplateConfig, SkillsVariant, SkillItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableSkills } from '@/components/resume/InlineEditableSkills';
 
@@ -47,6 +46,9 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     color: skills.badge?.textColor || accent,
   };
 
+  // Convert V2 SkillItem[] to string[] for InlineEditableSkills
+  const skillStrings = items.map(item => item.name);
+
   // Render based on variant
   const renderSkills = () => {
     // Handle inline variant - use InlineEditableSkills with inline variant
@@ -58,7 +60,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
       
       return (
         <InlineEditableSkills
-          skills={items}
+          skills={skillStrings}
           editable={editable}
           themeColor={accent}
           variant="inline"
@@ -73,7 +75,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     if (variant === 'columns') {
       return (
         <InlineEditableSkills
-          skills={items}
+          skills={skillStrings}
           editable={editable}
           themeColor={accent}
           variant="list"
@@ -90,7 +92,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
     // It handles both editable and non-editable modes with proper styling
     return (
       <InlineEditableSkills
-        skills={items}
+        skills={skillStrings}
         editable={editable}
         themeColor={accent}
         variant={editableVariant}

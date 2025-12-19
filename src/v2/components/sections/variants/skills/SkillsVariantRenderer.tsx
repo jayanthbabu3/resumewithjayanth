@@ -2,42 +2,22 @@
  * Skills Variant Renderer
  * 
  * Main dispatcher component that renders skills based on the selected variant.
- * This is the entry point for variant-aware skills rendering.
+ * Supports multiple industry-ready variants with full inline editing support.
  */
 
 import React from 'react';
-import type { TemplateConfig } from '../../../../types';
-import type { SkillItem } from '@/types/resume';
-import { SkillsPills } from './SkillsPills';
-import { SkillsTags } from './SkillsTags';
-import { SkillsBars } from './SkillsBars';
-import { SkillsGrouped } from './SkillsGrouped';
-import { SkillsInline } from './SkillsInline';
+import type { SkillsVariantProps, SkillsVariant } from './types';
+import {
+  SkillsPillsEnhanced,
+  SkillsBarsEnhanced,
+  SkillsDotsEnhanced,
+  SkillsGroupedEnhanced,
+  SkillsModern,
+  SkillsCompact,
+} from './variants';
 
-// ============================================================================
-// TYPES
-// ============================================================================
-
-export interface SkillsVariantProps {
-  /** Skills data */
-  items: SkillItem[];
-  /** Template configuration */
-  config: TemplateConfig;
-  /** Primary/accent color */
-  accentColor: string;
-  /** Enable inline editing */
-  editable?: boolean;
-}
-
-export type SkillsVariant = 
-  | 'pills' 
-  | 'tags' 
-  | 'list' 
-  | 'grouped' 
-  | 'bars' 
-  | 'dots' 
-  | 'columns' 
-  | 'inline';
+// Re-export types for external use
+export type { SkillsVariantProps, SkillsVariant } from './types';
 
 interface SkillsVariantRendererProps extends SkillsVariantProps {
   /** Variant to render */
@@ -54,38 +34,50 @@ export const SkillsVariantRenderer: React.FC<SkillsVariantRendererProps> = ({
   config,
   accentColor,
   editable = false,
+  onAddSkill,
+  onRemoveSkill,
+  onUpdateSkill,
 }) => {
   const props: SkillsVariantProps = {
     items,
     config,
     accentColor,
     editable,
+    onAddSkill,
+    onRemoveSkill,
+    onUpdateSkill,
   };
 
   switch (variant) {
     case 'pills':
-      return <SkillsPills {...props} />;
-    
     case 'tags':
-      return <SkillsTags {...props} />;
+      return <SkillsPillsEnhanced {...props} />;
     
     case 'bars':
+      return <SkillsBarsEnhanced {...props} />;
+    
     case 'dots':
-      return <SkillsBars {...props} showDots={variant === 'dots'} />;
+      return <SkillsDotsEnhanced {...props} />;
     
     case 'grouped':
-      return <SkillsGrouped {...props} />;
+      return <SkillsGroupedEnhanced {...props} />;
+    
+    case 'columns':
+      return <SkillsGroupedEnhanced {...props} columns={2} />;
+    
+    case 'modern':
+    case 'detailed':
+      return <SkillsModern {...props} />;
     
     case 'inline':
     case 'list':
-      return <SkillsInline {...props} separator={variant === 'list' ? 'comma' : 'bullet'} />;
+    case 'compact':
+      return <SkillsCompact {...props} separator={variant === 'list' ? 'comma' : 'bullet'} />;
     
-    case 'columns':
-      return <SkillsGrouped {...props} columns={2} />;
-    
+    case 'radar':
     default:
       // Default to pills
-      return <SkillsPills {...props} />;
+      return <SkillsPillsEnhanced {...props} />;
   }
 };
 

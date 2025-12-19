@@ -44,7 +44,7 @@ import SectionReorderDialog from '../components/SectionReorderDialog';
 import { ResumeRenderer } from '../components/ResumeRenderer';
 import { useTemplateConfig } from '../hooks/useTemplateConfig';
 import { MOCK_RESUME_DATA } from '../data/mockData';
-import type { ResumeData } from '@/types/resume';
+import type { V2ResumeData } from '../types';
 
 // V2 Dynamic Form (config-driven)
 import { DynamicForm, ElegantForm } from '../components/form';
@@ -55,7 +55,7 @@ export const BuilderV2: React.FC = () => {
   const templateId = searchParams.get('template') || 'executive-split-v2';
   
   // State
-  const [resumeData, setResumeData] = useState<ResumeData>(MOCK_RESUME_DATA);
+  const [resumeData, setResumeData] = useState<V2ResumeData>(MOCK_RESUME_DATA);
   const [themeColor, setThemeColor] = useState('#0891b2');
   const [isDownloading, setIsDownloading] = useState(false);
   const [sectionLabels, setSectionLabels] = useState<Record<string, string>>({});
@@ -103,7 +103,7 @@ export const BuilderV2: React.FC = () => {
   }, [config.id]);
 
   // Handle resume data updates from inline editing
-  const handleResumeUpdate = useCallback((updater: ResumeData | ((prev: ResumeData) => ResumeData)) => {
+  const handleResumeUpdate = useCallback((updater: V2ResumeData | ((prev: V2ResumeData) => V2ResumeData)) => {
     if (typeof updater === 'function') {
       setResumeData(updater);
     } else {
@@ -236,18 +236,179 @@ export const BuilderV2: React.FC = () => {
       ),
     }));
   }, []);
+
+  // Add new strength
+  const handleAddStrength = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      strengths: [
+        ...(prev.strengths || []),
+        {
+          id: Date.now().toString(),
+          title: 'New Strength',
+          description: 'Description of this strength',
+        },
+      ],
+    }));
+    toast.success('New strength added');
+  }, []);
+
+  // Remove strength
+  const handleRemoveStrength = useCallback((id: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      strengths: (prev.strengths || []).filter(item => item.id !== id),
+    }));
+    toast.success('Strength removed');
+  }, []);
+
+  // Add new achievement
+  const handleAddAchievement = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      achievements: [
+        ...(prev.achievements || []),
+        {
+          id: Date.now().toString(),
+          title: 'New Achievement',
+          description: 'Description of this achievement',
+        },
+      ],
+    }));
+    toast.success('New achievement added');
+  }, []);
+
+  // Remove achievement
+  const handleRemoveAchievement = useCallback((id: string) => {
+    setResumeData(prev => ({
+      ...prev,
+      achievements: (prev.achievements || []).filter(item => item.id !== id),
+    }));
+    toast.success('Achievement removed');
+  }, []);
+
+  // Add/Remove handlers for all other sections
+  const handleAddProject = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      projects: [...(prev.projects || []), { id: Date.now().toString(), name: 'New Project', description: 'Project description', technologies: [] }],
+    }));
+  }, []);
+
+  const handleRemoveProject = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, projects: (prev.projects || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddCertification = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      certifications: [...(prev.certifications || []), { id: Date.now().toString(), name: 'New Certification', issuer: 'Issuing Organization', date: '' }],
+    }));
+  }, []);
+
+  const handleRemoveCertification = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, certifications: (prev.certifications || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddAward = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      awards: [...(prev.awards || []), { id: Date.now().toString(), title: 'New Award', issuer: 'Issuing Organization', date: '' }],
+    }));
+  }, []);
+
+  const handleRemoveAward = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, awards: (prev.awards || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddPublication = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      publications: [...(prev.publications || []), { id: Date.now().toString(), title: 'New Publication', publisher: 'Publisher', date: '' }],
+    }));
+  }, []);
+
+  const handleRemovePublication = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, publications: (prev.publications || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddVolunteer = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      volunteer: [...(prev.volunteer || []), { id: Date.now().toString(), organization: 'Organization', role: 'Role', startDate: '', endDate: '', current: false }],
+    }));
+  }, []);
+
+  const handleRemoveVolunteer = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, volunteer: (prev.volunteer || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddSpeaking = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      speaking: [...(prev.speaking || []), { id: Date.now().toString(), event: 'Event Name', topic: 'Talk Topic', date: '' }],
+    }));
+  }, []);
+
+  const handleRemoveSpeaking = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, speaking: (prev.speaking || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddPatent = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      patents: [...(prev.patents || []), { id: Date.now().toString(), title: 'New Patent', patentNumber: 'Patent #', date: '', status: 'Pending' as const }],
+    }));
+  }, []);
+
+  const handleRemovePatent = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, patents: (prev.patents || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddInterest = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      interests: [...(prev.interests || []), { id: Date.now().toString(), name: 'New Interest' }],
+    }));
+  }, []);
+
+  const handleRemoveInterest = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, interests: (prev.interests || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddReference = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      references: [...(prev.references || []), { id: Date.now().toString(), name: 'Reference Name', title: 'Title', company: 'Company', relationship: 'Relationship' }],
+    }));
+  }, []);
+
+  const handleRemoveReference = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, references: (prev.references || []).filter(item => item.id !== id) }));
+  }, []);
+
+  const handleAddCourse = useCallback(() => {
+    setResumeData(prev => ({
+      ...prev,
+      courses: [...(prev.courses || []), { id: Date.now().toString(), name: 'New Course', provider: 'Provider', date: '' }],
+    }));
+  }, []);
+
+  const handleRemoveCourse = useCallback((id: string) => {
+    setResumeData(prev => ({ ...prev, courses: (prev.courses || []).filter(item => item.id !== id) }));
+  }, []);
+
   const handleAddCustomSection = useCallback(() => {
     const newId = `section-${Date.now()}`;
 
     setResumeData(prev => ({
       ...prev,
-      sections: [
-        ...(prev.sections || []),
+      customSections: [
+        ...(prev.customSections || []),
         {
           id: newId,
           title: 'New Section',
-          content: '',
-          items: ['New item'],
+          items: [{ id: `item-${Date.now()}`, content: 'New item' }],
         },
       ],
     }));
@@ -281,28 +442,28 @@ export const BuilderV2: React.FC = () => {
   // Generic handler for adding custom section items
   const handleAddCustomSectionItem = useCallback((sectionIndex: number) => {
     setResumeData(prev => {
-      const newSections = [...prev.sections];
+      const newSections = [...(prev.customSections || [])];
       if (newSections[sectionIndex]) {
         newSections[sectionIndex] = {
           ...newSections[sectionIndex],
-          items: [...(newSections[sectionIndex].items || []), 'New item'],
+          items: [...(newSections[sectionIndex].items || []), { id: `item-${Date.now()}`, content: 'New item' }],
         };
       }
-      return { ...prev, sections: newSections };
+      return { ...prev, customSections: newSections };
     });
   }, []);
 
   // Generic handler for removing custom section items
   const handleRemoveCustomSectionItem = useCallback((sectionIndex: number, itemIndex: number) => {
     setResumeData(prev => {
-      const newSections = [...prev.sections];
+      const newSections = [...(prev.customSections || [])];
       if (newSections[sectionIndex]) {
         newSections[sectionIndex] = {
           ...newSections[sectionIndex],
           items: (newSections[sectionIndex].items || []).filter((_, i) => i !== itemIndex),
         };
       }
-      return { ...prev, sections: newSections };
+      return { ...prev, customSections: newSections };
     });
   }, []);
 
@@ -643,8 +804,8 @@ export const BuilderV2: React.FC = () => {
                     />
                   ) : (
                     <ResumeForm 
-                      resumeData={resumeData} 
-                      setResumeData={setResumeData}
+                      resumeData={resumeData as any} 
+                      setResumeData={setResumeData as any}
                       templateId={templateId}
                       enabledSections={enabledSections}
                     />
@@ -751,8 +912,8 @@ export const BuilderV2: React.FC = () => {
                           }}
                         >
                           <InlineEditProvider
-                            resumeData={resumeData}
-                            setResumeData={setResumeData}
+                            resumeData={resumeData as any}
+                            setResumeData={setResumeData as any}
                           >
                             <ResumeRenderer
                               resumeData={resumeData}
@@ -773,6 +934,30 @@ export const BuilderV2: React.FC = () => {
                               onAddLanguage={handleAddLanguage}
                               onRemoveLanguage={handleRemoveLanguage}
                               onUpdateLanguage={handleUpdateLanguage}
+                              onAddStrength={handleAddStrength}
+                              onRemoveStrength={handleRemoveStrength}
+                              onAddAchievement={handleAddAchievement}
+                              onRemoveAchievement={handleRemoveAchievement}
+                              onAddProject={handleAddProject}
+                              onRemoveProject={handleRemoveProject}
+                              onAddCertification={handleAddCertification}
+                              onRemoveCertification={handleRemoveCertification}
+                              onAddAward={handleAddAward}
+                              onRemoveAward={handleRemoveAward}
+                              onAddPublication={handleAddPublication}
+                              onRemovePublication={handleRemovePublication}
+                              onAddVolunteer={handleAddVolunteer}
+                              onRemoveVolunteer={handleRemoveVolunteer}
+                              onAddSpeaking={handleAddSpeaking}
+                              onRemoveSpeaking={handleRemoveSpeaking}
+                              onAddPatent={handleAddPatent}
+                              onRemovePatent={handleRemovePatent}
+                              onAddInterest={handleAddInterest}
+                              onRemoveInterest={handleRemoveInterest}
+                              onAddReference={handleAddReference}
+                              onRemoveReference={handleRemoveReference}
+                              onAddCourse={handleAddCourse}
+                              onRemoveCourse={handleRemoveCourse}
                             />
                           </InlineEditProvider>
                         </div>
@@ -798,8 +983,8 @@ export const BuilderV2: React.FC = () => {
               }}
             >
               <InlineEditProvider
-                resumeData={resumeData}
-                setResumeData={setResumeData}
+                resumeData={resumeData as any}
+                setResumeData={setResumeData as any}
               >
                 <ResumeRenderer
                   resumeData={resumeData}

@@ -8,3 +8,7 @@
 export * from './skills';
 export * from './experience';
 export * from './education';
+export * from './projects';
+export * from './certifications';
+export * from './awards';
+export * from './registry';
