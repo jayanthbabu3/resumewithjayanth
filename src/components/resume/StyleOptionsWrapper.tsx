@@ -54,23 +54,23 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
     const hideSections = !styleOptions.showSections ? '[data-section="custom"] { display: none !important; }' : '';
 
     return `
-      /* Preserve banner header typography */
-      .style-options-wrapper [data-header="banner"] p,
-      .style-options-wrapper [data-header="banner"] li,
-      .style-options-wrapper [data-header="banner"] h1,
-      .style-options-wrapper [data-header="banner"] h2,
-      .style-options-wrapper [data-header="banner"] h3 {
+      /* Preserve banner header typography - ONLY for V1 templates (not .resume-v2) */
+      .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] p,
+      .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] li,
+      .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] h1,
+      .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] h2,
+      .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] h3 {
         font-size: inherit !important;
         color: inherit !important;
       }
 
-      /* Section Header Case - ONLY h2 elements (section headings), NOT h1 (name) */
+      /* Section Header Case - ONLY h2 elements (section headings), NOT h1 (name) - V1 only */
       /* For capitalize to work on already-uppercase text, normalize to lowercase first */
       ${styleOptions.headerCase === 'capitalize' 
-        ? `.style-options-wrapper h2:not([data-accent-color]) { text-transform: lowercase !important; font-weight: 600 !important;
+        ? `.style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) { text-transform: lowercase !important; font-weight: 600 !important;
         margin-bottom: 12px !important; color: #111827 !important;}` 
         : ''}
-      .style-options-wrapper h2:not([data-accent-color]) {
+      .style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) {
         text-transform: ${headerTransform} !important;
         font-weight: 600 !important;
         margin-bottom: 12px !important;
@@ -80,9 +80,9 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
       ${
         divider
           ? `
-      /* Section Dividers - only when style option is enabled */
+      /* Section Dividers - only when style option is enabled - V1 only */
       /* Don't override templates with custom accent colors */
-      .style-options-wrapper h2:not([data-accent-color]) {
+      .style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) {
         border-bottom: ${divider} !important;
         font-weight: 600 !important;
         margin-bottom: 12px !important;

@@ -11,4 +11,6 @@ export * from './education';
 export * from './projects';
 export * from './certifications';
 export * from './awards';
+export * from './languages';
+export * from './interests';
 export * from './registry';

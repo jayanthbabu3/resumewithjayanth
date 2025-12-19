@@ -659,49 +659,44 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   const mainSections = getOrderedSections('main');
   const sidebarSections = getOrderedSections('sidebar');
 
+  // Get column widths from layout config or use defaults
+  const sidebarWidth = layout.sidebarWidth || '40%';
+  const mainWidth = layout.mainWidth || '60%';
+
   // Use percentages for better PDF compatibility - allows content to flow across pages
   // Fixed pixels cause overflow issues in PDF generation
   const mainColumnStyle: React.CSSProperties = {
-    width: '60%',
+    width: mainWidth,
     minWidth: '0',
-    maxWidth: '60%',
     flexShrink: 0,
     flexGrow: 0,
     boxSizing: 'border-box',
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
+    padding: '20px 28px 24px 16px', // top right bottom left
   };
 
-  const sidebarStyle: React.CSSProperties = {
-    width: '35%',
+  const sidebarColumnStyle: React.CSSProperties = {
+    width: sidebarWidth,
     minWidth: '0',
-    maxWidth: '35%',
-    backgroundColor: layout.sidebarBackground || colors.background.section,
-    padding: layout.sidebarPadding || spacing.pagePadding.right,
+    backgroundColor: layout.sidebarBackground || colors.background.page,
     flexShrink: 0,
     flexGrow: 0,
     boxSizing: 'border-box',
     overflowWrap: 'break-word',
     wordWrap: 'break-word',
+    padding: '20px 16px 24px 28px', // top right bottom LEFT (28px left padding)
   };
-  
-  const gapStyle = '3%'; // Gap between columns
 
   return (
     <div className={`resume-v2 ${className}`} style={containerStyle}>
-      {/* Header - Full width with padding */}
+      {/* Header - Full width */}
       {isSectionEnabled('header') && (
-        <div style={{ 
-          padding: `${spacing.pagePadding.top} ${spacing.pagePadding.right} 0 ${spacing.pagePadding.left}`,
-          width: '100%',
-          boxSizing: 'border-box',
-        }}>
-          <HeaderSection
-            resumeData={resumeData}
-            config={config}
-            editable={editable}
-          />
-        </div>
+        <HeaderSection
+          resumeData={resumeData}
+          config={config}
+          editable={editable}
+        />
       )}
 
       {/* Two-column content - Use display:flex with percentage widths for PDF compatibility */}
@@ -709,20 +704,18 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         style={{
           display: 'flex',
           flexDirection: 'row',
-          gap: gapStyle,
-          padding: `0 ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
           width: '100%',
           maxWidth: '100%',
           boxSizing: 'border-box',
         }}
       >
-        {/* Left column */}
-        <div style={isRightSidebar ? { ...mainColumnStyle, paddingLeft: 0 } : { ...sidebarStyle, paddingLeft: 0 }}>
+        {/* Left column - Sidebar for two-column-left, Main for two-column-right */}
+        <div style={isRightSidebar ? mainColumnStyle : sidebarColumnStyle}>
           {(isRightSidebar ? mainSections : sidebarSections).map(section => renderSection(section))}
         </div>
 
-        {/* Right column */}
-        <div style={isRightSidebar ? { ...sidebarStyle, paddingRight: 0 } : { ...mainColumnStyle, paddingRight: 0 }}>
+        {/* Right column - Main for two-column-left, Sidebar for two-column-right */}
+        <div style={isRightSidebar ? sidebarColumnStyle : mainColumnStyle}>
           {(isRightSidebar ? sidebarSections : mainSections).map(section => renderSection(section))}
         </div>
       </div>

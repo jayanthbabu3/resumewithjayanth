@@ -14,6 +14,7 @@ import {
   SkillsGroupedEnhanced,
   SkillsModern,
   SkillsCompact,
+  SkillsColumns,
 } from './variants';
 
 // Re-export types for external use
@@ -63,7 +64,7 @@ export const SkillsVariantRenderer: React.FC<SkillsVariantRendererProps> = ({
       return <SkillsGroupedEnhanced {...props} />;
     
     case 'columns':
-      return <SkillsGroupedEnhanced {...props} columns={2} />;
+      return <SkillsColumns {...props} columns={2} />;
     
     case 'modern':
     case 'detailed':

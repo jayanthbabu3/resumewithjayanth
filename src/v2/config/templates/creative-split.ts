@@ -16,24 +16,24 @@ export const creativeSplitConfig: TemplateConfig = createTemplateConfig({
 
   typography: {
     name: {
-      fontSize: '26px',
-      fontWeight: 800,
-      lineHeight: 1.1,
-      letterSpacing: '-0.02em',
+      fontSize: '22px',
+      fontWeight: 700,
+      lineHeight: 1.2,
+      letterSpacing: '-0.01em',
       color: '#ffffff',
       textTransform: 'none',
     },
     title: {
-      fontSize: '13px',
+      fontSize: '12px',
       fontWeight: 500,
       lineHeight: 1.4,
-      color: '#fcd34d',
+      color: '#94a3b8',
     },
     sectionHeading: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 700,
       lineHeight: 1.3,
-      letterSpacing: '0.12em',
+      letterSpacing: '0.08em',
       textTransform: 'uppercase',
       color: '#0891b2',
     },
@@ -50,25 +50,25 @@ export const creativeSplitConfig: TemplateConfig = createTemplateConfig({
       color: '#0891b2',
     },
     dates: {
-      fontSize: '12px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#64748b',
     },
     body: {
-      fontSize: '12px',
+      fontSize: '11px',
       fontWeight: 400,
-      lineHeight: 1.55,
+      lineHeight: 1.6,
       color: '#334155',
     },
     contact: {
-      fontSize: '12px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#e2e8f0',
     },
     small: {
-      fontSize: '11px',
+      fontSize: '10px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#94a3b8',
@@ -82,18 +82,18 @@ export const creativeSplitConfig: TemplateConfig = createTemplateConfig({
       bottom: '0px',
       left: '0px',
     },
-    sectionGap: '16px',
-    itemGap: '10px',
-    headingToContent: '8px',
+    sectionGap: '20px',
+    itemGap: '12px',
+    headingToContent: '10px',
     bulletGap: '4px',
     contactGap: '10px',
-    skillGap: '6px',
+    skillGap: '8px',
   },
 
   layout: {
     type: 'two-column-left',
-    mainWidth: '65%',
-    sidebarWidth: '35%',
+    mainWidth: '60%',
+    sidebarWidth: '40%',
   },
 
   colors: {
@@ -179,12 +179,16 @@ export const creativeSplitConfig: TemplateConfig = createTemplateConfig({
 
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
-    { type: 'summary', id: 'summary', title: 'About Me', defaultTitle: 'About Me', enabled: true, order: 1, column: 'main' },
-    { type: 'experience', id: 'experience', title: 'Experience', defaultTitle: 'Experience', enabled: true, order: 2, column: 'main' },
-    { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 3, column: 'main' },
-    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 4, column: 'main' },
-    { type: 'achievements', id: 'achievements', title: 'Achievements', defaultTitle: 'Achievements', enabled: true, order: 5, column: 'main' },
-    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: false, order: 6, column: 'main' },
+    // Sidebar sections
+    { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 1, column: 'sidebar' },
+    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 2, column: 'sidebar' },
+    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: true, order: 3, column: 'sidebar' },
+    { type: 'interests', id: 'interests', title: 'Interests', defaultTitle: 'Interests', enabled: true, order: 4, column: 'sidebar' },
+    // Main content sections
+    { type: 'summary', id: 'summary', title: 'About Me', defaultTitle: 'About Me', enabled: true, order: 5, column: 'main' },
+    { type: 'experience', id: 'experience', title: 'Experience', defaultTitle: 'Experience', enabled: true, order: 6, column: 'main' },
+    { type: 'projects', id: 'projects', title: 'Projects', defaultTitle: 'Projects', enabled: true, order: 7, column: 'main' },
+    { type: 'achievements', id: 'achievements', title: 'Achievements', defaultTitle: 'Achievements', enabled: false, order: 8, column: 'main' },
   ],
 
   fontFamily: {

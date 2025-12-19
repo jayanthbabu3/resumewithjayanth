@@ -2,10 +2,10 @@
  * Creative Split Template Mock Data
  */
 
-import type { ResumeData } from '@/types/resume';
+import type { V2ResumeData } from '@/v2/types/resumeData';
 import { FULL_STACK_DATA } from '@/v2/data/mockData';
 
-export const mockData: ResumeData = {
+export const mockData: V2ResumeData = {
   ...FULL_STACK_DATA,
   personalInfo: {
     ...FULL_STACK_DATA.personalInfo,
@@ -28,6 +28,33 @@ export const mockData: ResumeData = {
     { id: 'skill-6', name: 'UX Design' },
     { id: 'skill-7', name: 'Photography' },
     { id: 'skill-8', name: 'Video Production' },
+  ],
+  languages: [
+    { id: 'lang-1', language: 'English', proficiency: 'Native' },
+    { id: 'lang-2', language: 'Spanish', proficiency: 'Professional' },
+    { id: 'lang-3', language: 'French', proficiency: 'Intermediate' },
+  ],
+  interests: [
+    { id: 'int-1', name: 'Film Photography' },
+    { id: 'int-2', name: 'Street Art' },
+    { id: 'int-3', name: 'Jazz Music' },
+    { id: 'int-4', name: 'Travel' },
+  ],
+  projects: [
+    {
+      id: 'proj-1',
+      name: 'Nike "Just Dream" Campaign',
+      description: 'Led creative direction for global campaign reaching 50M+ viewers',
+      technologies: ['After Effects', 'Cinema 4D', 'Photoshop'],
+      highlights: ['Cannes Lions Gold Award', '200% increase in brand engagement'],
+    },
+    {
+      id: 'proj-2',
+      name: 'Spotify Wrapped 2023',
+      description: 'Art directed the visual identity for annual user experience',
+      technologies: ['Figma', 'Illustrator', 'Motion Graphics'],
+      highlights: ['1B+ social impressions', 'Featured in Adweek'],
+    },
   ],
 };
 

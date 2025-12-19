@@ -14,6 +14,7 @@ import React from 'react';
 import type { TemplateConfig, SkillsVariant, SkillItem } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableSkills } from '@/components/resume/InlineEditableSkills';
+import { SkillsColumns } from './variants/skills/variants/SkillsColumns';
 
 interface SkillsSectionProps {
   items: SkillItem[];
@@ -71,16 +72,15 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({
       );
     }
 
-    // Handle columns variant - use list variant
+    // Handle columns variant - use SkillsColumns component
     if (variant === 'columns') {
       return (
-        <InlineEditableSkills
-          skills={skillStrings}
+        <SkillsColumns
+          items={items}
+          config={config}
+          accentColor={accent}
           editable={editable}
-          themeColor={accent}
-          variant="list"
-          path="skills"
-          fontSize={typography.body.fontSize || '12px'}
+          columns={skills.columns || 2}
         />
       );
     }
