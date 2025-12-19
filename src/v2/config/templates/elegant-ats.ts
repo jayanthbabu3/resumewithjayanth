@@ -130,7 +130,7 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
   header: {
     variant: 'split',
     showPhoto: false,
-    padding: '12px 0 12px 0',
+    padding: '14px 18px 14px 18px',
     contactIcons: {
       show: true,
       size: '13px',
