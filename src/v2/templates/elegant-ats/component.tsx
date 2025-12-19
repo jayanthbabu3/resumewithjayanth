@@ -62,6 +62,12 @@ const ElegantAtsContent: React.FC<Omit<TemplateComponentProps, 'config'>> = (pro
     padding: `${spacing.pagePadding.top} ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
   };
 
+  const headerContainerStyle: React.CSSProperties = {
+    paddingBottom: '16px',
+    marginBottom: spacing.sectionGap,
+    borderBottom: `1px solid ${colors.border}`,
+  };
+
   // Columns
   const columnsStyle: React.CSSProperties = {
     display: 'flex',
@@ -98,11 +104,13 @@ const ElegantAtsContent: React.FC<Omit<TemplateComponentProps, 'config'>> = (pro
         <div style={accentBarStyle} />
         <div style={contentStyle}>
           {/* Header */}
-          <HeaderSection
-            resumeData={resumeData}
-            config={config}
-            editable={editable}
-          />
+          <div style={headerContainerStyle}>
+            <HeaderSection
+              resumeData={resumeData}
+              config={config}
+              editable={editable}
+            />
+          </div>
 
           <div style={columnsStyle}>
             {/* Main Column */}
