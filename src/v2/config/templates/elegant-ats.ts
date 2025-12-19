@@ -156,10 +156,10 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'minimal',
+    variant: 'standard',
     datePosition: 'right',
     showLocation: true,
-    bulletStyle: '–',
+    bulletStyle: 'disc',
     showDescription: true,
   },
 

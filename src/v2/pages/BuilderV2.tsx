@@ -303,7 +303,19 @@ export const BuilderV2: React.FC = () => {
   const handleAddProject = useCallback(() => {
     setResumeData(prev => ({
       ...prev,
-      projects: [...(prev.projects || []), { id: Date.now().toString(), name: 'New Project', description: 'Project description', technologies: [] }],
+      projects: [
+        ...(prev.projects || []),
+        {
+          id: Date.now().toString(),
+          name: 'New Project',
+          role: 'Owner',
+          description: 'Project description',
+          technologies: ['Tech'],
+          highlights: ['Describe an accomplishment or outcome'],
+          url: '',
+          githubUrl: '',
+        },
+      ],
     }));
   }, []);
 
