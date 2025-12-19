@@ -18,6 +18,7 @@ import { centeredPhotoTemplate } from './centered-photo';
 import { creativeSplitTemplate } from './creative-split';
 import { classicMinimalTemplate } from './classic-minimal';
 import { professionalBlueTemplate } from './professional-blue';
+import { elegantAtsTemplate } from './elegant-ats';
 
 // ============================================================================
 // TEMPLATE REGISTRY
@@ -34,6 +35,7 @@ export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'creative-split-v2': creativeSplitTemplate,
   'classic-minimal-v2': classicMinimalTemplate,
   'professional-blue-v2': professionalBlueTemplate,
+  'elegant-ats-v2': elegantAtsTemplate,
 };
 
 // ============================================================================
@@ -109,3 +111,4 @@ export { centeredPhotoTemplate } from './centered-photo';
 export { creativeSplitTemplate } from './creative-split';
 export { classicMinimalTemplate } from './classic-minimal';
 export { professionalBlueTemplate } from './professional-blue';
+export { elegantAtsTemplate } from './elegant-ats';
