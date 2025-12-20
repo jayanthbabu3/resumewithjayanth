@@ -23,28 +23,28 @@ import NotFound from "./pages/NotFound";
 import AuthCallback from "./pages/AuthCallback";
 import MyResumes from "./pages/MyResumes";
 
-// V2 Builder Pages
+// Resume Builder Pages
 import { DashboardV2, BuilderV2, ProfessionTemplatesV2 } from "./v2/pages";
 
 const queryClient = new QueryClient();
 
-// Redirect components for V1 to V2 migration
-const RedirectDashboard = () => <Navigate to="/v2" replace />;
+// Redirect components for legacy routes
+const RedirectDashboard = () => <Navigate to="/templates" replace />;
 const RedirectProfessionTemplates = () => {
   const { professionId } = useParams<{ professionId: string }>();
-  return <Navigate to={`/v2/${professionId}`} replace />;
+  return <Navigate to={`/templates/${professionId}`} replace />;
 };
 const RedirectEditor = () => {
   const { templateId } = useParams<{ templateId: string }>();
-  // Map V1 template IDs to V2 template IDs
-  const v2TemplateId = templateId?.endsWith('-v2') ? templateId : `${templateId}-v2`;
-  return <Navigate to={`/v2/builder?template=${v2TemplateId}`} replace />;
+  // Map legacy template IDs to new template IDs
+  const newTemplateId = templateId?.endsWith('-v2') ? templateId : `${templateId}-v2`;
+  return <Navigate to={`/builder?template=${newTemplateId}`} replace />;
 };
 const RedirectLiveEditor = () => {
   const { templateId } = useParams<{ templateId: string }>();
-  // Map V1 template IDs to V2 template IDs
-  const v2TemplateId = templateId?.endsWith('-v2') ? templateId : `${templateId}-v2`;
-  return <Navigate to={`/v2/builder?template=${v2TemplateId}`} replace />;
+  // Map legacy template IDs to new template IDs
+  const newTemplateId = templateId?.endsWith('-v2') ? templateId : `${templateId}-v2`;
+  return <Navigate to={`/builder?template=${newTemplateId}`} replace />;
 };
 
 const App = () => (
@@ -64,20 +64,23 @@ const App = () => (
             {/* Temporarily removed ProtectedRoute for easier development - TODO: Re-enable before production */}
             <Route path="/profile-completion" element={<ProfileCompletion />} />
             
-            {/* Redirect all V1 routes to V2 */}
+            {/* Redirect legacy routes */}
             <Route path="/dashboard" element={<RedirectDashboard />} />
             <Route path="/dashboard/:professionId" element={<RedirectProfessionTemplates />} />
             <Route path="/dashboard/:professionId/editor/:templateId" element={<RedirectEditor />} />
             <Route path="/dashboard/:professionId/live-editor/:templateId" element={<RedirectLiveEditor />} />
+            <Route path="/v2" element={<RedirectDashboard />} />
+            <Route path="/v2/:professionId" element={<RedirectProfessionTemplates />} />
+            <Route path="/v2/builder" element={<RedirectEditor />} />
             
             <Route path="/profile" element={<Profile />} />
             <Route path="/my-resumes" element={<MyResumes />} />
             <Route path="/builder/scratch" element={<ScratchBuilder />} />
 
-            {/* V2 Builder Routes - Default resume builder */}
-            <Route path="/v2" element={<DashboardV2 />} />
-            <Route path="/v2/:professionId" element={<ProfessionTemplatesV2 />} />
-            <Route path="/v2/builder" element={<BuilderV2 />} />
+            {/* Main Resume Builder Routes */}
+            <Route path="/templates" element={<DashboardV2 />} />
+            <Route path="/templates/:professionId" element={<ProfessionTemplatesV2 />} />
+            <Route path="/builder" element={<BuilderV2 />} />
 
             {/* Original protected routes (commented out for development):
             <Route

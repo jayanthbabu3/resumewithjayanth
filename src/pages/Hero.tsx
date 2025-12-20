@@ -1,13 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, Users, TrendingUp, Shield, Star, Award, Clock, Globe, Target, ChevronRight, Palette, Mail, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, Users, TrendingUp, Shield, Star, Award, Clock, Globe, Target, ChevronRight, Palette, Mail, Phone, Eye, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TemplatePreviewV2 } from "@/v2/components/TemplatePreviewV2";
+import { FavoriteButton } from "@/components/FavoriteButton";
+import { getAllTemplates, getTemplateConfig } from "@/v2/config/templates";
+import { ElegantForm } from "@/v2/components/form/ElegantForm";
+import type { V2ResumeData } from "@/v2/types/resumeData";
+
+const DEFAULT_THEME_COLOR = "#2563eb";
 import { InlineEditProvider } from "@/contexts/InlineEditContext";
 import { StyleOptionsProvider } from "@/contexts/StyleOptionsContext";
 import { StyleOptionsWrapper } from "@/components/resume/StyleOptionsWrapper";
@@ -22,6 +29,16 @@ import type { ResumeData } from "@/types/resume";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const v2Templates = getAllTemplates();
+  
+  // Featured templates - show first 4 templates
+  const defaultColors = ['#2563eb', '#7c3aed', '#059669', '#e11d48'];
+  const featuredTemplates = v2Templates.slice(0, 4).map((template, index) => ({
+    id: template.id,
+    name: template.name,
+    description: template.description || 'Professional resume template',
+    color: template.colors?.primary || defaultColors[index % defaultColors.length],
+  }));
 
   // Get real-time stats from Firestore
   const { stats, loading: statsLoading } = useAppStats();
@@ -80,7 +97,73 @@ const Hero = () => {
   const livePreviewContainerRef = useRef<HTMLDivElement | null>(null);
   const livePreviewContentRef = useRef<HTMLDivElement | null>(null);
 
-  // State for Live Editor in ResumeData format (for InlineEditProvider)
+  // Template config for form editor demo
+  const demoTemplateId = "professional-blue-v2";
+  const demoTemplateConfig = getTemplateConfig(demoTemplateId);
+  const demoThemeColor = demoTemplateConfig?.colors?.primary || DEFAULT_THEME_COLOR;
+
+  // State for Form Editor Demo in V2ResumeData format
+  const [formEditorData, setFormEditorData] = useState<V2ResumeData>(() => ({
+    version: '2.0',
+    personalInfo: {
+      fullName: "Michael Chen",
+      email: "michael.chen@email.com",
+      phone: "+1 (555) 987-6543",
+      location: "Seattle, WA",
+      title: "Chief Technology Officer",
+      summary: "Visionary technology executive with 15+ years of experience leading engineering teams and driving digital transformation. Proven track record of scaling organizations, implementing innovative solutions, and delivering exceptional business outcomes."
+    },
+    experience: [
+      {
+        id: "exp-0",
+        position: "Chief Technology Officer",
+        company: "TechVision Inc.",
+        startDate: "2020-01",
+        endDate: "",
+        current: true,
+        description: "",
+        bulletPoints: [
+          "Spearheaded digital transformation initiatives, increasing operational efficiency by 45%",
+          "Led a team of 120+ engineers across multiple product lines",
+          "Architected cloud migration strategy saving $2M annually"
+        ]
+      },
+      {
+        id: "exp-1",
+        position: "VP of Engineering",
+        company: "Innovation Labs",
+        startDate: "2016-03",
+        endDate: "2019-12",
+        current: false,
+        description: "",
+        bulletPoints: [
+          "Built and scaled engineering organization from 20 to 85 team members",
+          "Launched 3 successful products generating $50M in annual revenue",
+          "Implemented agile methodologies improving delivery speed by 60%"
+        ]
+      }
+    ],
+    education: [
+      {
+        id: "edu-0",
+        school: "Stanford University",
+        degree: "Master of Science",
+        field: "Computer Science",
+        location: "Stanford, CA",
+        startDate: "2010-09",
+        endDate: "2012-06"
+      }
+    ],
+    skills: [
+      { id: "skill-0", name: "Strategic Planning", level: 10, category: "core" },
+      { id: "skill-1", name: "Cloud Architecture", level: 9, category: "core" },
+      { id: "skill-2", name: "Team Leadership", level: 8, category: "core" },
+      { id: "skill-3", name: "Digital Transformation", level: 7, category: "core" },
+      { id: "skill-4", name: "Product Strategy", level: 7, category: "core" }
+    ]
+  }));
+
+  // State for Live Editor in ResumeData format (for InlineEditProvider) - keep for live editor section
   const [liveResumeData, setLiveResumeData] = useState<ResumeData>(() => ({
     personalInfo: {
       fullName: "Michael Chen",
@@ -420,14 +503,14 @@ const Hero = () => {
 
               {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 pt-2 items-center sm:items-center lg:items-start justify-center lg:justify-start">
-                <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/v2")}>
+                <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/templates")}>
                     <span>Start Building Free</span>
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button
                   variant="outline"
                   className={neutralButtonClass}
-                  onClick={() => navigate("/v2")}
+                  onClick={() => navigate("/templates")}
                 >
                   View Templates
                 </Button>
@@ -902,92 +985,69 @@ const Hero = () => {
               </p>
             </div>
 
-            {/* Template Grid - 4 Columns Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-10">
-              {[
-                {
-                  id: "professional-blue-v2",
-                  name: "Professional Blue",
-                  description: "Clean professional design with blue accent and centered headers",
-                  color: "#2563eb"
-                },
-                {
-                  id: "creative-split-v2",
-                  name: "Creative Split",
-                  description: "Contemporary two-column design for creative teams",
-                  color: "#7c3aed"
-                },
-                {
-                  id: "data-pro-v2",
-                  name: "Data Pro",
-                  description: "Bold layout with impact metrics and achievements",
-                  color: "#059669"
-                },
-                {
-                  id: "elegant-ats-v2",
-                  name: "Elegant ATS",
-                  description: "ATS-optimized template for fresh graduates",
-                  color: "#e11d48"
-                },
-                {
-                  id: "executive-split-v2",
-                  name: "Executive Split",
-                  description: "Bold leadership-focused layout for senior roles",
-                  color: "#ea580c"
-                },
-                {
-                  id: "minimal-v2",
-                  name: "Minimal",
-                  description: "Sophisticated whitespace-focused design",
-                  color: "#0d9488"
-                },
-                {
-                  id: "senior-frontend-pro-v2",
-                  name: "Senior Frontend Pro",
-                  description: "Tech-focused design with skills grid layout",
-                  color: "#8b5cf6"
-                },
-                {
-                  id: "analyst-clarity-v2",
-                  name: "Analyst Clarity",
-                  description: "Clean technical design for backend specialists",
-                  color: "#ec4899"
-                }
-              ].map((template) => (
-                <div
+            {/* Template Grid - Same as Dashboard */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
+              {featuredTemplates.map((template, index) => (
+                <Card
                   key={template.id}
-                  className="group relative bg-white rounded-lg border border-gray-200/80 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer"
-                  onClick={() => navigate(`/v2/builder?template=${template.id}`)}
+                  className="group relative overflow-hidden border border-border/40 hover:border-primary/60 transition-all duration-500 cursor-pointer bg-card hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 rounded-xl"
+                  onClick={() => navigate(`/builder?template=${template.id}`)}
+                  style={{
+                    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+                  }}
                 >
-                  {/* Template Preview */}
-                  <div className="relative aspect-[8.5/11] bg-gray-50 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div 
-                        className="origin-top-left"
-                        style={{
-                          transform: 'scale(0.27)',
-                          width: '370.4%',
-                          minHeight: '370.4%'
-                        }}
-                      >
-                        <TemplatePreviewV2
-                          templateId={template.id}
-                          themeColor={template.color}
-                          className="border-0 w-full h-full"
-                        />
-                      </div>
+                  {/* Premium gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/2 group-hover:to-primary/5 transition-all duration-500 pointer-events-none z-0" />
+                  
+                  {/* Favorite Button - Top Left */}
+                  <div className="absolute top-3 left-3 z-20 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="backdrop-blur-sm bg-white/90 rounded-lg p-1 shadow-sm">
+                      <FavoriteButton
+                        templateId={template.id}
+                        variant="icon"
+                        size="sm"
+                      />
                     </div>
+                  </div>
+
+                  {/* Template Number Badge */}
+                  <div
+                    className="absolute top-3 right-3 z-20 flex items-center justify-center h-7 w-7 md:h-8 md:w-8 rounded-full text-white text-xs md:text-sm font-bold shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)`,
+                      boxShadow: '0 4px 14px 0 hsl(var(--primary) / 0.4)',
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+
+                  {/* Template Preview */}
+                  <div className="relative aspect-[8.5/11] bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden border-b border-border/20 group-hover:border-primary/20 transition-colors duration-500">
+                    {/* Subtle pattern overlay */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.05) 1px, transparent 0)',
+                        backgroundSize: '20px 20px',
+                      }}
+                    />
                     
-                    {/* Overlay on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center gap-1.5 p-3 z-10">
+                    {/* Preview container with premium styling */}
+                    <div className="absolute inset-2 md:inset-3 rounded-lg overflow-hidden shadow-inner bg-white border border-border/20 group-hover:border-primary/30 transition-all duration-500">
+                      <TemplatePreviewV2
+                        templateId={template.id}
+                        themeColor={template.color}
+                        className="h-full"
+                      />
+                    </div>
+
+                    {/* Premium Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center gap-2 p-3 md:p-4 z-10">
                       <Button
                         size="sm"
-                        variant="secondary"
-                        className="shadow-lg text-xs h-7 px-3"
+                        className="shadow-2xl text-xs md:text-sm px-4 py-2 h-9 md:h-10 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg backdrop-blur-sm border border-white/20 hover:scale-105 transition-transform duration-200"
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/v2/builder?template=${template.id}`);
+                          navigate(`/builder?template=${template.id}`);
                         }}
                       >
                         Use Template
@@ -995,28 +1055,24 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  {/* Template Info */}
-                  <div className="p-3 md:p-4 space-y-1.5 bg-white">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1">
+                  {/* Template Info - Premium styling */}
+                  <div className="relative p-3 md:p-4 bg-gradient-to-b from-card to-card/95 border-t border-border/20 group-hover:border-primary/30 transition-colors duration-500">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-bold text-xs md:text-sm text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1 flex-1">
                         {template.name}
                       </h3>
-                      <div 
-                        className="w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-gray-200 group-hover:scale-110 transition-transform flex-shrink-0 ml-2"
-                        style={{ backgroundColor: template.color }}
-                      ></div>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <div className="h-2 w-2 rounded-full bg-primary shadow-sm group-hover:shadow-md group-hover:scale-125 transition-all duration-300" />
+                      </div>
                     </div>
-                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground line-clamp-2 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
                       {template.description}
                     </p>
                     
-                    {/* View Details Link */}
-                    <div className="flex items-center text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 pt-0.5">
-                      <span>View Details</span>
-                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    {/* Premium accent line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/50 transition-all duration-500" />
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
 
@@ -1024,7 +1080,7 @@ const Hero = () => {
             <div className="text-center">
               <Button 
                 className={cn(primaryButtonClass, "group")} 
-                onClick={() => navigate("/v2")}
+                onClick={() => navigate("/templates")}
               >
                 <span>View All Templates</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -1087,345 +1143,98 @@ const Hero = () => {
                   </div>
 
                   {/* Main Editor Layout */}
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-0 h-auto">
+                  <div className="flex flex-col lg:flex-row gap-0 h-auto">
                     {/* Left Side - Form Editor */}
-                    <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200">
-                      <div className="p-4 md:p-6 space-y-5 md:space-y-6 font-sans">
-                        {/* Personal Information */}
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-2.5 mb-3">
-                            <div className="w-2.5 h-2.5 bg-primary rounded-full"></div>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 tracking-tight">Personal Information</h3>
-                          </div>
-                          <div className="space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Full Name</label>
-                                <Input
-                                  value={liveResumeData.personalInfo.fullName}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    personalInfo: { ...prev.personalInfo, fullName: e.target.value }
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter your full name"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Location</label>
-                                <Input
-                                  value={liveResumeData.personalInfo.location}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    personalInfo: { ...prev.personalInfo, location: e.target.value }
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter your location"
-                                />
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Email Address</label>
-                                <Input
-                                  value={liveResumeData.personalInfo.email}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    personalInfo: { ...prev.personalInfo, email: e.target.value }
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter your email"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Phone Number</label>
-                                <Input
-                                  value={liveResumeData.personalInfo.phone}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    personalInfo: { ...prev.personalInfo, phone: e.target.value }
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter your phone number"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Professional Summary */}
-                        <div className="space-y-3 hidden md:block">
-                          <div className="flex items-center gap-2.5 mb-3">
-                            <div className="w-2.5 h-2.5 bg-purple-500 rounded-full"></div>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 tracking-tight">Professional Summary</h3>
-                          </div>
-                          <div className="space-y-1.5">
-                            <Textarea
-                              value={liveResumeData.personalInfo.summary}
-                              onChange={(e) => setLiveResumeData(prev => ({
-                                ...prev,
-                                personalInfo: { ...prev.personalInfo, summary: e.target.value }
-                              }))}
-                              className="min-h-[100px] text-sm md:text-base font-normal leading-relaxed resize-none"
-                              placeholder="Write a brief summary of your professional experience..."
-                            />
-                          </div>
-                        </div>
-
-                        {/* Work Experience */}
-                        <div className="space-y-4">
-                          <div className="flex items-center gap-2.5 mb-3">
-                            <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full"></div>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 tracking-tight">Work Experience</h3>
-                          </div>
-
-                          {/* Experience 1 */}
-                          <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Job Title</label>
-                                <Input
-                                  value={liveResumeData.experience[0]?.position || ""}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 0 ? { ...exp, position: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter job title"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Company</label>
-                                <Input
-                                  value={liveResumeData.experience[0]?.company || ""}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 0 ? { ...exp, company: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter company name"
-                                />
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Start Date</label>
-                                <Input
-                                  type="month"
-                                  value={toMonthInputValue(liveResumeData.experience[0]?.startDate || "")}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 0 ? { ...exp, startDate: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">End Date</label>
-                                <Input
-                                  type="month"
-                                  value={toMonthInputValue(liveResumeData.experience[0]?.endDate || "")}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 0 ? { ...exp, endDate: e.target.value, current: !e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Present"
-                                />
-                              </div>
-                            </div>
-                            <div className="space-y-1.5">
-                              <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Description</label>
-                              <Textarea
-                                value={liveResumeData.experience[0]?.description || ""}
-                                onChange={(e) => setLiveResumeData(prev => ({
-                                  ...prev,
-                                  experience: prev.experience.map((exp, idx) =>
-                                    idx === 0 ? { ...exp, description: e.target.value } : exp
-                                  )
-                                }))}
-                                className="min-h-[90px] text-sm md:text-base font-normal leading-relaxed resize-none"
-                                placeholder="Describe your role and achievements..."
-                              />
-                            </div>
-                          </div>
-
-                          {/* Experience 2 */}
-                          <div className="p-4 bg-white rounded-lg border border-gray-200 shadow-sm space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Job Title</label>
-                                <Input
-                                  value={liveResumeData.experience[1]?.position || ""}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 1 ? { ...exp, position: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter job title"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Company</label>
-                                <Input
-                                  value={liveResumeData.experience[1]?.company || ""}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 1 ? { ...exp, company: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Enter company name"
-                                />
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3">
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Start Date</label>
-                                <Input
-                                  type="month"
-                                  value={toMonthInputValue(liveResumeData.experience[1]?.startDate || "")}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 1 ? { ...exp, startDate: e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                />
-                              </div>
-                              <div className="space-y-1.5">
-                                <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">End Date</label>
-                                <Input
-                                  type="month"
-                                  value={toMonthInputValue(liveResumeData.experience[1]?.endDate || "")}
-                                  onChange={(e) => setLiveResumeData(prev => ({
-                                    ...prev,
-                                    experience: prev.experience.map((exp, idx) =>
-                                      idx === 1 ? { ...exp, endDate: e.target.value, current: !e.target.value } : exp
-                                    )
-                                  }))}
-                                  className="h-9 md:h-10 text-sm md:text-base font-normal"
-                                  placeholder="Present"
-                                />
-                              </div>
-                            </div>
-                            <div className="space-y-1.5">
-                              <label className="block text-xs md:text-sm font-semibold text-gray-700 tracking-wide">Description</label>
-                              <Textarea
-                                value={liveResumeData.experience[1]?.description || ""}
-                                onChange={(e) => setLiveResumeData(prev => ({
-                                  ...prev,
-                                  experience: prev.experience.map((exp, idx) =>
-                                    idx === 1 ? { ...exp, description: e.target.value } : exp
-                                  )
-                                }))}
-                                className="min-h-[90px] text-sm md:text-base font-normal leading-relaxed resize-none"
-                                placeholder="Describe your role and achievements..."
-                              />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Skills */}
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-2.5 mb-3">
-                            <div className="w-2.5 h-2.5 bg-blue-500 rounded-full"></div>
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 tracking-tight">Skills</h3>
-                          </div>
-                          <div className="space-y-1.5">
-                            <div className="relative">
-                              <Input
-                                value={liveResumeData.skills.map(s => s.name).join(', ')}
-                                onChange={(e) => {
-                                  const skillsFromInput = e.target.value.split(',')
-                                    .map(skill => skill.trim())
-                                    .filter(skill => skill.length > 0);
-                                  setLiveResumeData(prev => ({
-                                    ...prev,
-                                    skills: skillsFromInput.map((name, idx) => ({
-                                      id: `skill-${idx}`,
-                                      name,
-                                      level: 8,
-                                      category: "core" as const
-                                    }))
-                                  }));
-                                }}
-                                className="h-9 md:h-10 text-sm md:text-base font-normal pr-8"
-                                placeholder="Type skills separated by commas"
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                  }
-                                }}
-                              />
-                              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                <span className="text-sm text-gray-400">↵</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    <div className="w-full lg:w-[40%] bg-gradient-to-br from-slate-50 to-gray-50 border-b lg:border-b-0 lg:border-r border-gray-200 overflow-y-auto max-h-[600px] lg:max-h-[800px]">
+                      <div className="p-4 md:p-6">
+                        {demoTemplateConfig && (
+                          <ElegantForm
+                            resumeData={formEditorData}
+                            onResumeDataChange={setFormEditorData}
+                            enabledSections={demoTemplateConfig.sections}
+                            sectionTitles={{}}
+                            templateConfig={demoTemplateConfig}
+                            accentColor={demoThemeColor}
+                          />
+                        )}
                       </div>
                     </div>
 
                     {/* Right Side - Live Preview */}
-                    <div className="w-full md:w-1/2 bg-white">
-                      <div
-                        ref={previewContainerRef}
-                        className="p-4"
-                      >
-                        {/* Preview Header */}
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-sm font-semibold text-gray-800">Live Preview</h3>
-                            <Button
-                              onClick={async () => {
-                                try {
-                                  const filename = `${liveResumeData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
-                                  await generatePDFFromPreview("hero-live-preview", filename);
-                                  await incrementDownloadsCount();
-                                } catch (error) {
-                                  console.error("Download error:", error);
-                                }
-                              }}
-                              className={cn(primaryButtonClass, "h-9 px-3")}
-                            >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                            </Button>
+                    <div className="w-full lg:w-[60%] bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100">
+                      <div className="p-2 sm:p-4 md:p-6 h-full overflow-y-auto">
+                        {/* Live Preview Header - Match Builder Style */}
+                        <div className="mb-3 sm:mb-4 flex items-center justify-between gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/50 shadow-lg shadow-gray-200/50">
+                          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                            <div
+                              className="h-7 sm:h-9 w-1 sm:w-1.5 rounded-full shadow-sm"
+                              style={{ background: demoThemeColor }}
+                            />
+                            <div className="flex items-center gap-2 sm:gap-2.5">
+                              <div
+                                className="p-1 sm:p-1.5 rounded-lg"
+                                style={{ backgroundColor: `${demoThemeColor}1a` }}
+                              >
+                                <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: demoThemeColor }} />
+                              </div>
+                              <span className="font-semibold text-gray-800 tracking-tight text-sm sm:text-base">Live Preview</span>
+                            </div>
                           </div>
+                          <Button
+                            onClick={async () => {
+                              try {
+                                const filename = `${formEditorData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+                                await generatePDFFromPreview("hero-form-preview", filename);
+                                await incrementDownloadsCount();
+                              } catch (error) {
+                                console.error("Download error:", error);
+                              }
+                            }}
+                            size="sm"
+                            className="h-8 sm:h-9 gap-1.5 sm:gap-2 border-gray-200 text-gray-700 hover:border-primary hover:text-primary hover:bg-primary/5 text-xs sm:text-sm px-2 sm:px-3"
+                            style={{ ['--primary-color' as any]: demoThemeColor }}
+                          >
+                            <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                            <span className="hidden sm:inline">Download PDF</span>
+                            <span className="sm:hidden">PDF</span>
+                          </Button>
                         </div>
 
-                        {/* Resume Preview - Use Executive Template */}
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-auto">
-                          <div className="flex justify-center py-4">
-                            <div
-                              style={{
-                                transform: `scale(${previewScale})`,
-                                transformOrigin: "top center",
-                              }}
-                              key={JSON.stringify(liveResumeData)}
-                            >
-                              <div id="hero-live-preview" ref={previewContentRef} className="w-[816px]">
+                        {/* Resume Preview Container - A4 Dimensions like Builder */}
+                        <div 
+                          className="relative w-full overflow-x-auto"
+                          style={{
+                            background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+                            padding: '1rem',
+                            borderRadius: '0.75rem',
+                          }}
+                        >
+                          {/* Dot pattern overlay */}
+                          <div 
+                            className="space-y-2 sm:space-y-4 flex flex-col items-center"
+                            style={{
+                              backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
+                              backgroundSize: '20px 20px',
+                            }}
+                          >
+                            {/* Resume Preview - A4 Size */}
+                            <div className="relative w-full max-w-[210mm]">
+                              <div 
+                                id="hero-form-preview" 
+                                className="bg-white shadow-2xl shadow-gray-300/50 rounded-xl overflow-hidden ring-1 ring-gray-200/50 mx-auto"
+                                style={{ 
+                                  width: '210mm', 
+                                  minHeight: '297mm',
+                                  minWidth: '210mm',
+                                }}
+                              >
                                 <StyleOptionsProvider>
                                   <StyleOptionsWrapper>
-                                    <InlineEditProvider resumeData={liveResumeData as any} setResumeData={() => {}}>
+                                    <InlineEditProvider resumeData={formEditorData as any} setResumeData={() => {}}>
                                       <ResumeRenderer
-                                        resumeData={convertV1ToV2(liveResumeData)}
-                                        templateId="professional-blue-v2"
-                                        themeColor="#3b82f6"
+                                        resumeData={formEditorData}
+                                        templateId={demoTemplateId}
+                                        themeColor={demoThemeColor}
                                         editable={false}
                                       />
                                     </InlineEditProvider>
@@ -1445,8 +1254,8 @@ const Hero = () => {
             {/* Call to Action */}
             <div className="text-center mt-12">
               <div className="inline-flex flex-col sm:flex-row gap-3">
-                <Button className={primaryButtonClass} onClick={() => navigate("/v2")}>Start Creating Your Resume</Button>
-                <Button variant="outline" className={outlinePrimaryButtonClass} onClick={() => navigate("/v2")}>
+                <Button className={primaryButtonClass} onClick={() => navigate("/templates")}>Start Creating Your Resume</Button>
+                <Button variant="outline" className={outlinePrimaryButtonClass} onClick={() => navigate("/templates")}>
                   Explore All Templates
                 </Button>
               </div>
@@ -1616,7 +1425,7 @@ const Hero = () => {
               <div className="inline-flex flex-col sm:flex-row gap-3">
                 <Button
                   className={cn(buttonBaseClass, "bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl group")}
-                  onClick={() => navigate("/v2")}
+                  onClick={() => navigate("/templates")}
                 >
                   <span>Try Live Editor Now</span>
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -1624,7 +1433,7 @@ const Hero = () => {
                 <Button
                   variant="outline"
                   className={cn(buttonBaseClass, "border border-emerald-600 text-emerald-600 hover:bg-emerald-50")}
-                  onClick={() => navigate("/v2")}
+                  onClick={() => navigate("/templates")}
                 >
                   View All Templates
                 </Button>
@@ -1733,14 +1542,14 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/v2")}>
+              <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/templates")}>
                 <span>Get Started Now</span>
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button
                 variant="outline"
                 className={neutralButtonClass}
-                onClick={() => navigate("/v2")}
+                onClick={() => navigate("/templates")}
               >
                 View Examples
               </Button>

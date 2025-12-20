@@ -49,13 +49,13 @@ const TemplateGrid = ({ templates, categoryColor }: TemplateGridProps) => {
   }, [hasMore, isLoading, templates.length]);
 
   return (
-    <div className="space-y-6 md:space-y-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+    <div className="space-y-4 md:space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
         {visibleTemplates.map((template, index) => (
           <Card
             key={template.id}
             className="group relative overflow-hidden border border-border/40 hover:border-primary/60 transition-all duration-500 cursor-pointer bg-card hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 rounded-xl"
-            onClick={() => navigate(`/v2/builder?template=${template.id}`)}
+            onClick={() => navigate(`/builder?template=${template.id}`)}
             style={{
               boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
             }}
@@ -177,7 +177,7 @@ const ProfessionTemplatesV2 = () => {
   // If category not found, redirect to dashboard
   useEffect(() => {
     if (!categoryData) {
-      navigate("/v2");
+      navigate("/templates");
     }
   }, [categoryData, navigate]);
 
@@ -198,33 +198,31 @@ const ProfessionTemplatesV2 = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Clean Dashboard Header */}
-      <div className="border-b border-border/30 bg-background">
-        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
-          <div className="flex items-center gap-3 md:gap-4">
-            <div className="h-8 w-8 md:h-9 md:w-9 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center flex-shrink-0">
-              <FileText className="h-4 w-4 md:h-5 md:w-5 text-primary" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h1 className="text-xl md:text-2xl font-bold text-foreground truncate">
+      {/* Minimal Header - Centered */}
+      <div className="border-b border-border/20 bg-background">
+        <div className="container mx-auto px-4 md:px-6 py-4 md:py-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <FileText className="h-5 w-5 text-primary" />
+              <h1 className="text-xl md:text-2xl font-semibold text-foreground">
                 {categoryData.name}
               </h1>
-              <p className="text-xs md:text-sm text-muted-foreground mt-0.5 line-clamp-1">
-                {categoryData.description}
-              </p>
             </div>
+            <p className="text-sm text-muted-foreground">
+              {categoryData.description}
+            </p>
           </div>
         </div>
       </div>
 
-      <main className="container mx-auto px-4 md:px-6 py-8 md:py-12">
-        {/* Premium Breadcrumb Navigation */}
-        <nav className="mb-8 md:mb-10 flex items-center text-sm text-muted-foreground gap-2" aria-label="Breadcrumb">
+      <main className="container mx-auto px-4 md:px-6 py-4 md:py-6">
+        {/* Minimal Breadcrumb Navigation */}
+        <nav className="mb-6 md:mb-8 flex items-center justify-center text-xs md:text-sm text-muted-foreground gap-2" aria-label="Breadcrumb">
           <Link 
-            to="/v2" 
+            to="/templates" 
             className="hover:text-foreground transition-all duration-200 flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-muted/50 group"
           >
-            <Home className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
+            <Home className="h-3.5 w-3.5 md:h-4 md:w-4 group-hover:scale-110 transition-transform duration-200" />
             <span className="font-medium">Dashboard</span>
           </Link>
           <span className="opacity-40">/</span>
@@ -248,7 +246,7 @@ const ProfessionTemplatesV2 = () => {
               <p className="text-sm text-muted-foreground mb-6">
                 We're working on adding more templates for this profession. Check back soon!
               </p>
-              <Button onClick={() => navigate("/v2")}>
+              <Button onClick={() => navigate("/templates")}>
                 Browse All Professions
               </Button>
             </div>

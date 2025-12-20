@@ -682,17 +682,123 @@ export const BuilderV2: React.FC = () => {
     <div className="flex h-screen flex-col bg-gradient-to-br from-background via-muted/5 to-background">
       <Header />
 
-      {/* Toolbar - matches LiveEditor */}
+      {/* Toolbar - Mobile Responsive */}
       <div className="border-b bg-card/80 backdrop-blur-sm shadow-sm">
-        <div className="container mx-auto px-4 py-3">
+        <div className="container mx-auto px-3 sm:px-4 py-2 sm:py-3">
+          {/* Mobile Layout - Stacked */}
+          <div className="flex flex-col lg:hidden gap-2">
+            {/* Top Row - Back + Template Name + Download */}
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 min-w-0 flex-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate('/templates')}
+                  className="gap-1.5 h-9 px-2 sm:px-3"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span className="hidden sm:inline">Back</span>
+                </Button>
+                <div className="h-5 w-px bg-gray-200" />
+                <span className="font-medium text-gray-900 text-xs sm:text-sm truncate">{config.name}</span>
+              </div>
+              <Button
+                onClick={handleDownload}
+                disabled={isDownloading}
+                size="sm"
+                className="gap-1.5 h-9 px-2 sm:px-3 shrink-0"
+              >
+                {isDownloading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span className="hidden sm:inline">Generating...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-4 w-4" />
+                    <span className="hidden sm:inline">Download</span>
+                  </>
+                )}
+              </Button>
+            </div>
+
+            {/* Bottom Row - Tabs + Menu */}
+            <div className="flex items-center justify-between gap-2">
+              <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as 'live' | 'form')} className="flex-1">
+                <TabsList className="bg-muted/50 border w-full">
+                  <TabsTrigger value="live" className="gap-1.5 text-xs sm:text-sm flex-1">
+                    <Edit3 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    <span className="hidden sm:inline">Live</span>
+                    <span className="sm:hidden">Edit</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="form" className="gap-1.5 text-xs sm:text-sm flex-1">
+                    <FileEdit className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    <span className="hidden sm:inline">Form</span>
+                    <span className="sm:hidden">Fields</span>
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+              
+              {/* Mobile Menu */}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="h-9 w-9 p-0 shrink-0">
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent align="end" className="w-72 p-3">
+                  <div className="space-y-3">
+                    {/* Theme Color */}
+                    <div className="flex items-center justify-between gap-2">
+                      <label htmlFor="themeColorMobile" className="text-sm font-medium">
+                        Theme Color:
+                      </label>
+                      <input
+                        id="themeColorMobile"
+                        type="color"
+                        value={themeColor}
+                        onChange={(e) => setThemeColor(e.target.value)}
+                        className="h-8 w-12 cursor-pointer rounded border border-border"
+                      />
+                    </div>
+                    
+                    {/* Sections Manager */}
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button variant="outline" size="sm" className="w-full justify-start gap-2">
+                          <LayoutGrid className="w-4 h-4" />
+                          Manage Sections
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-80" align="end">
+                        {renderSectionManager()}
+                      </PopoverContent>
+                    </Popover>
+
+                    {/* Save Button */}
+                    <Button
+                      onClick={() => toast.success('Resume saved!')}
+                      variant="outline"
+                      size="sm"
+                      className="w-full justify-start gap-2"
+                    >
+                      <Save className="w-4 h-4" />
+                      Save Resume
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
+
           {/* Desktop Layout - 3 Column Grid */}
-          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center gap-4">
             {/* Left Section - Back + Template Name */}
             <div className="flex items-center gap-3">
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => navigate('/v2')}
+                onClick={() => navigate('/templates')}
                 className="gap-2"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -700,9 +806,6 @@ export const BuilderV2: React.FC = () => {
               </Button>
               <div className="h-6 w-px bg-gray-200" />
               <span className="font-medium text-gray-900">{config.name}</span>
-              <span className="text-xs px-2 py-1 bg-cyan-100 text-cyan-700 rounded-full font-medium">
-                V2
-              </span>
             </div>
 
             {/* Center Section - Tabs */}
@@ -786,32 +889,25 @@ export const BuilderV2: React.FC = () => {
       </div>
 
       <StyleOptionsProvider>
-        {/* Main Content Area - Matches V1 Editor Layout */}
+        {/* Main Content Area - Mobile Responsive */}
         <div className="flex-1 overflow-auto">
-          <div className="container mx-auto px-4 py-6 sm:px-6 sm:py-6">
+          <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-4 md:py-6">
             <div className={cn(
-              "grid gap-4 max-w-8xl mx-auto lg:gap-6",
-              editorMode === 'form' ? "lg:grid-cols-[37%,63%]" : "lg:grid-cols-1 max-w-[900px]"
+              "grid gap-3 sm:gap-4 max-w-8xl mx-auto lg:gap-6",
+              // Mobile: Always stack vertically
+              // Desktop: Side-by-side in form mode, single column in live mode
+              editorMode === 'form' 
+                ? "grid-cols-1 lg:grid-cols-[37%,63%]" 
+                : "grid-cols-1 max-w-[900px]"
             )}>
               {/* Form Section - Only in form mode */}
               {editorMode === 'form' && (
-                <div className="max-h-[calc(100vh-12rem)] overflow-y-auto space-y-4 rounded-2xl border border-border/50 bg-background px-4 py-5 shadow-sm sm:px-6 sm:py-6">
+                <div className="max-h-[calc(100vh-10rem)] sm:max-h-[calc(100vh-12rem)] overflow-y-auto space-y-3 sm:space-y-4 rounded-xl sm:rounded-2xl border border-border/50 bg-background px-3 py-4 sm:px-4 sm:py-5 md:px-6 md:py-6 shadow-sm">
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <FileEdit className="w-5 h-5 text-cyan-600" />
                         <h2 className="text-lg font-bold">Form Editor</h2>
-                      </div>
-                      {/* Toggle for new form (dev only) */}
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground">
-                          {useNewForm ? 'V2 Form' : 'Legacy Form'}
-                        </span>
-                        <Switch
-                          checked={useNewForm}
-                          onCheckedChange={setUseNewForm}
-                          className="data-[state=checked]:bg-cyan-600"
-                        />
                       </div>
                     </div>
                     <p className="text-xs text-muted-foreground">Changes sync with preview in real-time</p>
@@ -839,72 +935,74 @@ export const BuilderV2: React.FC = () => {
 
               {/* Preview Section */}
               <div className={cn(
-                "overflow-y-auto",
-                editorMode === 'form' ? "lg:sticky lg:top-32 max-h-[calc(100vh-8rem)]" : ""
+                "overflow-y-auto overflow-x-visible",
+                editorMode === 'form' ? "lg:sticky lg:top-32 lg:max-h-[calc(100vh-8rem)]" : ""
               )}>
                 <div 
-                  className="rounded-2xl p-4 sm:p-6"
+                  className="rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-visible"
                   style={{
                     background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
                   }}
                 >
                   {/* Dot pattern overlay */}
                   <div 
-                    className="space-y-4 flex flex-col items-center"
+                    className="space-y-2 sm:space-y-4 flex flex-col items-stretch sm:items-center"
                     style={{
                       backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
                       backgroundSize: '20px 20px',
                     }}
                   >
-                    {/* Live Preview Header */}
-                    <div className="flex items-center justify-between px-4 py-3 bg-white/90 backdrop-blur-md rounded-2xl border border-white/50 shadow-lg shadow-gray-200/50 w-full max-w-[210mm]">
-                      <div className="flex items-center gap-3">
+                    {/* Live Preview Header - Always Horizontal */}
+                    <div className="flex flex-row items-center justify-between gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/50 shadow-lg shadow-gray-200/50 w-full max-w-[210mm]">
+                      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-shrink">
                         <div
-                          className="h-9 w-1.5 rounded-full shadow-sm"
+                          className="h-7 sm:h-9 w-1 sm:w-1.5 rounded-full shadow-sm flex-shrink-0"
                           style={{ background: themeColor }}
                         />
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
                           <div
-                            className="p-1.5 rounded-lg"
+                            className="p-1 sm:p-1.5 rounded-lg flex-shrink-0"
                             style={{ backgroundColor: `${themeColor}1a` }}
                           >
-                            <Eye className="h-4 w-4" style={{ color: themeColor }} />
+                            <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: themeColor }} />
                           </div>
-                          <span className="font-semibold text-gray-800 tracking-tight">Live Preview</span>
+                          <span className="font-semibold text-gray-800 tracking-tight text-xs sm:text-sm md:text-base whitespace-nowrap">Live Preview</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1 sm:gap-1.5 sm:gap-2 flex-shrink-0">
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-9 gap-2 border-gray-200 text-gray-700 hover:border-[var(--primary-color,rgba(0,0,0,0.2))] hover:text-[var(--primary-color,rgba(0,0,0,0.8))] hover:bg-[var(--primary-color,rgba(0,0,0,0.05))]"
+                          className="h-8 sm:h-9 gap-1.5 sm:gap-2 border-gray-200 text-gray-700 hover:border-[var(--primary-color,rgba(0,0,0,0.2))] hover:text-[var(--primary-color,rgba(0,0,0,0.8))] hover:bg-[var(--primary-color,rgba(0,0,0,0.05))] text-xs sm:text-sm px-2 sm:px-3"
                           style={{ ['--primary-color' as any]: themeColor }}
                           onClick={() => setShowReorder(true)}
                         >
-                          <PanelsTopLeft className="h-4 w-4" />
-                          Rearrange
+                          <PanelsTopLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          <span className="hidden sm:inline">Rearrange</span>
+                          <span className="sm:hidden">Arrange</span>
                         </Button>
                         <Button
                           variant="outline"
                           size="sm"
-                          className="h-9 gap-2 border-gray-200 text-gray-700 hover:border-[var(--primary-color,rgba(0,0,0,0.2))] hover:text-[var(--primary-color,rgba(0,0,0,0.8))] hover:bg-[var(--primary-color,rgba(0,0,0,0.05))]"
+                          className="h-8 sm:h-9 gap-1.5 sm:gap-2 border-gray-200 text-gray-700 hover:border-[var(--primary-color,rgba(0,0,0,0.2))] hover:text-[var(--primary-color,rgba(0,0,0,0.8))] hover:bg-[var(--primary-color,rgba(0,0,0,0.05))] text-xs sm:text-sm px-2 sm:px-3"
                           style={{ ['--primary-color' as any]: themeColor }}
                           onClick={handleAddCustomSection}
                         >
-                          <Plus className="h-4 w-4" />
-                          Add Custom Section
+                          <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          <span className="hidden sm:inline">Add Section</span>
+                          <span className="sm:hidden">Add</span>
                         </Button>
                         <Popover>
                           <PopoverTrigger asChild>
                             <Button 
                               variant="ghost" 
                               size="sm" 
-                              className="h-9 w-9 p-0 hover:bg-gray-100 rounded-xl transition-all hover:shadow-sm border border-transparent hover:border-gray-200 group relative"
+                              className="h-8 w-8 sm:h-9 sm:w-9 p-0 hover:bg-gray-100 rounded-lg sm:rounded-xl transition-all hover:shadow-sm border border-transparent hover:border-gray-200"
                             >
-                              <Settings className="h-4 w-4 animate-spin" style={{ animationDuration: '3s', color: themeColor }} />
+                              <Settings className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin" style={{ animationDuration: '3s', color: themeColor }} />
                             </Button>
                           </PopoverTrigger>
-                          <PopoverContent align="end" className="w-96 p-0 shadow-xl border-gray-200 max-h-[85vh] overflow-y-auto">
+                          <PopoverContent align="end" className="w-[90vw] sm:w-96 p-0 shadow-xl border-gray-200 max-h-[85vh] overflow-y-auto">
                             <StyleOptionsPanelV2 
                               inPopover={true} 
                               resumeData={resumeData}
@@ -916,23 +1014,25 @@ export const BuilderV2: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Resume Preview Container */}
-                    <div className="relative w-full max-w-[210mm]">
-                      {/* Decorative corner elements */}
-                      <div className="absolute -top-2 -left-2 w-5 h-5 border-l-2 border-t-2 border-cyan-300/50 rounded-tl-lg" />
-                      <div className="absolute -top-2 -right-2 w-5 h-5 border-r-2 border-t-2 border-cyan-300/50 rounded-tr-lg" />
-                      <div className="absolute -bottom-2 -left-2 w-5 h-5 border-l-2 border-b-2 border-cyan-300/50 rounded-bl-lg" />
-                      <div className="absolute -bottom-2 -right-2 w-5 h-5 border-r-2 border-b-2 border-cyan-300/50 rounded-br-lg" />
+                    {/* Resume Preview Container - Full Width with Horizontal Scroll on Mobile */}
+                    <div className="relative w-full overflow-x-auto overflow-y-visible">
+                      {/* Decorative corner elements - Hidden on mobile */}
+                      <div className="hidden sm:block absolute -top-2 -left-2 w-5 h-5 border-l-2 border-t-2 border-cyan-300/50 rounded-tl-lg z-10" />
+                      <div className="hidden sm:block absolute -top-2 -right-2 w-5 h-5 border-r-2 border-t-2 border-cyan-300/50 rounded-tr-lg z-10" />
+                      <div className="hidden sm:block absolute -bottom-2 -left-2 w-5 h-5 border-l-2 border-b-2 border-cyan-300/50 rounded-bl-lg z-10" />
+                      <div className="hidden sm:block absolute -bottom-2 -right-2 w-5 h-5 border-r-2 border-b-2 border-cyan-300/50 rounded-br-lg z-10" />
                       
                       <StyleOptionsWrapper>
                         <div 
                           id="resume-preview-v2" 
                           ref={previewRef}
-                          className="bg-white shadow-2xl shadow-gray-300/50 rounded-xl overflow-hidden ring-1 ring-gray-200/50"
+                          className="bg-white shadow-2xl shadow-gray-300/50 rounded-lg sm:rounded-xl overflow-hidden ring-1 ring-gray-200/50"
                           style={{ 
                             width: '210mm', 
                             minHeight: '297mm',
-                            maxWidth: '100%',
+                            // On mobile, maintain full width and allow horizontal scroll
+                            minWidth: '210mm',
+                            margin: '0 auto',
                           }}
                         >
                           <InlineEditProvider

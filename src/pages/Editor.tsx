@@ -28,11 +28,11 @@ const Editor = (props: EditorProps = {}) => {
     if (templateId) {
       const v2TemplateId = templateId.endsWith('-v2') ? templateId : `${templateId}-v2`;
       const redirectUrl = resumeId 
-        ? `/v2/builder?template=${v2TemplateId}&resumeId=${resumeId}`
-        : `/v2/builder?template=${v2TemplateId}`;
+        ? `/builder?template=${v2TemplateId}&resumeId=${resumeId}`
+        : `/builder?template=${v2TemplateId}`;
       navigate(redirectUrl, { replace: true });
     } else {
-      navigate("/v2", { replace: true });
+      navigate("/templates", { replace: true });
     }
   }, [templateId, resumeId, navigate]);
   
