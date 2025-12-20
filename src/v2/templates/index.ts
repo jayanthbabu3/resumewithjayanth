@@ -18,6 +18,11 @@ import { centeredPhotoTemplate } from './centered-photo';
 import { creativeSplitTemplate } from './creative-split';
 import { classicMinimalTemplate } from './classic-minimal';
 import { professionalBlueTemplate } from './professional-blue';
+import { elegantAtsTemplate } from './elegant-ats';
+import { refinedPortraitTemplate } from './refined-portrait';
+import { analystClarityTemplate } from './analyst-clarity';
+import { obstacleSolverTemplate } from './obstacle-solver';
+import { terminalThemeTemplate } from './terminal-theme';
 
 // ============================================================================
 // TEMPLATE REGISTRY
@@ -34,6 +39,11 @@ export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'creative-split-v2': creativeSplitTemplate,
   'classic-minimal-v2': classicMinimalTemplate,
   'professional-blue-v2': professionalBlueTemplate,
+  'elegant-ats-v2': elegantAtsTemplate,
+  'refined-portrait-v2': refinedPortraitTemplate,
+  'analyst-clarity-v2': analystClarityTemplate,
+  'obstacle-solver-v2': obstacleSolverTemplate,
+  'terminal-theme-v2': terminalThemeTemplate,
 };
 
 // ============================================================================
@@ -109,3 +119,8 @@ export { centeredPhotoTemplate } from './centered-photo';
 export { creativeSplitTemplate } from './creative-split';
 export { classicMinimalTemplate } from './classic-minimal';
 export { professionalBlueTemplate } from './professional-blue';
+export { elegantAtsTemplate } from './elegant-ats';
+export { refinedPortraitTemplate } from './refined-portrait';
+export { analystClarityTemplate } from './analyst-clarity';
+export { obstacleSolverTemplate } from './obstacle-solver';
+export { terminalThemeTemplate } from './terminal-theme';
