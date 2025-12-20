@@ -146,7 +146,7 @@ export const obstacleSolverConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'accent-card',
+    variant: 'accent-side',
     showLocation: true,
   },
 

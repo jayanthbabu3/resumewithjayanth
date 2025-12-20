@@ -251,7 +251,8 @@ export type ExperienceVariant =
   | 'card'
   | 'minimal'
   | 'two-column-dates'
-  | 'accent-card';
+  | 'accent-card'
+  | 'accent-side';
 
 export interface ExperienceConfig {
   variant: ExperienceVariant;

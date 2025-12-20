@@ -239,7 +239,8 @@ export type ExperienceVariant =
   | 'card'           // Card-style with border
   | 'minimal'        // Just essentials
   | 'two-column-dates' // Dates/location on left column, content on right
-  | 'accent-card';    // Lined header with accent bar and bullets
+  | 'accent-card'    // Lined header with accent bar and bullets
+  | 'accent-side';   // Left-accent column with stacked content
 
 export interface ExperienceConfig {
   /** Display variant */

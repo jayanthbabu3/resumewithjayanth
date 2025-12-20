@@ -7,6 +7,9 @@
  * - timeline: Visual timeline on left
  * - card: Card-style entries
  * - minimal: Essential info only
+ * - two-column-dates: Dates/location on left column
+ * - accent-card: Lined header with accent strip
+ * - accent-side: Left-accent column with stacked header rows
  */
 
 import React from 'react';
@@ -201,6 +204,95 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
         </ul>
       );
     };
+
+    // Accent side variant with left accent bar and stacked header rows
+    if (variant === 'accent-side') {
+      const locationText = item.location || 'Location';
+
+      return (
+        <div
+          key={item.id}
+          style={{
+            marginBottom: index < items.length - 1 ? spacing.itemGap : 0,
+            paddingLeft: '14px',
+            borderLeft: `4px solid ${accent}`,
+          }}
+        >
+          <div
+            style={{
+              border: `1px solid ${colors.border}`,
+              borderRadius: '12px',
+              padding: '14px 14px 12px',
+              backgroundColor: colors.background.section,
+              boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+            }}
+          >
+            <div className="flex justify-between items-start gap-4">
+              <div className="flex-1">
+                {editable ? (
+                  <InlineEditableText
+                    path={`experience.${index}.position`}
+                    value={item.position}
+                    as="h3"
+                    style={{ ...titleStyle, marginBottom: '2px' }}
+                  />
+                ) : (
+                  <h3 style={{ ...titleStyle, marginBottom: '2px' }}>{item.position}</h3>
+                )}
+
+                <div className="flex flex-wrap items-center gap-2 text-sm" style={{ color: colors.text.muted }}>
+                  {editable ? (
+                    <InlineEditableText
+                      path={`experience.${index}.company`}
+                      value={item.company}
+                      style={subtitleStyle}
+                    />
+                  ) : (
+                    <span style={subtitleStyle}>{item.company}</span>
+                  )}
+
+                  {experience.showLocation && (
+                    <>
+                      <span style={{ color: colors.text.muted }}>•</span>
+                      {editable ? (
+                        <InlineEditableText
+                          path={`experience.${index}.location`}
+                          value={item.location || ''}
+                          placeholder="Location"
+                          style={{ ...typography.small, color: typography.dates.color }}
+                        />
+                      ) : (
+                        <span style={{ ...typography.small, color: typography.dates.color }}>{locationText}</span>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              <div className="text-right flex-shrink-0" style={{ paddingTop: '2px' }}>
+                {renderDates()}
+              </div>
+            </div>
+
+            {item.description && (
+              <p style={{ ...bodyStyle, marginTop: '8px', marginBottom: '6px' }}>
+                {editable ? (
+                  <InlineEditableText
+                    path={`experience.${index}.description`}
+                    value={item.description}
+                    style={bodyStyle}
+                  />
+                ) : (
+                  item.description
+                )}
+              </p>
+            )}
+
+            {renderBullets()}
+          </div>
+        </div>
+      );
+    }
 
     // Accent card variant with lined header and bordered body
     if (variant === 'accent-card') {
