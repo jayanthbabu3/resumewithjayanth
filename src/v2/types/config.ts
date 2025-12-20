@@ -164,7 +164,8 @@ export type SkillsVariant =
   | 'bars'           // Progress bars
   | 'dots'           // Dot rating system
   | 'columns'        // Multi-column list
-  | 'inline';        // Inline text with separator
+  | 'inline'         // Inline text with separator
+  | 'category-lines'; // Grouped headings with inline lists
 
 export interface SkillsConfig {
   /** Display variant */
@@ -231,13 +232,15 @@ export interface HeaderConfig {
 // EXPERIENCE DISPLAY CONFIGURATION
 // ============================================================================
 
-export type ExperienceVariant = 
+export type ExperienceVariant =
   | 'standard'       // Title, company, dates, bullets
   | 'compact'        // Condensed single-line header
   | 'timeline'       // Visual timeline on left
   | 'card'           // Card-style with border
   | 'minimal'        // Just essentials
-  | 'two-column-dates'; // Dates/location on left column, content on right
+  | 'two-column-dates' // Dates/location on left column, content on right
+  | 'accent-card'    // Lined header with accent bar and bullets
+  | 'accent-side';   // Left-accent column with stacked content
 
 export interface ExperienceConfig {
   /** Display variant */
@@ -282,13 +285,14 @@ export interface EducationConfig {
 // STRENGTHS DISPLAY CONFIGURATION
 // ============================================================================
 
-export type StrengthsVariant = 
+export type StrengthsVariant =
   | 'cards'          // Cards with icon and description
   | 'list'           // Simple bulleted list
   | 'pills'          // Pill badges (title only)
   | 'grid'           // 2-column grid cards
   | 'minimal'        // Clean inline text
-  | 'accent-border'; // Left accent border cards
+  | 'accent-border'  // Left accent border cards
+  | 'accent-grid';   // Grid cards with top accent line
 
 export interface StrengthsConfig {
   /** Display variant */

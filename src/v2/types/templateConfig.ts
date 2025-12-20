@@ -224,7 +224,8 @@ export type SkillsVariant =
   | 'bars'
   | 'dots'
   | 'columns'
-  | 'inline';
+  | 'inline'
+  | 'category-lines';
 
 export interface SkillsConfig {
   variant: SkillsVariant;
@@ -249,7 +250,9 @@ export type ExperienceVariant =
   | 'timeline'
   | 'card'
   | 'minimal'
-  | 'two-column-dates';
+  | 'two-column-dates'
+  | 'accent-card'
+  | 'accent-side';
 
 export interface ExperienceConfig {
   variant: ExperienceVariant;
@@ -316,7 +319,8 @@ export type StrengthsVariant =
   | 'pills'
   | 'grid'
   | 'minimal'
-  | 'accent-border';
+  | 'accent-border'
+  | 'accent-grid';
 
 export interface StrengthsConfig {
   variant: StrengthsVariant;
