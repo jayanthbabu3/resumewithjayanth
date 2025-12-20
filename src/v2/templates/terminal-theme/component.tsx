@@ -15,17 +15,6 @@ import {
   TemplateSectionRenderer,
 } from '../BaseTemplate';
 
-const WindowControls: React.FC = () => {
-  const colors = ['#ef4444', '#fbbf24', '#22c55e'];
-  return (
-    <div style={{ display: 'flex', gap: '6px' }}>
-      {colors.map(color => (
-        <div key={color} style={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: color }} />
-      ))}
-    </div>
-  );
-};
-
 const ContactRow: React.FC = () => {
   const { resumeData, config, editable } = useBaseTemplate();
   const { personalInfo } = resumeData;
@@ -48,10 +37,11 @@ const ContactRow: React.FC = () => {
           gap: '6px',
           fontSize: config.typography.contact.fontSize,
           color: config.typography.contact.color,
-          backgroundColor: '#111827',
-          padding: '6px 10px',
-          borderRadius: '999px',
+          backgroundColor: config.colors.background.section,
+          padding: '8px 12px',
+          borderRadius: '10px',
           border: `1px solid ${config.colors.border}`,
+          boxShadow: '0 6px 20px rgba(0,0,0,0.25)',
         }}
       >
         <Icon style={{ width: 14, height: 14, color: accent }} />
@@ -71,7 +61,7 @@ const ContactRow: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: config.spacing.contactGap, flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: config.spacing.contactGap, flexWrap: 'wrap', justifyContent: 'center' }}>
       <ContactItem icon={Mail} value={personalInfo.email} path="personalInfo.email" />
       <ContactItem icon={Phone} value={personalInfo.phone} path="personalInfo.phone" />
       <ContactItem
@@ -99,9 +89,9 @@ const TerminalHeader: React.FC = () => {
       style={{
         backgroundColor: config.colors.background.section,
         border: `1px solid ${config.colors.border}`,
-        borderRadius: '12px',
+        borderRadius: '14px',
         overflow: 'hidden',
-        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 18px 36px rgba(0, 0, 0, 0.35)',
       }}
     >
       <div
@@ -111,10 +101,9 @@ const TerminalHeader: React.FC = () => {
           alignItems: 'center',
           padding: '10px 16px',
           borderBottom: `1px solid ${config.colors.border}`,
-          backgroundColor: '#0d1628',
+          backgroundColor: '#0d150f',
         }}
       >
-        <WindowControls />
         {(personalInfo.location || editable) && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: config.typography.small.color }}>
             <MapPin style={{ width: 14, height: 14, color: config.colors.primary }} />
@@ -125,10 +114,8 @@ const TerminalHeader: React.FC = () => {
             />
           </div>
         )}
-      </div>
-
-      <div style={{ padding: '18px 20px 14px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: config.colors.text.muted }}>
+          <span style={{ color: config.colors.primary, fontWeight: 700 }}>&#123;</span>
           <InlineEditableText
             path="personalInfo.fullName"
             value={personalInfo.fullName || 'Your Name'}
@@ -141,20 +128,24 @@ const TerminalHeader: React.FC = () => {
               letterSpacing: config.typography.name.letterSpacing,
             }}
           />
-          <InlineEditableText
-            path="personalInfo.title"
-            value={personalInfo.title || 'Your title'}
-            as="p"
-            style={{
-              margin: 0,
-              fontSize: config.typography.title.fontSize,
-              fontWeight: config.typography.title.fontWeight,
-              color: config.typography.title.color,
-              letterSpacing: config.typography.title.letterSpacing,
-              textTransform: config.typography.title.textTransform,
-            }}
-          />
+          <span style={{ color: config.colors.primary, fontWeight: 700 }}>&#125;</span>
         </div>
+      </div>
+
+      <div style={{ padding: '18px 20px 14px', textAlign: 'center' }}>
+        <InlineEditableText
+          path="personalInfo.title"
+          value={personalInfo.title || 'Your title'}
+          as="p"
+          style={{
+            margin: 0,
+            fontSize: config.typography.title.fontSize,
+            fontWeight: config.typography.title.fontWeight,
+            color: config.typography.title.color,
+            letterSpacing: config.typography.title.letterSpacing,
+            textTransform: config.typography.title.textTransform,
+          }}
+        />
 
         <div style={{ marginTop: '12px' }}>
           <ContactRow />
@@ -173,10 +164,11 @@ const TerminalHeader: React.FC = () => {
 
 const TerminalThemeContent: React.FC<Omit<TemplateComponentProps, 'config'>> = props => {
   const { config } = useBaseTemplate();
-  const sections = useOrderedSections();
+  const mainSections = useOrderedSections('main');
+  const sidebarSections = useOrderedSections('sidebar');
 
   const outerStyle: React.CSSProperties = {
-    background: 'radial-gradient(circle at 20% 20%, rgba(78, 228, 128, 0.06), transparent 35%), #020617',
+    background: '#070b07',
     padding: '18px 0',
     display: 'flex',
     justifyContent: 'center',
@@ -184,21 +176,22 @@ const TerminalThemeContent: React.FC<Omit<TemplateComponentProps, 'config'>> = p
 
   const pageStyle: React.CSSProperties = {
     width: '100%',
-    maxWidth: '880px',
+    maxWidth: '900px',
     backgroundColor: config.colors.background.page,
-    borderRadius: '16px',
+    borderRadius: '18px',
     padding: `${config.spacing.pagePadding.top} ${config.spacing.pagePadding.right} ${config.spacing.pagePadding.bottom} ${config.spacing.pagePadding.left}`,
-    boxShadow: '0 20px 60px rgba(0,0,0,0.35)',
+    boxShadow: '0 26px 70px rgba(0,0,0,0.45)',
     border: `1px solid ${config.colors.border}`,
     color: config.typography.body.color,
     fontFamily: config.fontFamily?.primary,
   };
 
-  const sectionsContainerStyle: React.CSSProperties = {
+  const contentGridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: `${config.layout.mainWidth} ${config.layout.sidebarWidth}`,
+    gap: config.layout.columnGap,
+    alignItems: 'start',
     marginTop: config.spacing.sectionGap,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: config.spacing.sectionGap,
   };
 
   return (
@@ -206,26 +199,61 @@ const TerminalThemeContent: React.FC<Omit<TemplateComponentProps, 'config'>> = p
       <div style={pageStyle}>
         <TerminalHeader />
 
-        <div style={sectionsContainerStyle}>
-          {sections.map(section => (
-            <TemplateSectionRenderer
-              key={section.id}
-              section={section}
-              onAddBulletPoint={props.onAddBulletPoint}
-              onRemoveBulletPoint={props.onRemoveBulletPoint}
-              onAddExperience={props.onAddExperience}
-              onRemoveExperience={props.onRemoveExperience}
-              onAddEducation={props.onAddEducation}
-              onRemoveEducation={props.onRemoveEducation}
-              onAddProject={props.onAddProject}
-              onRemoveProject={props.onRemoveProject}
-              onAddLanguage={props.onAddLanguage}
-              onRemoveLanguage={props.onRemoveLanguage}
-              onUpdateLanguage={props.onUpdateLanguage}
-              onAddCustomSectionItem={props.onAddCustomSectionItem}
-              onRemoveCustomSectionItem={props.onRemoveCustomSectionItem}
-            />
-          ))}
+        <div style={contentGridStyle}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: config.spacing.sectionGap }}>
+            {mainSections.map(section => (
+              <TemplateSectionRenderer
+                key={section.id}
+                section={section}
+                onAddBulletPoint={props.onAddBulletPoint}
+                onRemoveBulletPoint={props.onRemoveBulletPoint}
+                onAddExperience={props.onAddExperience}
+                onRemoveExperience={props.onRemoveExperience}
+                onAddEducation={props.onAddEducation}
+                onRemoveEducation={props.onRemoveEducation}
+                onAddProject={props.onAddProject}
+                onRemoveProject={props.onRemoveProject}
+                onAddLanguage={props.onAddLanguage}
+                onRemoveLanguage={props.onRemoveLanguage}
+                onUpdateLanguage={props.onUpdateLanguage}
+                onAddCustomSectionItem={props.onAddCustomSectionItem}
+                onRemoveCustomSectionItem={props.onRemoveCustomSectionItem}
+              />
+            ))}
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: config.spacing.sectionGap,
+              padding: config.layout.sidebarPadding || '10px 12px',
+              backgroundColor: config.colors.background.sidebar || config.colors.background.section,
+              border: `1px solid ${config.colors.border}`,
+              borderRadius: '12px',
+              boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.02)',
+            }}
+          >
+            {sidebarSections.map(section => (
+              <TemplateSectionRenderer
+                key={section.id}
+                section={section}
+                onAddBulletPoint={props.onAddBulletPoint}
+                onRemoveBulletPoint={props.onRemoveBulletPoint}
+                onAddExperience={props.onAddExperience}
+                onRemoveExperience={props.onRemoveExperience}
+                onAddEducation={props.onAddEducation}
+                onRemoveEducation={props.onRemoveEducation}
+                onAddProject={props.onAddProject}
+                onRemoveProject={props.onRemoveProject}
+                onAddLanguage={props.onAddLanguage}
+                onRemoveLanguage={props.onRemoveLanguage}
+                onUpdateLanguage={props.onUpdateLanguage}
+                onAddCustomSectionItem={props.onAddCustomSectionItem}
+                onRemoveCustomSectionItem={props.onRemoveCustomSectionItem}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

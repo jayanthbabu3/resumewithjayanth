@@ -83,6 +83,23 @@ export const mockData: V2ResumeData = {
     },
   ],
 
+  courses: [
+    {
+      id: 'course-1',
+      name: 'Distributed Systems',
+      provider: 'Stanford | CS244',
+      date: '2022-03',
+      description: 'Consensus, replication, and consistent hashing fundamentals applied to service design.',
+    },
+    {
+      id: 'course-2',
+      name: 'Designing Data-Intensive Applications',
+      provider: 'Martin Kleppmann',
+      date: '2021-11',
+      description: 'Storage engines, streaming pipelines, and reliability patterns translated into backend playbooks.',
+    },
+  ],
+
   skills: [
     { id: 'skill-1', name: 'TypeScript', category: 'Languages & Runtime' },
     { id: 'skill-2', name: 'Go', category: 'Languages & Runtime' },
