@@ -151,7 +151,7 @@ export const frontendHorizonConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'timeline',
+    variant: 'left-border',
     datePosition: 'right',
     showLocation: true,
     bulletStyle: '•',
@@ -180,10 +180,11 @@ export const frontendHorizonConfig: TemplateConfig = createTemplateConfig({
     { type: 'summary', id: 'summary', title: 'Summary', defaultTitle: 'Summary', enabled: true, order: 1, column: 'main' },
     { type: 'experience', id: 'experience', title: 'Experience', defaultTitle: 'Experience', enabled: true, order: 2, column: 'main' },
     { type: 'projects', id: 'projects', title: 'Projects', defaultTitle: 'Projects', enabled: true, order: 3, column: 'main' },
-    { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 4, column: 'main' },
-    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 5, column: 'main' },
-    { type: 'achievements', id: 'achievements', title: 'Achievements', defaultTitle: 'Achievements', enabled: false, order: 6, column: 'main' },
-    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: false, order: 7, column: 'main' },
+    { type: 'strengths', id: 'strengths', title: 'Strengths', defaultTitle: 'Strengths', enabled: true, order: 4, column: 'main' },
+    { type: 'achievements', id: 'achievements', title: 'Achievements', defaultTitle: 'Achievements', enabled: true, order: 5, column: 'main' },
+    { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 6, column: 'main' },
+    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 7, column: 'main' },
+    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: false, order: 8, column: 'main' },
   ],
 
   fontFamily: {

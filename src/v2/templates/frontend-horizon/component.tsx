@@ -47,7 +47,9 @@ const FrontendHorizonContent: React.FC<Omit<TemplateComponentProps, 'config'>> =
     <div style={containerStyle}>
       <div style={contentStyle}>
         {/* Header */}
-        <HeaderSection resumeData={resumeData} config={config} editable={editable} />
+        <div style={{ marginBottom: spacing.sectionGap }}>
+          <HeaderSection resumeData={resumeData} config={config} editable={editable} />
+        </div>
 
         {/* Sections */}
         {sections.map((section) => (
