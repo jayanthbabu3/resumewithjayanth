@@ -181,6 +181,21 @@ export const fresherModernConfig: TemplateConfig = createTemplateConfig({
   fontFamily: {
     primary: "'Poppins', 'Inter', sans-serif",
   },
+  
+  colorSlots: [
+    {
+      name: 'primary',
+      label: 'Primary Color',
+      defaultColor: '#4f46e5',
+      description: 'Main accent color for headings and highlights',
+    },
+    {
+      name: 'secondary',
+      label: 'Sidebar Background',
+      defaultColor: '#f0f4ff',
+      description: 'Background color for the sidebar section',
+    },
+  ],
 });
 
 export default fresherModernConfig;

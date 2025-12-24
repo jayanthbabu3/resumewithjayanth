@@ -34,6 +34,8 @@ export type {
   VariantRegistry,
   VariantOption,
   SectionLabels,
+  ColorSlot,
+  ColorSlotName,
 } from './config';
 
 // Export values from legacy config

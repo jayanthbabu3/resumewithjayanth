@@ -93,11 +93,26 @@ export interface LayoutConfig {
 // COLOR CONFIGURATION
 // ============================================================================
 
+export type ColorSlotName = 'primary' | 'secondary';
+
+export interface ColorSlot {
+  /** Slot identifier */
+  name: ColorSlotName;
+  /** Display label for UI */
+  label: string;
+  /** Default color value */
+  defaultColor: string;
+  /** Description of what this color affects */
+  description: string;
+}
+
 export interface ColorConfig {
   /** Primary accent color (theme color) */
   primary: string;
   /** Secondary accent color */
   secondary?: string;
+  /** Accent color (tertiary) */
+  accent?: string;
   /** Text colors */
   text: {
     /** Primary text (headings, important content) - usually #000000 */
@@ -416,6 +431,9 @@ export interface TemplateConfig {
     primary: string;
     secondary?: string;
   };
+  
+  // Theme color slots (1-3 customizable colors)
+  colorSlots?: ColorSlot[];
 }
 
 // ============================================================================

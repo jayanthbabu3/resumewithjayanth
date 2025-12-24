@@ -43,12 +43,14 @@ import SectionReorderDialog from '../components/SectionReorderDialog';
 
 import { ResumeRenderer } from '../components/ResumeRenderer';
 import { useTemplateConfig } from '../hooks/useTemplateConfig';
+import { getTemplateConfig } from '../config/templates';
 import { MOCK_RESUME_DATA } from '../data/mockData';
 import type { V2ResumeData } from '../types';
 import { getTemplate } from '../templates';
 
 // V2 Dynamic Form (config-driven)
 import { DynamicForm, ElegantForm } from '../components/form';
+import { MultiColorThemePicker } from '../components/MultiColorThemePicker';
 
 export const BuilderV2: React.FC = () => {
   const navigate = useNavigate();
@@ -64,6 +66,7 @@ export const BuilderV2: React.FC = () => {
   // State
   const [resumeData, setResumeData] = useState<V2ResumeData>(initialResumeData);
   const [themeColor, setThemeColor] = useState('#0891b2');
+  const [themeColors, setThemeColors] = useState<{ primary?: string; secondary?: string }>({});
   const [isDownloading, setIsDownloading] = useState(false);
   const [sectionLabels, setSectionLabels] = useState<Record<string, string>>({});
   const [enabledSections, setEnabledSections] = useState<string[]>(['header', 'summary', 'experience', 'education', 'strengths', 'skills', 'achievements']);
@@ -77,8 +80,45 @@ export const BuilderV2: React.FC = () => {
   
   const previewRef = useRef<HTMLDivElement>(null);
 
-  // Get template config
-  const { config } = useTemplateConfig({ templateId, themeColor, sectionOverrides });
+  // Get base template config (without theme overrides) for color slots
+  const baseConfig = React.useMemo(() => {
+    return getTemplateConfig(templateId) || null;
+  }, [templateId]);
+
+  // Get color slots from base template or create default
+  const colorSlots = React.useMemo(() => {
+    if (baseConfig?.colorSlots) {
+      return baseConfig.colorSlots.slice(0, 2); // Max 2 colors
+    }
+    return [
+      {
+        name: 'primary' as const,
+        label: 'Primary Color',
+        defaultColor: baseConfig?.colors.primary || '#0891b2',
+        description: 'Main accent color for headings and highlights',
+      },
+    ];
+  }, [baseConfig]);
+
+  // Initialize themeColors from template defaults on first load only
+  const initializedRef = React.useRef(false);
+  React.useEffect(() => {
+    if (!initializedRef.current && colorSlots.length > 0) {
+      const initialColors: { primary?: string; secondary?: string } = {};
+      colorSlots.forEach(slot => {
+        initialColors[slot.name] = slot.defaultColor;
+      });
+      setThemeColors(initialColors);
+      initializedRef.current = true;
+    }
+  }, [colorSlots]);
+
+  // Get template config with theme colors applied
+  const { config } = useTemplateConfig({ 
+    templateId, 
+    themeColors,
+    sectionOverrides 
+  });
 
   // Apply reorder from dialog
   const handleApplyReorder = (mainIds: string[], sidebarIds: string[], pageBreaks: Record<string, boolean>) => {
@@ -679,7 +719,13 @@ export const BuilderV2: React.FC = () => {
   );
 
   return (
-    <div className="flex h-screen flex-col bg-gradient-to-br from-background via-muted/5 to-background">
+    <div 
+      className="flex h-screen flex-col bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50"
+      style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
+        backgroundSize: '20px 20px',
+      }}
+    >
       <Header />
 
       {/* Compact Header - Sticky */}
@@ -716,12 +762,16 @@ export const BuilderV2: React.FC = () => {
                       <Settings className="h-3.5 w-3.5" />
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent align="end" className="w-64 p-3">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <label className="text-xs font-medium">Theme:</label>
-                        <input type="color" value={themeColor} onChange={(e) => setThemeColor(e.target.value)} className="h-7 w-10 rounded border" />
-                      </div>
+                  <PopoverContent align="end" className="w-72 p-3">
+                    <div className="space-y-3">
+                      <MultiColorThemePicker
+                        colorSlots={colorSlots}
+                        colors={Object.keys(themeColors).length > 0 ? themeColors : { primary: themeColor }}
+                        onColorsChange={(colors) => {
+                          setThemeColors(colors);
+                          if (colors.primary) setThemeColor(colors.primary);
+                        }}
+                      />
                       <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => setShowReorder(true)}>
                         <LayoutGrid className="w-3 h-3 mr-1" /> Sections
                       </Button>
@@ -756,10 +806,15 @@ export const BuilderV2: React.FC = () => {
               </TabsList>
             </Tabs>
             <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 px-2 py-1 rounded bg-muted/30 border">
-                <label className="text-xs font-medium">Theme:</label>
-                <input type="color" value={themeColor} onChange={(e) => setThemeColor(e.target.value)} className="h-6 w-8 rounded border" />
-              </div>
+              <MultiColorThemePicker
+                colorSlots={colorSlots}
+                colors={Object.keys(themeColors).length > 0 ? themeColors : { primary: themeColor }}
+                onColorsChange={(colors) => {
+                  setThemeColors(colors);
+                  if (colors.primary) setThemeColor(colors.primary);
+                }}
+                compact
+              />
               <Popover>
                 <PopoverTrigger asChild>
                   <Button variant="outline" size="sm" className="gap-1.5 h-8 text-xs">
@@ -905,7 +960,7 @@ export const BuilderV2: React.FC = () => {
                             <ResumeRenderer
                               resumeData={resumeData}
                               templateId={templateId}
-                              themeColor={themeColor}
+                              themeColors={themeColors}
                               sectionOverrides={sectionOverrides}
                               editable={editorMode === 'live'}
                               sectionLabels={sectionLabels}
@@ -976,7 +1031,7 @@ export const BuilderV2: React.FC = () => {
                 <ResumeRenderer
                   resumeData={resumeData}
                   templateId={templateId}
-                  themeColor={themeColor}
+                  themeColors={themeColors}
                   editable={false}
                   sectionLabels={sectionLabels}
                   enabledSections={enabledSections}

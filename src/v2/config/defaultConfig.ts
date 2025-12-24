@@ -234,31 +234,100 @@ export function createTemplateConfig(overrides: Partial<TemplateConfig> & { id: 
 }
 
 /**
- * Apply theme color to a template config
+ * Apply theme color to a template config (legacy single color)
  */
 export function applyThemeColor(config: TemplateConfig, themeColor: string): TemplateConfig {
-  return {
-    ...config,
-    colors: {
-      ...config.colors,
-      primary: themeColor,
+  return applyThemeColors(config, { primary: themeColor });
+}
+
+/**
+ * Apply multiple theme colors to a template config
+ * Primary color: Main accent (headings, links, skill badges, section borders)
+ * Secondary color: Sidebar/accent background
+ */
+export function applyThemeColors(
+  config: TemplateConfig, 
+  colors: { primary?: string; secondary?: string }
+): TemplateConfig {
+  let result = { ...config };
+  
+  // Apply primary color - affects all accent elements
+  if (colors.primary) {
+    result.colors = {
+      ...result.colors,
+      primary: colors.primary,
       background: {
-        ...config.colors.background,
-        accent: `${themeColor}15`, // 15% opacity
+        ...result.colors.background,
+        accent: `${colors.primary}15`, // 15% opacity for light backgrounds
       },
-    },
-    typography: {
-      ...config.typography,
+    };
+    
+    // Update typography that uses primary color
+    result.typography = {
+      ...result.typography,
       title: {
-        ...config.typography.title,
-        color: themeColor,
+        ...result.typography.title,
+        color: colors.primary,
       },
       itemSubtitle: {
-        ...config.typography.itemSubtitle,
-        color: themeColor,
+        ...result.typography.itemSubtitle,
+        color: colors.primary,
       },
-    },
-  };
+    };
+    
+    // Update section heading border color
+    if (result.sectionHeading) {
+      result.sectionHeading = {
+        ...result.sectionHeading,
+        borderColor: colors.primary,
+      };
+    }
+    
+    // Update skill badge colors - this is critical for pills/tags
+    if (result.skills?.badge) {
+      result.skills = {
+        ...result.skills,
+        badge: {
+          ...result.skills.badge,
+          backgroundColor: colors.primary,
+          borderColor: colors.primary,
+        },
+      };
+    }
+    
+    // Update header contact icons if they use primary
+    if (result.header?.contactIcons) {
+      result.header = {
+        ...result.header,
+        contactIcons: {
+          ...result.header.contactIcons,
+          color: colors.primary,
+        },
+      };
+    }
+  }
+  
+  // Apply secondary color - affects sidebar/accent backgrounds
+  if (colors.secondary) {
+    result.colors = {
+      ...result.colors,
+      secondary: colors.secondary,
+      background: {
+        ...result.colors.background,
+        sidebar: colors.secondary,
+      },
+    };
+    
+    // Update layout sidebar background
+    if (result.layout.sidebarBackground) {
+      result.layout = {
+        ...result.layout,
+        sidebarBackground: colors.secondary,
+      };
+    }
+  }
+  
+  return result;
 }
 
 /**

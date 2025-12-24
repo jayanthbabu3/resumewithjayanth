@@ -7,11 +7,12 @@
 import { useMemo, useCallback } from 'react';
 import type { TemplateConfig, SectionConfig } from '../types';
 import { getTemplateConfig } from '../config/templates';
-import { applyThemeColor, DEFAULT_TEMPLATE_CONFIG } from '../config/defaultConfig';
+import { applyThemeColor, applyThemeColors, DEFAULT_TEMPLATE_CONFIG } from '../config/defaultConfig';
 
 interface UseTemplateConfigOptions {
   templateId: string;
   themeColor?: string;
+  themeColors?: { primary?: string; secondary?: string };
   sectionOverrides?: Partial<Record<string, Partial<SectionConfig>>>;
 }
 
@@ -30,6 +31,7 @@ interface UseTemplateConfigReturn {
 export function useTemplateConfig({
   templateId,
   themeColor,
+  themeColors,
   sectionOverrides,
 }: UseTemplateConfigOptions): UseTemplateConfigReturn {
   // Get base template config
@@ -37,11 +39,17 @@ export function useTemplateConfig({
     return getTemplateConfig(templateId) || DEFAULT_TEMPLATE_CONFIG;
   }, [templateId]);
 
-  // Apply theme color and section overrides (including new sections)
+  // Apply theme color and section overrides
   const config = useMemo(() => {
     let result = baseConfig;
     
-    if (themeColor) {
+    // Apply multi-color theme if provided (check if object has any color values)
+    const hasThemeColors = themeColors && (themeColors.primary || themeColors.secondary);
+    if (hasThemeColors) {
+      result = applyThemeColors(result, themeColors);
+    }
+    // Otherwise apply single theme color (backward compatibility)
+    else if (themeColor) {
       result = applyThemeColor(result, themeColor);
     }
     
@@ -129,7 +137,7 @@ export function useTemplateConfig({
     }
     
     return result;
-  }, [baseConfig, themeColor, sectionOverrides]);
+  }, [baseConfig, themeColor, themeColors, sectionOverrides]);
 
   // Get typography config
   const getTypography = useCallback(

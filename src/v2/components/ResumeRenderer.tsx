@@ -49,8 +49,10 @@ interface ResumeRendererProps {
   resumeData: V2ResumeData;
   /** Template ID to use */
   templateId: string;
-  /** Theme color override */
+  /** Theme color override (legacy single color) */
   themeColor?: string;
+  /** Theme colors override (multi-color: primary + secondary) */
+  themeColors?: { primary?: string; secondary?: string };
   /** Section overrides (order/column/enabled) */
   sectionOverrides?: Partial<Record<string, Partial<SectionConfig>>>;
   /** Enable inline editing */
@@ -141,6 +143,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   resumeData,
   templateId,
   themeColor,
+  themeColors,
   sectionOverrides,
   editable = false,
   onRemoveSection,
@@ -188,7 +191,8 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   // For scratch builder, use the generated config directly
   const templateConfigHook = useTemplateConfig({
     templateId,
-    themeColor,
+    themeColor: themeColors ? undefined : themeColor,
+    themeColors,
     sectionOverrides,
   });
   
