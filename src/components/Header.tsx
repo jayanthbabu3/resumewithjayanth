@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { LogOut, User, LayoutDashboard, Home, FileText, Sparkles, BookOpen, Menu, FolderOpen } from "lucide-react";
+import { LogOut, User, LayoutDashboard, Home, FileText, BookOpen, Menu, FolderOpen, ChevronDown } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useFirebaseAuth } from "@/hooks/useFirebaseAuth";
@@ -16,8 +16,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -29,12 +27,12 @@ export const Header = () => {
 
   const navItems = useMemo(() =>
     user ? [
-      { label: "Templates", to: "/dashboard" },
-      { label: "My Resumes", to: "/my-resumes" },
-      { label: "ATS Guide", to: "/ats-guidelines" }
+      { label: "Templates", to: "/dashboard", icon: LayoutDashboard },
+      { label: "My Resumes", to: "/my-resumes", icon: FolderOpen },
+      { label: "ATS Guide", to: "/ats-guidelines", icon: BookOpen }
     ] : [
-      { label: "Home", to: "/" },
-      { label: "ATS Guide", to: "/ats-guidelines" }
+      { label: "Home", to: "/", icon: Home },
+      { label: "ATS Guide", to: "/ats-guidelines", icon: BookOpen }
     ]
   , [user]);
 
@@ -59,310 +57,234 @@ export const Header = () => {
   };
 
   return (
-    <nav className="border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
-      <div className="container mx-auto px-6 py-2">
-        <div className="flex items-center justify-between gap-6">
-          {/* Logo Section */}
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          
+          {/* Logo Section - Clean & Professional */}
           <button
             onClick={() => navigate("/")}
-            className="group flex items-center gap-3 rounded-xl px-2 py-1 transition-all duration-300 hover:-translate-y-0.5 hover:opacity-90"
+            className="group flex items-center gap-3 -ml-2 px-2 py-1.5 rounded-xl transition-all duration-200 hover:bg-gray-50"
             aria-label="Resume Cook home"
           >
-            <div className="relative flex h-12 w-12 items-center justify-center">
-              {/* Background glow effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-primary/70 opacity-80 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md" />
-              
-              {/* Main logo container */}
-              <div className="relative flex h-full w-full items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-background via-background/80 to-background/50 shadow-[0_8px_25px_-8px_rgba(124,58,237,0.4)] transition-all duration-300 group-hover:shadow-[0_12px_35px_-12px_rgba(124,58,237,0.6)]">
-                {/* Resume document icon */}
-                <div className="relative">
-                  <FileText className="h-6 w-6 text-primary transition-all duration-300 group-hover:scale-110" strokeWidth={2} />
-                  
-                  {/* Sparkle effect overlay */}
-                  <div className="absolute -top-1 -right-1 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                    <Sparkles className="h-3 w-3 text-yellow-500 animate-pulse" fill="currentColor" />
-                  </div>
-                  
-                  {/* Success checkmark overlay */}
-                  <div className="absolute -bottom-1 -left-1 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                    <div className="h-3 w-3 rounded-full bg-emerald-500 flex items-center justify-center">
-                      <div className="h-1.5 w-1.5 rounded-full bg-white"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating particles effect */}
-              <div className="absolute -top-1 -left-1 h-2 w-2 rounded-full bg-primary/30 opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:animate-ping"></div>
-              <div className="absolute -bottom-1 -right-1 h-1.5 w-1.5 rounded-full bg-emerald-400/40 opacity-0 transition-all duration-700 group-hover:opacity-100 group-hover:animate-pulse"></div>
+            {/* Logo Icon */}
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 shadow-lg shadow-primary/25 transition-all duration-200 group-hover:shadow-xl group-hover:shadow-primary/30 group-hover:scale-105">
+              <FileText className="h-5 w-5 text-white" strokeWidth={2.5} />
             </div>
             
-            <div className="flex flex-col text-left leading-none">
-              <span className="text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
-                Resume<span className="text-primary group-hover:text-primary/80">Cook</span>
+            {/* Brand Text */}
+            <div className="flex flex-col">
+              <span className="text-lg font-bold tracking-tight text-gray-900">
+                Resume<span className="text-primary">Cook</span>
               </span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground transition-colors duration-300 group-hover:text-primary/70">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                 Craft Your Career
               </span>
             </div>
           </button>
 
-          {/* Navigation Section */}
-          <div className="flex items-center gap-4 sm:gap-6">
-            {/* Navigation Links */}
-            <div className="hidden sm:flex items-center gap-1 text-sm font-medium">
-              {navItems.map(({ label, to }) => (
-                <NavLink
-                  key={label}
-                  to={to}
-                  className={({ isActive }) =>
-                    cn(
-                      "px-3 py-1.5 rounded-md transition-colors text-muted-foreground hover:text-foreground hover:bg-muted/40 flex items-center gap-2",
-                      isActive && "text-foreground bg-muted/60"
-                    )
-                  }
-                >
-                  {label === "Home" && <Home className="h-4 w-4" />}
-                  {label === "ATS Guide" && <BookOpen className="h-4 w-4" />}
-                  {label === "Templates" && <LayoutDashboard className="h-4 w-4" />}
-                  {label === "My Resumes" && <FolderOpen className="h-4 w-4" />}
-                  {label}
-                </NavLink>
-              ))}
-            </div>
+          {/* Center Navigation - Desktop */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map(({ label, to, icon: Icon }) => (
+              <NavLink
+                key={label}
+                to={to}
+                className={({ isActive }) =>
+                  cn(
+                    "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    isActive 
+                      ? "bg-primary/10 text-primary" 
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  )
+                }
+              >
+                <Icon className="h-4 w-4" />
+                {label}
+              </NavLink>
+            ))}
+          </nav>
 
-            {/* Mobile Menu Trigger */}
-            <div className="flex items-center gap-3 sm:hidden">
-              {user && (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="relative h-9 w-9 rounded-full hover:bg-muted/50 transition-colors duration-200"
-                    >
-                      <Avatar className="h-8 w-8 ring-2 ring-transparent hover:ring-primary/20 transition-all duration-200">
-                        <AvatarImage src={user.photoURL || undefined} alt={getUserDisplayName()} />
-                        <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/5 text-primary font-medium hover:from-primary/20 hover:to-primary/10 transition-all duration-200">
-                          {getUserInitials()}
-                        </AvatarFallback>
-                      </Avatar>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56" align="end" forceMount>
-                    <div className="flex items-center justify-start gap-2 p-2">
-                      <div className="flex flex-col space-y-1 leading-none">
-                        <p className="font-medium text-sm">{getUserDisplayName()}</p>
-                        <p className="text-xs text-muted-foreground">{user.email}</p>
-                      </div>
-                    </div>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      onClick={() => navigate("/dashboard")}
-                      className="cursor-pointer"
-                    >
-                      <LayoutDashboard className="mr-2 h-4 w-4" />
-                      <span>Templates</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => navigate("/my-resumes")}
-                      className="cursor-pointer"
-                    >
-                      <FolderOpen className="mr-2 h-4 w-4" />
-                      <span>My Resumes</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => navigate("/profile")}
-                      className="cursor-pointer"
-                    >
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      onClick={signOut}
-                      className="cursor-pointer text-red-600 focus:text-red-600"
-                    >
-                      <LogOut className="mr-2 h-4 w-4" />
-                      <span>Log out</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              )}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="relative h-10 w-10 rounded-xl border border-border/50 bg-gradient-to-br from-background/90 via-background/80 to-background/70 backdrop-blur-sm hover:bg-gradient-to-br hover:from-muted/60 hover:to-muted/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/20 group"
-                    aria-label="Open navigation menu"
-                  >
-                    <Menu className="h-5 w-5 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
-                    {/* Subtle glow effect */}
-                    <div className="absolute inset-0 rounded-xl bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent 
-                  side="right" 
-                  className="w-full sm:max-w-sm border-l-0 bg-gradient-to-br from-background via-background/95 to-background/90 backdrop-blur-xl shadow-2xl"
-                >
-                  {/* Enhanced Navigation Items */}
-                  <div className="mt-6 flex flex-col gap-2">
-                    {navItems.map(({ label, to }, index) => (
-                      <SheetClose asChild key={label}>
-                        <NavLink
-                          to={to}
-                          className={({ isActive }) =>
-                            cn(
-                              "group relative flex items-center gap-4 rounded-xl px-4 py-4 text-base font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-lg",
-                              "border border-transparent hover:border-primary/20",
-                              "bg-gradient-to-r from-transparent via-transparent to-transparent",
-                              "hover:from-primary/5 hover:via-primary/10 hover:to-primary/5",
-                              isActive 
-                                ? "bg-gradient-to-r from-primary/10 via-primary/15 to-primary/10 border-primary/30 text-primary shadow-md" 
-                                : "text-muted-foreground hover:text-foreground",
-                            )
-                          }
-                          style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                          {/* Animated background */}
-                          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 transition-all duration-300 group-hover:from-primary/5 group-hover:via-primary/10 group-hover:to-primary/5" />
-                          
-                          {/* Icon container with enhanced styling */}
-                          <span className={cn(
-                            "relative flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300",
-                            "bg-gradient-to-br from-muted/60 to-muted/40",
-                            "group-hover:from-primary/20 group-hover:to-primary/10",
-                            "group-hover:scale-110 group-hover:shadow-md",
-                            "border border-border/50 group-hover:border-primary/30"
-                          )}>
-                            <div className="transition-all duration-300 group-hover:scale-110">
-                              {label === "Home" && <Home className="h-4 w-4" />}
-                              {label === "ATS Guide" && <BookOpen className="h-4 w-4" />}
-                              {label === "Templates" && <LayoutDashboard className="h-4 w-4" />}
-                              {label === "My Resumes" && <FolderOpen className="h-4 w-4" />}
-                            </div>
-                            {/* Subtle glow effect */}
-                            <div className="absolute inset-0 rounded-xl bg-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                          </span>
-                          
-                          {/* Label with enhanced typography */}
-                          <span className="relative font-semibold tracking-wide">
-                            {label}
-                          </span>
-                          
-                          {/* Hover indicator */}
-                          <div className="absolute right-4 h-2 w-2 rounded-full bg-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-125" />
-                        </NavLink>
-                      </SheetClose>
-                    ))}
-                    
-                    {/* Enhanced Sign In Button */}
-                    {!user && (
-                      <SheetClose asChild>
-                        <Button
-                          size="default"
-                          className={cn(
-                            "mt-6 w-full h-12 text-base font-semibold",
-                            "bg-gradient-to-r from-primary via-primary to-primary/90",
-                            "hover:from-primary/90 hover:via-primary hover:to-primary",
-                            "shadow-lg hover:shadow-xl hover:shadow-primary/25",
-                            "transition-all duration-300 hover:scale-[1.02]",
-                            "border border-primary/20 hover:border-primary/40"
-                          )}
-                          onClick={() => navigate("/auth")}
-                        >
-                          <Sparkles className="mr-2 h-4 w-4" />
-                          Sign In
-                        </Button>
-                      </SheetClose>
-                    )}
-                  </div>
-                  
-                  {/* Footer with branding */}
-                  <div className="absolute bottom-6 left-4 right-4">
-                    <div className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-muted/30 via-muted/20 to-muted/30 px-4 py-3 border border-border/30">
-                      <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-primary/10">
-                        <FileText className="h-3 w-3 text-primary" />
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground">
-                        ResumeCook
-                      </span>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div>
-
-            {/* User Actions */}
+          {/* Right Section - User Actions */}
+          <div className="flex items-center gap-3">
+            
+            {/* Sign In Button - Not logged in */}
             {!user && (
               <Button
-                size="sm"
                 onClick={() => navigate("/auth")}
-                className="hidden sm:inline-flex bg-primary hover:bg-primary-hover"
+                className="hidden sm:inline-flex h-9 px-4 rounded-lg font-medium shadow-sm"
               >
                 Sign In
               </Button>
             )}
 
+            {/* User Menu - Logged in (Desktop) */}
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="relative hidden h-9 w-9 rounded-full hover:bg-muted/50 transition-colors duration-200 sm:flex"
-                  >
-                    <Avatar className="h-8 w-8 ring-2 ring-transparent hover:ring-primary/20 transition-all duration-200">
-                      <AvatarFallback className="bg-gradient-to-br from-primary/10 to-primary/5 text-primary font-medium hover:from-primary/20 hover:to-primary/10 transition-all duration-200">
+                  <button className="hidden md:flex items-center gap-2 px-2 py-1.5 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+                    <Avatar className="h-8 w-8 ring-2 ring-gray-100">
+                      <AvatarImage src={user.photoURL || undefined} alt={getUserDisplayName()} />
+                      <AvatarFallback className="bg-gradient-to-br from-primary to-primary/80 text-white text-sm font-semibold">
                         {getUserInitials()}
                       </AvatarFallback>
                     </Avatar>
-                  </Button>
+                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                  </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end" forceMount>
-                  <div className="flex items-center justify-start gap-2 p-2">
-                    <div className="flex flex-col space-y-1 leading-none">
-                      <p className="font-medium text-sm">{user.email}</p>
-                      <p className="text-xs text-muted-foreground">Account</p>
-                    </div>
+                <DropdownMenuContent className="w-56 rounded-xl shadow-lg border-gray-100" align="end">
+                  {/* User Info */}
+                  <div className="px-3 py-3 border-b border-gray-100">
+                    <p className="font-semibold text-sm text-gray-900">{getUserDisplayName()}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{user.email}</p>
                   </div>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={() => navigate("/dashboard")}
-                    className="cursor-pointer"
-                  >
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>Templates</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => navigate("/my-resumes")}
-                    className="cursor-pointer"
-                  >
-                    <FolderOpen className="mr-2 h-4 w-4" />
-                    <span>My Resumes</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => navigate("/profile")}
-                    className="cursor-pointer"
-                  >
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={signOut}
-                    className="cursor-pointer text-red-600 focus:text-red-600"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </DropdownMenuItem>
+                  
+                  <div className="py-1">
+                    <DropdownMenuItem
+                      onClick={() => navigate("/dashboard")}
+                      className="px-3 py-2 cursor-pointer rounded-lg mx-1"
+                    >
+                      <LayoutDashboard className="mr-2.5 h-4 w-4 text-gray-500" />
+                      <span>Templates</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/my-resumes")}
+                      className="px-3 py-2 cursor-pointer rounded-lg mx-1"
+                    >
+                      <FolderOpen className="mr-2.5 h-4 w-4 text-gray-500" />
+                      <span>My Resumes</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/profile")}
+                      className="px-3 py-2 cursor-pointer rounded-lg mx-1"
+                    >
+                      <User className="mr-2.5 h-4 w-4 text-gray-500" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                  </div>
+                  
+                  <DropdownMenuSeparator className="bg-gray-100" />
+                  
+                  <div className="py-1">
+                    <DropdownMenuItem
+                      onClick={signOut}
+                      className="px-3 py-2 cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 rounded-lg mx-1"
+                    >
+                      <LogOut className="mr-2.5 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </div>
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
+
+            {/* Mobile Menu */}
+            <div className="flex md:hidden items-center gap-2">
+              {user && (
+                <Avatar className="h-8 w-8 ring-2 ring-gray-100">
+                  <AvatarImage src={user.photoURL || undefined} alt={getUserDisplayName()} />
+                  <AvatarFallback className="bg-gradient-to-br from-primary to-primary/80 text-white text-sm font-semibold">
+                    {getUserInitials()}
+                  </AvatarFallback>
+                </Avatar>
+              )}
+              
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9 rounded-lg"
+                    aria-label="Open menu"
+                  >
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-80 p-0">
+                  {/* Mobile Menu Header */}
+                  <div className="p-6 border-b border-gray-100 bg-gray-50/50">
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/25">
+                        <FileText className="h-5 w-5 text-white" />
+                      </div>
+                      <div>
+                        <span className="text-lg font-bold text-gray-900">
+                          Resume<span className="text-primary">Cook</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile Navigation */}
+                  <div className="p-4">
+                    <nav className="space-y-1">
+                      {navItems.map(({ label, to, icon: Icon }) => (
+                        <SheetClose asChild key={label}>
+                          <NavLink
+                            to={to}
+                            className={({ isActive }) =>
+                              cn(
+                                "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
+                                isActive 
+                                  ? "bg-primary/10 text-primary" 
+                                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                              )
+                            }
+                          >
+                            <Icon className="h-5 w-5" />
+                            {label}
+                          </NavLink>
+                        </SheetClose>
+                      ))}
+                    </nav>
+
+                    {/* User Section in Mobile */}
+                    {user && (
+                      <div className="mt-6 pt-6 border-t border-gray-100">
+                        <div className="px-4 mb-4">
+                          <p className="font-semibold text-sm text-gray-900">{getUserDisplayName()}</p>
+                          <p className="text-xs text-gray-500">{user.email}</p>
+                        </div>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => navigate("/profile")}
+                            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                          >
+                            <User className="h-5 w-5" />
+                            Profile
+                          </button>
+                        </SheetClose>
+                        <SheetClose asChild>
+                          <button
+                            onClick={signOut}
+                            className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                          >
+                            <LogOut className="h-5 w-5" />
+                            Log out
+                          </button>
+                        </SheetClose>
+                      </div>
+                    )}
+
+                    {/* Sign In for Mobile */}
+                    {!user && (
+                      <div className="mt-6 pt-6 border-t border-gray-100">
+                        <SheetClose asChild>
+                          <Button
+                            onClick={() => navigate("/auth")}
+                            className="w-full h-11 rounded-xl font-medium"
+                          >
+                            Sign In
+                          </Button>
+                        </SheetClose>
+                      </div>
+                    )}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };

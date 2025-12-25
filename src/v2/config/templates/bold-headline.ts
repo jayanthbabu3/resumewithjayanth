@@ -121,7 +121,10 @@ export const boldHeadlineConfig: TemplateConfig = createTemplateConfig({
 
   header: {
     variant: 'banner',
-    showPhoto: false,
+    showPhoto: true,
+    photoSize: '70px',
+    photoShape: 'circle',
+    photoPosition: 'right', // Photo on the right side of header
     padding: '42px 32px',
     contactIcons: {
       show: true,

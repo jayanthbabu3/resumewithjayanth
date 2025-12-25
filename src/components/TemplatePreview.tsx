@@ -49,7 +49,6 @@ export const validTemplateIds = [
   'bold-headline-v2',
   'accountant-pro-v2',
   'centered-photo-v2',
-  'creative-split-v2',
   'classic-minimal-v2',
   'professional-blue-v2',
   'elegant-ats-v2',

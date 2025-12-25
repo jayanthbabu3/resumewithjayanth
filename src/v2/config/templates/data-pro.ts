@@ -123,7 +123,10 @@ export const dataProConfig: TemplateConfig = createTemplateConfig({
 
   header: {
     variant: 'left-aligned',
-    showPhoto: false,
+    showPhoto: true,
+    photoSize: '70px',
+    photoShape: 'circle',
+    photoPosition: 'right', // Photo on the right side of header
     padding: '0 0 16px 0',
     contactIcons: {
       show: true,

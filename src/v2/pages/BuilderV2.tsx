@@ -5,7 +5,7 @@
  * Matches the existing LiveEditor styling and functionality.
  */
 
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
@@ -34,6 +34,7 @@ import { StyleOptionsProvider } from '@/contexts/StyleOptionsContext';
 import { StyleOptionsWrapper } from '@/components/resume/StyleOptionsWrapper';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Input } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
@@ -50,7 +51,6 @@ import { getTemplate } from '../templates';
 
 // V2 Dynamic Form (config-driven)
 import { DynamicForm, ElegantForm } from '../components/form';
-import { MultiColorThemePicker } from '../components/MultiColorThemePicker';
 
 export const BuilderV2: React.FC = () => {
   const navigate = useNavigate();
@@ -72,13 +72,35 @@ export const BuilderV2: React.FC = () => {
   const [enabledSections, setEnabledSections] = useState<string[]>(['header', 'summary', 'experience', 'education', 'strengths', 'skills', 'achievements']);
   const [editingLabelId, setEditingLabelId] = useState<string | null>(null);
   const [editingLabelValue, setEditingLabelValue] = useState('');
-  const [editorMode, setEditorMode] = useState<'live' | 'form'>('live');
+  const [editorMode, setEditorMode] = useState<'preview' | 'live' | 'form'>('preview');
   const [sectionOverrides, setSectionOverrides] = useState<Record<string, any>>({});
   const [showReorder, setShowReorder] = useState(false);
   // Toggle between old form and new dynamic form (for testing)
   const [useNewForm, setUseNewForm] = useState(true);
   
   const previewRef = useRef<HTMLDivElement>(null);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Smart header hide on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY.current;
+      const scrolledPastThreshold = currentScrollY > 80;
+      
+      if (scrollingDown && scrolledPastThreshold) {
+        setHeaderVisible(false);
+      } else if (!scrollingDown) {
+        setHeaderVisible(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Get base template config (without theme overrides) for color slots
   const baseConfig = React.useMemo(() => {
@@ -719,316 +741,362 @@ export const BuilderV2: React.FC = () => {
   );
 
   return (
-    <div 
-      className="flex h-screen flex-col bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50"
-      style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
-        backgroundSize: '20px 20px',
-      }}
-    >
-      <Header />
-
-      {/* Compact Header - Sticky */}
-      <div className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-2 sm:px-4">
-          {/* Mobile Layout - Single Row */}
-          <div className="lg:hidden py-1.5 sm:py-2">
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 min-w-0">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => navigate('/templates')}
-                  className="h-7 w-7 p-0"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                </Button>
-                <span className="font-medium text-xs truncate">{config.name}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as 'live' | 'form')} className="shrink-0">
-                  <TabsList className="h-7 p-0.5">
-                    <TabsTrigger value="live" className="h-6 px-2 text-xs">
-                      <Edit3 className="h-3 w-3" />
-                    </TabsTrigger>
-                    <TabsTrigger value="form" className="h-6 px-2 text-xs">
-                      <FileEdit className="h-3 w-3" />
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" size="sm" className="h-7 w-7 p-0">
-                      <Settings className="h-3.5 w-3.5" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent align="end" className="w-72 p-3">
-                    <div className="space-y-3">
-                      <MultiColorThemePicker
-                        colorSlots={colorSlots}
-                        colors={Object.keys(themeColors).length > 0 ? themeColors : { primary: themeColor }}
-                        onColorsChange={(colors) => {
-                          setThemeColors(colors);
-                          if (colors.primary) setThemeColor(colors.primary);
-                        }}
-                      />
-                      <Button variant="outline" size="sm" className="w-full text-xs" onClick={() => setShowReorder(true)}>
-                        <LayoutGrid className="w-3 h-3 mr-1" /> Sections
-                      </Button>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-                <Button onClick={handleDownload} disabled={isDownloading} size="sm" className="h-7 px-2">
-                  {isDownloading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop Layout - Compact Single Row */}
-          <div className="hidden lg:flex items-center justify-between py-2">
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" onClick={() => navigate('/templates')} className="gap-1.5 h-8">
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span className="text-sm">Back</span>
-              </Button>
-              <div className="h-4 w-px bg-gray-200" />
-              <span className="font-medium text-sm">{config.name}</span>
-            </div>
-            <Tabs value={editorMode} onValueChange={(v) => setEditorMode(v as 'live' | 'form')}>
-              <TabsList className="h-8">
-                <TabsTrigger value="live" className="gap-1.5 text-xs h-7">
-                  <Edit3 className="h-3.5 w-3.5" /> Live
-                </TabsTrigger>
-                <TabsTrigger value="form" className="gap-1.5 text-xs h-7">
-                  <FileEdit className="h-3.5 w-3.5" /> Form
-                </TabsTrigger>
-              </TabsList>
-            </Tabs>
-            <div className="flex items-center gap-2">
-              <MultiColorThemePicker
-                colorSlots={colorSlots}
-                colors={Object.keys(themeColors).length > 0 ? themeColors : { primary: themeColor }}
-                onColorsChange={(colors) => {
-                  setThemeColors(colors);
-                  if (colors.primary) setThemeColor(colors.primary);
-                }}
-                compact
-              />
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" size="sm" className="gap-1.5 h-8 text-xs">
-                    <LayoutGrid className="w-3.5 h-3.5" /> Sections
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80" align="end">{renderSectionManager()}</PopoverContent>
-              </Popover>
-              <Button onClick={() => toast.success('Saved!')} size="sm" variant="outline" className="gap-1.5 h-8 text-xs">
-                <Save className="h-3.5 w-3.5" /> Save
-              </Button>
-              <Button onClick={handleDownload} disabled={isDownloading} size="sm" className="gap-1.5 h-8 text-xs">
-                {isDownloading ? <><Loader2 className="h-3.5 w-3.5 animate-spin" /> Generating...</> : <><Download className="h-3.5 w-3.5" /> Download</>}
-              </Button>
-            </div>
-          </div>
-        </div>
+    <div className="min-h-screen bg-gray-100">
+      {/* Smart Header - Hides on scroll down, shows on scroll up */}
+      <div 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-transform duration-300",
+          headerVisible ? "translate-y-0" : "-translate-y-full"
+        )}
+      >
+        <Header />
       </div>
 
       <StyleOptionsProvider>
-        {/* Main Content Area - Optimized Spacing */}
-        <div className="flex-1 overflow-auto">
-          <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3">
-            <div className={cn(
-              "grid gap-3 sm:gap-4 max-w-8xl mx-auto lg:gap-6",
-              // Mobile: Always stack vertically
-              // Desktop: Side-by-side in form mode, single column in live mode
-              editorMode === 'form' 
-                ? "grid-cols-1 lg:grid-cols-[37%,63%]" 
-                : "grid-cols-1 max-w-[900px]"
-            )}>
-              {/* Form Section - Only in form mode */}
-              {editorMode === 'form' && (
-                <div className="max-h-[calc(100vh-7rem)] overflow-y-auto space-y-3 rounded-lg border border-border/50 bg-background px-3 py-3 sm:px-4 sm:py-4 shadow-sm">
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <FileEdit className="w-5 h-5 text-primary" />
-                        <h2 className="text-lg font-bold">Form Editor</h2>
-                      </div>
+        {/* Main Content */}
+        <div className={cn(
+          "min-h-screen pb-8 transition-all duration-300",
+          headerVisible ? "pt-[72px]" : "pt-4"
+        )}>
+          
+          {/* Main Content Grid */}
+          <div className={cn(
+            "container mx-auto py-6 px-4 sm:px-6 lg:px-8",
+            editorMode === 'form' 
+              ? "flex gap-0" 
+              : "flex justify-center"
+          )}>
+            
+            {/* Form Panel - Only in form mode */}
+            {editorMode === 'form' && (
+              <div className="hidden lg:block w-[380px] flex-shrink-0">
+                <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
+                  <div className="p-4 border-b border-gray-100">
+                    <div className="flex items-center gap-2">
+                      <FileEdit className="w-5 h-5 text-primary" />
+                      <h2 className="text-lg font-semibold">Edit Content</h2>
                     </div>
-                    <p className="text-xs text-muted-foreground">Changes sync with preview in real-time</p>
+                    <p className="text-xs text-muted-foreground mt-1">Changes sync in real-time</p>
                   </div>
-                  
-                  {useNewForm ? (
-                    <ElegantForm
-                      resumeData={resumeData}
-                      onResumeDataChange={setResumeData}
-                      enabledSections={config.sections}
-                      sectionTitles={sectionLabels}
-                      templateConfig={config}
-                      accentColor="#2563eb"
-                    />
-                  ) : (
-                    <ResumeForm 
-                      resumeData={resumeData as any} 
-                      setResumeData={setResumeData as any}
-                      templateId={templateId}
-                      enabledSections={enabledSections}
-                    />
-                  )}
-                </div>
-              )}
-
-              {/* Preview Section */}
-              <div className={cn(
-                editorMode === 'form'
-                  ? "overflow-y-auto overflow-x-visible lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)]"
-                  : "overflow-visible",
-              )}>
-                <div 
-                  className="rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 overflow-x-visible"
-                  style={{
-                    background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
-                  }}
-                >
-                  {/* Dot pattern overlay */}
-                  <div 
-                    className="space-y-2 sm:space-y-4 flex flex-col items-stretch sm:items-center"
-                    style={{
-                      backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
-                      backgroundSize: '20px 20px',
-                    }}
-                  >
-                    {/* Compact Preview Header */}
-                    <div className="flex items-center justify-between gap-2 px-2 sm:px-3 py-1.5 sm:py-2 bg-white/90 backdrop-blur-md rounded-lg border border-white/50 shadow-sm w-full max-w-[210mm]">
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <div className="h-6 w-1 rounded-full bg-primary" />
-                        <Eye className="h-3.5 w-3.5 text-primary" />
-                        <span className="font-semibold text-xs sm:text-sm">Live Preview</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Button variant="outline" size="sm" className="h-7 gap-1 text-xs px-2" onClick={() => setShowReorder(true)}>
-                          <PanelsTopLeft className="h-3 w-3" />
-                          <span className="hidden sm:inline">Rearrange</span>
-                        </Button>
-                        <Button variant="outline" size="sm" className="h-7 gap-1 text-xs px-2" onClick={handleAddCustomSection}>
-                          <Plus className="h-3 w-3" />
-                          <span className="hidden sm:inline">Add</span>
-                        </Button>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
-                              <Settings className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin text-primary" style={{ animationDuration: '3s' }} />
-                            </Button>
-                          </PopoverTrigger>
-                          <PopoverContent align="end" className="w-[90vw] sm:w-96 p-0 shadow-xl border-gray-200 max-h-[85vh] overflow-y-auto">
-                            <StyleOptionsPanelV2 
-                              inPopover={true} 
-                              resumeData={resumeData}
-                              enabledSections={enabledSections}
-                              onToggleSection={handleToggleSection}
-                            />
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-                    </div>
-
-                    {/* Resume Preview Container - Full Width with Horizontal Scroll on Mobile */}
-                    <div
-                      className={cn(
-                        "relative w-full overflow-y-visible",
-                        editorMode === 'form' ? "overflow-x-auto" : "overflow-x-hidden",
-                      )}
-                    >
-                      {/* Decorative corner elements - Hidden on mobile */}
-                      <div className="hidden sm:block absolute -top-2 -left-2 w-5 h-5 border-l-2 border-t-2 border-cyan-300/50 rounded-tl-lg z-10" />
-                      <div className="hidden sm:block absolute -top-2 -right-2 w-5 h-5 border-r-2 border-t-2 border-cyan-300/50 rounded-tr-lg z-10" />
-                      <div className="hidden sm:block absolute -bottom-2 -left-2 w-5 h-5 border-l-2 border-b-2 border-cyan-300/50 rounded-bl-lg z-10" />
-                      <div className="hidden sm:block absolute -bottom-2 -right-2 w-5 h-5 border-r-2 border-b-2 border-cyan-300/50 rounded-br-lg z-10" />
-                      
-                      <StyleOptionsWrapper>
-                        <div 
-                          id="resume-preview-v2" 
-                          ref={previewRef}
-                          className="bg-white shadow-2xl shadow-gray-300/50 rounded-lg sm:rounded-xl overflow-hidden ring-1 ring-gray-200/50"
-                          style={{ 
-                            width: '210mm', 
-                            minHeight: '297mm',
-                            // On mobile, maintain full width and allow horizontal scroll
-                            minWidth: '210mm',
-                            margin: '0 auto',
-                          }}
-                        >
-                          <InlineEditProvider
-                            resumeData={resumeData as any}
-                            setResumeData={setResumeData as any}
-                          >
-                            <ResumeRenderer
-                              resumeData={resumeData}
-                              templateId={templateId}
-                              themeColors={themeColors}
-                              sectionOverrides={sectionOverrides}
-                              editable={editorMode === 'live'}
-                              sectionLabels={sectionLabels}
-                              enabledSections={enabledSections}
-                              onAddBulletPoint={handleAddBulletPoint}
-                              onRemoveBulletPoint={handleRemoveBulletPoint}
-                              onAddExperience={handleAddExperience}
-                              onRemoveExperience={handleRemoveExperience}
-                              onAddEducation={handleAddEducation}
-                              onRemoveEducation={handleRemoveEducation}
-                              onAddCustomSectionItem={handleAddCustomSectionItem}
-                              onRemoveCustomSectionItem={handleRemoveCustomSectionItem}
-                              onAddLanguage={handleAddLanguage}
-                              onRemoveLanguage={handleRemoveLanguage}
-                              onUpdateLanguage={handleUpdateLanguage}
-                              onAddStrength={handleAddStrength}
-                              onRemoveStrength={handleRemoveStrength}
-                              onAddAchievement={handleAddAchievement}
-                              onRemoveAchievement={handleRemoveAchievement}
-                              onAddProject={handleAddProject}
-                              onRemoveProject={handleRemoveProject}
-                              onAddCertification={handleAddCertification}
-                              onRemoveCertification={handleRemoveCertification}
-                              onAddAward={handleAddAward}
-                              onRemoveAward={handleRemoveAward}
-                              onAddPublication={handleAddPublication}
-                              onRemovePublication={handleRemovePublication}
-                              onAddVolunteer={handleAddVolunteer}
-                              onRemoveVolunteer={handleRemoveVolunteer}
-                              onAddSpeaking={handleAddSpeaking}
-                              onRemoveSpeaking={handleRemoveSpeaking}
-                              onAddPatent={handleAddPatent}
-                              onRemovePatent={handleRemovePatent}
-                              onAddInterest={handleAddInterest}
-                              onRemoveInterest={handleRemoveInterest}
-                              onAddReference={handleAddReference}
-                              onRemoveReference={handleRemoveReference}
-                              onAddCourse={handleAddCourse}
-                              onRemoveCourse={handleRemoveCourse}
-                            />
-                          </InlineEditProvider>
-                        </div>
-                      </StyleOptionsWrapper>
-                    </div>
+                  <div className="p-4">
+                    {useNewForm ? (
+                      <ElegantForm
+                        resumeData={resumeData}
+                        onResumeDataChange={setResumeData}
+                        enabledSections={config.sections}
+                        sectionTitles={sectionLabels}
+                        templateConfig={config}
+                        accentColor="#2563eb"
+                      />
+                    ) : (
+                      <ResumeForm 
+                        resumeData={resumeData as any} 
+                        setResumeData={setResumeData as any}
+                        templateId={templateId}
+                        enabledSections={enabledSections}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* Resume Preview with Toolbars */}
+            <TooltipProvider delayDuration={100}>
+              <div className={cn(
+                "relative flex items-start",
+                editorMode === 'form' ? "flex-1 pl-6" : "justify-center w-full"
+              )}>
+                {/* Resume Column: Toolbar + Resume */}
+                <div className="flex flex-col">
+                  {/* Top Toolbar - Minimal: Back, Mode Toggle (centered), Color, Download */}
+                  <div 
+                    className="mb-4 flex items-center px-3 py-2 rounded-2xl backdrop-blur-sm" 
+                    style={{ 
+                      width: '210mm',
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%)',
+                      boxShadow: '0 2px 12px -2px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)',
+                    }}
+                  >
+                    {/* Left: Back Button */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => navigate('/templates')}
+                          className="h-9 px-3 flex items-center gap-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-gray-100/80 transition-all duration-200 group"
+                        >
+                          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+                          <span className="text-sm font-medium">Back</span>
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="bg-gray-900 text-white border-0">
+                        Back to Templates
+                      </TooltipContent>
+                    </Tooltip>
+
+                    {/* Spacer to push center content */}
+                    <div className="flex-1" />
+
+                    {/* Center: Mode Toggle or Customize Button */}
+                    {editorMode === 'preview' ? (
+                      <Button 
+                        onClick={() => setEditorMode('live')} 
+                        size="sm" 
+                        className="h-9 px-4 gap-2 rounded-xl"
+                      >
+                        <Edit3 className="h-4 w-4" />
+                        <span className="font-medium">Customize</span>
+                      </Button>
+                    ) : (
+                      <div className="flex items-center bg-gray-100 rounded-xl p-0.5">
+                        <button
+                          onClick={() => setEditorMode('live')}
+                          className={cn(
+                            "h-8 px-3.5 flex items-center gap-1.5 rounded-lg text-sm font-medium transition-all duration-200",
+                            editorMode === 'live' 
+                              ? "bg-white shadow-sm text-primary" 
+                              : "text-gray-500 hover:text-gray-700"
+                          )}
+                        >
+                          <Edit3 className="h-3.5 w-3.5" />
+                          Live
+                        </button>
+                        <button
+                          onClick={() => setEditorMode('form')}
+                          className={cn(
+                            "h-8 px-3.5 flex items-center gap-1.5 rounded-lg text-sm font-medium transition-all duration-200",
+                            editorMode === 'form' 
+                              ? "bg-white shadow-sm text-primary" 
+                              : "text-gray-500 hover:text-gray-700"
+                          )}
+                        >
+                          <FileEdit className="h-3.5 w-3.5" />
+                          Form
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Spacer to push right content */}
+                    <div className="flex-1" />
+
+                    {/* Right: Color Picker + Download */}
+                    <div className="flex items-center gap-2">
+                      {/* Color Picker - Direct color selection */}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="h-9 w-9 flex items-center justify-center rounded-xl hover:bg-gray-100/80 transition-all duration-200">
+                            <div 
+                              className="w-6 h-6 rounded-full shadow-md ring-2 ring-white cursor-pointer hover:scale-110 transition-transform" 
+                              style={{ backgroundColor: themeColors.primary || themeColor }}
+                            />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent align="end" className="w-auto p-2 rounded-xl shadow-xl">
+                          {/* Simple color grid - one click to select */}
+                          <div className="flex flex-wrap gap-1.5 max-w-[200px]">
+                            {[
+                              '#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4', '#14b8a6',
+                              '#10b981', '#22c55e', '#84cc16', '#eab308', '#f59e0b',
+                              '#f97316', '#ef4444', '#dc2626', '#e11d48', '#ec4899',
+                              '#d946ef', '#a855f7', '#8b5cf6', '#6366f1', '#64748b',
+                              '#1e293b', '#0f172a', '#374151', '#4b5563', '#6b7280',
+                            ].map((color) => (
+                              <button
+                                key={color}
+                                onClick={() => {
+                                  setThemeColor(color);
+                                  setThemeColors({ ...themeColors, primary: color });
+                                }}
+                                className={cn(
+                                  "w-7 h-7 rounded-lg transition-all duration-150 hover:scale-110",
+                                  (themeColors.primary || themeColor) === color && "ring-2 ring-offset-2 ring-gray-900"
+                                )}
+                                style={{ backgroundColor: color }}
+                              />
+                            ))}
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+
+                      {/* Download Icon */}
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button 
+                            onClick={handleDownload} 
+                            disabled={isDownloading} 
+                            size="icon"
+                            className="h-9 w-9 rounded-xl"
+                          >
+                            {isDownloading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="top" className="bg-gray-900 text-white border-0">
+                          Download PDF
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </div>
+
+                  {/* Resume Document */}
+                  <div className="relative">
+                    <StyleOptionsWrapper>
+                      <div 
+                        id="resume-preview-v2" 
+                        ref={previewRef}
+                        className="bg-white shadow-xl rounded-lg overflow-visible ring-1 ring-gray-200"
+                        style={{ 
+                          width: '210mm', 
+                          minHeight: '297mm',
+                          minWidth: '210mm',
+                        }}
+                      >
+                        <InlineEditProvider
+                          resumeData={resumeData as any}
+                          setResumeData={setResumeData as any}
+                        >
+                          <ResumeRenderer
+                            resumeData={resumeData}
+                            templateId={templateId}
+                            themeColors={themeColors}
+                            sectionOverrides={sectionOverrides}
+                            editable={editorMode === 'live'}
+                            sectionLabels={sectionLabels}
+                            enabledSections={enabledSections}
+                            onAddBulletPoint={handleAddBulletPoint}
+                            onRemoveBulletPoint={handleRemoveBulletPoint}
+                            onAddExperience={handleAddExperience}
+                            onRemoveExperience={handleRemoveExperience}
+                            onAddEducation={handleAddEducation}
+                            onRemoveEducation={handleRemoveEducation}
+                            onAddCustomSectionItem={handleAddCustomSectionItem}
+                            onRemoveCustomSectionItem={handleRemoveCustomSectionItem}
+                            onAddLanguage={handleAddLanguage}
+                            onRemoveLanguage={handleRemoveLanguage}
+                            onUpdateLanguage={handleUpdateLanguage}
+                            onAddStrength={handleAddStrength}
+                            onRemoveStrength={handleRemoveStrength}
+                            onAddAchievement={handleAddAchievement}
+                            onRemoveAchievement={handleRemoveAchievement}
+                            onAddProject={handleAddProject}
+                            onRemoveProject={handleRemoveProject}
+                            onAddCertification={handleAddCertification}
+                            onRemoveCertification={handleRemoveCertification}
+                            onAddAward={handleAddAward}
+                            onRemoveAward={handleRemoveAward}
+                            onAddPublication={handleAddPublication}
+                            onRemovePublication={handleRemovePublication}
+                            onAddVolunteer={handleAddVolunteer}
+                            onRemoveVolunteer={handleRemoveVolunteer}
+                            onAddSpeaking={handleAddSpeaking}
+                            onRemoveSpeaking={handleRemoveSpeaking}
+                            onAddPatent={handleAddPatent}
+                            onRemovePatent={handleRemovePatent}
+                            onAddInterest={handleAddInterest}
+                            onRemoveInterest={handleRemoveInterest}
+                            onAddReference={handleAddReference}
+                            onRemoveReference={handleRemoveReference}
+                            onAddCourse={handleAddCourse}
+                            onRemoveCourse={handleRemoveCourse}
+                          />
+                        </InlineEditProvider>
+                      </div>
+                    </StyleOptionsWrapper>
+                  </div>
+                </div>
+                
+                {/* Side Toolbar - Always visible: Sections, Add, Settings, Save */}
+                {editorMode !== 'preview' && (
+                  <div 
+                    className="ml-4 flex flex-col gap-1.5 sticky top-20 self-start p-2 rounded-2xl backdrop-blur-sm"
+                    style={{ 
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%)',
+                      boxShadow: '0 2px 12px -2px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)',
+                    }}
+                  >
+                    {/* Rearrange Sections */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button 
+                          onClick={() => setShowReorder(true)}
+                          className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-700 hover:bg-white/80 transition-all duration-200"
+                        >
+                          <PanelsTopLeft className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="left" className="bg-gray-900 text-white border-0">
+                        Rearrange Sections
+                      </TooltipContent>
+                    </Tooltip>
+
+                    {/* Add Section */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button 
+                          onClick={handleAddCustomSection}
+                          className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-700 hover:bg-white/80 transition-all duration-200"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="left" className="bg-gray-900 text-white border-0">
+                        Add Section
+                      </TooltipContent>
+                    </Tooltip>
+
+                    {/* Settings */}
+                    <Popover>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <PopoverTrigger asChild>
+                            <button className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-gray-700 hover:bg-white/80 transition-all duration-200">
+                              <Settings className="h-4 w-4" />
+                            </button>
+                          </PopoverTrigger>
+                        </TooltipTrigger>
+                        <TooltipContent side="left" className="bg-gray-900 text-white border-0">
+                          Style Settings
+                        </TooltipContent>
+                      </Tooltip>
+                      <PopoverContent align="start" side="left" className="w-96 p-0 shadow-xl rounded-xl max-h-[80vh] overflow-y-auto">
+                        <StyleOptionsPanelV2 
+                          inPopover={true} 
+                          resumeData={resumeData}
+                          enabledSections={enabledSections}
+                          onToggleSection={handleToggleSection}
+                        />
+                      </PopoverContent>
+                    </Popover>
+
+                    <div className="h-px bg-gray-200/50 mx-1 my-0.5" />
+
+                    {/* Save */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button 
+                          onClick={() => toast.success('Saved!')}
+                          className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-green-600 hover:bg-green-50 transition-all duration-200"
+                        >
+                          <Save className="h-4 w-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="left" className="bg-gray-900 text-white border-0">
+                        Save Progress
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
+                )}
+              </div>
+            </TooltipProvider>
           </div>
         </div>
         
-        {/* Hidden PDF Preview - Always renders with editable={false} for clean PDF output */}
-        {/* This ensures PDF generation uses clean output without editing UI or placeholders */}
+        {/* Hidden PDF Preview */}
         <div className="hidden">
           <StyleOptionsWrapper>
             <div 
               id="resume-preview-pdf-v2" 
               className="bg-white"
-              style={{ 
-                width: '210mm', 
-                minHeight: '297mm',
-              }}
+              style={{ width: '210mm', minHeight: '297mm' }}
             >
               <InlineEditProvider
                 resumeData={resumeData as any}
@@ -1047,6 +1115,7 @@ export const BuilderV2: React.FC = () => {
           </StyleOptionsWrapper>
         </div>
       </StyleOptionsProvider>
+      
       <SectionReorderDialog
         open={showReorder}
         onOpenChange={setShowReorder}

@@ -12,6 +12,7 @@
 import React from 'react';
 import type { TemplateConfig, HeaderVariant, V2ResumeData } from '../../types';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
+import { InlineEditablePhoto } from '@/components/resume/InlineEditablePhoto';
 import { Mail, Phone, MapPin, Linkedin, Globe, Github } from 'lucide-react';
 import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 
@@ -266,15 +267,35 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
 
     const size = options?.size || header.photoSize || '70px';
     const shape = header.photoShape || 'circle';
-    const borderRadius =
-      shape === 'circle' ? '50%' : shape === 'rounded' ? '12px' : '4px';
     const forBanner = options?.forBanner || false;
     
     // For banner: use semi-transparent white border; otherwise use accent color
     const borderColor = options?.borderColor || (forBanner ? 'rgba(255, 255, 255, 0.5)' : accent);
     // For banner: use semi-transparent white bg; otherwise use light accent tint
     const backgroundColor = options?.backgroundColor || (forBanner ? 'rgba(255, 255, 255, 0.15)' : `${accent}15`);
+    // For banner: use white text; otherwise use accent color
+    const textColor = options?.textColor || (forBanner ? '#ffffff' : accent);
+    const initials = getInitials(personalInfo.fullName || '');
 
+    // Use InlineEditablePhoto in editable mode for direct file selection
+    if (editable) {
+      return (
+        <InlineEditablePhoto
+          path="personalInfo.photo"
+          value={personalInfo.photo}
+          size={size}
+          shape={shape}
+          borderColor={borderColor}
+          backgroundColor={backgroundColor}
+          textColor={textColor}
+          borderWidth={options?.borderWidth || '2px'}
+          editable={editable}
+          initials={initials}
+        />
+      );
+    }
+
+    // Non-editable mode: render simple image/placeholder
     if (personalInfo.photo) {
       return (
         <div
@@ -283,7 +304,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
           style={{
             width: size,
             height: size,
-            borderRadius,
+            borderRadius: shape === 'circle' ? '50%' : shape === 'rounded' ? '12px' : '4px',
             overflow: 'hidden',
             border: `${options?.borderWidth || '2px'} solid ${borderColor}`,
             flexShrink: 0,
@@ -298,12 +319,9 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
       );
     }
 
-    const initials = getInitials(personalInfo.fullName || '');
     const sizeValue = parsePx(size, 70);
     // Elegant font sizing: larger initials for better readability
     const fontSize = Math.max(16, Math.round(sizeValue / 2.5));
-    // For banner: use white text; otherwise use accent color
-    const textColor = options?.textColor || (forBanner ? '#ffffff' : accent);
 
     return (
       <div
@@ -312,7 +330,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
         style={{
           width: size,
           height: size,
-          borderRadius,
+          borderRadius: shape === 'circle' ? '50%' : shape === 'rounded' ? '12px' : '4px',
           border: `${options?.borderWidth || '2px'} solid ${borderColor}`,
           backgroundColor,
           display: 'flex',
@@ -354,6 +372,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
       case 'banner':
         // Get the actual banner background color (theme color or configured)
         const bannerBgColor = header.backgroundColor || accent;
+        const bannerPhotoPosition = header.photoPosition || 'left';
         const bannerAvatar = renderAvatar({
           size: header.photoSize || '64px',
           forBanner: true,
@@ -381,7 +400,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
             }}
           >
             <div className="flex items-center gap-4">
-              {bannerAvatar}
+              {bannerPhotoPosition === 'left' && bannerAvatar}
               <div className="flex-1">
                 {renderName()}
                 <div 
@@ -509,20 +528,24 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
                   </div>
                 )}
               </div>
+              {bannerPhotoPosition === 'right' && bannerAvatar}
             </div>
           </div>
         );
 
       case 'minimal':
+        const minimalPhotoPosition = header.photoPosition || 'left';
+        const minimalAvatar = renderAvatar();
         return (
           <div style={{ padding: header.padding }}>
             <div className="flex items-start gap-4">
-              {renderAvatar()}
-              <div>
+              {minimalPhotoPosition === 'left' && minimalAvatar}
+              <div className="flex-1">
                 {renderName()}
                 <div style={{ marginTop: '4px' }}>{renderTitle()}</div>
                 <div style={{ marginTop: '12px' }}>{renderContact()}</div>
               </div>
+              {minimalPhotoPosition === 'right' && minimalAvatar}
             </div>
           </div>
         );
@@ -703,15 +726,19 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
 
       case 'left-aligned':
       default:
+        const photoPosition = header.photoPosition || 'left';
+        const avatar = renderAvatar();
+        
         return (
           <div style={{ padding: header.padding }}>
             <div className="flex items-start gap-4">
-              {renderAvatar()}
-              <div>
+              {photoPosition === 'left' && avatar}
+              <div className="flex-1">
                 {renderName()}
                 <div style={{ marginTop: '4px' }}>{renderTitle()}</div>
                 <div style={{ marginTop: '12px' }}>{renderContact()}</div>
               </div>
+              {photoPosition === 'right' && avatar}
             </div>
           </div>
         );

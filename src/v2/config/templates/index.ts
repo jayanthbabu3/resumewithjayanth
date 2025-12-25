@@ -13,7 +13,6 @@ import { dataProConfig } from './data-pro';
 import { accountantProConfig } from './accountant-pro';
 import { seniorFrontendProConfig } from './senior-frontend-pro';
 import { centeredPhotoConfig } from './centered-photo';
-import { creativeSplitConfig } from './creative-split';
 import { classicMinimalConfig } from './classic-minimal';
 import { professionalBlueConfig } from './professional-blue';
 import { elegantAtsConfig } from './elegant-ats';
@@ -29,7 +28,6 @@ import { platformCoreConfig } from './platform-core';
 import { cloudOpsConfig } from './cloud-ops';
 import { systemArchitectConfig } from './system-architect';
 import { productEngineerConfig } from './product-engineer';
-import { devopsCommandConfig } from './devops-command';
 import { mobileCraftConfig } from './mobile-craft';
 import { apiLedgerConfig } from './api-ledger';
 
@@ -55,7 +53,6 @@ export const TEMPLATE_REGISTRY: Record<string, TemplateConfig> = {
   'accountant-pro-v2': accountantProConfig,
   'senior-frontend-pro-v2': seniorFrontendProConfig,
   'centered-photo-v2': centeredPhotoConfig,
-  'creative-split-v2': creativeSplitConfig,
   'classic-minimal-v2': classicMinimalConfig,
   'professional-blue-v2': professionalBlueConfig,
   'elegant-ats-v2': elegantAtsConfig,
@@ -71,7 +68,6 @@ export const TEMPLATE_REGISTRY: Record<string, TemplateConfig> = {
   'cloud-ops-v2': cloudOpsConfig,
   'system-architect-v2': systemArchitectConfig,
   'product-engineer-v2': productEngineerConfig,
-  'devops-command-v2': devopsCommandConfig,
   'mobile-craft-v2': mobileCraftConfig,
   'api-ledger-v2': apiLedgerConfig,
   // Fresher Templates
@@ -112,7 +108,6 @@ export {
   accountantProConfig,
   seniorFrontendProConfig,
   centeredPhotoConfig,
-  creativeSplitConfig,
   classicMinimalConfig,
   professionalBlueConfig,
   elegantAtsConfig,
@@ -128,7 +123,6 @@ export {
   cloudOpsConfig,
   systemArchitectConfig,
   productEngineerConfig,
-  devopsCommandConfig,
   mobileCraftConfig,
   apiLedgerConfig,
   // Fresher Templates

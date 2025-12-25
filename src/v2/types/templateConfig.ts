@@ -206,6 +206,8 @@ export interface HeaderConfig {
   showPhoto?: boolean;
   photoSize?: string;
   photoShape?: 'circle' | 'square' | 'rounded';
+  /** Photo position: 'left' or 'right' (for left-aligned, minimal, and banner variants) */
+  photoPosition?: 'left' | 'right';
   backgroundColor?: string;
   textColor?: string;
   padding?: string;

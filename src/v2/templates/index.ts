@@ -15,7 +15,6 @@ import { dataProTemplate } from './data-pro';
 import { boldHeadlineTemplate } from './bold-headline';
 import { accountantProTemplate } from './accountant-pro';
 import { centeredPhotoTemplate } from './centered-photo';
-import { creativeSplitTemplate } from './creative-split';
 import { classicMinimalTemplate } from './classic-minimal';
 import { professionalBlueTemplate } from './professional-blue';
 import { elegantAtsTemplate } from './elegant-ats';
@@ -31,7 +30,6 @@ import { platformCoreTemplate } from './platform-core';
 import { cloudOpsTemplate } from './cloud-ops';
 import { systemArchitectTemplate } from './system-architect';
 import { productEngineerTemplate } from './product-engineer';
-import { devopsCommandTemplate } from './devops-command';
 import { mobileCraftTemplate } from './mobile-craft';
 import { apiLedgerTemplate } from './api-ledger';
 
@@ -60,7 +58,6 @@ export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'bold-headline-v2': boldHeadlineTemplate,
   'accountant-pro-v2': accountantProTemplate,
   'centered-photo-v2': centeredPhotoTemplate,
-  'creative-split-v2': creativeSplitTemplate,
   'classic-minimal-v2': classicMinimalTemplate,
   'professional-blue-v2': professionalBlueTemplate,
   'elegant-ats-v2': elegantAtsTemplate,
@@ -76,7 +73,6 @@ export const V2_TEMPLATE_REGISTRY: TemplateRegistry = {
   'cloud-ops-v2': cloudOpsTemplate,
   'system-architect-v2': systemArchitectTemplate,
   'product-engineer-v2': productEngineerTemplate,
-  'devops-command-v2': devopsCommandTemplate,
   'mobile-craft-v2': mobileCraftTemplate,
   'api-ledger-v2': apiLedgerTemplate,
   // Fresher Templates
@@ -170,7 +166,6 @@ export { dataProTemplate } from './data-pro';
 export { boldHeadlineTemplate } from './bold-headline';
 export { accountantProTemplate } from './accountant-pro';
 export { centeredPhotoTemplate } from './centered-photo';
-export { creativeSplitTemplate } from './creative-split';
 export { classicMinimalTemplate } from './classic-minimal';
 export { professionalBlueTemplate } from './professional-blue';
 export { elegantAtsTemplate } from './elegant-ats';
@@ -186,7 +181,6 @@ export { platformCoreTemplate } from './platform-core';
 export { cloudOpsTemplate } from './cloud-ops';
 export { systemArchitectTemplate } from './system-architect';
 export { productEngineerTemplate } from './product-engineer';
-export { devopsCommandTemplate } from './devops-command';
 export { mobileCraftTemplate } from './mobile-craft';
 export { apiLedgerTemplate } from './api-ledger';
 

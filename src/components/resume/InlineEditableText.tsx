@@ -91,10 +91,12 @@ export const InlineEditableText = ({
       onBlur: handleBlur,
       onKeyDown: handleKeyDown,
       className: cn(
-        "w-full border-2 border-blue-500 bg-white px-2 py-1 outline-none rounded",
+        "w-full border-2 border-blue-500 bg-white text-gray-900 px-2 py-1 outline-none rounded",
         className
       ),
       placeholder,
+      // Override any inherited color to ensure text is visible
+      style: { color: '#1f2937' },
     };
 
     if (multiline) {

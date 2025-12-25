@@ -235,6 +235,8 @@ export interface HeaderConfig {
   photoSize?: string;
   /** Photo shape */
   photoShape?: 'circle' | 'square' | 'rounded';
+  /** Photo position: 'left' or 'right' (for left-aligned, minimal, and banner variants) */
+  photoPosition?: 'left' | 'right';
   /** Background color (for banner style) */
   backgroundColor?: string;
   /** Text color override */
