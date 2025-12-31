@@ -812,16 +812,17 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
   // Calculate sidebar padding - ensure outer edge aligns with page padding
   // The page padding already handles the outer edges, so sidebar padding should only apply to inner edges
+  // NO top padding so sidebar content aligns with main column content
   const getSidebarPadding = () => {
     const sidebarPadding = layout.sidebarPadding || '0';
     if (typeof sidebarPadding === 'string' && sidebarPadding !== '0') {
       // Parse padding value (assumes single value for all sides)
       const paddingValue = sidebarPadding.trim();
-      // For right sidebar: no right padding (page padding handles it)
-      // For left sidebar: no left padding (page padding handles it)
-      return isRightSidebar 
-        ? `${paddingValue} 0 ${paddingValue} ${paddingValue}` // top right bottom left
-        : `${paddingValue} ${paddingValue} ${paddingValue} 0`; // top right bottom left
+      // For right sidebar: no right padding (page padding handles it), no top padding (align with main)
+      // For left sidebar: no left padding (page padding handles it), no top padding (align with main)
+      return isRightSidebar
+        ? `0 0 ${paddingValue} ${paddingValue}` // top right bottom left
+        : `0 ${paddingValue} ${paddingValue} 0`; // top right bottom left
     }
     return '0';
   };

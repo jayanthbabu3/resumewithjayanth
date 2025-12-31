@@ -97,8 +97,8 @@ export const seniorFrontendProConfig: TemplateConfig = createTemplateConfig({
   },
 
   colors: {
-    primary: '#4b5563', // Gray-600
-    secondary: '#6b7280', // Gray-500
+    primary: '#1e40af', // Deep blue - professional
+    secondary: '#3b82f6', // Bright blue
     text: {
       primary: '#1f2937',
       secondary: '#4b5563',

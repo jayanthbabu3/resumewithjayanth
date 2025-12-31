@@ -88,11 +88,11 @@ export const fresherMinimalConfig: TemplateConfig = createTemplateConfig({
   },
 
   colors: {
-    primary: '#111827',
-    secondary: '#374151',
+    primary: '#475569', // Slate gray - subtle but visible
+    secondary: '#64748b',
     text: {
-      primary: '#111827',
-      secondary: '#4b5563',
+      primary: '#1e293b',
+      secondary: '#475569',
       muted: '#9ca3af',
       light: '#ffffff',
     },

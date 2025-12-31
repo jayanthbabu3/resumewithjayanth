@@ -109,7 +109,7 @@ export const executiveSplitConfig: TemplateConfig = createTemplateConfig({
     primary: '#0891b2',
     secondary: '#06b6d4',
     text: {
-      primary: '#000000',
+      primary: '#1f2937',
       secondary: '#374151',
       muted: '#6b7280',
       light: '#ffffff',

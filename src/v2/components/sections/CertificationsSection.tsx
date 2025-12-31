@@ -137,31 +137,34 @@ export const CertificationsSection: React.FC<CertificationsSectionProps> = ({
             )}
           </div>
           
-          {editable ? (
-            <InlineEditableText
-              path={`certifications.${index}.issuer`}
-              value={item.issuer}
-              style={subtitleStyle}
-              placeholder="Issuing Organization"
-            />
-          ) : (
-            <div style={subtitleStyle}>{item.issuer}</div>
-          )}
+          {/* Align issuer and credential ID with the certification name (after the icon) */}
+          <div style={{ marginLeft: '24px' }}>
+            {editable ? (
+              <InlineEditableText
+                path={`certifications.${index}.issuer`}
+                value={item.issuer}
+                style={subtitleStyle}
+                placeholder="Issuing Organization"
+              />
+            ) : (
+              <div style={subtitleStyle}>{item.issuer}</div>
+            )}
 
-          {item.credentialId && (
-            <div style={{ ...bodyStyle, fontSize: typography.small.fontSize, color: typography.small.color, marginTop: '2px' }}>
-              {editable ? (
-                <InlineEditableText
-                  path={`certifications.${index}.credentialId`}
-                  value={item.credentialId}
-                  style={{ ...bodyStyle, fontSize: typography.small.fontSize }}
-                  placeholder="Credential ID"
-                />
-              ) : (
-                <>ID: {item.credentialId}</>
-              )}
-            </div>
-          )}
+            {item.credentialId && (
+              <div style={{ ...bodyStyle, fontSize: typography.small.fontSize, color: typography.small.color, marginTop: '2px' }}>
+                {editable ? (
+                  <InlineEditableText
+                    path={`certifications.${index}.credentialId`}
+                    value={item.credentialId}
+                    style={{ ...bodyStyle, fontSize: typography.small.fontSize }}
+                    placeholder="Credential ID"
+                  />
+                ) : (
+                  <>ID: {item.credentialId}</>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         <div style={dateStyle} className="flex-shrink-0 text-right">

@@ -16,19 +16,17 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
 
   typography: {
     name: {
-      fontSize: '30px',
-      fontWeight: 800,
-      lineHeight: 1.1,
+      fontSize: '28px',
+      fontWeight: 700,
+      lineHeight: 1.2,
       letterSpacing: '-0.01em',
       color: '#0f172a',
     },
     title: {
-      fontSize: '13px',
+      fontSize: '14px',
       fontWeight: 500,
       lineHeight: 1.3,
       color: '#0ea5e9',
-      textTransform: 'uppercase',
-      letterSpacing: '0.06em',
     },
     sectionHeading: {
       fontSize: '12px',
@@ -48,28 +46,28 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
       fontSize: '12px',
       fontWeight: 600,
       lineHeight: 1.4,
-      color: '#0f172a',
+      color: '#0ea5e9',
     },
     dates: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 500,
       lineHeight: 1.3,
       color: '#475569',
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.6,
       color: '#1e293b',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 500,
       lineHeight: 1.5,
       color: '#0f172a',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.3,
       color: '#475569',
@@ -102,8 +100,8 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
   },
 
   colors: {
-    primary: '#0f172a',
-    secondary: '#0ea5e9',
+    primary: '#0ea5e9', // Sky blue - modern professional
+    secondary: '#0891b2',
     text: {
       primary: '#0f172a',
       secondary: '#1e293b',
@@ -130,10 +128,10 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
   header: {
     variant: 'split',
     showPhoto: false,
-    padding: '14px 18px 14px 18px',
+    padding: '14px 0 14px 0',
     contactIcons: {
       show: true,
-      size: '13px',
+      size: '12px',
       color: '#0f172a',
     },
     showSocialLinks: true,

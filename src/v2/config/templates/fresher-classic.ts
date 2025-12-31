@@ -88,7 +88,7 @@ export const fresherClassicConfig: TemplateConfig = createTemplateConfig({
   },
 
   colors: {
-    primary: '#1f2937',
+    primary: '#1e3a5f', // Navy blue - classic professional
     secondary: '#374151',
     text: {
       primary: '#1f2937',
@@ -107,7 +107,7 @@ export const fresherClassicConfig: TemplateConfig = createTemplateConfig({
   sectionHeading: {
     style: 'double-line',
     borderWidth: '1px',
-    borderColor: '#1f2937',
+    borderColor: '#1e3a5f',
     marginBottom: '10px',
   },
 

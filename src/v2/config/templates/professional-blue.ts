@@ -77,17 +77,17 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
 
   spacing: {
     pagePadding: {
-      top: '32px',
-      right: '32px',
-      bottom: '32px',
-      left: '32px',
+      top: '28px',
+      right: '28px',
+      bottom: '28px',
+      left: '28px',
     },
-    sectionGap: '20px',
-    itemGap: '14px',
-    headingToContent: '10px',
-    bulletGap: '4px',
+    sectionGap: '8px',
+    itemGap: '8px',
+    headingToContent: '6px',
+    bulletGap: '2px',
     contactGap: '8px',
-    skillGap: '8px',
+    skillGap: '4px',
   },
 
   layout: {

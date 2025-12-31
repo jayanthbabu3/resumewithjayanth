@@ -96,10 +96,10 @@ export const classicMinimalConfig: TemplateConfig = createTemplateConfig({
   },
 
   colors: {
-    primary: '#111827',
-    secondary: '#4b5563',
+    primary: '#1e3a5f', // Navy blue - classic professional
+    secondary: '#3b82f6',
     text: {
-      primary: '#111827',
+      primary: '#1f2937',
       secondary: '#374151',
       muted: '#6b7280',
       light: '#ffffff',

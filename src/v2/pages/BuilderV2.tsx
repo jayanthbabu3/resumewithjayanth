@@ -902,15 +902,20 @@ export const BuilderV2: React.FC = () => {
                             />
                           </button>
                         </PopoverTrigger>
-                        <PopoverContent align="end" className="w-auto p-2 rounded-xl shadow-xl">
-                          {/* Simple color grid - one click to select */}
-                          <div className="flex flex-wrap gap-1.5 max-w-[200px]">
+                        <PopoverContent align="end" className="w-auto p-3 rounded-xl shadow-xl">
+                          {/* Professional resume color palette */}
+                          <div className="flex flex-wrap gap-2 max-w-[220px]">
                             {[
-                              '#2563eb', '#3b82f6', '#0ea5e9', '#06b6d4', '#14b8a6',
-                              '#10b981', '#22c55e', '#84cc16', '#eab308', '#f59e0b',
-                              '#f97316', '#ef4444', '#dc2626', '#e11d48', '#ec4899',
-                              '#d946ef', '#a855f7', '#8b5cf6', '#6366f1', '#64748b',
-                              '#1e293b', '#0f172a', '#374151', '#4b5563', '#6b7280',
+                              // Professional Blues (most popular for resumes)
+                              '#1e3a5f', '#1e40af', '#2563eb', '#0369a1', '#0891b2',
+                              // Teal & Green (modern professional)
+                              '#0d9488', '#059669', '#15803d', '#166534', '#365314',
+                              // Burgundy & Red (executive, bold)
+                              '#7f1d1d', '#991b1b', '#b91c1c', '#9f1239', '#881337',
+                              // Purple & Indigo (creative professional)
+                              '#4c1d95', '#5b21b6', '#6d28d9', '#4338ca', '#3730a3',
+                              // Neutral & Classic (timeless)
+                              '#0f172a', '#1e293b', '#334155', '#475569', '#64748b',
                             ].map((color) => (
                               <button
                                 key={color}
@@ -919,12 +924,40 @@ export const BuilderV2: React.FC = () => {
                                   setThemeColors({ ...themeColors, primary: color });
                                 }}
                                 className={cn(
-                                  "w-7 h-7 rounded-lg transition-all duration-150 hover:scale-110",
+                                  "w-8 h-8 rounded-full transition-all duration-150 hover:scale-110 shadow-sm",
                                   (themeColors.primary || themeColor) === color && "ring-2 ring-offset-2 ring-gray-900"
                                 )}
                                 style={{ backgroundColor: color }}
                               />
                             ))}
+                          </div>
+                          {/* Custom color input */}
+                          <div className="mt-3 pt-3 border-t border-gray-100">
+                            <label className="text-xs text-gray-500 mb-1.5 block">Custom Color</label>
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="color"
+                                value={themeColors.primary || themeColor}
+                                onChange={(e) => {
+                                  setThemeColor(e.target.value);
+                                  setThemeColors({ ...themeColors, primary: e.target.value });
+                                }}
+                                className="w-8 h-8 rounded-lg cursor-pointer border-0 p-0"
+                              />
+                              <Input
+                                type="text"
+                                value={themeColors.primary || themeColor}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+                                  if (/^#[0-9A-Fa-f]{0,6}$/.test(val)) {
+                                    setThemeColor(val);
+                                    setThemeColors({ ...themeColors, primary: val });
+                                  }
+                                }}
+                                placeholder="#1e3a5f"
+                                className="h-8 text-xs font-mono w-24"
+                              />
+                            </div>
                           </div>
                         </PopoverContent>
                       </Popover>

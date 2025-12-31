@@ -594,7 +594,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
         return (
           <div style={{ padding: header.padding }}>
             <div className="flex justify-between items-start">
-              <div className="flex items-start gap-4">
+              <div className="flex items-center gap-4">
                 {renderAvatar()}
                 <div>
                   {renderName()}
