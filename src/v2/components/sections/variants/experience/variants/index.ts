@@ -12,3 +12,4 @@ export { ExperienceStandard } from './ExperienceStandard';
 export { ExperienceTimeline } from './ExperienceTimeline';
 export { ExperienceEnhanced } from './ExperienceEnhanced';
 export { ExperienceTimelinePro } from './ExperienceTimelinePro';
+export { ExperiencePremium } from './ExperiencePremium';

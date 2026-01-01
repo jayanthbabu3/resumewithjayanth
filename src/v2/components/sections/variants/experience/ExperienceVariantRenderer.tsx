@@ -7,7 +7,7 @@
 
 import React from 'react';
 import type { ExperienceVariantProps, ExperienceVariant } from './types';
-import { 
+import {
   ExperienceStandard,
   ExperienceTimeline,
   ExperienceCompact,
@@ -16,6 +16,7 @@ import {
   ExperienceMinimal,
   ExperienceEnhanced,
   ExperienceTimelinePro,
+  ExperiencePremium,
 } from './variants';
 
 // Re-export types for external use
@@ -82,6 +83,9 @@ export const ExperienceVariantRenderer: React.FC<ExperienceVariantRendererProps>
     case 'timeline-pro':
       // Production-ready timeline with dates on left column
       return <ExperienceTimelinePro {...props} />;
+    case 'premium':
+      // Premium variant with numbered bullets and clean design
+      return <ExperiencePremium {...props} />;
     case 'academic':
     case 'creative':
     default:

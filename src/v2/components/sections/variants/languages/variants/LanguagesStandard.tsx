@@ -1,13 +1,25 @@
 /**
  * Languages Standard Variant
- * 
+ *
  * Shows languages with proficiency levels and progress bars.
+ * Supports inline editing for language name and proficiency level.
  */
 
-import React from 'react';
-import { X, Plus } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { X, Plus, ChevronDown } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
+import { useInlineEdit } from '@/contexts/InlineEditContext';
 import type { LanguagesVariantProps } from '../types';
+
+const proficiencyOptions: { key: string; level: number; label: string }[] = [
+  { key: 'Native', level: 100, label: 'Native speaker' },
+  { key: 'Fluent', level: 95, label: 'Fluent' },
+  { key: 'Professional', level: 85, label: 'Professional' },
+  { key: 'Advanced', level: 75, label: 'Advanced' },
+  { key: 'Intermediate', level: 55, label: 'Intermediate' },
+  { key: 'Basic', level: 35, label: 'Basic' },
+  { key: 'Elementary', level: 20, label: 'Elementary' },
+];
 
 const proficiencyLevels: Record<string, { level: number; label: string }> = {
   'Native': { level: 100, label: 'Native speaker' },
@@ -38,6 +50,27 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
   onRemoveLanguage,
 }) => {
   const { typography } = config;
+  const inlineEdit = useInlineEdit();
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleProficiencyChange = (index: number, newProficiency: string) => {
+    if (inlineEdit) {
+      inlineEdit.updateField(`languages.${index}.proficiency`, newProficiency);
+    }
+    setOpenDropdown(null);
+  };
 
   if (!items.length && !editable) return null;
 
@@ -60,20 +93,51 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
             
             {/* Native speaker - no bar */}
             {lang.proficiency === 'Native' ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                {editable ? (
-                  <InlineEditableText
-                    path={`languages.${index}.language`}
-                    value={lang.language}
-                    style={{ fontWeight: 600, color: typography.itemTitle.color }}
-                    placeholder="Language"
-                  />
-                ) : (
-                  <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>
-                    {lang.language}:
-                  </span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {editable ? (
+                    <InlineEditableText
+                      path={`languages.${index}.language`}
+                      value={lang.language}
+                      style={{ fontWeight: 600, color: typography.itemTitle.color }}
+                      placeholder="Language"
+                    />
+                  ) : (
+                    <span style={{ fontWeight: 600, color: typography.itemTitle.color }}>
+                      {lang.language}:
+                    </span>
+                  )}
+                  <span style={{ color: typography.body.color }}>Native speaker</span>
+                </div>
+                {/* Proficiency selector for Native */}
+                {editable && (
+                  <div className="relative" ref={openDropdown === index ? dropdownRef : null}>
+                    <button
+                      onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
+                      className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-gray-100 transition-colors"
+                      style={{ fontSize: '11px', color: '#6b7280' }}
+                    >
+                      Change
+                      <ChevronDown className="w-3 h-3" />
+                    </button>
+                    {openDropdown === index && (
+                      <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-20 py-1 min-w-[140px]">
+                        {proficiencyOptions.map((level) => (
+                          <button
+                            key={level.key}
+                            onClick={() => handleProficiencyChange(index, level.key)}
+                            className={`w-full text-left px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors ${
+                              lang.proficiency === level.key ? 'bg-gray-100 font-medium' : ''
+                            }`}
+                            style={{ color: '#374151' }}
+                          >
+                            {level.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 )}
-                <span style={{ color: typography.body.color }}>Native speaker</span>
               </div>
             ) : (
               <div>
@@ -111,9 +175,38 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     {cefer && <span style={{ fontSize: '13px', color: '#6b7280' }}>{cefer}</span>}
+                    {/* Proficiency selector */}
+                    {editable && (
+                      <div className="relative" ref={openDropdown === index ? dropdownRef : null}>
+                        <button
+                          onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
+                          className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-gray-100 transition-colors"
+                          style={{ fontSize: '11px', color: '#6b7280' }}
+                        >
+                          {profInfo.label}
+                          <ChevronDown className="w-3 h-3" />
+                        </button>
+                        {openDropdown === index && (
+                          <div className="absolute right-0 top-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-20 py-1 min-w-[140px]">
+                            {proficiencyOptions.map((level) => (
+                              <button
+                                key={level.key}
+                                onClick={() => handleProficiencyChange(index, level.key)}
+                                className={`w-full text-left px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors ${
+                                  lang.proficiency === level.key ? 'bg-gray-100 font-medium' : ''
+                                }`}
+                                style={{ color: '#374151' }}
+                              >
+                                {level.label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
-                
+
                 {/* Progress bar */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{
@@ -128,11 +221,14 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
                       height: '100%',
                       backgroundColor: accentColor,
                       borderRadius: '3px',
+                      transition: 'width 0.3s ease',
                     }} />
                   </div>
-                  <span style={{ fontSize: '12px', color: '#9ca3af', minWidth: '100px' }}>
-                    {profInfo.label}
-                  </span>
+                  {!editable && (
+                    <span style={{ fontSize: '12px', color: '#9ca3af', minWidth: '100px' }}>
+                      {profInfo.label}
+                    </span>
+                  )}
                 </div>
               </div>
             )}

@@ -162,6 +162,10 @@ export const fresherCreativeConfig: TemplateConfig = createTemplateConfig({
     columns: 2,
   },
 
+  languages: {
+    variant: 'flags',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'About Me', defaultTitle: 'About Me', enabled: true, order: 1, column: 'sidebar' },

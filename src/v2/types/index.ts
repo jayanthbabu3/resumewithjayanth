@@ -36,6 +36,8 @@ export type {
   SectionLabels,
   ColorSlot,
   ColorSlotName,
+  LanguagesConfig,
+  LanguagesVariant,
 } from './config';
 
 // Export values from legacy config

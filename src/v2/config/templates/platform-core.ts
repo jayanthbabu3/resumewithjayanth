@@ -168,6 +168,10 @@ export const platformCoreConfig: TemplateConfig = createTemplateConfig({
     showIndicators: false,
   },
 
+  languages: {
+    variant: 'pills',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Summary', defaultTitle: 'Summary', enabled: true, order: 1, column: 'main' },

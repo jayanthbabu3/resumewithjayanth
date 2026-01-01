@@ -5,7 +5,7 @@
  * Templates can override any of these values.
  */
 
-import type { TemplateConfig, TypographyConfig, SpacingConfig, LayoutConfig, ColorConfig } from '../types';
+import type { TemplateConfig, TypographyConfig, SpacingConfig, LayoutConfig, ColorConfig, LanguagesConfig } from '../types';
 
 // ============================================================================
 // DEFAULT TYPOGRAPHY
@@ -176,7 +176,11 @@ export const DEFAULT_TEMPLATE_CONFIG: TemplateConfig = {
     showDates: true,
     datePosition: 'right',
   },
-  
+
+  languages: {
+    variant: 'standard',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Summary', defaultTitle: 'Summary', enabled: true, order: 1, column: 'main' },
@@ -267,6 +271,10 @@ export function applyThemeColors(
       ...result.typography,
       title: {
         ...result.typography.title,
+        color: colors.primary,
+      },
+      sectionHeading: {
+        ...result.typography.sectionHeading,
         color: colors.primary,
       },
       itemSubtitle: {

@@ -188,12 +188,17 @@ export const executiveSplitConfig: TemplateConfig = createTemplateConfig({
     showIcons: true,
   },
   
-  // Achievements - bullets with trophy icons  
+  // Achievements - bullets with trophy icons
   achievements: {
     variant: 'bullets',
     showIndicators: true,
   },
-  
+
+  // Languages - grid style
+  languages: {
+    variant: 'grid',
+  },
+
   // Section order and placement
   sections: [
     // Header always first

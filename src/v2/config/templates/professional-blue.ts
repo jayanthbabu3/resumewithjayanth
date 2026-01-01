@@ -30,7 +30,7 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
       color: '#4b5563',
     },
     sectionHeading: {
-      fontSize: '13px',
+      fontSize: '12px',
       fontWeight: 700,
       lineHeight: 1.3,
       letterSpacing: '0.08em',
@@ -38,7 +38,7 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
       color: '#1e3a5f',
     },
     itemTitle: {
-      fontSize: '13px',
+      fontSize: '12px',
       fontWeight: 700,
       lineHeight: 1.4,
       color: '#1f2937',
@@ -56,19 +56,19 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
       color: '#6b7280',
     },
     body: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#374151',
     },
     contact: {
-      fontSize: '11px',
+      fontSize: '12px',
       fontWeight: 400,
       lineHeight: 1.5,
       color: '#4b5563',
     },
     small: {
-      fontSize: '10px',
+      fontSize: '11px',
       fontWeight: 400,
       lineHeight: 1.4,
       color: '#6b7280',
@@ -139,13 +139,17 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
     showRatings: false,
     separator: '',
     badge: {
-      fontSize: '11px',
+      fontSize: '12px',
       padding: '0',
       borderRadius: '0',
       borderWidth: '0',
       backgroundColor: 'transparent',
       textColor: '#374151',
     },
+  },
+
+  languages: {
+    variant: 'pills',
   },
 
   experience: {
@@ -179,10 +183,14 @@ export const professionalBlueConfig: TemplateConfig = createTemplateConfig({
     { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 2, column: 'main' },
     { type: 'experience', id: 'experience', title: 'Experience', defaultTitle: 'Experience', enabled: true, order: 3, column: 'main' },
     { type: 'education', id: 'education', title: 'Education and Training', defaultTitle: 'Education and Training', enabled: true, order: 4, column: 'main' },
-    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: true, order: 5, column: 'main' },
-    { type: 'interests', id: 'interests', title: 'Interests and Hobbies', defaultTitle: 'Interests and Hobbies', enabled: true, order: 6, column: 'main' },
-    { type: 'certifications', id: 'certifications', title: 'Certifications', defaultTitle: 'Certifications', enabled: false, order: 7, column: 'main' },
-    { type: 'projects', id: 'projects', title: 'Projects', defaultTitle: 'Projects', enabled: false, order: 8, column: 'main' },
+    { type: 'certifications', id: 'certifications', title: 'Certifications', defaultTitle: 'Certifications', enabled: true, order: 5, column: 'main' },
+    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: true, order: 6, column: 'main' },
+    { type: 'achievements', id: 'achievements', title: 'Achievements', defaultTitle: 'Achievements', enabled: true, order: 7, column: 'main' },
+    { type: 'interests', id: 'interests', title: 'Interests and Hobbies', defaultTitle: 'Interests and Hobbies', enabled: true, order: 8, column: 'main' },
+    { type: 'projects', id: 'projects', title: 'Projects', defaultTitle: 'Projects', enabled: false, order: 9, column: 'main' },
+    { type: 'publications', id: 'publications', title: 'Publications', defaultTitle: 'Publications', enabled: false, order: 10, column: 'main' },
+    { type: 'awards', id: 'awards', title: 'Awards', defaultTitle: 'Awards', enabled: false, order: 11, column: 'main' },
+    { type: 'volunteer', id: 'volunteer', title: 'Volunteer Experience', defaultTitle: 'Volunteer Experience', enabled: false, order: 12, column: 'main' },
   ],
 
   fontFamily: {

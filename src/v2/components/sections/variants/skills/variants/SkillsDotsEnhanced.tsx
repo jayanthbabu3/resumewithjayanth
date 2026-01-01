@@ -1,12 +1,14 @@
 /**
  * Skills Dots Enhanced Variant
- * 
+ *
  * Dot rating system with interactive editing.
+ * Supports clicking on dots to change skill level.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { X, Plus } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
+import { useInlineEdit } from '@/contexts/InlineEditContext';
 import type { SkillsVariantProps } from '../types';
 
 export const SkillsDotsEnhanced: React.FC<SkillsVariantProps> = ({
@@ -19,12 +21,21 @@ export const SkillsDotsEnhanced: React.FC<SkillsVariantProps> = ({
   onUpdateSkill,
 }) => {
   const { typography } = config;
+  const inlineEdit = useInlineEdit();
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [hoverLevel, setHoverLevel] = useState<number | null>(null);
 
   if (!items.length && !editable) return null;
 
-  const handleLevelChange = (skillId: string, newLevel: number) => {
+  const handleLevelChange = (index: number, newLevel: number) => {
+    // Try using onUpdateSkill prop first, then fall back to inlineEdit
     if (onUpdateSkill) {
-      onUpdateSkill(skillId, 'level', newLevel);
+      const skillId = items[index]?.id;
+      if (skillId) {
+        onUpdateSkill(skillId, 'level', newLevel);
+      }
+    } else if (inlineEdit) {
+      inlineEdit.updateField(`skills.${index}.level`, newLevel);
     }
   };
 
@@ -32,7 +43,8 @@ export const SkillsDotsEnhanced: React.FC<SkillsVariantProps> = ({
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
       {items.map((skill, index) => {
         const level = skill.level || 3;
-        
+        const displayLevel = hoverIndex === index && hoverLevel !== null ? hoverLevel : level;
+
         return (
           <div key={skill.id || index} className="group relative">
             {editable && onRemoveSkill && (
@@ -43,21 +55,21 @@ export const SkillsDotsEnhanced: React.FC<SkillsVariantProps> = ({
                 <X className="w-3 h-3 text-red-600" />
               </button>
             )}
-            
+
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
               <div style={{ flex: 1 }}>
                 {editable ? (
                   <InlineEditableText
                     path={`skills.${index}.name`}
                     value={skill.name}
-                    style={{ 
+                    style={{
                       fontSize: typography.body.fontSize,
                       color: typography.body.color,
                     }}
                     placeholder="Skill name"
                   />
                 ) : (
-                  <span style={{ 
+                  <span style={{
                     fontSize: typography.body.fontSize,
                     color: typography.body.color,
                   }}>
@@ -65,20 +77,34 @@ export const SkillsDotsEnhanced: React.FC<SkillsVariantProps> = ({
                   </span>
                 )}
               </div>
-              
-              <div style={{ display: 'flex', gap: '4px' }}>
+
+              <div
+                style={{ display: 'flex', gap: '4px' }}
+                onMouseLeave={() => {
+                  if (editable) {
+                    setHoverIndex(null);
+                    setHoverLevel(null);
+                  }
+                }}
+              >
                 {[1, 2, 3, 4, 5].map((dot) => (
                   <div
                     key={dot}
-                    onClick={() => editable && handleLevelChange(skill.id, dot)}
+                    onClick={() => editable && handleLevelChange(index, dot)}
+                    onMouseEnter={() => {
+                      if (editable) {
+                        setHoverIndex(index);
+                        setHoverLevel(dot);
+                      }
+                    }}
                     style={{
                       width: '10px',
                       height: '10px',
                       borderRadius: '50%',
-                      backgroundColor: dot <= level ? accentColor : '#e5e7eb',
+                      backgroundColor: dot <= displayLevel ? accentColor : '#e5e7eb',
                       cursor: editable ? 'pointer' : 'default',
                       transition: 'all 0.2s ease',
-                      border: dot <= level ? 'none' : `1px solid #d1d5db`,
+                      border: dot <= displayLevel ? 'none' : `1px solid #d1d5db`,
                     }}
                   />
                 ))}

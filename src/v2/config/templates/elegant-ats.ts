@@ -181,6 +181,10 @@ export const elegantAtsConfig: TemplateConfig = createTemplateConfig({
     showMetrics: true,
   },
 
+  languages: {
+    variant: 'bars',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Professional Summary', defaultTitle: 'Professional Summary', enabled: true, order: 1, column: 'main' },

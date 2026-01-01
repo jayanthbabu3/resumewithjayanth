@@ -164,6 +164,10 @@ export const fresherBoldConfig: TemplateConfig = createTemplateConfig({
     showIcons: false,
   },
 
+  languages: {
+    variant: 'grid',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Objective', defaultTitle: 'Objective', enabled: true, order: 1, column: 'main' },

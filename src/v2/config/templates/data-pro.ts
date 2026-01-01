@@ -179,6 +179,11 @@ export const dataProConfig: TemplateConfig = createTemplateConfig({
     showIndicators: true,
   },
 
+  // Languages - standard style
+  languages: {
+    variant: 'standard',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Summary', defaultTitle: 'Summary', enabled: true, order: 1, column: 'main' },

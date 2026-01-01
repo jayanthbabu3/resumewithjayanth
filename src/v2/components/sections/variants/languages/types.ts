@@ -14,9 +14,11 @@ export interface LanguagesVariantProps {
   onRemoveLanguage?: (id: string) => void;
 }
 
-export type LanguagesVariant = 
+export type LanguagesVariant =
   | 'standard'
   | 'bars'
   | 'compact'
   | 'grid'
-  | 'inline';
+  | 'inline'
+  | 'pills'
+  | 'flags';

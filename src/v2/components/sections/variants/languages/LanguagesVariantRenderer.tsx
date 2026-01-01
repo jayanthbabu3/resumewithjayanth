@@ -7,6 +7,10 @@ import type { LanguagesVariantProps, LanguagesVariant } from './types';
 import {
   LanguagesStandard,
   LanguagesCompact,
+  LanguagesPills,
+  LanguagesGrid,
+  LanguagesFlags,
+  LanguagesBars,
 } from './variants';
 
 export type { LanguagesVariantProps, LanguagesVariant } from './types';
@@ -35,9 +39,15 @@ export const LanguagesVariantRenderer: React.FC<LanguagesVariantRendererProps> =
 
   switch (variant) {
     case 'standard':
-    case 'bars':
-    case 'grid':
       return <LanguagesStandard {...props} />;
+    case 'bars':
+      return <LanguagesBars {...props} />;
+    case 'grid':
+      return <LanguagesGrid {...props} />;
+    case 'pills':
+      return <LanguagesPills {...props} />;
+    case 'flags':
+      return <LanguagesFlags {...props} />;
     case 'compact':
     case 'inline':
     default:

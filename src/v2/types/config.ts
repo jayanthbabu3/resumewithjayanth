@@ -353,6 +353,28 @@ export interface AchievementsConfig {
 }
 
 // ============================================================================
+// LANGUAGES DISPLAY CONFIGURATION
+// ============================================================================
+
+export type LanguagesVariant =
+  | 'standard'       // Default with progress bars
+  | 'bars'           // Horizontal progress bars
+  | 'compact'        // Inline with proficiency text
+  | 'grid'           // 2-column grid with dots
+  | 'inline'         // Comma-separated inline
+  | 'pills'          // Pill badges with proficiency colors
+  | 'flags';         // Language with emoji flags
+
+export interface LanguagesConfig {
+  /** Display variant */
+  variant: LanguagesVariant;
+  /** Number of columns for grid layout */
+  columns?: number;
+  /** Show proficiency level */
+  showProficiency?: boolean;
+}
+
+// ============================================================================
 // SECTION CONFIGURATION
 // ============================================================================
 
@@ -430,7 +452,8 @@ export interface TemplateConfig {
   education: EducationConfig;
   strengths?: StrengthsConfig;
   achievements?: AchievementsConfig;
-  
+  languages?: LanguagesConfig;
+
   // Section order and visibility
   sections: SectionConfig[];
   

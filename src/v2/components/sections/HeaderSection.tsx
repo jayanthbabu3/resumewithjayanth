@@ -417,19 +417,54 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
           size: header.photoSize || '64px',
           forBanner: true,
         });
-        
+
         // Banner-specific styles - all text should be white/light for readability
         const bannerContactStyle: React.CSSProperties = {
           fontSize: typography.contact.fontSize,
           color: 'rgba(255, 255, 255, 0.85)',
           fontFamily: baseFontFamily,
         };
-        const bannerLinkStyle: React.CSSProperties = {
-          fontSize: typography.contact.fontSize,
-          color: 'rgba(255, 255, 255, 0.9)',
-          textDecoration: 'none',
-          fontFamily: baseFontFamily,
+        const bannerIconSize = header.contactIcons?.size || '13px';
+        const bannerIconColor = 'rgba(255, 255, 255, 0.8)';
+
+        // Helper to render banner contact item with icon
+        const renderBannerContactItem = (
+          icon: React.ElementType,
+          value: string | undefined,
+          path: string,
+          isLink?: boolean,
+          href?: string
+        ) => {
+          if (!editable && !value) return null;
+          const Icon = icon;
+          const showIcon = header.contactIcons?.show !== false;
+
+          const content = (
+            <div className="flex items-center gap-1.5">
+              {showIcon && <Icon style={{ width: bannerIconSize, height: bannerIconSize, color: bannerIconColor, flexShrink: 0 }} />}
+              {editable ? (
+                <InlineEditableText
+                  path={path}
+                  value={value || 'Click to edit'}
+                  style={bannerContactStyle}
+                />
+              ) : isLink && href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ ...bannerContactStyle, textDecoration: 'none' }}
+                >
+                  {value}
+                </a>
+              ) : (
+                <span style={bannerContactStyle}>{value}</span>
+              )}
+            </div>
+          );
+          return content;
         };
+
         return (
           <div
             data-header="banner"
@@ -439,134 +474,69 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
               color: bannerTextColor,
             }}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               {bannerPhotoPosition === 'left' && bannerAvatar}
               <div className="flex-1">
-                {renderName()}
-                <div 
-                  className="flex flex-wrap items-center gap-x-4 gap-y-1"
-                  style={{ marginTop: '8px' }}
-                >
-                  {(editable || personalInfo.location) && (
-                    editable ? (
-                      <InlineEditableText
-                        path="personalInfo.location"
-                        value={personalInfo.location || 'Location'}
-                        style={bannerContactStyle}
-                      />
-                    ) : (
-                      <span style={bannerContactStyle}>{personalInfo.location}</span>
-                    )
+                {/* Name and Title */}
+                <div className="flex items-baseline gap-3 flex-wrap">
+                  {renderName()}
+                  {(editable || personalInfo.title) && (
+                    <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '20px' }}>|</span>
                   )}
-                  {(editable || personalInfo.email) && (
+                  {(editable || personalInfo.title) && (
                     editable ? (
                       <InlineEditableText
-                        path="personalInfo.email"
-                        value={personalInfo.email || 'email@example.com'}
-                        style={bannerContactStyle}
+                        path="personalInfo.title"
+                        value={personalInfo.title || 'Professional Title'}
+                        style={{
+                          fontSize: typography.title.fontSize,
+                          fontWeight: typography.title.fontWeight,
+                          color: 'rgba(255, 255, 255, 0.9)',
+                          fontFamily: baseFontFamily,
+                        }}
                       />
                     ) : (
-                      <span style={bannerContactStyle}>{personalInfo.email}</span>
-                    )
-                  )}
-                  {(editable || personalInfo.phone) && (
-                    editable ? (
-                      <InlineEditableText
-                        path="personalInfo.phone"
-                        value={personalInfo.phone || 'Phone'}
-                        style={bannerContactStyle}
-                      />
-                    ) : (
-                      <span style={bannerContactStyle}>{personalInfo.phone}</span>
+                      <span style={{
+                        fontSize: typography.title.fontSize,
+                        fontWeight: typography.title.fontWeight,
+                        color: 'rgba(255, 255, 255, 0.9)',
+                        fontFamily: baseFontFamily,
+                      }}>
+                        {personalInfo.title}
+                      </span>
                     )
                   )}
                 </div>
-                {/* Social Links for Banner */}
-                {includeSocialLinks && (
-                  <div 
-                    className="flex flex-wrap items-center gap-x-4 gap-y-1"
-                    style={{ marginTop: '6px' }}
-                  >
-                    {(editable || personalInfo.linkedin) && (
-                      <div className="flex items-center gap-1.5">
-                        <Linkedin style={{ width: '14px', height: '14px', color: bannerLinkStyle.color }} />
-                        {editable ? (
-                          <InlineEditableText
-                            path="personalInfo.linkedin"
-                            value={personalInfo.linkedin || 'linkedin.com/in/username'}
-                            style={bannerLinkStyle}
-                          />
-                        ) : (
-                          <a 
-                            href={personalInfo.linkedin?.startsWith('http') ? personalInfo.linkedin : `https://${personalInfo.linkedin}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              ...bannerLinkStyle,
-                              textDecoration: 'none',
-                              fontWeight: 400,
-                            }}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            {personalInfo.linkedin}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                    {(editable || personalInfo.github) && (
-                      <div className="flex items-center gap-1.5">
-                        <Github style={{ width: '14px', height: '14px', color: bannerLinkStyle.color }} />
-                        {editable ? (
-                          <InlineEditableText
-                            path="personalInfo.github"
-                            value={personalInfo.github || 'github.com/username'}
-                            style={bannerLinkStyle}
-                          />
-                        ) : (
-                          <a 
-                            href={personalInfo.github?.startsWith('http') ? personalInfo.github : `https://${personalInfo.github}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              ...bannerLinkStyle,
-                              textDecoration: 'none',
-                              fontWeight: 400,
-                            }}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            {personalInfo.github}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                    {(editable || personalInfo.portfolio) && (
-                      <div className="flex items-center gap-1.5">
-                        <Globe style={{ width: '14px', height: '14px', color: bannerLinkStyle.color }} />
-                        {editable ? (
-                          <InlineEditableText
-                            path="personalInfo.portfolio"
-                            value={personalInfo.portfolio || 'portfolio.com'}
-                            style={bannerLinkStyle}
-                          />
-                        ) : (
-                          <a 
-                            href={personalInfo.portfolio?.startsWith('http') ? personalInfo.portfolio : `https://${personalInfo.portfolio}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              ...bannerLinkStyle,
-                              textDecoration: 'none',
-                              fontWeight: 400,
-                            }}
-                            className="hover:opacity-80 transition-opacity"
-                          >
-                            {personalInfo.portfolio}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
+                {/* All contact info in one row */}
+                <div
+                  className="flex flex-wrap items-center gap-x-4 gap-y-2"
+                  style={{ marginTop: '10px' }}
+                >
+                  {renderBannerContactItem(Phone, personalInfo.phone, 'personalInfo.phone')}
+                  {renderBannerContactItem(Mail, personalInfo.email, 'personalInfo.email')}
+                  {renderBannerContactItem(MapPin, personalInfo.location, 'personalInfo.location')}
+                  {includeSocialLinks && renderBannerContactItem(
+                    Linkedin,
+                    personalInfo.linkedin,
+                    'personalInfo.linkedin',
+                    true,
+                    personalInfo.linkedin?.startsWith('http') ? personalInfo.linkedin : `https://${personalInfo.linkedin}`
+                  )}
+                  {includeSocialLinks && renderBannerContactItem(
+                    Globe,
+                    personalInfo.portfolio,
+                    'personalInfo.portfolio',
+                    true,
+                    personalInfo.portfolio?.startsWith('http') ? personalInfo.portfolio : `https://${personalInfo.portfolio}`
+                  )}
+                  {includeSocialLinks && renderBannerContactItem(
+                    Github,
+                    personalInfo.github,
+                    'personalInfo.github',
+                    true,
+                    personalInfo.github?.startsWith('http') ? personalInfo.github : `https://${personalInfo.github}`
+                  )}
+                </div>
               </div>
               {bannerPhotoPosition === 'right' && bannerAvatar}
             </div>

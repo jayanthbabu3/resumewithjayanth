@@ -337,8 +337,9 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
       const style: React.CSSProperties = {
         // Don't prevent section from breaking - let individual items handle page breaks
         position: 'relative',
-        // Add consistent spacing between sections (less for first section after header)
-        marginTop: isFirstSection ? '12px' : (spacing.sectionGap || '20px'),
+        // First section needs top margin for spacing from header
+        // Other sections: NO marginTop - sections already have marginBottom for spacing
+        marginTop: isFirstSection ? '12px' : '0',
         maxWidth: '100%',
         overflowWrap: 'break-word',
         wordBreak: 'break-word',
@@ -507,7 +508,8 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
       case 'languages':
         // Get languages from V2 data
         const languageItems = resumeData.languages || [];
-        const languagesVariant = (section as any).variant;
+        // Get variant from config.languages.variant (from template config)
+        const languagesVariant = (config as any).languages?.variant || (section as any).variant || 'standard';
         return wrap('languages',
           <LanguagesSection
             key={section.id}
@@ -698,6 +700,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   };
 
   // Container styles - Don't use minHeight: 100% as it causes blank first page in PDF
+  // Include CSS custom properties for StyleOptionsWrapper to use for scaling
   const containerStyle: React.CSSProperties = {
     fontFamily: fontFamily.primary,
     fontSize: config.typography.body.fontSize,
@@ -707,7 +710,12 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
     width: '100%',
     maxWidth: '100%',
     boxSizing: 'border-box',
-  };
+    // CSS variables for StyleOptionsWrapper font scaling
+    '--resume-name-size': config.typography.name.fontSize,
+    '--resume-section-size': config.typography.sectionHeading.fontSize,
+    '--resume-item-size': config.typography.itemTitle.fontSize,
+    '--resume-body-size': config.typography.body.fontSize,
+  } as React.CSSProperties;
 
   // Force font inheritance on all content
   const fontInheritClass = 'resume-font-inherit';

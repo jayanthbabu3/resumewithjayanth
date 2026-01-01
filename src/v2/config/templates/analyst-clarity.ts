@@ -122,12 +122,15 @@ export const analystClarityConfig: TemplateConfig = createTemplateConfig({
   },
 
   header: {
-    variant: 'modern',
-    showPhoto: false,
-    padding: '18px 22px',
+    variant: 'centered',
+    showPhoto: true,
+    photoSize: '72px',
+    photoShape: 'circle',
+    photoPosition: 'left',
+    padding: '20px 0 16px 0',
     contactIcons: {
       show: true,
-      size: '14px',
+      size: '13px',
       color: '#2563eb',
     },
     showSocialLinks: true,
@@ -148,11 +151,10 @@ export const analystClarityConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'accent-card',
+    variant: 'standard',
     datePosition: 'right',
     showLocation: true,
     bulletStyle: '•',
-    showDescription: false,
   },
 
   education: {

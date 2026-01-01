@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, Users, TrendingUp, Shield, Star, Award, Clock, Globe, Target, ChevronRight, Palette, Mail, Phone, Eye, Download } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, TrendingUp, Shield, Award, Clock, Globe, Target, Palette, Mail, Eye, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -492,32 +492,24 @@ const Hero = () => {
                   </p>
                 </div>
 
-                {/* CTA Buttons - Stripe/Linear style */}
+                {/* CTA Button - Single prominent button */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4 items-center justify-center lg:justify-start">
-                  <Button 
-                    className="h-12 px-8 text-base font-medium bg-foreground text-background hover:bg-foreground/90 rounded-full shadow-lg shadow-foreground/10 transition-all duration-300 hover:shadow-xl hover:shadow-foreground/20 hover:-translate-y-0.5 group"
-                    onClick={() => navigate("/templates")}
-                  >
-                    <span>Start for free</span>
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </Button>
                   <Button
-                    variant="ghost"
-                    className="h-12 px-6 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-transparent group"
+                    className="h-12 px-8 text-base font-semibold bg-primary text-white hover:bg-primary/90 rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 group"
                     onClick={() => navigate("/templates")}
                   >
                     <span>View templates</span>
-                    <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                   </Button>
                 </div>
 
-                {/* Social Proof - Minimal stats */}
-                <div className="flex items-center justify-center lg:justify-start gap-8 pt-8 border-t border-border/40">
+                {/* Social Proof - Real stats only */}
+                <div className="flex items-center justify-center lg:justify-start pt-8 border-t border-border/40">
                   <div className="flex items-center gap-3">
                     <div className="flex -space-x-2">
                       {[1, 2, 3, 4].map((i) => (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 border-2 border-background flex items-center justify-center text-[10px] font-medium text-gray-600"
                         >
                           {['JD', 'AK', 'MR', 'SL'][i-1]}
@@ -531,50 +523,49 @@ const Hero = () => {
                       <span className="text-muted-foreground ml-1">users</span>
                     </div>
                   </div>
-                  
-                  <div className="h-8 w-px bg-border/60" />
-                  
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center">
-                      {[1, 2, 3, 4, 5].map((i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground">4.9/5 rating</span>
-                  </div>
                 </div>
               </div>
 
-              {/* Right Side - Elegant Resume Preview (6 columns) */}
-              <div className="lg:col-span-6 relative hidden lg:flex justify-center items-center">
-                {/* Soft ambient glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-primary/20 via-blue-500/10 to-violet-500/20 rounded-full blur-3xl opacity-60" />
-                
-                {/* Main Resume Card - Glassmorphic */}
-                <div className="relative w-full max-w-md">
-                  {/* Shadow layers for depth */}
-                  <div className="absolute inset-0 translate-x-4 translate-y-4 bg-gradient-to-br from-gray-200/50 to-gray-300/30 rounded-2xl blur-sm" />
-                  <div className="absolute inset-0 translate-x-2 translate-y-2 bg-white/80 rounded-2xl" />
-                  
+              {/* Right Side - Enhanced Resume Preview (6 columns) */}
+              <div className="lg:col-span-6 relative hidden lg:flex justify-center items-center py-8">
+                {/* Multi-layer ambient glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/15 via-blue-400/10 to-violet-500/15 rounded-full blur-3xl" />
+                <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse" />
+                <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-violet-400/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+                {/* Decorative elements behind card */}
+                <div className="absolute top-8 right-8 w-20 h-20 border-2 border-primary/10 rounded-2xl rotate-12" />
+                <div className="absolute bottom-12 left-4 w-16 h-16 border-2 border-violet-400/10 rounded-xl -rotate-12" />
+
+                {/* Main Resume Card */}
+                <div className="relative w-full max-w-[420px]">
+                  {/* Stacked card effect - multiple layers */}
+                  <div className="absolute inset-0 translate-x-6 translate-y-6 bg-gradient-to-br from-violet-100 to-violet-200/50 rounded-2xl" />
+                  <div className="absolute inset-0 translate-x-3 translate-y-3 bg-gradient-to-br from-blue-50 to-primary/10 rounded-2xl" />
+
                   {/* Main card */}
-                  <div className="relative bg-white rounded-2xl shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
-                    {/* Header accent bar */}
-                    <div className="h-1.5 bg-gradient-to-r from-primary via-blue-500 to-violet-500" />
-                    
+                  <div className="relative bg-white rounded-2xl shadow-2xl shadow-primary/10 border border-gray-100/80 overflow-hidden">
+                    {/* Gradient header bar */}
+                    <div className="h-2 bg-gradient-to-r from-primary via-blue-500 to-violet-500" />
+
                     <div className="p-6 space-y-5">
                       {/* Resume Header */}
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-lg shadow-primary/20">
-                          <span className="text-white font-semibold text-lg">SA</span>
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-primary flex items-center justify-center shadow-xl shadow-primary/30">
+                            <span className="text-white font-bold text-xl">SA</span>
+                          </div>
+                          {/* Online indicator */}
+                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center">
+                            <CheckCircle2 className="w-3 h-3 text-white" />
+                          </div>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-lg font-semibold text-gray-900 truncate">Sarah Anderson</h3>
-                          <p className="text-sm font-medium text-primary">Senior Product Designer</p>
-                          <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-500">
-                            <span className="flex items-center gap-1">
-                              <Mail className="w-3 h-3" />
-                              sarah@example.com
-                            </span>
+                          <h3 className="text-xl font-bold text-gray-900">Sarah Anderson</h3>
+                          <p className="text-sm font-semibold text-primary mt-0.5">Senior Product Designer</p>
+                          <div className="flex items-center gap-1.5 mt-2 text-xs text-gray-500">
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>sarah@example.com</span>
                           </div>
                         </div>
                       </div>
@@ -582,48 +573,48 @@ const Hero = () => {
                       {/* Experience Section */}
                       <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-1 h-4 rounded-full bg-primary" />
-                          <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider">Experience</h4>
+                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-primary to-blue-500" />
+                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Experience</h4>
                         </div>
-                        
-                        <div className="space-y-3 pl-3">
-                          <div className="p-3 rounded-lg bg-gray-50/80 border border-gray-100">
-                            <div className="flex justify-between items-start mb-1">
-                              <div>
-                                <p className="font-medium text-sm text-gray-900">Lead Designer</p>
-                                <p className="text-xs text-primary">TechCorp Inc.</p>
-                              </div>
-                              <span className="text-[10px] text-gray-400 font-medium px-2 py-0.5 bg-gray-100 rounded-full">2021 - Present</span>
-                            </div>
-                            <div className="space-y-1 mt-2">
-                              <div className="h-1.5 bg-gray-200 rounded-full w-full" />
-                              <div className="h-1.5 bg-gray-200 rounded-full w-4/5" />
-                            </div>
-                          </div>
-                          
-                          <div className="p-3 rounded-lg bg-gray-50/50 border border-gray-100/50">
+
+                        <div className="space-y-2.5 pl-3.5">
+                          <div className="p-3.5 rounded-xl bg-gradient-to-r from-gray-50 to-white border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-300">
                             <div className="flex justify-between items-start">
                               <div>
-                                <p className="font-medium text-sm text-gray-900">Product Designer</p>
-                                <p className="text-xs text-gray-500">StartupXYZ</p>
+                                <p className="font-semibold text-sm text-gray-900">Lead Designer</p>
+                                <p className="text-xs font-medium text-primary mt-0.5">TechCorp Inc.</p>
                               </div>
-                              <span className="text-[10px] text-gray-400 font-medium px-2 py-0.5 bg-gray-100 rounded-full">2019 - 2021</span>
+                              <span className="text-[10px] text-gray-500 font-semibold px-2.5 py-1 bg-primary/5 text-primary rounded-full">2021 - Present</span>
+                            </div>
+                            <div className="flex gap-1.5 mt-3">
+                              <div className="h-1.5 bg-gradient-to-r from-primary/40 to-primary/20 rounded-full flex-1" />
+                              <div className="h-1.5 bg-gray-100 rounded-full w-1/4" />
+                            </div>
+                          </div>
+
+                          <div className="p-3.5 rounded-xl bg-gray-50/50 border border-gray-100/80">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <p className="font-semibold text-sm text-gray-900">Product Designer</p>
+                                <p className="text-xs text-gray-500 mt-0.5">StartupXYZ</p>
+                              </div>
+                              <span className="text-[10px] text-gray-400 font-medium px-2.5 py-1 bg-gray-100 rounded-full">2019 - 2021</span>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Skills */}
-                      <div className="space-y-2">
+                      <div className="space-y-2.5">
                         <div className="flex items-center gap-2">
-                          <div className="w-1 h-4 rounded-full bg-blue-500" />
-                          <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider">Skills</h4>
+                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-blue-500 to-violet-500" />
+                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Skills</h4>
                         </div>
-                        <div className="flex flex-wrap gap-1.5 pl-3">
+                        <div className="flex flex-wrap gap-2 pl-3.5">
                           {['UI/UX', 'Figma', 'Prototyping', 'Research'].map((skill) => (
-                            <span 
+                            <span
                               key={skill}
-                              className="px-2.5 py-1 text-[10px] font-medium text-gray-600 bg-gray-100 rounded-md"
+                              className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-200/80 hover:border-primary/40 hover:text-primary transition-colors duration-200"
                             >
                               {skill}
                             </span>
@@ -631,32 +622,44 @@ const Hero = () => {
                         </div>
                       </div>
 
-                      {/* ATS Badge */}
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <div className="flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                          <span className="text-[10px] font-medium text-emerald-600">ATS-Optimized</span>
+                      {/* Footer with badges */}
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-full">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                          <span className="text-xs font-semibold text-emerald-600">ATS-Optimized</span>
                         </div>
-                        <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                          <Download className="w-3 h-3" />
-                          <span>PDF Ready</span>
+                        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                          <Download className="w-4 h-4" />
+                          <span className="font-medium">PDF Ready</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Floating elements - Minimal */}
-                  <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 px-3 py-2 animate-float">
+                  {/* Enhanced Floating elements */}
+                  <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl shadow-primary/10 border border-gray-100 px-4 py-2.5 animate-float">
                     <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-primary" />
-                      <span className="text-xs font-medium text-gray-700">AI-Enhanced</span>
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/10 to-blue-100 flex items-center justify-center">
+                        <Sparkles className="w-4 h-4 text-primary" />
+                      </div>
+                      <span className="text-sm font-semibold text-gray-800">AI-Enhanced</span>
                     </div>
                   </div>
-                  
-                  <div className="absolute -bottom-3 -left-3 bg-white rounded-xl shadow-lg shadow-gray-200/50 border border-gray-100 px-3 py-2 animate-float" style={{ animationDelay: '1s' }}>
+
+                  <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl shadow-amber-500/10 border border-gray-100 px-4 py-2.5 animate-float" style={{ animationDelay: '1s' }}>
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-amber-500" />
-                      <span className="text-xs font-medium text-gray-700">Instant Export</span>
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                        <Zap className="w-4 h-4 text-amber-500" />
+                      </div>
+                      <span className="text-sm font-semibold text-gray-800">Instant Export</span>
+                    </div>
+                  </div>
+
+                  {/* New: Template count badge */}
+                  <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg shadow-primary/30 px-3 py-2 animate-float" style={{ animationDelay: '0.5s' }}>
+                    <div className="flex items-center gap-1.5">
+                      <FileText className="w-4 h-4 text-white" />
+                      <span className="text-xs font-bold text-white">10+ Templates</span>
                     </div>
                   </div>
                 </div>

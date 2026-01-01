@@ -890,8 +890,25 @@ export const BuilderV2: React.FC = () => {
                     {/* Spacer to push right content */}
                     <div className="flex-1" />
 
-                    {/* Right: Color Picker + Download */}
+                    {/* Right: Style Settings + Color Picker + Download */}
                     <div className="flex items-center gap-2">
+                      {/* Style Settings - Always visible */}
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="h-9 w-9 flex items-center justify-center rounded-xl hover:bg-gray-100/80 transition-all duration-200 border border-gray-200">
+                            <Settings className="h-4 w-4 text-gray-600" />
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent align="end" side="bottom" className="w-96 p-0 shadow-xl rounded-xl max-h-[80vh] overflow-y-auto">
+                          <StyleOptionsPanelV2
+                            inPopover={true}
+                            resumeData={resumeData}
+                            enabledSections={enabledSections}
+                            onToggleSection={handleToggleSection}
+                          />
+                        </PopoverContent>
+                      </Popover>
+
                       {/* Color Picker - Direct color selection */}
                       <Popover>
                         <PopoverTrigger asChild>

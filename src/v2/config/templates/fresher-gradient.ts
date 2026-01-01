@@ -162,6 +162,10 @@ export const fresherGradientConfig: TemplateConfig = createTemplateConfig({
     showIcons: false,
   },
 
+  languages: {
+    variant: 'bars',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Profile', defaultTitle: 'Profile', enabled: true, order: 1, column: 'main' },

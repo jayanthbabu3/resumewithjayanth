@@ -8,12 +8,12 @@ interface StyleOptionsWrapperProps {
 }
 
 /**
- * A wrapper component that applies style options (from StyleOptionsContext) 
+ * A wrapper component that applies style options (from StyleOptionsContext)
  * to all child templates via CSS. This provides a generic solution that works
  * for ALL resume templates without modifying each one individually.
  */
-export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({ 
-  children, 
+export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
+  children,
   className,
   showPageBreaks // Deprecated
 }) => {
@@ -42,8 +42,20 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
       dotted: '2px dotted #d1d5db',
       double: '3px double #d1d5db',
       thin: '0.5px solid currentColor',
+      none: 'none',
     } as const;
     const divider = dividerStyles[styleOptions.dividerStyle as keyof typeof dividerStyles];
+
+    // Bullet character mapping for CSS content
+    const bulletChars: Record<string, string> = {
+      '•': '"•"',
+      '◦': '"◦"',
+      '▪': '"▪"',
+      '▸': '"▸"',
+      '–': '"–"',
+      'none': '""',
+    };
+    const bulletContent = bulletChars[styleOptions.bulletStyle] || '"•"';
 
     // Visibility styles
     const hidePhoto = !styleOptions.showPhoto ? '[data-section="photo"], .resume-photo, img[alt*="photo"], img[alt*="Photo"] { display: none !important; }' : '';
@@ -54,6 +66,10 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
     const hideSections = !styleOptions.showSections ? '[data-section="custom"] { display: none !important; }' : '';
 
     return `
+      /* ========================================
+         V1 TEMPLATES STYLES (not .resume-v2)
+         ======================================== */
+
       /* Preserve banner header typography - ONLY for V1 templates (not .resume-v2) */
       .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] p,
       .style-options-wrapper:not(:has(.resume-v2)) [data-header="banner"] li,
@@ -65,10 +81,9 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
       }
 
       /* Section Header Case - ONLY h2 elements (section headings), NOT h1 (name) - V1 only */
-      /* For capitalize to work on already-uppercase text, normalize to lowercase first */
-      ${styleOptions.headerCase === 'capitalize' 
+      ${styleOptions.headerCase === 'capitalize'
         ? `.style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) { text-transform: lowercase !important; font-weight: 600 !important;
-        margin-bottom: 12px !important; color: #111827 !important;}` 
+        margin-bottom: 12px !important; color: #111827 !important;}`
         : ''}
       .style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) {
         text-transform: ${headerTransform} !important;
@@ -78,10 +93,9 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
       }
 
       ${
-        divider
+        divider && divider !== 'none'
           ? `
       /* Section Dividers - only when style option is enabled - V1 only */
-      /* Don't override templates with custom accent colors */
       .style-options-wrapper:not(:has(.resume-v2)) h2:not([data-accent-color]) {
         border-bottom: ${divider} !important;
         font-weight: 600 !important;
@@ -97,7 +111,6 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
         font-size: calc(13px * ${scale}) !important;
         color: #1a1a1a !important;
       }
-      /* Do not override banner header name/title */
       .style-options-wrapper:not(:has(.resume-v2)) h1:not([data-header="banner"]) {
         font-size: calc(32px * ${scale}) !important;
       }
@@ -116,7 +129,57 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
         color: #1a1a1a !important;
       }
 
-      /* Visibility Controls */
+      /* ========================================
+         V2 TEMPLATES STYLES (.resume-v2)
+         ======================================== */
+
+      /* Font Size Scaling for V2 templates */
+      .style-options-wrapper .resume-v2 {
+        --font-scale: ${scale};
+      }
+
+      /* Scale all text elements in V2 */
+      .style-options-wrapper .resume-v2 h1 {
+        font-size: calc(var(--resume-name-size, 28px) * ${scale}) !important;
+      }
+      .style-options-wrapper .resume-v2 h2 {
+        font-size: calc(var(--resume-section-size, 11px) * ${scale}) !important;
+      }
+      .style-options-wrapper .resume-v2 h3 {
+        font-size: calc(var(--resume-item-size, 14px) * ${scale}) !important;
+      }
+      .style-options-wrapper .resume-v2 p,
+      .style-options-wrapper .resume-v2 span:not(.bullet-char) {
+        font-size: calc(var(--resume-body-size, 12px) * ${scale}) !important;
+      }
+
+      /* Bullet styles for V2 - use custom bullets via CSS */
+      .style-options-wrapper .resume-v2 ul {
+        list-style: none !important;
+        padding-left: 1.25em !important;
+      }
+      .style-options-wrapper .resume-v2 ul li {
+        position: relative !important;
+      }
+      .style-options-wrapper .resume-v2 ul li::before {
+        content: ${bulletContent} !important;
+        position: absolute !important;
+        left: -1.25em !important;
+        color: inherit !important;
+      }
+      ${styleOptions.bulletStyle === 'none' ? `
+      .style-options-wrapper .resume-v2 ul {
+        padding-left: 0 !important;
+      }
+      .style-options-wrapper .resume-v2 ul li::before {
+        content: "" !important;
+        display: none !important;
+      }
+      ` : ''}
+
+      /* ========================================
+         COMMON VISIBILITY CONTROLS (both V1 & V2)
+         ======================================== */
       ${hidePhoto}
       ${hideSummary}
       ${hideExperience}
@@ -129,34 +192,28 @@ export const StyleOptionsWrapper: React.FC<StyleOptionsWrapperProps> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Apply text transformation for capitalize option (needs JS since CSS can't lowercase then capitalize)
-  // Only transform h2 elements that are section headings (not h1 name)
   useEffect(() => {
     if (styleOptions.headerCase === 'capitalize' && wrapperRef.current) {
       const h2Elements = wrapperRef.current.querySelectorAll('h2:not([data-no-transform])');
       h2Elements.forEach((h2) => {
-        // Skip if it's an editable field (has data attributes or is inside an editable component)
         if (h2.closest('[contenteditable="true"]') || h2.hasAttribute('data-editable')) {
           return;
         }
-        
-        // Only transform if the text is already uppercase (to avoid double transformation)
+
         const text = h2.textContent || '';
         if (text && text === text.toUpperCase() && text !== text.toLowerCase()) {
-          // Transform: lowercase first, then capitalize each word
           const transformed = text
             .toLowerCase()
             .split(' ')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
           if (h2.textContent !== transformed) {
-            // Store original to avoid re-transforming
             h2.setAttribute('data-transformed', 'true');
             h2.textContent = transformed;
           }
         }
       });
     } else if (styleOptions.headerCase !== 'capitalize' && wrapperRef.current) {
-      // Reset transformed state when switching away from capitalize
       const h2Elements = wrapperRef.current.querySelectorAll('h2[data-transformed="true"]');
       h2Elements.forEach((h2) => {
         h2.removeAttribute('data-transformed');

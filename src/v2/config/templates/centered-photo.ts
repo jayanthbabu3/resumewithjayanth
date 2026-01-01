@@ -151,7 +151,7 @@ export const centeredPhotoConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'standard',
+    variant: 'premium',
     datePosition: 'right',
     showLocation: true,
     bulletStyle: '•',
@@ -175,13 +175,22 @@ export const centeredPhotoConfig: TemplateConfig = createTemplateConfig({
     showIndicators: false,
   },
 
+  languages: {
+    variant: 'flags',
+  },
+
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
     { type: 'summary', id: 'summary', title: 'Professional Summary', defaultTitle: 'Professional Summary', enabled: true, order: 1, column: 'main' },
     { type: 'experience', id: 'experience', title: 'Work Experience', defaultTitle: 'Work Experience', enabled: true, order: 2, column: 'main' },
     { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 3, column: 'main' },
     { type: 'skills', id: 'skills', title: 'Skills', defaultTitle: 'Skills', enabled: true, order: 4, column: 'main' },
-    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: false, order: 5, column: 'main' },
+    { type: 'projects', id: 'projects', title: 'Projects', defaultTitle: 'Projects', enabled: true, order: 5, column: 'main' },
+    { type: 'certifications', id: 'certifications', title: 'Certifications', defaultTitle: 'Certifications', enabled: true, order: 6, column: 'main' },
+    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: true, order: 7, column: 'main' },
+    { type: 'awards', id: 'awards', title: 'Awards & Achievements', defaultTitle: 'Awards & Achievements', enabled: false, order: 8, column: 'main' },
+    { type: 'volunteer', id: 'volunteer', title: 'Volunteer Experience', defaultTitle: 'Volunteer Experience', enabled: false, order: 9, column: 'main' },
+    { type: 'interests', id: 'interests', title: 'Interests', defaultTitle: 'Interests', enabled: false, order: 10, column: 'main' },
   ],
 
   fontFamily: {

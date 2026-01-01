@@ -850,15 +850,10 @@ function captureV2ResumeHTMLWithStyles(
             padding: 0;
           }
           
-          /* Set default page margins - all pages get top margin */
+          /* Set page margins - no extra margins, let content handle spacing */
           @page {
             size: A4;
-            margin: 28px 0 0 0;
-          }
-          
-          /* First page has no top margin */
-          @page :first {
-            margin-top: 0;
+            margin: 0;
           }
           
           /* V2 Two-Column Layout Fixes */
@@ -938,79 +933,43 @@ function captureV2ResumeHTMLWithStyles(
             border: none !important;
           }
           
-          /* Bullet points - preserve list-style-type from component */
-          /* Don't override list-style - let component's inline styles work */
+          /* Bullet points - use disc style for proper rendering */
           ul {
             margin: 0 !important;
-            /* Preserve padding-left from component inline styles */
+            list-style-type: disc !important;
           }
-          
+
           /* Ensure list items display properly with bullets */
           ul li {
             display: list-item !important;
             list-style-position: outside !important;
-            /* Preserve component's list-style-type (disc, circle, square) */
+            list-style-type: disc !important;
             margin-bottom: 0.25em !important;
           }
-          
-          /* For V2 experience bullets specifically, ensure proper spacing */
+
+          /* For V2 experience bullets - ensure disc bullets */
           .resume-v2 ul {
-            /* Don't override - component sets padding-left: 20px inline */
+            list-style-type: disc !important;
+            padding-left: 20px !important;
           }
-          
+
           .resume-v2 ul li {
             display: list-item !important;
             list-style-position: outside !important;
-            /* Component sets list-style-type inline, preserve it */
+            list-style-type: disc !important;
           }
           
-          /* CRITICAL FIX: Ensure sections have proper top spacing in PDF */
-          /* This is a common problem - sections at top of new page lose spacing */
-          
-          /* Preserve section bottom margins */
+          /* Section spacing for PDF - respect inline margin-top from template config */
+          /* DO NOT add margin-bottom - the inline margin-top handles section spacing */
           .resume-v2 [data-section] {
-            margin-bottom: 20px !important;
+            /* Preserve inline margin-top from ResumeRenderer (set via spacing.sectionGap) */
+            margin-bottom: 0 !important;
           }
-          
-          /* Add top margin for sections with explicit page breaks */
-          .resume-v2 [data-section][style*="page-break-before"],
-          .resume-v2 [data-section][style*="break-before"] {
-            margin-top: 20px !important;
-          }
-          
-          /* CRITICAL: Use padding-top that will be preserved when section breaks to new page */
-          /* Padding is more reliable than margin for page breaks in PDF */
-          .resume-v2 [data-section] {
-            padding-top: 0 !important;
-          }
-          
-          /* Add padding-top only for sections that appear at the top of a new page */
+
+          /* For sections with explicit page breaks, add top padding for new page */
           .resume-v2 [data-section][style*="page-break-before"],
           .resume-v2 [data-section][style*="break-before"] {
             padding-top: 20px !important;
-          }
-          
-          /* For single-column layouts: first section after header should NOT have top padding */
-          /* The header's bottom padding already handles the spacing */
-          .resume-v2 > div[style*="padding"] > [data-section]:first-child {
-            padding-top: 0 !important;
-            margin-top: 0 !important;
-          }
-          
-          /* For two-column layouts: first section in each column should NOT have top padding */
-          .resume-v2 > div[style*="display: flex"] > div > [data-section]:first-child {
-            padding-top: 0 !important;
-            margin-top: 0 !important;
-          }
-          
-          /* Remove padding-top for sections that follow another section (not at page top) */
-          .resume-v2 > div > div > [data-section] ~ [data-section] {
-            padding-top: 0 !important;
-          }
-          
-          /* For single-column layouts - ensure no extra padding on first section */
-          .resume-v2 > div[style*="padding"] > [data-section]:first-child {
-            padding-top: 0 !important;
           }
         </style>
       </head>
