@@ -23,15 +23,15 @@ export const AwardsCompact: React.FC<AwardsVariantProps> = ({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
       {items.map((award, index) => (
-        <div 
+        <div
           key={award.id || index}
           className="group relative"
-          style={{ 
-            display: 'flex', 
+          style={{
+            display: 'flex',
             alignItems: 'center',
             gap: '10px',
             padding: '6px 10px',
-            backgroundColor: index % 2 === 0 ? '#fffbeb' : 'transparent',
+            backgroundColor: index % 2 === 0 ? `${accentColor}08` : 'transparent',
             borderRadius: '4px',
           }}
         >
@@ -43,8 +43,8 @@ export const AwardsCompact: React.FC<AwardsVariantProps> = ({
               <X className="w-3 h-3 text-red-600" />
             </button>
           )}
-          
-          <Trophy style={{ width: '14px', height: '14px', color: '#f59e0b', flexShrink: 0 }} />
+
+          <Trophy style={{ width: '14px', height: '14px', color: accentColor, flexShrink: 0 }} />
           
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '8px' }}>
             {editable ? (

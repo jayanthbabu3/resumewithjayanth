@@ -39,13 +39,13 @@ export const AwardsStandard: React.FC<AwardsVariantProps> = ({
               width: '32px',
               height: '32px',
               borderRadius: '8px',
-              backgroundColor: '#fef3c7',
+              backgroundColor: `${accentColor}15`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <Trophy style={{ width: '16px', height: '16px', color: '#f59e0b' }} />
+              <Trophy style={{ width: '16px', height: '16px', color: accentColor }} />
             </div>
             
             <div style={{ flex: 1 }}>

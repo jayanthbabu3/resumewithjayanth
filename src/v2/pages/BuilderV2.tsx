@@ -736,6 +736,40 @@ export const BuilderV2: React.FC = () => {
     setEditingLabelId(null);
   }, []);
 
+  // Change section variant
+  const handleChangeSectionVariant = useCallback((sectionId: string, variantId: string) => {
+    setSectionOverrides(prev => ({
+      ...prev,
+      [sectionId]: {
+        ...prev[sectionId],
+        variant: variantId,
+      },
+    }));
+    toast.success('Section style updated!');
+  }, []);
+
+  // Remove/delete section
+  const handleRemoveSection = useCallback((sectionId: string) => {
+    // Remove from enabled sections
+    setEnabledSections(prev => prev.filter(id => id !== sectionId));
+
+    // Remove from section overrides
+    setSectionOverrides(prev => {
+      const next = { ...prev };
+      delete next[sectionId];
+      return next;
+    });
+
+    // Remove from section labels
+    setSectionLabels(prev => {
+      const next = { ...prev };
+      delete next[sectionId];
+      return next;
+    });
+
+    toast.success('Section removed');
+  }, []);
+
   // Download PDF - uses hidden clean preview (form editor mode) for PDF generation
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -1225,6 +1259,8 @@ export const BuilderV2: React.FC = () => {
                             onRemoveReference={handleRemoveReference}
                             onAddCourse={handleAddCourse}
                             onRemoveCourse={handleRemoveCourse}
+                            onRemoveSection={handleRemoveSection}
+                            onChangeSectionVariant={handleChangeSectionVariant}
                             onOpenAddSection={handleOpenAddSection}
                           />
                         </InlineEditProvider>

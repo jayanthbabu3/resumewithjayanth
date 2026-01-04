@@ -32,6 +32,8 @@ import {
   CoursesSection,
 } from './sections';
 import { SummaryVariantRenderer } from './sections/variants/summary/SummaryVariantRenderer';
+import { SectionOptionsMenu } from './SectionOptionsMenu';
+import { ADDABLE_SECTIONS } from './AddSectionModal';
 import { Target, Award, Star, Zap, Trophy, CheckCircle2, Plus } from 'lucide-react';
 
 // Icon mapping for different section types
@@ -137,6 +139,8 @@ interface ResumeRendererProps {
   className?: string;
   /** Callback for removing a section (for scratch builder) */
   onRemoveSection?: (sectionId: string) => void;
+  /** Callback for changing a section's variant */
+  onChangeSectionVariant?: (sectionId: string, variantId: string) => void;
   /** Callback for opening add section modal */
   onOpenAddSection?: (column: 'main' | 'sidebar') => void;
 }
@@ -188,6 +192,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   onAddCourse,
   onRemoveCourse,
   className = '',
+  onChangeSectionVariant,
   onOpenAddSection,
 }) => {
   // Get template configuration
@@ -352,25 +357,31 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         style.breakBefore = 'page';
       }
       
-      // Add delete button for scratch builder
-      const deleteButton = editable && onRemoveSection && section.type !== 'header' ? (
-        <button
-          onClick={() => onRemoveSection(section.id)}
-          className="absolute -right-2 -top-2 opacity-0 group-hover:opacity-100 transition-opacity p-1.5 bg-red-100 hover:bg-red-200 rounded-full shadow-sm z-10"
-          title="Delete section"
-          style={{ transition: 'opacity 0.2s' }}
-        >
-          <svg className="w-3.5 h-3.5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      // Get variants for this section type
+      const sectionInfo = ADDABLE_SECTIONS.find(s => s.id === section.type);
+      const variants = sectionInfo?.variants || [];
+      const currentVariant = (section as any).variant;
+
+      // Section options menu (delete + change variant)
+      const sectionOptionsMenu = editable && section.type !== 'header' ? (
+        <div className="absolute -right-1 top-0 z-10">
+          <SectionOptionsMenu
+            sectionId={section.id}
+            sectionType={section.type}
+            currentVariant={currentVariant}
+            variants={variants}
+            onDelete={onRemoveSection ? () => onRemoveSection(section.id) : undefined}
+            onChangeVariant={onChangeSectionVariant ? (variantId) => onChangeSectionVariant(section.id, variantId) : undefined}
+            themeColor={colors.primary}
+          />
+        </div>
       ) : null;
-      
+
       return (
         <>
           {pageBreakBefore && <div style={{ height: '24px' }} />}
           <div data-section={type} className="group" style={style}>
-            {deleteButton}
+            {sectionOptionsMenu}
             {node}
           </div>
         </>
@@ -607,6 +618,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         );
 
       case 'publications':
+        const publicationsVariant = (section as any).variant;
         return wrap('publications',
           <PublicationsSection
             key={section.id}
@@ -616,10 +628,12 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             sectionTitle={title}
             onAddItem={onAddPublication}
             onRemoveItem={onRemovePublication}
+            variantOverride={publicationsVariant}
           />
         );
 
       case 'volunteer':
+        const volunteerVariant = (section as any).variant;
         return wrap('volunteer',
           <VolunteerSection
             key={section.id}
@@ -629,6 +643,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             sectionTitle={title}
             onAddItem={onAddVolunteer}
             onRemoveItem={onRemoveVolunteer}
+            variantOverride={volunteerVariant}
           />
         );
 
@@ -646,6 +661,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         );
 
       case 'patents':
+        const patentsVariant = (section as any).variant;
         return wrap('patents',
           <PatentsSection
             key={section.id}
@@ -655,10 +671,12 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             sectionTitle={title}
             onAddItem={onAddPatent}
             onRemoveItem={onRemovePatent}
+            variantOverride={patentsVariant}
           />
         );
 
       case 'interests':
+        const interestsVariant = (section as any).variant;
         return wrap('interests',
           <InterestsSection
             key={section.id}
@@ -668,6 +686,7 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
             sectionTitle={title}
             onAddItem={onAddInterest}
             onRemoveItem={onRemoveInterest}
+            variantOverride={interestsVariant}
           />
         );
 
@@ -723,11 +742,6 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   // Force font inheritance on all content
   const fontInheritClass = 'resume-font-inherit';
 
-  // Page padding
-  const contentStyle: React.CSSProperties = {
-    padding: `${spacing.pagePadding.top} ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
-  };
-
   const headerVariant = config.header?.variant;
   const isBannerHeader = headerVariant === 'banner';
   
@@ -738,9 +752,13 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
 
   // Render single-column layout
   if (layout.type === 'single-column') {
-    // For non-banner headers, don't add top padding to content - header's bottom padding handles spacing
+    // For banner headers, we need top padding (at least 16px) to create gap between banner and content
+    // For non-banner headers, don't add top padding - header's bottom padding handles spacing
+    const bannerContentTopPadding = Math.max(16, parseInt(spacing.pagePadding.top) || 0);
     const contentPaddingStyle: React.CSSProperties = isBannerHeader
-      ? contentStyle
+      ? {
+          padding: `${bannerContentTopPadding}px ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
+        }
       : {
           padding: `0 ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
         };
@@ -814,10 +832,12 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
     padding: `${spacing.pagePadding.top} ${spacing.pagePadding.right} 0 ${spacing.pagePadding.left}`,
   };
 
+  // For banner headers, ensure at least 16px top padding for proper spacing
+  const twoColumnBannerTopPadding = Math.max(16, parseInt(spacing.pagePadding.top) || 0);
   const twoColumnContentPadding: React.CSSProperties = {
     padding:
       isBannerHeader
-        ? `${spacing.pagePadding.top} ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`
+        ? `${twoColumnBannerTopPadding}px ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`
         : `0 ${spacing.pagePadding.right} ${spacing.pagePadding.bottom} ${spacing.pagePadding.left}`,
   };
 

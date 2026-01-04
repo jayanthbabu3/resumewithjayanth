@@ -7,6 +7,10 @@ import type { InterestsVariantProps, InterestsVariant } from './types';
 import {
   InterestsStandard,
   InterestsPills,
+  InterestsList,
+  InterestsDetailed,
+  InterestsGrid,
+  InterestsIcons,
 } from './variants';
 
 export type { InterestsVariantProps, InterestsVariant } from './types';
@@ -35,10 +39,17 @@ export const InterestsVariantRenderer: React.FC<InterestsVariantRendererProps> =
 
   switch (variant) {
     case 'standard':
-    case 'detailed':
-    case 'list':
       return <InterestsStandard {...props} />;
     case 'pills':
+      return <InterestsPills {...props} />;
+    case 'list':
+      return <InterestsList {...props} />;
+    case 'detailed':
+      return <InterestsDetailed {...props} />;
+    case 'grid':
+      return <InterestsGrid {...props} />;
+    case 'icons':
+      return <InterestsIcons {...props} />;
     default:
       return <InterestsPills {...props} />;
   }

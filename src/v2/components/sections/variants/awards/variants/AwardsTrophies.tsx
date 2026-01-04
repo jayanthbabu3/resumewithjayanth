@@ -30,7 +30,7 @@ export const AwardsTrophies: React.FC<AwardsVariantProps> = ({
         const IconComponent = awardIcons[index % awardIcons.length];
         
         return (
-          <div 
+          <div
             key={award.id || index}
             className="group relative"
             style={{
@@ -41,9 +41,9 @@ export const AwardsTrophies: React.FC<AwardsVariantProps> = ({
               padding: '16px',
               minWidth: '140px',
               maxWidth: '180px',
-              backgroundColor: '#fffbeb',
+              backgroundColor: `${accentColor}08`,
               borderRadius: '12px',
-              border: '1px solid #fef3c7',
+              border: `1px solid ${accentColor}20`,
             }}
           >
             {editable && onRemoveAward && (
@@ -54,17 +54,17 @@ export const AwardsTrophies: React.FC<AwardsVariantProps> = ({
                 <X className="w-3 h-3 text-red-600" />
               </button>
             )}
-            
+
             <div style={{
               width: '48px',
               height: '48px',
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+              backgroundColor: accentColor,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               marginBottom: '12px',
-              boxShadow: '0 4px 6px -1px rgba(245, 158, 11, 0.3)',
+              boxShadow: `0 4px 6px -1px ${accentColor}40`,
             }}>
               <IconComponent style={{ width: '24px', height: '24px', color: '#fff' }} />
             </div>

@@ -15,8 +15,8 @@ import {
   FolderOpen, Languages, Trophy, Target
 } from 'lucide-react';
 
-// Section type definition with metadata
-interface SectionTypeInfo {
+// Section type definition with metadata - exported for use in SectionOptionsMenu
+export interface SectionTypeInfo {
   id: string;
   name: string;
   description: string;
@@ -25,14 +25,14 @@ interface SectionTypeInfo {
   dataKey: string;
 }
 
-interface VariantInfo {
+export interface VariantInfo {
   id: string;
   name: string;
   description: string;
 }
 
-// Available sections that users can add
-const ADDABLE_SECTIONS: SectionTypeInfo[] = [
+// Available sections that users can add - exported for use in SectionOptionsMenu
+export const ADDABLE_SECTIONS: SectionTypeInfo[] = [
   {
     id: 'interests',
     name: 'Interests',
@@ -40,9 +40,12 @@ const ADDABLE_SECTIONS: SectionTypeInfo[] = [
     icon: <Heart className="w-4 h-4" />,
     dataKey: 'interests',
     variants: [
-      { id: 'pills', name: 'Pills', description: 'Rounded pill badges with icons' },
-      { id: 'detailed', name: 'Detailed', description: 'List with descriptions' },
+      { id: 'pills', name: 'Pills', description: 'Rounded pill badges' },
+      { id: 'icons', name: 'Icons', description: 'Visual icon cards' },
+      { id: 'grid', name: 'Grid', description: 'Two-column grid layout' },
+      { id: 'detailed', name: 'Detailed', description: 'Cards with descriptions' },
       { id: 'list', name: 'Simple List', description: 'Clean bullet list' },
+      { id: 'standard', name: 'Standard', description: 'Traditional list' },
     ],
   },
   {
@@ -52,10 +55,11 @@ const ADDABLE_SECTIONS: SectionTypeInfo[] = [
     icon: <Award className="w-4 h-4" />,
     dataKey: 'awards',
     variants: [
-      { id: 'classic', name: 'Classic', description: 'Traditional with icons' },
-      { id: 'timeline', name: 'Timeline', description: 'Chronological timeline view' },
+      { id: 'standard', name: 'Standard', description: 'Traditional with icons' },
+      { id: 'trophies', name: 'Trophies', description: 'Trophy icons display' },
       { id: 'cards', name: 'Cards', description: 'Card-based layout' },
-      { id: 'minimal', name: 'Minimal', description: 'Clean and simple' },
+      { id: 'compact', name: 'Compact', description: 'Space-efficient' },
+      { id: 'timeline', name: 'Timeline', description: 'Chronological view' },
     ],
   },
   {
@@ -65,8 +69,9 @@ const ADDABLE_SECTIONS: SectionTypeInfo[] = [
     icon: <BookOpen className="w-4 h-4" />,
     dataKey: 'publications',
     variants: [
+      { id: 'modern', name: 'Modern', description: 'Clean cards with icons' },
       { id: 'academic', name: 'Academic', description: 'Formal citation style' },
-      { id: 'modern', name: 'Modern', description: 'Clean modern layout' },
+      { id: 'cards', name: 'Cards', description: 'Grid card layout' },
       { id: 'compact', name: 'Compact', description: 'Space-efficient format' },
     ],
   },
@@ -80,6 +85,7 @@ const ADDABLE_SECTIONS: SectionTypeInfo[] = [
       { id: 'standard', name: 'Standard', description: 'Like experience section' },
       { id: 'compact', name: 'Compact', description: 'Condensed format' },
       { id: 'timeline', name: 'Timeline', description: 'Timeline view' },
+      { id: 'cards', name: 'Cards', description: 'Card-based grid layout' },
     ],
   },
   {
@@ -104,6 +110,7 @@ const ADDABLE_SECTIONS: SectionTypeInfo[] = [
       { id: 'standard', name: 'Standard', description: 'With patent numbers' },
       { id: 'detailed', name: 'Detailed', description: 'Full descriptions' },
       { id: 'compact', name: 'Compact', description: 'Condensed view' },
+      { id: 'cards', name: 'Cards', description: 'Card-based grid layout' },
     ],
   },
   {

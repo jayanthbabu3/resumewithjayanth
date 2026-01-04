@@ -14,8 +14,10 @@ export interface InterestsVariantProps {
   onRemoveInterest?: (id: string) => void;
 }
 
-export type InterestsVariant = 
+export type InterestsVariant =
   | 'standard'
   | 'pills'
   | 'list'
-  | 'detailed';
+  | 'detailed'
+  | 'grid'
+  | 'icons';

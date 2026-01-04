@@ -8,6 +8,8 @@ import {
   AwardsStandard,
   AwardsTrophies,
   AwardsCompact,
+  AwardsCards,
+  AwardsTimeline,
 } from './variants';
 
 export type { AwardsVariantProps, AwardsVariant } from './types';
@@ -38,14 +40,17 @@ export const AwardsVariantRenderer: React.FC<AwardsVariantRendererProps> = ({
 
   switch (variant) {
     case 'standard':
-    case 'cards':
-    case 'timeline':
       return <AwardsStandard {...props} />;
+    case 'cards':
+      return <AwardsCards {...props} />;
+    case 'timeline':
+      return <AwardsTimeline {...props} />;
     case 'trophies':
       return <AwardsTrophies {...props} />;
     case 'compact':
-    default:
       return <AwardsCompact {...props} />;
+    default:
+      return <AwardsStandard {...props} />;
   }
 };
 
