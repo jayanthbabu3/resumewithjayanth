@@ -54,7 +54,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
   const variant = mapVariantId(variantOverride);
   const accent = colors.primary;
 
-  // Get style options for date formatting
+  // Get style options for date formatting and font scaling
   const styleContext = useStyleOptions();
   const formatDate = styleContext?.formatDate || ((date: string) => {
     // Fallback format if context not available
@@ -63,6 +63,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${monthNames[parseInt(month) - 1]} ${year}`;
   });
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
 
   // Render single education item
   const renderItem = (item: EducationItem, index: number) => {
@@ -74,7 +75,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
     };
 
     const degreeStyle: React.CSSProperties = {
-      fontSize: typography.itemTitle.fontSize,
+      fontSize: scaleFontSize(typography.itemTitle.fontSize),
       fontWeight: typography.itemTitle.fontWeight,
       lineHeight: typography.itemTitle.lineHeight,
       color: typography.itemTitle.color,
@@ -82,7 +83,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
     };
 
     const schoolStyle: React.CSSProperties = {
-      fontSize: typography.itemSubtitle.fontSize,
+      fontSize: scaleFontSize(typography.itemSubtitle.fontSize),
       fontWeight: typography.itemSubtitle.fontWeight,
       lineHeight: typography.itemSubtitle.lineHeight,
       color: accent,
@@ -90,14 +91,14 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
     };
 
     const dateStyle: React.CSSProperties = {
-      fontSize: typography.dates.fontSize,
+      fontSize: scaleFontSize(typography.dates.fontSize),
       fontWeight: typography.dates.fontWeight,
       lineHeight: typography.dates.lineHeight,
       color: typography.dates.color,
     };
 
     const fieldStyle: React.CSSProperties = {
-      fontSize: typography.body.fontSize,
+      fontSize: scaleFontSize(typography.body.fontSize),
       color: typography.body.color,
     };
 

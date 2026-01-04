@@ -226,25 +226,33 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
   const isSectionEnabled = (sectionId: string): boolean => {
     // Check styleOptions visibility toggles first
     if (styleOptionsContext?.styleOptions) {
-      const { showStrengths, showSections, showAchievements } = styleOptionsContext.styleOptions;
-      
-      // Check if this is a strengths section
-      if (sectionId === 'strengths') {
-        if (showStrengths === false) return false;
-      }
-      
-      // Check if this is an achievements section
-      if (sectionId === 'achievements') {
-        if (showAchievements === false) return false;
-      }
-      
+      const {
+        showPhoto,
+        showSummary,
+        showExperience,
+        showEducation,
+        showSkills,
+        showStrengths,
+        showAchievements,
+        showSections,
+      } = styleOptionsContext.styleOptions;
+
+      // Check section visibility based on type/id
+      if (sectionId === 'header' && showPhoto === false) return false;
+      if (sectionId === 'summary' && showSummary === false) return false;
+      if (sectionId === 'experience' && showExperience === false) return false;
+      if (sectionId === 'education' && showEducation === false) return false;
+      if (sectionId === 'skills' && showSkills === false) return false;
+      if (sectionId === 'strengths' && showStrengths === false) return false;
+      if (sectionId === 'achievements' && showAchievements === false) return false;
+
       // Check if this is a custom section (type === 'custom')
       const section = config.sections.find(s => s.id === sectionId);
       if (section?.type === 'custom') {
         if (!showSections) return false;
       }
     }
-    
+
     // If enabledSections is provided and has items, use it
     if (enabledSections && enabledSections.length > 0) {
       return enabledSections.includes(sectionId);

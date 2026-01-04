@@ -40,6 +40,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
   const bannerMetaTextColor = 'rgba(255, 255, 255, 0.85)';
   const styleOptions = useStyleOptions();
   const showPhoto = styleOptions?.styleOptions?.showPhoto ?? true;
+  const scaleFontSize = styleOptions?.scaleFontSize || ((s: string) => s);
   
   // Base font family from config
   const baseFontFamily = fontFamily?.primary || "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
@@ -79,7 +80,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
     const iconStyle = { width: iconSize, height: iconSize, color: iconColor, flexShrink: 0 } as const;
     
     const textStyle: React.CSSProperties = {
-      fontSize: typography.contact.fontSize,
+      fontSize: scaleFontSize(typography.contact.fontSize),
       color: forBanner ? 'rgba(255, 255, 255, 0.85)' : typography.contact.color,
       fontFamily: baseFontFamily,
     };
@@ -103,7 +104,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
     if (!editable && (!value || !value.trim() || value === 'Click to edit' || value.trim() === 'Click to edit')) return null;
     
     const content = (
-      <div className="flex items-center gap-1.5" style={{ fontSize: typography.contact.fontSize, fontFamily: baseFontFamily }}>
+      <div className="flex items-center gap-1.5" style={{ fontSize: scaleFontSize(typography.contact.fontSize), fontFamily: baseFontFamily }}>
         {header.contactIcons?.show !== false && (
           <Icon style={iconStyle} />
         )}
@@ -131,7 +132,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
   // Render name
   const renderName = () => {
     const nameStyle: React.CSSProperties = {
-      fontSize: typography.name.fontSize,
+      fontSize: scaleFontSize(typography.name.fontSize),
       fontWeight: typography.name.fontWeight,
       lineHeight: typography.name.lineHeight,
       letterSpacing: typography.name.letterSpacing || '-0.02em',
@@ -161,7 +162,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
     if (!editable && !personalInfo.title) return null;
 
     const titleStyle: React.CSSProperties = {
-      fontSize: typography.title.fontSize,
+      fontSize: scaleFontSize(typography.title.fontSize),
       fontWeight: typography.title.fontWeight,
       lineHeight: typography.title.lineHeight,
       color: isBannerVariant ? 'rgba(255, 255, 255, 0.9)' : accent,
@@ -420,7 +421,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
 
         // Banner-specific styles - all text should be white/light for readability
         const bannerContactStyle: React.CSSProperties = {
-          fontSize: typography.contact.fontSize,
+          fontSize: scaleFontSize(typography.contact.fontSize),
           color: 'rgba(255, 255, 255, 0.85)',
           fontFamily: baseFontFamily,
         };
@@ -476,51 +477,6 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
               overflow: 'hidden',
             }}
           >
-            {/* Decorative background elements */}
-            <svg
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                width: '100%',
-                height: '100%',
-                pointerEvents: 'none',
-              }}
-              viewBox="0 0 800 160"
-              preserveAspectRatio="none"
-            >
-              {/* Wave patterns */}
-              <path
-                d="M0,80 Q150,20 300,60 T600,40 T800,80 L800,160 L0,160 Z"
-                fill="rgba(255,255,255,0.06)"
-              />
-              <path
-                d="M0,100 Q200,50 400,90 T800,70 L800,160 L0,160 Z"
-                fill="rgba(255,255,255,0.04)"
-              />
-              {/* Flowing lines */}
-              <path
-                d="M0,40 Q100,80 250,50 Q400,20 550,60 Q700,100 800,60"
-                fill="none"
-                stroke="rgba(255,255,255,0.12)"
-                strokeWidth="2"
-              />
-              <path
-                d="M0,70 Q150,40 300,70 Q450,100 600,60 Q750,20 800,50"
-                fill="none"
-                stroke="rgba(255,255,255,0.08)"
-                strokeWidth="1.5"
-              />
-              {/* Diagonal accent lines on right */}
-              <line x1="600" y1="0" x2="720" y2="160" stroke="rgba(255,255,255,0.04)" strokeWidth="40" />
-              <line x1="660" y1="0" x2="780" y2="160" stroke="rgba(255,255,255,0.06)" strokeWidth="25" />
-              <line x1="720" y1="0" x2="840" y2="160" stroke="rgba(255,255,255,0.08)" strokeWidth="15" />
-              {/* Corner circles */}
-              <circle cx="750" cy="40" r="60" fill="rgba(255,255,255,0.03)" />
-              <circle cx="780" cy="100" r="40" fill="rgba(255,255,255,0.02)" />
-            </svg>
             <div className="flex items-center gap-5" style={{ position: 'relative', zIndex: 1 }}>
               {bannerPhotoPosition === 'left' && bannerAvatar}
               <div className="flex-1">
@@ -536,7 +492,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
                         path="personalInfo.title"
                         value={personalInfo.title || 'Professional Title'}
                         style={{
-                          fontSize: typography.title.fontSize,
+                          fontSize: scaleFontSize(typography.title.fontSize),
                           fontWeight: typography.title.fontWeight,
                           color: 'rgba(255, 255, 255, 0.9)',
                           fontFamily: baseFontFamily,
@@ -544,7 +500,7 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
                       />
                     ) : (
                       <span style={{
-                        fontSize: typography.title.fontSize,
+                        fontSize: scaleFontSize(typography.title.fontSize),
                         fontWeight: typography.title.fontWeight,
                         color: 'rgba(255, 255, 255, 0.9)',
                         fontFamily: baseFontFamily,
@@ -1006,6 +962,193 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
                   Globe,
                   personalInfo.portfolio,
                   'personalInfo.portfolio',
+                  personalInfo.portfolio?.startsWith('http') ? personalInfo.portfolio : `https://${personalInfo.portfolio}`
+                )}
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'creative-underline':
+        // Creative header with stylized underline and modern two-row layout
+        // Uses its own internal spacing - header padding from config is ignored for full-width effect
+        const creativePhotoSize = header.photoSize || '56px';
+        const creativeAvatar = renderAvatar({
+          size: creativePhotoSize,
+          borderColor: accent,
+          backgroundColor: `${accent}10`,
+          textColor: accent,
+          borderWidth: '2px',
+        });
+
+        const creativeContactStyle: React.CSSProperties = {
+          fontSize: scaleFontSize(typography.contact.fontSize),
+          color: typography.contact.color,
+          fontFamily: baseFontFamily,
+        };
+        const creativeIconSize = header.contactIcons?.size || '12px';
+
+        const renderCreativeContactItem = (
+          icon: React.ElementType,
+          value: string | undefined,
+          path: string,
+          isLink?: boolean,
+          href?: string
+        ) => {
+          if (!editable && !value) return null;
+          const Icon = icon;
+          const showIcon = header.contactIcons?.show !== false;
+
+          const content = (
+            <div className="flex items-center gap-1.5">
+              {showIcon && <Icon style={{ width: creativeIconSize, height: creativeIconSize, color: accent, flexShrink: 0 }} />}
+              {editable ? (
+                <InlineEditableText
+                  path={path}
+                  value={value || 'Click to edit'}
+                  style={creativeContactStyle}
+                />
+              ) : isLink && href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ ...creativeContactStyle, textDecoration: 'none' }}
+                >
+                  {value}
+                </a>
+              ) : (
+                <span style={creativeContactStyle}>{value}</span>
+              )}
+            </div>
+          );
+          return content;
+        };
+
+        return (
+          <div
+            data-header="creative-underline"
+            style={{
+              padding: '24px 28px 20px 28px',
+              fontFamily: baseFontFamily,
+              position: 'relative',
+            }}
+          >
+            {/* Top decorative line - full width */}
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '3px',
+                background: `linear-gradient(90deg, ${accent} 0%, ${accent}60 40%, transparent 100%)`,
+              }}
+            />
+
+            {/* Main content row */}
+            <div className="flex items-start gap-4" style={{ marginTop: '8px' }}>
+              {showPhoto && creativeAvatar}
+              <div className="flex-1">
+                {/* Name with creative underline */}
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                  <h1 style={{
+                    fontSize: scaleFontSize(typography.name.fontSize),
+                    fontWeight: 700,
+                    color: typography.name.color,
+                    margin: 0,
+                    letterSpacing: typography.name.letterSpacing || '-0.02em',
+                    fontFamily: baseFontFamily,
+                  }}>
+                    {editable ? (
+                      <InlineEditableText
+                        path="personalInfo.fullName"
+                        value={personalInfo.fullName || 'Your Name'}
+                        style={{
+                          fontSize: scaleFontSize(typography.name.fontSize),
+                          fontWeight: 700,
+                          color: typography.name.color,
+                          fontFamily: baseFontFamily,
+                        }}
+                      />
+                    ) : (
+                      personalInfo.fullName || 'Your Name'
+                    )}
+                  </h1>
+                  {/* Stylized underline */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: '-4px',
+                      left: 0,
+                      width: '60px',
+                      height: '3px',
+                      backgroundColor: accent,
+                      borderRadius: '2px',
+                    }}
+                  />
+                </div>
+
+                {/* Title */}
+                <p style={{
+                  fontSize: scaleFontSize(typography.title.fontSize),
+                  fontWeight: 500,
+                  color: accent,
+                  margin: '12px 0 0 0',
+                  fontFamily: baseFontFamily,
+                }}>
+                  {editable ? (
+                    <InlineEditableText
+                      path="personalInfo.title"
+                      value={personalInfo.title || 'Professional Title'}
+                      style={{
+                        fontSize: scaleFontSize(typography.title.fontSize),
+                        fontWeight: 500,
+                        color: accent,
+                        fontFamily: baseFontFamily,
+                      }}
+                    />
+                  ) : (
+                    personalInfo.title
+                  )}
+                </p>
+              </div>
+            </div>
+
+            {/* Contact row with separator line */}
+            <div
+              style={{
+                marginTop: '16px',
+                paddingTop: '14px',
+                borderTop: `1px solid ${colors.border}`,
+              }}
+            >
+              <div
+                className="flex flex-wrap items-center gap-x-4 gap-y-2"
+                style={{ justifyContent: 'flex-start' }}
+              >
+                {renderCreativeContactItem(Mail, personalInfo.email, 'personalInfo.email')}
+                {renderCreativeContactItem(Phone, personalInfo.phone, 'personalInfo.phone')}
+                {renderCreativeContactItem(MapPin, personalInfo.location, 'personalInfo.location')}
+                {includeSocialLinks && renderCreativeContactItem(
+                  Linkedin,
+                  personalInfo.linkedin,
+                  'personalInfo.linkedin',
+                  true,
+                  personalInfo.linkedin?.startsWith('http') ? personalInfo.linkedin : `https://${personalInfo.linkedin}`
+                )}
+                {includeSocialLinks && renderCreativeContactItem(
+                  Github,
+                  personalInfo.github,
+                  'personalInfo.github',
+                  true,
+                  personalInfo.github?.startsWith('http') ? personalInfo.github : `https://${personalInfo.github}`
+                )}
+                {includeSocialLinks && renderCreativeContactItem(
+                  Globe,
+                  personalInfo.portfolio,
+                  'personalInfo.portfolio',
+                  true,
                   personalInfo.portfolio?.startsWith('http') ? personalInfo.portfolio : `https://${personalInfo.portfolio}`
                 )}
               </div>

@@ -10,6 +10,7 @@ import { X, Plus, ExternalLink, Github } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { InlineEditableDate } from '@/components/resume/InlineEditableDate';
 import { useInlineEdit } from '@/contexts/InlineEditContext';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 import type { ProjectsVariantProps } from '../types';
 
 export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
@@ -23,6 +24,8 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
 }) => {
   const { typography } = config;
   const inlineEdit = useInlineEdit();
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
 
   if (!items.length && !editable) return null;
 
@@ -69,7 +72,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                       path={`projects.${index}.name`}
                       value={item.name}
                       style={{
-                        fontSize: typography.itemTitle.fontSize,
+                        fontSize: scaleFontSize(typography.itemTitle.fontSize),
                         fontWeight: 600,
                         color: typography.itemTitle.color,
                       }}
@@ -77,7 +80,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                     />
                   ) : (
                     <span style={{
-                      fontSize: typography.itemTitle.fontSize,
+                      fontSize: scaleFontSize(typography.itemTitle.fontSize),
                       fontWeight: 600,
                       color: typography.itemTitle.color,
                     }}>
@@ -107,11 +110,11 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                         <InlineEditableText
                           path={`projects.${index}.role`}
                           value={item.role || ''}
-                          style={{ fontSize: '12px', color: accentColor, fontWeight: 500 }}
+                          style={{ fontSize: scaleFontSize('12px'), color: accentColor, fontWeight: 500 }}
                           placeholder="Role"
                         />
                       ) : (
-                        <span style={{ fontSize: '12px', color: accentColor, fontWeight: 500 }}>
+                        <span style={{ fontSize: scaleFontSize('12px'), color: accentColor, fontWeight: 500 }}>
                           {item.role}
                         </span>
                       )}
@@ -122,14 +125,14 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
 
               {/* Date */}
               {(item.startDate || item.endDate || editable) && (
-                <div style={{ fontSize: '11px', color: typography.dates.color, whiteSpace: 'nowrap', flexShrink: 0 }}>
+                <div style={{ fontSize: scaleFontSize('11px'), color: typography.dates.color, whiteSpace: 'nowrap', flexShrink: 0 }}>
                   {editable ? (
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
                       <InlineEditableDate
                         path={`projects.${index}.startDate`}
                         value={item.startDate || ''}
                         formatDisplay={formatDate}
-                        style={{ fontSize: '11px' }}
+                        style={{ fontSize: scaleFontSize('11px') }}
                       />
                       <span>-</span>
                       {item.current ? (
@@ -139,7 +142,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                           path={`projects.${index}.endDate`}
                           value={item.endDate || ''}
                           formatDisplay={formatDate}
-                          style={{ fontSize: '11px' }}
+                          style={{ fontSize: scaleFontSize('11px') }}
                         />
                       )}
                     </span>
@@ -156,7 +159,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
 
             {/* Description */}
             <div style={{
-              fontSize: typography.body.fontSize,
+              fontSize: scaleFontSize(typography.body.fontSize),
               color: typography.body.color,
               marginTop: '6px',
               lineHeight: 1.5,
@@ -184,7 +187,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                       alignItems: 'center',
                       gap: '4px',
                       padding: '2px 8px',
-                      fontSize: '10px',
+                      fontSize: scaleFontSize('10px'),
                       backgroundColor: `${accentColor}12`,
                       color: accentColor,
                       borderRadius: '4px',
@@ -195,7 +198,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                       <InlineEditableText
                         path={`projects.${index}.${techPath}.${techIndex}`}
                         value={tech}
-                        style={{ fontSize: '10px', fontWeight: 500, color: accentColor }}
+                        style={{ fontSize: scaleFontSize('10px'), fontWeight: 500, color: accentColor }}
                         placeholder="Tech"
                       />
                     ) : (
@@ -216,7 +219,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                     onClick={handleAddTechnology}
                     style={{
                       padding: '2px 8px',
-                      fontSize: '10px',
+                      fontSize: scaleFontSize('10px'),
                       color: accentColor,
                       border: `1px dashed ${accentColor}50`,
                       borderRadius: '4px',
@@ -238,7 +241,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                   <InlineEditableText
                     path={`projects.${index}.url`}
                     value={item.url || ''}
-                    style={{ fontSize: '10px', color: accentColor }}
+                    style={{ fontSize: scaleFontSize('10px'), color: accentColor }}
                     placeholder="URL"
                   />
                 </div>
@@ -247,7 +250,7 @@ export const ProjectsStandard: React.FC<ProjectsVariantProps> = ({
                   <InlineEditableText
                     path={`projects.${index}.githubUrl`}
                     value={item.githubUrl || ''}
-                    style={{ fontSize: '10px', color: accentColor }}
+                    style={{ fontSize: scaleFontSize('10px'), color: accentColor }}
                     placeholder="GitHub"
                   />
                 </div>

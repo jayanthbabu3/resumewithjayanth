@@ -9,6 +9,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { X, Plus, ChevronDown } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { useInlineEdit } from '@/contexts/InlineEditContext';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 import type { LanguagesVariantProps } from '../types';
 
 const proficiencyOptions: { key: string; level: number; label: string }[] = [
@@ -51,6 +52,8 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
 }) => {
   const { typography } = config;
   const inlineEdit = useInlineEdit();
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -107,7 +110,7 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
                       {lang.language}:
                     </span>
                   )}
-                  <span style={{ color: typography.body.color }}>Native speaker</span>
+                  <span style={{ color: typography.body.color, fontSize: scaleFontSize('12px') }}>Native speaker</span>
                 </div>
                 {/* Proficiency selector for Native */}
                 {editable && (
@@ -174,7 +177,7 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
                     )}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    {cefer && <span style={{ fontSize: '13px', color: '#6b7280' }}>{cefer}</span>}
+                    {cefer && <span style={{ fontSize: scaleFontSize('13px'), color: '#6b7280' }}>{cefer}</span>}
                     {/* Proficiency selector */}
                     {editable && (
                       <div className="relative" ref={openDropdown === index ? dropdownRef : null}>
@@ -225,7 +228,7 @@ export const LanguagesStandard: React.FC<LanguagesVariantProps> = ({
                     }} />
                   </div>
                   {!editable && (
-                    <span style={{ fontSize: '12px', color: '#9ca3af', minWidth: '100px' }}>
+                    <span style={{ fontSize: scaleFontSize('12px'), color: '#9ca3af', minWidth: '100px' }}>
                       {profInfo.label}
                     </span>
                   )}

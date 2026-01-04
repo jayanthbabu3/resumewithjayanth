@@ -7,6 +7,7 @@
 import React from 'react';
 import { X, Plus, Trophy } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 import type { AchievementsVariantProps } from '../types';
 
 export const AchievementsStandard: React.FC<AchievementsVariantProps> = ({
@@ -19,6 +20,8 @@ export const AchievementsStandard: React.FC<AchievementsVariantProps> = ({
   showIndicators = true,
 }) => {
   const { typography } = config;
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
 
   if (!items.length && !editable) return null;
 
@@ -49,7 +52,7 @@ export const AchievementsStandard: React.FC<AchievementsVariantProps> = ({
 
           <div style={{ flex: 1 }}>
             <div style={{
-              fontSize: typography.body.fontSize,
+              fontSize: scaleFontSize(typography.body.fontSize),
               lineHeight: typography.body.lineHeight,
               color: typography.body.color,
             }}>

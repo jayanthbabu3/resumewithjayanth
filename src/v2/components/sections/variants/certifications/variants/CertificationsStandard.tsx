@@ -8,6 +8,7 @@ import React from 'react';
 import { X, Plus, ExternalLink } from 'lucide-react';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
 import { InlineEditableDate } from '@/components/resume/InlineEditableDate';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 import type { CertificationsVariantProps } from '../types';
 
 export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
@@ -20,6 +21,8 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
   formatDate,
 }) => {
   const { typography } = config;
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
 
   if (!items.length && !editable) return null;
 
@@ -53,7 +56,7 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
                   path={`certifications.${index}.name`}
                   value={cert.name}
                   style={{
-                    fontSize: typography.itemTitle.fontSize,
+                    fontSize: scaleFontSize(typography.itemTitle.fontSize),
                     fontWeight: 600,
                     color: typography.itemTitle.color,
                   }}
@@ -61,7 +64,7 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
                 />
               ) : (
                 <span style={{
-                  fontSize: typography.itemTitle.fontSize,
+                  fontSize: scaleFontSize(typography.itemTitle.fontSize),
                   fontWeight: 600,
                   color: typography.itemTitle.color,
                 }}>
@@ -77,13 +80,13 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
             </div>
 
             {/* Date */}
-            <div style={{ fontSize: '11px', color: typography.dates.color, whiteSpace: 'nowrap', flexShrink: 0 }}>
+            <div style={{ fontSize: scaleFontSize('11px'), color: typography.dates.color, whiteSpace: 'nowrap', flexShrink: 0 }}>
               {editable ? (
                 <InlineEditableDate
                   path={`certifications.${index}.date`}
                   value={cert.date}
                   formatDisplay={formatDate}
-                  style={{ fontSize: '11px' }}
+                  style={{ fontSize: scaleFontSize('11px') }}
                 />
               ) : (
                 formatDate ? formatDate(cert.date) : cert.date
@@ -92,12 +95,12 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
           </div>
 
           {/* Issuer */}
-          <div style={{ fontSize: '11px', color: accentColor, fontWeight: 500, marginTop: '2px' }}>
+          <div style={{ fontSize: scaleFontSize('11px'), color: accentColor, fontWeight: 500, marginTop: '2px' }}>
             {editable ? (
               <InlineEditableText
                 path={`certifications.${index}.issuer`}
                 value={cert.issuer}
-                style={{ fontSize: '11px', color: accentColor, fontWeight: 500 }}
+                style={{ fontSize: scaleFontSize('11px'), color: accentColor, fontWeight: 500 }}
                 placeholder="Issuing Organization"
               />
             ) : (
@@ -107,14 +110,14 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
 
           {/* Credential ID & Expiry */}
           {(cert.credentialId || cert.expiryDate || editable) && (
-            <div style={{ display: 'flex', gap: '12px', marginTop: '4px', fontSize: '10px', color: '#6b7280', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '4px', fontSize: scaleFontSize('10px'), color: '#6b7280', flexWrap: 'wrap' }}>
               {(cert.credentialId || editable) && (
                 <span>
                   ID: {editable ? (
                     <InlineEditableText
                       path={`certifications.${index}.credentialId`}
                       value={cert.credentialId || ''}
-                      style={{ fontSize: '10px', color: '#6b7280' }}
+                      style={{ fontSize: scaleFontSize('10px'), color: '#6b7280' }}
                       placeholder="Credential ID"
                     />
                   ) : cert.credentialId}
@@ -127,7 +130,7 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
                       path={`certifications.${index}.expiryDate`}
                       value={cert.expiryDate || ''}
                       formatDisplay={formatDate}
-                      style={{ fontSize: '10px' }}
+                      style={{ fontSize: scaleFontSize('10px') }}
                     />
                   ) : (formatDate ? formatDate(cert.expiryDate || '') : cert.expiryDate)}
                 </span>
@@ -142,7 +145,7 @@ export const CertificationsStandard: React.FC<CertificationsVariantProps> = ({
               <InlineEditableText
                 path={`certifications.${index}.url`}
                 value={cert.url || ''}
-                style={{ fontSize: '10px', color: accentColor }}
+                style={{ fontSize: scaleFontSize('10px'), color: accentColor }}
                 placeholder="Certificate URL"
               />
             </div>

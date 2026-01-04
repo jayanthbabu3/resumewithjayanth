@@ -8,6 +8,7 @@ import React from 'react';
 import type { TemplateConfig } from '../../types';
 import { SectionHeading } from './SectionHeading';
 import { InlineEditableText } from '@/components/resume/InlineEditableText';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 
 interface SummarySectionProps {
   summary: string;
@@ -25,8 +26,12 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
   const { typography, colors, spacing } = config;
   const accent = colors.primary;
 
+  // Get style options for font scaling
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
+
   const textStyle: React.CSSProperties = {
-    fontSize: typography.body.fontSize,
+    fontSize: scaleFontSize(typography.body.fontSize),
     fontWeight: typography.body.fontWeight,
     lineHeight: typography.body.lineHeight,
     color: typography.body.color,

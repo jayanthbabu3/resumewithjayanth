@@ -316,7 +316,7 @@ export function applyThemeColors(
     }
   }
   
-  // Apply secondary color - affects sidebar/accent backgrounds
+  // Apply secondary color - affects sidebar/accent backgrounds and header
   if (colors.secondary) {
     result.colors = {
       ...result.colors,
@@ -326,7 +326,7 @@ export function applyThemeColors(
         sidebar: colors.secondary,
       },
     };
-    
+
     // Update layout sidebar background
     if (result.layout.sidebarBackground) {
       result.layout = {
@@ -334,8 +334,16 @@ export function applyThemeColors(
         sidebarBackground: colors.secondary,
       };
     }
+
+    // Update header background color for banner headers
+    if (result.header?.backgroundColor) {
+      result.header = {
+        ...result.header,
+        backgroundColor: colors.secondary,
+      };
+    }
   }
-  
+
   return result;
 }
 

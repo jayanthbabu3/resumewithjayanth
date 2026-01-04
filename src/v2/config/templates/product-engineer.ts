@@ -151,7 +151,7 @@ export const productEngineerConfig: TemplateConfig = createTemplateConfig({
   },
 
   experience: {
-    variant: 'modern',
+    variant: 'dots-timeline',
     datePosition: 'right',
     showLocation: true,
     bulletStyle: '▸',

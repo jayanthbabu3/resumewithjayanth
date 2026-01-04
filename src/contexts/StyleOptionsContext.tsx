@@ -50,7 +50,9 @@ interface StyleOptionsContextType {
   getDividerStyle: () => React.CSSProperties;
   /** Get section header border style with accent color. Returns empty object if divider is 'none' */
   getSectionBorder: (accentColor: string) => React.CSSProperties;
-  getFontScale: () => { name: number; title: number; section: number; body: number; small: number };
+  getFontScale: () => { multiplier: number; name: number; title: number; section: number; body: number; small: number };
+  /** Scale a font size string based on current fontSizeScale setting */
+  scaleFontSize: (fontSize: string) => string;
   formatDate: (dateString: string) => string;
 }
 
@@ -127,14 +129,25 @@ export const StyleOptionsProvider: React.FC<{ children: ReactNode }> = ({ childr
   const getFontScale = useCallback(() => {
     switch (styleOptions.fontSizeScale) {
       case 'compact':
-        return { name: 28, title: 14, section: 14, body: 12, small: 11 };
+        return { multiplier: 0.9, name: 28, title: 14, section: 14, body: 12, small: 11 };
       case 'large':
-        return { name: 36, title: 18, section: 18, body: 14, small: 13 };
+        return { multiplier: 1.15, name: 36, title: 18, section: 18, body: 14, small: 13 };
       case 'normal':
       default:
-        return { name: 32, title: 16, section: 16, body: 13, small: 12 };
+        return { multiplier: 1.0, name: 32, title: 16, section: 16, body: 13, small: 12 };
     }
   }, [styleOptions.fontSizeScale]);
+
+  // Helper: Scale a font size string (e.g., "14px" -> "12.6px" for compact)
+  const scaleFontSize = useCallback((fontSize: string): string => {
+    const scale = getFontScale();
+    const match = fontSize.match(/^(\d+(?:\.\d+)?)(px|em|rem|pt)?$/);
+    if (!match) return fontSize;
+    const value = parseFloat(match[1]);
+    const unit = match[2] || 'px';
+    const scaled = Math.round(value * scale.multiplier * 10) / 10;
+    return `${scaled}${unit}`;
+  }, [getFontScale]);
 
   // Helper: Format date based on format setting
   const formatDate = useCallback((dateString: string): string => {
@@ -185,6 +198,7 @@ export const StyleOptionsProvider: React.FC<{ children: ReactNode }> = ({ childr
       getDividerStyle,
       getSectionBorder,
       getFontScale,
+      scaleFontSize,
       formatDate,
     }}>
       {children}
@@ -199,9 +213,9 @@ export const useStyleOptions = (): StyleOptionsContextType | undefined => {
 // Safe hook that returns default values if outside provider
 export const useStyleOptionsWithDefaults = (): StyleOptionsContextType => {
   const context = useContext(StyleOptionsContext);
-  
+
   if (context) return context;
-  
+
   // Return default implementations when outside provider
   return {
     styleOptions: defaultStyleOptions,
@@ -212,7 +226,8 @@ export const useStyleOptionsWithDefaults = (): StyleOptionsContextType => {
     getBulletChar: () => '•',
     getDividerStyle: () => ({ borderBottom: '0.5px solid currentColor' }),
     getSectionBorder: (accentColor: string) => ({ borderBottom: `0.5px solid ${accentColor}` }),
-    getFontScale: () => ({ name: 32, title: 16, section: 16, body: 13, small: 12 }),
+    getFontScale: () => ({ multiplier: 1.0, name: 32, title: 16, section: 16, body: 13, small: 12 }),
+    scaleFontSize: (fontSize: string) => fontSize,
     formatDate: (dateString: string) => dateString,
   };
 };

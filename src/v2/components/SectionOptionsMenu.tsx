@@ -111,16 +111,16 @@ export const SectionOptionsMenu: React.FC<SectionOptionsMenuProps> = ({
                 }}
                 className="w-full flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
               >
+                <ArrowRight className={`w-4 h-4 transition-transform rotate-180 ${showVariants ? '-rotate-90' : ''}`} />
                 <span className="flex items-center gap-2">
                   <Palette className="w-4 h-4" />
                   Change Style
                 </span>
-                <ArrowRight className={`w-4 h-4 transition-transform ${showVariants ? 'rotate-90' : ''}`} />
               </button>
 
-              {/* Variants Submenu */}
+              {/* Variants Submenu - positioned to the left to avoid overflow */}
               {showVariants && (
-                <div className="absolute left-full top-0 ml-1 w-52 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
+                <div className="absolute right-full top-0 mr-1 w-52 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
                   {variants.map((variant) => (
                     <button
                       key={variant.id}

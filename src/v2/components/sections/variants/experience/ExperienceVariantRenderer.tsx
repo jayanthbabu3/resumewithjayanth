@@ -18,6 +18,7 @@ import {
   ExperienceTimelinePro,
   ExperiencePremium,
   ExperienceIconAccent,
+  ExperienceDotsTimeline,
 } from './variants';
 
 // Re-export types for external use
@@ -90,6 +91,9 @@ export const ExperienceVariantRenderer: React.FC<ExperienceVariantRendererProps>
     case 'icon-accent':
       // Creative card with company icon badge
       return <ExperienceIconAccent {...props} />;
+    case 'dots-timeline':
+      // Simple connected dots timeline
+      return <ExperienceDotsTimeline {...props} />;
     case 'academic':
     case 'creative':
     default:

@@ -7,6 +7,7 @@
 import React from 'react';
 import type { SkillsVariantProps } from './SkillsVariantRenderer';
 import { getPillTextColor } from './utils';
+import { useStyleOptions } from '@/contexts/StyleOptionsContext';
 
 export const SkillsPills: React.FC<SkillsVariantProps> = ({
   items,
@@ -15,11 +16,13 @@ export const SkillsPills: React.FC<SkillsVariantProps> = ({
   editable = false,
 }) => {
   const { skills } = config;
+  const styleContext = useStyleOptions();
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
 
   const pillStyle: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
-    fontSize: skills.badge?.fontSize || '12px',
+    fontSize: scaleFontSize(skills.badge?.fontSize || '12px'),
     fontWeight: 500,
     padding: skills.badge?.padding || '4px 12px',
     borderRadius: '9999px',

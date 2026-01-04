@@ -225,7 +225,8 @@ export type HeaderVariant =
   | 'accent-bar'       // Thin accent bar top, name centered
   | 'compact'          // Name | Title | Contact inline
   | 'gradient-banner'  // Full-width gradient background
-  | 'elegant-banner';  // Gradient banner with centered photo and icon badge
+  | 'elegant-banner'   // Gradient banner with centered photo and icon badge
+  | 'creative-underline'; // Creative header with stylized underline and modern layout
 
 export interface HeaderConfig {
   /** Header layout variant */
@@ -263,14 +264,16 @@ export interface HeaderConfig {
 // ============================================================================
 
 export type ExperienceVariant =
-  | 'standard'       // Title, company, dates, bullets
-  | 'compact'        // Condensed single-line header
-  | 'timeline'       // Visual timeline on left
-  | 'card'           // Card-style with border
-  | 'minimal'        // Just essentials
+  | 'standard'        // Title, company, dates, bullets
+  | 'compact'         // Condensed single-line header
+  | 'timeline'        // Visual timeline on left
+  | 'card'            // Card-style with border
+  | 'minimal'         // Just essentials
   | 'two-column-dates' // Dates/location on left column, content on right
-  | 'accent-card'    // Lined header with accent bar and bullets
-  | 'accent-side';   // Left-accent column with stacked content
+  | 'accent-card'     // Lined header with accent bar and bullets
+  | 'accent-side'     // Left-accent column with stacked content
+  | 'modern'          // Modern with accent borders
+  | 'dots-timeline';  // Simple connected dots timeline
 
 export interface ExperienceConfig {
   /** Display variant */

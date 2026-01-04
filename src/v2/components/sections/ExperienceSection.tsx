@@ -51,7 +51,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   // Get style options
   const styleContext = useStyleOptions();
   const bulletChar = styleContext?.styleOptions?.bulletStyle || '•';
-  
+  const scaleFontSize = styleContext?.scaleFontSize || ((s: string) => s);
+
   // Use formatDate from StyleOptionsContext for consistency
   const formatDate = styleContext?.formatDate || ((date: string) => {
     // Fallback format if context not available
@@ -77,7 +78,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
     };
 
     const titleStyle: React.CSSProperties = {
-      fontSize: typography.itemTitle.fontSize,
+      fontSize: scaleFontSize(typography.itemTitle.fontSize),
       fontWeight: typography.itemTitle.fontWeight,
       lineHeight: typography.itemTitle.lineHeight,
       color: typography.itemTitle.color,
@@ -85,7 +86,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
     };
 
     const subtitleStyle: React.CSSProperties = {
-      fontSize: typography.itemSubtitle.fontSize,
+      fontSize: scaleFontSize(typography.itemSubtitle.fontSize),
       fontWeight: typography.itemSubtitle.fontWeight,
       lineHeight: typography.itemSubtitle.lineHeight,
       color: accent,
@@ -93,14 +94,14 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
     };
 
     const dateStyle: React.CSSProperties = {
-      fontSize: typography.dates.fontSize,
+      fontSize: scaleFontSize(typography.dates.fontSize),
       fontWeight: typography.dates.fontWeight,
       lineHeight: typography.dates.lineHeight,
       color: typography.dates.color,
     };
 
     const bodyStyle: React.CSSProperties = {
-      fontSize: typography.body.fontSize,
+      fontSize: scaleFontSize(typography.body.fontSize),
       fontWeight: typography.body.fontWeight,
       lineHeight: typography.body.lineHeight,
       color: typography.body.color,
@@ -777,7 +778,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({
   // Use ExperienceVariantRenderer for supported variants
   const variantRendererVariants: ExperienceVariant[] = [
     'timeline', 'cards', 'standard', 'compact', 'modern', 'minimal', 'detailed',
-    'left-border', 'dates-left', 'dates-right', 'icon-accent'
+    'left-border', 'dates-left', 'dates-right', 'icon-accent', 'dots-timeline'
   ];
 
   // If variant is specified and supported, use ExperienceVariantRenderer

@@ -26,18 +26,19 @@ export interface ExperienceVariantProps {
 }
 
 export type ExperienceVariant =
-  | 'standard'      // Classic corporate layout
-  | 'compact'       // Space-efficient single line
-  | 'detailed'      // Full details with descriptions
-  | 'timeline'      // Visual timeline with dots/line
-  | 'cards'         // Card-based layout
-  | 'minimal'       // Ultra-minimal text only
-  | 'modern'        // Modern with accent borders
-  | 'left-border'   // Left colored border accent
-  | 'dates-left'    // Dates on left column
-  | 'dates-right'   // Dates on right side
-  | 'academic'      // Academic/research focused
-  | 'creative'      // Creative industry style
-  | 'enhanced'      // Production-ready EnhanceCV style
-  | 'timeline-pro'  // Professional timeline with dates on left
-  | 'icon-accent';  // Creative card with company icon badge
+  | 'standard'        // Classic corporate layout
+  | 'compact'         // Space-efficient single line
+  | 'detailed'        // Full details with descriptions
+  | 'timeline'        // Visual timeline with dots/line
+  | 'cards'           // Card-based layout
+  | 'minimal'         // Ultra-minimal text only
+  | 'modern'          // Modern with accent borders
+  | 'left-border'     // Left colored border accent
+  | 'dates-left'      // Dates on left column
+  | 'dates-right'     // Dates on right side
+  | 'academic'        // Academic/research focused
+  | 'creative'        // Creative industry style
+  | 'enhanced'        // Production-ready EnhanceCV style
+  | 'timeline-pro'    // Professional timeline with dates on left
+  | 'icon-accent'     // Creative card with company icon badge
+  | 'dots-timeline';  // Simple connected dots timeline

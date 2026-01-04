@@ -199,7 +199,8 @@ export type HeaderVariant =
   | 'photo-right'
   | 'accent-bar'
   | 'compact'
-  | 'gradient-banner';
+  | 'gradient-banner'
+  | 'elegant-banner';
 
 export interface HeaderConfig {
   variant: HeaderVariant;

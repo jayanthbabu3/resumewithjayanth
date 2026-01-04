@@ -1,7 +1,8 @@
 /**
  * API Ledger Template Configuration (V2)
  *
- * Left sidebar layout with crisp purple accents for API-focused roles.
+ * Creative single-column layout with vibrant purple gradient theme.
+ * Tech-inspired decorations with circuit patterns for API engineers.
  */
 
 import type { TemplateConfig } from '../../types';
@@ -10,65 +11,66 @@ import { createTemplateConfig } from '../defaultConfig';
 export const apiLedgerConfig: TemplateConfig = createTemplateConfig({
   id: 'api-ledger-v2',
   name: 'API Ledger',
-  description: 'Left sidebar layout with crisp purple accents for API engineers.',
-  category: 'professional',
+  description: 'Creative layout with purple gradient and tech decorations for API engineers.',
+  category: 'creative',
 
   typography: {
     name: {
-      fontSize: '26px',
-      fontWeight: 700,
-      lineHeight: 1.2,
-      letterSpacing: '0.02em',
-      color: '#0f172a',
-      textTransform: 'uppercase',
+      fontSize: '34px',
+      fontWeight: 800,
+      lineHeight: 1.1,
+      letterSpacing: '-0.02em',
+      color: '#ffffff',
     },
     title: {
-      fontSize: '12px',
+      fontSize: '13px',
       fontWeight: 500,
       lineHeight: 1.4,
-      color: '#7c3aed',
+      letterSpacing: '0.08em',
+      textTransform: 'uppercase',
+      color: '#c4b5fd',
     },
     sectionHeading: {
-      fontSize: '11px',
+      fontSize: '10px',
       fontWeight: 700,
       lineHeight: 1.3,
-      letterSpacing: '0.1em',
+      letterSpacing: '0.14em',
       textTransform: 'uppercase',
-      color: '#0f172a',
+      color: '#7c3aed',
     },
     itemTitle: {
-      fontSize: '13px',
-      fontWeight: 600,
+      fontSize: '14px',
+      fontWeight: 700,
       lineHeight: 1.4,
-      color: '#0f172a',
+      color: '#2e1065',
     },
     itemSubtitle: {
       fontSize: '12px',
-      fontWeight: 500,
+      fontWeight: 600,
       lineHeight: 1.4,
       color: '#7c3aed',
     },
     dates: {
       fontSize: '11px',
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: 1.4,
       color: '#64748b',
     },
     body: {
       fontSize: '12px',
       fontWeight: 400,
-      lineHeight: 1.6,
-      color: '#1f2937',
+      lineHeight: 1.65,
+      color: '#334155',
     },
     contact: {
       fontSize: '11px',
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: 1.5,
-      color: '#334155',
+      color: '#ddd6fe',
     },
     small: {
       fontSize: '10px',
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: 1.4,
       color: '#64748b',
     },
@@ -76,86 +78,83 @@ export const apiLedgerConfig: TemplateConfig = createTemplateConfig({
 
   spacing: {
     pagePadding: {
-      top: '28px',
-      right: '28px',
-      bottom: '28px',
-      left: '28px',
+      top: '0',
+      right: '32px',
+      bottom: '32px',
+      left: '32px',
     },
-    sectionGap: '18px',
-    itemGap: '12px',
-    headingToContent: '8px',
-    bulletGap: '4px',
-    contactGap: '10px',
+    sectionGap: '20px',
+    itemGap: '14px',
+    headingToContent: '10px',
+    bulletGap: '5px',
+    contactGap: '12px',
     skillGap: '8px',
   },
 
   layout: {
-    type: 'two-column',
-    mainWidth: '64%',
-    sidebarWidth: '33%',
-    columnGap: '22px',
-    sidebarBackground: '#f5f3ff',
-    sidebarPadding: '16px',
+    type: 'single-column',
+    mainWidth: '100%',
   },
 
   colors: {
     primary: '#7c3aed',
     secondary: '#a855f7',
     text: {
-      primary: '#0f172a',
-      secondary: '#1f2937',
+      primary: '#2e1065',
+      secondary: '#334155',
       muted: '#64748b',
       light: '#ffffff',
     },
     background: {
       page: '#ffffff',
-      section: '#f5f3ff',
+      section: '#faf5ff',
       accent: '#ede9fe',
     },
-    border: '#e2e8f0',
+    border: '#c4b5fd',
   },
 
   sectionHeading: {
-    style: 'underline',
-    borderWidth: '1px',
-    borderColor: '#ddd6fe',
+    style: 'left-accent',
+    borderWidth: '3px',
+    borderColor: '#a855f7',
     marginBottom: '10px',
-    padding: '0 0 6px 0',
+    padding: '2px 0 2px 12px',
   },
 
   header: {
-    variant: 'left-aligned',
+    variant: 'banner',
     showPhoto: false,
-    padding: '0 0 16px 0',
+    padding: '32px',
+    backgroundColor: '#5b21b6',
+    textColor: '#ffffff',
     contactIcons: {
       show: true,
       size: '12px',
-      color: '#7c3aed',
+      color: '#c4b5fd',
     },
     showSocialLinks: true,
     socialLinksVariant: 'horizontal',
   },
 
   skills: {
-    variant: 'tags',
-    columns: 1,
+    variant: 'pills',
+    columns: 4,
     showRatings: false,
     badge: {
       fontSize: '11px',
-      padding: '4px 8px',
-      borderRadius: '6px',
-      borderWidth: '1px',
-      borderColor: '#ddd6fe',
-      backgroundColor: '#f5f3ff',
-      textColor: '#5b21b6',
+      padding: '5px 12px',
+      borderRadius: '20px',
+      borderWidth: '0',
+      backgroundColor: '#ede9fe',
+      textColor: '#6d28d9',
     },
   },
 
   experience: {
-    variant: 'standard',
+    variant: 'modern',
     datePosition: 'right',
     showLocation: true,
-    bulletStyle: '•',
+    bulletStyle: '▸',
   },
 
   education: {
@@ -163,32 +162,51 @@ export const apiLedgerConfig: TemplateConfig = createTemplateConfig({
     showGPA: false,
     showField: true,
     showDates: true,
-    datePosition: 'inline',
+    datePosition: 'right',
+  },
+
+  projects: {
+    variant: 'modern',
+    showLinks: true,
+    showTech: true,
   },
 
   strengths: {
-    variant: 'minimal',
+    variant: 'inline-badges',
     showIcons: false,
   },
 
   achievements: {
-    variant: 'list',
-    showIndicators: false,
+    variant: 'numbered',
+    showIndicators: true,
+  },
+
+  languages: {
+    variant: 'inline',
+    showCertification: false,
   },
 
   sections: [
     { type: 'header', id: 'header', title: 'Header', defaultTitle: 'Header', enabled: true, order: 0 },
-    { type: 'summary', id: 'summary', title: 'Summary', defaultTitle: 'Summary', enabled: true, order: 1, column: 'main' },
+    { type: 'summary', id: 'summary', title: 'Profile', defaultTitle: 'Profile', enabled: true, order: 1, column: 'main' },
     { type: 'experience', id: 'experience', title: 'Experience', defaultTitle: 'Experience', enabled: true, order: 2, column: 'main' },
-    { type: 'projects', id: 'projects', title: 'API Projects', defaultTitle: 'API Projects', enabled: true, order: 3, column: 'main' },
-    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 4, column: 'main' },
-    { type: 'skills', id: 'skills', title: 'Core Skills', defaultTitle: 'Core Skills', enabled: true, order: 5, column: 'sidebar' },
-    { type: 'certifications', id: 'certifications', title: 'Certifications', defaultTitle: 'Certifications', enabled: false, order: 6, column: 'sidebar' },
-    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: false, order: 7, column: 'sidebar' },
+    { type: 'skills', id: 'skills', title: 'API Stack', defaultTitle: 'API Stack', enabled: true, order: 3, column: 'main' },
+    { type: 'projects', id: 'projects', title: 'API Projects', defaultTitle: 'API Projects', enabled: true, order: 4, column: 'main' },
+    { type: 'education', id: 'education', title: 'Education', defaultTitle: 'Education', enabled: true, order: 5, column: 'main' },
+    { type: 'languages', id: 'languages', title: 'Languages', defaultTitle: 'Languages', enabled: true, order: 6, column: 'main' },
   ],
 
   fontFamily: {
-    primary: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    primary: "'JetBrains Mono', 'Fira Code', 'SF Mono', monospace",
+    secondary: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+  },
+
+  // Creative decorations - code brackets and circuit patterns for API/dev aesthetic
+  decorations: {
+    enabled: true,
+    elements: ['code-brackets', 'circuit-lines', 'corner-blob'],
+    opacity: 0.9,
+    gradientBackground: true,
   },
 });
 
