@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, FileText, Edit3, Eye, Loader2 } from "lucide-react";
+import { Heart, FileText, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useFavoriteTemplates } from "@/hooks/useFavoriteTemplates";
-import { TemplatePreview } from "./TemplatePreview";
+import { TemplatePreviewV2 } from "@/v2/components/TemplatePreviewV2";
 import { FavoriteButton } from "./FavoriteButton";
 import { templateMetaMap } from "@/constants/templateMeta";
 import { getCategoryById } from "@/constants/professionCategories";
@@ -68,85 +68,48 @@ export const FavoriteTemplates: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4 md:space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-semibold text-foreground">
-            Favorite Templates
-          </h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            {favorites.length} {favorites.length === 1 ? "template" : "templates"} saved
-          </p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 md:gap-4">
         {favoriteTemplates.map((template, index) => {
           if (!template) return null;
 
           return (
             <Card
               key={template.id}
-              className="group relative overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer bg-card"
-              onClick={() => {
-                // Navigate to the template's profession category
-                const categorySlug = template.categorySlug || 'all';
-                navigate(`/dashboard/${categorySlug}/editor/${template.id}`);
-              }}
+              className="group relative overflow-hidden border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer bg-card rounded-xl"
+              onClick={() => navigate(`/builder?template=${template.id}`)}
             >
-              {/* Favorite Button - Top Left */}
-              <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 z-10">
+              {/* Favorite Button - Top Right, Always Visible */}
+              <div className="absolute top-2 right-2 z-20">
                 <FavoriteButton
                   templateId={template.id}
                   variant="icon"
                   size="sm"
-                  className="scale-75 md:scale-100"
+                  className="shadow-lg"
                 />
               </div>
 
               {/* Template Preview */}
-              <div className="relative aspect-[8.5/11] bg-white overflow-hidden">
-                <div className="absolute inset-0 overflow-hidden">
-                  <div 
-                    className="origin-top-left"
-                    style={{
-                      transform: 'scale(0.35)',
-                      width: '285.7%',
-                      minHeight: '285.7%'
-                    }}
-                  >
-                    <TemplatePreview
-                      templateId={template.id}
-                      themeColor={DEFAULT_THEME_COLOR}
-                      className="w-full h-full"
-                    />
-                  </div>
+              <div className="relative aspect-[8.5/11] bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden border-b border-border/20 group-hover:border-primary/20 transition-colors duration-300">
+                {/* Preview container */}
+                <div className="absolute inset-2 rounded-lg overflow-hidden shadow-inner bg-white border border-border/20 group-hover:border-primary/30 transition-all duration-300">
+                  <TemplatePreviewV2
+                    templateId={template.id}
+                    themeColor={DEFAULT_THEME_COLOR}
+                    className="h-full"
+                  />
                 </div>
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center gap-1.5 p-2 md:p-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center gap-1.5 p-2 md:p-3 z-10">
                   <Button
                     size="sm"
-                    variant="secondary"
-                    className="shadow-lg text-[10px] md:text-xs px-2 py-1 h-7 md:h-8"
+                    className="shadow-lg text-[10px] md:text-xs px-3 py-1 h-7 md:h-8 bg-primary hover:bg-primary/90"
                     onClick={(e) => {
                       e.stopPropagation();
-                      const categorySlug = template.categorySlug || 'all';
-                      navigate(`/dashboard/${categorySlug}/editor/${template.id}`);
+                      navigate(`/builder?template=${template.id}`);
                     }}
                   >
-                    Form
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="shadow-lg text-[10px] md:text-xs px-2 py-1 h-7 md:h-8"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const categorySlug = template.categorySlug || 'all';
-                      navigate(`/dashboard/${categorySlug}/live-editor/${template.id}`);
-                    }}
-                  >
-                    Live
+                    Use Template
                   </Button>
                 </div>
               </div>
@@ -169,7 +132,6 @@ export const FavoriteTemplates: React.FC = () => {
             </Card>
           );
         })}
-      </div>
     </div>
   );
 };

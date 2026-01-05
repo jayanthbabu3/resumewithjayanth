@@ -8,23 +8,24 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { 
-  Download, 
+import {
+  Download,
   Loader2,
   ArrowLeft,
-  Settings, 
+  Settings,
   PanelsTopLeft,
-  Eye, 
+  Eye,
   Edit3,
   FileEdit,
   Save,
-  LayoutGrid,
   GripVertical,
   Edit2,
   Check,
   X,
   Plus,
 } from 'lucide-react';
+import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
+import { resumeServiceV2, type V2Resume } from '../services/resumeServiceV2';
 import { toast } from 'sonner';
 import { Header } from '@/components/Header';
 import { generatePDFFromPreview } from '@/lib/pdfGenerator';
@@ -57,7 +58,9 @@ export const BuilderV2: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const templateId = searchParams.get('template') || 'executive-split-v2';
+  const resumeId = searchParams.get('resumeId');
   const templateDefinition = getTemplate(templateId);
+  const { user } = useFirebaseAuth();
 
   const initialResumeData = React.useMemo(
     () => templateDefinition?.mockData || MOCK_RESUME_DATA,
@@ -66,6 +69,11 @@ export const BuilderV2: React.FC = () => {
 
   // State
   const [resumeData, setResumeData] = useState<V2ResumeData>(initialResumeData);
+  const [currentResumeId, setCurrentResumeId] = useState<string | null>(resumeId);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(!!resumeId);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [loadedResume, setLoadedResume] = useState<V2Resume | null>(null);
   const [themeColor, setThemeColor] = useState('#0891b2');
   const [themeColors, setThemeColors] = useState<{ primary?: string; secondary?: string }>({});
   const [isDownloading, setIsDownloading] = useState(false);
@@ -93,6 +101,110 @@ export const BuilderV2: React.FC = () => {
   const mobileResumeRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(true);
   const lastScrollY = useRef(0);
+
+  // Load resume from URL param if present
+  useEffect(() => {
+    const loadResumeFromUrl = async () => {
+      if (!resumeId || !user) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        const resume = await resumeServiceV2.getResume(resumeId);
+        if (resume) {
+          setLoadedResume(resume);
+          setResumeData(resume.data);
+          setCurrentResumeId(resume.id);
+
+          // Restore saved settings
+          if (resume.themeColor) {
+            setThemeColor(resume.themeColor);
+          }
+          if (resume.themeColors) {
+            setThemeColors(resume.themeColors);
+          }
+          if (resume.sectionLabels) {
+            setSectionLabels(resume.sectionLabels);
+          }
+          if (resume.sectionOverrides) {
+            setSectionOverrides(resume.sectionOverrides);
+          }
+          if (resume.enabledSections) {
+            setEnabledSections(resume.enabledSections);
+          }
+
+          toast.success('Resume loaded');
+        } else {
+          toast.error('Resume not found');
+        }
+      } catch (error) {
+        console.error('Error loading resume:', error);
+        toast.error('Failed to load resume');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadResumeFromUrl();
+  }, [resumeId, user]);
+
+  // Track unsaved changes
+  useEffect(() => {
+    if (loadedResume) {
+      // Compare current data with loaded data
+      const hasChanges = JSON.stringify(resumeData) !== JSON.stringify(loadedResume.data);
+      setHasUnsavedChanges(hasChanges);
+    }
+  }, [resumeData, loadedResume]);
+
+  // Save resume handler
+  const handleSaveResume = useCallback(async () => {
+    if (!user) {
+      toast.error('Please sign in to save your resume');
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      if (currentResumeId) {
+        // Update existing resume
+        await resumeServiceV2.saveResume(currentResumeId, resumeData, templateId, {
+          themeColor,
+          themeColors,
+          sectionOverrides,
+          enabledSections,
+          sectionLabels,
+        });
+        setHasUnsavedChanges(false);
+      } else {
+        // Create new resume
+        const newResumeId = await resumeServiceV2.createResume(templateId, resumeData, {
+          themeColor,
+          themeColors,
+          sectionOverrides,
+          enabledSections,
+          sectionLabels,
+          title: resumeData.personalInfo?.fullName
+            ? `${resumeData.personalInfo.fullName}'s Resume`
+            : undefined,
+        });
+        setCurrentResumeId(newResumeId);
+        setHasUnsavedChanges(false);
+
+        // Update URL with new resumeId
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('resumeId', newResumeId);
+        window.history.replaceState({}, '', newUrl.toString());
+      }
+    } catch (error) {
+      console.error('Error saving resume:', error);
+      toast.error('Failed to save resume');
+    } finally {
+      setIsSaving(false);
+    }
+  }, [user, currentResumeId, resumeData, templateId, themeColor, themeColors, sectionOverrides, enabledSections, sectionLabels]);
 
   // Smart header hide on scroll down, show on scroll up (desktop only)
   useEffect(() => {
@@ -994,10 +1106,25 @@ export const BuilderV2: React.FC = () => {
     </div>
   );
 
+  // Show loading state while fetching resume
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-100">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="flex flex-col items-center gap-4">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-sm text-muted-foreground">Loading your resume...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Smart Header - Hides on scroll down, shows on scroll up */}
-      <div 
+      <div
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-transform duration-300",
           headerVisible ? "translate-y-0" : "-translate-y-full"
@@ -1493,15 +1620,25 @@ export const BuilderV2: React.FC = () => {
                     {/* Save */}
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button 
-                          onClick={() => toast.success('Saved!')}
-                          className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-green-600 hover:bg-green-50 transition-all duration-200"
+                        <button
+                          onClick={handleSaveResume}
+                          disabled={isSaving}
+                          className={cn(
+                            "w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200",
+                            hasUnsavedChanges
+                              ? "text-amber-600 hover:text-amber-700 hover:bg-amber-50"
+                              : "text-gray-500 hover:text-green-600 hover:bg-green-50"
+                          )}
                         >
-                          <Save className="h-4 w-4" />
+                          {isSaving ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Save className="h-4 w-4" />
+                          )}
                         </button>
                       </TooltipTrigger>
                       <TooltipContent side="left" className="bg-gray-900 text-white border-0">
-                        Save Progress
+                        {user ? (hasUnsavedChanges ? 'Save Changes' : 'Saved') : 'Sign in to Save'}
                       </TooltipContent>
                     </Tooltip>
                   </div>
@@ -1582,6 +1719,20 @@ export const BuilderV2: React.FC = () => {
                 className="h-11 w-11 flex items-center justify-center rounded-xl hover:bg-gray-100 transition-all duration-200"
               >
                 <Plus className="h-5 w-5 text-gray-600" />
+              </button>
+
+              {/* Save */}
+              <button
+                onClick={handleSaveResume}
+                disabled={isSaving}
+                className={cn(
+                  "h-11 w-11 flex items-center justify-center rounded-xl transition-all duration-200",
+                  hasUnsavedChanges
+                    ? "bg-amber-50 text-amber-600"
+                    : "hover:bg-gray-100 text-gray-600"
+                )}
+              >
+                {isSaving ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
               </button>
 
               {/* Download */}
