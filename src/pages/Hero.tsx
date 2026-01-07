@@ -1,23 +1,49 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, Users, TrendingUp, Shield, Star, Award, Clock, Globe, Target, ChevronRight, Eye, Palette } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, TrendingUp, Shield, Award, Clock, Globe, Target, Palette, Mail, Eye, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { TemplateCarousel } from "@/components/TemplateCarousel";
-import { pdf } from "@react-pdf/renderer";
-import { ModernPDF } from "@/components/resume/pdf/ModernPDF";
-import { ModernTemplate } from "@/components/resume/templates/ModernTemplate";
-import { registerPDFFonts } from "@/lib/pdfFonts";
+import { TemplatePreviewV2 } from "@/v2/components/TemplatePreviewV2";
+import { FavoriteButton } from "@/components/FavoriteButton";
+import { getAllTemplates, getTemplateConfig } from "@/v2/config/templates";
+import { ElegantForm } from "@/v2/components/form/ElegantForm";
+import type { V2ResumeData } from "@/v2/types/resumeData";
 
-// Register fonts for PDF generation
-registerPDFFonts();
+const DEFAULT_THEME_COLOR = "#2563eb";
+import { InlineEditProvider } from "@/contexts/InlineEditContext";
+import { StyleOptionsProvider } from "@/contexts/StyleOptionsContext";
+import { StyleOptionsWrapper } from "@/components/resume/StyleOptionsWrapper";
+import { ResumeRenderer } from "@/v2/components/ResumeRenderer";
+import { convertV1ToV2 } from "@/v2/utils/dataConverter";
+import { generatePDFFromPreview } from "@/lib/pdfGenerator";
+import { cn } from "@/lib/utils";
+import { useAppStats } from "@/hooks/useAppStats";
+import { formatCount, incrementDownloadsCount } from "@/lib/firestore/statsService";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
+import { Users } from "lucide-react";
+import type { ResumeData } from "@/types/resume";
+
 
 const Hero = () => {
   const navigate = useNavigate();
+  const v2Templates = getAllTemplates();
+  
+  // Featured templates - show first 4 templates
+  const defaultColors = ['#2563eb', '#7c3aed', '#059669', '#e11d48'];
+  const featuredTemplates = v2Templates.slice(0, 4).map((template, index) => ({
+    id: template.id,
+    name: template.name,
+    description: template.description || 'Professional resume template',
+    color: template.colors?.primary || defaultColors[index % defaultColors.length],
+  }));
+
+  // Get real-time stats from Firestore
+  const { stats, loading: statsLoading } = useAppStats();
 
   // State for interactive demo form
   const [demoFormData, setDemoFormData] = useState({
@@ -28,7 +54,7 @@ const Hero = () => {
     summary: "Experienced software engineer with 5+ years of expertise in full-stack development. Passionate about creating scalable web applications and leading technical teams.",
     jobTitle: "Senior Software Engineer",
     company: "Tech Solutions Inc.",
-    startDate: "2022-01-01",
+    startDate: "2022-01",
     endDate: "",
     description: "Led development of scalable web applications using React and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions.",
     skills: ["React", "Node.js", "JavaScript", "TypeScript", "Python"]
@@ -36,6 +62,321 @@ const Hero = () => {
 
   // Separate state for skills input - initialize with existing skills
   const [skillsInput, setSkillsInput] = useState("React, Node.js, JavaScript, TypeScript, Python");
+  const [previewScale, setPreviewScale] = useState(0.6);
+  const [previewHeight, setPreviewHeight] = useState(1120);
+  const previewContainerRef = useRef<HTMLDivElement | null>(null);
+  const previewContentRef = useRef<HTMLDivElement | null>(null);
+
+  // Template config for form editor demo
+  const demoTemplateId = "professional-blue-v2";
+  const demoTemplateConfig = getTemplateConfig(demoTemplateId);
+  const demoThemeColor = DEFAULT_THEME_COLOR;
+
+  // State for Form Editor Demo in V2ResumeData format
+  const [formEditorData, setFormEditorData] = useState<V2ResumeData>(() => ({
+    version: '2.0',
+    personalInfo: {
+      fullName: "Michael Chen",
+      email: "michael.chen@email.com",
+      phone: "+1 (555) 987-6543",
+      location: "Seattle, WA",
+      title: "Chief Technology Officer",
+      summary: "Visionary technology executive with 15+ years of experience leading engineering teams and driving digital transformation. Proven track record of scaling organizations, implementing innovative solutions, and delivering exceptional business outcomes."
+    },
+    experience: [
+      {
+        id: "exp-0",
+        position: "Chief Technology Officer",
+        company: "TechVision Inc.",
+        startDate: "2020-01",
+        endDate: "",
+        current: true,
+        description: "",
+        bulletPoints: [
+          "Spearheaded digital transformation initiatives, increasing operational efficiency by 45%",
+          "Led a team of 120+ engineers across multiple product lines",
+          "Architected cloud migration strategy saving $2M annually"
+        ]
+      },
+      {
+        id: "exp-1",
+        position: "VP of Engineering",
+        company: "Innovation Labs",
+        startDate: "2016-03",
+        endDate: "2019-12",
+        current: false,
+        description: "",
+        bulletPoints: [
+          "Built and scaled engineering organization from 20 to 85 team members",
+          "Launched 3 successful products generating $50M in annual revenue",
+          "Implemented agile methodologies improving delivery speed by 60%"
+        ]
+      }
+    ],
+    education: [
+      {
+        id: "edu-0",
+        school: "Stanford University",
+        degree: "Master of Science",
+        field: "Computer Science",
+        location: "Stanford, CA",
+        startDate: "2010-09",
+        endDate: "2012-06"
+      }
+    ],
+    skills: [
+      { id: "skill-0", name: "Strategic Planning", level: 10, category: "core" },
+      { id: "skill-1", name: "Cloud Architecture", level: 9, category: "core" },
+      { id: "skill-2", name: "Team Leadership", level: 8, category: "core" },
+      { id: "skill-3", name: "Digital Transformation", level: 7, category: "core" },
+      { id: "skill-4", name: "Product Strategy", level: 7, category: "core" }
+    ]
+  }));
+
+  // Template config for live editor demo
+  const liveEditorTemplateId = "professional-blue-v2";
+  const liveEditorTemplateConfig = getTemplateConfig(liveEditorTemplateId);
+  const liveEditorThemeColor = DEFAULT_THEME_COLOR;
+
+  // State for Live Editor in V2ResumeData format
+  const [liveEditorData, setLiveEditorData] = useState<V2ResumeData>(() => ({
+    version: '2.0',
+    personalInfo: {
+      fullName: "Michael Chen",
+      email: "michael.chen@email.com",
+      phone: "+1 (555) 987-6543",
+      location: "Seattle, WA",
+      title: "Chief Technology Officer",
+      summary: "Visionary technology executive with 15+ years of experience leading engineering teams and driving digital transformation. Proven track record of scaling organizations, implementing innovative solutions, and delivering exceptional business outcomes."
+    },
+    experience: [
+      {
+        id: "exp-0",
+        position: "Chief Technology Officer",
+        company: "TechVision Inc.",
+        startDate: "2020-01",
+        endDate: "",
+        current: true,
+        description: "",
+        bulletPoints: [
+          "Spearheaded digital transformation initiatives, increasing operational efficiency by 45%",
+          "Led a team of 120+ engineers across multiple product lines",
+          "Architected cloud migration strategy saving $2M annually"
+        ]
+      },
+      {
+        id: "exp-1",
+        position: "VP of Engineering",
+        company: "Innovation Labs",
+        startDate: "2016-03",
+        endDate: "2019-12",
+        current: false,
+        description: "",
+        bulletPoints: [
+          "Built and scaled engineering organization from 20 to 85 team members",
+          "Launched 3 successful products generating $50M in annual revenue",
+          "Implemented agile methodologies improving delivery speed by 60%"
+        ]
+      }
+    ],
+    education: [
+      {
+        id: "edu-0",
+        school: "Stanford University",
+        degree: "Master of Science",
+        field: "Computer Science",
+        location: "Stanford, CA",
+        startDate: "2010-09",
+        endDate: "2012-06"
+      }
+    ],
+    skills: [
+      { id: "skill-0", name: "Strategic Planning", level: 10, category: "core" },
+      { id: "skill-1", name: "Cloud Architecture", level: 9, category: "core" },
+      { id: "skill-2", name: "Team Leadership", level: 8, category: "core" },
+      { id: "skill-3", name: "Digital Transformation", level: 7, category: "core" },
+      { id: "skill-4", name: "Product Strategy", level: 7, category: "core" }
+    ],
+    languages: [
+      { id: "lang-0", language: "English", proficiency: "Native" },
+      { id: "lang-1", language: "Spanish", proficiency: "Professional" },
+      { id: "lang-2", language: "Mandarin", proficiency: "Intermediate" }
+    ],
+    interests: [
+      { id: "interest-0", name: "Technology Innovation" },
+      { id: "interest-1", name: "Leadership Development" },
+      { id: "interest-2", name: "Open Source Contributions" },
+      { id: "interest-3", name: "Mountain Biking" }
+    ]
+  }));
+
+  // Handlers for inline editing - matching builder functionality
+  const handleAddBulletPoint = useCallback((expId: string) => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      experience: prev.experience.map(exp =>
+        exp.id === expId ? { ...exp, bulletPoints: [...(exp.bulletPoints || []), ''] } : exp
+      )
+    }));
+  }, []);
+
+  const handleRemoveBulletPoint = useCallback((expId: string, bulletIndex: number) => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      experience: prev.experience.map(exp =>
+        exp.id === expId
+          ? { ...exp, bulletPoints: exp.bulletPoints.filter((_, i) => i !== bulletIndex) }
+          : exp
+      )
+    }));
+  }, []);
+
+  const handleAddExperience = useCallback(() => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      experience: [
+        ...prev.experience,
+        {
+          id: `exp-${Date.now()}`,
+          position: 'New Position',
+          company: 'Company Name',
+          startDate: '',
+          endDate: '',
+          current: false,
+          description: '',
+          bulletPoints: []
+        }
+      ]
+    }));
+  }, []);
+
+  const handleRemoveExperience = useCallback((expId: string) => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      experience: prev.experience.filter(exp => exp.id !== expId)
+    }));
+  }, []);
+
+  const handleAddEducation = useCallback(() => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      education: [
+        ...prev.education,
+        {
+          id: `edu-${Date.now()}`,
+          school: 'School Name',
+          degree: 'Degree',
+          field: 'Field of Study',
+          location: '',
+          startDate: '',
+          endDate: ''
+        }
+      ]
+    }));
+  }, []);
+
+  const handleRemoveEducation = useCallback((eduId: string) => {
+    setLiveEditorData(prev => ({
+      ...prev,
+      education: prev.education.filter(edu => edu.id !== eduId)
+    }));
+  }, []);
+
+  const buttonBaseClass = "h-11 px-6 text-sm md:text-base font-semibold transition-all duration-300";
+  const primaryButtonClass = cn(
+    buttonBaseClass,
+    "bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl",
+  );
+  const neutralButtonClass = cn(
+    buttonBaseClass,
+    "border border-border/70 text-foreground hover:bg-muted/50 hover:text-foreground",
+  );
+
+  useEffect(() => {
+    const baseWidth = 816;
+    const minScale = 0.45;
+    const maxScale = 1;
+
+    const applyScale = (availableWidth: number) => {
+      if (!availableWidth || Number.isNaN(availableWidth)) {
+        return;
+      }
+      const width = Math.max(availableWidth, 280);
+      const computedScale = Math.min(width / baseWidth, maxScale);
+      setPreviewScale(Math.max(minScale, Number(computedScale.toFixed(3))));
+    };
+
+    if (typeof ResizeObserver !== "undefined") {
+      const element = previewContainerRef.current;
+      if (!element) {
+        return;
+      }
+
+      const observer = new ResizeObserver((entries) => {
+        const width = entries[0]?.contentRect?.width;
+        if (width) {
+          const styles = window.getComputedStyle(element);
+          const horizontalPadding =
+            parseFloat(styles.paddingLeft || "0") +
+            parseFloat(styles.paddingRight || "0");
+          applyScale(width - horizontalPadding);
+        }
+      });
+
+      observer.observe(element);
+      const styles = window.getComputedStyle(element);
+      const horizontalPadding =
+        parseFloat(styles.paddingLeft || "0") +
+        parseFloat(styles.paddingRight || "0");
+      applyScale(element.getBoundingClientRect().width - horizontalPadding);
+
+      return () => observer.disconnect();
+    }
+
+    // Fallback for environments without ResizeObserver
+    const handleResize = () => applyScale(window.innerWidth - 32);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (typeof ResizeObserver === "undefined") {
+      return;
+    }
+
+    const element = previewContentRef.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const height = entries[0]?.contentRect?.height;
+      if (height) {
+        setPreviewHeight(height);
+      }
+    });
+
+    observer.observe(element);
+    setPreviewHeight(element.getBoundingClientRect().height);
+
+    return () => observer.disconnect();
+  }, []);
+
+
+  const toMonthInputValue = useCallback((dateInput: string) => {
+    if (!dateInput) {
+      return "";
+    }
+
+    const date = new Date(dateInput);
+    if (Number.isNaN(date.getTime())) {
+      return "";
+    }
+
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    return `${date.getFullYear()}-${month}`;
+  }, []);
 
   const updateFormData = (field: string, value: string) => {
     setDemoFormData(prev => ({
@@ -98,289 +439,259 @@ const Hero = () => {
     };
   };
 
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="container mx-auto px-6 pt-4">
-        <Breadcrumbs />
-      </div>
 
-      {/* Hero Section */}
-      <section className="relative pb-8 pt-4 md:pb-12 md:pt-6 lg:py-6 bg-gradient-to-br from-background via-muted/10 to-background overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
+      {/* Hero Section - Inspired by Stripe, Linear, Vercel */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Subtle gradient mesh background */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_80%_60%,rgba(59,130,246,0.08),rgba(255,255,255,0))]" />
+        
+        {/* Subtle grid pattern overlay */}
+        <div 
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(0 0 0)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+          }}
+        />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-              {/* Left Side - Content */}
-              <div className="space-y-4 md:space-y-6">
-              {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary">
-                <Sparkles className="h-3 w-3" />
-                  <span>AI-Powered Resume Builder</span>
-              </div>
-
-              {/* Headline */}
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground">
-                  Creating Competitive
-                  <br />
-                  <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                    Resumes is Easy Now
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+              
+              {/* Left Side - Content (7 columns) */}
+              <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
+                
+                {/* Minimal Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-primary/5 to-primary/10 border border-primary/10 text-xs font-medium text-primary/80 backdrop-blur-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                   </span>
-                </h1>
+                  <span>Professional Resume Builder</span>
+                </div>
 
-              {/* Subheadline */}
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg">
-                  Pick your role, choose a template, let AI tailor your resume to any job description. 
-                  Get hired faster with professional, ATS-optimized resumes.
-              </p>
+                {/* Headline - Clean, impactful */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-foreground leading-[1.1]">
+                    Build resumes that
+                    <span className="block bg-gradient-to-r from-primary via-blue-600 to-violet-600 bg-clip-text text-transparent">
+                      get you hired
+                    </span>
+                  </h1>
+                  
+                  {/* Subheadline - Concise */}
+                  <p className="text-lg sm:text-xl text-muted-foreground/80 leading-relaxed max-w-xl mx-auto lg:mx-0 font-light">
+                    Professional templates. ATS-optimized formatting. Easy customization.
+                    Create your perfect resume in minutes.
+                  </p>
+                </div>
 
-              {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <Button
-                  size="default"
-                  className="text-sm px-6 py-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                  onClick={() => navigate("/dashboard")}
-                >
-                    <span>Start Building Free</span>
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="default"
-                  className="text-sm px-6 py-3 border hover:bg-muted/50 transition-all duration-300"
-                >
-                  View Templates
-                </Button>
-              </div>
+                {/* CTA Button - Single prominent button */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 items-center justify-center lg:justify-start">
+                  <Button
+                    className="h-12 px-8 text-base font-semibold bg-primary text-white hover:bg-primary/90 rounded-full shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 group"
+                    onClick={() => navigate("/templates")}
+                  >
+                    <span>View templates</span>
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Button>
+                </div>
 
-                {/* Stats */}
-                <div className="flex items-center gap-4 sm:gap-6 md:gap-8 pt-2 md:pt-4">
-                  <div className="text-center">
-                    <div className="text-base md:text-lg font-bold text-primary">2.4k+</div>
-                    <div className="text-[10px] sm:text-xs text-muted-foreground">Active Users</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-base md:text-lg font-bold text-emerald-600">95%</div>
-                    <div className="text-[10px] sm:text-xs text-muted-foreground">ATS Compatible</div>
-            </div>
-                  <div className="text-center">
-                    <div className="text-base md:text-lg font-bold text-primary">4.9</div>
-                    <div className="text-[10px] sm:text-xs text-muted-foreground">User Rating</div>
-          </div>
-        </div>
-              </div>
-
-              {/* Right Side - Enhanced Visual Demo */}
-              <div className="relative mt-8 lg:mt-0">
-                {/* Modern App Mockup */}
-                <div className="relative mx-auto max-w-5xl">
-                  {/* App Container with Glow Effect */}
-                  <div className="relative">
-                    {/* Glow Background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/30 to-primary/20 rounded-2xl blur-xl scale-105"></div>
-                    
-                    {/* Main App Window */}
-                    <div className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 rounded-xl md:rounded-2xl p-2 md:p-4 border border-gray-200/50">
-                      {/* App Header */}
-                      <div className="flex items-center gap-2 p-2 md:p-4 bg-gradient-to-r from-primary/10 to-primary/5 rounded-t-xl border-b border-primary/20">
-                        <div className="flex gap-2">
-                          <div className="w-3 h-3 bg-red-500 rounded-full shadow-lg"></div>
-                          <div className="w-3 h-3 bg-yellow-500 rounded-full shadow-lg"></div>
-                          <div className="w-3 h-3 bg-green-500 rounded-full shadow-lg"></div>
-                        </div>
-                        <div className="flex-1 text-center">
-                          <span className="text-xs md:text-sm font-semibold text-gray-800 hidden sm:inline">Resume Builder - Editor</span>
-                          <span className="text-xs font-semibold text-gray-800 sm:hidden">Editor</span>
-                        </div>
-                        <div className="flex gap-2">
-                          <div className="px-1.5 py-0.5 md:px-2 md:py-1 bg-emerald-500/20 rounded-md border border-emerald-500/30">
-                            <span className="text-[10px] md:text-xs text-emerald-600 font-medium">LIVE</span>
+                {/* Social Proof - Real stats with animation */}
+                <div className="flex items-center justify-center lg:justify-start pt-8 border-t border-border/40">
+                  <div className="flex items-center gap-6">
+                    {/* Users count */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex -space-x-2">
+                        {[1, 2, 3, 4].map((i) => (
+                          <div
+                            key={i}
+                            className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 border-2 border-background flex items-center justify-center text-[10px] font-medium text-gray-600"
+                          >
+                            {['JD', 'AK', 'MR', 'SL'][i-1]}
                           </div>
-                        </div>
+                        ))}
                       </div>
-                      
-                      {/* App Content */}
-                      <div className="bg-white rounded-b-xl overflow-hidden h-[300px] sm:h-[400px] md:h-[520px]">
-                        {/* Main Layout */}
-                        <div className="flex flex-col sm:flex-row h-full">
-                          {/* Left Side - Form Editor */}
-                          <div className="w-full sm:w-1/2 p-3 md:p-6 bg-gradient-to-br from-blue-50/30 to-indigo-50/20 border-b sm:border-b-0 sm:border-r border-gray-200 overflow-y-auto">
-                            <div className="space-y-3 md:space-y-6">
-                              {/* Personal Information */}
-                              <div className="space-y-2 md:space-y-4">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full"></div>
-                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
-                                </div>
-                                <div className="space-y-2 md:space-y-3">
-                                  <div className="space-y-2">
-                                    <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-3/4"></div>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-1/2"></div>
-                                  </div>
-                                  <div className="space-y-2">
-                                    <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
-                                    <div className="h-2 bg-gray-100 rounded w-2/3"></div>
-                                  </div>
-                                </div>
-                              </div>
+                      <div className="text-sm">
+                        <span className="font-semibold text-foreground">
+                          {statsLoading ? "..." : (
+                            <AnimatedCounter
+                              value={stats?.usersCount || 0}
+                              duration={1500}
+                              suffix="+"
+                            />
+                          )}
+                        </span>
+                        <span className="text-muted-foreground ml-1">users</span>
+                      </div>
+                    </div>
 
-                              {/* Work Experience */}
-                              <div className="space-y-2 md:space-y-4">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-500 rounded-full"></div>
-                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
-                                </div>
-                                <div className="space-y-2 md:space-y-3">
-                                  <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="h-3 bg-gradient-to-r from-primary/40 to-primary/30 rounded w-4/5 mb-2"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-1/2 mb-2"></div>
-                                    <div className="space-y-1">
-                                      <div className="h-2 bg-gray-100 rounded w-full"></div>
-                                      <div className="h-2 bg-gray-100 rounded w-5/6"></div>
-                                      <div className="h-2 bg-gray-100 rounded w-3/4"></div>
-                                    </div>
-                                  </div>
-                                  <div className="p-4 bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="h-3 bg-gradient-to-r from-emerald-400/40 to-emerald-300/30 rounded w-3/4 mb-2"></div>
-                                    <div className="h-2 bg-gray-200 rounded w-1/3 mb-2"></div>
-                                    <div className="space-y-1">
-                                      <div className="h-2 bg-gray-100 rounded w-full"></div>
-                                      <div className="h-2 bg-gray-100 rounded w-4/5"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                    {/* Divider */}
+                    <div className="h-8 w-px bg-border/60" />
 
-                              {/* Skills */}
-                              <div className="space-y-2 md:space-y-4 hidden sm:block">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full"></div>
-                                  <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Skills</h3>
-                                </div>
-                                <div className="flex flex-wrap gap-1.5 md:gap-2">
-                                  <div className="h-7 bg-gradient-to-r from-primary/15 to-primary/10 rounded-full px-4 flex items-center border border-primary/20">
-                                    <div className="w-14 h-2 bg-gradient-to-r from-primary/60 to-primary/40 rounded"></div>
-                                  </div>
-                                  <div className="h-7 bg-gradient-to-r from-emerald-500/15 to-emerald-500/10 rounded-full px-4 flex items-center border border-emerald-500/20">
-                                    <div className="w-10 h-2 bg-gradient-to-r from-emerald-500/60 to-emerald-500/40 rounded"></div>
-                                  </div>
-                                  <div className="h-7 bg-gradient-to-r from-blue-500/15 to-blue-500/10 rounded-full px-4 flex items-center border border-blue-500/20">
-                                    <div className="w-18 h-2 bg-gradient-to-r from-blue-500/60 to-blue-500/40 rounded"></div>
-                                  </div>
-                                  <div className="h-7 bg-gradient-to-r from-purple-500/15 to-purple-500/10 rounded-full px-4 flex items-center border border-purple-500/20">
-                                    <div className="w-12 h-2 bg-gradient-to-r from-purple-500/60 to-purple-500/40 rounded"></div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* Right Side - Resume Preview */}
-                          <div className="w-full sm:w-1/2 p-3 md:p-6 bg-white overflow-y-auto">
-                            <div className="space-y-3 md:space-y-6">
-                              {/* Header */}
-                              <div className="border-b-2 border-primary/20 pb-3 md:pb-6">
-                                <div className="flex items-center gap-2 md:gap-4">
-                                  <div className="w-12 h-12 md:w-18 md:h-18 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center shadow-lg">
-                                    <span className="text-white font-bold text-base md:text-2xl">JD</span>
-                                  </div>
-                                  <div className="flex-1 space-y-1 md:space-y-2">
-                                    <div className="h-4 md:h-6 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-3/4"></div>
-                                    <div className="h-3 md:h-4 bg-primary/60 rounded w-1/2"></div>
-                                    <div className="flex gap-2 md:gap-4 mt-1 md:mt-2">
-                                      <div className="h-2 md:h-3 bg-gray-300 rounded w-20 md:w-32"></div>
-                                      <div className="h-2 md:h-3 bg-gray-300 rounded w-16 md:w-24"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Experience */}
-                              <div className="space-y-2 md:space-y-4">
-                                <div className="h-3 md:h-5 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-20 md:w-28"></div>
-                                <div className="space-y-2 md:space-y-4">
-                                  <div className="border-l-4 border-primary/30 pl-4 space-y-2">
-                                    <div className="flex justify-between items-start">
-                                      <div className="space-y-1">
-                                        <div className="h-4 bg-gray-500 rounded w-48"></div>
-                                        <div className="h-3 bg-primary/50 rounded w-32"></div>
-                                      </div>
-                                      <div className="h-3 bg-gray-300 rounded w-20"></div>
-                                    </div>
-                                    <div className="space-y-1">
-                                      <div className="h-3 bg-gray-200 rounded w-full"></div>
-                                      <div className="h-3 bg-gray-200 rounded w-4/5"></div>
-                                      <div className="h-3 bg-gray-200 rounded w-3/4"></div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="border-l-4 border-emerald-500/30 pl-4 space-y-2">
-                                    <div className="flex justify-between items-start">
-                                      <div className="space-y-1">
-                                        <div className="h-4 bg-gray-500 rounded w-40"></div>
-                                        <div className="h-3 bg-emerald-500/50 rounded w-28"></div>
-                                      </div>
-                                      <div className="h-3 bg-gray-300 rounded w-20"></div>
-                                    </div>
-                                    <div className="space-y-1">
-                                      <div className="h-3 bg-gray-200 rounded w-full"></div>
-                                      <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Skills */}
-                              <div className="space-y-4">
-                                <div className="h-5 bg-gradient-to-r from-gray-700 to-gray-600 rounded w-20"></div>
-                                <div className="flex flex-wrap gap-2">
-                                  <div className="h-6 bg-primary/10 rounded-full w-20 border border-primary/20"></div>
-                                  <div className="h-6 bg-emerald-500/10 rounded-full w-16 border border-emerald-500/20"></div>
-                                  <div className="h-6 bg-blue-500/10 rounded-full w-24 border border-blue-500/20"></div>
-                                  <div className="h-6 bg-purple-500/10 rounded-full w-18 border border-purple-500/20"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    {/* Downloads count */}
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-blue-500/20 flex items-center justify-center">
+                        <Download className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="text-sm">
+                        <span className="font-semibold text-foreground">
+                          {statsLoading ? "..." : (
+                            <AnimatedCounter
+                              value={stats?.downloadsCount || 0}
+                              duration={1500}
+                              suffix="+"
+                            />
+                          )}
+                        </span>
+                        <span className="text-muted-foreground ml-1">downloads</span>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Floating Feature Cards */}
-                <div className="absolute -top-4 -left-4 bg-white rounded-lg shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <Users className="h-4 w-4 text-primary" />
-                    <div>
-                      <div className="text-sm font-bold text-foreground">2.4k+</div>
-                      <div className="text-xs text-muted-foreground">Active Users</div>
+              {/* Right Side - Enhanced Resume Preview (6 columns) */}
+              <div className="lg:col-span-6 relative hidden lg:flex justify-center items-center py-8">
+                {/* Multi-layer ambient glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/15 via-blue-400/10 to-violet-500/15 rounded-full blur-3xl" />
+                <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse" />
+                <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-violet-400/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+                {/* Decorative elements behind card */}
+                <div className="absolute top-8 right-8 w-20 h-20 border-2 border-primary/10 rounded-2xl rotate-12" />
+                <div className="absolute bottom-12 left-4 w-16 h-16 border-2 border-violet-400/10 rounded-xl -rotate-12" />
+
+                {/* Main Resume Card */}
+                <div className="relative w-full max-w-[420px]">
+                  {/* Stacked card effect - multiple layers */}
+                  <div className="absolute inset-0 translate-x-6 translate-y-6 bg-gradient-to-br from-violet-100 to-violet-200/50 rounded-2xl" />
+                  <div className="absolute inset-0 translate-x-3 translate-y-3 bg-gradient-to-br from-blue-50 to-primary/10 rounded-2xl" />
+
+                  {/* Main card */}
+                  <div className="relative bg-white rounded-2xl shadow-2xl shadow-primary/10 border border-gray-100/80 overflow-hidden">
+                    {/* Gradient header bar */}
+                    <div className="h-2 bg-gradient-to-r from-primary via-blue-500 to-violet-500" />
+
+                    <div className="p-6 space-y-5">
+                      {/* Resume Header */}
+                      <div className="flex items-start gap-4">
+                        <div className="relative">
+                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-primary flex items-center justify-center shadow-xl shadow-primary/30">
+                            <span className="text-white font-bold text-xl">SA</span>
+                          </div>
+                          {/* Online indicator */}
+                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center">
+                            <CheckCircle2 className="w-3 h-3 text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl font-bold text-gray-900">Sarah Anderson</h3>
+                          <p className="text-sm font-semibold text-primary mt-0.5">Senior Product Designer</p>
+                          <div className="flex items-center gap-1.5 mt-2 text-xs text-gray-500">
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>sarah@example.com</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Experience Section */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-primary to-blue-500" />
+                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Experience</h4>
+                        </div>
+
+                        <div className="space-y-2.5 pl-3.5">
+                          <div className="p-3.5 rounded-xl bg-gradient-to-r from-gray-50 to-white border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-300">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <p className="font-semibold text-sm text-gray-900">Lead Designer</p>
+                                <p className="text-xs font-medium text-primary mt-0.5">TechCorp Inc.</p>
+                              </div>
+                              <span className="text-[10px] text-gray-500 font-semibold px-2.5 py-1 bg-primary/5 text-primary rounded-full">2021 - Present</span>
+                            </div>
+                            <div className="flex gap-1.5 mt-3">
+                              <div className="h-1.5 bg-gradient-to-r from-primary/40 to-primary/20 rounded-full flex-1" />
+                              <div className="h-1.5 bg-gray-100 rounded-full w-1/4" />
+                            </div>
+                          </div>
+
+                          <div className="p-3.5 rounded-xl bg-gray-50/50 border border-gray-100/80">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <p className="font-semibold text-sm text-gray-900">Product Designer</p>
+                                <p className="text-xs text-gray-500 mt-0.5">StartupXYZ</p>
+                              </div>
+                              <span className="text-[10px] text-gray-400 font-medium px-2.5 py-1 bg-gray-100 rounded-full">2019 - 2021</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Skills */}
+                      <div className="space-y-2.5">
+                        <div className="flex items-center gap-2">
+                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-blue-500 to-violet-500" />
+                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Skills</h4>
+                        </div>
+                        <div className="flex flex-wrap gap-2 pl-3.5">
+                          {['UI/UX', 'Figma', 'Prototyping', 'Research'].map((skill) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-200/80 hover:border-primary/40 hover:text-primary transition-colors duration-200"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Footer with badges */}
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-full">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                          <span className="text-xs font-semibold text-emerald-600">ATS-Optimized</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                          <Download className="w-4 h-4" />
+                          <span className="font-medium">PDF Ready</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Enhanced Floating elements */}
+                  <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl shadow-primary/10 border border-gray-100 px-4 py-2.5 animate-float">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/10 to-blue-100 flex items-center justify-center">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                      </div>
+                      <span className="text-sm font-semibold text-gray-800">ATS-Optimized</span>
+                    </div>
+                  </div>
+
+                  <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl shadow-amber-500/10 border border-gray-100 px-4 py-2.5 animate-float" style={{ animationDelay: '1s' }}>
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                        <Zap className="w-4 h-4 text-amber-500" />
+                      </div>
+                      <span className="text-sm font-semibold text-gray-800">Instant Export</span>
+                    </div>
+                  </div>
+
+                  {/* New: Template count badge */}
+                  <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg shadow-primary/30 px-3 py-2 animate-float" style={{ animationDelay: '0.5s' }}>
+                    <div className="flex items-center gap-1.5">
+                      <FileText className="w-4 h-4 text-white" />
+                      <span className="text-xs font-bold text-white">10+ Templates</span>
                     </div>
                   </div>
                 </div>
-
-                <div className="absolute -bottom-4 -left-4 bg-white rounded-lg shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-emerald-600" />
-                    <div>
-                      <div className="text-xs font-semibold text-foreground">AI-Powered</div>
-                      <div className="text-xs text-muted-foreground">Smart suggestions</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute -top-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                    <div>
-                      <div className="text-xs font-semibold text-foreground">ATS Optimized</div>
-                      <div className="text-xs text-muted-foreground">100% Compatible</div>
-                    </div>
-              </div>
-              </div>
               </div>
             </div>
           </div>
@@ -388,8 +699,11 @@ const Hero = () => {
       </section>
 
       {/* Process Section - Full Height with Animation */}
-      <section className="min-h-screen bg-muted/20 flex items-center py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6 w-full">
+      <section className="relative min-h-screen flex items-center py-12 md:py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+        <div className="absolute -left-24 top-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl sm:h-56 sm:w-56" />
+        <div className="absolute bottom-0 right-0 h-60 w-60 rounded-full bg-emerald-500/10 blur-3xl sm:h-64 sm:w-64" />
+        <div className="container mx-auto px-4 md:px-6 w-full relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-3 md:space-y-4 mb-12 md:mb-16">
               <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-primary/10 border border-primary/20 text-xs md:text-sm font-medium text-primary backdrop-blur-sm">
@@ -538,9 +852,9 @@ const Hero = () => {
                 {/* Connecting Arrow */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="h-16 w-1 bg-gradient-to-b from-primary/60 to-emerald-500/60 rounded-full"></div>
+                    <div className="h-12 w-[2px] sm:h-16 sm:w-1 bg-gradient-to-b from-primary/60 to-emerald-500/60 rounded-full"></div>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1">
-                      <ArrowRight className="h-4 w-4 text-emerald-500 rotate-90 animate-pulse" />
+                      <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-emerald-500 rotate-90 animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -566,9 +880,9 @@ const Hero = () => {
                 {/* Connecting Arrow */}
                 <div className="flex justify-center">
                   <div className="relative">
-                    <div className="h-16 w-1 bg-gradient-to-b from-emerald-500/60 to-blue-500/60 rounded-full"></div>
+                    <div className="h-12 w-[2px] sm:h-16 sm:w-1 bg-gradient-to-b from-emerald-500/60 to-blue-500/60 rounded-full"></div>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1">
-                      <ArrowRight className="h-4 w-4 text-blue-500 rotate-90 animate-pulse" />
+                      <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 text-blue-500 rotate-90 animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -664,87 +978,108 @@ const Hero = () => {
               </p>
             </div>
 
-            <TemplateCarousel
-              templates={[
-                {
-                  id: "professional",
-                  name: "Professional",
-                  description: "Traditional single-column layout optimized for corporate roles",
-                  highlights: ["ATS-Friendly", "Corporate", "Clean Design"]
-                },
-                {
-                  id: "modern",
-                  name: "Modern",
-                  description: "Contemporary two-column design for creative and product teams",
-                  highlights: ["Creative", "Two-Column", "Modern Layout"]
-                },
-                {
-                  id: "software",
-                  name: "Software Engineer",
-                  description: "Bold two-column layout with impact metrics and achievements",
-                  highlights: ["Tech-Focused", "Metrics", "Leadership"]
-                },
-                {
-                  id: "fresher",
-                  name: "Fresher Premium",
-                  description: "ATS-optimized premium template for fresh graduates",
-                  highlights: ["Entry-Level", "ATS-Friendly", "Premium"]
-                },
-                {
-                  id: "executive",
-                  name: "Executive",
-                  description: "Bold leadership-focused layout for senior candidates",
-                  highlights: ["Leadership", "Executive", "Bold Design"]
-                },
-                {
-                  id: "minimal",
-                  name: "Minimal",
-                  description: "Sophisticated whitespace-focused template for easy scanning",
-                  highlights: ["Clean", "Minimalist", "Easy to Read"]
-                }
-              ]}
-              themeColors={["#7c3aed", "#2563eb", "#059669", "#e11d48", "#ea580c", "#0d9488"]}
-              onTemplateSelect={(templateId) => {
-                navigate(`/editor/${templateId}`);
-              }}
-              className="mb-8"
-            />
+            {/* Template Grid - Same as Dashboard */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 md:gap-4 mb-10">
+              {featuredTemplates.map((template, index) => (
+                <Card
+                  key={template.id}
+                  className="group relative overflow-hidden border border-border/40 hover:border-primary/60 transition-all duration-500 cursor-pointer bg-card hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 rounded-xl"
+                  onClick={() => navigate(`/builder?template=${template.id}`)}
+                  style={{
+                    boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+                  }}
+                >
+                  {/* Premium gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:via-primary/2 group-hover:to-primary/5 transition-all duration-500 pointer-events-none z-0" />
+                  
+                  {/* Favorite Button - Top Left */}
+                  <div className="absolute top-3 left-3 z-20 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="backdrop-blur-sm bg-white/90 rounded-lg p-1 shadow-sm">
+                      <FavoriteButton
+                        templateId={template.id}
+                        variant="icon"
+                        size="sm"
+                      />
+                    </div>
+                  </div>
 
+                  {/* Template Number Badge */}
+                  <div
+                    className="absolute top-3 right-3 z-20 flex items-center justify-center h-7 w-7 md:h-8 md:w-8 rounded-full text-white text-xs md:text-sm font-bold shadow-lg group-hover:scale-110 group-hover:shadow-xl transition-all duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)`,
+                      boxShadow: '0 4px 14px 0 hsl(var(--primary) / 0.4)',
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+
+                  {/* Template Preview */}
+                  <div className="relative aspect-[8.5/11] bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden border-b border-border/20 group-hover:border-primary/20 transition-colors duration-500">
+                    {/* Subtle pattern overlay */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        backgroundImage: 'radial-gradient(circle at 1px 1px, hsl(var(--primary) / 0.05) 1px, transparent 0)',
+                        backgroundSize: '20px 20px',
+                      }}
+                    />
+                    
+                    {/* Preview container with premium styling */}
+                    <div className="absolute inset-2 md:inset-3 rounded-lg overflow-hidden shadow-inner bg-white border border-border/20 group-hover:border-primary/30 transition-all duration-500">
+                      <TemplatePreviewV2
+                        templateId={template.id}
+                        themeColor={template.color}
+                        className="h-full"
+                      />
+                    </div>
+
+                    {/* Premium Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center gap-2 p-3 md:p-4 z-10">
+                      <Button
+                        size="sm"
+                        className="shadow-2xl text-xs md:text-sm px-4 py-2 h-9 md:h-10 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg backdrop-blur-sm border border-white/20 hover:scale-105 transition-transform duration-200"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/builder?template=${template.id}`);
+                        }}
+                      >
+                        Use Template
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Template Info - Premium styling */}
+                  <div className="relative p-3 md:p-4 bg-gradient-to-b from-card to-card/95 border-t border-border/20 group-hover:border-primary/30 transition-colors duration-500">
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <h3 className="font-bold text-xs md:text-sm text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1 flex-1">
+                        {template.name}
+                      </h3>
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <div className="h-2 w-2 rounded-full bg-primary shadow-sm group-hover:shadow-md group-hover:scale-125 transition-all duration-300" />
+                      </div>
+                    </div>
+                    <p className="text-[10px] md:text-xs text-muted-foreground line-clamp-2 leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                      {template.description}
+                    </p>
+                    
+                    {/* Premium accent line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/0 to-transparent group-hover:via-primary/50 transition-all duration-500" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* View All Templates Button */}
             <div className="text-center">
-              <Button
-                size="lg"
-                className="text-sm md:text-base px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                onClick={() => navigate("/dashboard")}
+              <Button 
+                className={cn(primaryButtonClass, "group")} 
+                onClick={() => navigate("/templates")}
               >
                 <span>View All Templates</span>
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 
-            {/* Features */}
-            <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
-              <div className="text-center space-y-2">
-                <div className="h-12 w-12 mx-auto rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <Eye className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-sm font-semibold text-foreground">Live Preview</h3>
-                <p className="text-xs text-muted-foreground">See exactly how your resume will look</p>
-              </div>
-              <div className="text-center space-y-2">
-                <div className="h-12 w-12 mx-auto rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <Target className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-sm font-semibold text-foreground">ATS Optimized</h3>
-                <p className="text-xs text-muted-foreground">All templates pass ATS screening</p>
-              </div>
-              <div className="text-center space-y-2">
-                <div className="h-12 w-12 mx-auto rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <Palette className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-sm font-semibold text-foreground">Customizable</h3>
-                <p className="text-xs text-muted-foreground">Easy to customize and personalize</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -770,12 +1105,12 @@ const Hero = () => {
               
               
               <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-foreground mb-4 md:mb-6">
-                See How Our <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Resume Editor</span> Works
+                See How Our <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Form-Based Editor</span> Works
               </h2>
-              
+
               <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Experience our intuitive editor with real-time preview. Watch how your resume comes to life as you type, 
-                with professional templates that adapt to your content instantly.
+                Traditional form-based editing with real-time preview. Fill out structured forms and watch your resume
+                update instantly - perfect for those who prefer guided input fields.
               </p>
             </div>
 
@@ -801,228 +1136,290 @@ const Hero = () => {
                   </div>
 
                   {/* Main Editor Layout */}
-                  <div className="flex flex-col md:flex-row h-[400px] md:h-[630px]">
+                  <div className="flex flex-col lg:flex-row gap-0 h-auto lg:items-start">
                     {/* Left Side - Form Editor */}
-                    <div className="w-full md:w-1/2 bg-gradient-to-br from-slate-50 to-gray-50 border-b md:border-b-0 md:border-r border-gray-200">
-                      <div className="p-2 md:p-4 space-y-2 md:space-y-4 h-full overflow-y-auto">
-                        {/* Personal Information */}
-                        <div className="space-y-1 md:space-y-2">
-                          <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
-                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full"></div>
-                            <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Personal Information</h3>
-                          </div>
-                          <div className="space-y-1.5 md:space-y-2">
-                            <div className="grid grid-cols-2 gap-1.5 md:gap-2">
-                              <div>
-                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Full Name</label>
-                                <Input 
-                                  value={demoFormData.fullName}
-                                  onChange={(e) => updateFormData('fullName', e.target.value)}
-                                  className="h-6 md:h-7 text-[10px] md:text-sm"
-                                  placeholder="Enter your full name"
-                                />
-                              </div>
-                              <div>
-                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Location</label>
-                                <Input 
-                                  value={demoFormData.location}
-                                  onChange={(e) => updateFormData('location', e.target.value)}
-                                  className="h-6 md:h-7 text-[10px] md:text-sm"
-                                  placeholder="Enter your location"
-                                />
+                    <div className="w-full lg:w-[40%] bg-gradient-to-br from-slate-50 to-gray-50 border-b lg:border-b-0 lg:border-r border-gray-200 overflow-y-auto max-h-[600px] lg:max-h-[800px]">
+                      <div className="p-4 md:p-6">
+                        {demoTemplateConfig && (
+                          <ElegantForm
+                            resumeData={formEditorData}
+                            onResumeDataChange={setFormEditorData}
+                            enabledSections={demoTemplateConfig.sections}
+                            sectionTitles={{}}
+                            templateConfig={demoTemplateConfig}
+                            accentColor={demoThemeColor}
+                          />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Right Side - Live Preview */}
+                    <div className="w-full lg:w-[60%] bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100">
+                      <div className="p-2 sm:p-4 md:p-6 h-full overflow-y-auto">
+                        <div 
+                          className="relative w-full overflow-x-hidden"
+                          style={{
+                            background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+                            padding: '0.75rem',
+                            borderRadius: '0.75rem',
+                          }}
+                        >
+                          <div 
+                            className="space-y-0.5 flex flex-col items-center"
+                            style={{
+                              backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
+                              backgroundSize: '20px 20px',
+                            }}
+                          >
+                            <div className="relative w-full max-w-[210mm]">
+                              <div className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/50 shadow-lg shadow-gray-200/50">
+                                <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                                  <div
+                                    className="h-7 sm:h-9 w-1 sm:w-1.5 rounded-full shadow-sm"
+                                    style={{ background: demoThemeColor }}
+                                  />
+                                  <div className="flex items-center gap-2 sm:gap-2.5">
+                                    <div
+                                      className="p-1 sm:p-1.5 rounded-lg"
+                                      style={{ backgroundColor: `${demoThemeColor}1a` }}
+                                    >
+                                      <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: demoThemeColor }} />
+                                    </div>
+                                    <div className="flex flex-col leading-tight">
+                                      <span className="font-semibold text-gray-800 tracking-tight text-sm sm:text-base">Live Preview</span>
+                                      <span className="text-[10px] sm:text-xs text-muted-foreground">Click to edit inline</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <Button
+                                  onClick={async () => {
+                                    try {
+                                      const filename = `${formEditorData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+                                      await generatePDFFromPreview("hero-form-preview", filename);
+                                      await incrementDownloadsCount();
+                                    } catch (error) {
+                                      console.error("Download error:", error);
+                                    }
+                                  }}
+                                  size="sm"
+                                  className="h-8 sm:h-9 gap-1.5 sm:gap-2 bg-primary text-white hover:bg-primary/90 shadow-sm text-xs sm:text-sm px-3 sm:px-4"
+                                >
+                                  <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                  <span className="hidden sm:inline">Download PDF</span>
+                                  <span className="sm:hidden">PDF</span>
+                                </Button>
                               </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-1.5 md:gap-2">
-                              <div>
-                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Email Address</label>
-                                <Input 
-                                  value={demoFormData.email}
-                                  onChange={(e) => updateFormData('email', e.target.value)}
-                                  className="h-6 md:h-7 text-[10px] md:text-sm"
-                                  placeholder="Enter your email"
-                                />
-                              </div>
-                              <div>
-                                <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Phone Number</label>
-                                <Input 
-                                  value={demoFormData.phone}
-                                  onChange={(e) => updateFormData('phone', e.target.value)}
-                                  className="h-6 md:h-7 text-[10px] md:text-sm"
-                                  placeholder="Enter your phone number"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
 
-                        {/* Professional Summary */}
-                        <div className="space-y-1 md:space-y-2 hidden md:block">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                            <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Professional Summary</h3>
-                          </div>
-                          <div>
-                            <Textarea 
-                              value={demoFormData.summary}
-                              onChange={(e) => updateFormData('summary', e.target.value)}
-                              className="h-16 text-sm resize-none"
-                              placeholder="Write a brief summary of your professional experience..."
-                            />
-                          </div>
-                        </div>
-
-                        {/* Work Experience */}
-                        <div className="space-y-2 md:space-y-3">
-                          <div className="flex items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
-                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-500 rounded-full"></div>
-                            <h3 className="text-[10px] md:text-sm font-bold text-gray-800 capitalize tracking-wider">Work Experience</h3>
-                          </div>
-                          <div className="p-2 md:p-3 bg-white rounded-lg border border-gray-200 shadow-sm">
-                            <div className="space-y-1.5 md:space-y-2">
-                              <div className="grid grid-cols-2 gap-1.5 md:gap-2">
-                                <div>
-                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Job Title</label>
-                                  <Input 
-                                    value={demoFormData.jobTitle}
-                                    onChange={(e) => updateFormData('jobTitle', e.target.value)}
-                                    className="h-6 md:h-7 text-[10px] md:text-sm"
-                                    placeholder="Enter job title"
-                                  />
-                                </div>
-                                <div>
-                                  <label className="block text-[9px] md:text-xs font-medium text-gray-600 mb-0.5 md:mb-1">Company</label>
-                                  <Input 
-                                    value={demoFormData.company}
-                                    onChange={(e) => updateFormData('company', e.target.value)}
-                                    className="h-6 md:h-7 text-[10px] md:text-sm"
-                                    placeholder="Enter company name"
-                                  />
-                                </div>
-                              </div>
-                              <div className="grid grid-cols-2 gap-2">
-                                <div>
-                                  <label className="block text-xs font-medium text-gray-600 mb-1">Start Date</label>
-                                  <Input 
-                                    type="month"
-                                    value={demoFormData.startDate}
-                                    onChange={(e) => updateFormData('startDate', e.target.value)}
-                                    className="h-7 text-sm"
-                                    defaultValue="2022-01"
-                                  />
-                                </div>
-                                <div>
-                                  <label className="block text-xs font-medium text-gray-600 mb-1">End Date</label>
-                                  <Input 
-                                    type="month"
-                                    value={demoFormData.endDate}
-                                    onChange={(e) => updateFormData('endDate', e.target.value)}
-                                    className="h-7 text-sm"
-                                    placeholder="Present"
-                                  />
-                                </div>
-                              </div>
-                              <div>
-                                <label className="block text-xs font-medium text-gray-600 mb-1">Description</label>
-                                <Textarea 
-                                  value={demoFormData.description}
-                                  onChange={(e) => updateFormData('description', e.target.value)}
-                                  className="h-12 text-sm resize-none"
-                                  placeholder="Describe your role and achievements..."
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Skills */}
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 mb-1">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                            <h3 className="text-sm font-bold text-gray-800 capitalize tracking-wider">Skills</h3>
-                          </div>
-                          <div className="space-y-2">
-                            <div className="relative">
-                              <Input 
-                                value={skillsInput}
-                                onChange={(e) => {
-                                  setSkillsInput(e.target.value);
-                                  // Update skills array in real-time as user types
-                                  const skillsFromInput = e.target.value.split(',')
-                                    .map(skill => skill.trim())
-                                    .filter(skill => skill.length > 0);
-                                  setDemoFormData(prev => ({
-                                    ...prev,
-                                    skills: skillsFromInput
-                                  }));
+                            {/* Resume Preview - A4 Size */}
+                            <div className="relative w-full max-w-[210mm]">
+                              <div 
+                                id="hero-form-preview" 
+                                className="bg-white shadow-2xl shadow-gray-300/50 rounded-xl overflow-hidden ring-1 ring-gray-200/50 mx-auto"
+                                style={{ 
+                                  width: 'min(210mm, 100%)',
+                                  maxWidth: '210mm',
                                 }}
-                                className="h-7 text-sm pr-8"
-                                placeholder="Type skills separated by commas"
-                                onKeyDown={(e) => {
-                                  if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                    // Just prevent form submission, let the onChange handle it
-                                  }
-                                }}
-                              />
-                              <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                                <span className="text-xs text-gray-400">↵</span>
+                              >
+                                <StyleOptionsProvider>
+                                  <StyleOptionsWrapper>
+                                    <InlineEditProvider resumeData={formEditorData as any} setResumeData={() => {}}>
+                                      <ResumeRenderer
+                                        resumeData={formEditorData}
+                                        templateId={demoTemplateId}
+                                        themeColor={demoThemeColor}
+                                        editable={false}
+                                      />
+                                    </InlineEditProvider>
+                                  </StyleOptionsWrapper>
+                                </StyleOptionsProvider>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                    {/* Right Side - Live Preview */}
-                    <div className="w-1/2 bg-white">
-                      <div className="p-4 h-full overflow-hidden">
-                        {/* Preview Header */}
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-sm font-semibold text-gray-800">Live Preview</h3>
-                            <button 
+            {/* Call to Action */}
+            <div className="text-center mt-12">
+              <Button className={primaryButtonClass} onClick={() => navigate("/templates")}>
+                Explore All Templates
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Live Editor Demo Section */}
+      <section className="py-12 md:py-20 relative overflow-hidden">
+        {/* Elegant emerald/teal gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-teal-50/40 to-cyan-50/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-green-50/40 via-transparent to-blue-50/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-teal-50/30 via-transparent to-emerald-50/30"></div>
+
+        {/* Animated background elements with emerald theme */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-emerald-400/15 to-teal-400/15 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-56 h-56 bg-gradient-to-r from-cyan-400/20 to-green-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-teal-400/12 to-emerald-400/12 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 md:mb-16">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-700 backdrop-blur-sm mb-6">
+                <Sparkles className="h-4 w-4" />
+                <span>Interactive Live Editor</span>
+              </div>
+
+              <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight text-foreground mb-4 md:mb-6">
+                Experience Our Powerful <span className="text-emerald-600 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Live Editor</span>
+              </h2>
+
+              <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Click anywhere on the resume below to edit directly. No forms, no switching between views.
+                Edit content inline with instant visual feedback - the most intuitive way to build your resume.
+              </p>
+
+              {/* Interactive Instruction Badge */}
+              <div className="mt-6 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-500/5 border border-emerald-300/30 shadow-sm">
+                <div className="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/20 animate-pulse">
+                  <span className="text-emerald-600 text-xs font-bold">✎</span>
+                </div>
+                <span className="text-sm font-medium text-emerald-700">Click on any text below to start editing</span>
+              </div>
+            </div>
+
+            {/* Interactive Live Editor Demo */}
+            <div className="relative">
+              {/* Editor Container with Emerald Glow */}
+              <div className="relative max-w-4xl mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-teal-500/15 to-emerald-500/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl scale-105"></div>
+
+                <div className="relative bg-white rounded-2xl md:rounded-3xl shadow-2xl border border-emerald-200/50 overflow-hidden">
+                  <div className="p-2 sm:p-4 md:p-6">
+                    <div 
+                      className="relative w-full overflow-x-hidden space-y-1.5 sm:space-y-2.5"
+                      style={{
+                        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)',
+                        padding: '1rem',
+                        borderRadius: '0.75rem',
+                      }}
+                    >
+                      {/* Dot pattern overlay */}
+                      <div 
+                        className="space-y-1 flex flex-col items-center"
+                        style={{
+                          backgroundImage: 'radial-gradient(circle at 1px 1px, #cbd5e1 0.5px, transparent 0)',
+                          backgroundSize: '20px 20px',
+                        }}
+                      >
+                        <div className="relative w-full max-w-[210mm]">
+                          <div className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/50 shadow-lg shadow-gray-200/50">
+                            <div className="flex items-center gap-2 md:gap-3">
+                              <div
+                                className="h-7 sm:h-9 w-1 sm:w-1.5 rounded-full shadow-sm"
+                                style={{ background: liveEditorThemeColor }}
+                              />
+                              <div className="flex items-center gap-2 sm:gap-2.5">
+                                <div
+                                  className="p-1 sm:p-1.5 rounded-lg"
+                                  style={{ backgroundColor: `${liveEditorThemeColor}1a` }}
+                                >
+                                  <Eye className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: liveEditorThemeColor }} />
+                                </div>
+                                <div className="flex flex-col leading-tight">
+                                  <span className="font-semibold text-gray-800 tracking-tight text-sm sm:text-base">Live Preview</span>
+                                  <span className="text-[10px] sm:text-xs text-muted-foreground">Click to edit inline</span>
+                                </div>
+                              </div>
+                            </div>
+                            <Button
                               onClick={async () => {
                                 try {
-                                  // Convert demo data to proper ResumeData format
-                                  const resumeData = convertToResumeData();
-                                  
-                                  // Generate PDF using the actual ModernPDF template
-                                  const blob = await pdf(
-                                    <ModernPDF resumeData={resumeData} themeColor="#3b82f6" />
-                                  ).toBlob();
-                                  
-                                  // Create download link
-                                  const url = URL.createObjectURL(blob);
-                                  const link = document.createElement("a");
-                                  link.href = url;
-                                  link.download = `${demoFormData.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
-                                  document.body.appendChild(link);
-                                  link.click();
-                                  document.body.removeChild(link);
-                                  
-                                  // Cleanup
-                                  URL.revokeObjectURL(url);
+                                  const filename = `${liveEditorData.personalInfo.fullName.replace(/\s+/g, "_")}_Resume.pdf`;
+                                  await generatePDFFromPreview("hero-live-editor-preview", filename);
+                                  await incrementDownloadsCount();
                                 } catch (error) {
                                   console.error("Download error:", error);
                                 }
                               }}
-                              className="px-3 py-1 bg-primary/10 rounded-full border border-primary/20 hover:bg-primary/20 transition-colors flex items-center gap-1"
+                              size="sm"
+                              className="h-8 sm:h-9 gap-1.5 sm:gap-2 bg-primary text-white hover:bg-primary/90 shadow-sm text-xs sm:text-sm px-3 sm:px-4"
                             >
-                              <svg className="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                              <span className="text-xs text-primary font-medium">Download Resume</span>
-                            </button>
+                              <Download className="w-4 h-4" />
+                              <span className="hidden sm:inline">Download PDF</span>
+                              <span className="sm:hidden">PDF</span>
+                            </Button>
                           </div>
                         </div>
 
-                        {/* Resume Preview - Use actual ModernTemplate */}
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-sm h-full overflow-hidden">
-                          <div className="origin-top-left" style={{ transform: 'scale(0.6)', width: '167.86%' }} key={JSON.stringify(demoFormData)}>
-                            <ModernTemplate 
-                              resumeData={convertToResumeData()} 
-                              themeColor="#3b82f6"
-                            />
+                        {/* Resume Preview - A4 Size with Inline Editing */}
+                        <div className="relative w-full max-w-[210mm]">
+                          <div 
+                            id="hero-live-editor-preview" 
+                            className="bg-white shadow-2xl shadow-gray-300/50 rounded-xl overflow-hidden ring-1 ring-gray-200/50 mx-auto"
+                            style={{ 
+                              width: 'min(210mm, 100%)',
+                              maxWidth: '210mm',
+                            }}
+                          >
+                            <StyleOptionsProvider>
+                              <StyleOptionsWrapper>
+                                <InlineEditProvider resumeData={liveEditorData as any} setResumeData={setLiveEditorData as any}>
+                                  <ResumeRenderer
+                                    resumeData={liveEditorData}
+                                    templateId={liveEditorTemplateId}
+                                    themeColor={liveEditorThemeColor}
+                                    editable={true}
+                                    onAddBulletPoint={handleAddBulletPoint}
+                                    onRemoveBulletPoint={handleRemoveBulletPoint}
+                                    onAddExperience={handleAddExperience}
+                                    onRemoveExperience={handleRemoveExperience}
+                                    onAddEducation={handleAddEducation}
+                                    onRemoveEducation={handleRemoveEducation}
+                                  />
+                                </InlineEditProvider>
+                              </StyleOptionsWrapper>
+                            </StyleOptionsProvider>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Helpful Tips */}
+                    <div className="mt-6 max-w-3xl mx-auto">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div className="flex items-start gap-2 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-emerald-200/40">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5">
+                            <span className="text-emerald-600 text-xs">✓</span>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-gray-800 mb-0.5">Click to Edit</h4>
+                            <p className="text-[10px] text-gray-600">Click any text to edit it directly</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-emerald-200/40">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-teal-500/20 flex items-center justify-center mt-0.5">
+                            <span className="text-teal-600 text-xs">⚡</span>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-gray-800 mb-0.5">Real-Time Updates</h4>
+                            <p className="text-[10px] text-gray-600">See changes instantly as you type</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-2 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-emerald-200/40">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-cyan-500/20 flex items-center justify-center mt-0.5">
+                            <span className="text-cyan-600 text-xs">↓</span>
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-semibold text-gray-800 mb-0.5">Download Ready</h4>
+                            <p className="text-[10px] text-gray-600">Export to PDF anytime you want</p>
                           </div>
                         </div>
                       </div>
@@ -1035,15 +1432,23 @@ const Hero = () => {
             {/* Call to Action */}
             <div className="text-center mt-12">
               <div className="inline-flex flex-col sm:flex-row gap-3">
-                <button className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg text-sm">
-                  Start Creating Your Resume
-                </button>
-                <button className="px-6 py-2 bg-white text-primary border border-primary rounded-lg font-semibold hover:bg-primary/5 transition-colors text-sm">
-                  Explore All Templates
-                </button>
+                <Button
+                  className={cn(buttonBaseClass, "bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl group")}
+                  onClick={() => navigate("/templates")}
+                >
+                  <span>Try Live Editor Now</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className={cn(buttonBaseClass, "border border-emerald-600 text-emerald-600 hover:bg-emerald-50")}
+                  onClick={() => navigate("/templates")}
+                >
+                  View All Templates
+                </Button>
               </div>
               <p className="text-sm text-muted-foreground mt-4">
-                Join thousands of professionals who have created stunning resumes with our editor
+                The fastest way to create a professional resume. Edit directly, download instantly.
               </p>
             </div>
           </div>
@@ -1051,8 +1456,10 @@ const Hero = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-muted/30" />
+        <div className="absolute top-0 left-1/2 h-40 w-[120%] -translate-x-1/2 bg-gradient-to-r from-primary/10 via-transparent to-emerald-100/20 blur-3xl" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center space-y-3 mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
@@ -1129,53 +1536,39 @@ const Hero = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-blue-100/20" />
+        <div className="absolute -top-10 right-1/2 h-40 w-40 translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <div className="space-y-3">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">
                 Ready to Build Your Resume?
               </h2>
               <p className="text-base text-muted-foreground">
-                Join thousands of professionals who have landed their dream jobs with our platform
+                Choose from professional templates and create your resume in minutes
               </p>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-              <Button
-                size="default"
-                className="text-sm px-6 py-3 bg-primary hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl group"
-                onClick={() => navigate("/dashboard")}
-              >
-                <span>Get Started Now</span>
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                size="default"
-                className="text-sm px-6 py-3 border hover:bg-muted/50 transition-all duration-300"
-              >
-                View Examples
-              </Button>
-            </div>
 
-            <div className="flex items-center justify-center gap-6 pt-6 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Shield className="h-3 w-3" />
-                <span>100% Secure</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Clock className="h-3 w-3" />
-                <span>5 Minutes Setup</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Globe className="h-3 w-3" />
-                <span>No Download Required</span>
-              </div>
-            </div>
+            <Button className={cn(primaryButtonClass, "group")} onClick={() => navigate("/templates")}>
+              <span>Get Started</span>
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
       </section>
+
+      <footer className="border-t border-border/60 bg-muted/20">
+        <div className="container mx-auto px-4 py-4 md:px-6 md:py-5">
+          <div className="max-w-6xl mx-auto flex flex-col gap-3 text-center text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <div>&copy; {new Date().getFullYear()} ResumeCook. Crafted to help you land your next role.</div>
+            <div className="flex items-center justify-center gap-4 text-xs uppercase tracking-wide">
+              <button onClick={() => navigate("/privacy")} className="hover:text-foreground transition-colors">Privacy</button>
+              <button onClick={() => navigate("/terms")} className="hover:text-foreground transition-colors">Terms</button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
