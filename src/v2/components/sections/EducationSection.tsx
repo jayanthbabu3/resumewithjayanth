@@ -86,7 +86,7 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
       fontSize: scaleFontSize(typography.itemSubtitle.fontSize),
       fontWeight: typography.itemSubtitle.fontWeight,
       lineHeight: typography.itemSubtitle.lineHeight,
-      color: accent,
+      color: colors.text.secondary,
       margin: 0,
     };
 
@@ -354,60 +354,98 @@ export const EducationSection: React.FC<EducationSectionProps> = ({
       );
     }
 
-    // Compact variant
+    // Compact variant - Clean two-line format
+    // Line 1: Degree in Field                                    Dates
+    // Line 2: School • Location
     if (variant === 'compact') {
-      return (
-        <div key={item.id} className="flex justify-between items-baseline gap-4" style={itemStyle}>
-          <div className="flex items-baseline gap-2 flex-wrap">
-            {editable ? (
+      // Build degree text with field inline
+      const renderDegreeWithField = () => {
+        if (editable) {
+          return (
+            <div className="flex items-baseline gap-1 flex-wrap">
               <InlineEditableText
                 path={`education.${index}.degree`}
                 value={item.degree || 'Degree'}
                 style={degreeStyle}
               />
-            ) : (
-              <span style={degreeStyle}>{item.degree}</span>
-            )}
-            {education.showField && (editable || item.field) && (
-              editable ? (
+              {education.showField && (
                 <>
-                  <span style={fieldStyle}>in</span>
+                  <span style={degreeStyle}>in</span>
                   <InlineEditableText
                     path={`education.${index}.field`}
                     value={item.field || 'Field'}
-                    style={fieldStyle}
+                    style={degreeStyle}
                   />
                 </>
-              ) : (
-                <span style={fieldStyle}>in {item.field}</span>
-              )
-            )}
-            <span style={{ color: colors.text.muted }}>•</span>
-            {editable ? (
+              )}
+            </div>
+          );
+        }
+
+        // Non-editable: combine degree and field
+        let degreeText = item.degree || '';
+        if (education.showField && item.field) {
+          degreeText += ` in ${item.field}`;
+        }
+        return <span style={degreeStyle}>{degreeText}</span>;
+      };
+
+      // Build school with location inline
+      const renderSchoolWithLocation = () => {
+        if (editable) {
+          return (
+            <div className="flex items-baseline gap-2 flex-wrap">
               <InlineEditableText
                 path={`education.${index}.school`}
                 value={item.school || 'School'}
                 style={schoolStyle}
               />
-            ) : (
-              <span style={schoolStyle}>{item.school}</span>
-            )}
-            {(editable || item.location) && (
-              <>
-                <span style={{ color: colors.text.muted }}>•</span>
-                {editable ? (
+              {item.location && (
+                <>
+                  <span style={{ color: colors.text.muted }}>•</span>
                   <InlineEditableText
                     path={`education.${index}.location`}
-                    value={item.location || 'Location'}
-                    style={dateStyle}
+                    value={item.location}
+                    style={schoolStyle}
                   />
-                ) : (
-                  <span style={dateStyle}>{item.location}</span>
-                )}
-              </>
-            )}
+                </>
+              )}
+            </div>
+          );
+        }
+
+        // Non-editable: combine school and location
+        let schoolText = item.school || '';
+        if (item.location) {
+          schoolText += ` • ${item.location}`;
+        }
+        return <span style={schoolStyle}>{schoolText}</span>;
+      };
+
+      // Add separator line between entries (not before first entry)
+      const showSeparator = index > 0;
+
+      return (
+        <div key={item.id} style={itemStyle}>
+          {/* Subtle separator line between entries */}
+          {showSeparator && (
+            <div
+              style={{
+                borderTop: `1px solid ${colors.border}`,
+                marginBottom: '10px',
+                opacity: 0.5,
+              }}
+            />
+          )}
+          {/* First row: Degree in Field + Dates */}
+          <div className="flex justify-between items-baseline gap-4">
+            {renderDegreeWithField()}
+            {renderDates()}
           </div>
-          {renderDates()}
+          {/* Second row: School • Location */}
+          <div style={{ marginTop: '2px' }}>
+            {renderSchoolWithLocation()}
+          </div>
         </div>
       );
     }

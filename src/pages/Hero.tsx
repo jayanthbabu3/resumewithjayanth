@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, TrendingUp, Shield, Award, Clock, Globe, Target, Palette, Mail, Eye, Download } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Sparkles, Zap, TrendingUp, Shield, Award, Clock, Globe, Target, Palette, Mail, Eye, Download, Phone, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -555,140 +555,265 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Right Side - Enhanced Resume Preview (6 columns) */}
-              <div className="lg:col-span-6 relative hidden lg:flex justify-center items-center py-8">
-                {/* Multi-layer ambient glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary/15 via-blue-400/10 to-violet-500/15 rounded-full blur-3xl" />
-                <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse" />
-                <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-violet-400/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+              {/* Right Side - Stacked Resume Previews (6 columns) */}
+              <div className="lg:col-span-6 relative hidden lg:flex justify-center items-center py-4">
+                {/* Background decorative elements */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute top-10 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+                  <div className="absolute bottom-10 left-10 w-56 h-56 bg-blue-100/50 rounded-full blur-2xl" />
+                  {/* Dot pattern */}
+                  <div className="absolute top-20 left-8 grid grid-cols-4 gap-2 opacity-20">
+                    {[...Array(16)].map((_, i) => (
+                      <div key={i} className="w-1.5 h-1.5 bg-primary/40 rounded-full" />
+                    ))}
+                  </div>
+                  <div className="absolute bottom-32 right-4 grid grid-cols-3 gap-2 opacity-20">
+                    {[...Array(9)].map((_, i) => (
+                      <div key={i} className="w-1.5 h-1.5 bg-[#1e3a5f]/40 rounded-full" />
+                    ))}
+                  </div>
+                </div>
 
-                {/* Decorative elements behind card */}
-                <div className="absolute top-8 right-8 w-20 h-20 border-2 border-primary/10 rounded-2xl rotate-12" />
-                <div className="absolute bottom-12 left-4 w-16 h-16 border-2 border-violet-400/10 rounded-xl -rotate-12" />
+                {/* Stacked Resume Cards */}
+                <div className="relative w-full max-w-[480px] h-[600px]">
 
-                {/* Main Resume Card */}
-                <div className="relative w-full max-w-[420px]">
-                  {/* Stacked card effect - multiple layers */}
-                  <div className="absolute inset-0 translate-x-6 translate-y-6 bg-gradient-to-br from-violet-100 to-violet-200/50 rounded-2xl" />
-                  <div className="absolute inset-0 translate-x-3 translate-y-3 bg-gradient-to-br from-blue-50 to-primary/10 rounded-2xl" />
+                  {/* Shadow/Back card - slight angle offset to the right */}
+                  <div
+                    className="absolute bg-[#c7d2de] rounded-xl"
+                    style={{
+                      width: '360px',
+                      height: '500px',
+                      top: '55px',
+                      left: '75px',
+                      transform: 'rotate(3deg)',
+                    }}
+                  />
 
-                  {/* Main card */}
-                  <div className="relative bg-white rounded-2xl shadow-2xl shadow-primary/10 border border-gray-100/80 overflow-hidden">
-                    {/* Gradient header bar */}
-                    <div className="h-2 bg-gradient-to-r from-primary via-blue-500 to-violet-500" />
-
-                    <div className="p-6 space-y-5">
-                      {/* Resume Header */}
-                      <div className="flex items-start gap-4">
-                        <div className="relative">
-                          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-blue-500 to-primary flex items-center justify-center shadow-xl shadow-primary/30">
-                            <span className="text-white font-bold text-xl">SA</span>
-                          </div>
-                          {/* Online indicator */}
-                          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-3 border-white flex items-center justify-center">
-                            <CheckCircle2 className="w-3 h-3 text-white" />
+                  {/* Main Resume Card */}
+                  <div
+                    className="absolute bg-white rounded-xl overflow-hidden"
+                    style={{
+                      width: '360px',
+                      height: '500px',
+                      top: '30px',
+                      left: '50px',
+                      boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+                    }}
+                  >
+                    {/* Two-column layout */}
+                    <div className="flex h-full">
+                      {/* Left Sidebar - Dark blue */}
+                      <div className="w-[36%] bg-[#1e3a5f] text-white p-4 space-y-3">
+                        {/* Profile Photo */}
+                        <div className="flex justify-center pt-1">
+                          <div className="w-16 h-16 rounded-full border-3 border-white/40 overflow-hidden shadow-lg">
+                            <img
+                              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+                              alt="Profile"
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-xl font-bold text-gray-900">Sarah Anderson</h3>
-                          <p className="text-sm font-semibold text-primary mt-0.5">Senior Product Designer</p>
-                          <div className="flex items-center gap-1.5 mt-2 text-xs text-gray-500">
-                            <Mail className="w-3.5 h-3.5" />
-                            <span>sarah@example.com</span>
+
+                        {/* Contact Section */}
+                        <div className="space-y-1.5">
+                          <h4 className="text-[9px] font-bold uppercase tracking-wider text-white/60 border-b border-white/20 pb-1">Contact</h4>
+                          <div className="space-y-1.5 text-[7px] text-white/85">
+                            <div className="flex items-center gap-1.5">
+                              <Phone className="w-2.5 h-2.5 text-white/60" />
+                              <span>+61 0412 345 678</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <Mail className="w-2.5 h-2.5 text-white/60" />
+                              <span>sarah@email.com</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <Globe className="w-2.5 h-2.5 text-white/60" />
+                              <span>sarahdesigns.com</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <MapPin className="w-2.5 h-2.5 text-white/60" />
+                              <span>Sydney, Australia</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Experience Section */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-primary to-blue-500" />
-                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Experience</h4>
-                        </div>
-
-                        <div className="space-y-2.5 pl-3.5">
-                          <div className="p-3.5 rounded-xl bg-gradient-to-r from-gray-50 to-white border border-gray-100 hover:border-primary/30 hover:shadow-md transition-all duration-300">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <p className="font-semibold text-sm text-gray-900">Lead Designer</p>
-                                <p className="text-xs font-medium text-primary mt-0.5">TechCorp Inc.</p>
+                        {/* Skills */}
+                        <div className="space-y-1.5">
+                          <h4 className="text-[9px] font-bold uppercase tracking-wider text-white/60 border-b border-white/20 pb-1">Skills</h4>
+                          <div className="space-y-1 text-[7px] text-white/85">
+                            <div className="flex items-center justify-between">
+                              <span>React.js</span>
+                              <div className="flex gap-0.5">
+                                {[1,2,3,4,5].map(i => (
+                                  <div key={i} className={`w-1 h-1 rounded-full ${i <= 5 ? 'bg-white/80' : 'bg-white/30'}`} />
+                                ))}
                               </div>
-                              <span className="text-[10px] text-gray-500 font-semibold px-2.5 py-1 bg-primary/5 text-primary rounded-full">2021 - Present</span>
                             </div>
-                            <div className="flex gap-1.5 mt-3">
-                              <div className="h-1.5 bg-gradient-to-r from-primary/40 to-primary/20 rounded-full flex-1" />
-                              <div className="h-1.5 bg-gray-100 rounded-full w-1/4" />
-                            </div>
-                          </div>
-
-                          <div className="p-3.5 rounded-xl bg-gray-50/50 border border-gray-100/80">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <p className="font-semibold text-sm text-gray-900">Product Designer</p>
-                                <p className="text-xs text-gray-500 mt-0.5">StartupXYZ</p>
+                            <div className="flex items-center justify-between">
+                              <span>Node.js</span>
+                              <div className="flex gap-0.5">
+                                {[1,2,3,4,5].map(i => (
+                                  <div key={i} className={`w-1 h-1 rounded-full ${i <= 4 ? 'bg-white/80' : 'bg-white/30'}`} />
+                                ))}
                               </div>
-                              <span className="text-[10px] text-gray-400 font-medium px-2.5 py-1 bg-gray-100 rounded-full">2019 - 2021</span>
                             </div>
+                            <div className="flex items-center justify-between">
+                              <span>TypeScript</span>
+                              <div className="flex gap-0.5">
+                                {[1,2,3,4,5].map(i => (
+                                  <div key={i} className={`w-1 h-1 rounded-full ${i <= 4 ? 'bg-white/80' : 'bg-white/30'}`} />
+                                ))}
+                              </div>
+                            </div>
+                            <div className="flex items-center justify-between">
+                              <span>AWS</span>
+                              <div className="flex gap-0.5">
+                                {[1,2,3,4,5].map(i => (
+                                  <div key={i} className={`w-1 h-1 rounded-full ${i <= 3 ? 'bg-white/80' : 'bg-white/30'}`} />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Languages */}
+                        <div className="space-y-1.5">
+                          <h4 className="text-[9px] font-bold uppercase tracking-wider text-white/60 border-b border-white/20 pb-1">Languages</h4>
+                          <div className="space-y-1 text-[7px]">
+                            <div className="flex justify-between">
+                              <span className="text-white/85">English</span>
+                              <span className="text-white/50 text-[6px]">Native</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-white/85">Spanish</span>
+                              <span className="text-white/50 text-[6px]">Fluent</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-white/85">French</span>
+                              <span className="text-white/50 text-[6px]">Basic</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Certifications */}
+                        <div className="space-y-1.5">
+                          <h4 className="text-[9px] font-bold uppercase tracking-wider text-white/60 border-b border-white/20 pb-1">Certifications</h4>
+                          <div className="space-y-1 text-[6px] text-white/80">
+                            <div>AWS Solutions Architect</div>
+                            <div>Google Cloud Professional</div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Skills */}
-                      <div className="space-y-2.5">
-                        <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-5 rounded-full bg-gradient-to-b from-blue-500 to-violet-500" />
-                          <h4 className="text-xs font-bold text-gray-800 uppercase tracking-wider">Skills</h4>
+                      {/* Right Content - White */}
+                      <div className="flex-1 p-4 space-y-2.5 bg-white">
+                        {/* Name & Title */}
+                        <div className="border-b border-gray-100 pb-2">
+                          <h2 className="text-base font-bold text-[#1e3a5f] leading-tight">Sarah Anderson</h2>
+                          <p className="text-[9px] text-[#1e3a5f]/70 font-medium">Senior Full Stack Developer</p>
                         </div>
-                        <div className="flex flex-wrap gap-2 pl-3.5">
-                          {['UI/UX', 'Figma', 'Prototyping', 'Research'].map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-200/80 hover:border-primary/40 hover:text-primary transition-colors duration-200"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
 
-                      {/* Footer with badges */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-full">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                          <span className="text-xs font-semibold text-emerald-600">ATS-Optimized</span>
+                        {/* Summary */}
+                        <div className="space-y-1">
+                          <h4 className="text-[8px] font-bold uppercase tracking-wider text-[#1e3a5f]">Professional Summary</h4>
+                          <p className="text-[7px] text-gray-600 leading-relaxed">
+                            Innovative Full Stack Developer with 6+ years of experience building high-performance web applications. Specialized in React, Node.js, and cloud architecture. Proven track record of leading teams and delivering scalable solutions.
+                          </p>
                         </div>
-                        <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                          <Download className="w-4 h-4" />
-                          <span className="font-medium">PDF Ready</span>
+
+                        {/* Experience */}
+                        <div className="space-y-1.5">
+                          <h4 className="text-[8px] font-bold uppercase tracking-wider text-[#1e3a5f]">Work Experience</h4>
+                          <div className="space-y-2">
+                            <div>
+                              <div className="flex justify-between items-baseline">
+                                <p className="text-[8px] font-semibold text-gray-900">Senior Software Engineer</p>
+                                <span className="text-[6px] text-gray-400">2021 - Present</span>
+                              </div>
+                              <p className="text-[7px] text-[#1e3a5f] font-medium">ServiceNow • Hyderabad</p>
+                              <ul className="mt-0.5 space-y-0.5 text-[6px] text-gray-600">
+                                <li className="flex items-start gap-1">
+                                  <span className="text-[#1e3a5f] mt-0.5">•</span>
+                                  <span>Led development of enterprise SaaS platform serving 10K+ users</span>
+                                </li>
+                                <li className="flex items-start gap-1">
+                                  <span className="text-[#1e3a5f] mt-0.5">•</span>
+                                  <span>Managed and mentored team of 5 junior developers</span>
+                                </li>
+                                <li className="flex items-start gap-1">
+                                  <span className="text-[#1e3a5f] mt-0.5">•</span>
+                                  <span>Reduced API response time by 40% through optimization</span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div>
+                              <div className="flex justify-between items-baseline">
+                                <p className="text-[8px] font-semibold text-gray-900">Software Developer</p>
+                                <span className="text-[6px] text-gray-400">2019 - 2021</span>
+                              </div>
+                              <p className="text-[7px] text-gray-500">Innova Labs • Bangalore</p>
+                              <ul className="mt-0.5 space-y-0.5 text-[6px] text-gray-600">
+                                <li className="flex items-start gap-1">
+                                  <span className="text-[#1e3a5f] mt-0.5">•</span>
+                                  <span>Built RESTful APIs and microservices architecture</span>
+                                </li>
+                                <li className="flex items-start gap-1">
+                                  <span className="text-[#1e3a5f] mt-0.5">•</span>
+                                  <span>Implemented CI/CD pipelines reducing deployment time by 60%</span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div>
+                              <div className="flex justify-between items-baseline">
+                                <p className="text-[8px] font-semibold text-gray-900">Junior Developer</p>
+                                <span className="text-[6px] text-gray-400">2017 - 2019</span>
+                              </div>
+                              <p className="text-[7px] text-gray-500">TechStart Inc • Mumbai</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Education */}
+                        <div className="space-y-1">
+                          <h4 className="text-[8px] font-bold uppercase tracking-wider text-[#1e3a5f]">Education</h4>
+                          <div className="flex justify-between items-baseline">
+                            <div>
+                              <p className="text-[8px] font-semibold text-gray-900">B.Tech in Computer Science</p>
+                              <p className="text-[6px] text-gray-500">Indian Institute of Technology, Delhi</p>
+                            </div>
+                            <span className="text-[6px] text-gray-400">2013 - 2017</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Floating elements */}
-                  <div className="absolute -top-6 -right-6 bg-white rounded-2xl shadow-xl shadow-primary/10 border border-gray-100 px-4 py-2.5 animate-float">
+                  {/* Floating Badge - ATS Optimized */}
+                  <div className="absolute -top-2 left-4 bg-white rounded-xl shadow-lg border border-gray-100 px-4 py-2.5 animate-float z-10">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/10 to-blue-100 flex items-center justify-center">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <div className="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                       </div>
-                      <span className="text-sm font-semibold text-gray-800">ATS-Optimized</span>
+                      <span className="text-sm font-medium text-gray-700">ATS-Optimized</span>
                     </div>
                   </div>
 
-                  <div className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-xl shadow-amber-500/10 border border-gray-100 px-4 py-2.5 animate-float" style={{ animationDelay: '1s' }}>
+                  {/* Floating Badge - Templates Count */}
+                  <div className="absolute bottom-16 -right-4 bg-[#1e3a5f] rounded-xl shadow-lg px-4 py-2.5 animate-float z-10" style={{ animationDelay: '0.5s' }}>
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
-                        <Zap className="w-4 h-4 text-amber-500" />
-                      </div>
-                      <span className="text-sm font-semibold text-gray-800">Instant Export</span>
-                    </div>
-                  </div>
-
-                  {/* New: Template count badge */}
-                  <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg shadow-primary/30 px-3 py-2 animate-float" style={{ animationDelay: '0.5s' }}>
-                    <div className="flex items-center gap-1.5">
                       <FileText className="w-4 h-4 text-white" />
-                      <span className="text-xs font-bold text-white">10+ Templates</span>
+                      <span className="text-sm font-medium text-white">10+ Templates</span>
+                    </div>
+                  </div>
+
+                  {/* Floating Badge - PDF Ready */}
+                  <div className="absolute -bottom-2 left-12 bg-white rounded-xl shadow-lg border border-gray-100 px-4 py-2.5 animate-float z-10" style={{ animationDelay: '1s' }}>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-lg bg-amber-100 flex items-center justify-center">
+                        <Download className="w-3.5 h-3.5 text-amber-600" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700">PDF Ready</span>
                     </div>
                   </div>
                 </div>

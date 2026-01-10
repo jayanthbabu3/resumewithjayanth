@@ -36,6 +36,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
     lineHeight: typography.body.lineHeight,
     color: typography.body.color,
     margin: 0,
+    textAlign: 'justify',
   };
 
   if (!summary && !editable) return null;

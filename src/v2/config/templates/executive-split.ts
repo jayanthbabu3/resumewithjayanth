@@ -136,14 +136,14 @@ export const executiveSplitConfig: TemplateConfig = createTemplateConfig({
   header: {
     variant: 'left-aligned',
     showPhoto: true,
-    photoSize: '70px',
+    photoSize: '85px',
     photoShape: 'circle',
     photoPosition: 'right', // Photo on the right side of header
-    padding: '0 0 12px 0',
-    marginBottom: '8px',
+    padding: '0 0 16px 0',
+    marginBottom: '12px',
     contactIcons: {
       show: true,
-      size: '12px',
+      size: '13px',
       color: '#0891b2',
     },
     showSocialLinks: true,

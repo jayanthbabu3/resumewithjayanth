@@ -12,3 +12,4 @@ export { ElegantForm } from './ElegantForm';
 export { PersonalInfoForm } from './PersonalInfoForm';
 export { SocialLinksForm } from './SocialLinksForm';
 export { PhotoUploadForm } from './PhotoUploadForm';
+export { EnhancedForm } from './EnhancedForm';

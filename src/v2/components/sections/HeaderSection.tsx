@@ -231,17 +231,33 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
       ? socialItems 
       : socialItems.filter(item => isValidUrl(item.value));
 
+    const hasContactItems = filteredContactItems.length > 0;
+    const hasSocialItems = filteredSocialItems.length > 0;
+
     return (
-      <div 
-        className="flex flex-wrap items-center"
-        style={{ gap: spacing.contactGap }}
-      >
-        {filteredContactItems.map((item, index) => (
-          <EditableContactItem key={`contact-${index}`} icon={item.icon} value={item.value || ''} path={item.path} />
-        ))}
-        {filteredSocialItems.map((item, index) => (
-          <EditableContactItem key={`social-${index}`} icon={item.icon} value={item.value || ''} path={item.path} href={item.href} />
-        ))}
+      <div className="flex flex-col" style={{ gap: '8px' }}>
+        {/* Primary contact info row */}
+        {hasContactItems && (
+          <div
+            className="flex flex-wrap items-center"
+            style={{ gap: spacing.contactGap }}
+          >
+            {filteredContactItems.map((item, index) => (
+              <EditableContactItem key={`contact-${index}`} icon={item.icon} value={item.value || ''} path={item.path} />
+            ))}
+          </div>
+        )}
+        {/* Social links row */}
+        {hasSocialItems && (
+          <div
+            className="flex flex-wrap items-center"
+            style={{ gap: spacing.contactGap }}
+          >
+            {filteredSocialItems.map((item, index) => (
+              <EditableContactItem key={`social-${index}`} icon={item.icon} value={item.value || ''} path={item.path} href={item.href} />
+            ))}
+          </div>
+        )}
       </div>
     );
   };
@@ -298,68 +314,27 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
 
     // Non-editable mode: render simple image/placeholder
     if (personalInfo.photo) {
-      const borderRadius = shape === 'circle' ? '50%' : shape === 'rounded' ? '12px' : '4px';
+      const borderRadius = shape === 'circle' ? '50%' : shape === 'rounded' ? '8px' : '4px';
 
       return (
         <div
           data-section="photo"
           className="resume-photo"
           style={{
-            position: 'relative',
             width: size,
             height: size,
             flexShrink: 0,
+            borderRadius,
+            overflow: 'hidden',
+            border: `3px solid ${borderColor}`,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           }}
         >
-          {/* Outer ring - gradient accent */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: '-6px',
-              borderRadius,
-              background: `linear-gradient(135deg, ${accent} 0%, ${accent}95 50%, ${accent}70 100%)`,
-              padding: '3px',
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            {/* Middle ring - white separator */}
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                borderRadius,
-                background: '#ffffff',
-                padding: '3px',
-              }}
-            >
-              {/* Inner ring - subtle gradient */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius,
-                  background: `linear-gradient(135deg, ${accent}15 0%, ${accent}08 100%)`,
-                  padding: '2px',
-                }}
-              >
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    borderRadius,
-                    overflow: 'hidden',
-                    backgroundColor: '#ffffff',
-                  }}
-                >
-                  <img
-                    src={personalInfo.photo}
-                    alt="photo"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          <img
+            src={personalInfo.photo}
+            alt="photo"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
         </div>
       );
     }
@@ -367,76 +342,36 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
     const sizeValue = parsePx(size, 70);
     // Elegant font sizing: larger initials for better readability
     const fontSize = Math.max(16, Math.round(sizeValue / 2.5));
-    const borderRadius = shape === 'circle' ? '50%' : shape === 'rounded' ? '12px' : '4px';
+    const borderRadius = shape === 'circle' ? '50%' : shape === 'rounded' ? '8px' : '4px';
 
     return (
       <div
         data-section="photo"
         className="resume-photo"
         style={{
-          position: 'relative',
           width: size,
           height: size,
           flexShrink: 0,
+          borderRadius,
+          border: `3px solid ${borderColor}`,
+          backgroundColor,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
         }}
       >
-        {/* Outer ring - gradient accent */}
-        <div
+        <span
           style={{
-            position: 'absolute',
-            inset: '-6px',
-            borderRadius,
-            background: `linear-gradient(135deg, ${accent} 0%, ${accent}95 50%, ${accent}70 100%)`,
-            padding: '3px',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1)',
+            fontSize: `${fontSize}px`,
+            fontWeight: 700,
+            color: textColor,
+            letterSpacing: '0.02em',
+            fontFamily: baseFontFamily,
           }}
         >
-          {/* Middle ring - white separator */}
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              borderRadius,
-              background: '#ffffff',
-              padding: '3px',
-            }}
-          >
-            {/* Inner ring - subtle gradient */}
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                borderRadius,
-                background: `linear-gradient(135deg, ${accent}15 0%, ${accent}08 100%)`,
-                padding: '2px',
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius,
-                  backgroundColor,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: `${fontSize}px`,
-                    fontWeight: 700,
-                    color: textColor,
-                    letterSpacing: '0.02em',
-                    fontFamily: baseFontFamily,
-                  }}
-                >
-                  {initials}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+          {initials}
+        </span>
       </div>
     );
   };
@@ -1249,12 +1184,12 @@ export const HeaderSection: React.FC<HeaderSectionProps> = ({
 
         return (
           <div style={{ padding: header.padding }}>
-            <div className="flex items-start gap-4">
+            <div className="flex items-center gap-5">
               {photoPosition === 'left' && avatar}
               <div className="flex-1">
                 {renderName()}
-                <div style={{ marginTop: '4px' }}>{renderTitle()}</div>
-                <div style={{ marginTop: '12px' }}>{renderContact()}</div>
+                <div style={{ marginTop: '6px' }}>{renderTitle()}</div>
+                <div style={{ marginTop: '14px' }}>{renderContact()}</div>
               </div>
               {photoPosition === 'right' && avatar}
             </div>
