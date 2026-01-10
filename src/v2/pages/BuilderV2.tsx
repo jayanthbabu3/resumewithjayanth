@@ -64,6 +64,9 @@ import { getTemplate } from '../templates';
 // V2 Dynamic Form (config-driven)
 import { DynamicForm, ElegantForm, EnhancedForm } from '../components/form';
 
+// Onboarding Tour for first-time users
+import { OnboardingTour } from '../components/OnboardingTour';
+
 export const BuilderV2: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -91,7 +94,7 @@ export const BuilderV2: React.FC = () => {
   const [enabledSections, setEnabledSections] = useState<string[]>(['header', 'summary', 'experience', 'education', 'strengths', 'skills', 'achievements']);
   const [editingLabelId, setEditingLabelId] = useState<string | null>(null);
   const [editingLabelValue, setEditingLabelValue] = useState('');
-  const [editorMode, setEditorMode] = useState<'preview' | 'live' | 'form'>('preview');
+  const [editorMode, setEditorMode] = useState<'preview' | 'live' | 'form'>('form');
   const [sectionOverrides, setSectionOverrides] = useState<Record<string, any>>({});
   const [showReorder, setShowReorder] = useState(false);
   // Add Section Modal state
@@ -1364,54 +1367,44 @@ export const BuilderV2: React.FC = () => {
                       <span className="text-sm font-medium">Back</span>
                     </button>
 
-                    {/* Separator */}
-                    <div className="h-5 w-px bg-gray-200" />
-
-                    {/* Customize Button - Shows when in preview mode */}
-                    {editorMode === 'preview' ? (
-                      <Button
-                        onClick={() => setEditorMode('form')}
-                        size="sm"
-                        className="h-9 px-4 gap-2 rounded-lg bg-primary hover:bg-primary/90"
-                      >
-                        <Edit3 className="h-4 w-4" />
-                        <span className="font-medium">Customize</span>
-                      </Button>
-                    ) : (
-                      /* Mode Toggle - Only show when customizing */
-                      <div className="flex items-center bg-gray-100 rounded-lg p-0.5">
-                        <button
-                          onClick={() => setEditorMode('live')}
-                          className={cn(
-                            "h-8 px-3 flex items-center gap-1.5 rounded-md text-sm font-medium transition-all duration-200",
-                            editorMode === 'live'
-                              ? "bg-white shadow-sm text-primary"
-                              : "text-gray-500 hover:text-gray-700"
-                          )}
-                        >
-                          <Edit3 className="h-3.5 w-3.5" />
-                          Live
-                        </button>
-                        <button
-                          onClick={() => setEditorMode('form')}
-                          className={cn(
-                            "h-8 px-3 flex items-center gap-1.5 rounded-md text-sm font-medium transition-all duration-200",
-                            editorMode === 'form'
-                              ? "bg-white shadow-sm text-primary"
-                              : "text-gray-500 hover:text-gray-700"
-                          )}
-                        >
-                          <FileEdit className="h-3.5 w-3.5" />
-                          Form
-                        </button>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Center Section: Key Features with Labels */}
-                  <div className="flex items-center gap-1.5">
+                  {/* Center Section: Mode Toggle + Key Features */}
+                  <div className="flex items-center gap-2">
+                    {/* Mode Toggle - Always visible, prominently in center */}
+                    <div className="flex items-center bg-gray-100 rounded-lg p-0.5">
+                      <button
+                        data-tour="form-mode"
+                        onClick={() => setEditorMode('form')}
+                        className={cn(
+                          "h-8 px-4 flex items-center gap-1.5 rounded-md text-sm font-medium transition-all duration-200",
+                          editorMode === 'form'
+                            ? "bg-white shadow-sm text-primary"
+                            : "text-gray-500 hover:text-gray-700"
+                        )}
+                      >
+                        <FileEdit className="h-3.5 w-3.5" />
+                        Form
+                      </button>
+                      <button
+                        data-tour="live-mode"
+                        onClick={() => setEditorMode('live')}
+                        className={cn(
+                          "h-8 px-4 flex items-center gap-1.5 rounded-md text-sm font-medium transition-all duration-200",
+                          editorMode === 'live'
+                            ? "bg-white shadow-sm text-primary"
+                            : "text-gray-500 hover:text-gray-700"
+                        )}
+                      >
+                        <Edit3 className="h-3.5 w-3.5" />
+                        Live
+                      </button>
+                    </div>
+
+                    {/* Separator */}
+                    <div className="h-5 w-px bg-gray-200" />
                     {/* Font Selector */}
-                    <div className="w-36">
+                    <div className="w-36" data-tour="font-selector">
                       <FontSelector
                         selectedFont={selectedFont}
                         onFontChange={setSelectedFont}
@@ -1421,7 +1414,7 @@ export const BuilderV2: React.FC = () => {
                     {/* Sections - Add/Rearrange */}
                     <Popover>
                       <PopoverTrigger asChild>
-                        <button className="h-9 px-3 flex items-center gap-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
+                        <button data-tour="sections-menu" className="h-9 px-3 flex items-center gap-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
                           <Layers className="h-4 w-4" />
                           <span className="text-sm font-medium">Sections</span>
                           <ChevronDown className="h-3 w-3 text-gray-400" />
@@ -1475,7 +1468,7 @@ export const BuilderV2: React.FC = () => {
                     {/* Style Settings with Label */}
                     <Popover>
                       <PopoverTrigger asChild>
-                        <button className="h-9 px-3 flex items-center gap-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
+                        <button data-tour="styling-menu" className="h-9 px-3 flex items-center gap-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
                           <Settings className="h-4 w-4" />
                           <span className="text-sm font-medium">Styling</span>
                           <ChevronDown className="h-3 w-3 text-gray-400" />
@@ -1494,7 +1487,7 @@ export const BuilderV2: React.FC = () => {
                     {/* Color Picker with Label */}
                     <Popover>
                       <PopoverTrigger asChild>
-                        <button className="h-9 px-3 flex items-center gap-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
+                        <button data-tour="color-picker" className="h-9 px-3 flex items-center gap-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200">
                           <div
                             className="w-5 h-5 rounded-full shadow-sm ring-1 ring-gray-200"
                             style={{ backgroundColor: themeColors.primary || themeColor }}
@@ -1564,6 +1557,7 @@ export const BuilderV2: React.FC = () => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
+                          data-tour="save-btn"
                           onClick={handleSaveResume}
                           disabled={isSaving}
                           className={cn(
@@ -1588,6 +1582,7 @@ export const BuilderV2: React.FC = () => {
 
                     {/* Download Button */}
                     <Button
+                      data-tour="download-btn"
                       onClick={handleDownload}
                       disabled={isDownloading}
                       className="h-9 px-4 gap-2 rounded-lg bg-primary hover:bg-primary/90"
@@ -2055,6 +2050,9 @@ export const BuilderV2: React.FC = () => {
         targetColumn={addSectionTargetColumn}
         themeColor={themeColors.primary || '#0891b2'}
       />
+
+      {/* Onboarding Tour for first-time users */}
+      <OnboardingTour />
     </div>
   );
 };
