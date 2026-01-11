@@ -30,6 +30,7 @@ import {
   ChevronDown,
   LayoutGrid,
   Type,
+  Layout,
 } from 'lucide-react';
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 import { resumeServiceV2, type V2Resume } from '../services/resumeServiceV2';
@@ -66,6 +67,9 @@ import { DynamicForm, ElegantForm, EnhancedForm } from '../components/form';
 
 // Onboarding Tour for first-time users
 import { OnboardingTour } from '../components/OnboardingTour';
+
+// Template Selector Modal
+import { TemplateSelectorModal } from '../components/TemplateSelectorModal';
 
 export const BuilderV2: React.FC = () => {
   const navigate = useNavigate();
@@ -110,6 +114,8 @@ export const BuilderV2: React.FC = () => {
   const [mobileResumeHeight, setMobileResumeHeight] = useState(1123); // Default A4 height in px
   // Font family selector state
   const [selectedFont, setSelectedFont] = useState<string>(RESUME_FONTS[0].family);
+  // Template selector modal state
+  const [showTemplateSelector, setShowTemplateSelector] = useState(false);
 
   // Debug: Log when font changes
   React.useEffect(() => {
@@ -122,8 +128,8 @@ export const BuilderV2: React.FC = () => {
   const [headerVisible, setHeaderVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  // Track if LinkedIn data was imported (to prevent template effect from overwriting)
-  const linkedInImportedRef = useRef(false);
+  // Track if external data was imported (to prevent template effect from overwriting)
+  const externalDataImportedRef = useRef(false);
 
   // Check for LinkedIn imported data on mount
   useEffect(() => {
@@ -141,8 +147,23 @@ export const BuilderV2: React.FC = () => {
           educationCount: parsedData.education?.length,
           skillsCount: parsedData.skills?.length,
         });
-        linkedInImportedRef.current = true;
+        externalDataImportedRef.current = true;
         setResumeData(parsedData);
+
+        // Dynamically enable sections based on LinkedIn data
+        const sectionsToEnable: string[] = ['header'];
+        if (parsedData.personalInfo?.summary) sectionsToEnable.push('summary');
+        if (parsedData.experience?.length > 0) sectionsToEnable.push('experience');
+        if (parsedData.education?.length > 0) sectionsToEnable.push('education');
+        if (parsedData.skills?.length > 0) sectionsToEnable.push('skills');
+        if (parsedData.languages?.length > 0) sectionsToEnable.push('languages');
+        if (parsedData.certifications?.length > 0) sectionsToEnable.push('certifications');
+        if (parsedData.projects?.length > 0) sectionsToEnable.push('projects');
+        if (parsedData.volunteer?.length > 0) sectionsToEnable.push('volunteer');
+        if (parsedData.publications?.length > 0) sectionsToEnable.push('publications');
+
+        setEnabledSections(sectionsToEnable);
+
         // Clear the sessionStorage to prevent re-loading on refresh
         sessionStorage.removeItem('linkedin-import-data');
         toast.success('LinkedIn profile imported! You can now edit your resume.');
@@ -152,13 +173,67 @@ export const BuilderV2: React.FC = () => {
     }
   }, [searchParams]);
 
+  // Check for uploaded resume data on mount
+  useEffect(() => {
+    const uploadedResumeData = sessionStorage.getItem('resume-upload-data');
+    const source = searchParams.get('source');
+
+    if (uploadedResumeData && source === 'upload') {
+      try {
+        const parsedData = JSON.parse(uploadedResumeData);
+        externalDataImportedRef.current = true;
+        setResumeData(parsedData);
+
+        // Dynamically enable sections based on parsed data
+        // This ensures all sections from the uploaded resume are visible
+        const sectionsToEnable: string[] = ['header']; // Always include header
+
+        if (parsedData.personalInfo?.summary) sectionsToEnable.push('summary');
+        if (parsedData.experience?.length > 0) sectionsToEnable.push('experience');
+        if (parsedData.education?.length > 0) sectionsToEnable.push('education');
+        if (parsedData.skills?.length > 0) sectionsToEnable.push('skills');
+        if (parsedData.languages?.length > 0) sectionsToEnable.push('languages');
+        if (parsedData.certifications?.length > 0) sectionsToEnable.push('certifications');
+        if (parsedData.projects?.length > 0) sectionsToEnable.push('projects');
+        if (parsedData.awards?.length > 0) sectionsToEnable.push('awards');
+        if (parsedData.achievements?.length > 0) sectionsToEnable.push('achievements');
+        if (parsedData.strengths?.length > 0) sectionsToEnable.push('strengths');
+        if (parsedData.volunteer?.length > 0) sectionsToEnable.push('volunteer');
+        if (parsedData.publications?.length > 0) sectionsToEnable.push('publications');
+        if (parsedData.speaking?.length > 0) sectionsToEnable.push('speaking');
+        if (parsedData.patents?.length > 0) sectionsToEnable.push('patents');
+        if (parsedData.interests?.length > 0) sectionsToEnable.push('interests');
+        if (parsedData.references?.length > 0) sectionsToEnable.push('references');
+        if (parsedData.courses?.length > 0) sectionsToEnable.push('courses');
+
+        // Handle custom sections
+        if (parsedData.customSections?.length > 0) {
+          parsedData.customSections.forEach((section: { id: string }) => {
+            sectionsToEnable.push(section.id);
+          });
+        }
+
+        console.log('Enabling sections from parsed resume:', sectionsToEnable);
+        setEnabledSections(sectionsToEnable);
+
+        // Clear the sessionStorage to prevent re-loading on refresh
+        sessionStorage.removeItem('resume-upload-data');
+
+        const sectionCount = sectionsToEnable.length - 1; // Exclude header
+        toast.success(`Resume parsed successfully! Found ${sectionCount} sections.`);
+      } catch (error) {
+        console.error('Failed to parse uploaded resume data:', error);
+      }
+    }
+  }, [searchParams]);
+
   // Load profile data for new resumes (no resumeId)
   useEffect(() => {
     const loadProfileData = async () => {
-      // Skip if we're loading an existing resume or LinkedIn data is pending
+      // Skip if we're loading an existing resume or external data is pending
       if (resumeId) return;
       const source = searchParams.get('source');
-      if (source === 'linkedin') return;
+      if (source === 'linkedin' || source === 'upload') return;
 
       // Only load profile if user is authenticated
       if (!user) return;
@@ -168,7 +243,7 @@ export const BuilderV2: React.FC = () => {
         if (profile && profile.personalInfo?.fullName) {
           console.log('Loading profile data for new resume:', profile.personalInfo.fullName);
           const resumeData = profileService.profileToResumeData(profile);
-          linkedInImportedRef.current = true; // Prevent template effect from overwriting
+          externalDataImportedRef.current = true; // Prevent template effect from overwriting
           setResumeData(resumeData);
           toast.success('Profile data loaded! Customize your resume.');
         }
@@ -436,18 +511,30 @@ export const BuilderV2: React.FC = () => {
   };
 
   // Initialize enabled sections from config
+  // Skip if external data was just imported (to preserve imported sections)
   React.useEffect(() => {
-    if (config) {
+    // Check if we have pending external data that will set its own sections
+    const source = searchParams.get('source');
+    const hasLinkedInData = sessionStorage.getItem('linkedin-import-data');
+    const hasUploadedResumeData = sessionStorage.getItem('resume-upload-data');
+    const hasPendingImport = (source === 'linkedin' && hasLinkedInData) ||
+                             (source === 'upload' && hasUploadedResumeData);
+
+    // Don't reset sections if:
+    // 1. External data import is pending (storage still has data)
+    // 2. External data was just imported (ref is set)
+    if (config && !hasPendingImport && !externalDataImportedRef.current) {
       const configEnabledSections = config.sections.filter(s => s.enabled).map(s => s.id);
       setEnabledSections(configEnabledSections);
     }
-  }, [config.id]);
+  }, [config.id, searchParams]);
 
   // Swap in template-specific mock data when changing templates
-  // Skip if LinkedIn data is pending import (to preserve imported data)
+  // Skip if external data is pending import (to preserve imported data)
   React.useEffect(() => {
     const source = searchParams.get('source');
     const hasLinkedInData = sessionStorage.getItem('linkedin-import-data');
+    const hasUploadedResumeData = sessionStorage.getItem('resume-upload-data');
 
     // Don't reset to mock data if we're importing from LinkedIn
     if (source === 'linkedin' && hasLinkedInData) {
@@ -455,14 +542,32 @@ export const BuilderV2: React.FC = () => {
       return;
     }
 
-    // Also skip if LinkedIn was just imported (ref flag set)
-    if (linkedInImportedRef.current) {
-      linkedInImportedRef.current = false;
+    // Don't reset to mock data if we're importing from uploaded resume
+    if (source === 'upload' && hasUploadedResumeData) {
+      console.log('Skipping template mock data - Resume upload pending');
+      return;
+    }
+
+    // Also skip if external data was just imported (ref flag set)
+    // Don't reset the ref here - let it persist so other effects can check it
+    if (externalDataImportedRef.current) {
       return;
     }
 
     setResumeData(templateDefinition?.mockData || MOCK_RESUME_DATA);
   }, [templateDefinition, searchParams]);
+
+  // Reset external import flag after initial render effects have completed
+  // This prevents future template changes from being blocked
+  React.useEffect(() => {
+    if (externalDataImportedRef.current) {
+      // Use a small timeout to ensure all initial effects have run
+      const timer = setTimeout(() => {
+        externalDataImportedRef.current = false;
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   // Handle resume data updates from inline editing
   const handleResumeUpdate = useCallback((updater: V2ResumeData | ((prev: V2ResumeData) => V2ResumeData)) => {
@@ -1367,6 +1472,25 @@ export const BuilderV2: React.FC = () => {
                       <span className="text-sm font-medium">Back</span>
                     </button>
 
+                    {/* Separator */}
+                    <div className="h-5 w-px bg-gray-200" />
+
+                    {/* Change Template Button */}
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => setShowTemplateSelector(true)}
+                          className="h-9 px-3 flex items-center gap-1.5 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200 transition-all duration-200"
+                        >
+                          <Layout className="w-4 h-4" />
+                          <span className="text-sm font-medium">Template</span>
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Change template</p>
+                      </TooltipContent>
+                    </Tooltip>
+
                   </div>
 
                   {/* Center Section: Mode Toggle + Key Features */}
@@ -2053,6 +2177,21 @@ export const BuilderV2: React.FC = () => {
 
       {/* Onboarding Tour for first-time users */}
       <OnboardingTour />
+
+      {/* Template Selector Modal */}
+      <TemplateSelectorModal
+        isOpen={showTemplateSelector}
+        onClose={() => setShowTemplateSelector(false)}
+        onSelect={(newTemplateId) => {
+          // Navigate to the same builder with the new template
+          // Preserve the resume data by keeping it in state (no page reload)
+          navigate(`/builder?template=${newTemplateId}`, { replace: true });
+          setShowTemplateSelector(false);
+          toast.success('Template changed successfully!');
+        }}
+        currentTemplateId={templateId}
+        themeColor={themeColors.primary || '#0891b2'}
+      />
     </div>
   );
 };

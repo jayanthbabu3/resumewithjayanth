@@ -285,18 +285,45 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
       }
     }
 
-    // If enabledSections is provided and has items, use it
+    // If enabledSections is provided and has items, use it as the source of truth
     if (enabledSections && enabledSections.length > 0) {
       return enabledSections.includes(sectionId);
     }
-    // Otherwise fall back to config
+
+    // Check if section exists in config
     const section = config.sections.find(s => s.id === sectionId);
-    return section?.enabled ?? false;
+    if (section) {
+      return section.enabled ?? false;
+    }
+
+    // For sections NOT in template config but have data in resumeData,
+    // consider them enabled by default (they'll be dynamically added in getOrderedSections)
+    // This handles uploaded/parsed resumes with sections the template doesn't define
+    const dynamicSectionDataMap: Record<string, boolean> = {
+      projects: (resumeData.projects?.length || 0) > 0,
+      certifications: (resumeData.certifications?.length || 0) > 0,
+      awards: (resumeData.awards?.length || 0) > 0,
+      publications: (resumeData.publications?.length || 0) > 0,
+      volunteer: (resumeData.volunteer?.length || 0) > 0,
+      speaking: (resumeData.speaking?.length || 0) > 0,
+      patents: (resumeData.patents?.length || 0) > 0,
+      interests: (resumeData.interests?.length || 0) > 0,
+      references: (resumeData.references?.length || 0) > 0,
+      courses: (resumeData.courses?.length || 0) > 0,
+      languages: (resumeData.languages?.length || 0) > 0,
+      strengths: (resumeData.strengths?.length || 0) > 0,
+      achievements: (resumeData.achievements?.length || 0) > 0,
+    };
+
+    // If the section has data in resumeData, consider it enabled
+    return dynamicSectionDataMap[sectionId] ?? false;
   };
 
   // Get sections in order, including any custom sections present only in resumeData
   const getOrderedSections = (column?: 'main' | 'sidebar'): SectionConfig[] => {
     // Base sections from template config - only include enabled sections
+    // Note: isSectionEnabled already handles enabledSections override, so we don't need
+    // to double-check s.enabled here. The enabledSections prop takes priority.
     const baseSections = config.sections.filter(s => {
       if (!isSectionEnabled(s.id)) return false;
       if (s.type === 'header') return false; // Header is rendered separately
@@ -305,13 +332,76 @@ export const ResumeRenderer: React.FC<ResumeRendererProps> = ({
         const sectionColumn = s.column || 'main'; // Default to main if not specified
         if (sectionColumn !== column) return false;
       }
-      // For scratch builder, only show sections that are explicitly enabled
-      // Don't show empty sections
-      if (s.enabled === false) return false;
       return true;
     });
 
     let sections = [...baseSections];
+
+    // === DYNAMIC SECTIONS: Add standard sections that exist in resumeData but not in template config ===
+    // This ensures that when a resume is parsed/uploaded, ALL sections with data are shown
+    // even if the template doesn't have them defined by default.
+    const configSectionIds = new Set(config.sections.map(s => s.id));
+    const configSectionTypes = new Set(config.sections.map(s => s.type));
+
+    // Map of section type to data check and default config
+    const standardSectionTypes: Array<{
+      type: string;
+      id: string;
+      title: string;
+      hasData: () => boolean;
+      defaultColumn: 'main' | 'sidebar';
+    }> = [
+      { type: 'projects', id: 'projects', title: 'Projects', hasData: () => (resumeData.projects?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'certifications', id: 'certifications', title: 'Certifications', hasData: () => (resumeData.certifications?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'awards', id: 'awards', title: 'Awards', hasData: () => (resumeData.awards?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'publications', id: 'publications', title: 'Publications', hasData: () => (resumeData.publications?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'volunteer', id: 'volunteer', title: 'Volunteer Experience', hasData: () => (resumeData.volunteer?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'speaking', id: 'speaking', title: 'Speaking Engagements', hasData: () => (resumeData.speaking?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'patents', id: 'patents', title: 'Patents', hasData: () => (resumeData.patents?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'interests', id: 'interests', title: 'Interests', hasData: () => (resumeData.interests?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'references', id: 'references', title: 'References', hasData: () => (resumeData.references?.length || 0) > 0, defaultColumn: 'main' },
+      { type: 'courses', id: 'courses', title: 'Courses', hasData: () => (resumeData.courses?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'languages', id: 'languages', title: 'Languages', hasData: () => (resumeData.languages?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'strengths', id: 'strengths', title: 'Core Strengths', hasData: () => (resumeData.strengths?.length || 0) > 0, defaultColumn: 'sidebar' },
+      { type: 'achievements', id: 'achievements', title: 'Achievements', hasData: () => (resumeData.achievements?.length || 0) > 0, defaultColumn: 'sidebar' },
+    ];
+
+    // Add dynamic sections for standard types that have data but aren't in template config
+    const dynamicStandardSections: SectionConfig[] = [];
+    standardSectionTypes.forEach(sectionDef => {
+      // Skip if already in template config (by id or type)
+      if (configSectionIds.has(sectionDef.id) || configSectionTypes.has(sectionDef.type)) return;
+
+      // Skip if not enabled (enabledSections is provided but doesn't include this section)
+      if (enabledSections && enabledSections.length > 0 && !enabledSections.includes(sectionDef.id)) return;
+
+      // Skip if no data
+      if (!sectionDef.hasData()) return;
+
+      // Determine column - for column-filtered calls, only include matching sections
+      const sectionColumn = sectionDef.defaultColumn;
+      if (column && sectionColumn !== column) return;
+
+      // Calculate order - append after existing sections in the same column
+      const existingOrdersInColumn = sections
+        .filter(s => (s.column || 'main') === sectionColumn)
+        .map(s => s.order ?? 0);
+      const maxOrder = existingOrdersInColumn.length > 0 ? Math.max(...existingOrdersInColumn) : 0;
+
+      dynamicStandardSections.push({
+        type: sectionDef.type as any,
+        id: sectionDef.id,
+        title: sectionDef.title,
+        defaultTitle: sectionDef.title,
+        enabled: true,
+        order: maxOrder + 1 + dynamicStandardSections.length,
+        column: sectionColumn,
+      });
+    });
+
+    if (dynamicStandardSections.length > 0) {
+      sections = [...sections, ...dynamicStandardSections];
+    }
 
     // Determine max order per column for deterministic appends
     const maxOrderByColumn = (col: 'main' | 'sidebar') => {

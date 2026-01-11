@@ -8,6 +8,7 @@ import {
   ArrowRight,
   CheckCircle2,
   Linkedin,
+  FileUp,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
@@ -16,14 +17,20 @@ import { getFresherTemplates } from '../templates';
 import { TemplatePreviewV2 } from '@/v2/components/TemplatePreviewV2';
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { LinkedInImportModal } from '@/v2/components/LinkedInImportModal';
+import { ResumeUploadModal } from '@/v2/components/ResumeUploadModal';
+import { TemplateSelectorModal } from '@/v2/components/TemplateSelectorModal';
 import { AuthModal } from '@/components/AuthModal';
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
+import type { V2ResumeData } from '../types';
 
 const DashboardV2 = () => {
   const navigate = useNavigate();
   const { user } = useFirebaseAuth();
   const [linkedInModalOpen, setLinkedInModalOpen] = useState(false);
+  const [resumeUploadModalOpen, setResumeUploadModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [templateSelectorOpen, setTemplateSelectorOpen] = useState(false);
+  const [pendingResumeData, setPendingResumeData] = useState<V2ResumeData | null>(null);
 
   const v2Templates = getAllTemplates();
   const fresherTemplates = getFresherTemplates();
@@ -53,6 +60,31 @@ const DashboardV2 = () => {
     setLinkedInModalOpen(true);
   };
 
+  // Handle successful resume upload - store data and show template selector
+  const handleResumeUploadSuccess = (data: V2ResumeData) => {
+    // Store parsed resume data temporarily
+    setPendingResumeData(data);
+
+    // Close upload modal and show template selector
+    setResumeUploadModalOpen(false);
+    setTemplateSelectorOpen(true);
+  };
+
+  // Handle template selection after resume upload
+  const handleTemplateSelect = (templateId: string) => {
+    if (pendingResumeData) {
+      // Store parsed resume data in sessionStorage
+      const jsonData = JSON.stringify(pendingResumeData);
+      sessionStorage.setItem('resume-upload-data', jsonData);
+
+      // Navigate to builder with selected template
+      navigate(`/builder?template=${templateId}&source=upload`);
+
+      // Clear pending data
+      setPendingResumeData(null);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#fafafa]">
       <Header />
@@ -68,8 +100,8 @@ const DashboardV2 = () => {
           </p>
         </div>
 
-        {/* Quick Actions - Three Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 max-w-5xl mx-auto">
+        {/* Quick Actions - Four Column Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 max-w-6xl mx-auto">
           {/* LinkedIn Import Card - LinkedIn Blue Theme */}
           <button
             onClick={handleLinkedInClick}
@@ -80,19 +112,40 @@ const DashboardV2 = () => {
                 <Linkedin className="w-6 h-6 text-white" />
               </div>
               <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-semibold text-gray-900 group-hover:text-[#0A66C2] transition-colors">
-                    Import from LinkedIn
-                  </h3>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-700 border border-amber-200">
-                    NEW
-                  </span>
-                </div>
+                <h3 className="font-semibold text-gray-900 group-hover:text-[#0A66C2] transition-colors">
+                  Import LinkedIn
+                </h3>
               </div>
               <ChevronRight className="w-5 h-5 text-[#0A66C2]/40 group-hover:text-[#0A66C2] group-hover:translate-x-1 transition-all" />
             </div>
             <p className="text-sm text-gray-600 pl-[60px]">
-              Auto-fill your resume with LinkedIn profile data
+              Auto-fill from your profile
+            </p>
+          </button>
+
+          {/* Upload Resume Card - Purple Theme */}
+          <button
+            onClick={() => setResumeUploadModalOpen(true)}
+            className="group relative flex flex-col p-5 bg-gradient-to-br from-purple-50 to-violet-100/50 rounded-2xl border border-purple-200/60 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/15 transition-all duration-300 text-left"
+          >
+            <div className="flex items-center gap-3 mb-2.5">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-purple-500/30">
+                <FileUp className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                    Upload Resume
+                  </h3>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-purple-100 text-purple-700 border border-purple-200">
+                    AI
+                  </span>
+                </div>
+              </div>
+              <ChevronRight className="w-5 h-5 text-purple-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
+            </div>
+            <p className="text-sm text-gray-600 pl-[60px]">
+              Parse existing PDF/DOCX
             </p>
           </button>
 
@@ -108,9 +161,9 @@ const DashboardV2 = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                    Universal Templates
+                    Pro Templates
                   </h3>
-                  <span className="inline-flex items-center justify-center min-w-[28px] h-6 px-2 rounded-full bg-blue-500 text-white text-xs font-bold shadow-sm">
+                  <span className="inline-flex items-center justify-center min-w-[24px] h-5 px-1.5 rounded-full bg-blue-500 text-white text-[10px] font-bold shadow-sm">
                     {universalTemplateCount}
                   </span>
                 </div>
@@ -118,7 +171,7 @@ const DashboardV2 = () => {
               <ChevronRight className="w-5 h-5 text-blue-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
             </div>
             <p className="text-sm text-gray-600 pl-[60px]">
-              Professional designs for all industries
+              For all industries
             </p>
           </button>
 
@@ -134,9 +187,9 @@ const DashboardV2 = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
-                    Fresher Templates
+                    Fresher
                   </h3>
-                  <span className="inline-flex items-center justify-center min-w-[28px] h-6 px-2 rounded-full bg-emerald-500 text-white text-xs font-bold shadow-sm">
+                  <span className="inline-flex items-center justify-center min-w-[24px] h-5 px-1.5 rounded-full bg-emerald-500 text-white text-[10px] font-bold shadow-sm">
                     {fresherTemplateCount}
                   </span>
                 </div>
@@ -144,7 +197,7 @@ const DashboardV2 = () => {
               <ChevronRight className="w-5 h-5 text-emerald-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
             </div>
             <p className="text-sm text-gray-600 pl-[60px]">
-              Perfect for graduates and entry-level
+              Graduates & entry-level
             </p>
           </button>
         </div>
@@ -281,11 +334,30 @@ const DashboardV2 = () => {
         onOpenChange={setLinkedInModalOpen}
       />
 
+      {/* Resume Upload Modal */}
+      <ResumeUploadModal
+        isOpen={resumeUploadModalOpen}
+        onClose={() => setResumeUploadModalOpen(false)}
+        onSuccess={handleResumeUploadSuccess}
+        themeColor="#8b5cf6"
+      />
+
       {/* Auth Modal - Shows when user tries to use LinkedIn import without being logged in */}
       <AuthModal
         open={authModalOpen}
         onOpenChange={setAuthModalOpen}
         onSuccess={handleAuthSuccess}
+      />
+
+      {/* Template Selector Modal - Shows after resume upload */}
+      <TemplateSelectorModal
+        isOpen={templateSelectorOpen}
+        onClose={() => {
+          setTemplateSelectorOpen(false);
+          setPendingResumeData(null);
+        }}
+        onSelect={handleTemplateSelect}
+        themeColor="#8b5cf6"
       />
     </div>
   );
