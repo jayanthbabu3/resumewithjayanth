@@ -5,14 +5,31 @@ interface PDFRequest {
   filename?: string;
 }
 
+// Allowed origins for CORS
+const allowedOrigins = [
+  "https://resumecook.com",
+  "https://www.resumecook.com",
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:5173",
+];
+
+const getCorsOrigin = (event: HandlerEvent): string => {
+  const origin = event.headers?.origin || event.headers?.Origin || "";
+  return allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+};
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  const corsOrigin = getCorsOrigin(event);
+
   // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 200,
       headers: {
         "Content-Type": "text/plain",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
       },
@@ -25,7 +42,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return {
       statusCode: 405,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ error: "Method not allowed" }),
@@ -41,7 +58,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return {
       statusCode: 400,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ error: "Invalid JSON body" }),
@@ -54,7 +71,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     return {
       statusCode: 400,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ error: "HTML content is required" }),
@@ -191,7 +208,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
       },
       body: JSON.stringify({
         success: true,
@@ -203,7 +220,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     const errorStack = error instanceof Error ? error.stack : undefined;
-    
+
     // Log error for Netlify function logs
     console.error("PDF generation error:", errorMessage);
     console.error("Stack:", errorStack);
@@ -212,7 +229,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
       statusCode: 500,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": corsOrigin,
       },
       body: JSON.stringify({
         error: "Failed to generate PDF",

@@ -259,8 +259,21 @@ RESUME TEXT TO PARSE:
 `;
 
 const handler = async (event) => {
+  // Allowed origins for CORS
+  const allowedOrigins = [
+    "https://resumecook.com",
+    "https://www.resumecook.com",
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
+  ];
+
+  const origin = event.headers?.origin || event.headers?.Origin || "";
+  const isAllowedOrigin = allowedOrigins.includes(origin);
+
   const corsHeaders = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": isAllowedOrigin ? origin : allowedOrigins[0],
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
   };
